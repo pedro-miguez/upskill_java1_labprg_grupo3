@@ -1,0 +1,13 @@
+@startuml
+
+participant Colaborador
+participant Sistema
+
+Colaborador -> Sistema: consulta tarefa
+Sistema -> Colaborador: tarefa (designação, descrição, custo, categoria)
+Colaborador -> Sistema: adiciona \nperíodo de publicitação, \nperíodo de apresentação de candidaturas, \nperíodo de seriação e adjudicação, \nregime seriação
+Sistema -> Colaborador: confirma introdução
+Colaborador -> Sistema: coloca tarefa pública
+Sistema -> Colaborador: publicada com sucesso
+
+@enduml

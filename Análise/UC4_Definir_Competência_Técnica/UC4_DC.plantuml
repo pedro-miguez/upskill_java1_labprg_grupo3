@@ -1,0 +1,42 @@
+@startuml
+
+left to right direction
+
+title UC4 - Definir Competência Técnica \n
+
+Class Plataforma <<Singleton>>{
+    -designacao
+    --
+    validaCompTec()
+    adicionaCompTec()
+}
+
+Class Administrativo{
+    -nome
+}
+
+Class UC4_UI{
+    novaCompTec()
+    registaCompTec()
+}
+
+Class UC4_CTRL{
+    compTecnica=novaCompTec()
+    criar()
+    registaCompTec()
+}
+
+Class CompetenciaTecnica{
+    -codUnico
+    -desBreve
+    -desDetalhada
+    -areaAtiv
+    -grauPro
+}
+
+Plataforma --o Administrativo
+Administrativo --> UC4_UI
+UC4_UI --> UC4_CTRL
+UC4_CTRL --> CompetenciaTecnica
+
+@enduml

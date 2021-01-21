@@ -1,0 +1,29 @@
+@startuml
+title Diagrama de Casos de Uso
+left to right direction
+
+Administrativo --> Registar Freelancer
+Administrativo --> Aceder a Tarefa
+Administrativo --> Definir Área de Atividade
+Administrativo --> Definir Categoria de Tarefa
+Administrativo --> Especificar Competencia Tecninca
+
+GestorOrganização --> Especificar Colaboradores
+GestorOrganização --> Aceder a Tarefa
+
+Freelancer --> Candidatura a Freelancer
+Freelancer --> Aceder a Tarefa
+Freelancer --> Candidatura a Tarefa
+
+Colaborador --> Registar Organização
+Colaborador --> Aceder a Tarefa
+Colaborador --> Definir Tarefa
+Colaborador --> Publicar Tarefa
+Colaborador --> Adjudicar Tarefa
+
+EntidadeVerificadora --> Verificar e Validar Candidatos
+
+
+
+
+@enduml

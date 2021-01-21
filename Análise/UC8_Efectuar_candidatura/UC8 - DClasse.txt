@@ -1,0 +1,48 @@
+@startuml
+
+title UC_8 - Efectuar Candidatura
+left to right direction
+
+
+class Freelancer {
+  +String nome
+  +int contactoTelefonico
+  +String email
+  +HabilitacaoAcademica[] habilitacoesAcademicas
+  +CompetenciaTecnica[] competenciasTecnicas
+  +void candidaturaTarefa(tarefa)
+  
+}
+
+class UC8_UI {
+  +showAnunciosTarefas()
+}
+
+class UC8_Ctrl {
+  +showAnunciosTarefas()
+}
+
+class AnuncioTarefa {
+  +String periodoPublic
+  +String periodoCandidatura
+  +String periodoSeriacao
+  +RegimentoSeriacao tipoRegimento
+  +boolean verificarCompetencias(competenciasTecnicas, tarefa)
+  +void acrescentarCandidato(freelancer)
+}
+
+class Plataforma <<Singleton>> {
+  +AnuncioTarefa[] anunciosTarefa
+  +String designacao
+  +AnuncioTarefa[] showAnuncioTarefas()
+}
+
+Freelancer -> UC8_UI
+UC8_UI -> UC8_Ctrl
+UC8_Ctrl -> Plataforma
+UC8_Ctrl -> AnuncioTarefa
+Plataforma "1" --> "1..*"AnuncioTarefa: possui
+
+
+
+@enduml

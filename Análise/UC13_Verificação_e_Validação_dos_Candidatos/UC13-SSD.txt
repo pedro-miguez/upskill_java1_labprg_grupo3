@@ -1,0 +1,7 @@
+@startuml 
+Title UC13 - Verificação e validação de candidatos a freelancer
+EntidadeVerificadora -> Plataforma : Solicita dados do candidato
+Plataforma --> EntidadeVerificadora : Devolve os dados solicitados
+EntidadeVerificadora -> Plataforma : Indica que os dados são validos
+Plataforma --> EntidadeVerificadora : Devolve mensagem de sucesso
+@enduml

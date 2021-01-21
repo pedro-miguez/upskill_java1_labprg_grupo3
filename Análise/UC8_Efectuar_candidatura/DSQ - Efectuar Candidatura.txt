@@ -1,0 +1,59 @@
+@startuml
+
+participant Freelancer
+participant UC8_UI
+participant UC8_Ctrl
+participant Plataforma << Singleton >>
+participant AnuncioTarefa
+
+title UC8 - Efectuar Candidatura
+activate Freelancer
+Freelancer->UC8_UI:iniciar
+activate UC8_UI
+UC8_UI->UC8_Ctrl:showAnuncioTarefas()
+activate UC8_Ctrl
+UC8_Ctrl->Plataforma: showAnuncioTarefas()
+activate Plataforma
+alt existem tarefas disponíveis
+Plataforma-->UC8_Ctrl: lista de tarefas publicadas
+deactivate Plataforma
+UC8_Ctrl-->UC8_UI: lista de tarefas publicadas
+deactivate UC8_Ctrl
+UC8_UI-->Freelancer:lista de tarefas publicadas
+deactivate UC8_UI
+
+Freelancer->UC8_UI: seleciona tarefa para se candidatar
+deactivate Freelancer
+
+activate UC8_UI
+
+UC8_UI->UC8_Ctrl:verificarCompetencias(freelancer, tarefa)
+activate UC8_Ctrl
+UC8_Ctrl->AnuncioTarefa:verificarCompetencias(freelancer, tarefa)
+
+activate AnuncioTarefa
+
+AnuncioTarefa-->UC8_Ctrl:success
+deactivate AnuncioTarefa
+UC8_Ctrl->AnuncioTarefa: acrescentarCandidato(freelancer)
+activate AnuncioTarefa
+AnuncioTarefa-->UC8_Ctrl: ok
+deactivate AnuncioTarefa
+UC8_Ctrl-->UC8_UI: ok
+deactivate UC8_Ctrl
+UC8_UI-->Freelancer: ok
+deactivate UC8_UI
+activate Freelancer
+UC8_UI<--Freelancer: terminar
+deactivate Freelancer
+else não existem tarefas disponíveis
+Plataforma-->UC8_Ctrl: não existem tarefas disponíveis
+deactivate Plataforma
+UC8_Ctrl-->UC8_UI: não existem tarefas disponíveis
+deactivate UC8_Ctrl
+UC8_UI-->Freelancer:não existem tarefas disponíveis
+deactivate UC8_UI
+Freelancer->UC8_UI: terminar
+
+end
+@enduml

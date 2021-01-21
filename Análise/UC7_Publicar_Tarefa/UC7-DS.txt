@@ -1,0 +1,59 @@
+@startuml
+
+participant Colaborador
+participant UC7_UI
+participant UC7_Ctrl
+participant Plataforma << Singleton >>
+participant Tarefa
+
+title UC7 - Publicar Tarefa
+activate Colaborador
+Colaborador->UC7_UI:iniciar
+activate UC7_UI
+UC7_UI->UC7_Ctrl:showTarefas(orgNIF)
+activate UC7_Ctrl
+UC7_Ctrl->Plataforma: showTarefas(orgNIF)
+activate Plataforma
+alt privateTarefas[] tem elementos
+Plataforma-->UC7_Ctrl: lista de tarefas
+deactivate Plataforma
+UC7_Ctrl-->UC7_UI: lista de tarefas
+deactivate UC7_Ctrl
+UC7_UI-->Colaborador:lista de tarefas por publicar
+deactivate UC7_UI
+Colaborador->UC7_UI: seleciona tarefa para publicar
+activate UC7_UI
+Colaborador -> UC7_UI: adiciona \nperiodo de publicitação, \n período de apresentação de candidaturas, \nperíodo de seriação e adjudicação, \regime seriação
+
+deactivate Colaborador
+UC7_UI->UC7_Ctrl:publicarTarefa(tarefa)
+UC7_Ctrl->Tarefa:publicarTarefa(tarefa)
+activate Tarefa
+activate UC7_Ctrl
+Tarefa-->UC7_Ctrl:success
+deactivate Tarefa
+UC7_Ctrl->Plataforma: validação
+activate Plataforma
+Plataforma-->Plataforma:isPublic == true
+Plataforma-->UC7_Ctrl: ok
+deactivate Plataforma
+UC7_Ctrl-->UC7_UI: ok
+deactivate UC7_Ctrl
+UC7_UI-->Colaborador: ok
+deactivate UC7_UI
+activate Colaborador
+UC7_UI<--Colaborador: terminar
+deactivate Colaborador
+else privateTarefas[] não tem elementos
+Plataforma-->UC7_Ctrl: não existem tarefas privadas
+deactivate Plataforma
+UC7_Ctrl-->UC7_UI: não existem tarefas privadas
+deactivate UC7_Ctrl
+UC7_UI-->Colaborador:não existem tarefas privadas
+deactivate UC7_UI
+Colaborador->UC7_UI: terminar
+
+
+
+end
+@enduml

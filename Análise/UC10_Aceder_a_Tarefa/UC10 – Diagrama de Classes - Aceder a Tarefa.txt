@@ -1,0 +1,38 @@
+@startuml
+title UC10 - Aceder a tarefa - Diagrama de classes 
+left to right direction
+
+class Plataforma <<Singleton>>{
+designacao
+--
+findTarefa(nomeTarefa)
+}
+class Tarefa {
+designacao
+descricaoInformal
+descricaoTecnica
+prazo
+custo
+categoria
+
+}
+
+class UC10_UI {
+--
+consultarTarefa(nomeTarefa)
+}
+
+class UC10_Controller{
+--
+findTarefa(nomeTarefa)
+}
+class User {
+}
+
+
+Plataforma --o User
+User --> UC10_UI
+UC10_UI --> UC10_Controller
+UC10_Controller --> Tarefa
+
+@enduml

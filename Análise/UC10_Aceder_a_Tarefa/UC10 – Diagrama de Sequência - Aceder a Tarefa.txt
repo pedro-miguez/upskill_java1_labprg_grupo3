@@ -1,0 +1,35 @@
+@startuml
+title UC10 - Aceder a tarefa
+participant User
+participant UC10_UI
+participant UC10_Controller
+participant Plataforma << Singleton >>
+participant Tarefa
+activate User
+User->UC10_UI:aceder a tarefa
+activate UC10_UI
+UC10_UI-->User:introduza o nome da tarefa
+User->UC10_UI:introduz nome da tarefa
+deactivate User
+UC10_UI->UC10_Controller:consultarTarefa(nomeTarefa)
+deactivate UC10_UI
+activate UC10_Controller
+UC10_Controller-->Plataforma:findTarefa(nomeTarefa)
+Plataforma -->Plataforma:findTarefa(nomeTarefa)
+activate Plataforma
+Plataforma-->UC10_Controller: exist
+alt exist true
+Plataforma -> Tarefa : criar
+Tarefa --> Plataforma : tar
+Plataforma --> UC10_Controller: tar
+UC10_Controller--> UC10_UI: tar
+UC10_UI -->User: dados da tarefa
+else exist false
+deactivate Plataforma
+UC10_Controller --> UC10_UI: tarefa não existe
+UC10_UI -->User: tarefa não existe
+deactivate UC10_UI
+activate User
+deactivate User
+end
+@enduml

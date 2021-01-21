@@ -1,0 +1,64 @@
+@startuml
+
+left to right direction
+
+class Colaborador {
+    String: nome
+    Funcao funcao
+    ContactoTelefonico contactoTelefonico
+    Email email
+    Password password
+}
+    
+class Candidatura {
+    POT precoPretendido
+    Data tempoNecessario
+    String: textoApresentacao
+    }
+    
+class UC9_UI {
+    --  
+    List<Candidatura>: getListaTarefasPorAdjudicar()
+    seriarCandidaturas()
+    confirmSelection(candidatura)
+}
+
+class UC9_Ctrl {
+    --
+    List<Candidatura>: getListaTarefasPorAdjudicar()
+    seriarCandidaturas()
+    confirmSelection(candidatura)
+}
+
+class Plataforma << Singleton >> {
+    String: designacao
+    --
+    confirmSelection(candidatura)
+    }
+    
+class Freelancer {
+    String: nome
+    ContactoTelefonico contactoTelefonico
+    Email email
+    EnderecoPostal enderecoPostal
+    }
+
+class Email {}
+
+class ContactoTelefonico {}
+
+
+Plataforma o-- Freelancer
+Plataforma o-- Colaborador
+Colaborador --> Email
+Colaborador --> ContactoTelefonico
+Colaborador ..> UC9_UI
+UC9_UI ..> UC9_Ctrl
+UC9_Ctrl ..> Freelancer
+Freelancer --> EnderecoPostal
+Freelancer --> Email
+Freelancer --> ContactoTelefonico
+UC9_Ctrl ..> Candidatura
+UC9_UI ..> Candidatura
+
+@enduml

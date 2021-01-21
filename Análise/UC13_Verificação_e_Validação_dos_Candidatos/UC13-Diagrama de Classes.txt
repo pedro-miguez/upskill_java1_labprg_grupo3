@@ -1,0 +1,47 @@
+@startuml
+title UC13 - Verificação e Validação de Competências
+left to right direction
+
+class Plataforma <<Singleton>>{
+designacao
+--
+getCandidato(NIF)
+validarCandidato(NIF)
+invalidarCandidato(NIF)
+}
+
+class Candidato {
+nome
+NIF
+endereço postal
+contacto telefónico
+e-mail
+grau
+designação do curso 
+instituição que concede o grau 
+média do curso
+}
+
+class UC13_UI {
+--
+getCandidato(NIF)
+validarCandidato(NIF)
+invalidarCandidato(NIF)
+}
+
+class UC13_Controller{
+--
+getCandidato(NIF)
+validarCandidato(NIF)
+invalidarCandidato(NIF)
+}
+class EntidadeVerificadora {
+}
+
+
+Plataforma --o EntidadeVerificadora
+EntidadeVerificadora --> UC13_UI
+UC13_UI --> UC13_Controller
+UC13_Controller --> Candidato
+
+@enduml

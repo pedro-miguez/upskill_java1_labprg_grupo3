@@ -1,0 +1,41 @@
+@startuml 
+Title Verificação e Validação dos Candidatos
+activate EntidadeVerificadora
+EntidadeVerificadora -> UC13_UI : Solicita Dados do Candidato
+activate UC13_UI
+UC13_UI -> UC13_CTRL : getCandidato()
+activate UC13_CTRL
+UC13_CTRL -> Plataforma : getCandidato(candidato)
+Plataforma -> Candidato : obter(candidato)
+activate Candidato
+Candidato --> Plataforma : Dados Candidato
+Plataforma --> UC13_CTRL : Dados Candidato
+UC13_CTRL --> UC13_UI : Dados Candidato
+UC13_UI --> EntidadeVerificadora : Dados Candidato
+deactivate Candidato
+deactivate EntidadeVerificadora
+EntidadeVerificadora -> EntidadeVerificadora  : Valida e Verifica Candidato
+alt ValidadoVerificado true
+EntidadeVerificadora -> UC13_UI : Verificado e Validado
+UC13_UI -> UC13_CTRL : validarCandidato()
+UC13_CTRL -> Plataforma : validarCandidato(candidato)
+Plataforma -> Candidato : validarCandidato(candidato)
+activate Candidato
+Candidato --> Plataforma : Sucesso
+deactivate Candidato
+Plataforma --> UC13_CTRL : Sucesso
+UC13_CTRL --> UC13_UI : Sucesso
+UC13_UI --> EntidadeVerificadora : Freelancer validado com Sucesso
+else ValidadoVerificado false
+UC13_UI -> UC13_CTRL : invalidarCandidato()
+UC13_CTRL -> Plataforma : invalidarCandidato(candidato)
+Plataforma -> Candidato : invalidarCandidato(candidato)
+activate Candidato
+Candidato --> Plataforma : Sucesso
+deactivate Candidato
+Plataforma --> UC13_CTRL : Sucesso
+UC13_CTRL --> UC13_UI : Sucesso
+UC13_UI --> EntidadeVerificadora : Freelancer invalidado com Sucesso
+end
+
+@enduml

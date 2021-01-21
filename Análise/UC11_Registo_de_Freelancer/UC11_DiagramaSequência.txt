@@ -1,0 +1,40 @@
+@startuml
+activate User
+User->UC1_UI:create
+activate UC1_UI
+UC1_UI-->User:Introduza os dados
+User->UC1_UI:introduz nome, NIF
+deactivate User
+UC1_UI->UC1_Controller:registarFreelancer(nome, NIF)
+deactivate UC1_UI
+activate UC1_Controller
+UC1_Controller-->Plataforma:findFreelancer(NIF)
+activate Plataforma
+Plataforma-->UC1_Controller: exist
+alt exist true
+UC1_Controller--> UC1_UI: freelancer já existe
+UC1_UI -->User: freelancer já existe
+else exist false
+deactivate Plataforma
+UC1_Controller->Freelancer: create(nome, NIF)
+activate Freelancer
+Freelancer-->UC1_Controller:f1
+deactivate Freelancer
+UC1_Controller ->Plataforma:adicionarFreelancer(f1)
+activate Plataforma
+Plataforma->Plataforma:adicionar(f1)
+Plataforma-->UC1_Controller:sucesso
+deactivate Plataforma
+UC1_Controller -->UC1_UI:sucesso
+deactivate UC1_Controller
+activate UC1_UI
+UC1_UI-->User:Freelancer registado com sucesso
+deactivate UC1_UI
+activate User
+deactivate User
+end
+
+
+
+
+@enduml

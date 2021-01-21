@@ -1,0 +1,54 @@
+@startuml
+title UC9 - Adjudicar Tarefa
+
+participant Colaborador
+participant UC9_UI
+participant UC9_Ctrl
+participant Plataforma << Singleton >>
+participant Freelancer
+
+Colaborador -> UC9_UI: consultar tarefas publicadas e por adjudicar
+activate Colaborador 
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: getListaTarefasPorAdjudicar()
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma: getListaTarefasPorAdjudicar()
+activate Plataforma 
+Plataforma --> UC9_Ctrl: \nreturns listaTarefasPorAdjudicar[]
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: \nreturns listaTarefasPorAdjudicar[]
+deactivate UC9_Ctrl
+UC9_UI --> Colaborador: lista de tarefas por adjudicar
+deactivate UC9_UI
+deactivate Colaborador
+Colaborador -> UC9_UI: confirmar tipo de regime de seriação e ver candidatura(s) seleccionada(s)
+activate Colaborador
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: seriarCandidaturas()
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma: seriarCandidaturas()
+activate Plataforma
+Plataforma --> UC9_Ctrl: returns candidaturasSeriadas
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: returns candidaturasSeriadas
+deactivate UC9_Ctrl
+UC9_UI --> Colaborador: candidaturas seriadas
+deactivate UC9_UI
+Colaborador -> UC9_UI: confirma candidatura seleccionada
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: confirmSelection(candidatura)
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma: confirmSelection(candidatura)
+activate Plataforma
+Plataforma --> UC9_Ctrl: success
+UC9_Ctrl --> UC9_UI: success
+deactivate UC9_Ctrl
+UC9_UI --> Colaborador: candidatura adjudicada com sucesso
+deactivate UC9_UI
+activate Freelancer
+Plataforma -> Freelancer: confirmSelection(candidatura)
+deactivate Plataforma
+deactivate Freelancer
+deactivate Colaborador
+
+@enduml

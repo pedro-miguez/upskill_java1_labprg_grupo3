@@ -1,0 +1,58 @@
+@startuml
+
+title UC12 - Candidatura a Freelancer
+
+left to right direction
+
+class Plataforma << Singleton >> {
+    String: designacao
+}
+
+class CandidatoFreelancer {
+    String nome
+    Email email
+    ContactoTelefonico contactoTelefonico
+    EnderecoPostal enderecoPostal
+    String grauEnsino
+    String instituicaoEnsino
+    String curso
+    Float mediaCurso
+}
+
+class Email {}
+
+class EnderecoPostal {}
+
+class ContactoTelefonico {}
+
+
+class UC12_UI {
+    --
+    preencherDadosPessoais (nome, enderecoPostal, contactoTelefonico, email)
+    preencherHabilitacoesLiterarias (grauEnsino, instituicaoEnsino, curso, mediaCurso)
+}
+
+class UC12_Ctrl {
+    --
+    preencherDadosPessoais (nome, enderecoPostal, contactoTelefonico, email)
+    preencherHabilitacoesLiterarias (grauEnsino, instituicaoEnsino, curso, mediaCurso)
+    createCandidatoFreelancer(dadosPessoais, habilitacoesLiterarias)
+}
+
+class UC12_Builder {
+    --
+    CandidatoFreelancer(dadosPessoais, habilitacoesLiterarias)
+    addCandidato(candidatoFreelancer)
+}
+
+Plataforma o-- CandidatoFreelancer
+CandidatoFreelancer ..> UC12_UI
+CandidatoFreelancer --> EnderecoPostal
+CandidatoFreelancer --> Email
+CandidatoFreelancer --> ContactoTelefonico
+UC12_UI ..> UC12_Ctrl
+UC12_Ctrl ..> UC12_Builder
+UC12_Builder ..> Plataforma
+Plataforma ..> UC12_Ctrl
+
+@enduml

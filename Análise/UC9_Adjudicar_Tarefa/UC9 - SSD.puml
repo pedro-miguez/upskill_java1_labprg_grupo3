@@ -1,0 +1,12 @@
+@startuml
+
+participant Colaborador
+participant Sistema
+
+Colaborador -> Sistema: consulta lista de tarefas por adjudicar
+Sistema --> Colaborador: lista de tarefas por adjudicar
+Colaborador -> Sistema: confirma regime de seriação
+Sistema -> Colaborador: lista de candidaturas seriadas
+Colaborador -> Sistema: confirma candidatura seleccionada
+Sistema --> Colaborador: adjudicação bem sucecida
+@enduml

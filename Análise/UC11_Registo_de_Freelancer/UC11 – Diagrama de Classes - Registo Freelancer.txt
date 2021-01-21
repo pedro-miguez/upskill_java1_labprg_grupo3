@@ -1,0 +1,41 @@
+@startuml
+title UC11 - Registo Freelancer - Diagrama de classes 
+left to right direction
+
+class Plataforma <<Singleton>>{
+designacao
+--
+findFreelancer(NIF)
+}
+class Freelancer {
+nome
+NIF
+nome
+contactoTelefonico
+email
+habilitacoesAcademicas
+competenciasTecnicas
+
+
+}
+
+class UC11_UI {
+--
+registarFreelancer(nome, NIF)
+}
+
+class UC11_Controller{
+--
+findFreelancer(NIF)
+}
+class Administrativo {
+nome
+}
+
+
+Plataforma --o Administrativo
+Administrativo --> UC11_UI
+UC11_UI --> UC11_Controller
+UC11_Controller --> Freelancer
+
+@enduml

@@ -1,0 +1,89 @@
+@startuml
+
+alt regimeSeriacao(Subjectiva Opcional) 
+
+alt candidaturasValidas true
+
+Colaborador -> UC9_UI: selecciona a melhor candidatura seguindo os requisitos definidos
+activate Colaborador
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: adjudicarCandidatura(candidaturaSeleccionada)
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma:adjudicarCandidatura(candidaturaSeleccionada)
+activate Plataforma
+Plataforma --> UC9_Ctrl: success
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: success
+UC9_UI --> Colaborador: candidatura adjudicada com sucesso
+UC9_Ctrl --> Freelancer: candidatura adjudicada
+deactivate UC9_UI
+deactivate UC9_Ctrl
+deactivate Colaborador
+
+else candidaturasValidas false
+Colaborador -> UC9_UI: descarta as candidaturas existentes
+activate Colaborador
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: ignore(candidaturas)
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma: ignore(candidaturas)
+activate Plataforma
+Plataforma --> UC9_Ctrl: success
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: success
+deactivate UC9_Ctrl
+UC9_UI --> Colaborador: candidaturas descartadas com sucesso
+deactivate UC9_UI
+deactivate Colaborador
+end 
+
+else regime de seriacao(Subjectiva Obrigatoria) 
+Colaborador -> UC9_UI: selecciona a melhor candidatura seguindo os requisitos definidos
+activate Colaborador
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: adjudicarCandidatura(candidaturaSeleccionada)
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma:adjudicarCandidatura(candidaturaSeleccionada)
+activate Plataforma
+Plataforma --> UC9_Ctrl: success
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: success
+UC9_UI --> Colaborador: candidatura adjudicada com sucesso
+UC9_Ctrl --> Freelancer: candidadatura ajdudicada
+deactivate UC9_UI
+deactivate UC9_Ctrl
+deactivate Colaborador
+
+
+else regime de seriacao(Automatica) 
+Colaborador -> UC9_UI: solicita a selecção da melhor candidatura
+activate Colaborador
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: selectCandidatura()
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma: selectCandidatura()
+activate Plataforma
+Plataforma --> UC9_Ctrl: returns candidaturaSeleccionada
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: returns candidaturaSeleccionada
+deactivate UC9_Ctrl
+UC9_UI --> Colaborador: mostra a candidatura seleccionada
+deactivate UC9_UI
+Colaborador -> UC9_UI: adjudica a candidatura seleccionada
+activate UC9_UI
+UC9_UI -> UC9_Ctrl: adjudicate(candidaturaSeleccionada)
+activate UC9_Ctrl
+UC9_Ctrl -> Plataforma: adjudicate(candidaturaSeleccionada)
+activate Plataforma
+Plataforma --> UC9_Ctrl: success
+deactivate Plataforma
+UC9_Ctrl --> UC9_UI: success
+UC9_UI --> Colaborador: candidatura adjudicada com sucesso
+UC9_Ctrl --> Freelancer: candidatura adjudicada
+deactivate UC9_UI
+deactivate UC9_Ctrl
+deactivate Colaborador
+
+end
+
+@enduml

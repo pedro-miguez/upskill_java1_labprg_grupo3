@@ -1,0 +1,50 @@
+@startuml
+
+title UC7 - PublicarTarefa
+left to right direction
+
+
+class Colaborador {
+  +String nome
+  +Funcao funcao
+  +int contactoTelefonico
+  +String email
+  +void publicarTarefa(tarefa)
+  
+}
+
+class UC7_UI {
+  +showTarefas(orgNIF)
+  +publicarTarefa(tarefa)
+}
+
+class UC7_Ctrl {
+  +showTarefas(orgNIF)
+  +publicarTarefa(tarefa)
+}
+
+class Tarefa {
+  +String nome
+  +String identificadorTarefa
+  +String descricaoInformal
+  +String descricaoTecnica
+  +double estimativaDuracao
+  +double estimativaCusto
+  +Estado estado
+  +void publicarTarefa(tarefa)
+}
+
+class Plataforma <<Singleton>> {
+  +AnuncioTarefa[] anunciosTarefa
+  +String designacao
+}
+
+Colaborador -> UC7_UI
+UC7_UI -> UC7_Ctrl
+UC7_Ctrl -> Plataforma
+UC7_Ctrl -> Tarefa
+Plataforma "1" --> "1..*"Tarefa: possui
+
+
+
+@enduml

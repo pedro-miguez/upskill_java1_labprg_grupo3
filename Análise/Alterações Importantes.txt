@@ -1,0 +1,3 @@
+Categoria de Tarefa: tem grau de proficiência (definido pelo administrador)
+	- número de graus
+	- valor/designação para cada grau (exemplo: 1-baixo, 2-médio, 3-alto)
