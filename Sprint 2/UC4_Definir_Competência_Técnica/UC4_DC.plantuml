@@ -2,41 +2,69 @@
 
 left to right direction
 
-title UC4 - Definir Competência Técnica \n
+title UC3 - Definir Categoria de Tarefa \n
 
-Class Plataforma <<Singleton>>{
-    -designacao
-    --
-    validaCompTec()
-    adicionaCompTec()
+Class Plataforma <<Singleton>> {
+    -String designacao
+
+    +getRegistoAreasAtividade()
+    +getRegistoCompetenciasTecnicas()
 }
 
-Class Administrativo{
-    -nome
+
+Class CompetenciaTecnica {
+    -String codigo
+    -String descricaoBreve
+    -String descricaoDetalhada
+
+    +create(String codigo, String descricaoBreve, String descricaoDetalhada, AreaAtividade areaAtividade)
+    +novoGrau(int valor, String designacao)
+    +addGrau(GrauProficiencia grauProficiencia)
 }
 
-Class UC4_UI{
-    novaCompTec()
-    registaCompTec()
+Class GrauProficiencia {
+    -int valor
+    -String designacao
+
+    +create(int valor, String designacao)
 }
 
-Class UC4_CTRL{
-    compTecnica=novaCompTec()
-    criar()
-    registaCompTec()
+Class UC4_UI {
 }
 
-Class CompetenciaTecnica{
-    -codUnico
-    -desBreve
-    -desDetalhada
-    -areaAtiv
-    -grauPro
+Class UC4_CTRL {
+    +getListaAreasAtividade()
+    +novaCompetenciaTecnica(int codigo, String descricaoBreve, String descricaoDetalhada, int codigoAreaAtividade)
+    +novoGrau(int valor, String designacao)
+    +registaCompetenciaTecnica()
 }
 
-Plataforma --o Administrativo
-Administrativo --> UC4_UI
-UC4_UI --> UC4_CTRL
-UC4_CTRL --> CompetenciaTecnica
+Class RegistoAreasAtividade {
+    +getListaAreasAtividade()
+    +getAreaAtividade(int codigoAreaAtividade)
+}
+
+Class RegistoCompetenciasTecnicas {
+    +novaCompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaAtividade areaAtividade)
+    +registaCompetenciaTecnica(CompetenciaTecnica competenciaTecnica)
+    +validaCompetenciaTecnica(CompetenciaTecnica competenciaTecnica)
+    +addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica)
+}
+
+
+UC4_UI .> UC4_CTRL
+
+UC4_CTRL .> Plataforma
+UC4_CTRL .> RegistoAreasAtividade
+UC4_CTRL .> CompetenciaTecnica
+
+Plataforma "1" -down-> "1" RegistoAreasAtividade: tem
+Plataforma "1" -down-> "1" RegistoCompetenciasTecnicas: tem
+
+RegistoCategorias .> Categoria
+RegistoAreasAtividade "1" -> "*" AreaAtividade: possui
+RegistoCompetenciasTecnicas "1" -> "*" CompetenciaTecnica: possui
+
+CompetenciaTecnica "1" -> "1..*" GrauProficiencia: possui
 
 @enduml

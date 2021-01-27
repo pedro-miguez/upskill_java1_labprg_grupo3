@@ -1,0 +1,73 @@
+@startuml
+
+left to right direction
+
+title UC5 - Especificar Colaborador de Organizacao \n
+
+Class Plataforma <<Singleton>> {
+    -String designacao
+
+    +getRegistoAreasAtividade()
+    +getRegistoCompetenciasTecnicas()
+}
+
+Class UC5_UI {
+}
+
+Class UC5_CTRL {
+    +novoColaborador(String nome, Funcao funcao, Telefone telefone, Email email)
+    +registaColaborador()
+}
+
+Class GestaoUtilizadoresFacade {
+    +getSessaoAtual()
+    +registaUtilizadorComPapel(String nome, Email email, Password password, Funcao funcao)
+}
+
+Class SessaoUtilizador {
+    +getEmailUtilizador()
+
+}
+
+Class RegistoOrganizacoes {
+    +getOrganizacaoByEmail(Email email)
+}
+
+Class Organizacao {
+    +novoColaborador(String nome, Funcao funcao, Telefone telefone, Email email)
+    +validarColaborador(Colaborador colaborador)
+    +registaColaborador(Colaborador colaborador)
+}
+
+Class AlgoritmoGeradorPasswords {
+    +getPassword()
+}
+
+Class Colaborador {
+    +create(String nome, Funcao funcao, Telefone telefone, Email email)
+}
+
+
+UC5_UI .> UC5_CTRL
+
+UC5_CTRL .> Plataforma
+UC5_CTRL .> GestaoUtilizadoresFacade
+UC5_CTRL .> SessaoUtilizador
+UC5_CTRL .> RegistoOrganizacoes
+UC5_CTRL .> Organizacao
+UC5_CTRL .> AlgoritmoGeradorPasswords
+
+Plataforma "1" -down-> "1" RegistoOrganizacoes: tem
+Plataforma "1" -down-> "1" Organizacao: tem
+Plataforma "1" -down-> "1" SessaoUtilizador: tem
+Plataforma "1" -down-> "1" AlgoritmoGeradorPasswords: tem
+
+
+Organizacao "1" -down-> "*" Colaborador: tem
+
+RegistoOrganizacoes .> Organizacao
+
+
+
+
+@enduml

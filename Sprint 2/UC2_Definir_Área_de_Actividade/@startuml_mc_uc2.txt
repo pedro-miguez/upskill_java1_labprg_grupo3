@@ -1,0 +1,38 @@
+@startuml_mc_uc2
+
+class DefinirAreaUI{
+
+}
+
+class DefinirAreaController{
+    +novaAreaAtividade(String cod, String dsBreve, String dsDet)
+    +registaAreaAtividade()
+}
+
+class Plataforma{
+    -String designacao
+    +RegistoAreasAtividade getRegistoAreasAtividade()
+}
+
+class RegistoAreasAtividade{
+    +AreaAtividade novaAreaAtividade(String cod, String dsBreve, String dsDet)
+    +validaAreaAtividade(AreaAtividade area)
+    +registaAreaAtividade(AreaAtividade area)
+    -addAreaAtividade(AreaAtividade area)
+}
+
+class AreaAtividade{
+    -String codigo
+    -String descBreve
+    -String descDetalhada
+    +AreaAtividade(String cod, String dsBreve, String dsDet)
+}
+
+DefinirAreaUI ..> DefinirAreaController
+DefinirAreaController ..> AreaAtividade
+DefinirAreaController ..> Plataforma
+DefinirAreaController ..> RegistoAreasAtividade
+Plataforma "1" --> "1" RegistoAreasAtividade: tem
+RegistoAreasAtividade "1" --> "*" AreaAtividade: possui
+
+@enduml_mc_uc2

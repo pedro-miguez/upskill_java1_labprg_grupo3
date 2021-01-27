@@ -1,0 +1,21 @@
+@startuml
+
+actor GestorOrganizacao
+participant Sistema
+
+activate GestorOrganizacao
+GestorOrganizacao -> Sistema: 1 inicia a especificacao
+activate Sistema
+Sistema --> GestorOrganizacao: 2 solicita os dados (nome, funcao, contacto telefonico, endereco email)
+deactivate Sistema
+GestorOrganizacao -> Sistema: 3 introduz os dados solicitados
+activate Sistema
+Sistema --> GestorOrganizacao:4 apresenta os dados e solicita confirmacao
+deactivate Sistema
+GestorOrganizacao -> Sistema: 5 confirma os dados
+activate Sistema
+Sistema --> GestorOrganizacao:6 informa do sucesso de operacao
+deactivate Sistema
+deactivate GestorOrganizacao
+
+@enduml
