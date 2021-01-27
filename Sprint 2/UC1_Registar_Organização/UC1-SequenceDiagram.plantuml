@@ -1,0 +1,41 @@
+@startuml 
+actor UtilizadorNãoRegistado as UtilizadorNãoRegistado
+UtilizadorNãoRegistado -> ":RegistarOrganizacaoUI" : 1 Introduz os dados solicitados
+activate ":RegistarOrganizacaoUI"
+":RegistarOrganizacaoUI" -> ":RegistarOrganizacaoController" : 2 novaOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,função,tlfG, emailG)
+activate ":RegistarOrganizacaoController"
+":RegistarOrganizacaoController" -> ":Plataforma" : 3 no = getRegistoOrganizacoes()
+activate ":Plataforma"
+deactivate ":Plataforma"
+":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 4 org= novaOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,função,tlfG, emailG)
+activate "ro:RegistoOrganizacoes"
+"ro:RegistoOrganizacoes" -> Organizacao : 5 end = novoEndereco(endLocal,endCodPostal,endLocalidade)
+activate Organizacao
+deactivate Organizacao
+Organizacao -> "end:EnderecoPostal" ** : 6  create(endLocal,endCodPostal,endLocalidade)
+"ro:RegistoOrganizacoes" -> Organizacao : 7 gestor=registarGestor(nomeG,tlfG,emailG)
+activate Organizacao
+deactivate Organizacao
+Organizacao --> "colab:Colaborador" ** : 8 create(nomeG,função,tlfG,emailG)
+"ro:RegistoOrganizacoes" --> "org:Organizacao" ** : 9 create(nome,NIF,end,tlf,site,email,colab)
+deactivate "ro:RegistoOrganizacoes"
+":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 10 validaOrganizacao(org)
+activate "ro:RegistoOrganizacoes"
+deactivate "ro:RegistoOrganizacoes"
+deactivate ":RegistarOrganizacaoController"
+":RegistarOrganizacaoUI" --> UtilizadorNãoRegistado : 11 apresentar dados e solicita confirmação
+deactivate ":RegistarOrganizacaoUI"
+UtilizadorNãoRegistado -> ":RegistarOrganizacaoUI" : 12 confirma
+activate ":RegistarOrganizacaoUI"
+":RegistarOrganizacaoUI" -> ":RegistarOrganizacaoController" : 13 registaOrganizacao()
+activate ":RegistarOrganizacaoController"
+":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 14 registaOrganizacao(org)
+activate "ro:RegistoOrganizacoes"
+"ro:RegistoOrganizacoes" -> "ro:RegistoOrganizacoes" : 15 validaOrganizacao(org)
+ref over ":Plataforma", "org:Organizacao" : UC1_SD_RegistarGestorComoUtilizador
+"ro:RegistoOrganizacoes" -> "ro:RegistoOrganizacoes" : 16 addOrganizacao(org)
+deactivate "ro:RegistoOrganizacoes"
+deactivate ":RegistarOrganizacaoController"
+":RegistarOrganizacaoUI" --> UtilizadorNãoRegistado : 17 operação bem sucedida
+deactivate ":RegistarOrganizacaoUI"
+@enduml
