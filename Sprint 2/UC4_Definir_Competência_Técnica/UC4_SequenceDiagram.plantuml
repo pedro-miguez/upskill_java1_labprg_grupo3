@@ -55,5 +55,4 @@ deactivate ":CTRL"
 deactivate Administrativo
 "rct:RegistaCompetenciasTecnicas" -> "rct:RegistaCompetenciasTecnicas" : 4.1.1.1: validaCompetenciaTecnica(ct)
 "rct:RegistaCompetenciasTecnicas" -> "rct:RegistaCompetenciasTecnicas" : 4.1.1.2 addCompetenciaTecnica(ct)
-deactivate "rct:RegistaCompetenciasTecnicas"
 @enduml
