@@ -1,0 +1,74 @@
+@startuml
+
+title UC3 - Definir Categoria de Tarefa
+
+participant Administrativo
+participant UC3_UI
+participant UC3_Ctrl
+participant Plataforma << Singleton >>
+participant CategoriaTarefa
+
+
+Administrativo -> UC3_UI: Definir Categoria Tarefa
+activate Administrativo
+activate UC3_UI
+UC3_UI -> UC3_Ctrl: getAreasActividade()
+activate UC3_Ctrl
+UC3_Ctrl -> Plataforma: getAreasActividade()
+activate Plataforma
+Plataforma --> UC3_Ctrl: areas[]
+deactivate Plataforma
+UC3_Ctrl --> UC3_UI: areas[]
+deactivate UC3_Ctrl
+UC3_UI -> UC3_Ctrl: getCompTecnicas()
+activate UC3_Ctrl
+UC3_Ctrl -> Plataforma: getCompTecnicas()
+activate Plataforma
+Plataforma --> UC3_Ctrl: compTec[]
+deactivate Plataforma
+UC3_Ctrl --> UC3_UI: compTec[]
+deactivate UC3_Ctrl
+UC3_UI --> Administrativo: Apresenta Lista de Áreas de Actividade e \n Competências Técnicas
+deactivate Administrativo
+deactivate UC3_UI 
+Administrativo -> UC3_UI: Seleciona uma Área de Actividade, \n 0..* Competências Técnicas e \n adiciona uma descrição
+activate Administrativo
+activate UC3_UI
+UC3_UI -> UC3_Ctrl: novaCatTarefa(areaActiv, descricao, listCompTecGrau)
+activate UC3_Ctrl
+UC3_Ctrl -> CategoriaTarefa: validar (novaCatTarefa)
+activate CategoriaTarefa
+
+
+CategoriaTarefa --> UC3_Ctrl: ok
+deactivate CategoriaTarefa
+UC3_Ctrl -> CategoriaTarefa : novaCatTarefa(areaActiv, descricao, listCompTecGrau)
+activate CategoriaTarefa
+CategoriaTarefa --> UC3_Ctrl: catTarefa
+deactivate CategoriaTarefa
+
+
+UC3_Ctrl --> UC3_UI: showCatTarefa (catTarefa)
+deactivate UC3_Ctrl
+UC3_UI --> Administrativo: Apresenta dados e solicita confirmação
+deactivate Administrativo
+deactivate Plataforma
+deactivate UC3_Ctrl
+deactivate UC3_UI
+
+Administrativo -> UC3_UI: Confirma os dados
+activate Administrativo
+activate UC3_UI
+UC3_UI -> UC3_Ctrl: addCatTarefa(catTarefa)
+activate UC3_Ctrl
+UC3_Ctrl -> Plataforma: add (catTarefa)
+activate Plataforma
+Plataforma --> UC3_Ctrl: ok
+deactivate Plataforma
+UC3_Ctrl--> UC3_UI: ok
+deactivate UC3_Ctrl
+UC3_UI --> Administrativo: Categoria de tarefa adicionada com sucesso
+deactivate UC3_UI
+Administrativo -> UC3_UI: terminar
+
+@enduml

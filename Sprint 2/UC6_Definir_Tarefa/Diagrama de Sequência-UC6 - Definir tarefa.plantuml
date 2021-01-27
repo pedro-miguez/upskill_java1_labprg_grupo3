@@ -1,0 +1,37 @@
+@startuml
+title UC6 - Definir Tarefa\n\n
+participant Colaborador
+activate Colaborador
+Colaborador -> UC6_UI : Definir nova Tarefa
+activate UC6_UI
+UC6_UI --> Colaborador : \nSolicita Dados\n(designação, descrição informal, descrição técnica, \nestimativa de prazo e custo, categoria de tarefa)
+deactivate UC6_UI
+Colaborador -> UC6_UI :Introduz dados solicitados
+activate UC6_UI
+UC6_UI -> UC6_CTRL : novaTarefa(desig,descInf,descTec,prazo,custo,categ)
+activate UC6_CTRL
+UC6_CTRL -> Plataforma : tarefa=novaTarefa(desig,descInf,descTec,prazo,custo,categ)
+activate Plataforma
+deactivate Plataforma
+UC6_CTRL -> Tarefa: criar(desig,descInf,descTec,prazo,custo,categ)
+activate Tarefa
+Tarefa --> UC6_CTRL: t1
+deactivate Tarefa
+UC6_CTRL --> UC6_UI: t1
+deactivate UC6_CTRL
+UC6_UI --> Colaborador : Apresenta dados e solicita confirmação
+deactivate UC6_UI
+Colaborador -> UC6_UI : Confirma dados
+activate UC6_UI
+UC6_UI -> UC6_CTRL : registarTarefa()
+activate UC6_CTRL
+UC6_CTRL -> Plataforma : registarTarefa(tarefa)
+activate Plataforma
+Plataforma -> Plataforma : validaTarefa(tarefa)
+Plataforma -> Plataforma : addTarefa(tarefa)
+deactivate Plataforma
+UC6_UI --> Colaborador : Tarefa adicionada com sucesso
+deactivate UC6_CTRL
+deactivate UC6_UI
+deactivate Colaborador
+@enduml

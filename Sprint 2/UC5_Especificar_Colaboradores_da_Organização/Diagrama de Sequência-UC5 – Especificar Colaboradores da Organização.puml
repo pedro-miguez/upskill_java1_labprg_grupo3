@@ -1,0 +1,48 @@
+@startuml
+title UC5 - Especificar Colaboradores da Organização\n\n
+participant Gestor
+activate Gestor
+Gestor -> UC5_UI: Introduz dados de login
+activate UC5_UI
+UC5_UI-> UC5_CTRL: novoLogin()
+activate UC5_CTRL
+UC5_CTRL -> Plataforma: login=novoLogin()
+activate Plataforma
+Plataforma -> Plataforma: validaLogin()
+deactivate Plataforma
+deactivate UC5_CTRL
+UC5_UI--> Gestor: Login efetuado com sucesso
+deactivate UC5_UI
+Gestor -> UC5_UI: \nnovo Colaborador
+activate UC5_UI
+UC5_UI--> Gestor: \n\nSolicita dados\n(nome, função, contacto telefónico, endereço de email)
+deactivate UC5_UI
+Gestor -> UC5_UI: \nIntroduz dados
+activate UC5_UI
+UC5_UI-> UC5_CTRL: novoColaborador(nome, func,tlf,email)
+activate UC5_CTRL
+UC5_CTRL -> Plataforma: colaborador=novoColaborador(nome, func,tlf,email)
+activate Plataforma
+deactivate Plataforma
+UC5_CTRL -> Colaborador: criar(nome, func,tlf,email)
+activate Colaborador
+Colaborador --> UC5_CTRL: c1
+deactivate Colaborador
+UC5_CTRL --> UC5_UI: c1
+deactivate UC5_CTRL
+UC5_UI--> Gestor: Apresenta dados e solicita confirmação
+deactivate UC5_UI
+Gestor -> UC5_UI: \nConfirma dados
+activate UC5_UI
+UC5_UI-> UC5_CTRL: registaColaborador()
+activate UC5_CTRL
+UC5_CTRL -> Plataforma: registaColaborador(colaborador)
+activate Plataforma
+Plataforma -> Plataforma: validaColaborador(colaborador)
+Plataforma -> Plataforma: adicionaColaborador(colaborador)
+deactivate Plataforma
+deactivate UC5_CTRL
+UC5_UI--> Gestor: Colaborador adicionado com sucesso
+deactivate UC5_UI
+deactivate Gestor
+@enduml

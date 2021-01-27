@@ -1,0 +1,8 @@
+@startuml
+Utilizador -> Sistema:Solicita criação de Organização
+Sistema --> Utilizador: Apresenta os dados para preenchimento
+Utilizador -> Sistema: Nome da Organização,NIF,Endereços,contacto
+Sistema --> Utilizador: Valida e apresenta os dados para confirmação
+Utilizador -> Sistema: Confirma os dados
+Sistema --> Utilizador: Guarda os dados e informa do sucesso do registo
+@enduml

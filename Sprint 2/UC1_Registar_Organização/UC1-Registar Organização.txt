@@ -1,0 +1,21 @@
+@startuml 
+title Registo de Organização
+activate Utilizador
+Utilizador -> UC1_UI : Inicia Registo da Organização
+activate UC1_UI
+UC1_UI -> UC1_CTRL : createOrg( nomeOrg,NIF , EndereçoPostal, telefone, endereçoWeb, email,\n nomeColab, funçãoColab, telefoneColab, emailColab)
+activate UC1_CTRL
+UC1_CTRL -> Plataforma : createOrg( nomeOrg,NIForg , EndereçoPostal, telefone, endereçoWeb, email,\n nomeColab, funçãoColab, telefoneColab, emailColab)
+Plataforma -> Organização : registarOrg( nomeOrg,NIF , EndereçoPostal, telefone, endereçoWeb, email)
+Plataforma --> Colaborador : registarColaborador( nomeColab, funçãoColab, telefoneColab, emailColab)
+activate Organização
+activate Colaborador
+Organização --> Plataforma : Registado com Sucesso
+deactivate Organização
+Plataforma --> UC1_CTRL : Registado com Sucesso
+deactivate UC1_CTRL
+UC1_CTRL --> UC1_UI : Registado com Sucesso
+deactivate UC1_UI
+UC1_UI --> Utilizador : Registado com Sucesso
+deactivate Utilizador
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+title UC4 - Definir Competência Técnica \n
+participant Administrativo
+activate Administrativo
+Administrativo -> UC4_UI: Nova Competência Técnica
+activate UC4_UI
+UC4_UI --> Administrativo: \n\nSolicita dados \n(Código Único, Descrição Breve,\n Descrição Detalhada, Área de Atividade,\nGraus de Proficiência)
+deactivate UC4_UI 
+Administrativo -> UC4_UI: \nIntroduz os dados solicitados
+activate UC4_UI
+UC4_UI -> UC4_CTRL: novaCompTec(codUnica, dBreve, dDetalhada, areaAtiv, grauPro)
+activate UC4_CTRL
+UC4_CTRL -> Plataforma: compTecnica=novaCompTec(codUnica, dBreve, dDetalhada, areaAtiv, grauPro)
+activate Plataforma
+deactivate Plataforma
+UC4_CTRL -> CompetenciaTecnica: criar(codUnica, dBreve, dDetalhada, areaAtiv, grauPro)
+activate CompetenciaTecnica
+CompetenciaTecnica --> UC4_CTRL: ct1
+deactivate CompetenciaTecnica
+UC4_CTRL --> UC4_UI: ct1
+UC4_UI --> Administrativo: Apresenta dados e solicita confirmação
+deactivate Plataforma
+deactivate UC4_CTRL
+deactivate UC4_UI
+Administrativo -> UC4_UI: Confirma os dados
+activate UC4_UI
+UC4_UI -> UC4_CTRL: registarCompTec()
+activate UC4_CTRL
+UC4_CTRL -> Plataforma: registarCompTec(compTecnica)
+activate Plataforma
+Plataforma -> Plataforma: validaCompTec(compTecnica)
+Plataforma -> Plataforma: adicionarCompTec(compTecnica)
+deactivate Plataforma
+deactivate UC4_CTRL
+UC4_UI --> Administrativo: Competência Técnica adicionada com sucesso
+deactivate UC4_UI
+deactivate Administrativo
+@enduml
