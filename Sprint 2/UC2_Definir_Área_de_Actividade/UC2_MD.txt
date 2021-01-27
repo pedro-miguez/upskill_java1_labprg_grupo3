@@ -1,0 +1,21 @@
+@startuml
+title Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+    
+}
+
+class AreaAtividade{
+    identificadorAreaAtividade
+    descricaoBreve
+    descricaoDetalhada
+}
+
+
+Plataforma "1" --> "*" AreaAtividade: possui
+
+
+@enduml
