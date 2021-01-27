@@ -1,0 +1,30 @@
+@startuml
+actor Administrativo
+activate Administrativo
+Administrativo -> ":Sistema" : 1 Inicia definição de nova categoria de tarefa
+activate ":Sistema"
+":Sistema" --> Administrativo : 2 mostra a lista de áreas de atividade e solicita descrição da categoria\nde tareda e a escolha de uma área de atividade
+deactivate ":Sistema"
+Administrativo -> ":Sistema" : 3 introduz a descrição e seleciona a área de atividade pretendida
+activate ":Sistema"
+":Sistema" --> Administrativo : 4 mostra a lista de competências técnicas associadas à área de\natividade especificada e solicita a escolha de uma delas
+deactivate ":Sistema"
+loop
+Administrativo -> ":Sistema": 5 seleciona competência técnica
+activate ":Sistema"
+":Sistema" --> Administrativo : 6 mostra graus de proficiência relativos à competência técnica selecionada
+deactivate ":Sistema"
+Administrativo -> ":Sistema": 7 seleciona o grau de proficiencia minimo
+activate ":Sistema"
+":Sistema" --> Administrativo : 8 solicita indicação do seu caráter\n(i.e. obrigatoria ou desejável)
+deactivate ":Sistema"
+Administrativo -> ":Sistema": 9 introduz informação pedida
+activate ":Sistema"
+end
+":Sistema" --> Administrativo : 10 apresenta dados e solicita confirmação
+deactivate ":Sistema"
+Administrativo -> ":Sistema": 11 confirma
+activate ":Sistema"
+":Sistema" --> Administrativo : 12 informa operação bem sucedida
+deactivate ":Sistema"
+@enduml
