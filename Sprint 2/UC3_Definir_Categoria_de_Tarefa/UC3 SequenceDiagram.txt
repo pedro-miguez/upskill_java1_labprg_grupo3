@@ -1,0 +1,101 @@
+@startuml
+
+title UC3 - Definir Categoria de Tarefa
+
+actor Administrativo
+participant UI
+participant Ctrl
+participant Plataforma
+participant RegistoAreasAtividades
+participant RegistoCompetenciasTecnicas
+participant RegistoCategorias
+participant CompetenciasTecnicas
+
+activate Administrativo
+Administrativo -> UI: 1: Inicia definicao de \n nova categoria de tarefa
+activate UI
+UI -> Ctrl: 1.1 getListaAreasAtividade()
+activate Ctrl
+Ctrl -> Plataforma: 1.1.1 getRegistoAreasAtividade()
+activate Plataforma
+deactivate Plataforma
+Ctrl -> RegistoAreasAtividades: 1.1.2 getListaAreasAtividade()
+activate RegistoAreasAtividades
+deactivate RegistoAreasAtividades
+UI --> Administrativo: 1.2 Mostra lista de \n areas de atividade e \n solicita a descricao da \n categoria de tarefa e a \n escolha de uma area \n de atividade
+deactivate Ctrl
+deactivate UI
+
+Administrativo ->UI : 2: Introduz a descricao e \n seleciona a area de \n atividade pretendida
+activate UI
+UI -> Ctrl: 2.1 novaAreaAtividade \n(descricao, codAreaAtividade)
+activate Ctrl
+Ctrl -> RegistoAreasAtividades: 2.1.1 at = getAreaAtividade(codAreaAtividade)
+activate RegistoAreasAtividades
+deactivate RegistoAreasAtividades
+UI --> Administrativo: 2.2 Mostra a lista de\ncompetencias\ntecnicas associada a\narea de atividade\nespecificada e \nsolicita a escolha\nde uma delas
+deactivate UI
+Ctrl ->Plataforma: 2.1.2 rct = getRegistoCompetenciasTecnicas()
+activate Plataforma
+deactivate Plataforma
+Ctrl -> RegistoCompetenciasTecnicas: 2.1.3 lct = getListaCompetenciasTecnicas(at)
+activate RegistoCompetenciasTecnicas
+deactivate RegistoCompetenciasTecnicas
+Ctrl -> Plataforma: 2.1.4 rc= getRegistoCategorias()
+activate Plataforma
+deactivate Plataforma
+Ctrl -> RegistoCategorias: 2.1.5 c=novaCategoria(descricao, at)
+activate RegistoCategorias
+deactivate Ctrl
+RegistoCategorias -> RegistoCategorias: 2.1.5.1 idCategoria \n = getIdCategoria()
+RegistoCategorias --> Categoria **: 2.1.5.2 create\n(idCategoria, descricao, at)
+participant Categoria
+deactivate RegistoCategorias
+
+group sd loop
+    Administrativo -> UI: 3 Seleciona competencia \ntecnica
+    activate UI
+    UI -> Ctrl: 3.1 lg= getGrausProficiencia\n(codCompetencia)
+    activate Ctrl
+    Ctrl -> RegistoCompetenciasTecnicas: 3.1.1 ct= getCompetenciaTecnica\n(codCompetencia)
+    activate RegistoCompetenciasTecnicas
+    deactivate RegistoCompetenciasTecnicas
+    Ctrl -> CompetenciasTecnicas: 3.1.2 lg = getGrausProficiencia(ct)
+    activate CompetenciasTecnicas
+    deactivate CompetenciasTecnicas
+    deactivate Ctrl
+    UI --> Administrativo: 3.2 Mostra graus de \nproficiencia relativos a \ncompetencia\ntecnica selecionada
+    deactivate UI
+
+    Administrativo -> UI: 4 Seleciona grau de\nproficiencia minimo e\nobrigatoriedade da\ncompetencia tecnica
+    activate UI
+    UI -> Ctrl: 4.1 setProficienciaObrigatoriedade\n(codGrau, obrigatoria)
+    activate Ctrl
+    Ctrl -> CompetenciasTecnicas: 4.1.1 gp=getGrauProficiencia(codGrau)
+    activate CompetenciasTecnicas
+    deactivate CompetenciasTecnicas
+    Ctrl -> Categoria: 4.1.2 novaCaraterizacao (ct, gp, obrigatoria)
+    activate Categoria
+    UI --> Administrativo: 4.2 Apresenta dados\n e solicita confirmacao
+    deactivate UI
+    deactivate Ctrl
+    Categoria --> "cct CaracterizacaoCT" **: 4.1.2.1 create(ct, gt, obrigatoria)
+    participant "cct CaracterizacaoCT"
+    Categoria ->Categoria: 4.1.2.2 addCaracterizacaoCT(ctt)
+    deactivate Categoria
+end
+
+Administrativo -> UI: 5 Confirma
+activate UI
+UI -> Ctrl: registaCategoria()
+activate Ctrl
+UI --> Administrativo: 5.2 Informa operacao\nbem sucedida
+deactivate UI
+Ctrl -> RegistoCategorias: 5.1.1 registaCategoria(c)
+deactivate Ctrl
+activate RegistoCategorias
+RegistoCategorias -> RegistoCategorias: 5.1.1.1 valida(c)
+RegistoCategorias -> RegistoCategorias: 5.1.1.2 addCategoria(c)
+deactivate RegistoCategorias
+
+@enduml
