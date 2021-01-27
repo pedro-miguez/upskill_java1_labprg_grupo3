@@ -1,0 +1,56 @@
+@startuml
+
+left to right direction
+
+title UC3 - Definir Categoria de Tarefa \n
+
+Class Plataforma <<Singleton>> {
+    -String designacao
+
+    +getRegistoAreasAtividade()
+    +getRegistoCompetenciasTecnicas()
+    +getRegistoCategorias()
+}
+
+Class Administrativo {
+    
+}
+
+Class CompetenciaTecnica {
+    -String codigo
+    -String descricaoBreve
+    -String descricaoDetalhada
+}
+
+Class UC3_UI {
+}
+
+Class UC3_CTRL {
+    +getListaAreasAtividade()
+    +novaAreaAtividade(descricao, codAreaAtividade)
+}
+
+Class Categoria {
+    -String id
+    -String descricao
+}
+
+Class CaracterizacaoCT {
+    -boolean caracter
+}
+
+
+Class RegistoAreasAtividade {
+
+}
+
+Class RegistoCompetenciasTecnicas {
+
+}
+
+Class RegistoCategorias {
+
+}
+
+
+@enduml

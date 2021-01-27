@@ -8,32 +8,9 @@ class Plataforma {
     
 }
 
-class Organizacao {
-    nome
-    NIF
-    contactoTelefonico
-    enderecoWeb
-    email
-}
 
 class Administrativo {
     nome
-}
-
-class Colaborador {
-    nome
-    funcao
-    contactoTelefonico
-    email
-}
-
-class Freelancer {
-}
-
-class Utilizador {
-    nome
-    email
-    password
 }
 
 class CategoriaTarefa {
@@ -48,14 +25,6 @@ class CTCategoriaTarefa {
     nivelGrauMinimo
 }
 
-class Tarefa {
-    identificadorTarefa
-    designacao
-    descricaoInformal
-    descricaoTecnica
-    estimativaDuracao
-    estimativaCusto
-}
 
 class CompetenciaTecnica {
     nome 
@@ -76,32 +45,10 @@ class AreaAtividade{
     descricaoDetalhada
 }
 
-class EnderecoPostal {
-    morada
-    codigoPostal
-    localidade
-}
-
 Plataforma "1" --> "1..*" Administrativo: tem
-Plataforma "1" --> "*" Organizacao: tem registada
-Plataforma "1" --> "*" Freelancer: tem/usa
 Plataforma "1" --> "*" CategoriaTarefa: possui
 Plataforma "1" --> "*" CompetenciaTecnica: possui
 Plataforma "1" --> "*" AreaAtividade: possui
-
-Organizacao "1" --> "1" EnderecoPostal: localizada em
-Organizacao "1" --> "1..*" Colaborador: tem
-Organizacao "1" --> "1" Colaborador: tem gestor
-Organizacao "1" --> "*" Tarefa: possui
-
-Freelancer "0..1" --> "1" Utilizador: atua como
-
-Administrativo "0..1" --> "1" Utilizador: atua como
-
-Colaborador "0..1" --> "1" Utilizador: atua como
-
-Tarefa "*" --> "1" Colaborador: especificada por
-Tarefa "*" --> "1" CategoriaTarefa: enquadra-se em
 
 CategoriaTarefa "*" --> "*" CTCategoriaTarefa: requer
 CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em

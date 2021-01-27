@@ -3,87 +3,74 @@ title Modelo de Dominio
 left to right direction
 
 
-class Plataforma{
+class Plataforma {
     designacao
     
 }
 
-class Organizacao{
+class Organizacao {
     nome
     NIF
     contactoTelefonico
     enderecoWeb
     email
-    colaboradorResponsavel
 }
 
-class Administrativo{
+class Administrativo {
     nome
 }
 
-class Colaborador{
+class Colaborador {
     nome
     funcao
     contactoTelefonico
     email
 }
-class Freelancer{
-    nome
-    contactoTelefonico
-    email
-    habilitacoesAcademicas
-    competenciasTecnicas
+
+class Freelancer {
 }
 
-class CandidatoFreelancer {
+class Utilizador {
     nome
-    contactoTelefonico
     email
-    habilitacoesAcademicas
-    competenciasTecnicas
-}
-
-class EntidadeVerificadora
-
-
-
-class AnuncioTarefa {
-    periodoPublic
-    periodoCandidatura
-    periodoSeriacao
-    tipoRegimento
+    password
 }
 
 class CategoriaTarefa {
-    nome
     identificadorCategoria
     descricao
     areaAtividade
-    listarCompetenciaTecnica()
 }
 
-class Tarefa{
-    nome
+class CTCategoriaTarefa {
+    identificadorCompTec
+    caracter
+    grau minimo
+}
+
+class Tarefa {
     identificadorTarefa
+    designacao
     descricaoInformal
     descricaoTecnica
     estimativaDuracao
     estimativaCusto
-    estado
-    
-
 }
-class CompetenciaTecnica{
+
+class CompetenciaTecnica {
     nome 
     identificadorCompetenciaTecnica
     descricaoBreve
     descricaoDetalhada
     grausProficiencia
-
-
 }
+
+class GrauProficiencia {
+    nivel
+    designacao
+}
+
 class AreaAtividade{
-    nome 
     identificadorAreaAtividade
     descricaoBreve
     descricaoDetalhada
@@ -95,41 +82,33 @@ class EnderecoPostal {
     localidade
 }
 
-class RegimentoSeriacao
-
-Plataforma"1"-->"1..*"Administrativo: possui
+Plataforma "1" --> "1..*" Administrativo: tem
 Plataforma "1" --> "*" Organizacao: tem registada
-Plataforma "1" --> "*" Freelancer: possui
-Plataforma "1" --> "*" CandidatoFreelancer: tem registado
-Plataforma "1" --> "*" AnuncioTarefa: possui
-Plataforma "1" --> "*" EntidadeVerificadora: possui
-Freelancer "1" --> "*" CompetenciaTecnica: tem
-Freelancer "1" --> "*" AnuncioTarefa: candidata-se a 
-Tarefa "1"-->"1"AnuncioTarefa: quando publicada cria
-Organizacao "1" --> "1" Colaborador:tem gestor
-Organizacao "1" --> "*" Colaborador:tem
-Administrativo "1.." -->"1.."AreaAtividade:define
-Administrativo "1.." -->"1.."CategoriaTarefa:define
-Administrativo "1.." -->"1.."CompetenciaTecnica:define
-Plataforma "1" -->"*"AreaAtividade:possui
-Plataforma "1" -->"*"CategoriaTarefa:possui
-Plataforma "1" -->"*"CompetenciaTecnica:possui
-Colaborador "1"--> "1..*"Tarefa:cria
-Colaborador "1" --> "1..*"Tarefa: publica
-Colaborador "1" --> "1..*"Tarefa: adjudica
-CompetenciaTecnica "1.."--> "1.."AreaAtividade: refere-se a
-AreaAtividade"1" --> "1..*"CategoriaTarefa: possui
-Tarefa "1..*"--> "1"CategoriaTarefa: pertence
-CategoriaTarefa "1" --> "1..*"CompetenciaTecnica: possui obrigatória
-CategoriaTarefa "1" --> "1..*"CompetenciaTecnica: possui opcional
-Organizacao "1" --> "1"EnderecoPostal: localiza-se
-Freelancer "1" --> "1"EnderecoPostal: localiza-se
-Plataforma "1" --> "*"Tarefa: possui
-Tarefa "1" --> "1"Freelancer: adjudicada a
-EntidadeVerificadora"1.."-->"1.."CandidatoFreelancer: valida competências
-CandidatoFreelancer"1"-->"1"Freelancer: pode-se tornar
-Plataforma"1"-->"3..*"RegimentoSeriacao:possui
-RegimentoSeriacao"1"-->"1..*"AnuncioTarefa: define adjudicação
+Plataforma "1" --> "*" Freelancer: tem/usa
+Plataforma "1" --> "*" CategoriaTarefa: possui
+Plataforma "1" --> "*" CompetenciaTecnica: possui
+Plataforma "1" --> "*" AreaAtividade: possui
 
+Organizacao "1" --> "1" EnderecoPostal: localizada em
+Organizacao "1" --> "1..*" Colaborador: tem
+Organizacao "1" --> "1" Colaborador: tem gestor
+Organizacao "1" --> "*" Tarefa: possui
+
+Freelancer "0..1" --> "1" Utilizador: atua como
+
+Administrativo "0..1" --> "1" Utilizador: atua como
+
+Colaborador "0..1" --> "1" Utilizador: atua como
+
+Tarefa "*" --> "1" Colaborador: especificada por
+Tarefa "*" --> "1" CategoriaTarefa: enquadra-se em
+
+CategoriaTarefa "*" --> "*" CTCategoriaTarefa: requer
+CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
+
+CTCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
+
+CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
+CompetenciaTecnica "1" --> * GrauProficiencia: aplica
 
 @enduml

@@ -1,4 +1,4 @@
-package com.mycompany.projeto_sprint2_grupo3;
+package UI;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
