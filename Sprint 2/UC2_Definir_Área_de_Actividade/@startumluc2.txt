@@ -1,0 +1,49 @@
+@startumluc2
+
+title UC2 - Definir Área de Actividade
+
+participant Administrativo
+participant DefAreaUI
+participant DefAreaCtrl
+participant Plataforma << Singleton >>
+participant rat_RegAreasAtividade
+participant area_AreaAtividade
+
+Administrativo -> DefAreaUI: 1 nova área de atividade
+activate Administrativo
+activate DefAreaUI
+DefAreaUI --> Administrativo: 2 solicita dados(código, descrição breve e detalhada)
+deactivate DefAreaUI
+Administrativo -> DefAreaUI: 3 introduz os dados solicitados
+activate DefAreaUI
+DefAreaUI -> DefAreaCtrl: 4 novaAreaAtividade(cod, dsBreve, dsDet)
+activate DefAreaCtrl
+DefAreaCtrl -> Plataforma: 5 rat=getRegistoAreasAtividade()
+activate Plataforma
+deactivate Plataforma
+DefAreaCtrl -> rat_RegAreasAtividade: 6 area=novaAreaAtividade(cod, dsBreve, dsDet)
+activate rat_RegAreasAtividade
+rat_RegAreasAtividade --> area_AreaAtividade: 7 create(cod, dsBreve, dsDet)
+
+deactivate rat_RegAreasAtividade
+DefAreaCtrl -> rat_RegAreasAtividade: 8 validaAreaAtividade(area)
+
+activate rat_RegAreasAtividade
+deactivate rat_RegAreasAtividade
+deactivate DefAreaCtrl
+DefAreaUI --> Administrativo: 9 apresenta dados e solicita confirmação
+deactivate DefAreaUI
+Administrativo -> DefAreaUI: 10 confirma
+activate DefAreaUI
+activate DefAreaCtrl
+DefAreaUI -> DefAreaCtrl: 11 registaAreaAtividade()
+DefAreaCtrl -> rat_RegAreasAtividade: 12 registaAreaAtividade(area)
+activate rat_RegAreasAtividade
+rat_RegAreasAtividade -> rat_RegAreasAtividade: 13 validaAreaAtividade(area)
+
+rat_RegAreasAtividade -> rat_RegAreasAtividade: 14 addAreaAtividade(area)
+deactivate rat_RegAreasAtividade
+DefAreaUI --> Administrativo: 15 operação bem sucedida
+
+
+@endumluc2
