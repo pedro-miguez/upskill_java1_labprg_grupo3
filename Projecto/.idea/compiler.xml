@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Projecto" />
+        <module name="application" />
+        <module name="core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Projecto" target="1.8" />
+      <module name="application" target="1.8" />
+      <module name="core" target="1.8" />
+      <module name="T4J" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
