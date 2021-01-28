@@ -1,7 +1,7 @@
 package application;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class RegistarOrganizacaoControllerTest {
+public class RegistarOrganizacaoControllerTest {
 
 }

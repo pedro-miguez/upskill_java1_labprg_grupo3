@@ -1,15 +1,14 @@
 package domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class EmailTest {
+import static org.junit.Assert.*;
+
+public class EmailTest {
 
     @Test
     void testSetEmail() {
-    
-        
-    
+
 }
         
 }

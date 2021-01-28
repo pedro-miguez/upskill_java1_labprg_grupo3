@@ -1,7 +1,6 @@
 package persistence;
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class RepositorioOrganizacaoTest {
+public class RepositorioOrganizacaoTest {
 
 }
