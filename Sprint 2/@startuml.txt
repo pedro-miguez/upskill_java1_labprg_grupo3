@@ -1,0 +1,71 @@
+@startuml
+
+class Organizacao
+{
+    -nome
+    -estado
+
+    --
+    - validar(nome)
+    'List<Colaborador> colaboradores;
+}
+
+class RepositorioOrganizacao<Entity>
+{
+    list<Organizacao> organizacoes;
+    --
+    +List<Organizacao> all();
+    +List<Organizacao> organizacoesFechadas();
+    +void registar(Organizacao)
+    +void registarGestor(Colaborador)
+    -void add(Organizacao)
+}
+
+class Colaborador
+{
+    nome
+    email
+    telefone
+    Organizacao organizacao
+    Role funcao
+    'List<Role> permissoes
+}
+
+enum Role
+{
+    GESTOR
+    COLABORADOR
+}
+
+'persistencia
+class RepositorioColaborador<Entity>
+{
+    List<Colaborador> colaboradores;
+    --
+    List<Colaborador> all();
+    List<Colaborador> colaboradorPorOrganizacao
+    void registarColaborador(Colaborador)
+}
+
+class Repositorio<Entity>
+{
+    List<Entity> all();
+}
+
+'RepositorioColaborador -up-|>Repositorio
+'RepositorioOrganizacao -up-|>Repositorio
+
+class FabricaRepositorios
+{
+    RepositorioOrganizacao repositorioOrganizacao
+    {
+        'seria singleton se tivesse lista
+        return new RepositorioOrganizacao;
+    };
+
+    RepositorioColaborador repositorioColaborador
+}
+
+Organizacao <-- Colaborador
+
+@enduml
