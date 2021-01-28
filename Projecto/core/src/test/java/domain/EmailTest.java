@@ -10,12 +10,12 @@ public class EmailTest {
     void createEmailValido() {
 
 
-}
+    }
 
     @Test
     void createEmailInvalido() {
 
 
     }
-        
+
 }
