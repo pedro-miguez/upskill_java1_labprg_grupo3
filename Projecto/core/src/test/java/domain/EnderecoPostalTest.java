@@ -1,6 +1,24 @@
 package domain;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class EnderecoPostalTest {
+
+    @Test
+    public void createEnderecoPostalcomCodigoPostalValido(){
+        EnderecoPostal endereco = new EnderecoPostal ("Av. dos Extremos 68", "Braga, Portugal", "4700-136");
+
+        String expected = "4700-136";
+
+        String result = endereco.getCodPostal();
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void createEnderecoPostalcomCodigoPostalInvalido(){
+
+        EnderecoPostal endereco = new EnderecoPostal ("Av. dos Extremos 68", "Braga, Portugal", "47005-136");
+
+    }
 
 }

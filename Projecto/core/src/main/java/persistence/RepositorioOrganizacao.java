@@ -5,6 +5,7 @@ import domain.Organizacao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RepositorioOrganizacao {
 
@@ -43,4 +44,13 @@ public class RepositorioOrganizacao {
     public ArrayList<Organizacao> listarOrganizacoes() {
         return new ArrayList<Organizacao>(this.organizacoesRegistadas);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RepositorioOrganizacao that = (RepositorioOrganizacao) o;
+        return organizacoesRegistadas.equals(that.organizacoesRegistadas);
+    }
+
 }
