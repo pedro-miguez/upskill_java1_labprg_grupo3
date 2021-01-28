@@ -7,8 +7,15 @@ import static org.junit.Assert.*;
 public class EmailTest {
 
     @Test
-    void testSetEmail() {
+    void createEmailValido() {
+
 
 }
+
+    @Test
+    void createEmailInvalido() {
+
+
+    }
         
 }
