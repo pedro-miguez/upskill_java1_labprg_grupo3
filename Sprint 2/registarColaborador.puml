@@ -1,0 +1,33 @@
+@startuml 
+
+gestor -> UC5_UI:lerDados(nome,email,telefone, gestor) 
+
+UC5_UI -> UC5_CTRL:registarColaborador(nome,email.telefone)
+
+UC5_CTRL -> "repo:RepositorioOrganizacao": create
+UC5_CTRL <-- "repo:RepositorioOrganizacao": repo
+
+UC5_CTRL -> "repo:RepositorioOrganizacao": organizacaoPorGestor(gestor)
+
+"repo:RepositorioOrganizacao" -> "org:Organizacao": find
+"repo:RepositorioOrganizacao" <-- "org:Organizacao": org
+
+UC5_CTRL <-- "repo:RepositorioOrganizacao": org
+
+UC5_CTRL -> "rc:RepositorioColaborador": create
+UC5_CTRL <-- "rc:RepositorioColaborador": rc
+
+
+UC5_CTRL -> "c:Colaborador":create(nome,email,telefone,COLABORADOR)
+UC5_CTRL <-- "c:Colaborador":c
+
+
+UC5_CTRL -> "rc:RepositorioColaborador": adicionar(c)
+"rc:RepositorioColaborador" -> "rc:RepositorioColaborador": add(c)
+
+
+
+UC5_CTRL --> UC5_UI: c
+
+UC5_UI --> UC5_UI: show(c)
+@enduml
