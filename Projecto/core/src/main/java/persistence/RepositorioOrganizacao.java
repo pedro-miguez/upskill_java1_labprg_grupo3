@@ -27,6 +27,10 @@ public class RepositorioOrganizacao {
         this.organizacoesRegistadas.add(organizacao);
     }
 
+    public void addGestor(Colaborador colaborador, Organizacao organizacao) {
+        organizacao.setGestor(colaborador);
+    }
+
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {
         for (Organizacao o : organizacoesRegistadas) {
             if (o.getGestor().equals(colaborador)) {
