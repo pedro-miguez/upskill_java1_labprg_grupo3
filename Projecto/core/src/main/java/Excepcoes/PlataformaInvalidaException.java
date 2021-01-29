@@ -7,11 +7,10 @@ package Excepcoes;
 
 /**
  *
- * @author victo
+ * @author Grupo 3 - Turma 1
  */
-public class EmailException extends Exception {
-
-    public EmailException(String s) {
+public class PlataformaInvalidaException extends Exception {
+    public PlataformaInvalidaException(String s) {
         super(s);
     }
 }
