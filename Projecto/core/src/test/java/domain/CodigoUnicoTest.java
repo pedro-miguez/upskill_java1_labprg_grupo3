@@ -11,6 +11,7 @@ public class CodigoUnicoTest {
     @Test
     public void testCreateCodigoUnicoValido() {
 
+
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
 
         String expected = "PRG-01";
