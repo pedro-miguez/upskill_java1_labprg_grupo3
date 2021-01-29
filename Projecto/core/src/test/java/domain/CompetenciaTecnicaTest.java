@@ -1,7 +1,9 @@
 package domain;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
-public class CompetenciaTecnicaTest extends TestCase {
+import org.junit.Test;
+
+public class CompetenciaTecnicaTest {
 
 }

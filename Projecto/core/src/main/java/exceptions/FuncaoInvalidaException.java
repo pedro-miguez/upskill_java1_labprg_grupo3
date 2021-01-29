@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Excepcoes;
+package exceptions;
 
 /**
  *
- * @author victo
+ * @author Grupo 3 - Turma 1
  */
-public class EmailInvalidoException extends IllegalArgumentException {
-
-    public EmailInvalidoException(String s) {
+public class FuncaoInvalidaException extends IllegalArgumentException {
+    public FuncaoInvalidaException(String s) {
         super(s);
     }
 }
