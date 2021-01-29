@@ -1,7 +1,11 @@
 package domain;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class AreaAtividadeTest extends TestCase {
+import static org.junit.Assert.*;
+
+public class AreaAtividadeTest {
+
+
 
 }
