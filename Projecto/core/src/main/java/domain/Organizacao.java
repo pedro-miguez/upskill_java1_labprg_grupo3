@@ -49,11 +49,7 @@ public class Organizacao {
     }
 
     public Colaborador getGestor() {
-        if (this.gestor != null) {
-            return gestor;
-        } else {
-            throw new NullPointerException("Ainda não existe gestor associado a esta organização");
-        }
+        return gestor;
     }
 
     public boolean setGestor(Colaborador gestor) {
