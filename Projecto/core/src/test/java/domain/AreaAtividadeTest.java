@@ -2,7 +2,6 @@ package domain;
 
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class AreaAtividadeTest {
@@ -36,6 +35,5 @@ public class AreaAtividadeTest {
         AreaAtividade areaAtividade = new AreaAtividade(codigoUnico, "Programação Jogos", " ");
 
     }
-
 
 }

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Excepcoes;
+package exceptions;
 
 /**
  *
  * @author Grupo 3 - Turma 1
  */
-public class EnderecoPostalInvalidoException extends IllegalArgumentException {
-    public EnderecoPostalInvalidoException(String s) {
+public class TelefoneInvalidoException extends IllegalArgumentException {
+    public TelefoneInvalidoException(String s) {
         super(s);
     }
 }

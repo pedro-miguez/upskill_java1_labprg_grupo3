@@ -1,5 +1,6 @@
 package domain;
 
+
 public class AreaAtividade {
 
     private CodigoUnico codigoUnico;
@@ -44,4 +45,5 @@ public class AreaAtividade {
     public String toString() {
         return String.format("Código Unico: %s; Descrição: %s; Descrição Detalhada: %s", this.codigoUnico, this.descricao, this.descDetalhada);
     }
+
 }
