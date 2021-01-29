@@ -7,10 +7,11 @@ package Excepcoes;
 
 /**
  *
- * @author Grupo 3 - Turma 1
+ * @author victo
  */
-public class WebsiteException extends Exception {
-    public WebsiteException(String s) {
+public class EmailInvalidoException extends Exception {
+
+    public EmailInvalidoException(String s) {
         super(s);
     }
 }
