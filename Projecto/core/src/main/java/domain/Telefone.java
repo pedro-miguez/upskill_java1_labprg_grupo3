@@ -1,20 +1,16 @@
 package domain;
 
+import java.util.Objects;
+
 public class Telefone {
 
     private int number;
-    
-    public Telefone() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
-    }
-    
+
     public Telefone(int number){
         setTelefone(number);
     }
 
     public int getTelefone() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return this.number;
     }
     
@@ -25,4 +21,13 @@ public class Telefone {
             this.number = number;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Telefone telefone = (Telefone) o;
+        return number == telefone.number;
+    }
+
 }

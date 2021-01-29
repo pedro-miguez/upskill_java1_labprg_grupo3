@@ -19,12 +19,12 @@ public class RepositorioOrganizacaoTest {
 
     @Test
     public void testAddOrganizacaoValida() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
-                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        //Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+          //      new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
 
         int expected = RepositorioOrganizacao.getInstance().listarOrganizacoes().size() + 1;
 
-        RepositorioOrganizacao.getInstance().addOrganizacao(org);
+        //RepositorioOrganizacao.getInstance().addOrganizacao(org);
 
         int result = RepositorioOrganizacao.getInstance().listarOrganizacoes().size();
 
@@ -38,8 +38,8 @@ public class RepositorioOrganizacaoTest {
 
     @Test
     public void testAddGestorValido() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
-                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        //Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                //new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
 
         Colaborador colaborador = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), Funcao.GESTOR);
 

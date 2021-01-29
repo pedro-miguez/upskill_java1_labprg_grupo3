@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class EnderecoPostal {
 
     private String local;
@@ -45,4 +47,15 @@ public class EnderecoPostal {
     public String toString() {
         return String.format("Rua: %s, %s, com o código-postal %s", getLocal(), getLocalidade(), getCodPostal());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnderecoPostal that = (EnderecoPostal) o;
+        return Objects.equals(getLocal(), that.getLocal()) &&
+                Objects.equals(getLocalidade(), that.getLocalidade()) &&
+                Objects.equals(getCodPostal(), that.getCodPostal());
+    }
+
 }
