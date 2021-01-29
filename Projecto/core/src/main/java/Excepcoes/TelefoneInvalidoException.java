@@ -9,7 +9,7 @@ package Excepcoes;
  *
  * @author Grupo 3 - Turma 1
  */
-public class TelefoneInvalidoException extends Exception {
+public class TelefoneInvalidoException extends IllegalArgumentException {
     public TelefoneInvalidoException(String s) {
         super(s);
     }

@@ -1,4 +1,5 @@
 package persistence;
+import Excepcoes.GestorNaoRelacionadoANenhumaOrgException;
 import domain.*;
 import org.junit.Test;
 
@@ -32,8 +33,15 @@ public class RepositorioOrganizacaoTest {
     }
 
     @Test
-    public void testAddOrganizacaoInvalida() {
-        //faz sentido?
+    public void testAddOrganizacaoDuplicada() {
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Organizacao org2 = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+
+        RepositorioOrganizacao.getInstance().addOrganizacao(org);
+
+        assertFalse(RepositorioOrganizacao.getInstance().addOrganizacao(org2));
     }
 
     @Test
@@ -41,46 +49,75 @@ public class RepositorioOrganizacaoTest {
         Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
                 new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
 
-        Colaborador colaborador = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), Funcao.GESTOR);
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 
+        RepositorioOrganizacao.getInstance().addGestor(gestor, org);
 
-
+        assertEquals(org.getGestor(), gestor);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void testAddGestorInvalido() {
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
 
+        Colaborador colaborador = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org);
+
+        RepositorioOrganizacao.getInstance().addGestor(colaborador, org);
     }
 
     @Test
     public void testgetOrganizacaoByGestorValido() {
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+
+        RepositorioOrganizacao.getInstance().addOrganizacao(org);
+
+        RepositorioOrganizacao.getInstance().addGestor(gestor, org);
+
+        Organizacao org2 = RepositorioOrganizacao.getInstance().getOrganizacaoByGestor(gestor);
+
+        assertEquals(org, org2 );
 
     }
 
-    @Test
-    public void testgetOrganizacaoByGestorInvalido() {
+    @Test (expected = GestorNaoRelacionadoANenhumaOrgException.class)
+    public void testGetOrganizacaoByGestorInvalido() {
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+
+        RepositorioOrganizacao.getInstance().addOrganizacao(org);
+        RepositorioOrganizacao.getInstance().addGestor(gestor, org);
+
+        Colaborador gestor2 = new Colaborador("nome2", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+
+        RepositorioOrganizacao.getInstance().getOrganizacaoByGestor(gestor2);
 
     }
 
     @Test
     public void testlistarOrganizacoesValido() {
-
+        //faz sentido?
     }
 
     @Test
     public void testlistarOrganizacoesInvalido() {
-
+        //faz sentido?
     }
 
 
 
     @Test
     public void testRegistaGestorComoUtilizadorValido() {
-
+        //para mais tarde
     }
 
     @Test
     public void testRegistaGestorComoUtilizadorInvalido() {
-
+        //para mais tarde
     }
 }

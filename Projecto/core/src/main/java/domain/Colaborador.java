@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Colaborador {
 
     private String nome;
@@ -8,20 +10,20 @@ public class Colaborador {
     private Funcao funcao;
     private Organizacao organizacao;
 
-    public Colaborador(String nome, Telefone telefone, Email email, Funcao funcao, Organizacao organizacao) {
+    public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao, Funcao funcao) {
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
-        setFuncao(funcao);
         setOrganizacao(organizacao);
+        setFuncao(funcao);
     }
 
     public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao) {
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
-        setFuncao(Funcao.COLABORADOR);
         setOrganizacao(organizacao);
+        setFuncao(Funcao.COLABORADOR);
     }
 
     private void setNome(String nome) {
@@ -63,4 +65,17 @@ public class Colaborador {
     private void setOrganizacao(Organizacao organizacao) {
         this.organizacao = organizacao;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Colaborador that = (Colaborador) o;
+        return Objects.equals(getNome(), that.getNome()) &&
+                Objects.equals(telefone, that.telefone) &&
+                Objects.equals(getEmail(), that.getEmail()) &&
+                funcao == that.funcao &&
+                Objects.equals(getOrganizacao(), that.getOrganizacao());
+    }
+
 }

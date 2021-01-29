@@ -9,7 +9,7 @@ package Excepcoes;
  *
  * @author Grupo 3 - Turma 1
  */
-public class EnderecoPostalInvalidoException extends Exception {
+public class EnderecoPostalInvalidoException extends IllegalArgumentException {
     public EnderecoPostalInvalidoException(String s) {
         super(s);
     }

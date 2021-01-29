@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Organizacao {
 
     private String nome;
@@ -20,7 +22,14 @@ public class Organizacao {
     }
     
     private void setNome(String nome) {
+        if (nome.length() < 1) {
+            throw new IllegalArgumentException(nome + " é um nome inválido");
+        }
         this.nome = nome;
+    }
+
+    public String getNome(){
+        return this.nome;
     }
 
     private void setNif(NIF nif) {
@@ -40,14 +49,32 @@ public class Organizacao {
     }
 
     public Colaborador getGestor() {
-        return gestor;
+        if (this.gestor != null) {
+            return gestor;
+        } else {
+            throw new NullPointerException("Ainda não existe gestor associado a esta organização");
+        }
     }
 
-    public void setGestor(Colaborador gestor) {
-        this.gestor = gestor;
+    public boolean setGestor(Colaborador gestor) {
+        if (gestor.isGestor()) {
+            this.gestor = gestor;
+            return true;
+        } else {
+            throw new IllegalArgumentException("Colaborador não tem a função de Gestor");
+        }
     }
 
     private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
         this.enderecoPostal = enderecoPostal;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Organizacao that = (Organizacao) o;
+        return nome.equals(that.nome);
+    }
+
 }

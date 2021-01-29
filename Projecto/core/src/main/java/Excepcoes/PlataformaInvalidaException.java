@@ -9,7 +9,7 @@ package Excepcoes;
  *
  * @author Grupo 3 - Turma 1
  */
-public class PlataformaInvalidaException extends Exception {
+public class PlataformaInvalidaException extends IllegalArgumentException {
     public PlataformaInvalidaException(String s) {
         super(s);
     }
