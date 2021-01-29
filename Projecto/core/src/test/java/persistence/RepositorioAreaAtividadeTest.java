@@ -1,8 +1,15 @@
 package persistence;
 
-import static org.junit.Assert.*;
+
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class RepositorioAreaAtividadeTest {
+
+    @Test
+    public void testGetInstance(){
+
+    }
 
 }
