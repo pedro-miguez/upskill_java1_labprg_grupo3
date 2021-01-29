@@ -1,5 +1,6 @@
 package persistence;
 
+import Excepcoes.GestorNaoRelacionadoANenhumaOrgException;
 import domain.Colaborador;
 import domain.Organizacao;
 
@@ -24,8 +25,13 @@ public class RepositorioOrganizacao {
         return instance;
     }
 
-    public void addOrganizacao(Organizacao organizacao) {
-        this.organizacoesRegistadas.add(organizacao);
+    public boolean addOrganizacao(Organizacao organizacao) {
+        if (this.organizacoesRegistadas.contains(organizacao)) {
+            return false;
+        } else {
+            this.organizacoesRegistadas.add(organizacao);
+            return true;
+        }
     }
 
     public void addGestor(Colaborador colaborador, Organizacao organizacao) {
@@ -34,15 +40,15 @@ public class RepositorioOrganizacao {
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {
         for (Organizacao o : organizacoesRegistadas) {
-            if (o.getGestor().equals(colaborador)) {
+            if (o.getGestor().equals(colaborador) ) {
                 return o;
             }
         }
-        return null; //throw new GestorNaoRelacionadoANenhumaOrganizacaoException()
+        throw new GestorNaoRelacionadoANenhumaOrgException("Não existe nenhuma organização associada a este gestor");
     }
 
     public ArrayList<Organizacao> listarOrganizacoes() {
-        return new ArrayList<Organizacao>(this.organizacoesRegistadas);
+        return new ArrayList<>(this.organizacoesRegistadas);
     }
 
     @Override
