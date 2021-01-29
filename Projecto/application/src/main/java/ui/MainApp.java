@@ -20,7 +20,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception{
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/menu_login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaPrincipalScene.fxml"));
             Parent root = loader.load();
 
 
@@ -41,13 +41,13 @@ public class MainApp extends Application {
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         event.consume();
-                    } else {
+                    } /*else {
                         AppController appController = ((JanelaInicialUI) loader.getController()).getAppController();
                         if (!appController.listaVazia() && !appController.serializarTodos()) {
                             AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO, "Exportar Lista.",
                                     "Problema ao exportar lista!").show();
                         }
-                    }
+                    }*/
                 }
             });
             stage.show();
