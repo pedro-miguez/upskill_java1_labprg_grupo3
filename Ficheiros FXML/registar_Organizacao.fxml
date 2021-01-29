@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="174.0" layoutY="23.0" text="Faça aqui o registo da tua organização">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="83.0" layoutY="81.0" text="Nome do Gestor: " />
+      <Label layoutX="83.0" layoutY="117.0" text="Nome da Organização:" />
+      <Label layoutX="83.0" layoutY="154.0" text="Sede da Organização:" />
+      <Label layoutX="83.0" layoutY="192.0" text="Data da fundação: " />
+      <Label layoutX="83.0" layoutY="228.0" text="Número de colabores: " />
+      <Label layoutX="83.0" layoutY="266.0" text="Contacto:" />
+      <Label layoutX="83.0" layoutY="304.0" text="Endereço e-mail:" />
+      <Label layoutX="83.0" layoutY="344.0" text="Website oficial:" />
+      <TextField layoutX="183.0" layoutY="77.0" prefHeight="25.0" prefWidth="380.0" />
+      <TextField layoutX="214.0" layoutY="113.0" prefHeight="25.0" prefWidth="350.0" />
+      <TextField layoutX="214.0" layoutY="150.0" prefHeight="25.0" prefWidth="350.0" />
+      <TextField layoutX="214.0" layoutY="224.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField layoutX="214.0" layoutY="262.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField layoutX="214.0" layoutY="300.0" prefHeight="25.0" prefWidth="350.0" />
+      <TextField layoutX="214.0" layoutY="340.0" prefHeight="25.0" prefWidth="350.0" />
+      <DatePicker layoutX="213.0" layoutY="188.0" />
+   </children>
+</AnchorPane>
