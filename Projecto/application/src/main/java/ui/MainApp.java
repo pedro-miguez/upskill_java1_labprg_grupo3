@@ -49,7 +49,7 @@ public class MainApp extends Application {
                         }
                     }
                 }
-            });*/
+            });
             stage.show();
         } catch (IOException ex) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO,
