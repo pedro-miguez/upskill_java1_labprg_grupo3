@@ -1,12 +1,20 @@
 package ui;
 
-public class RegistarOrganizacaoUI {
-
-    package ui;
-
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+
 
     public class RegistarOrganizacaoUI {
 
@@ -72,4 +80,4 @@ import javafx.scene.control.TextField;
 
     }
 
-}
+

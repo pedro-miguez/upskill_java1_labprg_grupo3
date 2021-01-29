@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegistarOrganizacaoUI">
+   <children>
+      <Label layoutX="242.0" layoutY="4.0" text="Faça aqui o registo da tua organização">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="Send_Info" layoutX="103.0" layoutY="461.0" mnemonicParsing="false" onAction="#Sending_Info_Org" text="Submeter dados" />
+      <Button fx:id="limparDados" layoutX="340.0" layoutY="461.0" mnemonicParsing="false" onAction="#Clear_Info" text="Limpar dados" />
+      <Label layoutX="73.0" layoutY="51.0" text="Informação do Gestor">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="466.0" layoutY="51.0" text="Informação da Organização">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="102.0" text="Nome:" />
+      <Label layoutX="45.0" layoutY="147.0" text="Contacto:" />
+      <Label layoutX="45.0" layoutY="192.0" text="E-mail:" />
+      <Label layoutX="45.0" layoutY="237.0" text="Função:" />
+      <Label layoutX="387.0" layoutY="102.0" text="Nome:" />
+      <Label layoutX="387.0" layoutY="139.0" text="NIF:" />
+      <Label layoutX="386.0" layoutY="184.0" text="Morada:" />
+      <Label layoutX="386.0" layoutY="217.0" text="Localidade:" />
+      <Label layoutX="386.0" layoutY="250.0" text="Código-Postal:" />
+      <Label layoutX="384.0" layoutY="286.0" text="Telefone:" />
+      <Label layoutX="385.0" layoutY="319.0" text="Endereço Web:" />
+      <Label layoutX="387.0" layoutY="354.0" text="E-mail:" />
+      <TextField fx:id="NomeGestor" layoutX="86.0" layoutY="98.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="ContactoGestor" layoutX="103.0" layoutY="143.0" prefHeight="25.0" prefWidth="242.0" />
+      <TextField fx:id="EmailGestor" layoutX="86.0" layoutY="188.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="FuncaoGestor" layoutX="86.0" layoutY="233.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="Nome_Org" layoutX="433.0" layoutY="98.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="NIF_Org" layoutX="433.0" layoutY="135.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="Morada_Org" layoutX="433.0" layoutY="180.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="Localidade_Org" layoutX="457.0" layoutY="213.0" prefHeight="25.0" prefWidth="242.0" />
+      <TextField fx:id="CP_Org" layoutX="468.0" layoutY="246.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField fx:id="Tlf_Org" layoutX="434.0" layoutY="282.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="website" layoutX="468.0" layoutY="315.0" prefHeight="25.0" prefWidth="230.0" />
+      <TextField fx:id="Email_Org" layoutX="433.0" layoutY="350.0" prefHeight="25.0" prefWidth="265.0" />
+      <Button fx:id="voltar" layoutX="647.0" layoutY="461.0" mnemonicParsing="false" onAction="#GotoMain" text="Voltar" />
+   </children>
+</AnchorPane>
