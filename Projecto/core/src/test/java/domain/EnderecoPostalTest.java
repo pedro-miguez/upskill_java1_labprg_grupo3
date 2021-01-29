@@ -23,4 +23,11 @@ public class EnderecoPostalTest {
 
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateEnderecoPostalcomCodigoPostalVazio(){
+
+        EnderecoPostal endereco = new EnderecoPostal ("Av. dos Extremos 68", "Braga, Portugal", " ");
+
+    }
+
 }
