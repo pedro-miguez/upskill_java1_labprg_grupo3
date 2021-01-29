@@ -8,7 +8,9 @@ public class ColaboradorTest {
 
     @Test
     public void testCreateColaboradorValido() {
-        Colaborador colaborador = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), Funcao.COLABORADOR);
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Colaborador colaborador = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org);
 
         String expected = "nome";
         String result = colaborador.getNome();
@@ -18,18 +20,24 @@ public class ColaboradorTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateColaboradorNomeInvalido() {
-        new Colaborador("", new Telefone(999999999), new Email("colab@org.com"), Funcao.COLABORADOR);
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        new Colaborador("", new Telefone(999999999), new Email("colab@org.com"), org);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateColaboradorTelefoneInvalido() {
-        new Colaborador("nome", new Telefone(1999999999), new Email("colab@org.com"), Funcao.COLABORADOR);
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        new Colaborador("nome", new Telefone(1999999999), new Email("colab@org.com"), org);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateColaboradorEmailInvalido() {
-        new Colaborador("nome", new Telefone(999999999), new Email("colaborg.com"), Funcao.COLABORADOR);
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        new Colaborador("nome", new Telefone(999999999), new Email("colaborg.com"), org);
     }
 
 }

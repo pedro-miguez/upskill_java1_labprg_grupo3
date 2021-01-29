@@ -9,7 +9,7 @@ package Excepcoes;
  *
  * @author victo
  */
-public class EmailInvalidoException extends Exception {
+public class EmailInvalidoException extends IllegalArgumentException {
 
     public EmailInvalidoException(String s) {
         super(s);

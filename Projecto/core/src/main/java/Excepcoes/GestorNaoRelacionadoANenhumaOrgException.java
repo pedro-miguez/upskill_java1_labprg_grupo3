@@ -9,8 +9,8 @@ package Excepcoes;
  *
  * @author Grupo 3 - Turma 1
  */
-public class ColaboradorInvalidoException extends IllegalArgumentException {
-    public ColaboradorInvalidoException(String s) {
+public class GestorNaoRelacionadoANenhumaOrgException extends IllegalArgumentException {
+    public GestorNaoRelacionadoANenhumaOrgException(String s) {
         super(s);
     }
 }

@@ -9,7 +9,7 @@ package Excepcoes;
  *
  * @author Grupo 3 - Turma 1
  */
-public class NIFInvalidoException extends Exception {
+public class NIFInvalidoException extends IllegalArgumentException {
     public NIFInvalidoException(String s) {
         super(s);
     }

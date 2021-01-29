@@ -16,6 +16,4 @@ public class RepositorioColaboradorTest extends TestCase {
         assertEquals(result, expected);
     }
 
-
-
 }

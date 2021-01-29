@@ -9,7 +9,7 @@ package Excepcoes;
  *
  * @author Grupo 3 - Turma 1
  */
-public class FuncaoInvalidaException extends Exception {
+public class FuncaoInvalidaException extends IllegalArgumentException {
     public FuncaoInvalidaException(String s) {
         super(s);
     }
