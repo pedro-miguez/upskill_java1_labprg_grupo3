@@ -35,6 +35,7 @@ public class EmailTest {
         Email email = new Email("vitor@gmailcom");
     }
 
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateEmailInvalidoSoComUmaLetraAseguirAoPonto() {
 
