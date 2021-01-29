@@ -15,7 +15,7 @@ public class Website {
         return website;
     }
 
-    public void setWebsite(String website) {
+    private void setWebsite(String website) {
         String regex = "(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{2,3}\\.([a-z]+)?";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(website);
