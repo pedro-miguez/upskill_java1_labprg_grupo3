@@ -1,10 +1,10 @@
 package persistence;
 
+import exceptions.EmailNaoAssociadoAColaboradorException;
 import domain.Colaborador;
 import domain.Email;
 import domain.Organizacao;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +25,12 @@ public class RepositorioColaborador {
         return instance;
     }
 
-    public void addColaborador(Colaborador colaborador) {
-        this.colaboradoresRegistados.add(colaborador);
+    public boolean addColaborador(Colaborador colaborador) {
+        if (this.colaboradoresRegistados.contains(colaborador)) {
+            return false;
+        } else {
+            return this.colaboradoresRegistados.add(colaborador);
+        }
     }
 
 
@@ -36,7 +40,9 @@ public class RepositorioColaborador {
                 return c;
             }
         }
-        return null; //throw new ColaboradorNaoEncontradoException()
+
+        throw new EmailNaoAssociadoAColaboradorException(email.toString() + " não está associado a nenhum colaborador");
+
     }
 
     public ArrayList<Colaborador> getColaboradoresOrganizacao (Organizacao organizacao) {

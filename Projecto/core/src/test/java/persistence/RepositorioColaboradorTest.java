@@ -1,5 +1,7 @@
 package persistence;
 
+import exceptions.EmailNaoAssociadoAColaboradorException;
+import domain.*;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -18,38 +20,46 @@ public class RepositorioColaboradorTest extends TestCase {
 
     @Test
     public void testAddColaboradorValido() {
-        RepositorioColaborador result = RepositorioColaborador.getInstance();
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 
-        RepositorioColaborador expected = RepositorioColaborador.getInstance();
+        int expected = RepositorioColaborador.getInstance().listarColaboradores().size() + 1;
 
-        assertEquals(result, expected);
+        RepositorioColaborador.getInstance().addColaborador(gestor);
+
+        int result = RepositorioColaborador.getInstance().listarColaboradores().size();
+
+        assertEquals(expected, result);
     }
 
     @Test
     public void testAddColaboradorInvalido() {
-        RepositorioColaborador result = RepositorioColaborador.getInstance();
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 
-        RepositorioColaborador expected = RepositorioColaborador.getInstance();
+        RepositorioColaborador.getInstance().addColaborador(gestor);
 
-        assertEquals(result, expected);
+        Colaborador gestor2 = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+
+        assertFalse(RepositorioColaborador.getInstance().addColaborador(gestor2));
     }
 
     @Test
     public void testGetColaboradorByEmailValido() {
-        RepositorioColaborador result = RepositorioColaborador.getInstance();
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 
-        RepositorioColaborador expected = RepositorioColaborador.getInstance();
+        RepositorioColaborador.getInstance().addColaborador(gestor);
 
-        assertEquals(result, expected);
+        assertEquals(gestor, RepositorioColaborador.getInstance().getColaboradorByEmail(new Email("colab@org.com")));
     }
 
-    @Test
+    @Test (expected = EmailNaoAssociadoAColaboradorException.class)
     public void testGetColaboradorByEmailInvalido() {
-        RepositorioColaborador result = RepositorioColaborador.getInstance();
-
-        RepositorioColaborador expected = RepositorioColaborador.getInstance();
-
-        assertEquals(result, expected);
+        RepositorioColaborador.getInstance().getColaboradorByEmail(new Email("colabs@org.com"));
     }
 
     @Test
