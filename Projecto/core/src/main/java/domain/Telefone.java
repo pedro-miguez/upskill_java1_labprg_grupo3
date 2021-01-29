@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Telefone {
 
     private int number;
@@ -18,6 +20,14 @@ public class Telefone {
         } else {
             this.number = number;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Telefone telefone = (Telefone) o;
+        return number == telefone.number;
     }
 
 }
