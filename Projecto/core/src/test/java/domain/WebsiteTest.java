@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class WebsiteTest {
 
     @Test
-    public void createWebsiteValido() {
+    public void testCreateWebsiteValido() {
 
         Website site = new Website("www.org.pt");
 
@@ -21,7 +21,7 @@ public class WebsiteTest {
     }
 
     @Test
-    public void createWebsiteValido2() {
+    public void testCreateWebsiteValido2() {
 
         Website site = new Website("www.org.uk.pt");
 
