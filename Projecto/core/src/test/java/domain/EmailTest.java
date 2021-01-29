@@ -1,9 +1,8 @@
 package domain;
 
 import org.junit.Test;
-import junit.framework.*;
-import domain.Email;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class EmailTest {
 
@@ -48,3 +47,4 @@ public class EmailTest {
         new Email("vitor@gmail.co.ukapoie");
     }
 }
+
