@@ -2,12 +2,11 @@ package persistence;
 
 import exceptions.EmailNaoAssociadoAColaboradorException;
 import domain.*;
-import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-public class RepositorioColaboradorTest extends TestCase {
+public class RepositorioColaboradorTest {
 
     @Test
     public void testGetInstance() {
@@ -64,23 +63,15 @@ public class RepositorioColaboradorTest extends TestCase {
 
     @Test
     public void testGetColaboradoresOrganizacaoValido() {
-        RepositorioColaborador result = RepositorioColaborador.getInstance();
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 
-        RepositorioColaborador expected = RepositorioColaborador.getInstance();
+        RepositorioColaborador.getInstance().addColaborador(gestor);
 
-        assertEquals(result, expected);
+        int expected = 1;
+        int result = RepositorioColaborador.getInstance().getColaboradoresOrganizacao(org).size();
+
+        assertEquals(expected, result);
     }
-
-    @Test
-    public void testGetColaboradoresOrganizacaoInvalido() {
-        RepositorioColaborador result = RepositorioColaborador.getInstance();
-
-        RepositorioColaborador expected = RepositorioColaborador.getInstance();
-
-        assertEquals(result, expected);
-    }
-
-
-
-
 }

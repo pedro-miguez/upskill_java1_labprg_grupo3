@@ -13,7 +13,7 @@ public class RepositorioColaborador {
     private static RepositorioColaborador instance;
 
     private RepositorioColaborador(){
-        colaboradoresRegistados = new ArrayList<Colaborador>();
+        colaboradoresRegistados = new ArrayList<>();
     }
 
     private List<Colaborador> colaboradoresRegistados;
@@ -58,7 +58,7 @@ public class RepositorioColaborador {
     }
 
     public ArrayList<Colaborador> listarColaboradores() {
-        return new ArrayList<Colaborador>(this.colaboradoresRegistados);
+        return new ArrayList<>(this.colaboradoresRegistados);
     }
 
     @Override
