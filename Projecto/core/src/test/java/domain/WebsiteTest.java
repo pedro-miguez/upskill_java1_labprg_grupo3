@@ -23,24 +23,18 @@ public class WebsiteTest {
     @Test
     public void createWebsiteValido2() {
 
-        Website site = new Website("www.org.pt/asd");
+        Website site = new Website("www.org.uk.pt");
 
-        String expected = "www.org.pt/asd";
+        String expected = "www.org.uk.pt";
 
         String result = site.getWebsite();
 
         assertEquals(expected, result);
     }
 
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateWebsiteInvalido() {
-
-        Website site = new Website("wwworg.pt");
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreateWebsiteInvalido2() {
 
         Website site = new Website("www.orgpt");
 
@@ -48,7 +42,7 @@ public class WebsiteTest {
 
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateWebsiteInvalido3() {
+    public void testCreateWebsiteInvalido2() {
 
         Website site = new Website("www.org.pt (asd)");
     }

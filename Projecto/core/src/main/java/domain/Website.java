@@ -16,7 +16,10 @@ public class Website {
     }
 
     public void setWebsite(String website) {
-        if (website.matches("^(http:\\/\\/|https:\\/\\/)?(www).?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$")){
+        String regex = "(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{2,3}\\.([a-z]+)?";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(website);
+        if (matcher.matches()){
             this.website = website;
         } else {
             throw new IllegalArgumentException("O website introduzido é inválido.");
