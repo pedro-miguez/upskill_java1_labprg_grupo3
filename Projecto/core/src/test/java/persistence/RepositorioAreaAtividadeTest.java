@@ -1,7 +1,15 @@
 package persistence;
 
-import junit.framework.TestCase;
 
-public class RepositorioAreaAtividadeTest extends TestCase {
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class RepositorioAreaAtividadeTest {
+
+    @Test
+    public void testGetInstance(){
+
+    }
 
 }

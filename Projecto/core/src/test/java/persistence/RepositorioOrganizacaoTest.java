@@ -1,5 +1,5 @@
 package persistence;
-import Excepcoes.GestorNaoRelacionadoANenhumaOrgException;
+import exceptions.GestorNaoRelacionadoANenhumaOrgException;
 import domain.*;
 import org.junit.Test;
 
