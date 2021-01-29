@@ -13,7 +13,7 @@ public class RepositorioOrganizacao {
     private static RepositorioOrganizacao instance;
 
     private RepositorioOrganizacao(){
-        organizacoesRegistadas = new ArrayList<Organizacao>();
+        organizacoesRegistadas = new ArrayList<>();
     }
 
     private List<Organizacao> organizacoesRegistadas;
@@ -40,7 +40,7 @@ public class RepositorioOrganizacao {
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {
         for (Organizacao o : organizacoesRegistadas) {
-            if (o.getGestor().equals(colaborador) ) {
+            if (o.getGestor() != null && o.getGestor().equals(colaborador) ) {
                 return o;
             }
         }
