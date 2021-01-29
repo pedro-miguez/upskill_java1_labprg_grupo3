@@ -1,12 +1,11 @@
 package persistence;
 
-import Excepcoes.GestorNaoRelacionadoANenhumaOrgException;
+import exceptions.GestorNaoRelacionadoANenhumaOrgException;
 import domain.Colaborador;
 import domain.Organizacao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RepositorioOrganizacao {
 

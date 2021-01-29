@@ -1,6 +1,7 @@
 package domain;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,7 +9,8 @@ import static org.junit.Assert.assertEquals;
 public class CodigoUnicoTest {
 
     @Test
-    public void createCodigoUnicoValido(){
+    public void testCreateCodigoUnicoValido() {
+
 
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
 
@@ -20,23 +22,29 @@ public class CodigoUnicoTest {
 
     }
 
-    @Test
-    public void createCodigoUnicoInvalido(){
-
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCodigoUnicoInvalido() {
+        CodigoUnico codigoUnico = new CodigoUnico("PRGG-01");
     }
 
-    @Test
-    public void createCodigoUnicoInvalido1(){
-
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCodigoUnicoInvalido1() {
+        CodigoUnico codigoUnico = new CodigoUnico("PRG-011");
     }
 
-    @Test
-    public void createCodigoUnicoInvalido2(){
-
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCodigoUnicoInvalido2() {
+        CodigoUnico codigoUnico = new CodigoUnico("");
     }
-    @Test
-    public void createCodigoUnicoInvalido3(){
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCodigoUnicoInvalido3() {
+        CodigoUnico codigoUnico = new CodigoUnico("PRG-0*");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCodigoUnicoInvalido4() {
+        CodigoUnico codigoUnico = new CodigoUnico("P*G-01");
     }
 
 }
