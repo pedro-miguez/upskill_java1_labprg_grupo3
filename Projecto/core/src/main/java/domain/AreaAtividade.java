@@ -46,4 +46,12 @@ public class AreaAtividade {
         return String.format("Código Unico: %s; Descrição: %s; Descrição Detalhada: %s", this.codigoUnico, this.descricao, this.descDetalhada);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AreaAtividade)) return false;
+        AreaAtividade that = (AreaAtividade) o;
+        return getCodigoUnico().equals(that.getCodigoUnico());
+    }
+
 }

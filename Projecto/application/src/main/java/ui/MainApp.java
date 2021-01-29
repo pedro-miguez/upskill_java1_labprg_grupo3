@@ -1,6 +1,5 @@
 package ui;
 
-import controller.AppController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +20,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception{
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxml/JanelaInicialUI.fxml"));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/styles/Styles.css");
