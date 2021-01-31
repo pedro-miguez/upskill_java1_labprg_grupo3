@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-public class JanelaInicialUI implements Initializable {
+public class JanelaInicialUI extends Application {
 
     public Button login;
     public Button registar;
@@ -27,8 +30,9 @@ public class JanelaInicialUI implements Initializable {
         
     }
 
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void start(Stage primaryStage) throws Exception {
+
     }
 }

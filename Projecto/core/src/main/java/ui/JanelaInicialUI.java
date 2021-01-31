@@ -1,13 +1,11 @@
 package ui;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class JanelaInicialUI implements Initializable {
+public class JanelaInicialUI {
 
     public Button login;
     public Button registar;
@@ -26,8 +24,4 @@ public class JanelaInicialUI implements Initializable {
         
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
