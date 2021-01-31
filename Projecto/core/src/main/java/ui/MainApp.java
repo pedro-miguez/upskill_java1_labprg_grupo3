@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -16,8 +17,10 @@ public class MainApp extends Application {
 
     public static final String TITULO_APLICACAO = "T4J - Tasks For Joe";
 
+    public static ScreenController screenController;
+
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws Exception {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
@@ -27,11 +30,21 @@ public class MainApp extends Application {
             Scene scene = new Scene(root);
             //scene.getStylesheets().add("/styles/Styles.css");
 
+            screenController = new ScreenController(scene);
+
+
+            screenController.addScreen("RegistarOrganizacao",
+                    FXMLLoader.load(getClass().getResource("/fxml/RegistarOrganizacaoScene.fxml")));
+            screenController.addScreen("Login",
+                    FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml")));
+            screenController.addScreen("JanelaInicial",
+                    FXMLLoader.load(getClass().getResource("/fxml/JanelaInicialScene.fxml")));
+
+
             stage.setTitle(TITULO_APLICACAO);
             stage.setScene(scene);
 
             stage.sizeToScene();
-            stage.setResizable(false);
 
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
@@ -60,6 +73,10 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public ScreenController getScreenController() {
+        return screenController;
     }
 }
 

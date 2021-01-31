@@ -67,7 +67,7 @@ public class RegistarOrganizacaoUI extends Application {
 
     @FXML
     void GotoMain(ActionEvent event) {
-
+        MainApp.screenController.activate("JanelaInicial");
     }
 
     @Override

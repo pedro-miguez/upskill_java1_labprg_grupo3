@@ -11,17 +11,14 @@ public class JanelaInicialUI {
     public Button registar;
 
     public void GoToLogin(ActionEvent actionEvent) {
-        //Acesso_login.fxml
+        MainApp.screenController.activate("Login");
         
         
         
     }
 
     public void RegistarOrganizacao(ActionEvent actionEvent) {
-        //registar_Organizacao.fxml
-        
-        
-        
+        MainApp.screenController.activate("RegistarOrganizacao");
     }
 
 }
