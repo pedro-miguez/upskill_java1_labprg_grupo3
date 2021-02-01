@@ -20,12 +20,12 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception{
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaPrincipalScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
             Parent root = loader.load();
 
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/styles/Styles.css");
+            //scene.getStylesheets().add("/styles/Styles.css");
 
             stage.setTitle(TITULO_APLICACAO);
             stage.setScene(scene);
