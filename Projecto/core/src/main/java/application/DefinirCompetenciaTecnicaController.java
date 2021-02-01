@@ -1,25 +1,19 @@
 package application;
 
 import domain.*;
-import persistence.RepositorioColaborador;
-import persistence.RepositorioOrganizacao;
+
+import persistence.RepositorioAreaAtividade;
+import persistence.RepositorioCompetenciaTecnica;
 
 public class DefinirCompetenciaTecnicaController {
 
-    public boolean DefinirCompetenciaTecnica(String nomeOrg, int nif, String website, int telefone,
-                                       String email, String rua, String localidade, String codigoPostal,
-                                       String nomeGestor, int telefoneGestor, String emailGestor) {
-        Organizacao org = new Organizacao(nomeOrg, new NIF(nif), new Website(website),
-                new Telefone(telefone), new Email(email) , new EnderecoPostal(rua, localidade, codigoPostal));
+    public boolean DefinirCompetenciaTecnica(String codigoUnico, String codigoUnicoAreaAtividade,
+                                             String descricao, String descDetalhada) {
 
-        Colaborador gestor = new Colaborador(nomeGestor, new Telefone(telefoneGestor), new Email(emailGestor),
-                org, Funcao.GESTOR);
+        CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(new CodigoUnico(codigoUnico),
+                RepositorioAreaAtividade.getInstance().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnicoAreaAtividade)),
+                descricao, descDetalhada);
 
-        if (!RepositorioOrganizacao.getInstance().addOrganizacao(org)) {
-            return false;
-        } else if (!RepositorioOrganizacao.getInstance().addGestor(gestor, org)) {
-            return false;
-        } else return RepositorioColaborador.getInstance().addColaborador(gestor);
+        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(competenciaTecnica);
     }
-
 }
