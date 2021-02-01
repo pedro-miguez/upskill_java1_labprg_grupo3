@@ -2,8 +2,6 @@ package application;
 
 import static org.junit.Assert.*;
 
-import domain.AreaAtividade;
-import domain.CodigoUnico;
 import org.junit.Test;
 
 public class DefinirAreaAtividadeControllerTest {

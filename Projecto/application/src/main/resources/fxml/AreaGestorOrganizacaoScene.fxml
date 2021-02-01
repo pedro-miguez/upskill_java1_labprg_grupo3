@@ -26,10 +26,10 @@
                   <Label text="Função:" GridPane.rowIndex="1" />
                   <Label text="Contacto: " GridPane.rowIndex="2" />
                   <Label text="E-mail: " GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="nomeColaborador" GridPane.columnIndex="1" />
+                  <TextField fx:id="funcaoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="contactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="emailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>
@@ -38,7 +38,7 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="135.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="165.0" text="Registar Colaborador" />
+            <Button fx:id="btn_RegistarColaborador" mnemonicParsing="false" onAction="#Registar_Colaborador" prefHeight="51.0" prefWidth="165.0" text="Registar Colaborador" />
          </children>
       </VBox>
    </left>
