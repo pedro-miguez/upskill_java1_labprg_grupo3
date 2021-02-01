@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Plataforma;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -26,13 +27,17 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
             Parent root = loader.load();
 
+            //criar plataforma
+            Plataforma plataforma = Plataforma.getInstance();
+
 
             Scene scene = new Scene(root);
             //scene.getStylesheets().add("/styles/Styles.css");
 
+
+
+            //adicionar as diferentes janelas
             screenController = new ScreenController(scene);
-
-
             screenController.addScreen("RegistarOrganizacao",
                     FXMLLoader.load(getClass().getResource("/fxml/RegistarOrganizacaoScene.fxml")));
             screenController.addScreen("Login",
