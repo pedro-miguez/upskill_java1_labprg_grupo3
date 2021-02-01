@@ -12,7 +12,7 @@ public class DefinirCompetenciaTecnicaControllerTest {
         assertTrue(controller.DefinirCompetenciaTecnica("abc-12", "def-34", "Canalizacao",
                 "Tratar dos canos"));
 
-        
+
     }
 
 
