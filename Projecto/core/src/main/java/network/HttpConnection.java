@@ -1,6 +1,5 @@
 package network;
 
-import dto.ErroDTO;
 import xml.XmlHandler;
 
 import java.io.*;
@@ -77,11 +76,9 @@ public class HttpConnection {
         } catch (MalformedURLException e) {
 //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
-            body = XmlHandler.serializeErroDTO2XML(new ErroDTO(e));
         } catch (IOException e) {
 //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
-            body = XmlHandler.serializeErroDTO2XML(new ErroDTO(e));
         }
         HttpResponse httpResponse = new HttpResponse(resCode, body);
         return httpResponse;
