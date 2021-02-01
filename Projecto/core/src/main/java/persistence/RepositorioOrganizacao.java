@@ -1,5 +1,9 @@
 package persistence;
 
+import api.UsersAPI;
+import api.UsersAPIAdapter;
+import domain.AlgoritmoGeradorPasswords;
+import domain.Plataforma;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;
 import domain.Colaborador;
 import domain.Organizacao;
@@ -35,6 +39,17 @@ public class RepositorioOrganizacao {
 
     public boolean addGestor(Colaborador colaborador, Organizacao organizacao) {
         return organizacao.setGestor(colaborador);
+    }
+
+    public boolean registarGestorComoUtilizador(Colaborador colaborador) {
+        String nome = colaborador.getNome();
+        String email = colaborador.getEmail().toString();
+
+        AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
+        String password = alg.geraPassword();
+
+        UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
+        return uapi.registerUserWithRoles(nome, email, password, "gestor");
     }
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {

@@ -4,7 +4,7 @@ import api.UsersAPI;
 
 public class Plataforma {
     private static Plataforma plataforma;
-    private IAlgoritmoGeradorPasswords agp;
+    private AlgoritmoGeradorPasswords agp;
     private UsersAPI uapi;
 
     private Plataforma() {
@@ -22,7 +22,7 @@ public class Plataforma {
         return plataforma;
     }
 
-    public IAlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
+    public AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
         return agp;
     }
 

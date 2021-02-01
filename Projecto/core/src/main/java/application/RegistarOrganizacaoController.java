@@ -19,6 +19,9 @@ public class RegistarOrganizacaoController {
             return false;
         } else if (!RepositorioOrganizacao.getInstance().addGestor(gestor, org)) {
             return false;
-        } else return RepositorioColaborador.getInstance().addColaborador(gestor);
+        } else if(!RepositorioColaborador.getInstance().addColaborador(gestor)) {
+            return false;
+        } else return RepositorioOrganizacao.getInstance().registarGestorComoUtilizador(gestor);
+
     }
 }

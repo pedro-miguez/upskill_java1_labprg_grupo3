@@ -1,11 +1,11 @@
 package api;
 
-import dto.ErroDTO;
 import network.HttpConnection;
 import network.HttpRequest;
 import network.HttpRequestType;
 import network.HttpResponse;
 import network.HttpStatusCode;
+import org.json.JSONObject;
 import utils.Response;
 import xml.XmlHandler;
 
@@ -30,19 +30,16 @@ public class UsersAPI {
     }
 
     public String getEmail() {
-        //getSession devolve algo como:
-//        [{
-//   "username": "anc",
-//   "email": "anc@isep.ipp.pt",
-//   "rolename": null,
-//   "logindate": "2021-01-23T18:33:27.000Z"
-//}]
-        String session = uapia.getSession(); //Obtemos uma Json string com informação sobre a sessão.
-
-        return "";
+        String session = uapia.getSession();
+        JSONObject bodyJSON = new JSONObject(session);
+        return bodyJSON.getString("email");
     }
 
     public boolean registerUserWithRoles(String username, String email, String password, String rolenames) {
         return uapia.registerUserWithRoles(username, email, password, rolenames);
+    }
+
+    public boolean registerUser(String username, String email, String password) {
+        return uapia.registerUser(username, email, password);
     }
 }

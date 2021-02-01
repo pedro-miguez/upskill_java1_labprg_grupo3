@@ -88,6 +88,16 @@ public class UsersAPIAdapter {
     }
 
     public String getSession() {
-        return "[{\"username\": \"anc\",\"email\": \"anc@isep.ipp.pt\",\"logindate\": \"2021-01-23T18:33:27.000Z\"}]";
+        String url = "/session?app_context=" + getContext();
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.OK:
+                break;
+            case HttpStatusCode.Conflict:
+                break;
+        }
+
+        return httpResponse.getBody().replaceAll( "\\[|\\]", "");
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class User {
     private String username;
     private String password;
@@ -43,5 +45,21 @@ public class User {
 
     private void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return getUsername().equals(user.getUsername()) &&
+                getPassword().equals(user.getPassword()) &&
+                getEmail().equals(user.getEmail()) &&
+                getRole() == user.getRole();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername(), getPassword(), getEmail(), getRole());
     }
 }
