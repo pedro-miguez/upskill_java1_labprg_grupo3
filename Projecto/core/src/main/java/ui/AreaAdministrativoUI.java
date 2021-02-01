@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 
 
-public class AreaAdministradorUI {
+public class AreaAdministrativoUI {
 
     @FXML
     private Button limparBtn;
