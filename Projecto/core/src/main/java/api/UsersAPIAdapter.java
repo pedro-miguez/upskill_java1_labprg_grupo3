@@ -17,6 +17,7 @@ public class UsersAPIAdapter {
         String url = "/context/app_key=" + appKey;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        return url;//temporario
     }
 
     public static Response registerUserWithRoles(String url) {
