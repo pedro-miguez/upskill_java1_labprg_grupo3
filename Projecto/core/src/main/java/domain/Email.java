@@ -39,4 +39,8 @@ public class Email {
         return Objects.equals(getEmail(), email1.getEmail());
     }
 
+    @Override
+    public String toString() {
+        return email;
+    }
 }
