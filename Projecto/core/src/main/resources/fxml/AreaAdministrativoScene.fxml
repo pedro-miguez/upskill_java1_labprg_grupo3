@@ -101,16 +101,25 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" />
+               </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#criarCategoriaTarefaAction" prefHeight="86.0" prefWidth="112.0" text="Criar Categoria de Tarefa" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" />
+               </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#criarCompetenciaTecnicaAction" prefHeight="85.0" prefWidth="116.0" text="Criar Competencia Técnica" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
             </Button>
          </children>
       </VBox>
