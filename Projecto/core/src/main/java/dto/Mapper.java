@@ -16,8 +16,8 @@ public class Mapper {
         return userDTO;
     }
 
-    public static User userDTO2User(UserDTO userDTO) throws NullPointerException {
+   /* public static User userDTO2User(UserDTO userDTO) throws NullPointerException {
         return new User(userDTO.getUsername(), userDTO.getPassword(), new Email(userDTO.getEmail()));
-    }
+    }*/
 
 }

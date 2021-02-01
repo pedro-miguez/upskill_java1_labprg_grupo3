@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class HttpConnection {
+
     private static String readBody(InputStream in) {
         StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
