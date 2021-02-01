@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="btn_reg_Colaborador" layoutX="43.0" layoutY="121.0" mnemonicParsing="false" onAction="#Register_Colaborador" prefHeight="25.0" prefWidth="136.0" text="Registar Colaborador" />
+      <Button fx:id="btn_Search_Colaborador" layoutX="43.0" layoutY="175.0" mnemonicParsing="false" onAction="#Search_Colaborador" text="Pesquisar Colaborador" />
+      <Button fx:id="btn_Eliminar_Colaborador" layoutX="43.0" layoutY="231.0" mnemonicParsing="false" onAction="#Delete_Colaborador" prefHeight="25.0" prefWidth="136.0" text="Eliminar Colaborador" />
+      <Label layoutX="97.0" layoutY="14.0" text="ÁREA   DO   GESTOR   DA   ORGANIZAÇÃO" />
+      <TextField fx:id="Id_Gestor" layoutX="337.0" layoutY="8.0" onAction="#SHOW_ID_GESTOR" />
+   </children>
+</AnchorPane>
