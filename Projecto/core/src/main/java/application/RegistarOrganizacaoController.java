@@ -5,7 +5,7 @@ import persistence.RepositorioColaborador;
 import persistence.RepositorioOrganizacao;
 
 public class RegistarOrganizacaoController {
-    
+
     public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
                                        String email, String rua, String localidade, String codigoPostal,
                                        String nomeGestor, int telefoneGestor, String emailGestor) {
