@@ -33,8 +33,8 @@ public class RepositorioOrganizacao {
         }
     }
 
-    public void addGestor(Colaborador colaborador, Organizacao organizacao) {
-        organizacao.setGestor(colaborador);
+    public boolean addGestor(Colaborador colaborador, Organizacao organizacao) {
+        return organizacao.setGestor(colaborador);
     }
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {

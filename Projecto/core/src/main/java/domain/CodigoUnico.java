@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class CodigoUnico {
 
     private String codigoUnico;
@@ -22,6 +24,14 @@ public class CodigoUnico {
 
     public String toString(){
         return String.format("%s", this.codigoUnico);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CodigoUnico that = (CodigoUnico) o;
+        return getCodigoUnico().equals(that.getCodigoUnico());
     }
 
 }
