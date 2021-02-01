@@ -1,7 +1,6 @@
 package persistence;
 
-import api.UsersAPI;
-import api.UsersAPIAdapter;
+import application.UsersAPI;
 import domain.AlgoritmoGeradorPasswords;
 import domain.Plataforma;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;

@@ -1,5 +1,6 @@
-package api;
+package application;
 
+import api.UsersAPIAdapter;
 import network.HttpConnection;
 import network.HttpRequest;
 import network.HttpRequestType;

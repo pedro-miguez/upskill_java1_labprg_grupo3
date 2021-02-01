@@ -1,6 +1,6 @@
 package domain;
 
-import api.UsersAPI;
+import application.UsersAPI;
 
 public class Plataforma {
     private static Plataforma plataforma;
