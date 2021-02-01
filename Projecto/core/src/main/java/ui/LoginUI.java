@@ -19,6 +19,12 @@ public class LoginUI {
     }
 
     public void GoPlataforma(ActionEvent actionEvent) {
+        //login(username, password)
+        /* if (login) {
+                metodoParaMostrarEcra(username)
+           }
+         */
+
     }
 
     public void VoltarMenu(ActionEvent actionEvent) {

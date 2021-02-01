@@ -12,9 +12,6 @@ public class JanelaInicialUI {
 
     public void GoToLogin(ActionEvent actionEvent) {
         MainApp.screenController.activate("Login");
-        
-        
-        
     }
 
     public void RegistarOrganizacao(ActionEvent actionEvent) {
