@@ -1,6 +1,5 @@
 package api;
 
-import dto.ErroDTO;
 import network.*;
 import org.json.JSONObject;
 import utils.Response;
@@ -17,16 +16,13 @@ public class UsersAPIAdapter {
     public String getContext() {
         if (app_context == null || app_context.equals("")) {
             String url = "/context?app_key=" + app_key;
-            Response response = null;
             HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, url);
             HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
             switch (httpResponse.getStatus()) {
                 case HttpStatusCode.OK:
-                    response = new Response(HttpStatusCode.OK, httpResponse.getBody());
                     break;
                 case HttpStatusCode.Conflict:
-                    ErroDTO erroDTO = XmlHandler.deSerializeXML2ErroDTO(httpResponse.getBody());
-                    response = new Response(HttpStatusCode.Conflict, erroDTO.getMensagemErro());
+
                     break;
             }
             JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
@@ -38,19 +34,57 @@ public class UsersAPIAdapter {
     }
 
     public boolean login(String user_id, String password) {
-        return true;
+        String url = "/login?app_context=" + getContext() + "?username=" + user_id + "?password=" + password;
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.OK:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
     }
 
     public boolean logout() {
-        return true;
+        String url = "/logout?app_context=" + getContext();
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.OK:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
     }
 
     public boolean registerUser(String username, String email, String password) {
-        return true;
+        String url = "/registerUser?app_context=" + getContext() + "?username=" + username + "?email=" + email
+                + "?password=" + password;
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.Created:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
     }
 
     public boolean registerUserWithRoles(String username, String email, String password, String rolenames) {
-        return true;
+        String url = "/registerUserWithRole?app_context=" + getContext() + "?username=" + username + "?email=" + email
+                + "?password=" + password + "?role=" + rolenames;
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.Created:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
     }
 
     public String getSession() {
