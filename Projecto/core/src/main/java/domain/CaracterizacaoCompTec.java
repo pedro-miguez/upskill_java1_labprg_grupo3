@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CaracterizacaoCompTec {
+public class CaracterizacaoCompTec implements Serializable {
 
     private CodigoUnico codigoUnico;
     private boolean obrigatorio;
@@ -37,6 +38,5 @@ public class CaracterizacaoCompTec {
         return getCodigoUnico().equals(that.getCodigoUnico());
     }
 
-//repo,
 
 }
