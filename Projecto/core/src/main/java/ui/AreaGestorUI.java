@@ -7,6 +7,7 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -36,17 +37,30 @@ public class AreaGestorUI {
     
     @FXML
     void registarColaboradorAction(ActionEvent event) {
-
+        try {
+            boolean registou = 
+            
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
+                    registou ? "Colaborador registado com sucesso."
+                            : "Não foi possível registar o colaborador.").show();
+            
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Introduza os dados novamente!").show();
+        }
     }
 
     @FXML
     void limparAction(ActionEvent event) {
-
+        nomeColaborador.clear();
+        funcaoColaborador.clear();
+        contactoColaborador.clear();
+        emailColaborador.clear();
     }
 
     @FXML
     void sairAction(ActionEvent event) {
-
+        MainApp.screenController.activate("JanelaInicial");
     }
      
     @FXML
