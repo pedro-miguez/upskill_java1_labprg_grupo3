@@ -7,7 +7,7 @@ import persistence.RepositorioCompetenciaTecnica;
 
 public class DefinirCompetenciaTecnicaController {
 
-    public boolean DefinirCompetenciaTecnica(String codigoUnico, String codigoUnicoAreaAtividade,
+    public boolean definirCompetenciaTecnica(String codigoUnico, String codigoUnicoAreaAtividade,
                                              String descricao, String descDetalhada) {
 
         CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(new CodigoUnico(codigoUnico),
