@@ -3,9 +3,10 @@ package api;
 import network.*;
 import org.json.JSONObject;
 import utils.Response;
-import xml.XmlHandler;
 
-public class UsersAPIAdapter {
+import java.io.Serializable;
+
+public class UsersAPIAdapter implements Serializable {
     private String app_context;
     private String app_key;
 
@@ -27,8 +28,6 @@ public class UsersAPIAdapter {
             }
             JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
             app_context = bodyJSON.getString("app_context");
-
-            //app_context = "{7E19F342-A903-4C3B-806A-CF771120B9D0}";
         }
         return app_context;
     }
@@ -97,7 +96,6 @@ public class UsersAPIAdapter {
             case HttpStatusCode.Conflict:
                 break;
         }
-
         return httpResponse.getBody().replaceAll( "\\[|\\]", "");
     }
 }

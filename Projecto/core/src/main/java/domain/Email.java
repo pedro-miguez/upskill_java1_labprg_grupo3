@@ -1,12 +1,13 @@
 package domain;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Email {
+public class Email implements Serializable {
 
     private String email;
 

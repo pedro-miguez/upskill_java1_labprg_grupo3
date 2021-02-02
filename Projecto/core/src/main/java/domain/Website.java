@@ -1,9 +1,10 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Website {
+public class Website implements Serializable {
 
     private String website;
 

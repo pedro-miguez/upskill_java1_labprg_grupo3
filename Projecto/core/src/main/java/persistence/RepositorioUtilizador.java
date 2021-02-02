@@ -3,10 +3,11 @@ package persistence;
 import domain.*;
 import exceptions.EmailNaoAssociadoAColaboradorException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioUtilizador {
+public class RepositorioUtilizador implements Serializable {
 
     private static RepositorioUtilizador instance;
 

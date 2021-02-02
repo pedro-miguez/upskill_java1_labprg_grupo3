@@ -1,6 +1,8 @@
 package domain;
 
-public class CompetenciaTecnica {
+import java.io.Serializable;
+
+public class CompetenciaTecnica implements Serializable {
 
     private CodigoUnico codigoUnico;
     private AreaAtividade areaAtividade;

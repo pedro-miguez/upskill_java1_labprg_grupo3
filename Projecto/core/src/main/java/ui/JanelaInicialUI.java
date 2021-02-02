@@ -12,8 +12,7 @@ public class JanelaInicialUI {
     public Button registar;
 
     public void GoToLogin(ActionEvent actionEvent) {
-        MainApp.screenController.activate("Login");
-        Plataforma.getInstance().getUsersAPI().getContext();
+        MainApp.screenController.activate("AreaAdministrativo"); //mudar para login depois, temporário
     }
 
     public void RegistarOrganizacao(ActionEvent actionEvent) {

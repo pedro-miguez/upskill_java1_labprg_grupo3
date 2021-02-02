@@ -6,62 +6,62 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaAdministrativoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaAdministrativoUI">
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <center>
-                  <GridPane prefHeight="294.0" prefWidth="424.0" BorderPane.alignment="CENTER">
+                  <GridPane BorderPane.alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="141.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="359.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="174.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="246.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="174.0" minHeight="40.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="246.0" minHeight="40.0" prefHeight="113.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="251.0" minHeight="200.0" prefHeight="251.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label alignment="CENTER" text="Código Único: " GridPane.halignment="RIGHT" />
                         <Label text="Descrição Breve: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <Label text="Descrição Detalhada: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <GridPane.margin>
-                              <Insets top="30.0" />
+                              <Insets top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="txtCodUnico" maxWidth="70.0" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1">
+                        <TextField fx:id="txtCodUnicoAreaAtividade" maxWidth="70.0" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="txtDescBreve" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="txtDescBreveAreaAtividade" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextArea fx:id="txtDescDetalhada" prefHeight="191.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextArea fx:id="txtDescDetalhadaAreaAtividade" prefHeight="191.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
-                              <Insets bottom="10.0" right="10.0" top="30.0" />
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </TextArea>
                      </children>
                   </GridPane>
                </center>
                <bottom>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="26.0" prefWidth="500.0" BorderPane.alignment="BOTTOM_RIGHT">
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="500.0" BorderPane.alignment="BOTTOM_RIGHT">
                      <children>
-                        <Button fx:id="voltarBtn" mnemonicParsing="false" onAction="#voltarAction" text="Voltar">
+                        <Button fx:id="voltarAreaAtividadeBtn" mnemonicParsing="false" onAction="#voltarAreaAtividadeAction" text="Voltar">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="limparBtn" mnemonicParsing="false" onAction="#limparAction" text="Limpar">
+                        <Button fx:id="limparAreaAtividadeBtn" mnemonicParsing="false" onAction="#limparAreaAtividadeAction" text="Limpar">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="confirmarBtn" mnemonicParsing="false" onAction="#confirmarAction" text="Confirmar">
+                        <Button fx:id="confirmarAreaAtividadeBtn" mnemonicParsing="false" onAction="#confirmarAreaAtividadeAction" text="Confirmar">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </HBox.margin>
@@ -83,8 +83,143 @@
                   </Label>
                </top>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" />
-            <BorderPane prefHeight="364.0" prefWidth="500.0" />
+            <BorderPane fx:id="criarCategoriaTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <top>
+                  <Label text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="141.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="359.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="125.0" minHeight="5.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="221.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="254.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Descrição: " GridPane.halignment="RIGHT" />
+                        <Label text="Área Atividade: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <Label text="Competencias Técnicas: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="txtDescricaoCategoriaTarefa" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="comboBoxAreaAtividadeCategoriaTarefa" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <left>
+                              <ListView fx:id="listViewCompTecnicasPorSelecionarCategoriaTarefa" prefHeight="246.0" prefWidth="126.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <center>
+                              <VBox prefHeight="246.0" prefWidth="97.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnCompObrigatoriaCategoriaTarefa" mnemonicParsing="false" text="Seleciona Obrigatória" />
+                                    <ComboBox fx:id="comboBoxGrauProficienciaCategoriaTarefa" prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                           </center>
+                           <right>
+                              <ListView fx:id="listViewCompTecnicasSelecionadasCategoriaTarefa" prefHeight="246.0" prefWidth="111.0" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+               </center>
+               <bottom>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="590.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="voltarCategoriaTarefaBtn" mnemonicParsing="false" onAction="#voltarCategoriaTarefaAction" text="Voltar">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="limparCategoriaTarefaBtn" mnemonicParsing="false" onAction="#limparCategoriaTarefaAction" text="Limpar">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="confirmarCategoriaTarefaBtn" mnemonicParsing="false" onAction="#confirmarCategoriaTarefaBtn" text="Confirmar">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </bottom></BorderPane>
+            <BorderPane fx:id="criarCompetenciaTecnicaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <top>
+                  <Label text="Criar Competencia Técnica" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="245.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="476.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="141.0" minHeight="0.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="272.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Código Único: " GridPane.halignment="RIGHT" />
+                        <Label text="Área de Atividade: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <Label text="Descrição Breve: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                        <Label text="Descrição Detalhada: " GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <TextField fx:id="txtCodigoUnicoCompetenciaTecnica" maxWidth="70.0" minWidth="70.0" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="comboBoxAreaAtividadeCompetenciaTecnica" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtDescBreveCompetenciaTecnica" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextArea fx:id="txtDescDetalhadaCompetenciaTecnica" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                     </children>
+                  </GridPane>
+               </center>
+               <bottom>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="721.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="voltarCompetenciaTecnicaBtn" mnemonicParsing="false" onAction="#voltarCompetenciaTecnicaAction" text="Voltar">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="limparCompetenciaTecnicaBtn" mnemonicParsing="false" onAction="#limparCompetenciaTecnicaAction" text="Limpar">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="confirmarCompetenciaTecnicaBtn" mnemonicParsing="false" onAction="#confirmarCompetenciaTecnicaAction" text="Confirmar">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
          </children></StackPane>
    </center>
    <top>
@@ -97,7 +232,7 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#criarAreaAtividadeAction" prefHeight="86.0" prefWidth="100.0" text="Criar Área de Atividade" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="criarAreaAtividadeBtn" mnemonicParsing="false" onAction="#criarAreaAtividadeAction" prefHeight="86.0" prefWidth="100.0" text="Criar Área de Atividade" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -105,7 +240,7 @@
                   <Insets bottom="5.0" left="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#criarCategoriaTarefaAction" prefHeight="86.0" prefWidth="112.0" text="Criar Categoria de Tarefa" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="criarCategoriaTarefaBtn" mnemonicParsing="false" onAction="#criarCategoriaTarefaAction" prefHeight="86.0" prefWidth="112.0" text="Criar Categoria de Tarefa" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -113,7 +248,7 @@
                   <Insets bottom="5.0" left="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#criarCompetenciaTecnicaAction" prefHeight="85.0" prefWidth="116.0" text="Criar Competencia Técnica" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="criarCompetenciaTecnicaBtn" mnemonicParsing="false" onAction="#criarCompetenciaTecnicaAction" prefHeight="85.0" prefWidth="116.0" text="Criar Competencia Técnica" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -124,4 +259,4 @@
          </children>
       </VBox>
    </left>
-</fx:root>
+</BorderPane>

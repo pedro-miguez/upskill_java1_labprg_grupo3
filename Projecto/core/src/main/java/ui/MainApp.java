@@ -28,6 +28,7 @@ public class MainApp extends Application {
             Parent root = loader.load();
 
             //criar plataforma
+            Plataforma.carregarDados();
             Plataforma plataforma = Plataforma.getInstance();
 
 
@@ -44,6 +45,8 @@ public class MainApp extends Application {
                     FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml")));
             screenController.addScreen("JanelaInicial",
                     FXMLLoader.load(getClass().getResource("/fxml/JanelaInicialScene.fxml")));
+            screenController.addScreen("AreaAdministrativo",
+                    FXMLLoader.load(getClass().getResource("/fxml/AreaAdministrativoScene.fxml")));
 
 
             stage.setTitle(TITULO_APLICACAO);
@@ -59,13 +62,12 @@ public class MainApp extends Application {
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         event.consume();
-                    } /*else {
-                        AppController appController = ((JanelaInicialUI) loader.getController()).getAppController();
-                        if (!appController.listaVazia() && !appController.serializarTodos()) {
-                            AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO, "Exportar Lista.",
-                                    "Problema ao exportar lista!").show();
+                    } else {
+                        if (!Plataforma.guardarDados()) {
+                            AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO, "Guardar Dados",
+                                    "Problema ao guardar dados!").show();
                         }
-                    }*/
+                    }
                 }
             });
             stage.show();

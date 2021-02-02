@@ -1,8 +1,10 @@
 package ui;
 
+import application.RegistarOrganizacaoController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -10,102 +12,81 @@ import javafx.stage.Stage;
 
 public class RegistarOrganizacaoUI extends Application {
 
-    @FXML
-    private TextField Localidade_Org;
+    public TextField txtNomeGestor;
+    public TextField txtContactoGestor;
+    public TextField txtEmailGestor;
+    public TextField txtFuncaoGestor;
+    public TextField txtNomeOrg;
+    public TextField txtNIFOrg;
+    public TextField txtMoradaOrg;
+    public TextField txtLocalidadeOrg;
+    public TextField txtCodigoPostalOrg;
+    public TextField txtTelefoneOrg;
+    public TextField txtWebsiteOrg;
+    public TextField txtEmailOrg;
+    public Button btnVoltar;
+    public Button limparDados;
+    public Button registarOrganizacao;
 
-    @FXML
-    private TextField website;
 
-    @FXML
-    private TextField FuncaoGestor;
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
-    @FXML
-    private Button limparDados;
+    }
 
-    @FXML
-    private TextField NIF_Org;
+    public void registarOrganizacaoAction(ActionEvent actionEvent) {
+        try {
+            RegistarOrganizacaoController controller = new RegistarOrganizacaoController();
 
-    @FXML
-    private Button Send_Info;
+            boolean added = controller.registarOrganizacao(
+                    txtNomeOrg.getText().trim(),
+                    Integer.parseInt(txtNIFOrg.getText()),
+                    txtWebsiteOrg.getText().trim(),
+                    Integer.parseInt(txtTelefoneOrg.getText()),
+                    txtEmailOrg.getText().trim(),
+                    txtMoradaOrg.getText().trim(),
+                    txtLocalidadeOrg.getText().trim(),
+                    txtCodigoPostalOrg.getText().trim(),
+                    txtNomeGestor.getText().trim(),
+                    Integer.parseInt(txtTelefoneOrg.getText()), //MUDAR PARA TELEFONE GESTOR
+                    txtEmailGestor.getText().trim()
+                    );
 
-    @FXML
-    private TextField Tlf_Org;
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registo de Organização",
+                    added ? "Organização registada com sucesso"
+                            : "Não foi possível registar a organização").show();
 
-    @FXML
-    private TextField NomeGestor;
+            voltarJanelaInicial();
 
-    @FXML
-    private TextField ContactoGestor;
-
-    @FXML
-    private TextField Nome_Org;
-
-    @FXML
-    private TextField Email_Org;
-
-    @FXML
-    private Button voltar;
-
-    @FXML
-    private TextField CP_Org;
-
-    @FXML
-    private TextField Morada_Org;
-
-    @FXML
-    private TextField EmailGestor;
-
-    @FXML
-    void Sending_Info_Org(ActionEvent event) {
-        /*try {
-            AplicacaoController appController = janelaPrincipalUI.getAplicacaoController();
-
-            boolean adicionou = appController.adicionarContactoTelefonico(
-                    txtNome.getText().trim(),
-                    Integer.parseInt(txtTelefone.getText()));
-            if (adicionou) {
-                janelaPrincipalUI.atualizaTextAreaListaTelefonica();
-            }
-
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar novo contacto.",
-                    adicionou ? "Contacto adicionado com sucesso."
-                            : "Não foi possível adicionar o contacto.").show();
-
-            encerrarNovoContactoUI(event);
         } catch (NumberFormatException nfe) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     "Introduza um valor numérico para telefone!").show();
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
-        }*/
+        }
     }
 
-    @FXML
-    void Clear_Info(ActionEvent event) {
-        this.CP_Org.clear();
-        this.Localidade_Org.clear();
-        this.Email_Org.clear();
-        this.EmailGestor.clear();
-        this.ContactoGestor.clear();
-        this.Morada_Org.clear();
-        this.FuncaoGestor.clear();
-        this.NIF_Org.clear();
-        this.Nome_Org.clear();
-        this.NomeGestor.clear();
-        this.Tlf_Org.clear();
-        this.website.clear();
-        this.NomeGestor.requestFocus();
+    public void limparAction(ActionEvent actionEvent) {
+        txtNomeOrg.clear();
+        txtNIFOrg.clear();
+        txtWebsiteOrg.clear();
+        txtTelefoneOrg.clear();
+        txtEmailOrg.clear();
+        txtMoradaOrg.clear();
+        txtLocalidadeOrg.clear();
+        txtCodigoPostalOrg.clear();
+        txtNomeGestor.clear();
+        //txtTelefoneOrg.getText()); //MUDAR PARA TELEFONE GESTOR
+        txtEmailGestor.clear();
     }
 
-    @FXML
-    void GotoMain(ActionEvent event) {
+    public void voltarAction(ActionEvent actionEvent) {
+        voltarJanelaInicial();
+    }
+
+    public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
     }
 }
 

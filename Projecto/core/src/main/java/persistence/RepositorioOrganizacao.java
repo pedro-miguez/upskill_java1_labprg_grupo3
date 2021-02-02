@@ -1,16 +1,14 @@
 package persistence;
 
 import application.UsersAPI;
-import domain.AlgoritmoGeradorPasswords;
-import domain.Plataforma;
+import domain.*;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;
-import domain.Colaborador;
-import domain.Organizacao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioOrganizacao {
+public class RepositorioOrganizacao implements Serializable {
 
     private static RepositorioOrganizacao instance;
 
@@ -48,7 +46,9 @@ public class RepositorioOrganizacao {
         String password = alg.geraPassword();
 
         UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
-        return uapi.registerUserWithRoles(nome, email, password, "gestor");
+        User user = new User(nome, password, new Email(email), Role.GESTOR);
+        return uapi.registerUserWithRoles(nome, email, password, "gestor")
+                && RepositorioUtilizador.getInstance().addUtilizador(user);
     }
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {

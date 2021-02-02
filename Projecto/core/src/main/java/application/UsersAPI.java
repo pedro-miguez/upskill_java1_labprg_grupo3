@@ -8,9 +8,10 @@ import network.HttpResponse;
 import network.HttpStatusCode;
 import org.json.JSONObject;
 import utils.Response;
-import xml.XmlHandler;
 
-public class UsersAPI {
+import java.io.Serializable;
+
+public class UsersAPI implements Serializable {
     UsersAPIAdapter uapia;
 
     public UsersAPI() {

@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Colaborador {
+public class Colaborador implements Serializable {
 
     private String nome;
     private Telefone telefone;

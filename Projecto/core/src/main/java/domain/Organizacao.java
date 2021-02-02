@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Organizacao {
+public class Organizacao implements Serializable {
 
     private String nome;
     private NIF nif;
