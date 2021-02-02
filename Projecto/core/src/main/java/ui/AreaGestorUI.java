@@ -5,6 +5,7 @@
  */
 package ui;
 
+import application.RegistarColaboradorController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -34,11 +35,15 @@ public class AreaGestorUI {
 
      @FXML
     private GridPane regColaboradorPane;
+     
+     
+    private RegistarColaboradorController registarColaboradorController;
+     
     
     @FXML
     void registarColaboradorAction(ActionEvent event) {
         try {
-            boolean registou = 
+            boolean registou = registarColaboradorController.Colaborador(nomeColaborador.getText().trim(), funcaoColaborador.getText().trim(), contactoColaborador.getText().trim(), emailColaborador.getText().trim());
             
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
                     registou ? "Colaborador registado com sucesso." : "Não foi possível registar o colaborador.").show();

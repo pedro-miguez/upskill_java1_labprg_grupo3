@@ -10,5 +10,13 @@ package application;
  * @author Grupo 3
  */
 public class RegistarColaboradorController {
+
+    /*public boolean Colaborador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
+
+    public boolean Colaborador(String trim, String trim0, String trim1, String trim2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
