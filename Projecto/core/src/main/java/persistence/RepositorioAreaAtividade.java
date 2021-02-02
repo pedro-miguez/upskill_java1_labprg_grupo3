@@ -3,11 +3,12 @@ package persistence;
 import domain.AreaAtividade;
 import domain.CodigoUnico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RepositorioAreaAtividade {
+public class RepositorioAreaAtividade implements Serializable {
 
     private static RepositorioAreaAtividade instance;
 

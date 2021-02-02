@@ -5,10 +5,11 @@ import domain.Colaborador;
 import domain.Email;
 import domain.Organizacao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioColaborador {
+public class RepositorioColaborador implements Serializable {
 
     private static RepositorioColaborador instance;
 

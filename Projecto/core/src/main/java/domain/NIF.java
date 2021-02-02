@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class NIF {
+public class NIF implements Serializable {
 
     private int nif;
 

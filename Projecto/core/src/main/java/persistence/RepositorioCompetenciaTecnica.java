@@ -5,10 +5,11 @@ import domain.CodigoUnico;
 import domain.Colaborador;
 import domain.CompetenciaTecnica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioCompetenciaTecnica {
+public class RepositorioCompetenciaTecnica implements Serializable {
 
     private static RepositorioCompetenciaTecnica instance;
 
