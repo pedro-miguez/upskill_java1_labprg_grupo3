@@ -33,9 +33,9 @@ public class MainApp extends Application {
 
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-            //Plataforma.carregarDados();
+            Plataforma.carregarDados();
 
-            createData();
+            //createData();
 
 
             Scene scene = new Scene(root);
@@ -101,8 +101,10 @@ public class MainApp extends Application {
                 new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
         Colaborador gestor = new Colaborador("gestorGrupo3", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 
-        Plataforma.getInstance().getRepoOrg().addOrganizacao(org);
-        Plataforma.getInstance().getRepoOrg().addGestor(gestor, org);
+        //Plataforma.getInstance().getRepoOrg().addOrganizacao(org);
+        //Plataforma.getInstance().getRepoOrg().addGestor(gestor, org);
+
+        //Plataforma.getInstance().getRepoOrg().registarGestorComoUtilizador(gestor);
     }
 }
 
