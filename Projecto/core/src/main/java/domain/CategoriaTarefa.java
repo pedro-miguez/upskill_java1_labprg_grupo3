@@ -40,8 +40,6 @@ public class CategoriaTarefa implements Serializable {
         }//lancar excecao**********
     }
 
-
-
     public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
         return new ArrayList<>(this.competenciasTecnicas);
     }
@@ -51,7 +49,7 @@ public class CategoriaTarefa implements Serializable {
     @Override
     public String toString() {
         return String.format("Area de Actividade: %s Descrição: %s",
-                this.areaAtividade, this.descricao);
+                this.areaAtividade.toString(), this.descricao);
     }
 
 

@@ -37,5 +37,6 @@ public class CaracterizacaoCompTec {
         return getCodigoUnico().equals(that.getCodigoUnico());
     }
 
+//repo,
 
 }
