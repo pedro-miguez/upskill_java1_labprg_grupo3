@@ -6,6 +6,7 @@
 package application;
 
 import domain.Colaborador;
+import domain.Plataforma;
 import persistence.RepositorioColaborador;
 
 /**
