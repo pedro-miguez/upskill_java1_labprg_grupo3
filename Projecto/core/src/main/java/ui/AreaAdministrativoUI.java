@@ -1,45 +1,125 @@
 package ui;
 
+import application.DefinirAreaAtividadeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-
+import javafx.scene.layout.BorderPane;
 
 public class AreaAdministrativoUI {
 
     @FXML
-    private Button limparBtn;
+    private Button confirmarCompetenciaTecnicaBtn;
 
     @FXML
-    private TextField txtDescBreve;
+    private TextField txtDescBreveAreaAtividade;
 
     @FXML
-    private Button voltarBtn;
+    private Button limparCategoriaTarefaBtn;
 
     @FXML
-    private Button confirmarBtn;
+    private BorderPane criarAreaAtividadePane;
 
     @FXML
-    private TextArea txtDescDetalhada;
+    private ComboBox<?> comboBoxAreaAtividadeCategoriaTarefa;
 
     @FXML
-    private TextField txtCodUnico;
+    private Button confirmarCategoriaTarefaBtn;
 
     @FXML
-    void voltarAction(ActionEvent event) {
+    private TextArea txtDescDetalhadaCompetenciaTecnica;
+
+    @FXML
+    private ListView<?> listViewCompTecnicasSelecionadasCategoriaTarefa;
+
+    @FXML
+    private ListView<?> listViewCompTecnicasPorSelecionarCategoriaTarefa;
+
+    @FXML
+    private Button criarCompetenciaTecnicaBtn;
+
+    @FXML
+    private Button confirmarAreaAtividadeBtn;
+
+    @FXML
+    private Button voltarCompetenciaTecnicaBtn;
+
+    @FXML
+    private BorderPane criarCategoriaTarefaPane;
+
+    @FXML
+    private TextField txtDescricaoCategoriaTarefa;
+
+    @FXML
+    private TextField txtDescBreveCompetenciaTecnica;
+
+    @FXML
+    private Button criarCategoriaTarefaBtn;
+
+    @FXML
+    private Button limparAreaAtividadeBtn;
+
+    @FXML
+    private ComboBox<?> comboBoxAreaAtividadeCompetenciaTecnica;
+
+    @FXML
+    private TextField txtCodigoUnicoCompetenciaTecnica;
+
+    @FXML
+    private Button limparCompetenciaTecnicaBtn;
+
+    @FXML
+    private TextArea txtDescDetalhadaAreaAtividade;
+
+    @FXML
+    private TextField txtCodUnicoAreaAtividade;
+
+    @FXML
+    private BorderPane criarCompetenciaTecnicaPane;
+
+    @FXML
+    private Button voltarCategoriaTarefaBtn;
+
+    @FXML
+    private Button btnCompObrigatoriaCategoriaTarefa;
+
+    @FXML
+    private ComboBox<?> comboBoxGrauProficienciaCategoriaTarefa;
+
+    @FXML
+    private Button voltarAreaAtividadeBtn;
+
+    @FXML
+    private Button criarAreaAtividadeBtn;
+
+    private DefinirAreaAtividadeController areaAtividadeController;
+
+    //AREA ATIVIDADE
+    @FXML
+    void voltarAreaAtividadeAction(ActionEvent event) {
+        MainApp.screenController.activate("JanelaInicial");
+    }
+
+    @FXML
+    void limparAreaAtividadeAction(ActionEvent event) {
+
+        txtCodUnicoAreaAtividade.clear();
+        txtDescBreveAreaAtividade.clear();
+        txtDescDetalhadaAreaAtividade.clear();
+        txtCodUnicoAreaAtividade.requestFocus();
 
     }
 
     @FXML
-    void limparAction(ActionEvent event) {
+    void confirmarAreaAtividadeAction(ActionEvent event) {
 
-    }
+        try{
 
-    @FXML
-    void confirmarAction(ActionEvent event) {
+        }catch ()
 
     }
 
@@ -48,8 +128,44 @@ public class AreaAdministrativoUI {
 
     }
 
+    //CATEGORIA TAREFA
+    @FXML
+    void voltarCategoriaTarefaAction(ActionEvent event) {
+
+        MainApp.screenController.activate("JanelaInicial");
+
+    }
+
+    @FXML
+    void limparCategoriaTarefaAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void confirmarCategoriaTarefaBtn(ActionEvent event) {
+
+    }
+
     @FXML
     void criarCategoriaTarefaAction(ActionEvent event) {
+
+    }
+
+    //COMPETENCIA TECNICA
+    @FXML
+    void voltarCompetenciaTecnicaAction(ActionEvent event) {
+
+        MainApp.screenController.activate("JanelaInicial");
+
+    }
+
+    @FXML
+    void limparCompetenciaTecnicaAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void confirmarCompetenciaTecnicaAction(ActionEvent event) {
 
     }
 
