@@ -17,11 +17,6 @@ public class LoginUI {
 
     private AuthenticationController loginControl = new AuthenticationController();
 
-    public void InserirUsername(ActionEvent actionEvent) {
-    }
-
-    public void inserirPassword(ActionEvent actionEvent) {
-    }
 
     public void GoPlataforma(ActionEvent actionEvent) {
         boolean login = Plataforma.getInstance().getUsersAPI().login(username.getText(), password.getText());
