@@ -64,5 +64,24 @@ public class Plataforma implements Serializable {
         o.close();
     }
 
-    
+
+    public RepositorioColaborador getRepoColab() {
+        return repoColab;
+    }
+
+    public RepositorioOrganizacao getRepoOrg() {
+        return repoOrg;
+    }
+
+    public RepositorioCompetenciaTecnica getRepoCompTec() {
+        return repoCompTec;
+    }
+
+    public RepositorioAreaAtividade getRepoAreaAtiv() {
+        return repoAreaAtiv;
+    }
+
+    public RepositorioUtilizador getRepoUser() {
+        return repoUser;
+    }
 }

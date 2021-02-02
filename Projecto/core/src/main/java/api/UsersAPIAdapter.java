@@ -64,7 +64,7 @@ public class UsersAPIAdapter implements Serializable {
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
         switch (httpResponse.getStatus()) {
-            case HttpStatusCode.Created:
+            case HttpStatusCode.OK:
                 return true;
             case HttpStatusCode.Conflict:
                 return false;
@@ -78,7 +78,7 @@ public class UsersAPIAdapter implements Serializable {
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
         switch (httpResponse.getStatus()) {
-            case HttpStatusCode.Created:
+            case HttpStatusCode.OK:
                 return true;
             case HttpStatusCode.Conflict:
                 return false;
