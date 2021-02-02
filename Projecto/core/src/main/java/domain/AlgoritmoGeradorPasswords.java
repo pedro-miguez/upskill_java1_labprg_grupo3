@@ -6,13 +6,15 @@
 package domain;
 
 import domain.IAlgoritmoGeradorPasswords;
+
+import java.io.Serializable;
 import java.security.SecureRandom;
 
 /**
  *
  * @author nunocastro
  */
-public class AlgoritmoGeradorPasswords implements IAlgoritmoGeradorPasswords{
+public class AlgoritmoGeradorPasswords implements IAlgoritmoGeradorPasswords, Serializable {
     
     public String geraPassword(){
         // ASCII range - alphanumeric (0-9, a-z, A-Z)

@@ -27,8 +27,6 @@ public class UsersAPIAdapter {
             }
             JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
             app_context = bodyJSON.getString("app_context");
-
-            //app_context = "{7E19F342-A903-4C3B-806A-CF771120B9D0}";
         }
         return app_context;
     }
@@ -97,7 +95,6 @@ public class UsersAPIAdapter {
             case HttpStatusCode.Conflict:
                 break;
         }
-
         return httpResponse.getBody().replaceAll( "\\[|\\]", "");
     }
 }

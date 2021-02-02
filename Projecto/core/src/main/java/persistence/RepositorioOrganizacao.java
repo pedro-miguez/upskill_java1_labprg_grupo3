@@ -7,10 +7,11 @@ import exceptions.GestorNaoRelacionadoANenhumaOrgException;
 import domain.Colaborador;
 import domain.Organizacao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioOrganizacao {
+public class RepositorioOrganizacao implements Serializable {
 
     private static RepositorioOrganizacao instance;
 

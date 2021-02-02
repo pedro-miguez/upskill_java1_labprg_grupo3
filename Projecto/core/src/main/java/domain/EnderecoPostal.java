@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class EnderecoPostal {
+public class EnderecoPostal implements Serializable {
 
     private String local;
     private String localidade;

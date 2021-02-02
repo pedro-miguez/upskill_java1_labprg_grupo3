@@ -13,7 +13,6 @@ public class JanelaInicialUI {
 
     public void GoToLogin(ActionEvent actionEvent) {
         MainApp.screenController.activate("Login");
-        Plataforma.getInstance().getUsersAPI().getContext();
     }
 
     public void RegistarOrganizacao(ActionEvent actionEvent) {

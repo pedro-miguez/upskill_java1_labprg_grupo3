@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CodigoUnico {
+public class CodigoUnico implements Serializable {
 
     private String codigoUnico;
 

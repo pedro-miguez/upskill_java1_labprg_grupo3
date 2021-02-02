@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Telefone {
+public class Telefone implements Serializable {
 
     private int number;
 

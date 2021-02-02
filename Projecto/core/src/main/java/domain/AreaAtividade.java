@@ -1,7 +1,9 @@
 package domain;
 
 
-public class AreaAtividade {
+import java.io.Serializable;
+
+public class AreaAtividade implements Serializable {
 
     private CodigoUnico codigoUnico;
     private String descricao;
