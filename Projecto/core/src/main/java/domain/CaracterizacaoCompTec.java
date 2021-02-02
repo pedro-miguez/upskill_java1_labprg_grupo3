@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CaracterizacaoCompTec {
+public class CaracterizacaoCompTec implements Serializable {
 
     private CompetenciaTecnica competenciaTecnica;
     private boolean obrigatorio;
