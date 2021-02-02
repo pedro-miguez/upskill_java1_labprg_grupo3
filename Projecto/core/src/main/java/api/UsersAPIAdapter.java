@@ -33,7 +33,7 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean login(String user_id, String password) {
-        String url = "/login?app_context=" + getContext() + "?username=" + user_id + "?password=" + password;
+        String url = "/login?app_context=" + getContext() + "&user_id=" + user_id + "&password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
         switch (httpResponse.getStatus()) {
@@ -59,12 +59,12 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean registerUser(String username, String email, String password) {
-        String url = "/registerUser?app_context=" + getContext() + "?username=" + username + "?email=" + email
-                + "?password=" + password;
+        String url = "/registerUser?app_context=" + getContext() + "&username=" + username + "&email=" + email
+                + "&password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
         switch (httpResponse.getStatus()) {
-            case HttpStatusCode.Created:
+            case HttpStatusCode.OK:
                 return true;
             case HttpStatusCode.Conflict:
                 return false;
@@ -73,12 +73,12 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean registerUserWithRoles(String username, String email, String password, String rolenames) {
-        String url = "/registerUserWithRole?app_context=" + getContext() + "?username=" + username + "?email=" + email
-                + "?password=" + password + "?role=" + rolenames;
+        String url = "/registerUserWithRoles?app_context=" + getContext() + "&username=" + username + "&email=" + email
+                + "&password=" + password + "&rolenames=" + rolenames;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
         switch (httpResponse.getStatus()) {
-            case HttpStatusCode.Created:
+            case HttpStatusCode.OK:
                 return true;
             case HttpStatusCode.Conflict:
                 return false;

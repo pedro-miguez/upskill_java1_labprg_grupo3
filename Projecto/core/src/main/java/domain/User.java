@@ -59,8 +59,4 @@ public class User implements Serializable {
                 getRole() == user.getRole();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getUsername(), getPassword(), getEmail(), getRole());
-    }
 }
