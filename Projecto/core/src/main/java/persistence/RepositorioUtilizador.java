@@ -41,7 +41,16 @@ public class RepositorioUtilizador implements Serializable {
         }
 
         throw new EmailNaoAssociadoAColaboradorException(email.toString() + " não está associado a nenhum utilizador");
+    }
 
+    public User getUserByUsername(String nome) {
+        for (User u : utilizadoresRegistados) {
+            if (u.getUsername().equals(nome)) {
+                return u;
+            }
+        }
+
+        throw new IllegalArgumentException("O nome" + nome + " não está associado a nenhum utilizador");
     }
 
     public ArrayList<User> getUtilizadoresByRole (Role role) {
@@ -54,6 +63,8 @@ public class RepositorioUtilizador implements Serializable {
         }
         return usersByRole;
     }
+
+
 
     public ArrayList<User> listarUtilizadores() {
         return new ArrayList<>(this.utilizadoresRegistados);

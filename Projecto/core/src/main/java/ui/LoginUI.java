@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Plataforma;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -19,11 +20,10 @@ public class LoginUI {
     }
 
     public void GoPlataforma(ActionEvent actionEvent) {
-        //login(username, password)
-        /* if (login) {
-                metodoParaMostrarEcra(username)
-           }
-         */
+        boolean login = Plataforma.getInstance().getUsersAPI().login(username.getText(), password.getText());
+        if (login) {
+            System.out.println("login com sucesso");
+        }
 
     }
 

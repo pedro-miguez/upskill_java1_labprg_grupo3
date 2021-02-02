@@ -16,7 +16,7 @@ public class Telefone implements Serializable {
     }
     
     private void setTelefone(int number) {
-        if (number < 200000000 || number > 999999999) {
+        if (number < 100000000 || number > 999999999) {
             throw new IllegalArgumentException("Número de telefone inválido");
         } else {
             this.number = number;
