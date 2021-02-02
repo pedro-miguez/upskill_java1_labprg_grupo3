@@ -73,4 +73,8 @@ public class RepositorioOrganizacao implements Serializable {
         return organizacoesRegistadas.equals(that.organizacoesRegistadas);
     }
 
+    public boolean registarColaboradorComoUtilizador(Colaborador colaborador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

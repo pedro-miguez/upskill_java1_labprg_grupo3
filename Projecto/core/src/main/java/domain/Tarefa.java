@@ -22,6 +22,10 @@ public class Tarefa implements Serializable {
         this.categoria = categoria;
     }
 
+    public Tarefa(String referencia, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getReferencia() {
         return referencia;
     }
