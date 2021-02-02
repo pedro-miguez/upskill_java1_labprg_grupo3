@@ -137,6 +137,10 @@ public class AreaAdministrativoUI {
     @FXML
     void criarAreaAtividadeAction(ActionEvent event) {
 
+        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(true);
+        criarCategoriaTarefaPane.setVisible(false);
+        criarCategoriaTarefaPane.setDisable(true);
         criarAreaAtividadePane.setVisible(true);
         criarAreaAtividadePane.setDisable(false);
 
@@ -163,8 +167,13 @@ public class AreaAdministrativoUI {
     @FXML
     void criarCategoriaTarefaAction(ActionEvent event) {
 
+        criarAreaAtividadePane.setVisible(false);
+        criarAreaAtividadePane.setDisable(true);
+        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(true);
         criarCategoriaTarefaPane.setVisible(true);
         criarCategoriaTarefaPane.setDisable(false);
+
     }
 
     //COMPETENCIA TECNICA
@@ -188,8 +197,13 @@ public class AreaAdministrativoUI {
     @FXML
     void criarCompetenciaTecnicaAction(ActionEvent event) {
 
+        criarAreaAtividadePane.setVisible(false);
+        criarAreaAtividadePane.setDisable(true);
+        criarCategoriaTarefaPane.setVisible(false);
+        criarCategoriaTarefaPane.setDisable(true);
         criarCompetenciaTecnicaPane.setVisible(true);
-        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(false);
+
 
     }
 
