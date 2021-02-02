@@ -57,12 +57,45 @@ public class RegistarOrganizacaoUI extends Application {
 
     @FXML
     void Sending_Info_Org(ActionEvent event) {
+        /*try {
+            AplicacaoController appController = janelaPrincipalUI.getAplicacaoController();
 
+            boolean adicionou = appController.adicionarContactoTelefonico(
+                    txtNome.getText().trim(),
+                    Integer.parseInt(txtTelefone.getText()));
+            if (adicionou) {
+                janelaPrincipalUI.atualizaTextAreaListaTelefonica();
+            }
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar novo contacto.",
+                    adicionou ? "Contacto adicionado com sucesso."
+                            : "Não foi possível adicionar o contacto.").show();
+
+            encerrarNovoContactoUI(event);
+        } catch (NumberFormatException nfe) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Introduza um valor numérico para telefone!").show();
+        } catch (IllegalArgumentException iae) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    iae.getMessage()).show();
+        }*/
     }
 
     @FXML
     void Clear_Info(ActionEvent event) {
-
+        this.CP_Org.clear();
+        this.Localidade_Org.clear();
+        this.Email_Org.clear();
+        this.EmailGestor.clear();
+        this.ContactoGestor.clear();
+        this.Morada_Org.clear();
+        this.FuncaoGestor.clear();
+        this.NIF_Org.clear();
+        this.Nome_Org.clear();
+        this.NomeGestor.clear();
+        this.Tlf_Org.clear();
+        this.website.clear();
+        this.NomeGestor.requestFocus();
     }
 
     @FXML
