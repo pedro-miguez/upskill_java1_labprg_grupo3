@@ -83,7 +83,7 @@
                   </Label>
                </top>
             </BorderPane>
-            <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <BorderPane fx:id="criarCategoriaTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                <top>
                   <Label text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
@@ -155,7 +155,7 @@
                      </children>
                   </HBox>
                </bottom></BorderPane>
-            <BorderPane fx:id="criarCompetenciaTecnicaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <BorderPane fx:id="criarCompetenciaTecnicaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                <top>
                   <Label text="Criar Competencia Técnica" BorderPane.alignment="CENTER">
                      <font>
