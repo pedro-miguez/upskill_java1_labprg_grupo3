@@ -5,14 +5,13 @@ import java.util.List;
 
 public class CaracterizacaoCompTec implements Serializable {
 
-    private CodigoUnico codigoUnico;
+    private CompetenciaTecnica competenciaTecnica;
     private boolean obrigatorio;
     private GrauProficiencia grauProficiencia;
 
 
-    public CaracterizacaoCompTec(CodigoUnico codigoUnico, boolean obrigatorio, GrauProficiencia grauProficiencia) {
-
-        this.codigoUnico = codigoUnico;
+    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, boolean obrigatorio, GrauProficiencia grauProficiencia) {
+        this.competenciaTecnica = competenciaTecnica;
         this.obrigatorio = obrigatorio;
         this.grauProficiencia = grauProficiencia;
     }
@@ -21,8 +20,12 @@ public class CaracterizacaoCompTec implements Serializable {
         return obrigatorio;
     }
 
-    public CodigoUnico getCodigoUnico() {
-        return codigoUnico;
+    public CodigoUnico getCodigoUnicoCompTec() {
+        return this.competenciaTecnica.getCodigoUnico();
+    }
+
+    public CompetenciaTecnica getCompetenciaTecnica() {
+        return this.competenciaTecnica;
     }
 
     public GrauProficiencia getGrauProficiencia() {
@@ -35,8 +38,7 @@ public class CaracterizacaoCompTec implements Serializable {
         if (!(o instanceof CaracterizacaoCompTec)) return false;
         if (!super.equals(o)) return false;
         CaracterizacaoCompTec that = (CaracterizacaoCompTec) o;
-        return getCodigoUnico().equals(that.getCodigoUnico());
+        return this.competenciaTecnica.equals(that.competenciaTecnica);
     }
-
 
 }

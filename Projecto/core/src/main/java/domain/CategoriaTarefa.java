@@ -6,13 +6,11 @@ import java.util.List;
 
 public class CategoriaTarefa implements Serializable {
 
-
     private AreaAtividade areaAtividade;
     private String descricao;
     private List<CaracterizacaoCompTec> competenciasTecnicas;
 
     public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
-
         setAreaAtividade(areaAtividade);
         setDescricao(descricao);
         this.competenciasTecnicas = new ArrayList<>();
@@ -43,7 +41,7 @@ public class CategoriaTarefa implements Serializable {
     }
 
     public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
-        return new ArrayList<>(this.competenciasTecnicas);
+        return new ArrayList<CaracterizacaoCompTec>(this.competenciasTecnicas);
     }
 
 
@@ -52,8 +50,15 @@ public class CategoriaTarefa implements Serializable {
     public String toString() {
         return String.format("Area de Actividade: %s Descrição: %s",
                 this.areaAtividade.toString(), this.descricao);
+        }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CategoriaTarefa)) return false;
+        CategoriaTarefa that = (CategoriaTarefa) o;
+        return this.descricao.equals(that.descricao) && this.areaAtividade.equals(that.areaAtividade);
     }
-
-
 
 }

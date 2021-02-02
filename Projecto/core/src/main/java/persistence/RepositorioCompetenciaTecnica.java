@@ -59,4 +59,6 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     public ArrayList<CompetenciaTecnica> listarCompetenciasTecnicas(){
         return  new ArrayList<>(this.competenciasTecnicas);
     }
+
+
 }

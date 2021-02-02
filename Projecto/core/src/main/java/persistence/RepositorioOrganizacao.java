@@ -44,11 +44,12 @@ public class RepositorioOrganizacao implements Serializable {
 
         AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         String password = alg.geraPassword();
+        System.out.println(password);
 
         UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
         User user = new User(nome, password, new Email(email), Role.GESTOR);
         return uapi.registerUserWithRoles(nome, email, password, "gestor")
-                && RepositorioUtilizador.getInstance().addUtilizador(user);
+                && Plataforma.getInstance().getRepoUser().addUtilizador(user);
     }
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {
@@ -70,6 +71,10 @@ public class RepositorioOrganizacao implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         RepositorioOrganizacao that = (RepositorioOrganizacao) o;
         return organizacoesRegistadas.equals(that.organizacoesRegistadas);
+    }
+
+    public boolean registarColaboradorComoUtilizador(Colaborador colaborador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
