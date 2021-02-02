@@ -20,6 +20,9 @@ public class Plataforma implements Serializable {
     private RepositorioCompetenciaTecnica repoCompTec;
     private RepositorioAreaAtividade repoAreaAtiv;
     private RepositorioUtilizador repoUser;
+    private RepositorioTarefa repoTarefa;
+    private RepositorioCategoriaTarefa repoCategoriaTarefa;
+
 
     private Plataforma() {
         agp = new AlgoritmoGeradorPasswords();
@@ -30,6 +33,8 @@ public class Plataforma implements Serializable {
         repoCompTec = RepositorioCompetenciaTecnica.getInstance();
         repoAreaAtiv = RepositorioAreaAtividade.getInstance();
         repoUser = RepositorioUtilizador.getInstance();
+        repoTarefa = RepositorioTarefa.getInstance();
+        repoCategoriaTarefa = RepositorioCategoriaTarefa.getInstance();
     }
 
     public static Plataforma getInstance() {
@@ -88,4 +93,11 @@ public class Plataforma implements Serializable {
     public RepositorioUtilizador getRepoUser() {
         return repoUser;
     }
+
+    public RepositorioTarefa getRepoTarefa() { return repoTarefa; }
+
+    public RepositorioCategoriaTarefa getRepoCategoriaTarefa() {
+        return repoCategoriaTarefa;
+    }
+
 }

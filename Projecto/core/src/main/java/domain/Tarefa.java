@@ -1,6 +1,8 @@
 package domain;
 
-public class Tarefa {
+import java.io.Serializable;
+
+public class Tarefa implements Serializable {
 
     private String referencia;
     private String designacao;
@@ -8,15 +10,16 @@ public class Tarefa {
     private String descricaoTecnica;
     private int duracaoHoras;
     private float custo;
-    //    private CategoriaTarefa categoria;
+    private CategoriaTarefa categoria;
 
-    public Tarefa(String referencia, String designacao, String descricao, String descricaoTecnica, int duracaoHoras, float custo) {
+    public Tarefa(String referencia, String designacao, String descricao, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoria) {
         setReferencia(referencia);
         setDesignacao(designacao);
         setDescricao(descricao);
         setDescricaoTecnica(descricaoTecnica);
-        this.duracaoHoras = duracaoHoras;
-        this.custo = custo;
+        setDuracaoHoras(duracaoHoras);
+        setCusto(custo);
+        this.categoria = categoria;
     }
 
     public String getReferencia() {
@@ -84,6 +87,17 @@ public class Tarefa {
             this.custo = custo;
         } else
             throw new IllegalArgumentException("Deve de introduzir um valor maior que zero.");
+    }
+
+    public CategoriaTarefa getCategoria() {
+        return categoria;
+    }
+
+    public String toString(){
+        return String.format("Referencia: %d; Designacao: %d; Descrição Informal: %s; Descrição Técnica: %s; " +
+                "Estivativa de Duração: %d horas; Estimativa de Custo: %.2f €; Categoria Tarefa: %s.", this.referencia,
+                this.designacao, this.descricao, this.descricaoTecnica, this.duracaoHoras, this.custo,
+                this.categoria.getDescricao());
     }
 
 
