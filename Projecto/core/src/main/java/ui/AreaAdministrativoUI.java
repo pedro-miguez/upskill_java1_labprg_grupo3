@@ -1,6 +1,7 @@
 package ui;
 
 import application.DefinirAreaAtividadeController;
+import application.DefinirCompetenciaTecnicaController;
 import domain.AreaAtividade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -97,6 +98,8 @@ public class AreaAdministrativoUI {
 
     private DefinirAreaAtividadeController areaAtividadeController;
 
+    private DefinirCompetenciaTecnicaController competenciaTecnicaController;
+
     //AREA ATIVIDADE
     @FXML
     void voltarAreaAtividadeAction(ActionEvent event) {
@@ -187,10 +190,32 @@ public class AreaAdministrativoUI {
     @FXML
     void limparCompetenciaTecnicaAction(ActionEvent event) {
 
+        txtCodigoUnicoCompetenciaTecnica.clear();
+        comboBoxAreaAtividadeCompetenciaTecnica.getSelectionModel().clearSelection();
+        /*comboBoxAreaAtividadeCompetenciaTecnica.setValue(null);*/
+        txtDescBreveCompetenciaTecnica.clear();
+        txtDescDetalhadaCompetenciaTecnica.clear();
+        txtCodUnicoAreaAtividade.requestFocus();
+
     }
 
     @FXML
     void confirmarCompetenciaTecnicaAction(ActionEvent event) {
+
+        try {
+
+            boolean adicionou = competenciaTecnicaController.definirCompetenciaTecnica(txtCodigoUnicoCompetenciaTecnica.getText().trim(),
+                    comboBoxAreaAtividadeCompetenciaTecnica.getValue(), txtDescBreveCompetenciaTecnica.getText().trim(),
+                txtDescDetalhadaCompetenciaTecnica.getText().trim());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
+                    adicionou ? "Competencia tecnica adicionada com sucesso."
+                            : "Não foi possível adicionar a competencia tecnica.").show();
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Introduza os dados novamente!").show();
+        }
 
     }
 

@@ -9,7 +9,7 @@ public class DefinirCompetenciaTecnicaControllerTest {
     public void testDefinirCompetenciaTecnicaValida (){
 
         DefinirCompetenciaTecnicaController controller = new DefinirCompetenciaTecnicaController();
-        assertTrue(controller.DefinirCompetenciaTecnica("abc-12", "def-34", "Canalizacao",
+        assertTrue(controller.definirCompetenciaTecnica("abc-12", "def-34", "Canalizacao",
                 "Tratar dos canos"));
 
 
