@@ -34,7 +34,7 @@ public class RegistarOrganizacaoUI extends Application {
     }
 
     public void registarOrganizacaoAction(ActionEvent actionEvent) {
-        try {
+        /*try {
             RegistarOrganizacaoController controller = new RegistarOrganizacaoController();
 
             boolean added = controller.registarOrganizacao(
@@ -44,7 +44,7 @@ public class RegistarOrganizacaoUI extends Application {
                     Integer.parseInt(txtTelefoneOrg.getText()),
                     txtEmailOrg.getText().trim(),
                     );
-            if (adicionou) {
+            *//*if (adicionou) {
                 janelaPrincipalUI.atualizaTextAreaListaTelefonica();
             }
 
@@ -58,8 +58,8 @@ public class RegistarOrganizacaoUI extends Application {
                     "Introduza um valor numérico para telefone!").show();
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
-                    iae.getMessage()).show();
-        }
+                    iae.getMessage()).show();*//*
+        }*/
     }
 
     public void limparAction(ActionEvent actionEvent) {
