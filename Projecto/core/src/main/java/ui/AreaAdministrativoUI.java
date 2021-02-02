@@ -205,7 +205,7 @@ public class AreaAdministrativoUI {
         try {
 
             boolean adicionou = competenciaTecnicaController.definirCompetenciaTecnica(txtCodigoUnicoCompetenciaTecnica.getText().trim(),
-                    comboBoxAreaAtividadeCompetenciaTecnica.getValue(), txtDescBreveCompetenciaTecnica.getText().trim(),
+                    comboBoxAreaAtividadeCompetenciaTecnica.getValue().getCodigoUnico().toString(), txtDescBreveCompetenciaTecnica.getText().trim(),
                 txtDescDetalhadaCompetenciaTecnica.getText().trim());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
