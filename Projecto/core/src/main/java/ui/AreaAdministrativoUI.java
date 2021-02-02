@@ -123,9 +123,9 @@ public class AreaAdministrativoUI {
             boolean adicionou = areaAtividadeController.definirAreaAtividade(txtCodUnicoAreaAtividade.getText().trim(),
                     txtDescBreveAreaAtividade.getText().trim(), txtDescDetalhadaAreaAtividade.getText().trim());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar novo contacto.",
-                    adicionou ? "Contacto adicionado com sucesso."
-                            : "Não foi possível adicionar o contacto.").show();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova área de atividade.",
+                    adicionou ? "Área de atividade adicionada com sucesso."
+                            : "Não foi possível adicionar a área de atividade.").show();
 
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
@@ -137,8 +137,8 @@ public class AreaAdministrativoUI {
     @FXML
     void criarAreaAtividadeAction(ActionEvent event) {
 
-        criarAreaAtividadePane.isVisible();
-        criarAreaAtividadePane.isDisable();
+        criarAreaAtividadePane.setVisible(true);
+        criarAreaAtividadePane.setDisable(false);
 
     }
 
@@ -163,8 +163,8 @@ public class AreaAdministrativoUI {
     @FXML
     void criarCategoriaTarefaAction(ActionEvent event) {
 
-        criarCategoriaTarefaPane.isVisible();
-
+        criarCategoriaTarefaPane.setVisible(true);
+        criarCategoriaTarefaPane.setDisable(false);
     }
 
     //COMPETENCIA TECNICA
@@ -188,7 +188,8 @@ public class AreaAdministrativoUI {
     @FXML
     void criarCompetenciaTecnicaAction(ActionEvent event) {
 
-        criarCompetenciaTecnicaPane.isVisible();
+        criarCompetenciaTecnicaPane.setVisible(true);
+        criarCompetenciaTecnicaPane.setVisible(false);
 
     }
 
