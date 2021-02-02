@@ -12,7 +12,7 @@ public class JanelaInicialUI {
     public Button registar;
 
     public void GoToLogin(ActionEvent actionEvent) {
-        MainApp.screenController.activate("Login");
+        MainApp.screenController.activate("AreaAdministrativo"); //mudar para login depois, temporário
     }
 
     public void RegistarOrganizacao(ActionEvent actionEvent) {

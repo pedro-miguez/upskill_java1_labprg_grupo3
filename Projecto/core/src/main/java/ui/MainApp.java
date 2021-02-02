@@ -45,6 +45,8 @@ public class MainApp extends Application {
                     FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml")));
             screenController.addScreen("JanelaInicial",
                     FXMLLoader.load(getClass().getResource("/fxml/JanelaInicialScene.fxml")));
+            screenController.addScreen("AreaAdministrativo",
+                    FXMLLoader.load(getClass().getResource("/fxml/AreaAdministrativoScene.fxml")));
 
 
             stage.setTitle(TITULO_APLICACAO);
