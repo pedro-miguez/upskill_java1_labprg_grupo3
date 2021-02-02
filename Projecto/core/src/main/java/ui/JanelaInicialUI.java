@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Plataforma;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ public class JanelaInicialUI {
 
     public void GoToLogin(ActionEvent actionEvent) {
         MainApp.screenController.activate("Login");
+        Plataforma.getInstance().getUsersAPI().getContext();
     }
 
     public void RegistarOrganizacao(ActionEvent actionEvent) {

@@ -1,39 +1,103 @@
 package api;
 
-import dto.ErroDTO;
 import network.*;
+import org.json.JSONObject;
 import utils.Response;
 import xml.XmlHandler;
 
 public class UsersAPIAdapter {
+    private String app_context;
+    private String app_key;
 
-    private String contextKey;
-
-    public UsersAPIAdapter(String appKey) {
-        this.contextKey = getContext(appKey);
+    public UsersAPIAdapter(String app_key) {
+        this.app_key = app_key;
     }
 
-    private static String getContext(String appKey) {
-        String url = "/context/app_key=" + appKey;
+    public String getContext() {
+        if (app_context == null || app_context.equals("")) {
+            String url = "/context?app_key=" + app_key;
+            HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, url);
+            HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+            switch (httpResponse.getStatus()) {
+                case HttpStatusCode.OK:
+                    break;
+                case HttpStatusCode.Conflict:
+
+                    break;
+            }
+            JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
+            app_context = bodyJSON.getString("app_context");
+
+            //app_context = "{7E19F342-A903-4C3B-806A-CF771120B9D0}";
+        }
+        return app_context;
+    }
+
+    public boolean login(String user_id, String password) {
+        String url = "/login?app_context=" + getContext() + "?username=" + user_id + "?password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
-        return url;//temporario
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.OK:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
     }
 
-    public static Response registerUserWithRoles(String url) {
-        Response response = null;
-        //final String body = XmlHandler.serializeUserDTO2XML(userDTO);
+    public boolean logout() {
+        String url = "/logout?app_context=" + getContext();
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.OK:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
+    }
+
+    public boolean registerUser(String username, String email, String password) {
+        String url = "/registerUser?app_context=" + getContext() + "?username=" + username + "?email=" + email
+                + "?password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
         switch (httpResponse.getStatus()) {
             case HttpStatusCode.Created:
-                response = new Response(HttpStatusCode.Created, null);
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
+    }
+
+    public boolean registerUserWithRoles(String username, String email, String password, String rolenames) {
+        String url = "/registerUserWithRole?app_context=" + getContext() + "?username=" + username + "?email=" + email
+                + "?password=" + password + "?role=" + rolenames;
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.Created:
+                return true;
+            case HttpStatusCode.Conflict:
+                return false;
+        }
+        return false;
+    }
+
+    public String getSession() {
+        String url = "/session?app_context=" + getContext();
+        HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, url);
+        HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
+        switch (httpResponse.getStatus()) {
+            case HttpStatusCode.OK:
                 break;
             case HttpStatusCode.Conflict:
-                ErroDTO erroDTO = XmlHandler.deSerializeXML2ErroDTO(httpResponse.getBody());
-                response = new Response(HttpStatusCode.Conflict, erroDTO.getMensagemErro());
                 break;
         }
-        return response;
+
+        return httpResponse.getBody().replaceAll( "\\[|\\]", "");
     }
 }
