@@ -5,12 +5,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaGestorUI">
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="348.0" prefWidth="465.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane prefHeight="189.0" prefWidth="465.0">
+            <GridPane fx:id="regColaboradorPane" disable="true" prefHeight="189.0" prefWidth="465.0" visible="false">
               <columnConstraints>
                 <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="65.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
@@ -36,7 +35,7 @@
       </StackPane>
    </center>
    <left>
-      <VBox prefHeight="400.0" prefWidth="135.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="135.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btn_RegistarColaborador" mnemonicParsing="false" onAction="#Registar_Colaborador" prefHeight="51.0" prefWidth="165.0" text="Registar Colaborador" />
          </children>
@@ -49,4 +48,13 @@
          </font>
       </Label>
    </top>
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRegistar" mnemonicParsing="false" onAction="#registarColaboradorAction" text="Registar" />
+            <Button fx:id="btnLimpar" mnemonicParsing="false" onAction="#limparAction" text="Limpar" />
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" text="Sair" />
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>
