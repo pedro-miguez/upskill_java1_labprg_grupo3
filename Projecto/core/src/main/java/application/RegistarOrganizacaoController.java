@@ -15,13 +15,13 @@ public class RegistarOrganizacaoController {
         Colaborador gestor = new Colaborador(nomeGestor, new Telefone(telefoneGestor), new Email(emailGestor),
                 org, Funcao.GESTOR);
 
-        if (!RepositorioOrganizacao.getInstance().addOrganizacao(org)) {
+        if (!Plataforma.getInstance().getRepoOrg().addOrganizacao(org)) {
             return false;
-        } else if (!RepositorioOrganizacao.getInstance().addGestor(gestor, org)) {
+        } else if (!Plataforma.getInstance().getRepoOrg().addGestor(gestor, org)) {
             return false;
-        } else if(!RepositorioColaborador.getInstance().addColaborador(gestor)) {
+        } else if(!Plataforma.getInstance().getRepoColab().addColaborador(gestor)) {
             return false;
-        } else return RepositorioOrganizacao.getInstance().registarGestorComoUtilizador(gestor);
+        } else return Plataforma.getInstance().getRepoOrg().registarGestorComoUtilizador(gestor);
 
     }
 }

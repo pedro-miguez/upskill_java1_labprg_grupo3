@@ -2,6 +2,7 @@ package application;
 
 import domain.AreaAtividade;
 import domain.CodigoUnico;
+import domain.Plataforma;
 import persistence.RepositorioAreaAtividade;
 
 public class DefinirAreaAtividadeController {
@@ -10,7 +11,7 @@ public class DefinirAreaAtividadeController {
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico(codigoUnico), descricao, descricaoDetalhada);
 
-        return RepositorioAreaAtividade.getInstance().addAreaAtividade(areaAtividade);
+        return Plataforma.getInstance().getRepoAreaAtiv().addAreaAtividade(areaAtividade);
     }
 
 }

@@ -29,14 +29,16 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
             Parent root = loader.load();
 
-            Plataforma plataforma = Plataforma.getInstance();
+            //Plataforma plataforma = Plataforma.getInstance();
 
             //criar plataforma
-            Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
+            //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
             Plataforma.carregarDados();
 
 
-            System.out.println(plataforma.getRepoOrg().listarOrganizacoes());
+            System.out.println(Plataforma.getInstance().getRepoOrg().listarOrganizacoes());
+            System.out.println(Plataforma.getInstance().getRepoUser().listarUtilizadores().toString());
+            System.out.println(Plataforma.getInstance().getRepoUser().getUserByUsername("gestor2").getPassword());
 
 
             Scene scene = new Scene(root);

@@ -11,9 +11,9 @@ public class DefinirCompetenciaTecnicaController {
                                              String descricao, String descDetalhada) {
 
         CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(new CodigoUnico(codigoUnico),
-                RepositorioAreaAtividade.getInstance().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnicoAreaAtividade)),
+                Plataforma.getInstance().getRepoAreaAtiv().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnicoAreaAtividade)),
                 descricao, descDetalhada);
 
-        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(competenciaTecnica);
+        return Plataforma.getInstance().getRepoCompTec().addCompetenciaTecnica(competenciaTecnica);
     }
 }
