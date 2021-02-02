@@ -1,6 +1,6 @@
 package ui;
 
-import domain.Plataforma;
+import domain.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -33,12 +33,9 @@ public class MainApp extends Application {
 
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-            Plataforma.carregarDados();
+            //Plataforma.carregarDados();
 
-
-            System.out.println(Plataforma.getInstance().getRepoOrg().listarOrganizacoes());
-            System.out.println(Plataforma.getInstance().getRepoUser().listarUtilizadores().toString());
-            System.out.println(Plataforma.getInstance().getRepoUser().getUserByUsername("gestor2").getPassword());
+            createData();
 
 
             Scene scene = new Scene(root);
@@ -56,6 +53,10 @@ public class MainApp extends Application {
                     FXMLLoader.load(getClass().getResource("/fxml/JanelaInicialScene.fxml")));
             screenController.addScreen("AreaAdministrativo",
                     FXMLLoader.load(getClass().getResource("/fxml/AreaAdministrativoScene.fxml")));
+            screenController.addScreen("AreaColaborador",
+                    FXMLLoader.load(getClass().getResource("/fxml/AreaColaboradorOrganizacaoScene.fxml")));
+            screenController.addScreen("AreaGestor",
+                    FXMLLoader.load(getClass().getResource("/fxml/AreaGestorOrganizacaoScene.fxml")));
 
 
             stage.setTitle(TITULO_APLICACAO);
@@ -93,6 +94,15 @@ public class MainApp extends Application {
 
     public ScreenController getScreenController() {
         return screenController;
+    }
+
+    private static void createData() {
+        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
+        Colaborador gestor = new Colaborador("gestorGrupo3", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+
+        Plataforma.getInstance().getRepoOrg().addOrganizacao(org);
+        Plataforma.getInstance().getRepoOrg().addGestor(gestor, org);
     }
 }
 

@@ -37,6 +37,12 @@ public class UsersAPI implements Serializable {
         return bodyJSON.getString("email");
     }
 
+    public String getRole() {
+        String session = uapia.getSession();
+        JSONObject bodyJSON = new JSONObject(session);
+        return bodyJSON.getString("rolenames");
+    }
+
     public boolean registerUserWithRoles(String username, String email, String password, String rolenames) {
         return uapia.registerUserWithRoles(username, email, password, rolenames);
     }

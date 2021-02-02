@@ -50,7 +50,7 @@ public class RepositorioUtilizador implements Serializable {
             }
         }
 
-        throw new IllegalArgumentException("O nome" + nome + " não está associado a nenhum utilizador");
+        throw new IllegalArgumentException("O nome " + nome + " não está associado a nenhum utilizador");
     }
 
     public ArrayList<User> getUtilizadoresByRole (Role role) {
