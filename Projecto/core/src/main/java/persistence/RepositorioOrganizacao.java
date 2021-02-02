@@ -44,11 +44,12 @@ public class RepositorioOrganizacao implements Serializable {
 
         AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         String password = alg.geraPassword();
+        System.out.println(password);
 
         UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
         User user = new User(nome, password, new Email(email), Role.GESTOR);
         return uapi.registerUserWithRoles(nome, email, password, "gestor")
-                && RepositorioUtilizador.getInstance().addUtilizador(user);
+                && Plataforma.getInstance().getRepoUser().addUtilizador(user);
     }
 
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {

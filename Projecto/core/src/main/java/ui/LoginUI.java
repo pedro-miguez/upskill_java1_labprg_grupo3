@@ -1,7 +1,9 @@
 package ui;
 
+import application.AuthenticationController;
 import domain.Plataforma;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -13,16 +15,26 @@ public class LoginUI {
     public Button entrar;
     public Button voltar;
 
-    public void InserirUsername(ActionEvent actionEvent) {
-    }
+    private AuthenticationController loginControl = new AuthenticationController();
 
-    public void inserirPassword(ActionEvent actionEvent) {
-    }
 
     public void GoPlataforma(ActionEvent actionEvent) {
         boolean login = Plataforma.getInstance().getUsersAPI().login(username.getText(), password.getText());
         if (login) {
-            System.out.println("login com sucesso");
+            switch(loginControl.getRole()) {
+                case "gestor":
+                    MainApp.screenController.activate("AreaGestor");
+                    break;
+                case "administrativo":
+                    MainApp.screenController.activate("AreaAdministrativo");
+                    break;
+                case "colaborador":
+                    MainApp.screenController.activate("AreaColaborador");
+                    break;
+            }
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Username ou password inválidos").show();
         }
 
     }
