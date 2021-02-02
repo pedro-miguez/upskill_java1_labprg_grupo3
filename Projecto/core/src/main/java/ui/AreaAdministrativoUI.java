@@ -1,14 +1,13 @@
 package ui;
 
 import application.DefinirAreaAtividadeController;
+import domain.AreaAtividade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
 
 public class AreaAdministrativoUI {
 
@@ -64,7 +63,7 @@ public class AreaAdministrativoUI {
     private Button limparAreaAtividadeBtn;
 
     @FXML
-    private ComboBox<?> comboBoxAreaAtividadeCompetenciaTecnica;
+    private ComboBox<AreaAtividade> comboBoxAreaAtividadeCompetenciaTecnica;
 
     @FXML
     private TextField txtCodigoUnicoCompetenciaTecnica;
@@ -101,7 +100,9 @@ public class AreaAdministrativoUI {
     //AREA ATIVIDADE
     @FXML
     void voltarAreaAtividadeAction(ActionEvent event) {
+
         MainApp.screenController.activate("JanelaInicial");
+
     }
 
     @FXML
@@ -117,14 +118,27 @@ public class AreaAdministrativoUI {
     @FXML
     void confirmarAreaAtividadeAction(ActionEvent event) {
 
-        try{
+        try {
 
-        }catch ()
+            boolean adicionou = areaAtividadeController.definirAreaAtividade(txtCodUnicoAreaAtividade.getText().trim(),
+                    txtDescBreveAreaAtividade.getText().trim(), txtDescDetalhadaAreaAtividade.getText().trim());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar novo contacto.",
+                    adicionou ? "Contacto adicionado com sucesso."
+                            : "Não foi possível adicionar o contacto.").show();
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Introduza os dados novamente!").show();
+        }
 
     }
 
     @FXML
     void criarAreaAtividadeAction(ActionEvent event) {
+
+        criarAreaAtividadePane.isVisible();
+        criarAreaAtividadePane.isDisable();
 
     }
 
@@ -149,6 +163,8 @@ public class AreaAdministrativoUI {
     @FXML
     void criarCategoriaTarefaAction(ActionEvent event) {
 
+        criarCategoriaTarefaPane.isVisible();
+
     }
 
     //COMPETENCIA TECNICA
@@ -171,6 +187,8 @@ public class AreaAdministrativoUI {
 
     @FXML
     void criarCompetenciaTecnicaAction(ActionEvent event) {
+
+        criarCompetenciaTecnicaPane.isVisible();
 
     }
 
