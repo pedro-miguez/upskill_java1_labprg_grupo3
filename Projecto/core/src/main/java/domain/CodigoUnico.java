@@ -19,7 +19,7 @@ public class CodigoUnico implements Serializable {
         if (codigoUnico.matches("^([a-zA-Z]){3}(-\\d{2})?$")) {
             this.codigoUnico = codigoUnico;
         } else {
-            throw new IllegalArgumentException("Código único inválido, deve ser do tipo 'PRG-01'.");
+            throw new IllegalArgumentException("Código único inválido, deve ser como o seguinte exemplo, 'PRG-01'.");
         }
     }
 
