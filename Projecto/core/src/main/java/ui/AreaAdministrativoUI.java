@@ -1,6 +1,7 @@
 package ui;
 
 import application.DefinirAreaAtividadeController;
+import application.DefinirCompetenciaTecnicaController;
 import domain.AreaAtividade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -97,6 +98,8 @@ public class AreaAdministrativoUI {
 
     private DefinirAreaAtividadeController areaAtividadeController;
 
+    private DefinirCompetenciaTecnicaController competenciaTecnicaController;
+
     //AREA ATIVIDADE
     @FXML
     void voltarAreaAtividadeAction(ActionEvent event) {
@@ -137,6 +140,10 @@ public class AreaAdministrativoUI {
     @FXML
     void criarAreaAtividadeAction(ActionEvent event) {
 
+        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(true);
+        criarCategoriaTarefaPane.setVisible(false);
+        criarCategoriaTarefaPane.setDisable(true);
         criarAreaAtividadePane.setVisible(true);
         criarAreaAtividadePane.setDisable(false);
 
@@ -163,8 +170,13 @@ public class AreaAdministrativoUI {
     @FXML
     void criarCategoriaTarefaAction(ActionEvent event) {
 
+        criarAreaAtividadePane.setVisible(false);
+        criarAreaAtividadePane.setDisable(true);
+        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(true);
         criarCategoriaTarefaPane.setVisible(true);
         criarCategoriaTarefaPane.setDisable(false);
+
     }
 
     //COMPETENCIA TECNICA
@@ -178,18 +190,45 @@ public class AreaAdministrativoUI {
     @FXML
     void limparCompetenciaTecnicaAction(ActionEvent event) {
 
+        txtCodigoUnicoCompetenciaTecnica.clear();
+        comboBoxAreaAtividadeCompetenciaTecnica.getSelectionModel().clearSelection();
+        /*comboBoxAreaAtividadeCompetenciaTecnica.setValue(null);*/
+        txtDescBreveCompetenciaTecnica.clear();
+        txtDescDetalhadaCompetenciaTecnica.clear();
+        txtCodUnicoAreaAtividade.requestFocus();
+
     }
 
     @FXML
     void confirmarCompetenciaTecnicaAction(ActionEvent event) {
+
+        try {
+
+            boolean adicionou = competenciaTecnicaController.definirCompetenciaTecnica(txtCodigoUnicoCompetenciaTecnica.getText().trim(),
+                    comboBoxAreaAtividadeCompetenciaTecnica.getValue().getCodigoUnico().toString(), txtDescBreveCompetenciaTecnica.getText().trim(),
+                txtDescDetalhadaCompetenciaTecnica.getText().trim());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
+                    adicionou ? "Competencia tecnica adicionada com sucesso."
+                            : "Não foi possível adicionar a competencia tecnica.").show();
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Introduza os dados novamente!").show();
+        }
 
     }
 
     @FXML
     void criarCompetenciaTecnicaAction(ActionEvent event) {
 
+        criarAreaAtividadePane.setVisible(false);
+        criarAreaAtividadePane.setDisable(true);
+        criarCategoriaTarefaPane.setVisible(false);
+        criarCategoriaTarefaPane.setDisable(true);
         criarCompetenciaTecnicaPane.setVisible(true);
-        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(false);
+
 
     }
 
