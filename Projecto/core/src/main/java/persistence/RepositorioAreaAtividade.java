@@ -40,7 +40,7 @@ public class RepositorioAreaAtividade implements Serializable {
                 return a;
             }
         }
-    throw new IllegalArgumentException("Não existe nenhuma área de atividade com esse código único.");
+            throw new IllegalArgumentException("Não existe nenhuma área de atividade com esse código único.");
     }
 
     public ArrayList<AreaAtividade> listarAreaAtividade(){
