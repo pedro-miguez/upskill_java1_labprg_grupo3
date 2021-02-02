@@ -37,6 +37,19 @@ public class CategoriaTarefa implements Serializable {
     private void setAreaAtividade(AreaAtividade areaAtividade) {
         if (areaAtividade != null) {
             this.areaAtividade = areaAtividade;
+        }//lancar excecao**********
+    }
+
+    public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
+        return new ArrayList<>(this.competenciasTecnicas);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return String.format("Area de Actividade: %s Descrição: %s",
+                this.areaAtividade.toString(), this.descricao);
         }
     }
 
@@ -53,23 +66,11 @@ public class CategoriaTarefa implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return String.format("Código Unico: %s; Area de Actividade: %s Descrição: %s; Descrição Detalhada: %s",
-                this.codigoUnico, this.areaAtividade, this.descricao, this.competenciasTecnicas.);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CategoriaTarefa)) return false;
         CategoriaTarefa that = (CategoriaTarefa) o;
         return getCodigoUnico().equals(that.getCodigoUnico()) && this.areaAtividade.equals(that.areaAtividade);
     }
-
-
-
-
-
-
 
 }
