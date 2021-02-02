@@ -6,16 +6,14 @@ import java.util.List;
 
 public class CategoriaTarefa implements Serializable {
 
-    private CodigoUnico codigoUnico;
     private AreaAtividade areaAtividade;
     private String descricao;
-    private List<CompetenciaTecnica> competenciasTecnicas;
+    private List<CaracterizacaoCompTec> competenciasTecnicas;
 
-    public CategoriaTarefa(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, List<CompetenciaTecnica> competenciasTecnicas) {
-        this.codigoUnico = codigoUnico;
+    public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
         setAreaAtividade(areaAtividade);
         setDescricao(descricao);
-        this.competenciasTecnicas = new ArrayList<CompetenciaTecnica>();
+        this.competenciasTecnicas = new ArrayList<>();
     }
 
     public String getDescricao() {
@@ -41,7 +39,7 @@ public class CategoriaTarefa implements Serializable {
     }
 
     public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
-        return new ArrayList<>(this.competenciasTecnicas);
+        return new ArrayList<CaracterizacaoCompTec>(this.competenciasTecnicas);
     }
 
 
@@ -51,26 +49,14 @@ public class CategoriaTarefa implements Serializable {
         return String.format("Area de Actividade: %s Descrição: %s",
                 this.areaAtividade.toString(), this.descricao);
         }
-    }
 
-    public CodigoUnico getCodigoUnico() {
-        return codigoUnico;
-    }
-
-    public List<CompetenciaTecnica> getCompetenciasTecnicas() {
-        return competenciasTecnicas;
-    }
-
-    public void setCompetenciasTecnicas(List<CompetenciaTecnica> competenciasTecnicas) {
-        this.competenciasTecnicas = competenciasTecnicas;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CategoriaTarefa)) return false;
         CategoriaTarefa that = (CategoriaTarefa) o;
-        return getCodigoUnico().equals(that.getCodigoUnico()) && this.areaAtividade.equals(that.areaAtividade);
+        return this.descricao.equals(that.descricao) && this.areaAtividade.equals(that.areaAtividade);
     }
 
 }

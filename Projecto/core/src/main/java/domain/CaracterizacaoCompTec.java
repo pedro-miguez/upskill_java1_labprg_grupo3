@@ -10,7 +10,6 @@ public class CaracterizacaoCompTec {
 
 
     public CaracterizacaoCompTec(CodigoUnico codigoUnico, boolean obrigatorio, GrauProficiencia grauProficiencia) {
-
         this.codigoUnico = codigoUnico;
         this.obrigatorio = obrigatorio;
         this.grauProficiencia = grauProficiencia;
@@ -36,7 +35,5 @@ public class CaracterizacaoCompTec {
         CaracterizacaoCompTec that = (CaracterizacaoCompTec) o;
         return getCodigoUnico().equals(that.getCodigoUnico());
     }
-
-//repo,
 
 }
