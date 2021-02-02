@@ -8,6 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import persistence.RepositorioColaborador;
+import persistence.RepositorioOrganizacao;
+import persistence.RepositorioUtilizador;
 
 
 public class RegistarOrganizacaoUI extends Application {
@@ -56,11 +59,13 @@ public class RegistarOrganizacaoUI extends Application {
                     added ? "Organização registada com sucesso"
                             : "Não foi possível registar a organização").show();
 
+            System.out.println(RepositorioOrganizacao.getInstance().listarOrganizacoes());
+            System.out.println(RepositorioColaborador.getInstance().listarColaboradores());
+            System.out.println(RepositorioUtilizador.getInstance().listarUtilizadores());
+            System.out.println(RepositorioUtilizador.getInstance().getUserByUsername("gestor").getPassword());
+
             voltarJanelaInicial();
 
-        } catch (NumberFormatException nfe) {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
-                    "Introduza um valor numérico para telefone!").show();
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();

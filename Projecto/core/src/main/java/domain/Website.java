@@ -17,7 +17,7 @@ public class Website implements Serializable {
     }
 
     private void setWebsite(String website) {
-        String regex = "(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{2,3}\\.([a-z]+)?";
+        String regex = "(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z]+.[a-zA-Z]*.[a-z0-9]+)\\.(([a-z]){2,3})?";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(website);
         if (matcher.matches()){
