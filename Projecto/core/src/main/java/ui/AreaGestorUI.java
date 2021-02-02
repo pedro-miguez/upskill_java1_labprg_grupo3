@@ -41,8 +41,7 @@ public class AreaGestorUI {
             boolean registou = 
             
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
-                    registou ? "Colaborador registado com sucesso."
-                            : "Não foi possível registar o colaborador.").show();
+                    registou ? "Colaborador registado com sucesso." : "Não foi possível registar o colaborador.").show();
             
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
