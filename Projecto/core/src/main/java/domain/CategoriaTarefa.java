@@ -6,16 +6,16 @@ import java.util.List;
 
 public class CategoriaTarefa implements Serializable {
 
-    private CodigoUnico codigoUnico;
+
     private AreaAtividade areaAtividade;
     private String descricao;
-    private List<CompetenciaTecnica> competenciasTecnicas;
+    private List<CaracterizacaoCompTec> competenciasTecnicas;
 
-    public CategoriaTarefa(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, List<CompetenciaTecnica> competenciasTecnicas) {
-        this.codigoUnico = codigoUnico;
+    public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
+
         setAreaAtividade(areaAtividade);
         setDescricao(descricao);
-        this.competenciasTecnicas = new ArrayList<CompetenciaTecnica>();
+        this.competenciasTecnicas = new ArrayList<>();
     }
 
     public String getDescricao() {
@@ -37,38 +37,22 @@ public class CategoriaTarefa implements Serializable {
     private void setAreaAtividade(AreaAtividade areaAtividade) {
         if (areaAtividade != null) {
             this.areaAtividade = areaAtividade;
-        }
+        }//lancar excecao**********
     }
 
-    public CodigoUnico getCodigoUnico() {
-        return codigoUnico;
+
+
+    public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
+        return new ArrayList<>(this.competenciasTecnicas);
     }
 
-    public List<CompetenciaTecnica> getCompetenciasTecnicas() {
-        return competenciasTecnicas;
-    }
 
-    public void setCompetenciasTecnicas(List<CompetenciaTecnica> competenciasTecnicas) {
-        this.competenciasTecnicas = competenciasTecnicas;
-    }
 
     @Override
     public String toString() {
-        return String.format("Código Unico: %s; Area de Actividade: %s Descrição: %s; Descrição Detalhada: %s",
-                this.codigoUnico, this.areaAtividade, this.descricao, this.competenciasTecnicas.);
+        return String.format("Area de Actividade: %s Descrição: %s",
+                this.areaAtividade, this.descricao);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CategoriaTarefa)) return false;
-        CategoriaTarefa that = (CategoriaTarefa) o;
-        return getCodigoUnico().equals(that.getCodigoUnico()) && this.areaAtividade.equals(that.areaAtividade);
-    }
-
-
-
-
 
 
 
