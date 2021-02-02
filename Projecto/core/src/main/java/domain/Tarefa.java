@@ -1,6 +1,8 @@
 package domain;
 
-public class Tarefa {
+import java.io.Serializable;
+
+public class Tarefa implements Serializable {
 
     private String referencia;
     private String designacao;
