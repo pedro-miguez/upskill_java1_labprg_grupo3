@@ -15,8 +15,8 @@
       </Label>
       <Label layoutX="111.0" layoutY="137.0" text="USERNAME" />
       <Label layoutX="111.0" layoutY="183.0" text="PASSWORD" />
-      <TextField fx:id="username" layoutX="195.0" layoutY="133.0" onAction="#InserirUsername" prefHeight="25.0" prefWidth="230.0" />
-      <PasswordField fx:id="password" layoutX="195.0" layoutY="179.0" onAction="#inserirPassword" prefHeight="25.0" prefWidth="230.0" />
+      <TextField fx:id="username" layoutX="195.0" layoutY="133.0" prefHeight="25.0" prefWidth="230.0" />
+      <PasswordField fx:id="password" layoutX="195.0" layoutY="179.0" prefHeight="25.0" prefWidth="230.0" />
       <Button fx:id="entrar" layoutX="195.0" layoutY="237.0" mnemonicParsing="false" onAction="#GoPlataforma" text="Entrar" />
       <Button fx:id="voltar" layoutX="377.0" layoutY="237.0" mnemonicParsing="false" onAction="#VoltarMenu" text="Voltar" />
    </children>

@@ -59,11 +59,6 @@ public class RegistarOrganizacaoUI extends Application {
                     added ? "Organização registada com sucesso"
                             : "Não foi possível registar a organização").show();
 
-            System.out.println(RepositorioOrganizacao.getInstance().listarOrganizacoes());
-            System.out.println(RepositorioColaborador.getInstance().listarColaboradores());
-            System.out.println(RepositorioUtilizador.getInstance().listarUtilizadores());
-            System.out.println(RepositorioUtilizador.getInstance().getUserByUsername("gestor").getPassword());
-
             voltarJanelaInicial();
 
         } catch (IllegalArgumentException iae) {
