@@ -3,9 +3,10 @@ package api;
 import network.*;
 import org.json.JSONObject;
 import utils.Response;
-import xml.XmlHandler;
 
-public class UsersAPIAdapter {
+import java.io.Serializable;
+
+public class UsersAPIAdapter implements Serializable {
     private String app_context;
     private String app_key;
 
