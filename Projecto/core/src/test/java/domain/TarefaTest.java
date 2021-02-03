@@ -22,13 +22,13 @@ public class TarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
         String result = tarefa.toString();
 
-        String expectedResult = "Referencia: TAR-01; Designacao: Progamador Jogo; Descrição Informal: É necessário progamador para um jogo; " +
+        String expectedResult = "Código Único: TAR-01; Designacao: Progamador Jogo; Descrição Informal: É necessário progamador para um jogo; " +
                 "Descrição Técnica: É necessário programador em java para desenvolvimento de um jogo; " + "Estivativa de Duração: 100 horas; " +
                 "Estimativa de Custo: 1500,00 €; Categoria Tarefa: Programação.";
 
@@ -37,28 +37,28 @@ public class TarefaTest {
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void testCreateTarefaComReferenciaInvalida(){
+    public void testCreateTarefaComCodigoUnicoInvalido(){
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos",
                 "Programação de variados jogos em JAVA");
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TARR-01", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TARR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void testCreateTarefaComReferenciaInvalida2(){
+    public void testCreateTarefaComCodigoUnicoInvalido2(){
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos",
                 "Programação de variados jogos em JAVA");
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-011", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-011"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
@@ -72,7 +72,7 @@ public class TarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", " ",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), " ",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
@@ -86,7 +86,7 @@ public class TarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 " ",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
@@ -100,7 +100,7 @@ public class TarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 " ", 100, 1500.00f, categoriaTarefa);
 
@@ -114,7 +114,7 @@ public class TarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-011", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 0, 1500.00f, categoriaTarefa);
 
@@ -128,7 +128,7 @@ public class TarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-011", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 0, categoriaTarefa);
 

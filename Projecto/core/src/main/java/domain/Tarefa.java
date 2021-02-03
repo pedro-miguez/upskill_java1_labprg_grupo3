@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 public class Tarefa implements Serializable {
 
-    private String referencia;
+
+
+    private CodigoUnico codigoUnico;
     private String designacao;
-    private String descricao;
+    private String descricaoInformal;
     private String descricaoTecnica;
     private int duracaoHoras;
     private float custo;
@@ -15,45 +17,28 @@ public class Tarefa implements Serializable {
     /**
      * Construtor de uma tarefa com os seguintes parâmetros:
      *
-     * @param referencia
+     * @param codigoUnico
      * @param designacao
-     * @param descricao
+     * @param descricaoInformal
      * @param descricaoTecnica
      * @param duracaoHoras
      * @param custo
      * @param categoria
      */
-    public Tarefa(String referencia, String designacao, String descricao, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoria) {
-        setReferencia(referencia);
+    public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoria) {
+        this.codigoUnico = codigoUnico;
         setDesignacao(designacao);
-        setDescricaoInformal(descricao);
+        setDescricaoInformal(descricaoInformal);
         setDescricaoTecnica(descricaoTecnica);
         setDuracaoHoras(duracaoHoras);
         setCusto(custo);
         this.categoria = categoria;
     }
 
-    /**
-     * Método para obtenção da referência de uma tarefa
-     *
-     * @return
-     */
-    public String getReferencia() {
-        return referencia;
+    public CodigoUnico getCodigoUnico() {
+        return codigoUnico;
     }
 
-    /**
-     * Valida uma referência
-     *
-     * @param referencia
-     */
-    private void setReferencia(String referencia) {
-        if (referencia.matches("^([a-zA-Z]){3}(-\\d{2})?$")) {
-            this.referencia = referencia;
-        } else
-            throw new IllegalArgumentException("Referência inválida introduzida. Deve ser como o seguinte exemplo, 'TAR-01'.");
-
-    }
 
     /**
      * Método para obtenção de uma designação
@@ -82,19 +67,19 @@ public class Tarefa implements Serializable {
      * @return
      */
     public String getDescricaoInformal() {
-        return descricao;
+        return descricaoInformal;
     }
 
     /**
      * Valida uma descrição Informal
      *
-     * @param descricao
+     * @param descricaoInformal
      */
-    private void setDescricaoInformal(String descricao) {
-        if (descricao == null || descricao.trim().isEmpty()) {
+    private void setDescricaoInformal(String descricaoInformal) {
+        if (descricaoInformal == null || descricaoInformal.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição informal inválida!! A descrição não pode estar vazia.");
         } else
-            this.descricao = descricao;
+            this.descricaoInformal = descricaoInformal;
     }
 
     /**
@@ -175,9 +160,9 @@ public class Tarefa implements Serializable {
      * @return
      */
     public String toString(){
-        return String.format("Referencia: %s; Designacao: %s; Descrição Informal: %s; Descrição Técnica: %s; " +
-                "Estivativa de Duração: %d horas; Estimativa de Custo: %.2f €; Categoria Tarefa: %s.", this.referencia,
-                this.designacao, this.descricao, this.descricaoTecnica, this.duracaoHoras, this.custo,
+        return String.format("Código Único: %s; Designacao: %s; Descrição Informal: %s; Descrição Técnica: %s; " +
+                "Estivativa de Duração: %d horas; Estimativa de Custo: %.2f €; Categoria Tarefa: %s.", this.codigoUnico.toString(),
+                this.designacao, this.descricaoInformal, this.descricaoTecnica, this.duracaoHoras, this.custo,
                 this.categoria.getDescricao());
     }
 
@@ -196,7 +181,7 @@ public class Tarefa implements Serializable {
 
         if (getDuracaoHoras() != tarefa.getDuracaoHoras()) return false;
         if (Float.compare(tarefa.getCusto(), getCusto()) != 0) return false;
-        if (!getReferencia().equals(tarefa.getReferencia())) return false;
+        if (!getCodigoUnico().equals(tarefa.getCodigoUnico())) return false;
         if (!getDesignacao().equals(tarefa.getDesignacao())) return false;
         if (!getDescricaoInformal().equals(tarefa.getDescricaoInformal())) return false;
         if (!getDescricaoTecnica().equals(tarefa.getDescricaoTecnica())) return false;
