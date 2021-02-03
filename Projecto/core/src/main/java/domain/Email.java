@@ -26,7 +26,7 @@ public class Email implements Serializable {
     }
 
     /**
-     * Gets email.
+     * Gets the email.
      *
      * @return the email
      */
