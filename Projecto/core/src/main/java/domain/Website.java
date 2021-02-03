@@ -4,34 +4,33 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Current class implements the tools to create new websites (as Website). It has implementations to get a string
+ * representation through the toString() method of the object.
+ */
 public class Website implements Serializable {
 
     private String website;
 
-
     /**
-     * Construtor para o website com o seguinte parâmetro:
+     * Instantiates a new Website with set parameter.
      *
-     * @param website
+     * @param website the website
      */
     public Website(String website) {
         setWebsite(website);
     }
 
+
     /**
-     * Método para obter o website
+     * Gets the website.
      *
-     * @return website
+     * @return the website.
      */
     public String getWebsite() {
         return website;
     }
 
-    /**
-     * Valida o website
-     *
-     * @param website
-     */
     private void setWebsite(String website) {
         String regex = "(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z]+.[a-zA-Z]*.[a-z0-9]+)\\.(([a-z]){2,3})?";
         Pattern pattern = Pattern.compile(regex);
@@ -44,10 +43,22 @@ public class Website implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objetos são iguais
+     * Returns a string representation of the object.
      *
-     * @param o
-     * @return
+     * @return Returns a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s", website);
+    }
+
+    /**
+     * Compares this object with specified object for order.
+     *
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the specified object.
+     *
      */
     @Override
     public boolean equals(Object o) {

@@ -7,11 +7,11 @@ package domain;
  */
 public enum Funcao {
     /**
-     * Manager role (Gestor).
+     * Manager (GESTOR) role.
      */
     GESTOR,
     /**
-     * Employee role (Colaborador).
+     * Collaborator (COLABORADOR) role.
      */
     COLABORADOR
 }
