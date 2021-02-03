@@ -19,11 +19,11 @@ public class Colaborador implements Serializable {
     /**
      * Instantiates a new collaborator.
      *
-     * @param nome        the nome
-     * @param telefone    the telefone
-     * @param email       the email
-     * @param organizacao the organizacao
-     * @param funcao      the funcao
+     * @param nome        as name
+     * @param telefone    as telephone
+     * @param email       as email
+     * @param organizacao as organization
+     * @param funcao      as role (only the organization managers have this attribute)
      */
     public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao, Funcao funcao) {
         setNome(nome);
@@ -34,12 +34,12 @@ public class Colaborador implements Serializable {
     }
 
     /**
-     * Instantiates a new Colaborador.
+     * Instantiates a new collaborator.
      *
-     * @param nome        the nome
-     * @param telefone    the telefone
-     * @param email       the email
-     * @param organizacao the organizacao
+     * @param nome        as name
+     * @param telefone    as telephone
+     * @param email       as email
+     * @param organizacao as organization
      */
     public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao) {
         setNome(nome);
@@ -69,9 +69,9 @@ public class Colaborador implements Serializable {
     }
 
     /**
-     * Gets nome.
+     * Gets name.
      *
-     * @return the nome
+     * @return the name
      */
     public String getNome() {
         return nome;
@@ -87,9 +87,9 @@ public class Colaborador implements Serializable {
     }
 
     /**
-     * Is gestor boolean.
+     * Is organization manager.
      *
-     * @return the boolean
+     * @return the boolean.
      */
     public boolean isGestor() {
         return funcao == Funcao.GESTOR;
@@ -97,9 +97,9 @@ public class Colaborador implements Serializable {
 
 
     /**
-     * Gets organizacao.
+     * Gets organization.
      *
-     * @return the organizacao
+     * @return the organization.
      */
     public Organizacao getOrganizacao() {
         return organizacao;
@@ -109,6 +109,17 @@ public class Colaborador implements Serializable {
         this.organizacao = organizacao;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * <p>
+     * The {@code equals} method implements an equivalence relation
+     * on non-null object references:
+     *
+     * @param   o   the reference object with which to compare.
+     * @return  {@code true} if this object is the same as the obj
+     *          argument; {@code false} otherwise.
+     *
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
