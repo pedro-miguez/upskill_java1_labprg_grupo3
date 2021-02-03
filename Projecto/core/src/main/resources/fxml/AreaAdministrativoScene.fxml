@@ -8,7 +8,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaAdministrativoUI">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
@@ -74,11 +73,6 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnVoltarAreaAtividade" mnemonicParsing="false" onAction="#voltarAreaAtividadeAction" text="Voltar">
-                                 <HBox.margin>
-                                    <Insets bottom="10.0" right="10.0" />
-                                 </HBox.margin>
-                              </Button>
                            </children>
                            <BorderPane.margin>
                               <Insets top="10.0" />
@@ -89,7 +83,7 @@
                         </HBox>
                      </bottom>
                      <top>
-                        <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="201.0" text="Criar Área de Atividade" BorderPane.alignment="CENTER">
+                        <Label contentDisplay="RIGHT" prefHeight="31.0" prefWidth="208.0" text="Criar Área de Atividade" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -179,11 +173,6 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnVoltarCategoriaTarefa" mnemonicParsing="false" onAction="#voltarCategoriaTarefaAction" text="Voltar">
-                                 <HBox.margin>
-                                    <Insets bottom="10.0" right="10.0" />
-                                 </HBox.margin>
-                              </Button>
                            </children>
                            <padding>
                               <Insets right="85.0" />
@@ -247,11 +236,6 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnVoltarCompetenciaTecnica" mnemonicParsing="false" onAction="#voltarCompetenciaTecnicaAction" text="Voltar">
-                                 <HBox.margin>
-                                    <Insets bottom="10.0" right="10.0" />
-                                 </HBox.margin>
-                              </Button>
                            </children>
                            <BorderPane.margin>
                               <Insets right="40.0" />
@@ -273,7 +257,7 @@
             </Label>
          </top>
          <left>
-            <VBox prefHeight="467.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="467.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="btnCriarAreaAtividadeSelect" mnemonicParsing="false" onAction="#criarAreaAtividadeSelectAction" prefHeight="52.0" prefWidth="90.0" text="Criar Área de Atividade" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
                      <font>
@@ -297,6 +281,14 @@
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnLogout" layoutX="20.0" layoutY="174.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="37.0" prefWidth="70.0" text="Logout" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Verdana" size="11.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" right="15.0" top="40.0" />
                      </VBox.margin>
                   </Button>
                </children>

@@ -31,6 +31,7 @@ public class AreaColaboradorUI {
     public TextField txtDuracaoEstimada;
     public TextField txtDesignacao1;
     public Button btnCriarTarefaSelect;
+    public Button btnLogout;
     @FXML
     private TextField txtCusto;
 
@@ -117,5 +118,8 @@ public class AreaColaboradorUI {
     }
 
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
+    }
+
+    public void logoutAction(ActionEvent actionEvent) {
     }
 }

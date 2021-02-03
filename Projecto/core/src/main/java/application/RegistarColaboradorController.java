@@ -5,44 +5,30 @@
  */
 package application;
 
-import domain.Colaborador;
-import domain.Plataforma;
+import domain.*;
 import persistence.RepositorioColaborador;
 
 /**
  *
  * @author Grupo 3
  */
-
-/**
- * 
- * The type RegistarColaboradorController.
- */
 public class RegistarColaboradorController {
 
-    /*public boolean Colaborador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+    AuthenticationController authController = new AuthenticationController();
 
-    /**
-     * Método para verificar se um colaborador foi adicionado (registado) com
-     * sucesso no repositório dos colaboradores.
-     * 
-     * @param nomeColaborador
-     * @param funcaoColaborador
-     * @param contactoColaborador
-     * @param emailColaborador
-     * @return 
-     */
-    public boolean Colaborador(String nomeColaborador, String funcaoColaborador,
-                            String contactoColaborador, String emailColaborador) {
+
+    public boolean Colaborador(String nomeColaborador,String contactoColaborador, String emailColaborador, String gestorEmail) {
+
+        Colaborador collab = Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(gestorEmail));
+
+        Organizacao org = Plataforma.getInstance().getRepoOrg().getOrganizacaoByGestor(collab);
         
-        Colaborador colaborador = new Colaborador(nomeColaborador, funcaoColaborador, 
-                                                  contactoColaborador, emailColaborador);
+        Colaborador colaborador = new Colaborador(nomeColaborador, new Telefone(Integer.parseInt(contactoColaborador)),
+                new Email(emailColaborador), org, Funcao.COLABORADOR);
         
         if (!Plataforma.getInstance().getRepoColab().addColaborador(colaborador)) {
             return false;
-        } else return Plataforma.getInstance().getRepoOrg().registarColaboradorComoUtilizador(colaborador);
+        } else return authController.registarColaboradorComoUtilizador(colaborador);
         
     }
     

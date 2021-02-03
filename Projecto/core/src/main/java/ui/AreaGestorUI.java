@@ -5,89 +5,81 @@
  */
 package ui;
 
+import application.AuthenticationController;
 import application.RegistarColaboradorController;
+import domain.CategoriaTarefa;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  *
  * @author Grupo 3
  */
-public class AreaGestorUI {
+public class AreaGestorUI extends Application {
+
+    //Registar Colaborador elements
     public Button btnRegistarColaborador;
-    public Button btnLimpar;
-    public Button btnVoltarRegColab;
+    public Button btnLimparRegistarColaborador;
+
+    public TextField txtNomeColaborador;
+    public TextField txtContactoColaborador;
+    public TextField txtEmailColaborador;
+
+
+    //Criar Tarefa Elements
+    public Button btnRegistarTarefa;
+    public Button btnLimparTarefa;
+
     public TextField txtCodigoUnicoTarefa;
     public TextField txtCustoTarefa;
     public TextArea txtDescInfTarefa;
     public TextArea txtDescTecnicaTarefa;
     public TextField txtDuracaoTarefa;
-    public ComboBox comboCategoria;
+    public ComboBox<CategoriaTarefa> comboCategoria;
     public TextField txtNomeTarefa;
-    public Button btnRegistarTarefa;
-    public Button btnLimparTArefa;
-    public Button btnVoltarTarefa;
+
+
+    //General Elements
     public Button btnSelecionarRegistarColaborador;
     public Button btnSelecionarCriarTarefa;
-    @FXML
-    private Button btn_RegistarColaborador;
+    public Button btnLogout;
 
-    @FXML
-    private TextField contactoColaborador;
+    public BorderPane criarTarefaPane;
+    public BorderPane registarColaboradorPane;
 
-    @FXML
-    private TextField nomeColaborador;
-
-    @FXML
-    private TextField emailColaborador;
-
-    @FXML
-    private TextField funcaoColaborador;
-
-    @FXML
-    private GridPane regColaboradorPane;
-     
-     
     private RegistarColaboradorController registarColaboradorController;
-     
-    
+    private AuthenticationController authController;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        registarColaboradorController = new RegistarColaboradorController();
+        authController = new AuthenticationController();
+        comboCategoria.getItems().setAll()
+    }
+
     @FXML
     void registarColaboradorAction(ActionEvent event) {
         try {
-            boolean registou = registarColaboradorController.Colaborador(nomeColaborador.getText().trim(), funcaoColaborador.getText().trim(), contactoColaborador.getText().trim(), emailColaborador.getText().trim());
+            boolean registou = registarColaboradorController.Colaborador(txtNomeColaborador.getText().trim(),
+                    txtContactoColaborador.getText().trim(),
+                    txtEmailColaborador.getText().trim(),
+                    authController.getEmail()
+                    );
             
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
                     registou ? "Colaborador registado com sucesso." : "Não foi possível registar o colaborador.").show();
             
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
-                    "Introduza os dados novamente!").show();
+                    e.getMessage()).show();
         }
     }
 
-    @FXML
-    void limparAction(ActionEvent event) {
-        nomeColaborador.clear();
-        funcaoColaborador.clear();
-        contactoColaborador.clear();
-        emailColaborador.clear();
-    }
-
-    @FXML
-    void sairAction(ActionEvent event) {
-        MainApp.screenController.activate("JanelaInicial");
-    }
-     
-    @FXML
-    void Registar_Colaborador(ActionEvent event) {
-        regColaboradorPane.setVisible(true);
-        regColaboradorPane.setDisable(false);
-    }
-
-    public void voltarActionRegColab(ActionEvent actionEvent) {
-    }
 
     public void criarTarefaActionTarefa(ActionEvent actionEvent) {
     }
@@ -95,12 +87,22 @@ public class AreaGestorUI {
     public void limparActionTarefa(ActionEvent actionEvent) {
     }
 
-    public void voltarActionTarefa(ActionEvent actionEvent) {
-    }
-
     public void btnSelecionarRegistarColaboradorAction(ActionEvent actionEvent) {
+        registarColaboradorPane.setVisible(true);
+        registarColaboradorPane.setDisable(false);
     }
 
     public void btnSelecionarCriarTarefaAction(ActionEvent actionEvent) {
     }
+
+    public void btnLogoutAction(ActionEvent actionEvent) {
+    }
+
+    public void limparRegistarColaboradorAction(ActionEvent actionEvent) {
+        txtNomeColaborador.clear();
+        txtContactoColaborador.clear();
+        txtEmailColaborador.clear();
+    }
+
+
 }
