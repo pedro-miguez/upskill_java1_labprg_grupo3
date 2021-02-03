@@ -99,4 +99,8 @@ public class Plataforma implements Serializable {
         return repoCategoriaTarefa;
     }
 
+    public void resetUserAPI() {
+        this.uapi = new UsersAPI();
+    }
+
 }

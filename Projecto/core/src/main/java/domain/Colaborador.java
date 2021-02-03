@@ -27,10 +27,6 @@ public class Colaborador implements Serializable {
         setFuncao(Funcao.COLABORADOR);
     }
 
-    public Colaborador(String nomeColaborador, String funcaoColaborador, String contactoColaborador, String emailColaborador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     private void setNome(String nome) {
         if (nome.length() < 2) {
             throw new IllegalArgumentException(nome + " é um nome inválido");
