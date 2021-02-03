@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Categoria tarefa.
+ * This class is funneled by the activity area class and hosts a list of technical competences.It is identified
+ * by a description. It is also handled by the Platform administrative.
  */
 public class CategoriaTarefa implements Serializable {
 
@@ -14,11 +15,11 @@ public class CategoriaTarefa implements Serializable {
     private List<CaracterizacaoCompTec> competenciasTecnicas;
 
     /**
-     * Instantiates a new Categoria tarefa.
+     * Instantiates a new task category.
      *
-     * @param areaAtividade        the area atividade
-     * @param descricao            the descricao
-     * @param competenciasTecnicas the competencias tecnicas
+     * @param areaAtividade        as activity area.
+     * @param descricao            as description.
+     * @param competenciasTecnicas as a list of technical competences.
      */
     public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
         setAreaAtividade(areaAtividade);
@@ -27,9 +28,9 @@ public class CategoriaTarefa implements Serializable {
     }
 
     /**
-     * Gets descricao.
+     * Gets the description.
      *
-     * @return the descricao
+     * @return the description.
      */
     public String getDescricao() {
         return descricao;
@@ -44,9 +45,9 @@ public class CategoriaTarefa implements Serializable {
     }
 
     /**
-     * Gets area atividade.
+     * Gets activity area.
      *
-     * @return the area atividade
+     * @return the activity area.
      */
     public AreaAtividade getAreaAtividade() {
         return areaAtividade;
@@ -61,23 +62,41 @@ public class CategoriaTarefa implements Serializable {
     }
 
     /**
-     * Gets competencias tecnicas.
+     * Gets list of technical competences.
      *
-     * @return the competencias tecnicas
+     * @return list of technical competences.
      */
     public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
         return new ArrayList<CaracterizacaoCompTec>(this.competenciasTecnicas);
     }
 
-
-
+    /**
+     * Returns a string representation of the object task category and its attributes.
+     *
+     * The result should be a concise but informative representation that is easy
+     * for a person to read.
+     * It is overriden by all subclasses.
+     *
+     * @return  a string representation of the object.
+     *
+     */
     @Override
     public String toString() {
         return String.format("Descrição: %s; Area de Actividade: %s",
                 this.descricao, this.areaAtividade.getDescricao());
         }
 
-
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * <p>
+     * The {@code equals} method implements an equivalence relation
+     * on non-null object references:
+     *
+     * @param   o   the reference object with which to compare.
+     * @return  {@code true} if this object is the same as the obj
+     *          argument; {@code false} otherwise.
+     *
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

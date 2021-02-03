@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Technical competence characterization class allows to set a kind of mastery to the technical competence
- * that may be (or not) mandatory for the task(s) in hand. This will be defined by the publishing company collaborator
+ * that may be (or not) mandatory for the task(s) in hand. This will be defined by the Platform administrative
  * accordingly.
  */
 public class CaracterizacaoCompTec implements Serializable {

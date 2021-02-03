@@ -2,6 +2,11 @@ package domain;
 
 import java.io.Serializable;
 
+/**
+ * Current class enables to create new technical competences, wich may or not be mandatory - defined in the CaracterizacaoCompTec Class.
+ * They are represented by a unique code, a brief and a detailed description and make part of an activity area. The Platform administrative
+ * is responsible for setting the ones required for each task.
+ */
 public class CompetenciaTecnica implements Serializable {
 
     private CodigoUnico codigoUnico;
@@ -9,6 +14,14 @@ public class CompetenciaTecnica implements Serializable {
     private String descricao;
     private String descDetalhada;
 
+    /**
+     * Instantiates a new technical competence.
+     *
+     * @param codigoUnico   as unique code
+     * @param areaAtividade as activity area
+     * @param descricao     as description
+     * @param descDetalhada as detailed description
+     */
     public CompetenciaTecnica(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada) {
         this.codigoUnico = codigoUnico;
         setDescricao(descricao);
@@ -16,6 +29,11 @@ public class CompetenciaTecnica implements Serializable {
         setAreaAtividade(areaAtividade);
     }
 
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
     public String getDescricao() {
         return descricao;
     }
@@ -28,6 +46,11 @@ public class CompetenciaTecnica implements Serializable {
         }
     }
 
+    /**
+     * Gets detailed description
+     *
+     * @return the detailed description
+     */
     public String getDescDetalhada() {
         return descDetalhada;
     }
@@ -40,6 +63,11 @@ public class CompetenciaTecnica implements Serializable {
         }
     }
 
+    /**
+     * Gets unique code
+     *
+     * @return the unique code
+     */
     public CodigoUnico getCodigoUnico() {
         return codigoUnico;
     }
@@ -58,6 +86,11 @@ public class CompetenciaTecnica implements Serializable {
         return getCodigoUnico().equals(that.getCodigoUnico()) && this.areaAtividade.equals(that.areaAtividade);
     }
 
+    /**
+     * Gets activity area
+     *
+     * @return the activity area
+     */
     public AreaAtividade getAreaAtividade() {
         return areaAtividade;
     }

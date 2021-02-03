@@ -5,7 +5,7 @@ import java.util.Objects;
 
 
 /**
- * Current class implements the tool for creating new organizations (as Organizacao) with specific parameters such as
+ * Current class implements the tools for creating new organizations (as Organizacao) with specific parameters such as
  * name (nome), tax id number (nif), website, phone number (telefone), email, address and a manager (gestor).
  * It has implementations to get all these parameters through toString() method and a method to set the manager from an
  * organization.
