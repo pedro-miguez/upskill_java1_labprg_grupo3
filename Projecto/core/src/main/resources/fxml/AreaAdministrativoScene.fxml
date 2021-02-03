@@ -124,7 +124,6 @@
                                  </GridPane.margin>
                               </Label>
                               <TextField fx:id="txtDescricaoCategoriaTarefa" GridPane.columnIndex="1" />
-                              <ComboBox fx:id="comboBoxAreaAtividadeCategoriaTarefa" prefWidth="150.0" promptText="Áreas de Atividade" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <left>
                                     <ListView fx:id="listViewCompTecnicasPorSelecionarCategoriaTarefa" prefHeight="246.0" prefWidth="126.0" BorderPane.alignment="CENTER" />
@@ -137,7 +136,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="btnCompOpcionalCategoriaTarefa1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="103.0" text="Seleciona Opcional" textAlignment="CENTER" wrapText="true">
+                                          <Button fx:id="btnCompOpcionalCategoriaTarefa" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="103.0" text="Seleciona Opcional" textAlignment="CENTER" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -157,6 +156,16 @@
                                     <ListView fx:id="listViewCompTecnicasSelecionadasCategoriaTarefa" prefHeight="246.0" prefWidth="111.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <children>
+                                    <ComboBox fx:id="comboBoxAreaAtividadeCategoriaTarefa" prefWidth="150.0" promptText="Áreas de Atividade" />
+                                    <Button fx:id="btnConfirmarAreaAtividadeCategoriaTarefa" mnemonicParsing="false" onAction="#ConfirmarAreaAtividadeCategoriaTarefaAction" prefHeight="25.0" prefWidth="70.0" text="Confirmar">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </GridPane>
                      </center>

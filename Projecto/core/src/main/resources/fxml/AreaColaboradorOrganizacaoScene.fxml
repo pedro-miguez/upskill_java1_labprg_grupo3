@@ -27,7 +27,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="limparDados" mnemonicParsing="false" onAction="#limparDadosAction" text="Limpar dados">
+                              <Button fx:id="btnLimparDadosTarefa" mnemonicParsing="false" onAction="#btnLimparDadosTarefaAction" text="Limpar dados">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
@@ -66,34 +66,34 @@
                                     <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4" />
                                     <Label text="Custo estimado: " GridPane.rowIndex="5" />
                                     <Label text="Categoria da tarefa: " GridPane.rowIndex="6" />
-                                    <TextField fx:id="txtCodigoUnico" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                                    <TextField fx:id="txtCodigoUnicoTarefa" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField fx:id="txtCustoEstimado" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <TextField fx:id="txtCustoEstimadoTarefa" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextArea fx:id="txtDescInf" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <TextArea fx:id="txtDescricaoInformalTarefa" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets bottom="5.0" right="20.0" />
                                        </GridPane.margin>
                                     </TextArea>
-                                    <TextArea fx:id="txtDescTec" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <TextArea fx:id="txtDescricaoTecnicaTarefa" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets right="20.0" top="5.0" />
                                        </GridPane.margin>
                                     </TextArea>
-                                    <TextField fx:id="txtDuracaoEstimada" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <TextField fx:id="txtDuracaoEstimadaTarefa" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <ComboBox fx:id="comboCategoria" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="comboCategoriaTarefa" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                     <Label alignment="CENTER_RIGHT" text="Designação: " />
-                                    <TextField fx:id="txtDesignacao1" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
+                                    <TextField fx:id="txtNomeTarefa" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>

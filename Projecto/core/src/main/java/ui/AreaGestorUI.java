@@ -1,26 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import application.AuthenticationController;
+import application.DefinirTarefaController;
+import application.PlataformaController;
 import application.RegistarColaboradorController;
 import domain.CategoriaTarefa;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Grupo 3
- */
-public class AreaGestorUI extends Application {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+public class AreaGestorUI implements Initializable {
 
     //Registar Colaborador elements
     public Button btnRegistarColaborador;
@@ -54,14 +51,20 @@ public class AreaGestorUI extends Application {
 
     private RegistarColaboradorController registarColaboradorController;
     private AuthenticationController authController;
+    private PlataformaController plataformaController;
+    private DefinirTarefaController tarefaController;
+
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void initialize(URL location, ResourceBundle resources) {
         registarColaboradorController = new RegistarColaboradorController();
         authController = new AuthenticationController();
-        comboCategoria.getItems().setAll()
+        plataformaController = new PlataformaController();
+        comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        tarefaController = new DefinirTarefaController();
     }
 
+    //Registar Colaborador
     @FXML
     void registarColaboradorAction(ActionEvent event) {
         try {
@@ -80,29 +83,96 @@ public class AreaGestorUI extends Application {
         }
     }
 
-
+    //Criar Tarefa
     public void criarTarefaActionTarefa(ActionEvent actionEvent) {
+        try {
+            boolean criou = tarefaController.definirTarefa(
+                    txtCodigoUnicoTarefa.getText().trim(),
+                    txtNomeTarefa.getText().trim(),
+                    txtDescInfTarefa.getText().trim(),
+                    txtDescTecnicaTarefa.getText().trim(),
+                    Integer.parseInt(txtDuracaoTarefa.getText().trim()),
+                    Float.parseFloat(txtCustoTarefa.getText().trim()),
+                    comboCategoria.getValue(),
+                    authController.getEmail());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
+                    criou ? "Tarefa criada com sucesso."
+                            : "Não foi possível criar a tarefa.").show();
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        }
     }
 
-    public void limparActionTarefa(ActionEvent actionEvent) {
-    }
-
-    public void btnSelecionarRegistarColaboradorAction(ActionEvent actionEvent) {
-        registarColaboradorPane.setVisible(true);
-        registarColaboradorPane.setDisable(false);
-    }
-
-    public void btnSelecionarCriarTarefaAction(ActionEvent actionEvent) {
-    }
-
-    public void btnLogoutAction(ActionEvent actionEvent) {
-    }
-
+    //limpar campos do registo colaborador
     public void limparRegistarColaboradorAction(ActionEvent actionEvent) {
         txtNomeColaborador.clear();
         txtContactoColaborador.clear();
         txtEmailColaborador.clear();
     }
+
+    //Limpar campos do registo tarefa
+    public void limparActionTarefa(ActionEvent actionEvent) {
+        txtCodigoUnicoTarefa.clear();
+        txtCustoTarefa.clear();
+        txtDescInfTarefa.clear();
+        txtDescTecnicaTarefa.clear();
+        txtDuracaoTarefa.clear();
+        txtNomeTarefa.clear();
+    }
+
+    //selecionar menu registo colaborador
+    public void btnSelecionarRegistarColaboradorAction(ActionEvent actionEvent) {
+        registarColaboradorPane.setVisible(true);
+        registarColaboradorPane.setDisable(false);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+    }
+
+    //selecionar menu criação de tarefa
+    public void btnSelecionarCriarTarefaAction(ActionEvent actionEvent) {
+        registarColaboradorPane.setVisible(false);
+        registarColaboradorPane.setDisable(true);
+        criarTarefaPane.setVisible(true);
+        criarTarefaPane.setDisable(false);
+    }
+
+    //fazer logout
+    public void btnLogoutAction(ActionEvent actionEvent) {
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar à pagina inicial após confirmação.", "Deseja mesmo fazer logout?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            limparTodosOsCampos();
+            authController.logout();
+            voltarJanelaInicial();
+        }
+    }
+
+    //limpar todos os campos
+    public void limparTodosOsCampos() {
+        txtNomeColaborador.clear();
+        txtContactoColaborador.clear();
+        txtEmailColaborador.clear();
+
+        txtCodigoUnicoTarefa.clear();
+        txtCustoTarefa.clear();
+        txtDescInfTarefa.clear();
+        txtDescTecnicaTarefa.clear();
+        txtDuracaoTarefa.clear();
+        txtNomeTarefa.clear();
+    }
+
+    //volta à janela inicial
+    public void voltarJanelaInicial() {
+        MainApp.screenController.activate("JanelaInicial");
+    }
+
 
 
 }

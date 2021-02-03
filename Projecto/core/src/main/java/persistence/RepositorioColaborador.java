@@ -11,12 +11,15 @@ import java.util.List;
 
 /**
  * 
- * The type RepositorioColaborador
+ * The type RepositorioColaborador.
  */
 public class RepositorioColaborador implements Serializable {
 
     private static RepositorioColaborador instance;
 
+    /**
+     * Colaboradores que irão ser adicionados no repositório.
+     */
     private RepositorioColaborador(){
         colaboradoresRegistados = new ArrayList<>();
     }
@@ -25,7 +28,7 @@ public class RepositorioColaborador implements Serializable {
 
     /**
      * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton
+     * que implementa um singleton.
      * @return 
      */
     public static RepositorioColaborador getInstance(){
@@ -37,7 +40,7 @@ public class RepositorioColaborador implements Serializable {
 
     /**
      * Método booleano que verifica se um colaborador existe no repositório,
-     * caso contrário é adicionado ao mesmo
+     * caso contrário é adicionado ao mesmo.
      * @param colaborador
      * @return 
      */
@@ -50,7 +53,7 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método para obtenção de um colaborador através do seu email
+     * Método para obtenção de um colaborador através do seu email.
      * @param email
      * @return 
      */
@@ -66,7 +69,7 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método para obtenção de um colaborador de uma dada organização
+     * Método para obtenção de um colaborador de uma dada organização.
      * @param organizacao
      * @return 
      */
@@ -83,7 +86,7 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método para listar colaboradores
+     * Método para listar colaboradores.
      * @return 
      */
     public ArrayList<Colaborador> listarColaboradores() {
@@ -92,7 +95,7 @@ public class RepositorioColaborador implements Serializable {
 
     /**
      * Método para verificar se dois objectos (neste caso, colaboradores) são
-     * iguais
+     * iguais.
      * @param o
      * @return 
      */

@@ -1,28 +1,44 @@
 package ui;
 
 import application.AuthenticationController;
+import application.PlataformaController;
 import domain.Plataforma;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import sun.applet.Main;
 
-public class LoginUI {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginUI implements Initializable {
 
     public Button btnLogin;
     public Button btnVoltar;
     public TextField txtUsername;
     public PasswordField txtPassoword;
 
-    private AuthenticationController loginControl = new AuthenticationController();
+    private AuthenticationController authController;
+    private PlataformaController plataformaController;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        authController = new AuthenticationController();
+        plataformaController = new PlataformaController();
+    }
 
 
+    //efectuar o login, renovando a user API
     public void loginAction(ActionEvent actionEvent) {
-        boolean login = loginControl.login(txtUsername.getText(), txtPassoword.getText());
+        boolean login = authController.login(txtUsername.getText(), txtPassoword.getText());
         if (login) {
-            switch(loginControl.getRole()) {
+            plataformaController.resetUserAPI();
+            switch(authController.getRole()) {
                 case "gestor":
                     MainApp.screenController.activate("AreaGestor");
                     break;
@@ -39,7 +55,11 @@ public class LoginUI {
         }
     }
 
+    //voltar à janela inicial
     public void voltarAction(ActionEvent actionEvent) {
         MainApp.screenController.activate("JanelaInicial");
     }
+
+
+
 }

@@ -3,6 +3,7 @@ package ui;
 import application.DefinirAreaAtividadeController;
 import application.DefinirCompetenciaTecnicaController;
 import domain.AreaAtividade;
+import domain.CompetenciaTecnica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,103 +13,56 @@ import java.io.IOException;
 
 public class AreaAdministrativoUI {
 
-    public Button btnVoltarAreaAtividade;
+    //Criar Area de Atividade
+    public BorderPane criarAreaAtividadePane;
+
     public Button btnConfirmarAreaAtividade;
     public Button btnLimparAreaAtividade;
-    public Button btnCompOpcionalCategoriaTarefa1;
+
+    public TextField txtCodUnicoAreaAtividade;
+    public TextField txtDescBreveAreaAtividade;
+    public TextArea txtDescDetalhadaAreaAtividade;
+
+
+    //Criar Categoria de Tarefa
+    public BorderPane criarCategoriaTarefaPane;
+    public TextField txtDescricaoCategoriaTarefa;
+
+    public ComboBox<AreaAtividade> comboBoxAreaAtividadeCategoriaTarefa;
+    public ComboBox<?> comboBoxGrauProficienciaCategoriaTarefa;
+    public ListView<CompetenciaTecnica> listViewCompTecnicasPorSelecionarCategoriaTarefa;
+    public ListView<CompetenciaTecnica> listViewCompTecnicasSelecionadasCategoriaTarefa;
+
+    public Button btnConfirmarAreaAtividadeCategoriaTarefa;
+
+    public Button btnCompOpcionalCategoriaTarefa;
+    public Button btnCompObrigatoriaCategoriaTarefa;
+
     public Button btnConfirmarCategoriaTarefa;
     public Button btnLimparCategoriaTarefa;
-    public Button btnVoltarCategoriaTarefa;
+
+    //Criar Competência Técnica
+    public BorderPane criarCompetenciaTecnicaPane;
+
+    public ComboBox<AreaAtividade> comboBoxAreaAtividadeCompetenciaTecnica;
+
     public Button btnConfirmarCompetenciaTecnica;
     public Button btnLimparCompetenciaTecnica;
-    public Button btnVoltarCompetenciaTecnica;
+
+    public TextArea txtDescDetalhadaCompetenciaTecnica;
+    public TextField txtDescBreveCompetenciaTecnica;
+    public TextField txtCodigoUnicoCompetenciaTecnica;
+
+    //Elementos gerais
     public Button btnCriarAreaAtividadeSelect;
     public Button btnCriarCategoriaTarefaSelect;
     public Button btnCriarCompetenciaTecnicaSelect;
+
     public Button btnLogout;
-    @FXML
-    private Button confirmarCompetenciaTecnicaBtn;
 
-    @FXML
-    private TextField txtDescBreveAreaAtividade;
 
-    @FXML
-    private Button limparCategoriaTarefaBtn;
 
-    @FXML
-    private BorderPane criarAreaAtividadePane;
 
-    @FXML
-    private ComboBox<?> comboBoxAreaAtividadeCategoriaTarefa;
-
-    @FXML
-    private Button confirmarCategoriaTarefaBtn;
-
-    @FXML
-    private TextArea txtDescDetalhadaCompetenciaTecnica;
-
-    @FXML
-    private ListView<?> listViewCompTecnicasSelecionadasCategoriaTarefa;
-
-    @FXML
-    private ListView<?> listViewCompTecnicasPorSelecionarCategoriaTarefa;
-
-    @FXML
-    private Button criarCompetenciaTecnicaBtn;
-
-    @FXML
-    private Button confirmarAreaAtividadeBtn;
-
-    @FXML
-    private Button voltarCompetenciaTecnicaBtn;
-
-    @FXML
-    private BorderPane criarCategoriaTarefaPane;
-
-    @FXML
-    private TextField txtDescricaoCategoriaTarefa;
-
-    @FXML
-    private TextField txtDescBreveCompetenciaTecnica;
-
-    @FXML
-    private Button criarCategoriaTarefaBtn;
-
-    @FXML
-    private Button limparAreaAtividadeBtn;
-
-    @FXML
-    private ComboBox<AreaAtividade> comboBoxAreaAtividadeCompetenciaTecnica;
-
-    @FXML
-    private TextField txtCodigoUnicoCompetenciaTecnica;
-
-    @FXML
-    private Button limparCompetenciaTecnicaBtn;
-
-    @FXML
-    private TextArea txtDescDetalhadaAreaAtividade;
-
-    @FXML
-    private TextField txtCodUnicoAreaAtividade;
-
-    @FXML
-    private BorderPane criarCompetenciaTecnicaPane;
-
-    @FXML
-    private Button voltarCategoriaTarefaBtn;
-
-    @FXML
-    private Button btnCompObrigatoriaCategoriaTarefa;
-
-    @FXML
-    private ComboBox<?> comboBoxGrauProficienciaCategoriaTarefa;
-
-    @FXML
-    private Button voltarAreaAtividadeBtn;
-
-    @FXML
-    private Button criarAreaAtividadeBtn;
 
     private DefinirAreaAtividadeController areaAtividadeController;
 
@@ -259,5 +213,8 @@ public class AreaAdministrativoUI {
     }
 
     public void logoutAction(ActionEvent actionEvent) {
+    }
+
+    public void ConfirmarAreaAtividadeCategoriaTarefaAction(ActionEvent actionEvent) {
     }
 }

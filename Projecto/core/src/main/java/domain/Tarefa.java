@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Tarefa implements Serializable {
 
-
-
     private CodigoUnico codigoUnico;
     private String designacao;
     private String descricaoInformal;
@@ -13,20 +11,23 @@ public class Tarefa implements Serializable {
     private int duracaoHoras;
     private float custo;
     private CategoriaTarefa categoria;
+    private Organizacao organizacao;
 
     /**
      * Construtor de uma tarefa com os seguintes parâmetros:
-     *
-     * @param codigoUnico
+     *  @param codigoUnico
      * @param designacao
      * @param descricaoInformal
      * @param descricaoTecnica
      * @param duracaoHoras
      * @param custo
      * @param categoria
+     * @param organizacao
      */
-    public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoria) {
+    public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
+                  int duracaoHoras, float custo, CategoriaTarefa categoria, Organizacao organizacao) {
         this.codigoUnico = codigoUnico;
+        this.organizacao = organizacao;
         setDesignacao(designacao);
         setDescricaoInformal(descricaoInformal);
         setDescricaoTecnica(descricaoTecnica);
@@ -35,8 +36,12 @@ public class Tarefa implements Serializable {
         this.categoria = categoria;
     }
 
+    public Organizacao getOrganizacao() {
+        return this.organizacao;
+    }
+
     public CodigoUnico getCodigoUnico() {
-        return codigoUnico;
+        return this.codigoUnico;
     }
 
 
@@ -179,13 +184,8 @@ public class Tarefa implements Serializable {
 
         Tarefa tarefa = (Tarefa) o;
 
-        if (getDuracaoHoras() != tarefa.getDuracaoHoras()) return false;
-        if (Float.compare(tarefa.getCusto(), getCusto()) != 0) return false;
         if (!getCodigoUnico().equals(tarefa.getCodigoUnico())) return false;
-        if (!getDesignacao().equals(tarefa.getDesignacao())) return false;
-        if (!getDescricaoInformal().equals(tarefa.getDescricaoInformal())) return false;
-        if (!getDescricaoTecnica().equals(tarefa.getDescricaoTecnica())) return false;
-        return getCategoria().equals(tarefa.getCategoria());
+        return getOrganizacao().equals(tarefa.getOrganizacao());
     }
 
 }
