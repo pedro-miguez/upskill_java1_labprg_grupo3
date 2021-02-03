@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.shape.*?>
@@ -16,8 +17,8 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="237.0" layoutY="70.0" text="Bem-vindo à Plataforma" />
-      <Button fx:id="login" layoutX="142.0" layoutY="146.0" mnemonicParsing="false" onAction="#GoToLogin" prefHeight="48.0" prefWidth="69.0" text="LOGIN" />
-      <Button fx:id="registar" layoutX="301.0" layoutY="146.0" mnemonicParsing="false" onAction="#RegistarOrganizacao" prefHeight="48.0" prefWidth="155.0" text="REGISTAR ORGANIZAÇÃO" />
+      <Label layoutX="227.0" layoutY="74.0" text="WELCOME ABOARD!!!" />
+      <Button fx:id="login" layoutX="200.0" layoutY="150.0" mnemonicParsing="false" onAction="#GoToLogin" prefHeight="50.0" prefWidth="200.0" text="LOGIN" />
+      <Button fx:id="registar" layoutX="201.0" layoutY="243.0" mnemonicParsing="false" onAction="#RegistarOrganizacao" prefHeight="50.0" prefWidth="200.0" text="REGISTAR ORGANIZAÇÃO" />
    </children>
 </AnchorPane>

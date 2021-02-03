@@ -89,6 +89,9 @@ public class Plataforma implements Serializable {
     public RepositorioAreaAtividade getRepoAreaAtiv() {
         return repoAreaAtiv;
     }
+    public RepositorioCategoriaTarefa getRepoCategoriaTar() {
+        return repoCategoriaTarefa;
+    }
 
     public RepositorioUtilizador getRepoUser() {
         return repoUser;
