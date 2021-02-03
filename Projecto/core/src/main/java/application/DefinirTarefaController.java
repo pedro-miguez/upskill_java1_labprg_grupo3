@@ -1,17 +1,18 @@
 package application;
 
-import domain.CategoriaTarefa;
-import domain.CodigoUnico;
-import domain.Plataforma;
-import domain.Tarefa;
+import domain.*;
 
 public class DefinirTarefaController {
 
     public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
-                                 int duracaoHoras, float custo, String descricaoCategoria){
+                                 int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail){
+
+        Colaborador collab = Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(colaboradorEmail));
+
+        Organizacao org = collab.getOrganizacao();
 
         Tarefa tarefa = new Tarefa(new CodigoUnico(codigoUnico), designacao, descricaoInformal, descricaoTecnica, duracaoHoras, custo
-                ,Plataforma.getInstance().getRepoCategoriaTarefa().getCategoriaTarefaByDescricao(descricaoCategoria));
+                , categoriaTarefa, org);
 
         return Plataforma.getInstance().getRepoTarefa().addTarefa(tarefa);
     }

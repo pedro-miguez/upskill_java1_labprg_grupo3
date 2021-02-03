@@ -15,12 +15,11 @@ import persistence.RepositorioOrganizacao;
 import persistence.RepositorioUtilizador;
 
 
-public class RegistarOrganizacaoUI extends Application {
+public class RegistarOrganizacaoUI {
 
     public TextField txtNomeGestor;
     public TextField txtContactoGestor;
     public TextField txtEmailGestor;
-    public TextField txtFuncaoGestor;
     public TextField txtNomeOrg;
     public TextField txtNIFOrg;
     public TextField txtMoradaOrg;
@@ -34,11 +33,8 @@ public class RegistarOrganizacaoUI extends Application {
     public Button registarOrganizacao;
 
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
 
-    }
-
+    //registar organização
     public void registarOrganizacaoAction(ActionEvent actionEvent) {
         try {
             RegistarOrganizacaoController controller = new RegistarOrganizacaoController();
@@ -70,10 +66,10 @@ public class RegistarOrganizacaoUI extends Application {
         }
     }
 
+    //limpar todos os campos
     public void limparAction(ActionEvent actionEvent) {
         limparDados();
     }
-
     public void limparDados() {
         txtNomeOrg.clear();
         txtNIFOrg.clear();
@@ -88,6 +84,7 @@ public class RegistarOrganizacaoUI extends Application {
         txtEmailGestor.clear();
     }
 
+    //voltar ao menu inicial
     public void voltarAction(ActionEvent actionEvent) {
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Voltar à janela inicial",
                 "Vai perder os dados inseridos!", "Deseja mesmo voltar à janela inicial?");
