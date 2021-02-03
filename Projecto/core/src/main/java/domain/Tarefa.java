@@ -69,7 +69,7 @@ public class Tarefa implements Serializable {
      *
      * @param designacao
      */
-    public void setDesignacao(String designacao) {
+    private void setDesignacao(String designacao) {
         if (designacao == null || designacao.trim().isEmpty()) {
             throw new IllegalArgumentException("Designação inválida!! A designação não pode estar vazia.");
         } else
@@ -111,7 +111,7 @@ public class Tarefa implements Serializable {
      *
      * @param descricaoTecnica
      */
-    public void setDescricaoTecnica(String descricaoTecnica) {
+    private void setDescricaoTecnica(String descricaoTecnica) {
         if (descricaoTecnica == null || descricaoTecnica.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição técnica inválida!! A descrição não pode estar vazia.");
         } else
@@ -132,7 +132,7 @@ public class Tarefa implements Serializable {
      *
      * @param duracaoHoras
      */
-    public void setDuracaoHoras(int duracaoHoras) {
+    private void setDuracaoHoras(int duracaoHoras) {
         if (duracaoHoras > 0) {
             this.duracaoHoras = duracaoHoras;
         } else
@@ -153,7 +153,7 @@ public class Tarefa implements Serializable {
      *
      * @param custo
      */
-    public void setCusto(float custo) {
+    private void setCusto(float custo) {
         if (custo > 0) {
             this.custo = custo;
         } else
