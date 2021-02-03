@@ -17,18 +17,18 @@
             <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="38.0" prefHeight="150.0" prefWidth="289.0" text="TASKS 4 JOE" textAlignment="CENTER" textFill="#14140e" textOverrun="CLIP" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="86.0" prefHeight="150.0" prefWidth="289.0" text="Tasks 4 Joe" textAlignment="CENTER" textFill="#14140e" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Verdana Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="85.0" prefWidth="200.0" text="LOGIN">
+      <Button layoutX="325.0" layoutY="236.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="46.0" prefWidth="152.0" text="LOGIN">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana" size="14.0" />
          </font></Button>
-      <Button layoutX="301.0" layoutY="328.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="85.0" prefWidth="200.0" text="REGISTAR ORGANIZAÇÃO" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="325.0" layoutY="312.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="46.0" prefWidth="152.0" text="REGISTAR ORGANIZAÇÃO" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana" size="13.0" />
          </font></Button>
    </children>
 </AnchorPane>

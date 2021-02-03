@@ -10,16 +10,17 @@ import javafx.scene.control.TextField;
 import sun.applet.Main;
 
 public class LoginUI {
-    public TextField username;
-    public PasswordField password;
-    public Button entrar;
-    public Button voltar;
+
+    public Button btnLogin;
+    public Button btnVoltar;
+    public TextField txtUsername;
+    public PasswordField txtPassoword;
 
     private AuthenticationController loginControl = new AuthenticationController();
 
 
-    public void GoPlataforma(ActionEvent actionEvent) {
-        boolean login = Plataforma.getInstance().getUsersAPI().login(username.getText(), password.getText());
+    public void loginAction(ActionEvent actionEvent) {
+        boolean login = loginControl.login(txtUsername.getText(), txtPassoword.getText());
         if (login) {
             switch(loginControl.getRole()) {
                 case "gestor":
@@ -36,10 +37,9 @@ public class LoginUI {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     "Username ou password inválidos").show();
         }
-
     }
 
-    public void VoltarMenu(ActionEvent actionEvent) {
+    public void voltarAction(ActionEvent actionEvent) {
         MainApp.screenController.activate("JanelaInicial");
     }
 }
