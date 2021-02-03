@@ -21,6 +21,11 @@ import javafx.scene.layout.GridPane;
  */
 public class AreaColaboradorUI {
 
+    public TextField txtCodigoUnico;
+    public TextField txtCustoEstimado;
+    public TextField txtDuracaoEstimada;
+    public TextField txtDesignacao1;
+    public Button btnCriarTarefaSelect;
     @FXML
     private TextField txtCusto;
 
@@ -104,5 +109,8 @@ public class AreaColaboradorUI {
         criarTarefaPane.setVisible(true);
         criarTarefaPane.setDisable(false);
 
+    }
+
+    public void criarTarefaSelectAction(ActionEvent actionEvent) {
     }
 }

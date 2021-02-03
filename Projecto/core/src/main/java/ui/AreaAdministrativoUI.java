@@ -12,6 +12,19 @@ import java.io.IOException;
 
 public class AreaAdministrativoUI {
 
+    public Button btnVoltarAreaAtividade;
+    public Button btnConfirmarAreaAtividade;
+    public Button btnLimparAreaAtividade;
+    public Button btnCompOpcionalCategoriaTarefa1;
+    public Button btnConfirmarCategoriaTarefa;
+    public Button btnLimparCategoriaTarefa;
+    public Button btnVoltarCategoriaTarefa;
+    public Button btnConfirmarCompetenciaTecnica;
+    public Button btnLimparCompetenciaTecnica;
+    public Button btnVoltarCompetenciaTecnica;
+    public Button btnCriarAreaAtividadeSelect;
+    public Button btnCriarCategoriaTarefaSelect;
+    public Button btnCriarCompetenciaTecnicaSelect;
     @FXML
     private Button confirmarCompetenciaTecnicaBtn;
 
@@ -232,4 +245,15 @@ public class AreaAdministrativoUI {
 
     }
 
+    public void ConfirmarCategoriaTarefaAction(ActionEvent actionEvent) {
+    }
+
+    public void criarAreaAtividadeSelectAction(ActionEvent actionEvent) {
+    }
+
+    public void criarCategoriaTarefaSelectAction(ActionEvent actionEvent) {
+    }
+
+    public void criarCompetenciaTecnicaSelectAction(ActionEvent actionEvent) {
+    }
 }

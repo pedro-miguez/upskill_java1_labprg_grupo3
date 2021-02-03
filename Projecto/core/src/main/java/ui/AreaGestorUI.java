@@ -8,9 +8,7 @@ package ui;
 import application.RegistarColaboradorController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -18,6 +16,21 @@ import javafx.scene.layout.GridPane;
  * @author Grupo 3
  */
 public class AreaGestorUI {
+    public Button btnRegistarColaborador;
+    public Button btnLimpar;
+    public Button btnVoltarRegColab;
+    public TextField txtCodigoUnicoTarefa;
+    public TextField txtCustoTarefa;
+    public TextArea txtDescInfTarefa;
+    public TextArea txtDescTecnicaTarefa;
+    public TextField txtDuracaoTarefa;
+    public ComboBox comboCategoria;
+    public TextField txtNomeTarefa;
+    public Button btnRegistarTarefa;
+    public Button btnLimparTArefa;
+    public Button btnVoltarTarefa;
+    public Button btnSelecionarRegistarColaborador;
+    public Button btnSelecionarCriarTarefa;
     @FXML
     private Button btn_RegistarColaborador;
 
@@ -73,4 +86,21 @@ public class AreaGestorUI {
         regColaboradorPane.setDisable(false);
     }
 
+    public void voltarActionRegColab(ActionEvent actionEvent) {
+    }
+
+    public void criarTarefaActionTarefa(ActionEvent actionEvent) {
+    }
+
+    public void limparActionTarefa(ActionEvent actionEvent) {
+    }
+
+    public void voltarActionTarefa(ActionEvent actionEvent) {
+    }
+
+    public void btnSelecionarRegistarColaboradorAction(ActionEvent actionEvent) {
+    }
+
+    public void btnSelecionarCriarTarefaAction(ActionEvent actionEvent) {
+    }
 }
