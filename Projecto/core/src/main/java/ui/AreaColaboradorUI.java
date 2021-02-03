@@ -19,6 +19,11 @@ import javafx.scene.layout.GridPane;
  *
  * @author Grupo 3
  */
+
+/**
+ * 
+ * The type AreaColaboradorUI
+ */
 public class AreaColaboradorUI {
 
     public TextField txtCodigoUnico;
