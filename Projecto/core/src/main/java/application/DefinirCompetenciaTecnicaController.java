@@ -7,11 +7,11 @@ import persistence.RepositorioCompetenciaTecnica;
 
 public class DefinirCompetenciaTecnicaController {
 
-    public boolean definirCompetenciaTecnica(String codigoUnico, String codigoUnicoAreaAtividade,
+    public boolean definirCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
                                              String descricao, String descDetalhada) {
 
         CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(new CodigoUnico(codigoUnico),
-                Plataforma.getInstance().getRepoAreaAtiv().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnicoAreaAtividade)),
+                areaAtividade,
                 descricao, descDetalhada);
 
         return Plataforma.getInstance().getRepoCompTec().addCompetenciaTecnica(competenciaTecnica);

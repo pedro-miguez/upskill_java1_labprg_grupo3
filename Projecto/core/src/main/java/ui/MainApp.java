@@ -1,5 +1,6 @@
 package ui;
 
+import application.PlataformaController;
 import domain.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -21,6 +22,7 @@ public class MainApp extends Application {
     public static final String TITULO_APLICACAO = "T4J - Tasks For Joe";
 
     public static ScreenController screenController; //private + get
+    private PlataformaController plataformaController;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -29,11 +31,14 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
             Parent root = loader.load();
 
-            //Plataforma plataforma = Plataforma.getInstance();
+            plataformaController = new PlataformaController();
+
+            Plataforma plataforma = Plataforma.getInstance();
 
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-            //Plataforma.carregarDados();
+            Plataforma.carregarDados();
+            plataformaController.resetUserAPI();
 
             //createData();
 
