@@ -25,6 +25,7 @@ public class AreaAdministrativoUI {
     public Button btnCriarAreaAtividadeSelect;
     public Button btnCriarCategoriaTarefaSelect;
     public Button btnCriarCompetenciaTecnicaSelect;
+    public Button btnLogout;
     @FXML
     private Button confirmarCompetenciaTecnicaBtn;
 
@@ -255,5 +256,8 @@ public class AreaAdministrativoUI {
     }
 
     public void criarCompetenciaTecnicaSelectAction(ActionEvent actionEvent) {
+    }
+
+    public void logoutAction(ActionEvent actionEvent) {
     }
 }

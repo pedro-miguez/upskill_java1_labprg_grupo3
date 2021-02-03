@@ -18,7 +18,7 @@
          <center>
             <StackPane prefHeight="348.0" prefWidth="465.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="registarColaboradorPane" prefHeight="200.0" prefWidth="200.0">
                      <center>
                         <GridPane fx:id="regColaboradorPane" prefHeight="332.0" prefWidth="674.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -46,17 +46,17 @@
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="nomeColaborador" GridPane.columnIndex="1">
+                              <TextField fx:id="txtNomeColaborador" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets right="30.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="contactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="txtContactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets right="30.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="emailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="txtEmailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="30.0" />
                                  </GridPane.margin>
@@ -72,12 +72,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnLimpar" mnemonicParsing="false" onAction="#limparAction" text="Limpar">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnVoltarRegColab" mnemonicParsing="false" onAction="#voltarActionRegColab" text="Voltar">
+                              <Button fx:id="btnLimparRegistarColaborador" mnemonicParsing="false" onAction="#limparRegistarColaboradorAction" text="Limpar">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
@@ -96,7 +91,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <GridPane alignment="CENTER" prefHeight="393.0" prefWidth="527.0" BorderPane.alignment="CENTER">
                            <children>
@@ -112,41 +107,41 @@
                               <Label text="Categoria da tarefa: " GridPane.rowIndex="6" />
                               <TextField fx:id="txtCodigoUnicoTarefa" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="20.0" />
+                                    <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
                               <TextField fx:id="txtCustoTarefa" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <GridPane.margin>
-                                    <Insets right="20.0" />
+                                    <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
                               <TextArea fx:id="txtDescInfTarefa" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
-                                    <Insets bottom="5.0" right="20.0" />
+                                    <Insets bottom="5.0" right="50.0" />
                                  </GridPane.margin>
                               </TextArea>
                               <TextArea fx:id="txtDescTecnicaTarefa" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
-                                    <Insets right="20.0" top="5.0" />
+                                    <Insets right="50.0" top="5.0" />
                                  </GridPane.margin>
                               </TextArea>
                               <TextField fx:id="txtDuracaoTarefa" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
-                                    <Insets right="20.0" />
+                                    <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
                               <ComboBox fx:id="comboCategoria" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <Label alignment="CENTER_RIGHT" text="Designação: " />
                               <TextField fx:id="txtNomeTarefa" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="20.0" />
+                                    <Insets right="50.0" />
                                  </GridPane.margin>
                               </TextField>
                               <Label alignment="CENTER_RIGHT" text="Designação: " />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="171.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="419.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="228.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="10.0" prefWidth="446.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -167,24 +162,19 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnLimparTArefa" mnemonicParsing="false" onAction="#limparActionTarefa" text="Limpar">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnVoltarTarefa" mnemonicParsing="false" onAction="#voltarActionTarefa" text="Voltar">
+                              <Button fx:id="btnLimparTarefa" mnemonicParsing="false" onAction="#limparActionTarefa" text="Limpar">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
                            <BorderPane.margin>
-                              <Insets right="15.0" />
+                              <Insets right="45.0" />
                            </BorderPane.margin>
                         </HBox>
                      </bottom>
                      <top>
-                        <Label prefHeight="25.0" prefWidth="179.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
+                        <Label prefHeight="25.0" prefWidth="214.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -205,6 +195,11 @@
                   <Button fx:id="btnSelecionarCriarTarefa" alignment="CENTER" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnSelecionarCriarTarefaAction" prefHeight="51.0" prefWidth="165.0" text="Criar Tarefa">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnLogoutAction" prefHeight="31.0" prefWidth="71.0" text="Logout">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />
                      </VBox.margin>
                   </Button>
                </children>
