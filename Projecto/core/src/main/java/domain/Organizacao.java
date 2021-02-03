@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * Current class implements the tool for creating new organizations (as Organizacao) with specific parameters such as
- * name (nome), tax id number (nif), website, phone number (telefone), email, adress and a manager (gestor).
+ * name (nome), tax id number (nif), website, phone number (telefone), email, address and a manager (gestor).
  * It has implementations to get all these parameters through toString() method and a method to set the manager from an
  * organization.
  *
@@ -22,7 +22,7 @@ public class Organizacao implements Serializable {
     private Colaborador gestor;
 
     /**
-     * Instantiates a new Organization with set parameters.
+     * Instantiates a new organization (as Organizacao) with set parameters.
      *
      * @param nome           the name of the Organization
      * @param nif            the nif (Tax ID Number) of the Organization
