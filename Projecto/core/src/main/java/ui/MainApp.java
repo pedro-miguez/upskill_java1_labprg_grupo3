@@ -20,7 +20,7 @@ public class MainApp extends Application {
 
     public static final String TITULO_APLICACAO = "T4J - Tasks For Joe";
 
-    public static ScreenController screenController;
+    public static ScreenController screenController; //private + get
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -33,7 +33,7 @@ public class MainApp extends Application {
 
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-            Plataforma.carregarDados();
+            //Plataforma.carregarDados();
 
             //createData();
 
@@ -45,6 +45,7 @@ public class MainApp extends Application {
 
             //adicionar as diferentes janelas
             screenController = new ScreenController(scene);
+
             screenController.addScreen("RegistarOrganizacao",
                     FXMLLoader.load(getClass().getResource("/fxml/RegistarOrganizacaoScene.fxml")));
             screenController.addScreen("Login",
