@@ -8,15 +8,13 @@ import javafx.stage.Stage;
 
 public class JanelaInicialUI {
 
-    public Button login;
-    public Button registar;
 
-    public void GoToLogin(ActionEvent actionEvent) {
-        MainApp.screenController.activate("Login"); //mudar para login depois, temporário
-    }
 
-    public void RegistarOrganizacao(ActionEvent actionEvent) {
+    public void registarOrganizacaoAction(ActionEvent actionEvent) {
         MainApp.screenController.activate("RegistarOrganizacao");
     }
 
+    public void loginAction(ActionEvent actionEvent) {
+        MainApp.screenController.activate("Login");
+    }
 }
