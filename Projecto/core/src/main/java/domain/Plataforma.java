@@ -100,7 +100,7 @@ public class Plataforma implements Serializable {
     public RepositorioTarefa getRepoTarefa() { return repoTarefa; }
 
     public RepositorioCategoriaTarefa getRepoCategoriaTarefa() {
-        return repoCategoriaTarefa;
+        return repoCategoriaTar;
     }
 
 }
