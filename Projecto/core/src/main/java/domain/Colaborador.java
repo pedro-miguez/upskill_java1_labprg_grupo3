@@ -3,6 +3,9 @@ package domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Current class represents the tool for creating new collaborators   
+ */
 public class Colaborador implements Serializable {
 
     private String nome;
@@ -11,6 +14,15 @@ public class Colaborador implements Serializable {
     private Funcao funcao;
     private Organizacao organizacao;
 
+    /**
+     * Instantiates a new collaborator.
+     *
+     * @param nome        the nome
+     * @param telefone    the telefone
+     * @param email       the email
+     * @param organizacao the organizacao
+     * @param funcao      the funcao
+     */
     public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao, Funcao funcao) {
         setNome(nome);
         setTelefone(telefone);
@@ -19,6 +31,14 @@ public class Colaborador implements Serializable {
         setFuncao(funcao);
     }
 
+    /**
+     * Instantiates a new Colaborador.
+     *
+     * @param nome        the nome
+     * @param telefone    the telefone
+     * @param email       the email
+     * @param organizacao the organizacao
+     */
     public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao) {
         setNome(nome);
         setTelefone(telefone);
@@ -46,19 +66,39 @@ public class Colaborador implements Serializable {
         this.funcao = funcao;
     }
 
+    /**
+     * Gets nome.
+     *
+     * @return the nome
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public Email getEmail() {
         return email;
     }
 
+    /**
+     * Is gestor boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGestor() {
         return funcao == Funcao.GESTOR;
     }
 
 
+    /**
+     * Gets organizacao.
+     *
+     * @return the organizacao
+     */
     public Organizacao getOrganizacao() {
         return organizacao;
     }
