@@ -1,6 +1,6 @@
 package application;
 
-import domain.Plataforma;
+import domain.*;
 
 public class AuthenticationController {
 
@@ -14,5 +14,19 @@ public class AuthenticationController {
 
     public String getRole() {
         return Plataforma.getInstance().getUsersAPI().getRole();
+    }
+
+    public boolean registarGestorComoUtilizador(Colaborador colaborador) {
+        String nome = colaborador.getNome();
+        String email = colaborador.getEmail().toString();
+
+        AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
+        String password = alg.geraPassword();
+        System.out.println(password);
+
+        UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
+        User user = new User(nome, password, new Email(email), Role.GESTOR);
+        return uapi.registerUserWithRoles(nome, email, password, "gestor")
+                && Plataforma.getInstance().getRepoUser().addUtilizador(user);
     }
 }

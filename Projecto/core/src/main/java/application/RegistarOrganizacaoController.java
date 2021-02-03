@@ -6,6 +6,8 @@ import persistence.RepositorioOrganizacao;
 
 public class RegistarOrganizacaoController {
 
+    private AuthenticationController authController = new AuthenticationController();
+
     public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
                                        String email, String rua, String localidade, String codigoPostal,
                                        String nomeGestor, int telefoneGestor, String emailGestor) {
@@ -21,7 +23,7 @@ public class RegistarOrganizacaoController {
             return false;
         } else if(!Plataforma.getInstance().getRepoColab().addColaborador(gestor)) {
             return false;
-        } else return Plataforma.getInstance().getRepoOrg().registarGestorComoUtilizador(gestor);
+        } else return authController.registarGestorComoUtilizador(gestor);
 
     }
 }
