@@ -3,6 +3,12 @@ package domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Current class implements the tool for creating new addresses (as EnderecoPostal) with specific parameters such as
+ * street data (local), city and country (optional) data (localidade) and a post code. It has implementations to get all
+ * parameters and a toString() method that returns a representation of the object.
+ *
+ */
 public class EnderecoPostal implements Serializable {
 
     private String local;
@@ -10,20 +16,42 @@ public class EnderecoPostal implements Serializable {
     private String codPostal;
 
 
+    /**
+     * Instantiates a new address (as EnderecoPostal) with set parameters.
+     *
+     * @param local      the street data
+     * @param localidade the city and country (optional) data
+     * @param codPostal  the post code
+     */
     public EnderecoPostal(String local, String localidade, String codPostal) {
         setLocal(local);
         setLocalidade(localidade);
         setCodPostal(codPostal);
     }
 
+    /**
+     * Gets the street data of the object.
+     *
+     * @return the street data of the object.
+     */
     public String getLocal() {
         return local;
     }
 
+    /**
+     * Gets city and country (optional) data of the object.
+     *
+     * @return the city and country (optional) data of the object.
+     */
     public String getLocalidade() {
         return localidade;
     }
 
+    /**
+     * Gets the post code of the object.
+     *
+     * @return the post code of the object.
+     */
     public String getCodPostal() {
         return codPostal;
     }
@@ -44,11 +72,24 @@ public class EnderecoPostal implements Serializable {
         }
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return Returns a string representation of the object.
+     */
     @Override
     public String toString() {
         return String.format("Rua: %s, %s, com o código-postal %s", getLocal(), getLocalidade(), getCodPostal());
     }
 
+    /**
+     * Compares this object with specified object for order.
+     *
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the specified object.
+     *
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
