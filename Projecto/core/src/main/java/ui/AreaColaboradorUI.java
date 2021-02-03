@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -51,12 +52,17 @@ public class AreaColaboradorUI {
     private Button limparDados;
 
     
+    @FXML
+    private GridPane criarTarefaPane;
+    
+    
     private DefinirTarefaController criarTarefaController;
     
-    @FXML
+    @FXML //falta definir o parametro referencia!
     void submeterTarefaAction(ActionEvent event) {
-        try {
-            boolean criou = criarTarefaController.Tarefa(txtDesignacao.getText().trim(), 
+        /*try {
+            
+            boolean criou = criarTarefaController.definirTarefa(referencia, txtDesignacao.getText().trim(), 
                     txtDescInf.getText().trim(), txtDescTec.getText().trim(), 
                     txtPrazo.getText().trim(), txtCusto.getText().trim(), 
                     comboCategoria.getValue());
@@ -70,22 +76,33 @@ public class AreaColaboradorUI {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, 
                     "Erro nos dados.",
                     "Introduza os dados novamente!").show();
-        }
+        }*/
 
     }
 
     @FXML
     void limparDadosAction(ActionEvent event) {
+        //referencia.clear();
+        txtDesignacao.clear();
+        txtDescInf.clear();
+        txtDescTec.clear();
+        txtPrazo.clear();
+        txtCusto.clear();
+        comboCategoria.setValue(null);
 
     }
 
     @FXML
     void sairAction(ActionEvent event) {
+        MainApp.screenController.activate("JanelaInicial");
 
     }
 
     @FXML
     void criarTarefaAction(ActionEvent event) {
+        
+        criarTarefaPane.setVisible(true);
+        criarTarefaPane.setDisable(false);
 
     }
 }
