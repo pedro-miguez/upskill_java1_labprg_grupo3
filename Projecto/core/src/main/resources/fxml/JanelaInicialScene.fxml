@@ -10,15 +10,25 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.JanelaInicialUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.JanelaInicialUI">
    <children>
-      <Label layoutX="240.0" layoutY="23.0" text="TASKS 4 JOE">
+      <ImageView fitHeight="754.0" fitWidth="1007.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="38.0" prefHeight="150.0" prefWidth="289.0" text="TASKS 4 JOE" textAlignment="CENTER" textFill="#14140e" textOverrun="CLIP" wrapText="true">
          <font>
-            <Font name="Comic Sans MS" size="18.0" />
+            <Font name="Verdana Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="227.0" layoutY="74.0" text="WELCOME ABOARD!!!" />
-      <Button fx:id="login" layoutX="200.0" layoutY="150.0" mnemonicParsing="false" onAction="#GoToLogin" prefHeight="50.0" prefWidth="200.0" text="LOGIN" />
-      <Button fx:id="registar" layoutX="201.0" layoutY="243.0" mnemonicParsing="false" onAction="#RegistarOrganizacao" prefHeight="50.0" prefWidth="200.0" text="REGISTAR ORGANIZAÇÃO" />
+      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="85.0" prefWidth="200.0" text="LOGIN">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></Button>
+      <Button layoutX="301.0" layoutY="328.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="85.0" prefWidth="200.0" text="REGISTAR ORGANIZAÇÃO" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -1,11 +1,13 @@
 package ui;
 
 import application.RegistarOrganizacaoController;
+import domain.Plataforma;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import persistence.RepositorioColaborador;
@@ -51,7 +53,7 @@ public class RegistarOrganizacaoUI extends Application {
                     txtLocalidadeOrg.getText().trim(),
                     txtCodigoPostalOrg.getText().trim(),
                     txtNomeGestor.getText().trim(),
-                    Integer.parseInt(txtTelefoneOrg.getText()), //MUDAR PARA TELEFONE GESTOR
+                    Integer.parseInt(txtContactoGestor.getText()),
                     txtEmailGestor.getText().trim()
                     );
 
@@ -59,6 +61,7 @@ public class RegistarOrganizacaoUI extends Application {
                     added ? "Organização registada com sucesso"
                             : "Não foi possível registar a organização").show();
 
+            limparDados();
             voltarJanelaInicial();
 
         } catch (IllegalArgumentException iae) {
@@ -68,6 +71,10 @@ public class RegistarOrganizacaoUI extends Application {
     }
 
     public void limparAction(ActionEvent actionEvent) {
+        limparDados();
+    }
+
+    public void limparDados() {
         txtNomeOrg.clear();
         txtNIFOrg.clear();
         txtWebsiteOrg.clear();
@@ -77,12 +84,20 @@ public class RegistarOrganizacaoUI extends Application {
         txtLocalidadeOrg.clear();
         txtCodigoPostalOrg.clear();
         txtNomeGestor.clear();
-        //txtTelefoneOrg.getText()); //MUDAR PARA TELEFONE GESTOR
+        txtContactoGestor.clear();
         txtEmailGestor.clear();
     }
 
     public void voltarAction(ActionEvent actionEvent) {
-        voltarJanelaInicial();
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Voltar à janela inicial",
+                "Vai perder os dados inseridos!", "Deseja mesmo voltar à janela inicial?");
+
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            limparDados();
+            voltarJanelaInicial();
+        }
     }
 
     public void voltarJanelaInicial() {

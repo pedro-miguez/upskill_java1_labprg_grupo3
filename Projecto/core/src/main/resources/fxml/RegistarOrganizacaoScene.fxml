@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegistarOrganizacaoUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegistarOrganizacaoUI">
    <children>
-      <Label layoutX="242.0" layoutY="4.0" text="Faça aqui o registo da tua organização">
+      <ImageView fitHeight="604.0" fitWidth="1006.0" layoutX="-64.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="338.0" layoutY="14.0" text="Área de Registo">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Verdana" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="registarOrganizacao" layoutX="103.0" layoutY="461.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" text="Submeter dados" />
-      <Button fx:id="limparDados" layoutX="340.0" layoutY="461.0" mnemonicParsing="false" onAction="#limparAction" text="Limpar dados" />
-      <Label layoutX="101.0" layoutY="51.0" text="Informação do Gestor">
+      <Button fx:id="registarOrganizacao" layoutX="160.0" layoutY="466.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="40.0" prefWidth="130.0" text="Submeter dados" />
+      <Button fx:id="limparDados" layoutX="335.0" layoutY="466.0" mnemonicParsing="false" onAction="#limparAction" prefHeight="40.0" prefWidth="130.0" text="Limpar dados" />
+      <Label layoutX="153.0" layoutY="69.0" text="Informação do Gestor">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Verdana" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="466.0" layoutY="51.0" text="Informação da Organização">
+      <Label layoutX="490.0" layoutY="69.0" text="Informação da Organização">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Verdana" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="45.0" layoutY="102.0" text="Nome:" />
-      <Label layoutX="41.0" layoutY="148.0" text="Contacto:" />
-      <Label layoutX="45.0" layoutY="192.0" text="E-mail:" />
-      <Label layoutX="45.0" layoutY="237.0" text="Função:" />
-      <Label layoutX="387.0" layoutY="102.0" text="Nome:" />
-      <Label layoutX="387.0" layoutY="139.0" text="NIF:" />
-      <Label layoutX="386.0" layoutY="182.0" text="Morada:" />
-      <Label layoutX="386.0" layoutY="217.0" text="Localidade:" />
-      <Label layoutX="386.0" layoutY="250.0" text="Código-Postal:" />
-      <Label layoutX="384.0" layoutY="286.0" text="Telefone:" />
-      <Label layoutX="385.0" layoutY="319.0" text="Endereço Web:" />
-      <Label layoutX="387.0" layoutY="354.0" text="E-mail:" />
-      <TextField fx:id="txtNomeGestor" layoutX="98.0" layoutY="98.0" prefHeight="31.0" prefWidth="253.0" promptText="Juliano Pedrocas Lecter" />
-      <TextField fx:id="txtContactoGestor" layoutX="121.0" layoutY="143.0" prefHeight="31.0" prefWidth="224.0" promptText="911064587" />
-      <TextField fx:id="txtEmailGestor" layoutX="98.0" layoutY="188.0" prefHeight="31.0" prefWidth="253.0" promptText="4everyang@gmail.com" />
-      <TextField fx:id="txtFuncaoGestor" layoutX="109.0" layoutY="233.0" prefHeight="31.0" prefWidth="242.0" promptText="Lenhador" />
-      <TextField fx:id="txtNomeOrg" layoutX="445.0" layoutY="98.0" prefHeight="31.0" prefWidth="253.0" promptText="Juliano Pedrocas Lecter" />
-      <TextField fx:id="txtNIFOrg" layoutX="422.0" layoutY="135.0" prefHeight="31.0" prefWidth="276.0" promptText="224050576" />
-      <TextField fx:id="txtMoradaOrg" layoutX="456.0" layoutY="180.0" prefHeight="31.0" prefWidth="242.0" promptText="Rua dos Hediondos 48" />
-      <TextField fx:id="txtLocalidadeOrg" layoutX="475.0" layoutY="213.0" prefHeight="31.0" prefWidth="224.0" promptText="Fanzeres" />
-      <TextField fx:id="txtCodigoPostalOrg" layoutX="489.0" layoutY="246.0" prefHeight="31.0" prefWidth="209.0" promptText="4000-500" />
-      <TextField fx:id="txtTelefoneOrg" layoutX="457.0" layoutY="282.0" prefHeight="31.0" prefWidth="242.0" promptText="91106458" />
-      <TextField fx:id="txtWebsiteOrg" layoutX="496.0" layoutY="315.0" prefHeight="31.0" prefWidth="202.0" promptText="www.wewillrockyou.com" />
-      <TextField fx:id="txtEmailOrg" layoutX="445.0" layoutY="350.0" prefHeight="31.0" prefWidth="253.0" promptText="4everyang@gmail.com" />
-      <Button fx:id="btnVoltar" layoutX="647.0" layoutY="461.0" mnemonicParsing="false" onAction="#voltarAction" text="Voltar" />
+      <Label layoutX="55.0" layoutY="111.0" text="Nome:" />
+      <Label layoutX="40.0" layoutY="159.0" text="Contacto:" />
+      <Label layoutX="55.0" layoutY="204.0" text="E-mail:" />
+      <Label layoutX="413.0" layoutY="108.0" text="Nome:" />
+      <Label layoutX="428.0" layoutY="148.0" text="NIF:" />
+      <Label layoutX="405.0" layoutY="186.0" text="Morada:" />
+      <Label layoutX="391.0" layoutY="223.0" text="Localidade:" />
+      <Label layoutX="374.0" layoutY="262.0" text="Código-Postal:" />
+      <Label layoutX="403.0" layoutY="301.0" text="Telefone:" />
+      <Label layoutX="373.0" layoutY="341.0" text="Endereço Web:" />
+      <Label layoutX="413.0" layoutY="384.0" text="E-mail:" />
+      <TextField fx:id="txtNomeGestor" layoutX="100.0" layoutY="104.0" prefHeight="31.0" prefWidth="253.0" promptText="Nome / Username" />
+      <TextField fx:id="txtContactoGestor" layoutX="100.0" layoutY="152.0" prefHeight="31.0" prefWidth="253.0" promptText="91106458" />
+      <TextField fx:id="txtEmailGestor" layoutX="100.0" layoutY="197.0" prefHeight="31.0" prefWidth="253.0" promptText="emailgestor@org.com" />
+      <TextField fx:id="txtNomeOrg" layoutX="463.0" layoutY="104.0" prefHeight="31.0" prefWidth="235.0" promptText="Nome da Organização" />
+      <TextField fx:id="txtNIFOrg" layoutX="463.0" layoutY="141.0" prefHeight="31.0" prefWidth="235.0" promptText="224050576" />
+      <TextField fx:id="txtMoradaOrg" layoutX="463.0" layoutY="179.0" prefHeight="31.0" prefWidth="235.0" promptText="Rua da Organização, 42" />
+      <TextField fx:id="txtLocalidadeOrg" layoutX="463.0" layoutY="216.0" prefHeight="31.0" prefWidth="235.0" promptText="Porto" />
+      <TextField fx:id="txtCodigoPostalOrg" layoutX="463.0" layoutY="255.0" prefHeight="31.0" prefWidth="235.0" promptText="4000-500" />
+      <TextField fx:id="txtTelefoneOrg" layoutX="463.0" layoutY="294.0" prefHeight="31.0" prefWidth="235.0" promptText="91106458" />
+      <TextField fx:id="txtWebsiteOrg" layoutX="463.0" layoutY="334.0" prefHeight="31.0" prefWidth="235.0" promptText="www.organizacao.com" />
+      <TextField fx:id="txtEmailOrg" layoutX="463.0" layoutY="377.0" prefHeight="31.0" prefWidth="235.0" promptText="org@org.com" />
+      <Button fx:id="btnVoltar" layoutX="516.0" layoutY="466.0" mnemonicParsing="false" onAction="#voltarAction" prefHeight="40.0" prefWidth="130.0" text="Voltar" />
    </children>
 </AnchorPane>

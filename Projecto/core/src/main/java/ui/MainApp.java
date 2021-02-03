@@ -61,8 +61,8 @@ public class MainApp extends Application {
 
             stage.setTitle(TITULO_APLICACAO);
             stage.setScene(scene);
-
             stage.sizeToScene();
+            stage.setResizable(false);
 
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
