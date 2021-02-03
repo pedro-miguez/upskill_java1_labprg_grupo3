@@ -48,8 +48,8 @@ public class CategoriaTarefa implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Area de Actividade: %s Descrição: %s",
-                this.areaAtividade.toString(), this.descricao);
+        return String.format("Descrição: %s; Area de Actividade: %s",
+                this.descricao, this.areaAtividade.getDescricao());
         }
 
 
