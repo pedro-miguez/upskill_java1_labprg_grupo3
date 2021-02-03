@@ -5,8 +5,15 @@
  */
 package ui;
 
+import application.DefinirTarefaController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -14,20 +21,88 @@ import javafx.scene.control.Button;
  */
 public class AreaColaboradorUI {
 
-    public Button criarTarefa;
-    public Button submeterTarefa;
-    public Button limparDados;
-    public Button sair;
+    @FXML
+    private TextField txtCusto;
 
-    public void criarTarefaAction(ActionEvent actionEvent) {
+    @FXML
+    private Button sair;
+
+    @FXML
+    private Button criarTarefa;
+
+    @FXML
+    private Button submeterTarefa;
+
+    @FXML
+    private TextField txtDesignacao;
+
+    @FXML
+    private TextArea txtDescTec;
+
+    @FXML
+    private TextField txtPrazo;
+
+    @FXML
+    private ComboBox<?> comboCategoria;
+
+    @FXML
+    private TextArea txtDescInf;
+
+    @FXML
+    private Button limparDados;
+
+    
+    @FXML
+    private GridPane criarTarefaPane;
+    
+    
+    private DefinirTarefaController criarTarefaController;
+    
+    @FXML //falta definir o parametro referencia!
+    void submeterTarefaAction(ActionEvent event) {
+        /*try {
+            
+            boolean criou = criarTarefaController.definirTarefa(referencia, txtDesignacao.getText().trim(), 
+                    txtDescInf.getText().trim(), txtDescTec.getText().trim(), 
+                    txtPrazo.getText().trim(), txtCusto.getText().trim(), 
+                    comboCategoria.getValue());
+            
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, 
+                    MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
+                    criou ? "Tarefa criada com sucesso."
+                            : "Não foi possível criar a tarefa.").show();
+            
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, 
+                    "Erro nos dados.",
+                    "Introduza os dados novamente!").show();
+        }*/
+
     }
 
-    public void submeterTarefaAction(ActionEvent actionEvent) {
+    @FXML
+    void limparDadosAction(ActionEvent event) {
+        //referencia.clear();
+        txtDesignacao.clear();
+        txtDescInf.clear();
+        txtDescTec.clear();
+        txtPrazo.clear();
+        txtCusto.clear();
+        comboCategoria.setValue(null);
+
     }
 
-    public void limparDadosAction(ActionEvent actionEvent) {
+    @FXML
+    void sairAction(ActionEvent event) {
+        MainApp.screenController.activate("JanelaInicial");
+
     }
 
-    public void sairAction(ActionEvent actionEvent) {
+    @FXML
+    void criarTarefaAction(ActionEvent event) {
+        
+        criarTarefaPane.setVisible(true);
+        criarTarefaPane.setDisable(false);
+
     }
 }

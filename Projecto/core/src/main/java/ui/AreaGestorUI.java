@@ -33,7 +33,7 @@ public class AreaGestorUI {
     @FXML
     private TextField funcaoColaborador;
 
-     @FXML
+    @FXML
     private GridPane regColaboradorPane;
      
      
