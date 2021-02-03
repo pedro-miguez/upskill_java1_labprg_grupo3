@@ -17,6 +17,9 @@ public class RepositorioColaborador implements Serializable {
 
     private static RepositorioColaborador instance;
 
+    /**
+     * Colaboradores que irão ser adicionados no repositório.
+     */
     private RepositorioColaborador(){
         colaboradoresRegistados = new ArrayList<>();
     }
