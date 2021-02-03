@@ -22,10 +22,6 @@ public class Tarefa implements Serializable {
         this.categoria = categoria;
     }
 
-    public Tarefa(String referencia, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getReferencia() {
         return referencia;
     }
@@ -98,11 +94,26 @@ public class Tarefa implements Serializable {
     }
 
     public String toString(){
-        return String.format("Referencia: %d; Designacao: %d; Descrição Informal: %s; Descrição Técnica: %s; " +
+        return String.format("Referencia: %s; Designacao: %s; Descrição Informal: %s; Descrição Técnica: %s; " +
                 "Estivativa de Duração: %d horas; Estimativa de Custo: %.2f €; Categoria Tarefa: %s.", this.referencia,
                 this.designacao, this.descricao, this.descricaoTecnica, this.duracaoHoras, this.custo,
                 this.categoria.getDescricao());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tarefa)) return false;
+
+        Tarefa tarefa = (Tarefa) o;
+
+        if (getDuracaoHoras() != tarefa.getDuracaoHoras()) return false;
+        if (Float.compare(tarefa.getCusto(), getCusto()) != 0) return false;
+        if (!getReferencia().equals(tarefa.getReferencia())) return false;
+        if (!getDesignacao().equals(tarefa.getDesignacao())) return false;
+        if (!getDescricao().equals(tarefa.getDescricao())) return false;
+        if (!getDescricaoTecnica().equals(tarefa.getDescricaoTecnica())) return false;
+        return getCategoria().equals(tarefa.getCategoria());
+    }
 
 }

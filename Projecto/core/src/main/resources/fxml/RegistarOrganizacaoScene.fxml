@@ -14,7 +14,7 @@
       </Label>
       <Button fx:id="registarOrganizacao" layoutX="103.0" layoutY="461.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" text="Submeter dados" />
       <Button fx:id="limparDados" layoutX="340.0" layoutY="461.0" mnemonicParsing="false" onAction="#limparAction" text="Limpar dados" />
-      <Label layoutX="73.0" layoutY="51.0" text="Informação do Gestor">
+      <Label layoutX="101.0" layoutY="51.0" text="Informação do Gestor">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -25,29 +25,29 @@
          </font>
       </Label>
       <Label layoutX="45.0" layoutY="102.0" text="Nome:" />
-      <Label layoutX="45.0" layoutY="147.0" text="Contacto:" />
+      <Label layoutX="41.0" layoutY="148.0" text="Contacto:" />
       <Label layoutX="45.0" layoutY="192.0" text="E-mail:" />
       <Label layoutX="45.0" layoutY="237.0" text="Função:" />
       <Label layoutX="387.0" layoutY="102.0" text="Nome:" />
       <Label layoutX="387.0" layoutY="139.0" text="NIF:" />
-      <Label layoutX="386.0" layoutY="184.0" text="Morada:" />
+      <Label layoutX="386.0" layoutY="182.0" text="Morada:" />
       <Label layoutX="386.0" layoutY="217.0" text="Localidade:" />
       <Label layoutX="386.0" layoutY="250.0" text="Código-Postal:" />
       <Label layoutX="384.0" layoutY="286.0" text="Telefone:" />
       <Label layoutX="385.0" layoutY="319.0" text="Endereço Web:" />
       <Label layoutX="387.0" layoutY="354.0" text="E-mail:" />
-      <TextField fx:id="txtNomeGestor" layoutX="86.0" layoutY="98.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtContactoGestor" layoutX="103.0" layoutY="143.0" prefHeight="25.0" prefWidth="242.0" />
-      <TextField fx:id="txtEmailGestor" layoutX="86.0" layoutY="188.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtFuncaoGestor" layoutX="86.0" layoutY="233.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtNomeOrg" layoutX="433.0" layoutY="98.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtNIFOrg" layoutX="433.0" layoutY="135.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtMoradaOrg" layoutX="433.0" layoutY="180.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtLocalidadeOrg" layoutX="457.0" layoutY="213.0" prefHeight="25.0" prefWidth="242.0" />
-      <TextField fx:id="txtCodigoPostalOrg" layoutX="468.0" layoutY="246.0" prefHeight="25.0" prefWidth="230.0" />
-      <TextField fx:id="txtTelefoneOrg" layoutX="434.0" layoutY="282.0" prefHeight="25.0" prefWidth="265.0" />
-      <TextField fx:id="txtWebsiteOrg" layoutX="468.0" layoutY="315.0" prefHeight="25.0" prefWidth="230.0" />
-      <TextField fx:id="txtEmailOrg" layoutX="433.0" layoutY="350.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="txtNomeGestor" layoutX="98.0" layoutY="98.0" prefHeight="31.0" prefWidth="253.0" promptText="Juliano Pedrocas Lecter" />
+      <TextField fx:id="txtContactoGestor" layoutX="121.0" layoutY="143.0" prefHeight="31.0" prefWidth="224.0" promptText="911064587" />
+      <TextField fx:id="txtEmailGestor" layoutX="98.0" layoutY="188.0" prefHeight="31.0" prefWidth="253.0" promptText="4everyang@gmail.com" />
+      <TextField fx:id="txtFuncaoGestor" layoutX="109.0" layoutY="233.0" prefHeight="31.0" prefWidth="242.0" promptText="Lenhador" />
+      <TextField fx:id="txtNomeOrg" layoutX="445.0" layoutY="98.0" prefHeight="31.0" prefWidth="253.0" promptText="Juliano Pedrocas Lecter" />
+      <TextField fx:id="txtNIFOrg" layoutX="422.0" layoutY="135.0" prefHeight="31.0" prefWidth="276.0" promptText="224050576" />
+      <TextField fx:id="txtMoradaOrg" layoutX="456.0" layoutY="180.0" prefHeight="31.0" prefWidth="242.0" promptText="Rua dos Hediondos 48" />
+      <TextField fx:id="txtLocalidadeOrg" layoutX="475.0" layoutY="213.0" prefHeight="31.0" prefWidth="224.0" promptText="Fanzeres" />
+      <TextField fx:id="txtCodigoPostalOrg" layoutX="489.0" layoutY="246.0" prefHeight="31.0" prefWidth="209.0" promptText="4000-500" />
+      <TextField fx:id="txtTelefoneOrg" layoutX="457.0" layoutY="282.0" prefHeight="31.0" prefWidth="242.0" promptText="91106458" />
+      <TextField fx:id="txtWebsiteOrg" layoutX="496.0" layoutY="315.0" prefHeight="31.0" prefWidth="202.0" promptText="www.wewillrockyou.com" />
+      <TextField fx:id="txtEmailOrg" layoutX="445.0" layoutY="350.0" prefHeight="31.0" prefWidth="253.0" promptText="4everyang@gmail.com" />
       <Button fx:id="btnVoltar" layoutX="647.0" layoutY="461.0" mnemonicParsing="false" onAction="#voltarAction" text="Voltar" />
    </children>
 </AnchorPane>

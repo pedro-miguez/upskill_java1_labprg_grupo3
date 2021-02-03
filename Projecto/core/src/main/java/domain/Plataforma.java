@@ -21,7 +21,7 @@ public class Plataforma implements Serializable {
     private RepositorioAreaAtividade repoAreaAtiv;
     private RepositorioUtilizador repoUser;
     private RepositorioTarefa repoTarefa;
-    private RepositorioCategoriaTarefa repoCategoriaTarefa;
+    private RepositorioCategoriaTarefa repoCategoriaTar;
 
 
     private Plataforma() {
@@ -34,7 +34,7 @@ public class Plataforma implements Serializable {
         repoAreaAtiv = RepositorioAreaAtividade.getInstance();
         repoUser = RepositorioUtilizador.getInstance();
         repoTarefa = RepositorioTarefa.getInstance();
-        repoCategoriaTarefa = RepositorioCategoriaTarefa.getInstance();
+        repoCategoriaTar = RepositorioCategoriaTarefa.getInstance();
     }
 
     public static Plataforma getInstance() {
@@ -88,6 +88,9 @@ public class Plataforma implements Serializable {
 
     public RepositorioAreaAtividade getRepoAreaAtiv() {
         return repoAreaAtiv;
+    }
+    public RepositorioCategoriaTarefa getRepoCategoriaTar() {
+        return repoCategoriaTar;
     }
 
     public RepositorioUtilizador getRepoUser() {

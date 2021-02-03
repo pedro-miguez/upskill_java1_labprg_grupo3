@@ -35,7 +35,9 @@ public class CategoriaTarefa implements Serializable {
     private void setAreaAtividade(AreaAtividade areaAtividade) {
         if (areaAtividade != null) {
             this.areaAtividade = areaAtividade;
-        }//lancar excecao**********
+        }else{
+            throw new IllegalArgumentException("Area de atividade ja existente!!!.");
+        }
     }
 
     public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
