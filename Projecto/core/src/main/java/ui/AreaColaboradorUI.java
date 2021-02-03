@@ -90,7 +90,6 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
-
     //limpa todos os campos
     public void btnLimparDadosTarefaAction(ActionEvent actionEvent) {
         limparDados();
