@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaColaboradorUI">
    <top>
-      <Label alignment="CENTER" text="ÁREA   DO   COLABORADOR   DA   ORGANIZAÇÃO" BorderPane.alignment="CENTER" />
+      <Label alignment="CENTER" text="ÁREA   DO   COLABORADOR   DA   ORGANIZAÇÃO" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="15.0" />
+         </font></Label>
    </top>
    <left>
-      <VBox alignment="CENTER" prefHeight="399.0" prefWidth="56.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="389.0" prefWidth="79.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="criarTarefa" mnemonicParsing="false" onAction="#criarTarefaAction" prefHeight="80.0" prefWidth="53.0" text="Criar tarefa" wrapText="true" />
+            <Button fx:id="criarTarefa" mnemonicParsing="false" onAction="#criarTarefaAction" prefHeight="80.0" prefWidth="63.0" text="Criar tarefa" wrapText="true" />
          </children>
       </VBox>
    </left>
@@ -28,7 +32,7 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane alignment="CENTER" prefHeight="290.0" prefWidth="407.0">
+            <GridPane alignment="CENTER" prefHeight="393.0" prefWidth="527.0">
               <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="171.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="419.0" />
@@ -45,14 +49,29 @@
                   <Label alignment="CENTER_RIGHT" text="Designação: " />
                   <Label text="Descrição informal: " GridPane.rowIndex="1" />
                   <Label text="Descrição técnica: " GridPane.rowIndex="2" />
-                  <Label text="Prazo previsto para conclusão: " GridPane.rowIndex="3" />
+                  <Label prefHeight="52.0" prefWidth="171.0" text="Prazo previsto para conclusão: " textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="3" />
                   <Label text="Custo estimado: " GridPane.rowIndex="4" />
                   <Label text="Categoria da tarefa: " GridPane.rowIndex="5" />
-                  <TextField fx:id="txtDesignacao" GridPane.columnIndex="1" />
-                  <TextField fx:id="txtCusto" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextArea fx:id="txtDescInf" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea fx:id="txtDescTec" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtPrazo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtDesignacao" prefHeight="21.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="txtCusto" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin></TextField>
+                  <TextArea fx:id="txtDescInf" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" right="20.0" />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="txtDescTec" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="20.0" top="5.0" />
+                     </GridPane.margin></TextArea>
+                  <TextField fx:id="txtPrazo" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin></TextField>
                   <ComboBox fx:id="comboCategoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
