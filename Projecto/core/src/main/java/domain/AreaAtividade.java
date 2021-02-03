@@ -5,7 +5,8 @@ import java.io.Serializable;
 
 /**
  * Current class implements the tool for the Platform administrative to create a new activity area. This
- * will enable the administrative to catalog the technical competences by area of activity.
+ * will enable the administrative to catalog the technical competences by area of activity. Each has a
+ * unique reference, a short and a detailed description.
  */
 public class AreaAtividade implements Serializable {
 

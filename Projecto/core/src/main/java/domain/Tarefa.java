@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Tarefa implements Serializable {
 
-
-
     private CodigoUnico codigoUnico;
     private String designacao;
     private String descricaoInformal;
