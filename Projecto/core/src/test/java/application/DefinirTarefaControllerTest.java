@@ -27,7 +27,7 @@ public class DefinirTarefaControllerTest {
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void definirTarefaComReferenciaInvalida(){
+    public void definirTarefaComCodigoUnicoInvalido(){
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos",
                 "Programação de variados jogos em JAVA");

@@ -27,7 +27,7 @@ public class RepositorioTarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
@@ -43,11 +43,11 @@ public class RepositorioTarefaTest {
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
-        Tarefa tarefa1 = new Tarefa("TAR-01", "Progamador Jogo",
+        Tarefa tarefa1 = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
@@ -58,39 +58,45 @@ public class RepositorioTarefaTest {
     }
 
     @Test
-    public void getTarefaByReferenciaValida(){
+    public void getTarefaByCodigoUnicoValido(){
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos",
                 "Programação de variados jogos em JAVA");
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        CodigoUnico codigoUnico = new CodigoUnico("TAR-01");
+
+        Tarefa tarefa = new Tarefa(codigoUnico, "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
         RepositorioTarefa.getInstance().addTarefa(tarefa);
 
-        Tarefa tarefa1 = RepositorioTarefa.getInstance().getTarefaByReferencia("TAR-01");
+        Tarefa tarefa1 = RepositorioTarefa.getInstance().getTarefaByCodigoUnico(codigoUnico);
 
         assertEquals(tarefa, tarefa1);
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void getTarefaByReferenciaInvalida(){
+    public void getTarefaByCodigoUnicoInvalido(){
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos",
                 "Programação de variados jogos em JAVA");
 
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
-        Tarefa tarefa = new Tarefa("TAR-01", "Progamador Jogo",
+        CodigoUnico codigoUnico = new CodigoUnico("TAR-01");
+
+        CodigoUnico codigoUnico1 = new CodigoUnico("TAR-02");
+
+        Tarefa tarefa = new Tarefa(codigoUnico, "Progamador Jogo",
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa);
 
         RepositorioTarefa.getInstance().addTarefa(tarefa);
 
-        Tarefa tarefa1 = RepositorioTarefa.getInstance().getTarefaByReferencia("TAR-02");
+        Tarefa tarefa1 = RepositorioTarefa.getInstance().getTarefaByCodigoUnico(codigoUnico1);
 
     }
 

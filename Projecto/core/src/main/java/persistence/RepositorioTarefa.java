@@ -1,5 +1,6 @@
 package persistence;
 
+import domain.CodigoUnico;
 import domain.Tarefa;
 
 import java.io.Serializable;
@@ -31,13 +32,13 @@ public class RepositorioTarefa implements Serializable {
         }
     }
 
-    public Tarefa getTarefaByReferencia(String referencia) {
+    public Tarefa getTarefaByCodigoUnico(CodigoUnico codigoUnico) {
         for (Tarefa tarefa : tarefasRegistadas) {
-            if (tarefa.getReferencia() != null && tarefa.getReferencia().equalsIgnoreCase(referencia)) {
+            if (tarefa.getCodigoUnico() != null && tarefa.getCodigoUnico().equals(codigoUnico)) {
                 return tarefa;
             }
         }
-        throw new IllegalArgumentException("Não existe nenhuma tarefa com essa referência.");
+        throw new IllegalArgumentException("Não existe nenhuma tarefa com esse código único.");
     }
 
     public ArrayList<Tarefa> listarTarefas() {
