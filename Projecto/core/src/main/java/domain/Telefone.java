@@ -3,33 +3,32 @@ package domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Current class implements the tools to create new phone numbers (as Telefone). It has implementations to get a string
+ * representation through the toString() method of the object.
+ */
 public class Telefone implements Serializable {
 
     private int number;
 
     /**
-     * Construtor de um número de Telefone com o seguinte parâmetro:
+     * Instantiates a phone number (as Telefone) with set parameter.
      *
-     * @param number
+     * @param number the number
      */
     public Telefone(int number){
         setTelefone(number);
     }
 
     /**
-     * Método para obtenção do número de telefone
+     * Gets the phone number.
      *
-     * @return
+     * @return the phone number.
      */
     public int getTelefone() {
         return this.number;
     }
 
-    /**
-     * Valida o número de telefone
-     *
-     * @param number
-     */
     private void setTelefone(int number) {
         if (number < 100000000 || number > 999999999) {
             throw new IllegalArgumentException("Número de telefone inválido");
@@ -39,10 +38,22 @@ public class Telefone implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objetos são iguais
+     * Returns a string representation of the object.
      *
-     * @param o
-     * @return
+     * @return Returns a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return String.format("%d", number);
+    }
+
+    /**
+     * Compares this object with specified object for order.
+     *
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the specified object.
+     *
      */
     @Override
     public boolean equals(Object o) {

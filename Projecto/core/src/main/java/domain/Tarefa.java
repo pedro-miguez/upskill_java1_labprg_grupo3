@@ -2,6 +2,14 @@ package domain;
 
 import java.io.Serializable;
 
+/**
+ * Current class implements the tools for creating new tasks (as Tarefa) with specific parameters such as unique code
+ * (codigoUnico), designation (designacao), informal description (descricaoInformal), technical description
+ * (descricaoTecnica), estimated time to complete the task (duracaoHoras), estimated cost to perform the task (custo),
+ * the task category it falls under (categoria) and the organization that belongs (organizacao).
+ * It has implementations to get all these parameters through toString() method.
+ *
+ */
 public class Tarefa implements Serializable {
 
     private CodigoUnico codigoUnico;
@@ -13,16 +21,18 @@ public class Tarefa implements Serializable {
     private CategoriaTarefa categoria;
     private Organizacao organizacao;
 
+
     /**
-     * Construtor de uma tarefa com os seguintes parâmetros:
-     *  @param codigoUnico
-     * @param designacao
-     * @param descricaoInformal
-     * @param descricaoTecnica
-     * @param duracaoHoras
-     * @param custo
-     * @param categoria
-     * @param organizacao
+     * Instantiates a new task (as Tarefa) with set parameters.
+     *
+     * @param codigoUnico       the unique code of the task
+     * @param designacao        the designation of the task
+     * @param descricaoInformal the informal description of the task
+     * @param descricaoTecnica  the technical description of the task
+     * @param duracaoHoras      the estimated time to complete the task
+     * @param custo             the estimated cost to perform the task
+     * @param categoria         the task category it falls under
+     * @param organizacao       the the organization that belongs
      */
     public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
                   int duracaoHoras, float custo, CategoriaTarefa categoria, Organizacao organizacao) {
@@ -36,29 +46,33 @@ public class Tarefa implements Serializable {
         this.categoria = categoria;
     }
 
+    /**
+     * Gets organization that belongs.
+     *
+     * @return the organization that belongs.
+     */
     public Organizacao getOrganizacao() {
         return this.organizacao;
     }
 
+    /**
+     * Gets unique code of the task.
+     *
+     * @return the unique code of the task.
+     */
     public CodigoUnico getCodigoUnico() {
         return this.codigoUnico;
     }
 
-
     /**
-     * Método para obtenção de uma designação
+     * Gets designation of the task.
      *
-     * @return
+     * @return the designation of the task.
      */
     public String getDesignacao() {
         return designacao;
     }
 
-    /**
-     * Valida uma designação
-     *
-     * @param designacao
-     */
     private void setDesignacao(String designacao) {
         if (designacao == null || designacao.trim().isEmpty()) {
             throw new IllegalArgumentException("Designação inválida!! A designação não pode estar vazia.");
@@ -67,19 +81,14 @@ public class Tarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma descrição informal
+     * Gets the informal description of the task.
      *
-     * @return
+     * @return the informal description of the task.
      */
     public String getDescricaoInformal() {
         return descricaoInformal;
     }
 
-    /**
-     * Valida uma descrição Informal
-     *
-     * @param descricaoInformal
-     */
     private void setDescricaoInformal(String descricaoInformal) {
         if (descricaoInformal == null || descricaoInformal.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição informal inválida!! A descrição não pode estar vazia.");
@@ -88,19 +97,15 @@ public class Tarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma descrição técnica
+     * Gets the technical description of the task.
      *
-     * @return
+     * @return the technical description of the task.
      */
     public String getDescricaoTecnica() {
         return descricaoTecnica;
     }
 
-    /**
-     * Valida uma descrição Técnica
-     *
-     * @param descricaoTecnica
-     */
+
     private void setDescricaoTecnica(String descricaoTecnica) {
         if (descricaoTecnica == null || descricaoTecnica.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição técnica inválida!! A descrição não pode estar vazia.");
@@ -109,19 +114,14 @@ public class Tarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma duração de horas estimada
+     * Gets the estimated time to complete the task.
      *
-     * @return
+     * @return the estimated time to complete the task.
      */
     public int getDuracaoHoras() {
         return duracaoHoras;
     }
 
-    /**
-     * Valida a duração estimada
-     *
-     * @param duracaoHoras
-     */
     private void setDuracaoHoras(int duracaoHoras) {
         if (duracaoHoras > 0) {
             this.duracaoHoras = duracaoHoras;
@@ -130,19 +130,14 @@ public class Tarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção de um custo estimado
+     * Gets the estimated cost to perform the task.
      *
-     * @return
+     * @return the estimated cost to perform the task.
      */
     public float getCusto() {
         return custo;
     }
 
-    /**
-     * Valida o custo estimado
-     *
-     * @param custo
-     */
     private void setCusto(float custo) {
         if (custo > 0) {
             this.custo = custo;
@@ -151,18 +146,19 @@ public class Tarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção da Categoria de Tarefa
+     * Gets the task category it falls under.
      *
-     * @return
+     * @return the task category it falls under.
      */
     public CategoriaTarefa getCategoria() {
         return categoria;
     }
 
     /**
-     * Representação em formato String do objeto criado
+     * Returns a string representation with very concise but precise information about the object and its attributes.
      *
-     * @return
+     * @return a string representation of the object (task).
+     *
      */
     public String toString(){
         return String.format("Código Único: %s; Designacao: %s; Descrição Informal: %s; Descrição Técnica: %s; " +
@@ -172,10 +168,12 @@ public class Tarefa implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objetos são iguais
+     * Compares this object with specified object for order.
      *
-     * @param o
-     * @return
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the specified object.
+     *
      */
     @Override
     public boolean equals(Object o) {
