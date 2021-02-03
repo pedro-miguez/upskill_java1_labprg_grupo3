@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Current class represents the tool for creating new collaborators   
+ * Current class represents the tool for creating new collaborators from an organization. This ones may have different
+ * roles within their organization (wich are listed in the Funcao enum class). Each of them is also described by their name,
+ * mobile phone and email.
  */
 public class Colaborador implements Serializable {
 
