@@ -1,81 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaColaboradorUI">
-   <top>
-      <Label alignment="CENTER" text="ÁREA   DO   COLABORADOR   DA   ORGANIZAÇÃO" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Comic Sans MS Bold Italic" size="15.0" />
-         </font></Label>
-   </top>
-   <left>
-      <VBox alignment="CENTER" prefHeight="389.0" prefWidth="79.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="criarTarefa" mnemonicParsing="false" onAction="#criarTarefaAction" prefHeight="80.0" prefWidth="63.0" text="Criar tarefa" wrapText="true" />
-         </children>
-      </VBox>
-   </left>
-   <bottom>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="submeterTarefa" mnemonicParsing="false" onAction="#submeterTarefaAction" text="Submeter tarefa" />
-            <Button fx:id="limparDados" mnemonicParsing="false" onAction="#limparDadosAction" text="Limpar dados" />
-            <Button fx:id="sair" mnemonicParsing="false" onAction="#sairAction" text="Sair" />
-         </children>
-      </HBox>
-   </bottom>
-   <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <GridPane alignment="CENTER" prefHeight="393.0" prefWidth="527.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="171.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="419.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaColaboradorUI">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+         <image>
+            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane prefHeight="577.0" prefWidth="787.0">
+         <center>
+            <StackPane prefHeight="537.0" prefWidth="706.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER_RIGHT" text="Designação: " />
-                  <Label text="Descrição informal: " GridPane.rowIndex="1" />
-                  <Label text="Descrição técnica: " GridPane.rowIndex="2" />
-                  <Label prefHeight="52.0" prefWidth="171.0" text="Prazo previsto para conclusão: " textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="3" />
-                  <Label text="Custo estimado: " GridPane.rowIndex="4" />
-                  <Label text="Categoria da tarefa: " GridPane.rowIndex="5" />
-                  <TextField fx:id="txtDesignacao" prefHeight="21.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-                     <GridPane.margin>
-                        <Insets right="20.0" />
-                     </GridPane.margin></TextField>
-                  <TextField fx:id="txtCusto" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets right="20.0" />
-                     </GridPane.margin></TextField>
-                  <TextArea fx:id="txtDescInf" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="5.0" right="20.0" />
-                     </GridPane.margin></TextArea>
-                  <TextArea fx:id="txtDescTec" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets right="20.0" top="5.0" />
-                     </GridPane.margin></TextArea>
-                  <TextField fx:id="txtPrazo" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets right="20.0" />
-                     </GridPane.margin></TextField>
-                  <ComboBox fx:id="comboCategoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="715.0">
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="709.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="submeterTarefa" mnemonicParsing="false" onAction="#submeterTarefaAction" text="Submeter tarefa">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="limparDados" mnemonicParsing="false" onAction="#limparDadosAction" text="Limpar dados">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="sair" mnemonicParsing="false" onAction="#sairAction" text="Voltar">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets right="25.0" />
+                           </BorderPane.margin>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <GridPane alignment="CENTER" prefHeight="465.0" prefWidth="702.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="171.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="419.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" text="Código Único:" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Descrição informal: " GridPane.rowIndex="2" />
+                                    <Label text="Descrição técnica: " GridPane.rowIndex="3" />
+                                    <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4" />
+                                    <Label text="Custo estimado: " GridPane.rowIndex="5" />
+                                    <Label text="Categoria da tarefa: " GridPane.rowIndex="6" />
+                                    <TextField fx:id="txtCodigoUnico" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="txtCustoEstimado" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextArea fx:id="txtDescInf" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets bottom="5.0" right="20.0" />
+                                       </GridPane.margin>
+                                    </TextArea>
+                                    <TextArea fx:id="txtDescTec" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" top="5.0" />
+                                       </GridPane.margin>
+                                    </TextArea>
+                                    <TextField fx:id="txtDuracaoEstimada" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <ComboBox fx:id="comboCategoria" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label alignment="CENTER_RIGHT" text="Designação: " />
+                                    <TextField fx:id="txtDesignacao1" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="20.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <Label alignment="CENTER_RIGHT" text="Designação: " />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </StackPane>
+                     </center>
+                     <top>
+                        <Label prefHeight="27.0" prefWidth="160.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
                </children>
-            </GridPane>
-         </children>
-      </StackPane>
-   </center>
-</BorderPane>
+            </StackPane>
+         </center>
+         <top>
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="284.0" text="Área Colaborador" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </top>
+         <left>
+            <VBox alignment="CENTER" prefHeight="539.0" prefWidth="79.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnCriarTarefaSelect" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#criarTarefaSelectAction" prefHeight="59.0" prefWidth="67.0" text="Criar tarefa" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
