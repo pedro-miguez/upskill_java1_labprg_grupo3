@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -9,9 +10,9 @@
    <center>
       <StackPane prefHeight="348.0" prefWidth="465.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane fx:id="regColaboradorPane" disable="true" prefHeight="189.0" prefWidth="465.0" visible="false">
+            <GridPane fx:id="regColaboradorPane" prefHeight="189.0" prefWidth="465.0">
               <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="65.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="65.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
               </columnConstraints>
               <rowConstraints>
@@ -21,15 +22,42 @@
                 <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Nome: " />
-                  <Label text="Função:" GridPane.rowIndex="1" />
-                  <Label text="Contacto: " GridPane.rowIndex="2" />
-                  <Label text="E-mail: " GridPane.rowIndex="3" />
-                  <TextField fx:id="nomeColaborador" GridPane.columnIndex="1" />
-                  <TextField fx:id="funcaoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="contactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="emailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Nome: ">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <Label text="Função:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <Label text="Contacto: " GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <Label text="E-mail: " GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <TextField fx:id="nomeColaborador" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="funcaoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="contactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="emailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin></TextField>
                </children>
+               <StackPane.margin>
+                  <Insets right="10.0" />
+               </StackPane.margin>
             </GridPane>
          </children>
       </StackPane>
@@ -37,24 +65,36 @@
    <left>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="135.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btn_RegistarColaborador" mnemonicParsing="false" onAction="#Registar_Colaborador" prefHeight="51.0" prefWidth="165.0" text="Registar Colaborador" />
+            <Button fx:id="btn_RegistarColaborador" alignment="CENTER" mnemonicParsing="false" onAction="#Registar_Colaborador" prefHeight="51.0" prefWidth="165.0" text="Registar Colaborador" />
          </children>
       </VBox>
    </left>
    <top>
-      <Label text="ÁREA   DO   GESTOR   DA   ORGANIZAÇÃO" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="260.0" text="Área Gestor" BorderPane.alignment="CENTER">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
    </top>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnRegistar" mnemonicParsing="false" onAction="#registarColaboradorAction" text="Registar" />
-            <Button fx:id="btnLimpar" mnemonicParsing="false" onAction="#limparAction" text="Limpar" />
-            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" text="Sair" />
+            <Button fx:id="btnRegistar" mnemonicParsing="false" onAction="#registarColaboradorAction" text="Registar">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin></Button>
+            <Button fx:id="btnLimpar" mnemonicParsing="false" onAction="#limparAction" text="Limpar">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin></Button>
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" text="Voltar">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin></Button>
          </children>
+         <BorderPane.margin>
+            <Insets right="35.0" />
+         </BorderPane.margin>
       </HBox>
    </bottom>
 </BorderPane>
