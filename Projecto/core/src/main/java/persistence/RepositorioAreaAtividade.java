@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  * 
- * The type RepositorioAreaAtividade
+ * The type RepositorioAreaAtividade.
  */
 public class RepositorioAreaAtividade implements Serializable {
 
@@ -19,7 +19,7 @@ public class RepositorioAreaAtividade implements Serializable {
     private List<AreaAtividade> areasAdicionadas;
 
     /**
-     * Áreas de atividade que irão ser adicionadas no repositório
+     * Áreas de atividade que irão ser adicionadas no repositório.
      */
     private RepositorioAreaAtividade(){
         areasAdicionadas = new ArrayList<>();
@@ -27,7 +27,7 @@ public class RepositorioAreaAtividade implements Serializable {
 
     /**
      * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton
+     * que implementa um singleton.
      * @return 
      */
     public static RepositorioAreaAtividade getInstance(){
@@ -39,7 +39,7 @@ public class RepositorioAreaAtividade implements Serializable {
 
     /**
      * Método booleano que verifica se uma área de atividade existe no repositório,
-     * caso contrário é adicionada ao mesmo
+     * caso contrário é adicionada ao mesmo.
      * @param areaAtividade
      * @return 
      */
@@ -53,7 +53,7 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma área de atividade através do seu código único
+     * Método para obtenção de uma área de atividade através do seu código único.
      * @param codigoUnico
      * @return 
      */
@@ -67,7 +67,7 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
     /**
-     * Método para listar áreas de atividades
+     * Método para listar áreas de atividades.
      * @return 
      */
     public ArrayList<AreaAtividade> listarAreaAtividade(){
@@ -76,7 +76,7 @@ public class RepositorioAreaAtividade implements Serializable {
 
     /**
      * Método para verificar se dois objectos (neste caso, áreas de atividade) 
-     * são iguais
+     * são iguais.
      * @param o
      * @return 
      */
