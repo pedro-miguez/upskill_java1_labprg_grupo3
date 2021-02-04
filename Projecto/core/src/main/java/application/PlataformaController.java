@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for setting new
- * tasks.
+ * Current class is the one responsible to connect the GUI with the methods responsible for some of the critical functions
+ * that the Singleton class Platform (the class where the app runs around) hosts methods to save or load data via files,
+ * or establish/reset the connection to the users API among others.
  */
 public class PlataformaController {
 
