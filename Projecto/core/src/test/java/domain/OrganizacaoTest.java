@@ -42,26 +42,4 @@ public class OrganizacaoTest {
        org.setGestor(gestor);
     }
 
-    @Test
-    public void testGetGestorValido() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
-                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
-
-        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
-        org.setGestor(gestor);
-
-        assertEquals(gestor, org.getGestor());
-
-    }
-
-    @Test (expected = NullPointerException.class)
-    public void testGetGestorInvalido() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
-                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
-
-        org.getGestor();
-    }
-    
-
-
 }
