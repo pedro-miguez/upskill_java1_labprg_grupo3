@@ -1,0 +1,24 @@
+@startuml
+
+left to right direction
+
+:Utilizador Não Registado: as user
+user --> (UC1 - Registar Organização)
+
+:Administrativo: as admin 
+admin --> (UC2 - Definir Área de Atividade)
+admin --> (UC3 - Definir Categoria de Tarefa)
+admin --> (UC4 - Especificar Competencia Técnica)
+
+:Colaborador da Organização: as colab
+colab --> (UC6 - Especificar Tarefa)
+
+:Gestor de Organização: as gestor
+gestor --> (UC5 - Especificar Colanorador de Organização)
+gestor --> (UC6 - Especificar Tarefa)
+
+:Freelancer: as free 
+note right of free : Ator identificado mas ainda \n sem casos de uso concretos 
+
+
+@enduml
