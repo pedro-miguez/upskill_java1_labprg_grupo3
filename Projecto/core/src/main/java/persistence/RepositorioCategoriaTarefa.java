@@ -3,6 +3,7 @@ package persistence;
 import domain.AreaAtividade;
 import domain.CategoriaTarefa;
 import domain.CodigoUnico;
+import exceptions.NomeNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
             if(catt.getDescricao() != null && catt.getDescricao().equals(descricao)) {
                 return catt;
             }
-        } throw new IllegalArgumentException("Não existe nenhuma categoria de tarefa com esse nome.");
+        } throw new NomeNaoAssociadoException("Não existe nenhuma categoria de tarefa com esse nome.");
     }
 
     /**

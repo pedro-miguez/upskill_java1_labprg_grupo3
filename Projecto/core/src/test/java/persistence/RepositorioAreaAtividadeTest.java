@@ -3,6 +3,7 @@ package persistence;
 
 import domain.AreaAtividade;
 import domain.CodigoUnico;
+import exceptions.CodigoNaoAssociadoException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -20,9 +21,9 @@ public class RepositorioAreaAtividadeTest {
 
     @Test
     public void testAddAreaAtividadeValida() {
-        CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
+        CodigoUnico codigoUnico = new CodigoUnico("AAA-00");
 
-        AreaAtividade areaAtividade = new AreaAtividade(codigoUnico, "Programação Jogos", "Programação Jogos em java");
+        AreaAtividade areaAtividade = new AreaAtividade(codigoUnico, "Area Atividade", "Area de Atividade");
 
         int expected = RepositorioAreaAtividade.getInstance().listarAreaAtividade().size() + 1;
 
@@ -62,7 +63,7 @@ public class RepositorioAreaAtividadeTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = CodigoNaoAssociadoException.class)
     public void testGetAreaAtividadeByCodUnicoInvalido() {
 
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");

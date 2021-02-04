@@ -4,6 +4,7 @@ import domain.AreaAtividade;
 import domain.CodigoUnico;
 import domain.Colaborador;
 import domain.CompetenciaTecnica;
+import exceptions.CodigoNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 return ct;
             }
         }
-        throw new IllegalArgumentException("Não existe competência técnica com esse código único.");
+        throw new CodigoNaoAssociadoException("Não existe competência técnica com esse código único.");
     }
 
     /**
