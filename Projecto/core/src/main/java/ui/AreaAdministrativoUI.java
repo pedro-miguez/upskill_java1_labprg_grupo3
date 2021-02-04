@@ -104,7 +104,7 @@ public class AreaAdministrativoUI implements Initializable {
                     txtDescBreveAreaAtividade.getText().trim(), txtDescDetalhadaAreaAtividade.getText().trim());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova área de atividade.",
-                    adicionou ? "Área de atividade criada com sucesso! \n\n" +
+                    adicionou ? "Area de atividade criada com sucesso! \n\n" +
                             plataformaController.getAreaAtividadeToStringCompletoByCodigoUnico(txtCodUnicoAreaAtividade.getText().trim())
                             : "Não foi possível registar a área de atividade.").show();
 

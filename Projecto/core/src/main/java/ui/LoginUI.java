@@ -2,8 +2,7 @@ package ui;
 
 import application.AuthenticationController;
 import application.PlataformaController;
-import domain.Plataforma;
-import javafx.application.Application;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -12,8 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
-import sun.applet.Main;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
