@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * 
- * The type User.
+ * Current class enables to create a new User object which hosts 
+ * some of the critical functions available in the app, such as getting or
+ * setting parameters like username, password, email and the role.
  */
 public class User implements Serializable {
     private String username;
@@ -14,7 +15,7 @@ public class User implements Serializable {
     private Role role;
 
     /**
-     * Construtor de um utilizador com os seguintes parâmetros:
+     * User builder with the following parameters:
      * @param username
      * @param password
      * @param email
@@ -28,7 +29,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Método para obtenção de um username.
+     * Method for obtaining a username.
      * @return 
      */
     public String getUsername() {
@@ -36,7 +37,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Valida um username.
+     * Validates a username.
      * @param username 
      */
     private void setUsername(String username) {
@@ -44,7 +45,8 @@ public class User implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma password.
+     * Method for obtaining a password.
+
      * @return 
      */
     public String getPassword() {
@@ -52,7 +54,8 @@ public class User implements Serializable {
     }
 
     /**
-     * Valida uma password.
+     * Validates a password.
+
      * @param password 
      */
     private void setPassword(String password) {
@@ -60,7 +63,8 @@ public class User implements Serializable {
     }
 
     /**
-     * Método para obtenção de um email.
+     * Method for obtaining an email.
+
      * @return 
      */
     public Email getEmail() {
@@ -68,7 +72,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Valida um email.
+     * Validates an email.
      * @param email 
      */
     private void setEmail(Email email) {
@@ -76,7 +80,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Método para obtenção de um role.
+     * Method for obtaining a role.
      * @return 
      */
     public Role getRole() {
@@ -84,7 +88,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Valida um role.
+     * Validates a role.
      * @param role 
      */
     private void setRole(Role role) {
@@ -92,7 +96,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objetos (utilizadores) são iguais.
+     * Method to check if two objects (users) are the same.
      * @param o
      * @return 
      */
