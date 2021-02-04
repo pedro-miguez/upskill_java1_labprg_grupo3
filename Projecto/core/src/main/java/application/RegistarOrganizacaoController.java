@@ -13,7 +13,7 @@ public class RegistarOrganizacaoController {
     private AuthenticationController authController = new AuthenticationController();
 
     /**
-     * Registar organizacao boolean.
+     * Organization registry boolean.
      *
      * @param nomeOrg        as organization name
      * @param nif            as finances identification
