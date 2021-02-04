@@ -1,6 +1,6 @@
 package persistence;
 
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.EmailNaoAssociadoException;
 import domain.*;
 import org.junit.Test;
 
@@ -49,21 +49,21 @@ public class RepositorioColaboradorTest {
     public void testGetColaboradorByEmailValido() {
         Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
                 new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
-        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+        Colaborador gestor = new Colaborador("nome1", new Telefone(999999991), new Email("colab1@org.com"), org, Funcao.GESTOR);
 
         RepositorioColaborador.getInstance().addColaborador(gestor);
 
-        assertEquals(gestor, RepositorioColaborador.getInstance().getColaboradorByEmail(new Email("colab@org.com")));
+        assertEquals(gestor, RepositorioColaborador.getInstance().getColaboradorByEmail(new Email("colab1@org.com")));
     }
 
-    @Test (expected = EmailNaoAssociadoAColaboradorException.class)
+    @Test (expected = EmailNaoAssociadoException.class)
     public void testGetColaboradorByEmailInvalido() {
         RepositorioColaborador.getInstance().getColaboradorByEmail(new Email("colabs@org.com"));
     }
 
     @Test
     public void testGetColaboradoresOrganizacaoValido() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+        Organizacao org = new Organizacao("org2", new NIF(111111111), new Website("www.org.com"), new Telefone(999999999),
                 new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
         Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
 

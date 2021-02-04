@@ -1,7 +1,8 @@
 package persistence;
 
 import domain.*;
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.EmailNaoAssociadoException;
+import exceptions.NomeNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -61,8 +62,7 @@ public class RepositorioUtilizador implements Serializable {
                 return u;
             }
         }
-
-        throw new EmailNaoAssociadoAColaboradorException(email.toString() + " não está associado a nenhum utilizador");
+        throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum utilizador");
     }
 
     /**
@@ -77,7 +77,7 @@ public class RepositorioUtilizador implements Serializable {
             }
         }
 
-        throw new IllegalArgumentException("O nome " + nome + " não está associado a nenhum utilizador");
+        throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
     }
 
     /**

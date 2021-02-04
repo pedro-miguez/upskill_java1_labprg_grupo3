@@ -6,6 +6,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * Current class has the tools to establish a connection and set up a request with the webservice.
+ */
 public class HttpConnection {
 
     private static String readBody(InputStream in) {
@@ -36,6 +39,12 @@ public class HttpConnection {
         }
     }
 
+    /**
+     * This method sets up the connection and the requests to the webservice and returns the response.
+     *
+     * @param httpRequest the webservice request
+     * @return the webservice response
+     */
     public static HttpResponse makeRequest(HttpRequest httpRequest) {
         HttpURLConnection httpConn = null;
         int resCode = -1;
@@ -72,10 +81,10 @@ public class HttpConnection {
             resCode = httpConn.getResponseCode();
             body = readBody(httpConn.getInputStream());
         } catch (MalformedURLException e) {
-//this is for normalize the error events according to the way is handled by the WS
+            //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
         } catch (IOException e) {
-//this is for normalize the error events according to the way is handled by the WS
+            //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
         }
         HttpResponse httpResponse = new HttpResponse(resCode, body);

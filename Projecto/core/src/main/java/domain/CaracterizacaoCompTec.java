@@ -66,6 +66,14 @@ public class CaracterizacaoCompTec implements Serializable {
         return grauProficiencia;
     }
 
+
+    @Override
+    public String toString() {
+        return  competenciaTecnica +
+                "\nobrigatorio: " + obrigatorio +
+                "\ngrauProficiencia: " + grauProficiencia;
+    }
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>

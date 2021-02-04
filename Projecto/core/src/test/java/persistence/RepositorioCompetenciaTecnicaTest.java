@@ -3,7 +3,7 @@ package persistence;
 import static org.junit.Assert.*;
 
 import domain.*;
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.CodigoNaoAssociadoException;
 import org.junit.Test;
 
 public class RepositorioCompetenciaTecnicaTest {
@@ -60,7 +60,7 @@ public class RepositorioCompetenciaTecnicaTest {
         assertEquals(ct, RepositorioCompetenciaTecnica.getInstance().getCompetenciaTecnicaByCodUnico(new CodigoUnico("JAV-01")));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = CodigoNaoAssociadoException.class)
     public void testGetCompetenciaTecnicaByCodigoUnicoInvalido() {
         RepositorioCompetenciaTecnica.getInstance().getCompetenciaTecnicaByCodUnico(new CodigoUnico("JAV-03"));
     }

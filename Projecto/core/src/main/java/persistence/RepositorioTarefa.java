@@ -1,7 +1,9 @@
 package persistence;
 
 import domain.CodigoUnico;
+import domain.Organizacao;
 import domain.Tarefa;
+import exceptions.CodigoNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -61,7 +63,18 @@ public class RepositorioTarefa implements Serializable {
                 return tarefa;
             }
         }
-        throw new IllegalArgumentException("Não existe nenhuma tarefa com esse código único.");
+        throw new CodigoNaoAssociadoException("Não existe nenhuma tarefa com esse código único.");
+    }
+
+    public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) {
+        ArrayList<Tarefa> tarefasOrganizacao = new ArrayList<>();
+
+        for (Tarefa t : tarefasRegistadas) {
+            if (t.getOrganizacao().equals(organizacao)) {
+                tarefasOrganizacao.add(t);
+            }
+        }
+        return tarefasOrganizacao;
     }
 
     /**

@@ -2,6 +2,7 @@ package persistence;
 
 import domain.AreaAtividade;
 import domain.CodigoUnico;
+import exceptions.CodigoNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class RepositorioAreaAtividade implements Serializable {
                 return a;
             }
         }
-            throw new IllegalArgumentException("Não existe nenhuma área de atividade com esse código único.");
+            throw new CodigoNaoAssociadoException("Não existe nenhuma área de atividade com esse código único.");
     }
 
     /**

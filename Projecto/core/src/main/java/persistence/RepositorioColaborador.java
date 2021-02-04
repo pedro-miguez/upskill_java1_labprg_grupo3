@@ -1,6 +1,6 @@
 package persistence;
 
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.EmailNaoAssociadoException;
 import domain.Colaborador;
 import domain.Email;
 import domain.Organizacao;
@@ -64,7 +64,7 @@ public class RepositorioColaborador implements Serializable {
             }
         }
 
-        throw new EmailNaoAssociadoAColaboradorException(email.toString() + " não está associado a nenhum colaborador");
+        throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum colaborador");
 
     }
 

@@ -9,8 +9,8 @@ package exceptions;
  *
  * @author Grupo 3 - Turma 1
  */
-public class EmailNaoAssociadoAColaboradorException extends IllegalArgumentException {
-    public EmailNaoAssociadoAColaboradorException(String s) {
+public class NomeNaoAssociadoException extends IllegalArgumentException {
+    public NomeNaoAssociadoException(String s) {
         super(s);
     }
 }
