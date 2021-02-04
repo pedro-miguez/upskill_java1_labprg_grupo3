@@ -32,8 +32,7 @@ public class AreaColaboradorUI implements Initializable {
     public TextArea txtDescricaoInformalTarefa;
     public Button btnLimparDadosTarefa;
 
-    
-    
+
     private DefinirTarefaController criarTarefaController;
     private PlataformaController plataformaController;
     private AuthenticationController authenticationController;
@@ -65,6 +64,10 @@ public class AreaColaboradorUI implements Initializable {
                     criou ? "Tarefa criada com sucesso."
                             : "Não foi possível criar a tarefa.").show();
 
+            if (criou) {
+                limparDados();
+            }
+
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -74,7 +77,7 @@ public class AreaColaboradorUI implements Initializable {
     }
 
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
-        //método vazio uma vez que por enquanto só existe um painel nesta área
+        comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
     }
 
     //logout

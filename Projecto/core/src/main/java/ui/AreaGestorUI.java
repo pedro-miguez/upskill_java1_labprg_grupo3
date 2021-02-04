@@ -101,6 +101,10 @@ public class AreaGestorUI implements Initializable {
                     criou ? "Tarefa criada com sucesso."
                             : "Não foi possível criar a tarefa.").show();
 
+            if (criou) {
+                limparTodosOsCampos();
+            }
+
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -131,6 +135,7 @@ public class AreaGestorUI implements Initializable {
         registarColaboradorPane.setDisable(false);
         criarTarefaPane.setVisible(false);
         criarTarefaPane.setDisable(true);
+
     }
 
     //selecionar menu criação de tarefa
@@ -139,6 +144,9 @@ public class AreaGestorUI implements Initializable {
         registarColaboradorPane.setDisable(true);
         criarTarefaPane.setVisible(true);
         criarTarefaPane.setDisable(false);
+
+        //popular elementos
+        comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
     }
 
     //fazer logout
