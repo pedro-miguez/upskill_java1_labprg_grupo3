@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 public class UsersAPI implements Serializable {
 
-    UsersAPIAdapter uapia;
+    private UsersAPIAdapter uapia;
 
     /**
      * Instantiates a new User api.
