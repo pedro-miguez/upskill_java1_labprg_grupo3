@@ -37,7 +37,13 @@ public class MainApp extends Application {
 
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-            //Plataforma.carregarDados();
+
+            try {
+                Plataforma.carregarDados();
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Desserialização",
+                        "Não foi encontrado ficheiro com dados.").show();
+            }
             plataformaController.resetUserAPI();
 
             //createData();

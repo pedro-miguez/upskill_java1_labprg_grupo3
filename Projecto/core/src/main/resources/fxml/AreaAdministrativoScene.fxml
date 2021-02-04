@@ -19,7 +19,7 @@
          <center>
             <StackPane prefHeight="474.0" prefWidth="696.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <GridPane prefHeight="366.0" prefWidth="721.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -93,9 +93,9 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="criarCategoriaTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0">
                      <top>
-                        <Label text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
+                        <Label prefHeight="20.0" prefWidth="327.0" text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets top="10.0" />
                            </BorderPane.margin>
@@ -105,10 +105,10 @@
                         </Label>
                      </top>
                      <center>
-                        <GridPane BorderPane.alignment="CENTER">
+                        <GridPane prefHeight="433.0" prefWidth="564.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="141.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="359.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="186.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="514.0" minWidth="10.0" prefWidth="514.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="125.0" minHeight="5.0" prefHeight="55.0" vgrow="SOMETIMES" />
@@ -123,10 +123,13 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtDescricaoCategoriaTarefa" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtDescricaoCategoriaTarefa" prefHeight="25.0" prefWidth="319.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="200.0" />
+                                 </GridPane.margin></TextField>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <left>
-                                    <ListView fx:id="listViewCompTecnicasPorSelecionarCategoriaTarefa" prefHeight="246.0" prefWidth="126.0" BorderPane.alignment="CENTER" />
+                                    <ListView fx:id="listViewCompTecnicasPorSelecionarCategoriaTarefa" prefHeight="258.0" prefWidth="158.0" BorderPane.alignment="CENTER" />
                                  </left>
                                  <center>
                                     <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="97.0" BorderPane.alignment="CENTER">
@@ -158,17 +161,15 @@
                                     </VBox>
                                  </center>
                                  <right>
-                                    <ListView fx:id="listViewCompTecnicasSelecionadasCategoriaTarefa" prefHeight="246.0" prefWidth="111.0" BorderPane.alignment="CENTER" />
+                                    <ListView fx:id="listViewCompTecnicasSelecionadasCategoriaTarefa" prefHeight="258.0" prefWidth="158.0" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets right="50.0" />
+                                       </BorderPane.margin></ListView>
                                  </right>
                               </BorderPane>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <children>
-                                    <ComboBox fx:id="comboBoxAreaAtividadeCategoriaTarefa" prefWidth="150.0" promptText="Áreas de Atividade" />
-                                    <Button fx:id="btnConfirmarAreaAtividadeCategoriaTarefa" mnemonicParsing="false" onAction="#confirmarAreaAtividadeCategoriaTarefaAction" prefHeight="25.0" prefWidth="70.0" text="Confirmar">
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Button>
+                                    <ComboBox fx:id="comboBoxAreaAtividadeCategoriaTarefa" onAction="#comboBoxAreaAtividadeCategoriaTarefaSelectAction" prefHeight="25.0" prefWidth="157.0" promptText="Áreas de Atividade" />
                                  </children>
                               </HBox>
                            </children>
@@ -189,7 +190,7 @@
                               </Button>
                            </children>
                            <padding>
-                              <Insets right="85.0" />
+                              <Insets right="40.0" />
                            </padding>
                         </HBox>
                      </bottom>

@@ -229,7 +229,7 @@ public class AreaAdministrativoUI implements Initializable {
     // ## METODOS UTILITARIOS ###################
 
     //confirmar área de atividade selecionada para popular o ListView de competencias tecnicas
-    public void confirmarAreaAtividadeCategoriaTarefaAction(ActionEvent actionEvent) {
+    public void comboBoxAreaAtividadeCategoriaTarefaSelectAction(ActionEvent actionEvent) {
         listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
     }
 
@@ -345,4 +345,6 @@ public class AreaAdministrativoUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
+     {
+    }
 }
