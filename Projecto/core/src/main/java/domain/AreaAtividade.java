@@ -82,7 +82,7 @@ public class AreaAtividade implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("Código Unico: %s; Descrição: %s;", this.codigoUnico, this.descricao);
+        return String.format("%s - %s", this.codigoUnico, this.descricao);
     }
 
     public String toStringCompleto() {

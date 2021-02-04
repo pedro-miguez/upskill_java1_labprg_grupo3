@@ -79,7 +79,7 @@ public class EnderecoPostal implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("Rua: %s, %s, com o código-postal %s", getLocal(), getLocalidade(), getCodPostal());
+        return String.format("%s, %s, com o código-postal %s", getLocal(), getLocalidade(), getCodPostal());
     }
 
     /**

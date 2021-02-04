@@ -19,7 +19,7 @@
          <center>
             <StackPane prefHeight="474.0" prefWidth="696.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0">
                      <center>
                         <GridPane prefHeight="366.0" prefWidth="721.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -93,7 +93,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarCategoriaTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <top>
                         <Label prefHeight="20.0" prefWidth="327.0" text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
                            <BorderPane.margin>

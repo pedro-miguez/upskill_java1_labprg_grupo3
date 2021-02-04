@@ -69,7 +69,7 @@ public class CaracterizacaoCompTec implements Serializable {
 
     @Override
     public String toString() {
-        return  competenciaTecnica +
+        return  competenciaTecnica.toString() +
                 "\nobrigatorio: " + obrigatorio +
                 "\ngrauProficiencia: " + grauProficiencia;
     }

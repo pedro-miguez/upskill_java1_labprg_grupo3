@@ -104,7 +104,7 @@ public class AreaAdministrativoUI implements Initializable {
                     txtDescBreveAreaAtividade.getText().trim(), txtDescDetalhadaAreaAtividade.getText().trim());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova área de atividade.",
-                    adicionou ? "Área de atividade criada com sucesso! \n\n" +
+                    adicionou ? "Area de atividade criada com sucesso! \n\n" +
                             plataformaController.getAreaAtividadeToStringCompletoByCodigoUnico(txtCodUnicoAreaAtividade.getText().trim())
                             : "Não foi possível registar a área de atividade.").show();
 
@@ -204,7 +204,6 @@ public class AreaAdministrativoUI implements Initializable {
 
         //popular elementos
         comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
-        comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia());
     }
 
     //mudar para o painel Criar Competencia Tecnica
@@ -238,7 +237,8 @@ public class AreaAdministrativoUI implements Initializable {
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
     public void compObrigatoriaCategoriaTarefaAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null) {
+        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
+                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
                     listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
                     true,
@@ -255,7 +255,8 @@ public class AreaAdministrativoUI implements Initializable {
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
     public void compOpcionalCategoriaTarefaAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null) {
+        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
+                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
                     listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
                     false,
@@ -297,6 +298,7 @@ public class AreaAdministrativoUI implements Initializable {
 
     //limpar dados criar categoria de tarefa
     public void limparCategoriaTarefaAction(ActionEvent event) {
+        btnRemoverUltimaCompTecCategoriaTarefa.setDisable(true);
         limparDadosCategoriaTarefa();
     }
     public void limparDadosCategoriaTarefa() {
