@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for creating interfaces
- * between the model and webservice.
+ * between the model and webservice (usersAPIAdapter).
  */
 public class UsersAPI implements Serializable {
 
