@@ -59,9 +59,9 @@ public class AreaColaboradorUI implements Initializable {
                     comboCategoriaTarefa.getValue(),
                     authenticationController.getEmail());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
-                    criou ? "Tarefa criada com sucesso."
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
+                    criou ? "Tarefa criada com sucesso! \n\n" +
+                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim())
                             : "Não foi possível criar a tarefa.").show();
 
             if (criou) {

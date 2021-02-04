@@ -1,10 +1,12 @@
 package ui;
 
+import application.PlataformaController;
 import application.RegistarOrganizacaoController;
 import domain.Plataforma;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,8 +16,11 @@ import persistence.RepositorioColaborador;
 import persistence.RepositorioOrganizacao;
 import persistence.RepositorioUtilizador;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class RegistarOrganizacaoUI {
+
+public class RegistarOrganizacaoUI implements Initializable {
 
     public TextField txtNomeGestor;
     public TextField txtContactoGestor;
@@ -32,6 +37,13 @@ public class RegistarOrganizacaoUI {
     public Button limparDados;
     public Button registarOrganizacao;
 
+    private PlataformaController plataformaController;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        plataformaController = new PlataformaController();
+    }
 
 
     //registar organização
@@ -53,12 +65,14 @@ public class RegistarOrganizacaoUI {
                     txtEmailGestor.getText().trim()
                     );
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registo de Organização",
-                    added ? "Organização registada com sucesso"
-                            : "Não foi possível registar a organização").show();
-
-            limparDados();
-            voltarJanelaInicial();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova organização.",
+                    added ? "Organização criada com sucesso! \n\n" +
+                            plataformaController.getOrganizacaoToStringCompletoByEmail(txtEmailOrg.getText().trim())
+                            : "Não foi possível registar a organização.").show();
+            if (added) {
+                limparDados();
+                voltarJanelaInicial();
+            }
 
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
@@ -100,6 +114,8 @@ public class RegistarOrganizacaoUI {
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
     }
+
+
 }
 
 

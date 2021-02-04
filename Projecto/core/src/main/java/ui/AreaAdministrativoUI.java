@@ -103,12 +103,13 @@ public class AreaAdministrativoUI implements Initializable {
             boolean adicionou = areaAtividadeController.definirAreaAtividade(txtCodUnicoAreaAtividade.getText().trim(),
                     txtDescBreveAreaAtividade.getText().trim(), txtDescDetalhadaAreaAtividade.getText().trim());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova área de atividade.",
-                    adicionou ? "Área de atividade adicionada com sucesso."
-                            : "Não foi possível adicionar a área de atividade.").show();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova área de atividade.",
+                    adicionou ? "Área de atividade criada com sucesso! \n\n" +
+                            plataformaController.getAreaAtividadeToStringCompletoByCodigoUnico(txtCodUnicoAreaAtividade.getText().trim())
+                            : "Não foi possível registar a área de atividade.").show();
 
             if (adicionou) {
-                limparTodosOsDados();
+                limparDadosAreaAtividade();
             }
 
         } catch (IllegalArgumentException e) {
@@ -124,12 +125,13 @@ public class AreaAdministrativoUI implements Initializable {
             boolean adicionou = categoriaTarefaController.definirCategoriaTarefa(comboBoxAreaAtividadeCategoriaTarefa.getValue(),
                     txtDescricaoCategoriaTarefa.getText().trim(), listViewCompTecnicasSelecionadasCategoriaTarefa.getItems());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova categoria de tarefa.",
-                    adicionou ? "Categoria de Tarefa adicionada com sucesso."
-                            : "Não foi possível adicionar a categoria de tarefa.").show();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova categoria de tarefa.",
+                    adicionou ? "Categoria de Tarefa criada com sucesso! \n\n" +
+                            plataformaController.getCategoriaTarefaToStringCompletoByNome(txtDescricaoCategoriaTarefa.getText().trim())
+                            : "Não foi possível registar a categoria de tarefa.").show();
 
             if (adicionou) {
-                limparTodosOsDados();
+                limparDadosCategoriaTarefa();
             }
 
         } catch (IllegalArgumentException e) {
@@ -145,12 +147,13 @@ public class AreaAdministrativoUI implements Initializable {
                     comboBoxAreaAtividadeCompetenciaTecnica.getValue(), txtDescBreveCompetenciaTecnica.getText().trim(),
                     txtDescDetalhadaCompetenciaTecnica.getText().trim());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
-                    adicionou ? "Competencia tecnica adicionada com sucesso."
-                            : "Não foi possível adicionar a competencia tecnica.").show();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova competência técnica.",
+                    adicionou ? "Competência Técnica criada com sucesso! \n\n" +
+                            plataformaController.getCompetenciaTecnicaToStringCompletoByCodigoUnico(txtCodigoUnicoCompetenciaTecnica.getText().trim())
+                            : "Não foi possível registar a Competência Técnica.").show();
 
             if (adicionou) {
-                limparTodosOsDados();
+                limparDadosCompetenciaTecnica();
             }
 
         } catch (IllegalArgumentException e) {
