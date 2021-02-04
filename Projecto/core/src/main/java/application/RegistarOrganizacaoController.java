@@ -4,10 +4,30 @@ import domain.*;
 import persistence.RepositorioColaborador;
 import persistence.RepositorioOrganizacao;
 
+/**
+ * Current class is the one responsible to connect the GUI with the methods responsible for registering new
+ * organizations.
+ */
 public class RegistarOrganizacaoController {
 
     private AuthenticationController authController = new AuthenticationController();
 
+    /**
+     * Registar organizacao boolean.
+     *
+     * @param nomeOrg        as organization name
+     * @param nif            as finances identification
+     * @param website        as website
+     * @param telefone       as phone nr
+     * @param email          as email
+     * @param rua            as street
+     * @param localidade     as location
+     * @param codigoPostal   as postcode
+     * @param nomeGestor     as manager name
+     * @param telefoneGestor as manager phone nr
+     * @param emailGestor    as manager email
+     * @return the boolean
+     */
     public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
                                        String email, String rua, String localidade, String codigoPostal,
                                        String nomeGestor, int telefoneGestor, String emailGestor) {
