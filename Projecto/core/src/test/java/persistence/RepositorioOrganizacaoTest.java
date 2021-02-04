@@ -20,7 +20,7 @@ public class RepositorioOrganizacaoTest {
 
     @Test
     public void testAddOrganizacaoValida() {
-        Organizacao org = new Organizacao("org123", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+        Organizacao org = new Organizacao("organ123", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
                 new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
 
         int expected = RepositorioOrganizacao.getInstance().listarOrganizacoes().size() + 1;
@@ -68,10 +68,10 @@ public class RepositorioOrganizacaoTest {
 
     @Test
     public void testgetOrganizacaoByGestorValido() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
+        Organizacao org = new Organizacao("org123", new NIF(111222333), new Website("www.org.com"), new Telefone(999999999),
                 new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
 
-        Colaborador gestor = new Colaborador("nome", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
+        Colaborador gestor = new Colaborador("gestor", new Telefone(112223223), new Email("colab123@org.com"), org, Funcao.GESTOR);
 
         RepositorioOrganizacao.getInstance().addOrganizacao(org);
 
@@ -99,25 +99,4 @@ public class RepositorioOrganizacaoTest {
 
     }
 
-    @Test
-    public void testlistarOrganizacoesValido() {
-        //faz sentido?
-    }
-
-    @Test
-    public void testlistarOrganizacoesInvalido() {
-        //faz sentido?
-    }
-
-
-
-    @Test
-    public void testRegistaGestorComoUtilizadorValido() {
-        //para mais tarde
-    }
-
-    @Test
-    public void testRegistaGestorComoUtilizadorInvalido() {
-        //para mais tarde
-    }
 }

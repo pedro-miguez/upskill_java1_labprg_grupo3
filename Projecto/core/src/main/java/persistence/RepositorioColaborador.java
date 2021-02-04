@@ -1,6 +1,6 @@
 package persistence;
 
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.EmailNaoAssociadoException;
 import domain.Colaborador;
 import domain.Email;
 import domain.Organizacao;
@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * The type RepositorioColaborador.
+ * Class responsible for creating a repository to store information about
+ * collaborator.
  */
 public class RepositorioColaborador implements Serializable {
 
     private static RepositorioColaborador instance;
 
     /**
-     * Colaboradores que irão ser adicionados no repositório.
+     * Collaborators that will be added to the repository.
      */
     private RepositorioColaborador(){
         colaboradoresRegistados = new ArrayList<>();
@@ -27,8 +27,8 @@ public class RepositorioColaborador implements Serializable {
     private List<Colaborador> colaboradoresRegistados;
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
      * @return 
      */
     public static RepositorioColaborador getInstance(){
@@ -39,8 +39,8 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se um colaborador existe no repositório,
-     * caso contrário é adicionado ao mesmo.
+     * Boolean method that checks if a collaborator exists in the repository, 
+     * otherwise it is added to it.
      * @param colaborador
      * @return 
      */
@@ -53,7 +53,7 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método para obtenção de um colaborador através do seu email.
+     * Method to obtain a collaborator through your email.
      * @param email
      * @return 
      */
@@ -64,12 +64,12 @@ public class RepositorioColaborador implements Serializable {
             }
         }
 
-        throw new EmailNaoAssociadoAColaboradorException(email.toString() + " não está associado a nenhum colaborador");
+        throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum colaborador");
 
     }
 
     /**
-     * Método para obtenção de um colaborador de uma dada organização.
+     * Method for obtaining a collaborator from a given organization.
      * @param organizacao
      * @return 
      */
@@ -86,7 +86,7 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método para listar colaboradores.
+     * Method for listing collaborators.
      * @return 
      */
     public ArrayList<Colaborador> listarColaboradores() {
@@ -94,8 +94,7 @@ public class RepositorioColaborador implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objectos (neste caso, colaboradores) são
-     * iguais.
+     * Method to check if two objects (in this case, collaborators) are the same.
      * @param o
      * @return 
      */

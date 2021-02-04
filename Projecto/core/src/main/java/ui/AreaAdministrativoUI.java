@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AreaAdministrativoUI implements Initializable {
@@ -106,6 +107,10 @@ public class AreaAdministrativoUI implements Initializable {
                     adicionou ? "Área de atividade adicionada com sucesso."
                             : "Não foi possível adicionar a área de atividade.").show();
 
+            if (adicionou) {
+                limparTodosOsDados();
+            }
+
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
@@ -123,6 +128,10 @@ public class AreaAdministrativoUI implements Initializable {
                     adicionou ? "Categoria de Tarefa adicionada com sucesso."
                             : "Não foi possível adicionar a categoria de tarefa.").show();
 
+            if (adicionou) {
+                limparTodosOsDados();
+            }
+
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
@@ -139,6 +148,10 @@ public class AreaAdministrativoUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
                     adicionou ? "Competencia tecnica adicionada com sucesso."
                             : "Não foi possível adicionar a competencia tecnica.").show();
+
+            if (adicionou) {
+                limparTodosOsDados();
+            }
 
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
@@ -168,6 +181,9 @@ public class AreaAdministrativoUI implements Initializable {
         criarAreaAtividadePane.setVisible(true);
         criarAreaAtividadePane.setDisable(false);
         txtCodUnicoAreaAtividade.requestFocus();
+
+        //atualizar
+
     }
 
     //mudar para o painel Criar Categoria de Tarefa
@@ -182,6 +198,10 @@ public class AreaAdministrativoUI implements Initializable {
         criarCategoriaTarefaPane.setVisible(true);
         criarCategoriaTarefaPane.setDisable(false);
         txtDescricaoCategoriaTarefa.requestFocus();
+
+        //popular elementos
+        comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
+        comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia());
     }
 
     //mudar para o painel Criar Competencia Tecnica
@@ -196,6 +216,9 @@ public class AreaAdministrativoUI implements Initializable {
         criarCompetenciaTecnicaPane.setVisible(true);
         criarCompetenciaTecnicaPane.setDisable(false);
         txtCodigoUnicoCompetenciaTecnica.requestFocus();
+
+        //popular elementos
+        comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(plataformaController.getAreasAtividade());
     }
 
     // ##########################################
@@ -212,24 +235,36 @@ public class AreaAdministrativoUI implements Initializable {
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
     public void compObrigatoriaCategoriaTarefaAction(ActionEvent actionEvent) {
-        CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
-                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
-                true,
-                comboBoxGrauProficienciaCategoriaTarefa.getValue());
+        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null) {
+            CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
+                    listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
+                    true,
+                    comboBoxGrauProficienciaCategoriaTarefa.getValue());
 
-        listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
-        btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
+            listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
+            btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
+                    "É obrigatório escolher um grau de proficiência").show();
+        }
+
     }
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
     public void compOpcionalCategoriaTarefaAction(ActionEvent actionEvent) {
-        CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
-                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
-                false,
-                comboBoxGrauProficienciaCategoriaTarefa.getValue());
+        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null) {
+            CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
+                    listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
+                    false,
+                    comboBoxGrauProficienciaCategoriaTarefa.getValue());
 
-        listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
-        btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
+            listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
+            btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
+                    "É obrigatório escolher um grau de proficiência").show();
+        }
+
     }
 
     //remover a última competência técnica da lista
@@ -262,7 +297,9 @@ public class AreaAdministrativoUI implements Initializable {
         limparDadosCategoriaTarefa();
     }
     public void limparDadosCategoriaTarefa() {
-
+        txtDescricaoCategoriaTarefa.clear();
+        listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(new ArrayList<>());
+        listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().setAll(new ArrayList<>());
     }
 
     //limpar dados criar competencia tecnica
@@ -273,7 +310,6 @@ public class AreaAdministrativoUI implements Initializable {
     public void limparDadosCompetenciaTecnica() {
         txtCodigoUnicoCompetenciaTecnica.clear();
         comboBoxAreaAtividadeCompetenciaTecnica.getSelectionModel().clearSelection();
-        /*comboBoxAreaAtividadeCompetenciaTecnica.setValue(null);*/
         txtDescBreveCompetenciaTecnica.clear();
         txtDescDetalhadaCompetenciaTecnica.clear();
         txtCodUnicoAreaAtividade.requestFocus();

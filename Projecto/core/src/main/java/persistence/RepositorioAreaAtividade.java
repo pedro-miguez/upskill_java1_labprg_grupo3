@@ -2,6 +2,7 @@ package persistence;
 
 import domain.AreaAtividade;
 import domain.CodigoUnico;
+import exceptions.CodigoNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * 
- * The type RepositorioAreaAtividade.
+ * Class responsible for creating a repository to store information about
+ * activity areas.
  */
 public class RepositorioAreaAtividade implements Serializable {
 
@@ -19,15 +20,15 @@ public class RepositorioAreaAtividade implements Serializable {
     private List<AreaAtividade> areasAdicionadas;
 
     /**
-     * Áreas de atividade que irão ser adicionadas no repositório.
+     * Activity areas that will be added to the repository.
      */
     private RepositorioAreaAtividade(){
         areasAdicionadas = new ArrayList<>();
     }
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
      * @return 
      */
     public static RepositorioAreaAtividade getInstance(){
@@ -38,8 +39,8 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se uma área de atividade existe no repositório,
-     * caso contrário é adicionada ao mesmo.
+     * Boolean method that checks if an area of ​​activity exists in the repository, 
+     * otherwise it is added to it.
      * @param areaAtividade
      * @return 
      */
@@ -53,7 +54,7 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma área de atividade através do seu código único.
+     * Method for obtaining an area of ​​activity using its unique code.
      * @param codigoUnico
      * @return 
      */
@@ -63,11 +64,11 @@ public class RepositorioAreaAtividade implements Serializable {
                 return a;
             }
         }
-            throw new IllegalArgumentException("Não existe nenhuma área de atividade com esse código único.");
+            throw new CodigoNaoAssociadoException("Não existe nenhuma área de atividade com esse código único.");
     }
 
     /**
-     * Método para listar áreas de atividades.
+     * Method to list areas of activities.
      * @return 
      */
     public ArrayList<AreaAtividade> listarAreaAtividade(){
@@ -75,8 +76,7 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objectos (neste caso, áreas de atividade) 
-     * são iguais.
+     * Method to check if two objects (in this case, areas of activity) are the same.
      * @param o
      * @return 
      */

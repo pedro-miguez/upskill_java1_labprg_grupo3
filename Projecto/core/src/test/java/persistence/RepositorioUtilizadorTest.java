@@ -3,7 +3,8 @@ package persistence;
 import static org.junit.Assert.*;
 
 import domain.*;
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.EmailNaoAssociadoException;
+import exceptions.NomeNaoAssociadoException;
 import org.junit.Test;
 
 public class RepositorioUtilizadorTest {
@@ -50,7 +51,7 @@ public class RepositorioUtilizadorTest {
         assertEquals(user, RepositorioUtilizador.getInstance().getUserByEmail(new Email("testmanpedro@gmail.com")));
     }
 
-    @Test (expected = EmailNaoAssociadoAColaboradorException.class)
+    @Test (expected = EmailNaoAssociadoException.class)
     public void testGetUtilizadorByEmailInvalido() {
         RepositorioUtilizador.getInstance().getUserByEmail(new Email("testmanpedro1@gmail.com"));
     }
@@ -64,7 +65,7 @@ public class RepositorioUtilizadorTest {
         assertEquals(user, RepositorioUtilizador.getInstance().getUserByUsername("testmanpedro"));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = NomeNaoAssociadoException.class)
     public void testGetUtilizadorByNameInvalido() {
         RepositorioUtilizador.getInstance().getUserByUsername("123");
     }

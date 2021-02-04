@@ -9,8 +9,8 @@ package exceptions;
  *
  * @author Grupo 3 - Turma 1
  */
-public class OrganizacaoInvalidaException extends IllegalArgumentException {
-    public OrganizacaoInvalidaException(String s) {
+public class EmailNaoAssociadoException extends IllegalArgumentException {
+    public EmailNaoAssociadoException(String s) {
         super(s);
     }
 }

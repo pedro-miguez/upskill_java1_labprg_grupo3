@@ -13,7 +13,7 @@ public class AreaAtividadeTest {
 
         AreaAtividade areaAtividade = new AreaAtividade(codigoUnico, "Programação de Jogos", "Programação de variados jogos em JAVA");
 
-        String expected = "Código Unico: PRG-01; Descrição: Programação de Jogos; Descrição Detalhada: Programação de variados jogos em JAVA";
+        String expected = "Código Unico: PRG-01; Descrição: Programação de Jogos;";
 
         String result = areaAtividade.toString();
 

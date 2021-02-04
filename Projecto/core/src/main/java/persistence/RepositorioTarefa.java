@@ -1,14 +1,16 @@
 package persistence;
 
 import domain.CodigoUnico;
+import domain.Organizacao;
 import domain.Tarefa;
+import exceptions.CodigoNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
- * The type RepositorioTarefa.
+ * Class responsible for creating a repository to store information about
+ * Task.
  */
 public class RepositorioTarefa implements Serializable {
 
@@ -17,15 +19,15 @@ public class RepositorioTarefa implements Serializable {
     public ArrayList<Tarefa> tarefasRegistadas;
 
     /**
-     * Tarefas que irão ser adicionadas (registadas) no repositório.
+     * Tasks that will be added (registered) in the repository.
      */
     private RepositorioTarefa() {
         tarefasRegistadas = new ArrayList<>();
     }
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
      * @return 
      */
     public static RepositorioTarefa getInstance() {
@@ -36,8 +38,8 @@ public class RepositorioTarefa implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se uma tarefa existe no repositório,
-     * caso contrário é adicionada ao mesmo.
+     * Boolean method that checks if a task exists in the repository, otherwise 
+     * it is added to it.
      * @param tarefa
      * @return 
      */
@@ -51,7 +53,7 @@ public class RepositorioTarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma tarefa através do seu código único.
+     * Method for obtaining a task using its unique code.
      * @param codigoUnico
      * @return 
      */
@@ -61,11 +63,22 @@ public class RepositorioTarefa implements Serializable {
                 return tarefa;
             }
         }
-        throw new IllegalArgumentException("Não existe nenhuma tarefa com esse código único.");
+        throw new CodigoNaoAssociadoException("Não existe nenhuma tarefa com esse código único.");
+    }
+
+    public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) {
+        ArrayList<Tarefa> tarefasOrganizacao = new ArrayList<>();
+
+        for (Tarefa t : tarefasRegistadas) {
+            if (t.getOrganizacao().equals(organizacao)) {
+                tarefasOrganizacao.add(t);
+            }
+        }
+        return tarefasOrganizacao;
     }
 
     /**
-     * Método para listar (registar) tarefas.
+     * Method for listing (registering) tasks.
      * @return 
      */
     public ArrayList<Tarefa> listarTarefas() {
@@ -73,8 +86,8 @@ public class RepositorioTarefa implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objectos (neste caso, tarefas) são
-     * iguais.
+     * Method to check if two objects (in this case, tasks) are equals.
+     * 
      * @param o
      * @return 
      */

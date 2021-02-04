@@ -1,22 +1,23 @@
 package persistence;
 
 import domain.*;
-import exceptions.EmailNaoAssociadoAColaboradorException;
+import exceptions.EmailNaoAssociadoException;
+import exceptions.NomeNaoAssociadoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * The type RepositorioUtilizador.
+ * Class responsible for creating a repository to store information about
+ * User.
  */
 public class RepositorioUtilizador implements Serializable {
 
     private static RepositorioUtilizador instance;
 
     /**
-     * Utilizadores que irão ser adicionados (registados) no repositório.
+     * Users to be added (registered) to the repository.
      */
     private RepositorioUtilizador(){
         utilizadoresRegistados = new ArrayList<>();
@@ -25,8 +26,8 @@ public class RepositorioUtilizador implements Serializable {
     private List<User> utilizadoresRegistados;
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object,
+     * that implements a singleton.
      * @return 
      */
     public static RepositorioUtilizador getInstance(){
@@ -37,8 +38,8 @@ public class RepositorioUtilizador implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se um utilizador existe no repositório,
-     * caso contrário é adicionado ao mesmo.
+     * Boolean method that checks if a user exists in the repository,
+     * otherwise it is added to it.
      * @param user
      * @return 
      */
@@ -51,7 +52,7 @@ public class RepositorioUtilizador implements Serializable {
     }
 
     /**
-     * Método para obtenção de um utilizador através do seu email.
+     * Method to get a user through your email.
      * @param email
      * @return 
      */
@@ -61,12 +62,11 @@ public class RepositorioUtilizador implements Serializable {
                 return u;
             }
         }
-
-        throw new EmailNaoAssociadoAColaboradorException(email.toString() + " não está associado a nenhum utilizador");
+        throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum utilizador");
     }
 
     /**
-     * Método para obtenção de um utilizador através do seu username.
+     * Method for obtaining a user using his username.
      * @param nome
      * @return 
      */
@@ -77,11 +77,11 @@ public class RepositorioUtilizador implements Serializable {
             }
         }
 
-        throw new IllegalArgumentException("O nome " + nome + " não está associado a nenhum utilizador");
+        throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
     }
 
     /**
-     * Método para obtenção de um utilizador através do seu papel(role).
+     * Method for obtaining a user through their role.
      * @param role
      * @return 
      */
@@ -98,7 +98,7 @@ public class RepositorioUtilizador implements Serializable {
 
 
     /**
-     * Método para listar (registar) utilizadores.
+     * Method for listing (registering) users.
      * @return 
      */
     public ArrayList<User> listarUtilizadores() {
