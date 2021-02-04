@@ -7,7 +7,7 @@ package exceptions;
 
 /**
  *
- * @author victo
+ * @author Grupo 3 - Turma 1
  */
 public class EmailInvalidoException extends IllegalArgumentException {
 

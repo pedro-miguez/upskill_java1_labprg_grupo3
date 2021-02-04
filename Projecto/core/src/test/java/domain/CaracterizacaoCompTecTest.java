@@ -19,6 +19,9 @@ public class CaracterizacaoCompTecTest {
 
         GrauProficiencia grauProficiencia = GrauProficiencia.ALTO;
 
+        ***************************************************************
+        //new caracterizacao comp test
+
         String expected = "Código Unico: JAV-01; Area de Actividade: Código Unico: PRG-01; Descrição: Programação de Jogos; " +
                 "Descrição Detalhada: Programação de variados jogos em JAVA; Descrição: Programação Java;" +
                 " Descrição Detalhada: Programação muito boa em Java";
