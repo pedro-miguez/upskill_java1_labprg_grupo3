@@ -75,7 +75,11 @@ public class AreaGestorUI implements Initializable {
                     );
             
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
-                    registou ? "Colaborador registado com sucesso." : "Não foi possível registar o colaborador.").show();
+                    registou ? "Colaborador criado com sucesso! \n\n" +
+                            plataformaController.getColaboradorToStringCompletoByEmail(txtEmailColaborador.getText().trim())
+                            : "Não foi possível registar o colaborador.").show();
+
+            limparDadosRegistarColaboradorPane();
             
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
@@ -96,13 +100,13 @@ public class AreaGestorUI implements Initializable {
                     comboCategoria.getValue(),
                     authController.getEmail());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
-                    criou ? "Tarefa criada com sucesso."
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
+                    criou ? "Tarefa criada com sucesso! \n\n" +
+                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim())
                             : "Não foi possível criar a tarefa.").show();
 
             if (criou) {
-                limparTodosOsCampos();
+                limparDadosRegistarTarefaPane();
             }
 
         } catch (IllegalArgumentException e) {
@@ -114,6 +118,10 @@ public class AreaGestorUI implements Initializable {
 
     //limpar campos do registo colaborador
     public void limparRegistarColaboradorAction(ActionEvent actionEvent) {
+        limparDadosRegistarColaboradorPane();
+    }
+
+    public void limparDadosRegistarColaboradorPane() {
         txtNomeColaborador.clear();
         txtContactoColaborador.clear();
         txtEmailColaborador.clear();
@@ -121,6 +129,10 @@ public class AreaGestorUI implements Initializable {
 
     //Limpar campos do registo tarefa
     public void limparActionTarefa(ActionEvent actionEvent) {
+        limparDadosRegistarTarefaPane();
+    }
+
+    public void limparDadosRegistarTarefaPane() {
         txtCodigoUnicoTarefa.clear();
         txtCustoTarefa.clear();
         txtDescInfTarefa.clear();
