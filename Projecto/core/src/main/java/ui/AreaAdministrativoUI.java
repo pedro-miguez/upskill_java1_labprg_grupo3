@@ -204,7 +204,6 @@ public class AreaAdministrativoUI implements Initializable {
 
         //popular elementos
         comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
-        comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia());
     }
 
     //mudar para o painel Criar Competencia Tecnica
@@ -238,7 +237,8 @@ public class AreaAdministrativoUI implements Initializable {
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
     public void compObrigatoriaCategoriaTarefaAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null) {
+        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
+                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
                     listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
                     true,
@@ -255,7 +255,8 @@ public class AreaAdministrativoUI implements Initializable {
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
     public void compOpcionalCategoriaTarefaAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null) {
+        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
+                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
                     listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
                     false,
