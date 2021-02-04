@@ -16,11 +16,6 @@ import persistence.RepositorioColaborador;
  */
 public class RegistarColaboradorController {
 
-
-  
-    /**
-     * New authentication instance.
-     */
      private AuthenticationController authController = new AuthenticationController();
 
 
