@@ -17,11 +17,6 @@ public class TarefaTest {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos",
                 "Programação de variados jogos em JAVA");
 
-/*        CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "Programação Java", "Programação muito boa em Java");
-
-        CaracterizacaoCompTec compTec = new CaracterizacaoCompTec(ct, true, GrauProficiencia.INTERMEDIO);*/
-
         CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade, "Programação", new ArrayList<CaracterizacaoCompTec>());
 
         Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
