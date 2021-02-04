@@ -37,7 +37,7 @@ public class LoginUI implements Initializable {
     public void loginAction(ActionEvent actionEvent) {
         boolean login = authController.login(txtUsername.getText(), txtPassoword.getText());
         if (login) {
-            plataformaController.resetUserAPI();
+            //plataformaController.resetUserAPI();
             switch(authController.getRole()) {
                 case "gestor":
                     MainApp.screenController.activate("AreaGestor");

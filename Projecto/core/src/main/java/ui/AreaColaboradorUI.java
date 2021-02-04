@@ -86,6 +86,7 @@ public class AreaColaboradorUI implements Initializable {
         } else {
             limparDados();
             authenticationController.logout();
+            plataformaController.resetUserAPI();
             voltarJanelaInicial();
         }
     }

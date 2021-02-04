@@ -17,7 +17,7 @@ public class RegistarColaboradorController {
     AuthenticationController authController = new AuthenticationController();
 
 
-    public boolean Colaborador(String nomeColaborador,String contactoColaborador, String emailColaborador, String gestorEmail) {
+    public boolean registarColaborador(String nomeColaborador,String contactoColaborador, String emailColaborador, String gestorEmail) {
 
         Colaborador collab = Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(gestorEmail));
 

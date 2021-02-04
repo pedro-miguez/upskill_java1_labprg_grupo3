@@ -68,7 +68,7 @@ public class AreaGestorUI implements Initializable {
     @FXML
     void registarColaboradorAction(ActionEvent event) {
         try {
-            boolean registou = registarColaboradorController.Colaborador(txtNomeColaborador.getText().trim(),
+            boolean registou = registarColaboradorController.registarColaborador(txtNomeColaborador.getText().trim(),
                     txtContactoColaborador.getText().trim(),
                     txtEmailColaborador.getText().trim(),
                     authController.getEmail()
@@ -150,6 +150,7 @@ public class AreaGestorUI implements Initializable {
         } else {
             limparTodosOsCampos();
             authController.logout();
+            plataformaController.resetUserAPI();
             voltarJanelaInicial();
         }
     }
