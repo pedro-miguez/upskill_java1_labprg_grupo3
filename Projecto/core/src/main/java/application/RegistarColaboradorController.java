@@ -9,14 +9,28 @@ import domain.*;
 import persistence.RepositorioColaborador;
 
 /**
+ *  Current class is the one responsible to connect the GUI with the methods responsible for registering new
+ *  collaborators.
  *
  * @author Grupo 3
  */
 public class RegistarColaboradorController {
 
+    /**
+     * New authentication instance.
+     */
     AuthenticationController authController = new AuthenticationController();
 
 
+    /**
+     * Collaborator Registry boolean.
+     *
+     * @param nomeColaborador     as collaborator name
+     * @param contactoColaborador as collaborator contact
+     * @param emailColaborador    as collaborator email
+     * @param gestorEmail         as manager email
+     * @return the boolean
+     */
     public boolean registarColaborador(String nomeColaborador,String contactoColaborador, String emailColaborador, String gestorEmail) {
 
         Colaborador collab = Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(gestorEmail));
