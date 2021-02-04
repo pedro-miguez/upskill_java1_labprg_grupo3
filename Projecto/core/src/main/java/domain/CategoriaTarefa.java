@@ -86,6 +86,16 @@ public class CategoriaTarefa implements Serializable {
                 this.descricao, this.areaAtividade.getDescricao());
         }
 
+    public String toStringCompleto() {
+        StringBuilder s = new StringBuilder();
+
+        for (CaracterizacaoCompTec cct : this.competenciasTecnicas) {
+            s.append("- ").append(cct).append("\n");
+        }
+        return String.format("Descrição: %s%nArea de Actividade: %s%nCompetências: %n%s",
+                this.descricao, this.areaAtividade.getDescricao(), s);
+    }
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>

@@ -109,6 +109,12 @@ public class Colaborador implements Serializable {
         this.organizacao = organizacao;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nFunção: %s%nOrganização: %s",
+                this.nome, this.telefone, this.email, this.funcao, this.organizacao.getNome());
+    }
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>

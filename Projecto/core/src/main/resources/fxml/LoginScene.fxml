@@ -21,8 +21,8 @@
       <Label layoutX="211.0" layoutY="252.0" text="USERNAME" />
       <Label layoutX="211.0" layoutY="298.0" text="PASSWORD" />
       <TextField fx:id="txtUsername" layoutX="295.0" layoutY="248.0" prefHeight="25.0" prefWidth="230.0" />
-      <PasswordField fx:id="txtPassoword" layoutX="295.0" layoutY="294.0" prefHeight="25.0" prefWidth="230.0" />
-      <Button fx:id="btnLogin" layoutX="330.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginAction" onKeyReleased="#entrarButtonActivate" text="Entrar" />
+      <PasswordField fx:id="txtPassoword" layoutX="295.0" layoutY="294.0" prefHeight="25.0" prefWidth="230.0" onKeyReleased="#entrarButtonActivate" />
+      <Button fx:id="btnLogin" layoutX="330.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginAction"  text="Entrar" />
       <Button fx:id="btnVoltar" layoutX="430.0" layoutY="352.0" mnemonicParsing="false" onAction="#voltarAction" text="Voltar" />
    </children>
 </AnchorPane>

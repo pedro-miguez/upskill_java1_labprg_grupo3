@@ -54,4 +54,28 @@ public class PlataformaController {
     public void resetUserAPI() {
         Plataforma.getInstance().resetUserAPI();
     }
+
+    public String getAreaAtividadeToStringCompletoByCodigoUnico(String codigoUnico) {
+        return Plataforma.getInstance().getRepoAreaAtiv().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnico)).toStringCompleto();
+    }
+
+    public String getCategoriaTarefaToStringCompletoByNome(String nome) {
+        return Plataforma.getInstance().getRepoCategoriaTarefa().getCategoriaTarefaByDescricao(nome).toStringCompleto();
+    }
+
+    public String getColaboradorToStringCompletoByEmail(String email) {
+        return Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(email)).toString();
+    }
+
+    public String getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico) {
+        return Plataforma.getInstance().getRepoCompTec().getCompetenciaTecnicaByCodUnico(new CodigoUnico(codigoUnico)).toString();
+    }
+
+    public String getOrganizacaoToStringCompletoByEmail(String email) {
+        return Plataforma.getInstance().getRepoOrg().getOrganizacaoByEmail(new Email(email)).toString();
+    }
+
+    public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico) {
+        return Plataforma.getInstance().getRepoTarefa().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico)).toString();
+    }
 }

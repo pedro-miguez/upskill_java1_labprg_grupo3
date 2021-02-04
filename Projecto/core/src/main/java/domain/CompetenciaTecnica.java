@@ -78,6 +78,11 @@ public class CompetenciaTecnica implements Serializable {
                  this.codigoUnico, this.descricao);
     }
 
+    public String toStringCompleto() {
+        return String.format("Código Único: %s%nÁrea de Atividade: %s%nDescrição breve: %s%nDescrição detalhada: %s",
+                this.codigoUnico, this.areaAtividade.getDescricao(), this.descricao, this.descDetalhada);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

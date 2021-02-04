@@ -72,6 +72,10 @@ public class Organizacao implements Serializable {
         this.email = email;
     }
 
+    public Email getEmail() {
+        return this.email;
+    }
+
     /**
      * Gets the manager of the organization.
      *
@@ -108,15 +112,8 @@ public class Organizacao implements Serializable {
      */
     @Override
     public String toString() {
-        return "Organizacao{" +
-                "nome='" + nome + '\'' +
-                ", nif=" + nif +
-                ", website=" + website +
-                ", telefone=" + telefone +
-                ", email=" + email +
-                ", enderecoPostal=" + enderecoPostal +
-                ", gestor=" + gestor +
-                '}';
+        return String.format("Nome: %s%nNIF: %s%nWebsite: %s%nTelefone: %s%nE-mail: %s%nEndereço Postal: %s%nGestor: %s",
+                this.getNome(), this.nif, this.website, this.telefone, this.email, this.enderecoPostal, this.gestor.getNome());
     }
 
     /**

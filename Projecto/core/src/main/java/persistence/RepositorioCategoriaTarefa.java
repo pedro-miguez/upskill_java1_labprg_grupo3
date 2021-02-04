@@ -41,7 +41,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     /**
      * Boolean method that checks if an task category exists in the repository, 
      * otherwise it is added to it.
-     * @param categoriaTarefa
+     * @param categoriaTarefa the object CategoriaTarefa to add to the repository
      * @return 
      */
     public boolean addCategoriaTarefa(CategoriaTarefa categoriaTarefa){
@@ -55,8 +55,8 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     /**
      * Method for obtaining a task category through its description.
-     * @param descricao
-     * @return 
+     * @param descricao the name of a task category to search for
+     * @return the matching task category
      */
     public CategoriaTarefa getCategoriaTarefaByDescricao(String descricao){
         for (CategoriaTarefa catt : categoriasTarefas) {

@@ -14,7 +14,7 @@ import persistence.RepositorioColaborador;
  */
 public class RegistarColaboradorController {
 
-    AuthenticationController authController = new AuthenticationController();
+    private AuthenticationController authController = new AuthenticationController();
 
 
     public boolean registarColaborador(String nomeColaborador,String contactoColaborador, String emailColaborador, String gestorEmail) {

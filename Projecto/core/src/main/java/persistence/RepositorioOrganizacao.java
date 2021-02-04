@@ -2,6 +2,7 @@ package persistence;
 
 import application.UsersAPI;
 import domain.*;
+import exceptions.EmailNaoAssociadoException;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;
 
 import java.io.Serializable;
@@ -77,6 +78,15 @@ public class RepositorioOrganizacao implements Serializable {
             }
         }
         throw new GestorNaoRelacionadoANenhumaOrgException("Não existe nenhuma organização associada a este gestor");
+    }
+
+    public Organizacao getOrganizacaoByEmail(Email email) {
+        for (Organizacao o : organizacoesRegistadas) {
+            if (o.getEmail() != null && o.getEmail().equals(email) ) {
+                return o;
+            }
+        }
+        throw new EmailNaoAssociadoException("Não existe nenhuma organização associada a este e-mail.");
     }
 
     /**

@@ -85,6 +85,11 @@ public class AreaAtividade implements Serializable {
         return String.format("Código Unico: %s; Descrição: %s;", this.codigoUnico, this.descricao);
     }
 
+    public String toStringCompleto() {
+        return String.format("Código Unico: %s%nDescrição: %s%nDescrição Detalhada: %s",
+                this.codigoUnico, this.descricao, this.descDetalhada);
+    }
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>
