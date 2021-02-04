@@ -49,11 +49,14 @@ public class NIF implements Serializable {
     }
 
     /**
-     * Compares this object with specified object for order.
+     * Indicates whether some other object is "equal to" this one.
+     * <p>
+     * The {@code equals} method implements an equivalence relation
+     * on non-null object references:
      *
-     * @param o the object to be compared.
-     * @return a negative integer, zero, or a positive integer as this object
-     * is less than, equal to, or greater than the specified object.
+     * @param   o   the reference object with which to compare.
+     * @return  {@code true} if this object is the same as the obj
+     *          argument; {@code false} otherwise.
      *
      */
     @Override
