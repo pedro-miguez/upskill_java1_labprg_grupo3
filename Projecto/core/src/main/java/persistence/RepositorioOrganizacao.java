@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * The type RepositorioOrganizacao.
+ * Class responsible for creating a repository to store information about
+ * organization.
  */
 public class RepositorioOrganizacao implements Serializable {
 
     private static RepositorioOrganizacao instance;
 
     /**
-     * Organizações que irão ser adicionadas (registadas) no repositório.
+     * Organizations that will be added (registered) to the repository.
      */
     private RepositorioOrganizacao(){
         organizacoesRegistadas = new ArrayList<>();
@@ -26,8 +26,8 @@ public class RepositorioOrganizacao implements Serializable {
     private List<Organizacao> organizacoesRegistadas;
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
      * @return 
      */
     public static RepositorioOrganizacao getInstance(){
@@ -38,8 +38,8 @@ public class RepositorioOrganizacao implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se uma organização existe no repositório,
-     * caso contrário é adicionada ao mesmo.
+     * Boolean method that checks if an organization exists in the repository, 
+     * otherwise it is added to it.
      * @param organizacao
      * @return 
      */
@@ -53,8 +53,8 @@ public class RepositorioOrganizacao implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se na organização existe um gestor,
-     * caso contrário é adicionado (como sendo um colaborador).
+     * Boolean method that checks if a manager exists in the organization, 
+     * otherwise it is added (as being a collaborator).
      * @param colaborador
      * @param organizacao
      * @return 
@@ -66,7 +66,7 @@ public class RepositorioOrganizacao implements Serializable {
 
 
     /**
-     * Método para obtenção de uma organização através do seu gestor.
+     * Method for obtaining an organization through its manager.
      * @param colaborador
      * @return 
      */
@@ -80,7 +80,7 @@ public class RepositorioOrganizacao implements Serializable {
     }
 
     /**
-     * Método para listar (registar) organizações.
+     * Method for listing (registering) organizations.
      * @return 
      */
     public ArrayList<Organizacao> listarOrganizacoes() {
@@ -88,8 +88,7 @@ public class RepositorioOrganizacao implements Serializable {
     }
 
     /**
-     * Método para verificar se dois objectos (neste caso, organizações) são
-     * iguais.
+     * Method to check if two objects (in this case, organizations) are the same.
      * @param o
      * @return 
      */

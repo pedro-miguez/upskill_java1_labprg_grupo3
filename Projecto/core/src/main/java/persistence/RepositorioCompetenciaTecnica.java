@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * The type RepositorioCompetenciaTecnica.
+ * Class responsible for creating a repository to store information about
+ * technical competence.
  */
 public class RepositorioCompetenciaTecnica implements Serializable {
 
@@ -20,15 +20,15 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     private List<CompetenciaTecnica> competenciasTecnicas;
 
     /**
-     * Competências técnicas que irão ser adicionadas no repositório.
+     * Technical skills that will be added to the repository.
      */
     private RepositorioCompetenciaTecnica(){
         competenciasTecnicas = new ArrayList<>();
     }
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
      * @return 
      */
     public static RepositorioCompetenciaTecnica getInstance(){
@@ -39,8 +39,8 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se uma competência técnica existe no repositório,
-     * caso contrário é adicionada ao mesmo.
+     * Boolean method that checks if a technical competence exists in the repository, 
+     * otherwise it is added to it.
      * @param competenciaTecnica
      * @return 
      */
@@ -54,7 +54,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma competência técnica através do seu código único.
+     * Method for obtaining technical competence through its unique code.
      * @param codigoUnico
      * @return 
      */
@@ -68,7 +68,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Método para obter na lista competências técnicas pela sua área de atividade.
+     * Method for obtaining technical skills on the list by their area of ​​activity.
      * @param areaAtividade
      * @return 
      */
@@ -85,7 +85,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Método para listar competências técnicas.
+     * Method for listing technical skills.
      * @return 
      */
     public ArrayList<CompetenciaTecnica> listarCompetenciasTecnicas(){

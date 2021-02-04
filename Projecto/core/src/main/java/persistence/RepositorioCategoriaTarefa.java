@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * The type RepositorioCategoriaTarefa.
+ * Class responsible for creating a repository to store information about
+ * task categories.
  */
 public class RepositorioCategoriaTarefa implements Serializable {
 
@@ -19,15 +19,15 @@ public class RepositorioCategoriaTarefa implements Serializable {
     private List<CategoriaTarefa> categoriasTarefas;
 
     /**
-     * Categorias de tarefas que irão ser adicionadas no repositório.
+     * Task categories that will be added to the repository.
      */
     private RepositorioCategoriaTarefa(){
         categoriasTarefas = new ArrayList<>();
     }
 
     /**
-     * Método estático que devolve uma referência única do objecto da classe,
-     * que implementa um singleton.
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
      * @return 
      */
     public static RepositorioCategoriaTarefa getInstance(){
@@ -38,8 +38,8 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
     /**
-     * Método booleano que verifica se uma categoria de tarefa existe no repositório,
-     * caso contrário é adicionada ao mesmo.
+     * Boolean method that checks if an task category exists in the repository, 
+     * otherwise it is added to it.
      * @param categoriaTarefa
      * @return 
      */
@@ -53,7 +53,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
     /**
-     * Método para obtenção de uma categoria de tarefa através da sua descrição.
+     * Method for obtaining a task category through its description.
      * @param descricao
      * @return 
      */
@@ -66,7 +66,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
     /**
-     * Método para listar categorias de tarefas.
+     * Method for listing task categories.
      * @return 
      */
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa(){
