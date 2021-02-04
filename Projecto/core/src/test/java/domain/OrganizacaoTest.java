@@ -41,5 +41,5 @@ public class OrganizacaoTest {
 
        org.setGestor(gestor);
     }
-    
+
 }
