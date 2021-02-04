@@ -298,6 +298,7 @@ public class AreaAdministrativoUI implements Initializable {
 
     //limpar dados criar categoria de tarefa
     public void limparCategoriaTarefaAction(ActionEvent event) {
+        btnRemoverUltimaCompTecCategoriaTarefa.setDisable(true);
         limparDadosCategoriaTarefa();
     }
     public void limparDadosCategoriaTarefa() {
