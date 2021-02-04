@@ -1,5 +1,8 @@
 package network;
 
+/**
+ * Current class has the tools to specify the status code for the connection and requests to the webservice.
+ */
 public class HttpStatusCode {
     public static final int Continue = 100 ;
     public static final int SwitchingProtocols = 101 ;
