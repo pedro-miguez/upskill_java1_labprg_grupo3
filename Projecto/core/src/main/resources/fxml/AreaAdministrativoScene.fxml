@@ -19,7 +19,7 @@
          <center>
             <StackPane prefHeight="474.0" prefWidth="696.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0">
                      <center>
                         <GridPane prefHeight="366.0" prefWidth="721.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -93,7 +93,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarCategoriaTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <top>
                         <Label text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
@@ -146,7 +146,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="btnRemoverUltimaCompTecCategoriaTarefa" layoutX="15.0" layoutY="116.0" mnemonicParsing="false" onAction="#removerUltimaCompTecCategoriaTarefaAction" prefHeight="24.0" prefWidth="103.0" text="Remover Última" textAlignment="CENTER" wrapText="true">
+                                          <Button fx:id="btnRemoverUltimaCompTecCategoriaTarefa" disable="true" layoutX="15.0" layoutY="116.0" mnemonicParsing="false" onAction="#removerUltimaCompTecCategoriaTarefaAction" prefHeight="24.0" prefWidth="103.0" text="Remover Última" textAlignment="CENTER" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
                                              </VBox.margin>
