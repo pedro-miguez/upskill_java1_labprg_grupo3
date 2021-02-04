@@ -12,7 +12,7 @@ import utils.Response;
 import java.io.Serializable;
 
 public class UsersAPI implements Serializable {
-    UsersAPIAdapter uapia;
+    private UsersAPIAdapter uapia;
 
     public UsersAPI() {
         String app_key = "IBD0DEHBDID62EB1EAZBEoA95E3cB5BD5135d01F0FqE6eDDoD4yDEX05RFEF19q9BY04KBE03A919hAFM06";
