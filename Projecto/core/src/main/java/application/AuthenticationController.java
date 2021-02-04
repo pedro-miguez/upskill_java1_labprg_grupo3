@@ -43,7 +43,7 @@ public class AuthenticationController {
         System.out.println(password);
 
         UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
-        User user = new User(nome, password, new Email(email), Role.GESTOR);
+        User user = new User(nome, password, new Email(email), Role.COLABORADOR);
         return uapi.registerUserWithRoles(nome, email, password, "colaborador")
                 && Plataforma.getInstance().getRepoUser().addUtilizador(user);
     }

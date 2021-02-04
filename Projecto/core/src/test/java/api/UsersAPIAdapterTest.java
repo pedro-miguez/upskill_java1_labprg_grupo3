@@ -18,7 +18,7 @@ public class UsersAPIAdapterTest{
     }
 
     @Test
-    public void testRegisterAndLogin() {
+    public void testLogin() {
         UsersAPI uapi = new UsersAPI();
         assertTrue(uapi.login("testpedroman", "qwerty"));
     }
@@ -26,18 +26,9 @@ public class UsersAPIAdapterTest{
     @Test
     public void testLogout() {
         UsersAPI uapi = new UsersAPI();
-
+        uapi.login("testpedroman", "qwerty");
         assertTrue(uapi.logout());
     }
 
-    public void testRegisterUser() {
-    }
 
-    public void testRegisterUserWithRoles() {
-    }
-
-    public void testGetSession() {
-        UsersAPI uapi = new UsersAPI();
-        uapi.getEmail();
-    }
 }
