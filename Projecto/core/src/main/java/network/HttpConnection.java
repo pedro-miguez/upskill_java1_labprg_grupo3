@@ -72,10 +72,10 @@ public class HttpConnection {
             resCode = httpConn.getResponseCode();
             body = readBody(httpConn.getInputStream());
         } catch (MalformedURLException e) {
-//this is for normalize the error events according to the way is handled by the WS
+            //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
         } catch (IOException e) {
-//this is for normalize the error events according to the way is handled by the WS
+            //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
         }
         HttpResponse httpResponse = new HttpResponse(resCode, body);
