@@ -37,7 +37,7 @@ public class MainApp extends Application {
 
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-            Plataforma.carregarDados();
+            //Plataforma.carregarDados();
             plataformaController.resetUserAPI();
 
             //createData();
