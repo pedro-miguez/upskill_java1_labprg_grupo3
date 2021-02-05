@@ -5,34 +5,35 @@ class DefinirAreaUI{
 }
 
 class DefinirAreaController{
-    +novaAreaAtividade(String cod, String dsBreve, String dsDet)
-    +registaAreaAtividade()
+    +definirAreaAtividade(String codigoUnico, String descBreve, String descDetalhada)
 }
 
 class Plataforma{
-    -String designacao
-    +RegistoAreasAtividade getRegistoAreasAtividade()
+    +RepositorioAreaAtividade getRepoAreaAtiv()
 }
 
-class RegistoAreasAtividade{
-    +AreaAtividade novaAreaAtividade(String cod, String dsBreve, String dsDet)
-    +validaAreaAtividade(AreaAtividade area)
-    +registaAreaAtividade(AreaAtividade area)
+class RepositorioAreaAtividade{
+    +AreaAtividade criarAreaAtividade(String codigoUnico, String descBreve, String descDetalhada)
     -addAreaAtividade(AreaAtividade area)
+    -AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico)
+    -ArrayList<AreaAtividade> listarAreaAtividade()
 }
 
 class AreaAtividade{
-    -String codigo
     -String descBreve
     -String descDetalhada
-    +AreaAtividade(String cod, String dsBreve, String dsDet)
+    +AreaAtividade(CodigoUnico codigoUnico, String descBreve, String descDetalhada)
+}
+
+class CodigoUnico{
+    -String codigoUnico
 }
 
 DefinirAreaUI ..> DefinirAreaController
 DefinirAreaController ..> AreaAtividade
 DefinirAreaController ..> Plataforma
-DefinirAreaController ..> RegistoAreasAtividade
-Plataforma "1" --> "1" RegistoAreasAtividade: tem
-RegistoAreasAtividade "1" --> "*" AreaAtividade: possui
-
+DefinirAreaController ..> RepositorioAreaAtividade
+Plataforma "1" --> "1" RepositorioAreaAtividade: tem
+RepositorioAreaAtividade "1" --> "*" AreaAtividade: possui
+AreaAtividade "1" --> "1" CodigoUnico : tem
 @enduml_mc_uc2
