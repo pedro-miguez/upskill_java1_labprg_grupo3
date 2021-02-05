@@ -11,7 +11,7 @@ public class PlataformaControllerTest {
     private PlataformaController plataformaController = new PlataformaController();
 
     @Test
-    public void testGetAreaAtividadeToStringCompletoByCodigoUnico() {
+    public void testGetAreaAtividadeToStringCompletoByCodigoUnicoValido() {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("AAA-99"), "Area Atividadez", "Area de Atividadezz");
         Plataforma.getInstance().getRepoAreaAtiv().addAreaAtividade(areaAtividade);
 
@@ -20,5 +20,7 @@ public class PlataformaControllerTest {
 
         assertEquals(expected, result);
     }
+
+
 
 }
