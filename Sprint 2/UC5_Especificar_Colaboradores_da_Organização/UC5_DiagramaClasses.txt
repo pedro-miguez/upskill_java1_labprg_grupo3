@@ -11,6 +11,13 @@ participant SessaoUtilizador
 participant RegistoOrganizacoes
 participant Organizacao
 participant AlgoritmoGeradorPassword
+participant Colaborador
+
+activate Colaborador
+GestorOrganizacao -> "repo:RepositorioColaborador" : repoColab.getColaboradorByEmail(new Email(gestorEmail))
+Organizacao -> "repo:RepositorioOrganizacao" : repoOrg.getOrganizacaoByGestor(gestor)
+Colaborador -> "repo:RepositorioColaborador" : repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+
 
 activate GestorOrganizacao
 GestorOrganizacao -> UI: 1: Inicia a especificacao \n de um colaborador\n da organizacao
