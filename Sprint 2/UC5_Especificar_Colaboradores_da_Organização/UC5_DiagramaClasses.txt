@@ -16,35 +16,35 @@ deactivate "ro:RepositorioOrganizacao"
 "RegistarColaboradorController" -> "rc:RepositorioColaborador" : 5 repoColab = plat.getRepoColab()
 activate "rc:RepositorioColaborador"
 deactivate "rc:RepositorioColaborador"
-"rc:RepositorioColaborador" -> Email** : 15 gestorEmail = create(email)
+"rc:RepositorioColaborador" -> Email** : 7 gestorEmail = create(email)
 activate "rc:RepositorioColaborador"
 
 
 "RegistarColaboradorController" -> "rc:RepositorioColaborador" : 6 gestor = getColaboradorByEmail(gestorEmail)
 
 deactivate "rc:RepositorioColaborador"
-"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 13 org = getOrganizacaoByGestor(gestor)
-"RegistarColaboradorController" -> "rc:RepositorioColaborador" : colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 8 org = getOrganizacaoByGestor(gestor)
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 9 colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
 activate "rc:RepositorioColaborador"
-"rc:RepositorioColaborador" -> Colaborador** : criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+"rc:RepositorioColaborador" -> Colaborador** : 11 criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
 
 
 
-"RegistarColaboradorController" -> "rc:RepositorioColaborador" : addColaborador(colaborador)
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 10 addColaborador(colaborador)
 deactivate "rc:RepositorioColaborador"
-"rc:RepositorioColaborador" --> "RegistarColaboradorController" : ok
+"rc:RepositorioColaborador" --> "RegistarColaboradorController" : 12 ok
 
 activate "rc:RepositorioColaborador"
 
-"rc:RepositorioColaborador" -> Telefone** : 14 create(telefone)
+"rc:RepositorioColaborador" -> Telefone** : 13 create(telefone)
 
-"rc:RepositorioColaborador" -> Email : 15 create(email)
+"rc:RepositorioColaborador" -> Email : 14 create(email)
 activate Email
 deactivate Email
 
 ref over RegistarColaboradorController, Colaborador : UC5_SD_RegistarColaboradorComoUtilizador
 deactivate "RegistarColaboradorController"
-"AreaGestorUI" --> GestorOrganizacao : 23 operação bem sucedida, \n mostra dados
+"AreaGestorUI" --> GestorOrganizacao : 15 operação bem sucedida, \n mostra dados
 deactivate "AreaGestorUI"
 
 @enduml
