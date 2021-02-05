@@ -69,7 +69,7 @@ public class AreaGestorUI implements Initializable {
     void registarColaboradorAction(ActionEvent event) {
         try {
             boolean registou = registarColaboradorController.registarColaborador(txtNomeColaborador.getText().trim(),
-                    txtContactoColaborador.getText().trim(),
+                    Integer.parseInt(txtContactoColaborador.getText().trim()),
                     txtEmailColaborador.getText().trim(),
                     authController.getEmail()
                     );

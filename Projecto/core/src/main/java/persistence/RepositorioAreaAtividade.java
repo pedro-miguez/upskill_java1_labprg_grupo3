@@ -75,6 +75,11 @@ public class RepositorioAreaAtividade implements Serializable {
         return  new ArrayList<>(this.areasAdicionadas);
     }
 
+
+    public AreaAtividade criarAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) {
+        return new AreaAtividade(new CodigoUnico(codigoUnico), descricao, descricaoDetalhada);
+    }
+
     /**
      * Method to check if two objects (in this case, areas of activity) are the same.
      * @param o

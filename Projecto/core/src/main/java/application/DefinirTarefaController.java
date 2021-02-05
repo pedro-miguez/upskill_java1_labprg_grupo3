@@ -1,6 +1,8 @@
 package application;
 
 import domain.*;
+import persistence.RepositorioColaborador;
+import persistence.RepositorioTarefa;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for setting new
@@ -24,14 +26,18 @@ public class DefinirTarefaController {
     public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
                                  int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail){
 
-        Colaborador collab = Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(colaboradorEmail));
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioColaborador repositorioColaborador = plataforma.getRepoColab();
+        RepositorioTarefa repositorioTarefa = plataforma.getRepoTarefa();
+
+        Colaborador collab = repositorioColaborador.getColaboradorByEmail(new Email(colaboradorEmail));
 
         Organizacao org = collab.getOrganizacao();
 
-        Tarefa tarefa = new Tarefa(new CodigoUnico(codigoUnico), designacao, descricaoInformal, descricaoTecnica, duracaoHoras, custo
-                , categoriaTarefa, org);
+        Tarefa tarefa = repositorioTarefa.criarTarefa(codigoUnico, designacao, descricaoInformal,
+                descricaoTecnica, duracaoHoras, custo, categoriaTarefa, org);
 
-        return Plataforma.getInstance().getRepoTarefa().addTarefa(tarefa);
+        return repositorioTarefa.addTarefa(tarefa);
     }
 
 

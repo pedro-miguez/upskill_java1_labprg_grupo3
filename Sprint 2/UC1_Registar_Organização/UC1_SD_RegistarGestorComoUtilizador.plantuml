@@ -1,31 +1,17 @@
 @startuml
-note over alg
-É uma instância de qualquer classe
-que implemente esta interface
-endnote
-"ro:RegistoOrganizacoes" -> "ro:RegistoOrganizacoes" : 1 registaGestorComoUtilizador(colab)
-activate "ro:RegistoOrganizacoes"
-"ro:RegistoOrganizacoes" -> "colab:Colaborador" : 2 nomeG = getNome()
+
+"ro:RepositorioOrganizacoes" -> "AuthenticationController" : 1 registarGestorComoUtilizador(colab)
+activate "AuthenticationController"
+"AuthenticationController" -> UsersAPI  : 2 registarGestorComoUtilizador(gestor)
+deactivate AuthenticationController
+activate UsersAPI
+UsersAPI -> "colab:Colaborador" ** : 2 nome = getNome()
+UsersAPI -> "colab:Colaborador" : 3 email = getEmail()
 activate "colab:Colaborador"
 deactivate "colab:Colaborador"
-"ro:RegistoOrganizacoes" -> "colab:Colaborador" : 3 emailG = getEmail()
-activate "colab:Colaborador"
-deactivate "colab:Colaborador"
-"ro:RegistoOrganizacoes" -> ":Plataforma" : 4 alg=getAlgoritmoGeradorPwd()
-activate ":Plataforma"
-deactivate ":Plataforma"
-participant "alg:AlgoritmoGeradorPasswords" as alg <<interface>>
-"ro:RegistoOrganizacoes" -> alg : 5 pwd = geraPassword(nomeG, emailG)
-activate alg
-deactivate alg
-"ro:RegistoOrganizacoes" -> ":Plataforma" : 6 aut=getAutorizacaoFacade()
-activate ":Plataforma"
-deactivate ":Plataforma"
-"ro:RegistoOrganizacoes" -> "aut:AutorizacaoFacade" : 7 registaUtilizadorComPapeis(nomeG,emailG,pwd,["GESTOR","COLABORADOR"])
-activate "aut:AutorizacaoFacade"
-deactivate "aut:AutorizacaoFacade"
-"ro:RegistoOrganizacoes" -> "ro:RegistoOrganizacoes" : 8 enviaPwd(emailG,pwd)
-activate "ro:RegistoOrganizacoes"
-deactivate "ro:RegistoOrganizacoes"
-deactivate "ro:RegistoOrganizacoes"
+participant "alg:AlgoritmoGeradorPasswords" as alg
+UsersAPI -> Plataforma ** : 4 alg=getAlgoritmoGeradorPwd()
+UsersAPI -> alg ** : 5 pwd = geraPassword(nomeG, emailG)
+UsersAPI -> UsersAPIAdapter **: 6 registerUserWithRoles(nome, email, pwd, "gestor")
+deactivate UsersAPI
 @enduml

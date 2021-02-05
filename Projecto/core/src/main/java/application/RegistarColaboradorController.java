@@ -7,6 +7,8 @@ package application;
 
 import domain.*;
 import persistence.RepositorioColaborador;
+import persistence.RepositorioCompetenciaTecnica;
+import persistence.RepositorioOrganizacao;
 
 /**
  *  Current class is the one responsible to connect the GUI with the methods responsible for registering new
@@ -18,7 +20,6 @@ public class RegistarColaboradorController {
 
      private AuthenticationController authController = new AuthenticationController();
 
-
     /**
      * Collaborator Registry boolean.
      *
@@ -28,19 +29,21 @@ public class RegistarColaboradorController {
      * @param gestorEmail         as manager email
      * @return the boolean
      */
-    public boolean registarColaborador(String nomeColaborador,String contactoColaborador, String emailColaborador, String gestorEmail) {
 
-        Colaborador collab = Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(gestorEmail));
+    public boolean registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String gestorEmail) {
 
-        Organizacao org = Plataforma.getInstance().getRepoOrg().getOrganizacaoByGestor(collab);
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioColaborador repoColab = plataforma.getRepoColab();
+        RepositorioOrganizacao repoOrg = plataforma.getRepoOrg();
+
+        Colaborador gestor = repoColab.getColaboradorByEmail(new Email(gestorEmail));
+
+        Organizacao org = repoOrg.getOrganizacaoByGestor(gestor);
         
-        Colaborador colaborador = new Colaborador(nomeColaborador, new Telefone(Integer.parseInt(contactoColaborador)),
-                new Email(emailColaborador), org, Funcao.COLABORADOR);
-        
-        if (!Plataforma.getInstance().getRepoColab().addColaborador(colaborador)) {
+        Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org);
+
+        if (repoColab.addColaborador(colaborador)) {
             return false;
         } else return authController.registarColaboradorComoUtilizador(colaborador);
-        
     }
-    
 }

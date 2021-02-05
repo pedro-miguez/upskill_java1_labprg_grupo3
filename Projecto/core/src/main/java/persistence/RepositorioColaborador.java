@@ -1,9 +1,7 @@
 package persistence;
 
+import domain.*;
 import exceptions.EmailNaoAssociadoException;
-import domain.Colaborador;
-import domain.Email;
-import domain.Organizacao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -93,6 +91,17 @@ public class RepositorioColaborador implements Serializable {
         return new ArrayList<>(this.colaboradoresRegistados);
     }
 
+    public Colaborador criarColaborador(String nomeColaborador,int contactoColaborador,
+                                        String emailColaborador, Organizacao org) {
+        return new Colaborador(nomeColaborador, new Telefone(contactoColaborador),
+                new Email(emailColaborador), org, Funcao.COLABORADOR);
+    }
+
+    public Colaborador criarGestor(String nomeGestor,int contactoGestor,
+                              String emailGestor, Organizacao org) {
+        return new Colaborador(nomeGestor, new Telefone(contactoGestor),
+                new Email(emailGestor), org, Funcao.GESTOR);
+    }
     /**
      * Method to check if two objects (in this case, collaborators) are the same.
      * @param o
