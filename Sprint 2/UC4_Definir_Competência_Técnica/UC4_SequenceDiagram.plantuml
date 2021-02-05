@@ -7,29 +7,29 @@ activate ":UI"
 activate ":CTRL"
 ":UI" --> Administrativo : 1.2: Solicita dados
 deactivate ":UI"
-":CTRL" -> ":Plataforma" : 1.1.1: ra = getRegistoAreasAtividade()
+":CTRL" -> ":Plataforma" : 1.1.1: ra = getAreasAtividade()
 activate ":Plataforma"
 deactivate ":Plataforma"
-":CTRL" -> "ra:RegistoAreasAtividade" : 1.1.2: la = getListaAreasAtividade()
-activate "ra:RegistoAreasAtividade"
-deactivate "ra:RegistoAreasAtividade"
+":CTRL" -> "raa: repositorioAreasAtividade" : 1.1.2: la = getListaAreasAtividade()********
+activate "raa: repositorioAreasAtividade"
+deactivate "raa: repositorioAreasAtividade"
 deactivate ":CTRL"
 Administrativo -> ":UI": 2: Introduz dados
 activate ":UI"
-":UI" -> ":CTRL" : 2.1: novaCompetenciaTecnica(codCompetencia,\ndescBreve,descDetalhada,codAreaAtividade)
+":UI" -> ":CTRL" : definirCompetenciaTecnica(String codigoUnico, \nAreaAtividade areaAtividade, String descricao, \nString descDetalhada)
 activate ":CTRL"
-":CTRL" -> "ra:RegistoAreasAtividade" : 2.1.1: at = getAreaAtividade(codAreaAtividade)
-activate "ra:RegistoAreasAtividade"
-deactivate "ra:RegistoAreasAtividade"
+":CTRL" -> "raa: repositorioAreasAtividade" : 2.1.1: at = listarAreaAtividade()
+activate "raa: repositorioAreasAtividade"
+deactivate "raa: repositorioAreasAtividade"
 ":UI" --> Administrativo : 2.2: Solicita graus de proficiência
 deactivate ":UI"
 ":CTRL" -> ":Plataforma" : 2.1.2: rct = getRegistoCompetenciasTecnicas()
 activate ":Plataforma"
 deactivate ":Plataforma"
-":CTRL" -> "rct:RegistaCompetenciasTecnicas" : 2.1.3: novaCompetenciaTecnica(codCompetencia,\ndescBreve,descDetalhada,at)
-activate "rct:RegistaCompetenciasTecnicas"
-deactivate "rct:RegistaCompetenciasTecnicas"
-"rct:RegistaCompetenciasTecnicas" --> "ct:CompetenciaTecnica" ** : 2.1.3.1: create(codCompetencia,\ndescBreve,descDetalhada,at)
+":CTRL" -> "rct:repositorioCompetenciasTecnicas" : 2.1.3: novaCompetenciaTecnica(codCompetencia,\ndescBreve,descDetalhada,at)
+activate "rct:repositorioCompetenciasTecnicas"
+deactivate "rct:repositorioCompetenciasTecnicas"
+"rct:repositorioCompetenciasTecnicas" --> "ct:CompetenciaTecnica" ** : 2.1.3.1: create(codCompetencia,\ndescBreve,descDetalhada,at)
 loop
 Administrativo -> ":UI": 3: Introduz dados do grau
 activate ":UI"
@@ -47,12 +47,12 @@ Administrativo -> ":UI": 4: Confirma
 activate ":UI"
 ":UI" -> ":CTRL" : 4.1: \nRegistaCompetencia\nTecnica()
 activate ":CTRL"
-":CTRL" -> "rct:RegistaCompetenciasTecnicas" : 4.1.1: registaCompetenciaTecnica(ct)
-activate "rct:RegistaCompetenciasTecnicas"
+":CTRL" -> "rct:repositorioCompetenciasTecnicas" : 4.1.1: registaCompetenciaTecnica(ct)
+activate "rct:repositorioCompetenciasTecnicas"
 ":UI" --> Administrativo : 4.2: Informa operação bem\n sucedida
 deactivate ":UI"
 deactivate ":CTRL"
 deactivate Administrativo
-"rct:RegistaCompetenciasTecnicas" -> "rct:RegistaCompetenciasTecnicas" : 4.1.1.1: validaCompetenciaTecnica(ct)
-"rct:RegistaCompetenciasTecnicas" -> "rct:RegistaCompetenciasTecnicas" : 4.1.1.2 addCompetenciaTecnica(ct)
+"rct:repositorioCompetenciasTecnicas" -> "rct:repositorioCompetenciasTecnicas" : 4.1.1.1: validaCompetenciaTecnica(ct)
+"rct:repositorioCompetenciasTecnicas" -> "rct:repositorioCompetenciasTecnicas" : 4.1.1.2 addCompetenciaTecnica(ct)
 @enduml
