@@ -31,6 +31,7 @@ public class RegistarOrganizacaoController {
     public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
                                        String email, String rua, String localidade, String codigoPostal,
                                        String nomeGestor, int telefoneGestor, String emailGestor) {
+
         Organizacao org = new Organizacao(nomeOrg, new NIF(nif), new Website(website),
                 new Telefone(telefone), new Email(email) , new EnderecoPostal(rua, localidade, codigoPostal));
 
