@@ -15,8 +15,8 @@ participant CategoriaTarefa as cat
 
 activate admin
 admin -> ui: 1. Inicia definicao de \n nova categoria de tarefa
-ui -> platctrl: 2. getAreasAtividade()
 activate ui
+ui -> platctrl: 2. getAreasAtividade()
 activate platctrl
 ui -> platctrl: 3. getGrausProficiencia()
 platctrl -> repoarea **: 4. listarAreasAtividade()
