@@ -2,9 +2,9 @@
 actor UtilizadorNãoRegistado as UtilizadorNãoRegistado
 UtilizadorNãoRegistado -> ":RegistarOrganizacaoUI" : 1 Introduz os dados solicitados
 activate ":RegistarOrganizacaoUI"
-":RegistarOrganizacaoUI" -> ":RegistarOrganizacaoController" : 2 novaOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,função,tlfG, emailG)
+":RegistarOrganizacaoUI" -> ":RegistarOrganizacaoController" : 2 registarOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,tlfG, emailG)
 activate ":RegistarOrganizacaoController"
-":RegistarOrganizacaoController" -> ":Plataforma" : 3 no = getRegistoOrganizacoes()
+":RegistarOrganizacaoController" -> ":Organização" : 3 org = new Organizacao(nomeOrg, new NIF(nif), new Website(website), \nnew Telefone(telefone), new Email(email) , \nnew EnderecoPostal(rua, localidade, codigoPostal))
 activate ":Plataforma"
 deactivate ":Plataforma"
 ":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 4 org= novaOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,função,tlfG, emailG)

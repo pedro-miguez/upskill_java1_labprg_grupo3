@@ -10,3 +10,7 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 .DS_Store
+Projecto/.idea/libraries/Maven__org_openjfx_javafx_base_mac_11.xml
+Projecto/.idea/libraries/Maven__org_openjfx_javafx_controls_mac_11.xml
+Projecto/.idea/libraries/Maven__org_openjfx_javafx_fxml_mac_11.xml
+Projecto/.idea/libraries/Maven__org_openjfx_javafx_graphics_mac_11.xml
