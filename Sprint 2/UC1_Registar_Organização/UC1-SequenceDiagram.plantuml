@@ -1,6 +1,7 @@
 @startuml 
 actor UtilizadorNãoRegistado as UtilizadorNãoRegistado
 UtilizadorNãoRegistado -> "RegistarOrganizacaoUI" : 1 Introduz os dados solicitados
+activate UtilizadorNãoRegistado
 activate "RegistarOrganizacaoUI"
 "RegistarOrganizacaoUI" -> "RegistarOrganizacaoController" : 2 registarOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,tlfG, emailG)
 activate "RegistarOrganizacaoController"
