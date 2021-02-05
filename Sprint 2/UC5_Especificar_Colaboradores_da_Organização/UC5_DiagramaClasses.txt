@@ -16,39 +16,33 @@ deactivate "ro:RepositorioOrganizacao"
 "RegistarColaboradorController" -> "rc:RepositorioColaborador" : 5 repoColab = plat.getRepoColab()
 activate "rc:RepositorioColaborador"
 deactivate "rc:RepositorioColaborador"
-"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 6 gestor = getColaboradorByEmail(gestorEmail)
+"rc:RepositorioColaborador" -> Email** : 15 gestorEmail = create(email)
 activate "rc:RepositorioColaborador"
+
+
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 6 gestor = getColaboradorByEmail(gestorEmail)
+
 deactivate "rc:RepositorioColaborador"
 "RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 13 org = getOrganizacaoByGestor(gestor)
 "RegistarColaboradorController" -> "rc:RepositorioColaborador" : colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
-
+activate "rc:RepositorioColaborador"
 "rc:RepositorioColaborador" -> Colaborador** : criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
 
+
+
 "RegistarColaboradorController" -> "rc:RepositorioColaborador" : addColaborador(colaborador)
+deactivate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" --> "RegistarColaboradorController" : ok
 
 activate "rc:RepositorioColaborador"
 
-"rc:RepositorioColaborador" -> Telefone : 14 create(telefone)
-activate Telefone
-deactivate Telefone
+"rc:RepositorioColaborador" -> Telefone** : 14 create(telefone)
+
 "rc:RepositorioColaborador" -> Email : 15 create(email)
 activate Email
 deactivate Email
-"rc:RepositorioColaborador" -> Colaborador ** : 16 create(nomeGestor, telefoneGestor, emailGestor, org, Funcao.GESTOR)
-deactivate "rc:RepositorioColaborador"
-"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 17 addOrganizacao(org)
-activate "ro:RepositorioOrganizacao"
-"RegistarColaboradorController" <-- "ro:RepositorioOrganizacao" : 18 ok
-deactivate "ro:RepositorioOrganizacao"
-"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 19 addGestor(gestor, org)
-activate "ro:RepositorioOrganizacao"
-"RegistarColaboradorController" <-- "ro:RepositorioOrganizacao" : 20 ok
-deactivate "ro:RepositorioOrganizacao"
-"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 21 addColaborador(gestor)
-activate "rc:RepositorioColaborador"
-"RegistarColaboradorController" <-- "rc:RepositorioColaborador" : 22 ok
-deactivate "rc:RepositorioColaborador"
-ref over RegistarColaboradorController, Colaborador : UC1_SD_RegistarGestorComoUtilizador
+
+ref over RegistarColaboradorController, Colaborador : UC5_SD_RegistarColaboradorComoUtilizador
 deactivate "RegistarColaboradorController"
 "AreaGestorUI" --> GestorOrganizacao : 23 operação bem sucedida, \n mostra dados
 deactivate "AreaGestorUI"
