@@ -97,6 +97,11 @@ public class RepositorioOrganizacao implements Serializable {
         return new ArrayList<>(this.organizacoesRegistadas);
     }
 
+    public Organizacao criarOrganizacao(String nomeOrg, int nif, String website, int telefone,
+                                        String email, String rua, String localidade, String codigoPostal) {
+        return new Organizacao(nomeOrg, new NIF(nif), new Website(website),
+                new Telefone(telefone), new Email(email) , new EnderecoPostal(rua, localidade, codigoPostal));
+    }
     /**
      * Method to check if two objects (in this case, organizations) are the same.
      * @param o

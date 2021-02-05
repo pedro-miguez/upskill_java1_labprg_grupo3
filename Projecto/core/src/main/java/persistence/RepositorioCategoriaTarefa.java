@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.AreaAtividade;
+import domain.CaracterizacaoCompTec;
 import domain.CategoriaTarefa;
 import domain.CodigoUnico;
 import exceptions.NomeNaoAssociadoException;
@@ -64,6 +65,12 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 return catt;
             }
         } throw new NomeNaoAssociadoException("Não existe nenhuma categoria de tarefa com esse nome.");
+    }
+
+    public CategoriaTarefa criarCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
+                                                 List<CaracterizacaoCompTec> competenciasTecnicas) {
+        return new CategoriaTarefa(areaAtividade,
+                descricao, new ArrayList<>(competenciasTecnicas));
     }
 
     /**

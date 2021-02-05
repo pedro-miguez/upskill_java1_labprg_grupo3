@@ -10,7 +10,6 @@ import persistence.RepositorioOrganizacao;
  */
 public class RegistarOrganizacaoController {
 
-    private AuthenticationController authController = new AuthenticationController();
 
     /**
      * Organization registry boolean.
@@ -32,17 +31,21 @@ public class RegistarOrganizacaoController {
                                        String email, String rua, String localidade, String codigoPostal,
                                        String nomeGestor, int telefoneGestor, String emailGestor) {
 
-        Organizacao org = new Organizacao(nomeOrg, new NIF(nif), new Website(website),
-                new Telefone(telefone), new Email(email) , new EnderecoPostal(rua, localidade, codigoPostal));
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioOrganizacao repoOrg = plataforma.getRepoOrg();
+        RepositorioColaborador repoColab = plataforma.getRepoColab();
+        AuthenticationController authController = new AuthenticationController();
 
-        Colaborador gestor = new Colaborador(nomeGestor, new Telefone(telefoneGestor), new Email(emailGestor),
-                org, Funcao.GESTOR);
+        Organizacao org = repoOrg.criarOrganizacao(nomeOrg, nif, website, telefone, email,
+                rua, localidade, codigoPostal);
 
-        if (!Plataforma.getInstance().getRepoOrg().addOrganizacao(org)) {
+        Colaborador gestor = repoColab.criarGestor(nomeGestor, telefoneGestor, emailGestor, org);
+
+        if (!repoOrg.addOrganizacao(org)) {
             return false;
-        } else if (!Plataforma.getInstance().getRepoOrg().addGestor(gestor, org)) {
+        } else if (!repoOrg.addGestor(gestor, org)) {
             return false;
-        } else if(!Plataforma.getInstance().getRepoColab().addColaborador(gestor)) {
+        } else if(!repoColab.addColaborador(gestor)) {
             return false;
         } else return authController.registarGestorComoUtilizador(gestor);
 

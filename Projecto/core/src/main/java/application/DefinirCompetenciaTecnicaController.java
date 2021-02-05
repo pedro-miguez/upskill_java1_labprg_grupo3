@@ -4,6 +4,7 @@ import domain.AreaAtividade;
 import domain.CodigoUnico;
 import domain.CompetenciaTecnica;
 import domain.Plataforma;
+import persistence.RepositorioCompetenciaTecnica;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for setting new
@@ -23,10 +24,11 @@ public class DefinirCompetenciaTecnicaController {
     public boolean definirCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
                                              String descricao, String descDetalhada) {
 
-        CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(new CodigoUnico(codigoUnico),
-                areaAtividade,
-                descricao, descDetalhada);
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioCompetenciaTecnica repo = plataforma.getRepoCompTec();
 
-        return Plataforma.getInstance().getRepoCompTec().addCompetenciaTecnica(competenciaTecnica);
+        CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, areaAtividade, descricao, descDetalhada);
+
+        return repo.addCompetenciaTecnica(competenciaTecnica);
     }
 }

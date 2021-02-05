@@ -1,5 +1,6 @@
 package persistence;
 
+import domain.CategoriaTarefa;
 import domain.CodigoUnico;
 import domain.Organizacao;
 import domain.Tarefa;
@@ -75,6 +76,12 @@ public class RepositorioTarefa implements Serializable {
             }
         }
         return tarefasOrganizacao;
+    }
+
+    public Tarefa criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
+                              int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org) {
+        return new Tarefa(new CodigoUnico(codigoUnico), designacao, descricaoInformal, descricaoTecnica, duracaoHoras, custo
+                , categoriaTarefa, org);
     }
 
     /**
