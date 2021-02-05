@@ -30,7 +30,8 @@ public class RegistarColaboradorControllerTest {
         Plataforma.getInstance().getRepoOrg().addOrganizacao(org);
         Plataforma.getInstance().getRepoColab().addColaborador(c);
 
-        controller.registarColaborador("Mario", 911074355", "victorgmailcom", "vitor@gmail.com");
+        controller.registarColaborador("Mario", 911074355,
+                "victor@gmailcom", "vitor@gmail.com");
 
         int result = Plataforma.getInstance().getRepoColab().listarColaboradores().size();
 
