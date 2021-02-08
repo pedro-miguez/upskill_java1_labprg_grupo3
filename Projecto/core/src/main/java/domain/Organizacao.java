@@ -42,7 +42,7 @@ public class Organizacao implements Serializable {
 
     private void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException(nome + " é um nome inválido");
+            throw new IllegalArgumentException("Nome da organização inválido");
         }
         this.nome = nome;
     }

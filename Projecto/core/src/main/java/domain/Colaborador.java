@@ -50,8 +50,8 @@ public class Colaborador implements Serializable {
     }
 
     private void setNome(String nome) {
-        if (nome.length() < 2) {
-            throw new IllegalArgumentException(nome + " é um nome inválido");
+        if (nome.length() < 2 || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do colaborador inválido");
         }
         this.nome = nome;
     }
