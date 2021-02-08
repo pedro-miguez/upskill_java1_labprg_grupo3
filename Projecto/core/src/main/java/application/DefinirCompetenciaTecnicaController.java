@@ -31,4 +31,5 @@ public class DefinirCompetenciaTecnicaController {
 
         return repo.addCompetenciaTecnica(competenciaTecnica);
     }
+
 }
