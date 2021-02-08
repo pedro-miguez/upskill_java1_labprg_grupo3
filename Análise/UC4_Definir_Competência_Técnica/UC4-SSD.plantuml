@@ -1,0 +1,19 @@
+@startuml
+actor Administrativo
+activate Administrativo
+Administrativo -> ":Sistema" : 1 Inicia a especificacao de uma competencia tecnica
+activate ":Sistema"
+":Sistema" --> Administrativo : 2 solicita os dados (codigo, area de atividade, descricao breve e detalhada)
+deactivate ":Sistema"
+Administrativo -> ":Sistema" : 3 introduz os dados solicitados
+activate ":Sistema"
+loop
+":Sistema" --> Administrativo : 4 solicita os varios graus de proficiencia aplicaveis
+deactivate ":Sistema"
+Administrativo -> ":Sistema": 5 introduz os dados de cada grau
+activate ":Sistema"
+end
+":Sistema" --> Administrativo : 6 apresenta os dados e informa do sucesso da operacao
+deactivate ":Sistema"
+
+@enduml
