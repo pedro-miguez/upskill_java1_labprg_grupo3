@@ -6,7 +6,7 @@ participant Sistema
 activate GestorOrganizacao
 GestorOrganizacao -> Sistema: 1 inicia a especificacao
 activate Sistema
-Sistema --> GestorOrganizacao: 2 solicita os dados (nome, funcao, contacto telefonico, endereco email)
+Sistema --> GestorOrganizacao: 2 solicita os dados (nome, contacto telefonico, endereco email)
 deactivate Sistema
 GestorOrganizacao -> Sistema: 3 introduz os dados solicitados
 activate Sistema

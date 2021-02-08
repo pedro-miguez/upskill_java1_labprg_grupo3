@@ -14,7 +14,6 @@ adicionaColaborador()
 
 Class Colaborador{
 String: nome
-String: funcao
 String: contactoTelefonico
 String: email
 String: password

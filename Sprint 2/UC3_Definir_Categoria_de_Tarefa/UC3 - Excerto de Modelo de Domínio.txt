@@ -1,5 +1,5 @@
 @startuml
-title Modelo de Dominio
+title UC3 - Excerto do Modelo de Domínio
 left to right direction
 
 
@@ -7,7 +7,6 @@ class Plataforma {
     designacao
     
 }
-
 
 class Administrativo {
     nome
@@ -19,12 +18,11 @@ class CategoriaTarefa {
     areaAtividade
 }
 
-class CTCategoriaTarefa {
+class CaracterizacaoCategoriaTarefa {
     identificadorCompTec
     caracter
     nivelGrauMinimo
 }
-
 
 class CompetenciaTecnica {
     nome 
@@ -50,10 +48,10 @@ Plataforma "1" --> "*" CategoriaTarefa: possui
 Plataforma "1" --> "*" CompetenciaTecnica: possui
 Plataforma "1" --> "*" AreaAtividade: possui
 
-CategoriaTarefa "*" --> "*" CTCategoriaTarefa: requer
+CategoriaTarefa "*" --> "*" CaracterizacaoCategoriaTarefa: requer
 CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
 
-CTCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
+CaracterizacaoCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
 
 CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
 CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica

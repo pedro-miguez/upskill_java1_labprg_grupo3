@@ -1,0 +1,27 @@
+@startuml
+
+actor Administrativo
+participant Sistema
+
+title UC3 - SSD
+
+activate Administrativo
+Administrativo -> Sistema: 1 inicia definição de nova categoria de tarefa
+activate Sistema
+Sistema --> Administrativo: 2 mostra a lista de áreas de atividade e solicita\na descrição da categoria de tarefa e a\nescolha de uma área de atividade
+deactivate Sistema
+Administrativo -> Sistema: 3 introduz a descrição e seleciona a área de atividade pretendida
+activate Sistema
+Sistema --> Administrativo:4 mostra a lista de competências técnicas associadas a área\n de atividade especificada e solicita a escolha de uma delas
+deactivate Sistema
+group loop
+    Administrativo -> Sistema: 5 seleciona uma competência técnica
+    activate Sistema
+    Administrativo -> Sistema: 6 seleciona o grau de proficiciencia mínimo
+    Sistema <- Administrativo: 7 adiciona a competência técnica como sendo obrigatória ou opcional
+end
+Sistema --> Administrativo: 10 confirma o sucesso da operação e apresenta os dados
+deactivate Sistema
+deactivate Administrativo
+
+@enduml
