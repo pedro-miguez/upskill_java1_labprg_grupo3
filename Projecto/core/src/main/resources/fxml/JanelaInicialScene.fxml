@@ -15,7 +15,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebff99" height="613.0" layoutX="-6.0" layoutY="-6.0" stroke="#514848" strokeType="INSIDE" width="812.0" />
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+            <Image url="@../../../../../../Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="237.0" fitWidth="237.0" layoutX="282.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">

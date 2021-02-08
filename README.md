@@ -11,8 +11,8 @@
 
 - [1º Enunciado](Análise/Enunciado.md)
 - [Glossário](Análise/Glossario.md)
-- [Modelo de Domínio](Análise/Modelo_de_Dominio.png)
-- [Diagrama Casos de Uso](Análise/enunciadoProjecto.pdf)
+- [Modelo de Domínio](Análise/Modelo_Domínio.png)
+- [Diagrama Casos de Uso](Análise/UseCaseDiagram.png)
 - [Requisitos Funcionais e Não Funcionais](Análise/Requisitos_Funcionais&FURPS+.md)
 
 ## Casos de Uso
