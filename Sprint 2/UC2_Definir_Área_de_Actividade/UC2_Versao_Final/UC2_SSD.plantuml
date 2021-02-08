@@ -1,0 +1,25 @@
+@startuml_dss_uc2
+
+title UC2 - Diagrama de sequência de sistema
+
+actor Administrativo
+participant Sistema
+
+activate Administrativo
+
+
+Administrativo -> Sistema: 1 nova área de atividade
+activate Sistema
+Sistema --> Administrativo: 2 solicita dados (código, descrição breve e detalhada)
+deactivate Sistema
+
+
+Administrativo -> Sistema: 3 introduz os dados solicitados
+activate Sistema
+Sistema --> Administrativo: 4 apresenta dados e operação bem sucedida
+deactivate Sistema
+
+
+deactivate Administrativo
+
+@enduml_dss_uc2
