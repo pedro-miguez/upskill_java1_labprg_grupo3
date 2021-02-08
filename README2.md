@@ -7,19 +7,15 @@
 - Pedro Miguez
 - Victor Luís
 
-## Documentos úteis
+:[1º Enunciado](Análise/Enunciado.md)
+:[Glossário](Análise/Glossario.md)
+:[Modelo de Domínio](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\Modelo_Domínio.png)
+:[Diagrama Casos de Uso](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UseCaseDiagram.png)
+:[Requisitos Funcionais e Não Funcionais](Análise/Requisitos_Funcionais&FURPS+.md)
 
-:[Enunciado](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/Enunciado.md)
-:[Glossario](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/Glossario.md)
-:[Requisitos_Funcionais](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/Requisitos_Funcionais%26FURPS%2B.md)
-:[Modelo_Dominio](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/Modelo_Domínio.png)
-:[UseCaseDiagram](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UseCaseDiagram.png)
-
-## Casos de Uso
-
-:[UC1](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UC1_Registar_Organização/UC1.md)
-:[UC2](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UC2_Definir_%C3%81rea_de_Actividade/UC2.md)
-:[UC3](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UC3_Definir_Categoria_de_Tarefa/UC3.md)
-:[UC4](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UC2_Definir_%C3%81rea_de_Actividade/UC2.md)
-:[UC5](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UC2_Definir_%C3%81rea_de_Actividade/UC2.md)
-:[UC6](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/Análise/UC2_Definir_%C3%81rea_de_Actividade/UC2.md)
+:[UC1 - Registar Organização](Análise/UC1_Registar_Organização/UC1.md)
+:[UC2 - Definir Área de Actividade](Análise/UC2_Definir_Área_de_Actividade/UC2.md)
+:[UC3 - Definir Categoria de Tarefa](Análise/UC3_Definir_Categoria_de_Tarefa/UC3.md)
+:[UC4 - Definir Competência Técnica](Análise/UC3_Definir_Categoria_de_Tarefa/UC3.md)
+:[UC5 - Especificar Colaboradores da Organização](Análise/UC5_Especificar_Colaboradores_da_Organização/UC5.md)
+:[UC6 - Definir Tarefa](Análise/UC6_Definir_Tarefa/UC6.md)
