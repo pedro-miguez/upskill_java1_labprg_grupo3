@@ -1,6 +1,8 @@
 # UC2 - Definir Competencia Tecnica
 
+<!--
 ##### [Voltar ao início](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/README.md)
+-->
 
 ## 1. Engenharia de Requisitos
 
@@ -10,16 +12,16 @@ O administrativo inicia a especificação de uma competência técnica. O sistem
 
 #### SSD
 
-![UC4 SSD.png](UC4 SSD.png)
+![UC4_SSD.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC4_Definir_Competência_Técnica\UC4_SSD.png)
 
 ##### Diagrama de Sequência
 
-![UC4 SD.png](UC4 SD.png)
+![UC4_SD.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC4_Definir_Competência_Técnica\UC4_SD.png)
 
 #### Diagrama de Classes
 
-![UC4 DC.png](UC4 DC.png)
+![UC4_DC.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC4_Definir_Competência_Técnica\UC4_DC.png)
 
 #### Excerto Modelo de Domínio
 
-![UC4 MD.png](UC4 MD.png)
+![UC4_MD.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC4_Definir_Competência_Técnica\UC4_MD.png)

@@ -1,6 +1,8 @@
 ## Requisitos Funcionais
 
-##### [Voltar ao início](https://github.com/ajorgesantosp/upskill_java1_g1/blob/main/README.md)
+<!--
+##### [Voltar ao início](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/README.md)
+-->
 
 _**Candidatura a Freelancer:**_ Processo através do qual um utilizador se candidata a freelancer da plataforma, fornecendo os seus dados pessoais, académicos e profissionais.
 
