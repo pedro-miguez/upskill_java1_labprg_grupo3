@@ -15,13 +15,13 @@ Class UC5_UI {
 }
 
 Class UC5_CTRL {
-    +novoColaborador(String nome, Funcao funcao, Telefone telefone, Email email)
+    +novoColaborador(String nome, Telefone telefone, Email email)
     +registaColaborador()
 }
 
 Class GestaoUtilizadoresFacade {
     +getSessaoAtual()
-    +registaUtilizadorComPapel(String nome, Email email, Password password, Funcao funcao)
+    +registaUtilizadorComPapel(String nome, Email email, Password password)
 }
 
 Class SessaoUtilizador {
@@ -34,7 +34,7 @@ Class RegistoOrganizacoes {
 }
 
 Class Organizacao {
-    +novoColaborador(String nome, Funcao funcao, Telefone telefone, Email email)
+    +novoColaborador(String nome, Telefone telefone, Email email)
     +validarColaborador(Colaborador colaborador)
     +registaColaborador(Colaborador colaborador)
 }
@@ -44,7 +44,7 @@ Class AlgoritmoGeradorPasswords {
 }
 
 Class Colaborador {
-    +create(String nome, Funcao funcao, Telefone telefone, Email email)
+    +create(String nome, Telefone telefone, Email email)
 }
 
 
