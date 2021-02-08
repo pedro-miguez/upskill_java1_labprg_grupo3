@@ -12,25 +12,25 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.JanelaInicialUI">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebff99" height="613.0" layoutX="-6.0" layoutY="-6.0" stroke="#514848" strokeType="INSIDE" width="812.0" />
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d8e6f2" height="445.0" layoutX="173.0" layoutY="84.0" opacity="0.4" stroke="#514848" strokeType="INSIDE" width="454.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="86.0" prefHeight="150.0" prefWidth="289.0" text="Tasks 4 Joe" textAlignment="CENTER" textFill="#14140e" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="Verdana Bold" size="30.0" />
-         </font>
-      </Label>
-      <Button layoutX="325.0" layoutY="236.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="46.0" prefWidth="152.0" text="LOGIN">
+      <ImageView fitHeight="237.0" fitWidth="237.0" layoutX="282.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../styles/Tasks_4_Joe.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="325.0" layoutY="246.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="36.0" prefWidth="152.0" text="Login">
          <font>
             <Font name="Verdana" size="14.0" />
          </font></Button>
-      <Button layoutX="325.0" layoutY="312.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="46.0" prefWidth="152.0" text="REGISTAR ORGANIZAÇÃO" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="327.0" layoutY="307.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="45.0" prefWidth="152.0" text="Registar Organização" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Verdana" size="13.0" />
          </font></Button>
-      <Button fx:id="btnAbout" layoutX="364.0" layoutY="413.0" mnemonicParsing="false" onAction="#aboutAction" prefHeight="28.0" prefWidth="75.0" text="About" />
+      <Button fx:id="btnAbout" layoutX="365.0" layoutY="381.0" mnemonicParsing="false" onAction="#aboutAction" prefHeight="28.0" prefWidth="75.0" text="About" />
    </children>
 </AnchorPane>
