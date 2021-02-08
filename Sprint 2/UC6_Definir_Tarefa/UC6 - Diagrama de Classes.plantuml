@@ -1,0 +1,146 @@
+@startuml
+
+left to right direction
+
+title UC6 - Diagrama de Classes \n
+
+Class Plataforma <<Singleton>> {
+    -String designacao
+    -AlgoritmoGeradorPasswords agp
+    -UsersAPI uapi
+    -RepositorioColaborador repoColab
+    -RepositorioOrganizacao repoOrg
+    -RepositorioCompetenciaTecnica repoCompTec
+    -RepositorioAreaAtividade repoAreaAtiv
+    -RepositorioUtilizador repoUser
+    -RepositorioTarefa repoTarefa
+    -RepositorioCategoriaTarefa repoCategoriaTarefa
+
+    +getInstance
+    +getRepoAreaAtiv()
+    +getRepoCompTec()
+    +getRepoCategoriaTarefa()
+    +getRepoColab()
+    +getRepoOrg()
+    +getRepoUser()
+    +getRepoTarefa()
+    +getUsersAPI()
+    +guardarDados()
+    +carregarDados()
+    -resetUserAPI()
+}
+
+Class PlataformaController {
+    +getAreasAtividade()
+    +getGrausProficiencia()
+    +getCategoriasTarefa()
+    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
+    +resetUserAPI
+    +getAreaATividadeToStringCompletoByCodigoUnico(String codigoUnico)
+    +getCategoriaTarefaToStringCompletoByNome(String nome)
+    +getColaboradorToStringCompletoByEmail(String email)
+    +getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico)
+    +getOrganizacaoToStringCompletoByEmail(String email)
+    +getTarefaToStringCompletoByCodigoUnico(String codigoUnico)
+}
+
+Class Colaborador {
+    - String nome
+    - Telefone telefone
+    - Email email
+    - Funcao funcao
+    - Organizacao organizacao
+    +isGestor()
+}
+
+Class Tarefa {
+    - CodigoUnico codigoUnico
+    - String designacao
+    - String descricaoInformal
+    - String descricaoTecnica
+    - int duracaoHoras
+    - float custo
+    - CategoriaTarefa categoria
+    - Organizacao organizacao
+}
+
+Class Organizacao {
+    - String nome
+    - NIF nif
+    - Website website
+    - Telefone telefone
+    - Email email
+    - EnderecoPostal enderecoPostal
+    - Colaborador gestor
+}
+
+Class CategoriaTarefa {
+    -String descricao
+    -AreaAtividade areaAtividade
+    -List<CaracterizacaoCompTec> competenciasTecnicas
+}
+
+Class AreaColaboradorUI {
+}
+
+Class DefinirTarefaController {
+    +definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail)
+
+}
+
+
+Class RepositorioColaborador <<Singleton>> {
+    +getInstance()
+    +addColaborador(Colaborador colaborador)
+    +getColaboradorByEmail(Email email)
+    +getColaboradoresOrganizacao (Organizacao organizacao)
+    +listarColaboradores()
+    +criarColaborador(String nomeColaborador,int contactoColaborador, String emailColaborador, Organizacao org)
+    +criarGestor(String nomeGestor,int contactoGestor, String emailGestor, Organizacao org)
+                                                
+}
+
+Class RepositorioTarefa <<Singleton>> {
+    +getInstance()
+    +addTarefa(Tarefa tarefa)
+    +getTarefaByCodigoUnico(CodigoUnico codigoUnico)
+    +getTarefasOrganizacao (Organizacao organizacao)
+    +criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org)
+    +listarTarefas()
+                            
+                                         
+}
+
+Class RepositorioCategoriaTarefa <<Singleton>> {
+    +criarCategoriaTarefa(String descricao, Area Atividade areaAtividade, List<CaracterizacaoCT> competenciasTecnicas)
+    +addCategoriaTarefa(CategoriaTarefa categoriaTarefa)
+    +getCategoriaTarefaByDescricao(String descricao)
+    +listarCategoriasTarefa()
+}
+
+AreaColaboradorUI .> DefinirTarefaController
+AreaColaboradorUI .> PlataformaController
+
+PlataformaController .> RepositorioColaborador
+PlataformaController .> RepositorioTarefa
+PlataformaController .> RepositorioCategoriaTarefa
+PlataformaController .> Plataforma
+
+DefinirTarefaController .> Plataforma
+DefinirTarefaController .> RepositorioCategoriaTarefa
+DefinirTarefaController .> RepositorioColaborador
+DefinirTarefaController .> RepositorioTarefa
+
+Plataforma "1" -down-> "1" RepositorioTarefa: tem
+Plataforma "1" -down-> "1" RepositorioCategproaTarefa: tem
+Plataforma "1" -down-> "1" RepositorioColaborador: tem
+
+RepositorioCategoriaTarefa "1" -> "*" CategoriaTarefa: possui
+RepositorioColaborador "1" -> "*" Colaborador: possui
+RepositorioTarefa "1" -> "*" Tarefa: possui
+
+Colaborador "1" -> "1" Organização: pertence a
+Tarefa "1" -> "1" Organização: relativa a
+
+
+@enduml
