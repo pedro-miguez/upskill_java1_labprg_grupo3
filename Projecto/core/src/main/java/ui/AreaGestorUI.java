@@ -81,9 +81,12 @@ public class AreaGestorUI implements Initializable {
 
             limparDadosRegistarColaboradorPane();
 
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException nfe) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
-                    e.getMessage()).show();
+                    "Letras em campos de valores numéricos (NIF, Contacto Gestor ou Telefone Organização) ou campos em vazio.").show();
+        } catch (IllegalArgumentException iae) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    iae.getMessage()).show();
         }
     }
 
