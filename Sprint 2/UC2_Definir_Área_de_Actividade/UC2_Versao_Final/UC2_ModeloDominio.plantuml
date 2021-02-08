@@ -1,0 +1,38 @@
+@startuml
+
+title UC2 - Excerto de Modelo de Dominio
+left to right direction
+
+class Plataforma {
+    designacao
+}
+
+class AreaAtividade{
+    identificadorAreaAtividade
+    descricaoBreve
+    descricaoDetalhada
+}
+
+class CategoriaTarefa {
+    identificadorCategoria
+    descricao
+    areaAtividade
+}
+
+class CompetenciaTecnica {
+    nome 
+    identificadorCompetenciaTecnica
+    descricaoBreve
+    descricaoDetalhada
+    grausProficiencia
+}
+
+
+Plataforma "1" --> "*" AreaAtividade: possui
+Plataforma "1" --> "*" CategoriaTarefa: possui
+Plataforma "1" --> "*" CompetenciaTecnica: possui
+
+CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
+CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
+
+@enduml

@@ -1,6 +1,8 @@
 @startuml_mc_uc2
 
-class DefinirAreaUI{
+title UC2 - Diagrama de Classes
+
+class AreaAdministrativoUI{
 
 }
 
@@ -29,7 +31,7 @@ class CodigoUnico{
     -String codigoUnico
 }
 
-DefinirAreaUI ..> DefinirAreaController
+AreaAdministrativoUI ..> DefinirAreaController
 DefinirAreaController ..> AreaAtividade
 DefinirAreaController ..> Plataforma
 DefinirAreaController ..> RepositorioAreaAtividade
