@@ -17,7 +17,6 @@ class Organizacao {
 
 class Colaborador {
     nome
-    funcao
     contactoTelefonico
     email
 }

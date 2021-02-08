@@ -6,42 +6,20 @@ title UC3 - Diagrama de Classes \n
 
 Class Plataforma <<Singleton>> {
     -String designacao
-    -AlgoritmoGeradorPasswords agp
-    -UsersAPI uapi
-    -RepositorioColaborador repoColab
-    -RepositorioOrganizacao repoOrg
     -RepositorioCompetenciaTecnica repoCompTec
     -RepositorioAreaAtividade repoAreaAtiv
-    -RepositorioUtilizador repoUser
-    -RepositorioTarefa repoTarefa
     -RepositorioCategoriaTarefa repoCategoriaTarefa
+    -PlataformaController plataformaController
 
     +getInstance
-    +getRepoAreaAtiv()
-    +getRepoCompTec()
     +getRepoCategoriaTarefa()
-    +getRepoColab()
-    +getRepoOrg()
-    +getRepoUser()
-    +getRepoTarefa()
-    +getUsersAPI()
-    +guardarDados()
-    +carregarDados()
-    -resetUserAPI()
+
 }
 
 Class PlataformaController {
     +getAreasAtividade()
     +getGrausProficiencia()
-    +getCategoriasTarefa()
     +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
-    +resetUserAPI
-    +getAreaATividadeToStringCompletoByCodigoUnico(String codigoUnico)
-    +getCategoriaTarefaToStringCompletoByNome(String nome)
-    +getColaboradorToStringCompletoByEmail(String email)
-    +getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico)
-    +getOrganizacaoToStringCompletoByEmail(String email)
-    +getTarefaToStringCompletoByCodigoUnico(String codigoUnico)
 }
 
 Class CompetenciaTecnica {
@@ -73,25 +51,15 @@ Class CaracterizacaoCompTec {
 
 Class RepositorioAreaAtividade <<Singleton>> {
     +listarAreasAtividade()
-    +getAreaAtividadeByCodUnico(CodigoUnico codigoUnico)
-    +criarAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada)
-    +addAreaAtividade(AreaAtividade areaAtividade)
 }
 
 Class RepositorioCompetenciaTecnica <<Singleton>> {
-    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
-    +addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica)
-    +getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico)
-    +criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada)
-    +listaCompetenciasTecnica()
-                                                
+    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)                                             
 }
 
 Class RepositorioCategoriaTarefa <<Singleton>> {
     +criarCategoriaTarefa(String descricao, Area Atividade areaAtividade, List<CaracterizacaoCT> competenciasTecnicas)
-    +addCategoriaTarefa(CategoriaTarefa categoriaTarefa)
-    +getCategoriaTarefaByDescricao(String descricao)
-    +listarCategoriasTarefa()
+    +getInstance()
 }
 
 Enum GrauProficiencia

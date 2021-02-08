@@ -23,13 +23,11 @@ public class TarefaTest {
                 "É necessário progamador para um jogo",
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa, org);
 
-        String result = tarefa.toString();
+        int expected = 100;
 
-        String expectedResult = "Código Único: TAR-01; Designacao: Progamador Jogo; Descrição Informal: É necessário progamador para um jogo; " +
-                "Descrição Técnica: É necessário programador em java para desenvolvimento de um jogo; " + "Estivativa de Duração: 100 horas; " +
-                "Estimativa de Custo: 1500.00 €; Categoria Tarefa: Programação.";
+        int result = tarefa.getDuracaoHoras();
 
-        assertEquals(expectedResult, result);
+        assertEquals(expected, result);
 
     }
 

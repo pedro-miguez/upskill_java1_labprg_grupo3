@@ -4,8 +4,7 @@ left to right direction
 
 
 class Plataforma {
-    designacao
-    
+    designacao  
 }
 
 class Organizacao {
