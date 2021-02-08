@@ -1,8 +1,19 @@
 @startuml
 
-left to right direction
-
 title UC6 - Diagrama de Classes \n
+
+Class AreaColaboradorUI {
+}
+
+Class DefinirTarefaController {
+    +definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail)
+
+}
+
+Class PlataformaController {
+    +getCategoriasTarefa()
+}
+
 
 Class Plataforma <<Singleton>> {
     -String designacao
@@ -16,9 +27,21 @@ Class Plataforma <<Singleton>> {
     +getRepoTarefa()
 }
 
-Class PlataformaController {
-    +getCategoriasTarefa()
+Class RepositorioColaborador <<Singleton>> {
+    +getInstance()
+    +getColaboradorByEmail(Email email)                         
 }
+
+Class RepositorioTarefa <<Singleton>> {
+    +getInstance()
+    +addTarefa(Tarefa tarefa)
+    +criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org)            
+}
+
+Class RepositorioCategoriaTarefa <<Singleton>> {
+    +listarCategoriasTarefa()
+}
+
 
 Class Colaborador {
     - String nome
@@ -56,29 +79,6 @@ Class CategoriaTarefa {
     -List<CaracterizacaoCompTec> competenciasTecnicas
 }
 
-Class AreaColaboradorUI {
-}
-
-Class DefinirTarefaController {
-    +definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail)
-
-}
-
-
-Class RepositorioColaborador <<Singleton>> {
-    +getInstance()
-    +getColaboradorByEmail(Email email)                         
-}
-
-Class RepositorioTarefa <<Singleton>> {
-    +getInstance()
-    +addTarefa(Tarefa tarefa)
-    +criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org)            
-}
-
-Class RepositorioCategoriaTarefa <<Singleton>> {
-    +listarCategoriasTarefa()
-}
 
 AreaColaboradorUI .> DefinirTarefaController
 AreaColaboradorUI .> PlataformaController
@@ -93,9 +93,9 @@ DefinirTarefaController .> RepositorioCategoriaTarefa
 DefinirTarefaController .> RepositorioColaborador
 DefinirTarefaController .> RepositorioTarefa
 
-Plataforma "1" -down-> "1" RepositorioTarefa: tem
-Plataforma "1" -down-> "1" RepositorioCategoriaTarefa: tem
-Plataforma "1" -down-> "1" RepositorioColaborador: tem
+Plataforma "1" -> "1" RepositorioTarefa: tem
+Plataforma "1" -> "1" RepositorioCategoriaTarefa: tem
+Plataforma "1" -> "1" RepositorioColaborador: tem
 
 RepositorioCategoriaTarefa "1" -> "*" CategoriaTarefa: possui
 RepositorioColaborador "1" -> "*" Colaborador: possui
