@@ -10,12 +10,11 @@ class Plataforma {
 
 
 
-class CompetenciaTecnica {
-    nome 
-    identificadorCompetenciaTecnica
-    descricaoBreve
-    descricaoDetalhada
-    grausProficiencia
+class CompetenciaTecnica { 
+    codigoUnico
+    descricao
+    descDetalhada
+    areaAtividade
 }
 
 class GrauProficiencia {
@@ -24,9 +23,9 @@ class GrauProficiencia {
 }
 
 class AreaAtividade{
-    identificadorAreaAtividade
-    descricaoBreve
-    descricaoDetalhada
+    codigoUnico
+    descricao
+    descDetalhada
 }
 
 
