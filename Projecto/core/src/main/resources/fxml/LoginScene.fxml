@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="617.0" fitWidth="814.0" layoutX="-5.0" layoutY="-11.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post.png" />
+            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="200.0" prefHeight="31.0" prefWidth="237.0" text="Bem-vindo!">
