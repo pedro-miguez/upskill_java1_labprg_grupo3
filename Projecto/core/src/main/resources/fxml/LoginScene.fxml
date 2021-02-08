@@ -10,19 +10,19 @@
    <children>
       <ImageView fitHeight="617.0" fitWidth="814.0" layoutX="-5.0" layoutY="-11.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post.png" />
          </image>
       </ImageView>
-      <Label layoutX="292.0" layoutY="186.0" prefHeight="31.0" prefWidth="237.0" text="Bem-vindo ao Tasks 4 Joe">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="200.0" prefHeight="31.0" prefWidth="237.0" text="Bem-vindo!">
          <font>
-            <Font name="Cambria Bold" size="18.0" />
+            <Font name="Cambria" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="252.0" text="USERNAME" />
-      <Label layoutX="211.0" layoutY="298.0" text="PASSWORD" />
+      <Label layoutX="230.0" layoutY="252.0" text="Username" />
+      <Label layoutX="232.0" layoutY="298.0" text="Password" />
       <TextField fx:id="txtUsername" layoutX="295.0" layoutY="248.0" prefHeight="25.0" prefWidth="230.0" />
-      <PasswordField fx:id="txtPassoword" layoutX="295.0" layoutY="294.0" prefHeight="25.0" prefWidth="230.0" onKeyReleased="#entrarButtonActivate" />
-      <Button fx:id="btnLogin" layoutX="330.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginAction"  text="Entrar" />
+      <PasswordField fx:id="txtPassoword" layoutX="295.0" layoutY="294.0" onKeyReleased="#entrarButtonActivate" prefHeight="25.0" prefWidth="230.0" />
+      <Button fx:id="btnLogin" layoutX="330.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginAction" text="Entrar" />
       <Button fx:id="btnVoltar" layoutX="430.0" layoutY="352.0" mnemonicParsing="false" onAction="#voltarAction" text="Voltar" />
    </children>
 </AnchorPane>
