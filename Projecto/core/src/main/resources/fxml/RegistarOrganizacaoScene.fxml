@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../../../../Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+            <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ebff99" height="600.0" opacity="0.18" stroke="BLACK" strokeType="INSIDE" visible="false" width="800.0" />

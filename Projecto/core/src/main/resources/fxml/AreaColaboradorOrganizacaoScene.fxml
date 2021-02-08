@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+            <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
          </image>
       </ImageView>
       <BorderPane prefHeight="593.0" prefWidth="782.0">
