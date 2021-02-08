@@ -10,7 +10,6 @@ import persistence.RepositorioOrganizacao;
  */
 public class RegistarOrganizacaoController {
 
-    private AuthenticationController authController = new AuthenticationController();
 
     /**
      * Organization registry boolean.
@@ -31,17 +30,22 @@ public class RegistarOrganizacaoController {
     public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
                                        String email, String rua, String localidade, String codigoPostal,
                                        String nomeGestor, int telefoneGestor, String emailGestor) {
-        Organizacao org = new Organizacao(nomeOrg, new NIF(nif), new Website(website),
-                new Telefone(telefone), new Email(email) , new EnderecoPostal(rua, localidade, codigoPostal));
 
-        Colaborador gestor = new Colaborador(nomeGestor, new Telefone(telefoneGestor), new Email(emailGestor),
-                org, Funcao.GESTOR);
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioOrganizacao repoOrg = plataforma.getRepoOrg();
+        RepositorioColaborador repoColab = plataforma.getRepoColab();
+        AuthenticationController authController = new AuthenticationController();
 
-        if (!Plataforma.getInstance().getRepoOrg().addOrganizacao(org)) {
+        Organizacao org = repoOrg.criarOrganizacao(nomeOrg, nif, website, telefone, email,
+                rua, localidade, codigoPostal);
+
+        Colaborador gestor = repoColab.criarGestor(nomeGestor, telefoneGestor, emailGestor, org);
+
+        if (!repoOrg.addOrganizacao(org)) {
             return false;
-        } else if (!Plataforma.getInstance().getRepoOrg().addGestor(gestor, org)) {
+        } else if (!repoOrg.addGestor(gestor, org)) {
             return false;
-        } else if(!Plataforma.getInstance().getRepoColab().addColaborador(gestor)) {
+        } else if(!repoColab.addColaborador(gestor)) {
             return false;
         } else return authController.registarGestorComoUtilizador(gestor);
 

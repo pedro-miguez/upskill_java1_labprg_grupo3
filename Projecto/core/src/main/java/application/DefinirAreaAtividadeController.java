@@ -3,6 +3,7 @@ package application;
 import domain.AreaAtividade;
 import domain.CodigoUnico;
 import domain.Plataforma;
+import persistence.RepositorioAreaAtividade;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for setting new
@@ -20,9 +21,11 @@ public class DefinirAreaAtividadeController {
      */
     public boolean definirAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) {
 
-        AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico(codigoUnico), descricao, descricaoDetalhada);
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioAreaAtividade repo = plataforma.getRepoAreaAtiv();
 
-        return Plataforma.getInstance().getRepoAreaAtiv().addAreaAtividade(areaAtividade);
+        AreaAtividade areaAtividade = repo.criarAreaAtividade(codigoUnico, descricao, descricaoDetalhada);
+
+        return repo.addAreaAtividade(areaAtividade);
     }
-
 }

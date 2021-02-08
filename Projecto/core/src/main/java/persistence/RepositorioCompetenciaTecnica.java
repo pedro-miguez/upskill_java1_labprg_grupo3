@@ -85,6 +85,13 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         return competenciasAreaAtividade;
     }
 
+    public CompetenciaTecnica criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
+                                                      String descricao, String descDetalhada) {
+        return new CompetenciaTecnica(new CodigoUnico(codigoUnico),
+                areaAtividade,
+                descricao, descDetalhada);
+    }
+
     /**
      * Method for listing technical skills.
      * @return 

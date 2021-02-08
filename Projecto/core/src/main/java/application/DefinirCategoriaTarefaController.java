@@ -1,6 +1,7 @@
 package application;
 
 import domain.*;
+import persistence.RepositorioCategoriaTarefa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,12 @@ public class DefinirCategoriaTarefaController {
     public boolean definirCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
                                           List<CaracterizacaoCompTec> competenciasTecnicas) {
 
-        CategoriaTarefa categoriaTarefa = new CategoriaTarefa(areaAtividade,
-                descricao, new ArrayList<>(competenciasTecnicas));
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioCategoriaTarefa repo = plataforma.getRepoCategoriaTarefa();
 
-        return Plataforma.getInstance().getRepoCategoriaTarefa().addCategoriaTarefa(categoriaTarefa);
+        CategoriaTarefa categoriaTarefa = repo.criarCategoriaTarefa(areaAtividade, descricao, competenciasTecnicas);
+
+        return repo.addCategoriaTarefa(categoriaTarefa);
     }
 
 }

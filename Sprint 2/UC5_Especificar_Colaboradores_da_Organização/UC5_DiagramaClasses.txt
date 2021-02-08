@@ -2,75 +2,49 @@
 
 title UC5 - ESPECIFICAR COLABORADOR DE ORGANIZAÇÃO
 
-actor GestorOrganizacao
-participant UI
-participant Ctrl
-participant Plataforma
-participant GestaoUtilizadoresFacade
-participant SessaoUtilizador
-participant RegistoOrganizacoes
-participant Organizacao
-participant AlgoritmoGeradorPassword
+actor GestorOrganizacao as GestorOrganizacao
+GestorOrganizacao -> "AreaGestorUI" : 1 Introduz os dados solicitados
+activate "AreaGestorUI"
+"AreaGestorUI" -> "RegistarColaboradorController" : 2 registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String gestorEmail)
+activate "RegistarColaboradorController"
+"RegistarColaboradorController" -> ":Plataforma" : 3 plat = Plataforma.getInstance()
+activate ":Plataforma"
+deactivate ":Plataforma"
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 4 repoOrg = plat.getRepoOrg()
+activate "ro:RepositorioOrganizacao"
+deactivate "ro:RepositorioOrganizacao"
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 5 repoColab = plat.getRepoColab()
+activate "rc:RepositorioColaborador"
+deactivate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Email** : 7 gestorEmail = create(email)
+activate "rc:RepositorioColaborador"
 
-activate GestorOrganizacao
-GestorOrganizacao -> UI: 1: Inicia a especificacao \n de um colaborador\n da organizacao
-activate UI
-UI -> GestorOrganizacao: 1.1 solicita dados
-deactivate 
 
-GestorOrganizacao -> UI: 2: Introduz os dados
-activate UI
-UI -> Ctrl: 2.1 novoColaborador(nome,\nfuncao, telefone, email)
-activate Ctrl
-Ctrl -> Plataforma: 2.1.1 gu = getGestao\nUtilizadoresFacade()
-activate Plataforma
-deactivate Plataforma
-UI --> GestorOrganizacao: 2.2 Apresenta dados\ne solicita confirmacao
-deactivate UI
-Ctrl -> GestaoUtilizadoresFacade: 2.1.2 sessao = getSessaoAtual()
-activate GestaoUtilizadoresFacade
-deactivate GestaoUtilizadoresFacade
-Ctrl -> SessaoUtilizador: 2.1.3 email = getEmailUtilizador()
-activate SessaoUtilizador
-deactivate SessaoUtilizador
-Ctrl -> Plataforma: 2.1.4 ro = getRegistoOrganizacoes()
-activate Plataforma
-deactivate Plataforma
-Ctrl -> RegistoOrganizacoes: 2.1.5 o = getOrganizacaoByEmailUtilizador(email)
-activate RegistoOrganizacoes
-deactivate RegistoOrganizacoes
-Ctrl -> Organizacao: 2.1.6 c= novoColaborador(nome,funcao,telefone,email)
-activate Organizacao
-Organizacao --> Colaborador **: 2.1.6.1 create(nome,funcao,telefone,email)
-deactivate Organizacao
-Ctrl -> Organizacao: 2.1.7 validaColaborador(c)
-activate Organizacao
-deactivate Organizacao
-deactivate Ctrl
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 6 gestor = getColaboradorByEmail(gestorEmail)
 
-GestorOrganizacao -> UI: 3 Confirma
-activate UI
-UI -> Ctrl: 3.1 registaColaborador()
-activate Ctrl
-Ctrl -> Plataforma: 3.1.1 agp = getAlgoritmoGeradorPasswords()
-activate Plataforma
-deactivate Plataforma
-Ctrl -> AlgoritmoGeradorPassword: 3.1.2 passord = getPassword()
-activate AlgoritmoGeradorPassword
-deactivate AlgoritmoGeradorPassword
-UI --> GestorOrganizacao: 3.2 Informa operacao\nbem sucedida
-deactivate UI
-Ctrl -> Organizacao: 3.1.3 registaColaborador(c)
-activate Organizacao
-Organizacao -> Organizacao: 3.1.3.1 validaCOlaborador(c)
-Organizacao -> Organizacao: 3.1.3.2 addColaborador(c)
-deactivate Organizacao
-Ctrl -> GestaoUtilizadoresFacade: 3.1.4 registaUtilizadorComPapel\n(nome, email, password, "colaborador")
-activate GestaoUtilizadoresFacade
-deactivate GestaoUtilizadoresFacade
-deactivate Ctrl
-deactivate GestorOrganizacao
+deactivate "rc:RepositorioColaborador"
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 8 org = getOrganizacaoByGestor(gestor)
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 9 colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+activate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Colaborador** : 11 criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
 
-ref over Ctrl: Email SD
+
+
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 10 addColaborador(colaborador)
+deactivate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" --> "RegistarColaboradorController" : 12 ok
+
+activate "rc:RepositorioColaborador"
+
+"rc:RepositorioColaborador" -> Telefone** : 13 create(telefone)
+
+"rc:RepositorioColaborador" -> Email : 14 create(email)
+activate Email
+deactivate Email
+
+ref over RegistarColaboradorController, Colaborador : UC5_SD_RegistarColaboradorComoUtilizador
+deactivate "RegistarColaboradorController"
+"AreaGestorUI" --> GestorOrganizacao : 15 operação bem sucedida, \n mostra dados
+deactivate "AreaGestorUI"
 
 @enduml

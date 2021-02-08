@@ -1,41 +1,52 @@
 @startuml 
 actor UtilizadorNãoRegistado as UtilizadorNãoRegistado
-UtilizadorNãoRegistado -> ":RegistarOrganizacaoUI" : 1 Introduz os dados solicitados
-activate ":RegistarOrganizacaoUI"
-":RegistarOrganizacaoUI" -> ":RegistarOrganizacaoController" : 2 novaOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,função,tlfG, emailG)
-activate ":RegistarOrganizacaoController"
-":RegistarOrganizacaoController" -> ":Plataforma" : 3 no = getRegistoOrganizacoes()
+UtilizadorNãoRegistado -> "RegistarOrganizacaoUI" : 1 Introduz os dados solicitados
+activate UtilizadorNãoRegistado
+activate "RegistarOrganizacaoUI"
+"RegistarOrganizacaoUI" -> "RegistarOrganizacaoController" : 2 registarOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,tlfG, emailG)
+activate "RegistarOrganizacaoController"
+"RegistarOrganizacaoController" -> ":Plataforma" : 3 plat = Plataforma.getInstance()
 activate ":Plataforma"
 deactivate ":Plataforma"
-":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 4 org= novaOrganizacao(nome,NIF,endLocal,endCodPostal,\nendLocalidade,tlf,site,email,nomeG,função,tlfG, emailG)
-activate "ro:RegistoOrganizacoes"
-"ro:RegistoOrganizacoes" -> Organizacao : 5 end = novoEndereco(endLocal,endCodPostal,endLocalidade)
-activate Organizacao
-deactivate Organizacao
-Organizacao -> "end:EnderecoPostal" ** : 6  create(endLocal,endCodPostal,endLocalidade)
-"ro:RegistoOrganizacoes" -> Organizacao : 7 gestor=registarGestor(nomeG,tlfG,emailG)
-activate Organizacao
-deactivate Organizacao
-Organizacao --> "colab:Colaborador" ** : 8 create(nomeG,função,tlfG,emailG)
-"ro:RegistoOrganizacoes" --> "org:Organizacao" ** : 9 create(nome,NIF,end,tlf,site,email,colab)
-deactivate "ro:RegistoOrganizacoes"
-":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 10 validaOrganizacao(org)
-activate "ro:RegistoOrganizacoes"
-deactivate "ro:RegistoOrganizacoes"
-deactivate ":RegistarOrganizacaoController"
-":RegistarOrganizacaoUI" --> UtilizadorNãoRegistado : 11 apresentar dados e solicita confirmação
-deactivate ":RegistarOrganizacaoUI"
-UtilizadorNãoRegistado -> ":RegistarOrganizacaoUI" : 12 confirma
-activate ":RegistarOrganizacaoUI"
-":RegistarOrganizacaoUI" -> ":RegistarOrganizacaoController" : 13 registaOrganizacao()
-activate ":RegistarOrganizacaoController"
-":RegistarOrganizacaoController" -> "ro:RegistoOrganizacoes" : 14 registaOrganizacao(org)
-activate "ro:RegistoOrganizacoes"
-"ro:RegistoOrganizacoes" -> "ro:RegistoOrganizacoes" : 15 validaOrganizacao(org)
-ref over ":Plataforma", "org:Organizacao" : UC1_SD_RegistarGestorComoUtilizador
-"ro:RegistoOrganizacoes" -> "ro:RegistoOrganizacoes" : 16 addOrganizacao(org)
-deactivate "ro:RegistoOrganizacoes"
-deactivate ":RegistarOrganizacaoController"
-":RegistarOrganizacaoUI" --> UtilizadorNãoRegistado : 17 operação bem sucedida
-deactivate ":RegistarOrganizacaoUI"
+"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 4 repoOrg = plat.getRepoOrg()
+activate "ro:RepositorioOrganizacao"
+deactivate "ro:RepositorioOrganizacao"
+"RegistarOrganizacaoController" -> "rc:RepositorioColaborador" : 5 repoColab = plat.getRepoColab()
+activate "rc:RepositorioColaborador"
+deactivate "rc:RepositorioColaborador"
+"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 6 org = criarOrganizacao(nomeOrg, nif, website, \ntelefone, email, rua, localidade, codigoPostal)
+activate "ro:RepositorioOrganizacao"
+"ro:RepositorioOrganizacao" -> NIF ** : 7 create(nif)
+"ro:RepositorioOrganizacao" -> Website ** : 8 create(website)
+"ro:RepositorioOrganizacao" -> Telefone ** : 9 create(telefone)
+"ro:RepositorioOrganizacao" -> Email ** : 10 create(email)
+"ro:RepositorioOrganizacao" -> EnderecoPostal ** : 11 create(rua, localidade, codigoPostal)
+"ro:RepositorioOrganizacao" -> Organizacao ** : 12 create(nomeOrg, nif, website, \ntelefone, email, enderecoPostal)
+deactivate "ro:RepositorioOrganizacao"
+"RegistarOrganizacaoController" -> "rc:RepositorioColaborador" : 13 gestor = criarGestor(nomeGestor, telefoneGestor, emailGestor, org)
+activate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Telefone : 14 create(telefone)
+activate Telefone
+deactivate Telefone
+"rc:RepositorioColaborador" -> Email : 15 create(email)
+activate Email
+deactivate Email
+"rc:RepositorioColaborador" -> Colaborador ** : 16 create(nomeGestor, telefoneGestor, emailGestor, org, Funcao.GESTOR)
+deactivate "rc:RepositorioColaborador"
+"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 17 addOrganizacao(org)
+activate "ro:RepositorioOrganizacao"
+"RegistarOrganizacaoController" <-- "ro:RepositorioOrganizacao" : 18 ok
+deactivate "ro:RepositorioOrganizacao"
+"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 19 addGestor(gestor, org)
+activate "ro:RepositorioOrganizacao"
+"RegistarOrganizacaoController" <-- "ro:RepositorioOrganizacao" : 20 ok
+deactivate "ro:RepositorioOrganizacao"
+"RegistarOrganizacaoController" -> "rc:RepositorioColaborador" : 21 addColaborador(gestor)
+activate "rc:RepositorioColaborador"
+"RegistarOrganizacaoController" <-- "rc:RepositorioColaborador" : 22 ok
+deactivate "rc:RepositorioColaborador"
+ref over RegistarOrganizacaoController, Colaborador : UC1_SD_RegistarGestorComoUtilizador
+deactivate "RegistarOrganizacaoController"
+"RegistarOrganizacaoUI" --> UtilizadorNãoRegistado : 23 operação bem sucedida, \n mostra dados
+deactivate "RegistarOrganizacaoUI"
 @enduml
