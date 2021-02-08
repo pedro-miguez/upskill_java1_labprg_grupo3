@@ -72,18 +72,21 @@ public class AreaGestorUI implements Initializable {
                     Integer.parseInt(txtContactoColaborador.getText().trim()),
                     txtEmailColaborador.getText().trim(),
                     authController.getEmail()
-                    );
-            
+            );
+
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
                     registou ? "Colaborador criado com sucesso! \n\n" +
                             plataformaController.getColaboradorToStringCompletoByEmail(txtEmailColaborador.getText().trim())
                             : "Não foi possível registar o colaborador.").show();
 
             limparDadosRegistarColaboradorPane();
-            
-        } catch (IllegalArgumentException e) {
+
+        } catch (NumberFormatException nfe) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
-                    e.getMessage()).show();
+                    "Letras em campos de valores numéricos (NIF, Contacto Gestor ou Telefone Organização) ou campos em vazio.").show();
+        } catch (IllegalArgumentException iae) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    iae.getMessage()).show();
         }
     }
 
@@ -109,10 +112,12 @@ public class AreaGestorUI implements Initializable {
                 limparDadosRegistarTarefaPane();
             }
 
-        } catch (IllegalArgumentException e) {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    e.getMessage()).show();
+        } catch (NumberFormatException nfe) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Letras em campos de valores numéricos (NIF, Contacto Gestor ou Telefone Organização) ou campos em vazio.").show();
+        } catch (IllegalArgumentException iae) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    iae.getMessage()).show();
         }
     }
 
@@ -193,7 +198,6 @@ public class AreaGestorUI implements Initializable {
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
     }
-
 
 
 }

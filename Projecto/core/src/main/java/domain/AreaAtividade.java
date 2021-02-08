@@ -55,7 +55,7 @@ public class AreaAtividade implements Serializable {
 
     private void setDescDetalhada(String descDetalhada) {
         if (descDetalhada == null || descDetalhada.trim().isEmpty()) {
-            throw new IllegalArgumentException("Descrição inválida!! A descrição não pode estar vazia.");
+            throw new IllegalArgumentException("Descrição detalhada inválida!! A descrição não pode estar vazia.");
         } else {
             this.descDetalhada = descDetalhada;
         }

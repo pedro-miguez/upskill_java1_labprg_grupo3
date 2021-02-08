@@ -34,15 +34,15 @@ public class Organizacao implements Serializable {
     public Organizacao(String nome, NIF nif, Website website, Telefone telefone, Email email, EnderecoPostal enderecoPostal){
         setNome(nome);
         setNif(nif);
-        setWebsite(website);
-        setTelefone(telefone);
-        setEmail(email);
         setEnderecoPostal(enderecoPostal);
+        setTelefone(telefone);
+        setWebsite(website);
+        setEmail(email);
     }
 
     private void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException(nome + " é um nome inválido");
+            throw new IllegalArgumentException("Nome da organização inválido");
         }
         this.nome = nome;
     }

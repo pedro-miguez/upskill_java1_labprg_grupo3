@@ -312,20 +312,20 @@
                         <Insets bottom="5.0" left="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnCriarCategoriaTarefaSelect" mnemonicParsing="false" onAction="#criarCategoriaTarefaSelectAction" prefHeight="52.0" prefWidth="90.0" text="Criar Categoria de Tarefa" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Verdana" size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="10.0" />
-                     </VBox.margin>
-                  </Button>
                   <Button fx:id="btnCriarCompetenciaTecnicaSelect" mnemonicParsing="false" onAction="#criarCompetenciaTecnicaSelectAction" prefHeight="52.0" prefWidth="90.0" text="Criar Competencia Técnica" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Verdana" size="11.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnCriarCategoriaTarefaSelect" mnemonicParsing="false" onAction="#criarCategoriaTarefaSelectAction" prefHeight="52.0" prefWidth="90.0" text="Criar Categoria de Tarefa" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Verdana" size="11.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
                      </VBox.margin>
                   </Button>
                   <Button fx:id="btnLogout" layoutX="20.0" layoutY="174.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="37.0" prefWidth="70.0" text="Logout" textAlignment="CENTER" wrapText="true">
