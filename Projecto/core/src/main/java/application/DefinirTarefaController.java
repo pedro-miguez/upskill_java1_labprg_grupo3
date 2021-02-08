@@ -26,11 +26,11 @@ public class DefinirTarefaController {
     public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
                                  int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail){
 
-        Plataforma plataforma = Plataforma.getInstance();new Email(
+        Plataforma plataforma = Plataforma.getInstance();
         RepositorioColaborador repositorioColaborador = plataforma.getRepoColab();
         RepositorioTarefa repositorioTarefa = plataforma.getRepoTarefa();
 
-        Colaborador collab = repositorioColaborador.getColaboradorByEmail(colaboradorEmail));
+        Colaborador collab = repositorioColaborador.getColaboradorByEmail(new Email(colaboradorEmail));
 
         Organizacao org = collab.getOrganizacao();
 
