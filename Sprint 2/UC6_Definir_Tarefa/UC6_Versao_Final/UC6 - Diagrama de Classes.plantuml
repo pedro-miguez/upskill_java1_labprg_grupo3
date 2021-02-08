@@ -6,28 +6,15 @@ title UC6 - Diagrama de Classes \n
 
 Class Plataforma <<Singleton>> {
     -String designacao
-    -AlgoritmoGeradorPasswords agp
-    -UsersAPI uapi
     -RepositorioColaborador repoColab
-    -RepositorioOrganizacao repoOrg
-    -RepositorioCompetenciaTecnica repoCompTec
-    -RepositorioAreaAtividade repoAreaAtiv
-    -RepositorioUtilizador repoUser
     -RepositorioTarefa repoTarefa
     -RepositorioCategoriaTarefa repoCategoriaTarefa
 
     +getInstance()
-    +getRepoAreaAtiv()
-    +getRepoCompTec()
     +getRepoCategoriaTarefa()
     +getRepoColab()
-    +getRepoOrg()
-    +getRepoUser()
     +getRepoTarefa()
-    +getUsersAPI()
-    +guardarDados()
-    +carregarDados()
-    -resetUserAPI()
+
 }
 
 Class PlataformaController {

@@ -14,10 +14,10 @@ Diagrama Classes: feito
 ------------------------------------------------------------------------------
 UC3
 
-SSD: falta alterar tirar o apresenta dados e solicita confirmaçao
+SSD: feito
 Diagrama Sequencia: feito
-Excerto Modelo Dominio: falta alterar?
-Diagrama Classes: falta alterar? 
+Excerto Modelo Dominio: feito
+Diagrama Classes: feito
 ------------------------------------------------------------------------------
 UC4
 
@@ -39,4 +39,4 @@ UC6
 SSD: falta alterar tirar o apresenta dados e solicita confirmaçao
 Diagrama Sequencia: feito
 Excerto Modelo Dominio: falta alterar?
-Diagrama Classes: falta
+Diagrama Classes: feito
