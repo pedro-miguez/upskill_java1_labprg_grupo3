@@ -10,8 +10,11 @@ class DefinirAreaController{
     +definirAreaAtividade(String codigoUnico, String descBreve, String descDetalhada)
 }
 
-class Plataforma{
-    +RepositorioAreaAtividade getRepoAreaAtiv()
+Class Plataforma <<Singleton>> {
+    -String designacao
+    -RepositorioAreaAtividade repoAreaAtiv
+    +getInstance()
+    +getRepoAreaAtiv()
 }
 
 class RepositorioAreaAtividade{
