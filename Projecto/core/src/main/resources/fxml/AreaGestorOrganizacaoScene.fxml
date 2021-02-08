@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post.png" />
          </image>
       </ImageView>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
@@ -20,10 +20,10 @@
                <children>
                   <BorderPane fx:id="registarColaboradorPane" prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <GridPane fx:id="regColaboradorPane" prefHeight="332.0" prefWidth="674.0" BorderPane.alignment="CENTER">
+                        <GridPane fx:id="regColaboradorPane" prefHeight="195.0" prefWidth="631.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="65.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="102.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.0" minWidth="10.0" prefWidth="525.0" />
                           </columnConstraints>
                           <rowConstraints>
                               <RowConstraints maxHeight="127.0" minHeight="9.0" prefHeight="61.0" valignment="CENTER" vgrow="SOMETIMES" />
@@ -48,17 +48,20 @@
                               </Label>
                               <TextField fx:id="txtNomeColaborador" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="230.0" />
                                  </GridPane.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </TextField>
                               <TextField fx:id="txtContactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="230.0" />
                                  </GridPane.margin>
                               </TextField>
                               <TextField fx:id="txtEmailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="230.0" />
                                  </GridPane.margin>
                               </TextField>
                            </children>
@@ -79,14 +82,14 @@
                               </Button>
                            </children>
                            <BorderPane.margin>
-                              <Insets right="72.0" />
+                              <Insets right="225.0" />
                            </BorderPane.margin>
                         </HBox>
                      </bottom>
                      <top>
-                        <Label prefHeight="73.0" prefWidth="223.0" text="Registar Colaborador" BorderPane.alignment="CENTER">
+                        <Label prefHeight="60.0" prefWidth="296.0" text="Registar Colaborador" BorderPane.alignment="CENTER">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
                      </top>
@@ -107,41 +110,43 @@
                               <Label text="Categoria da tarefa: " GridPane.rowIndex="6" />
                               <TextField fx:id="txtCodigoUnicoTarefa" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="230.0" />
                                  </GridPane.margin>
                               </TextField>
                               <TextField fx:id="txtCustoTarefa" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <GridPane.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="230.0" />
                                  </GridPane.margin>
                               </TextField>
                               <TextArea fx:id="txtDescInfTarefa" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
-                                    <Insets bottom="5.0" right="50.0" />
+                                    <Insets bottom="5.0" right="230.0" top="5.0" />
                                  </GridPane.margin>
                               </TextArea>
                               <TextArea fx:id="txtDescTecnicaTarefa" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
-                                    <Insets right="50.0" top="5.0" />
+                                    <Insets right="230.0" top="5.0" />
                                  </GridPane.margin>
                               </TextArea>
                               <TextField fx:id="txtDuracaoTarefa" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="230.0" />
                                  </GridPane.margin>
                               </TextField>
                               <ComboBox fx:id="comboCategoria" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label alignment="CENTER_RIGHT" text="Designação: " />
+                              <Label alignment="CENTER_RIGHT" text="Designação: ">
+                                 <GridPane.margin>
+                                    <Insets top="15.0" />
+                                 </GridPane.margin></Label>
                               <TextField fx:id="txtNomeTarefa" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="230.0" top="15.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <Label alignment="CENTER_RIGHT" text="Designação: " />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="228.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="10.0" prefWidth="446.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="155.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="519.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -169,14 +174,14 @@
                               </Button>
                            </children>
                            <BorderPane.margin>
-                              <Insets right="45.0" />
+                              <Insets right="225.0" />
                            </BorderPane.margin>
                         </HBox>
                      </bottom>
                      <top>
-                        <Label prefHeight="25.0" prefWidth="214.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
+                        <Label prefHeight="25.0" prefWidth="359.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
                      </top>

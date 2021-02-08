@@ -38,12 +38,7 @@ public class MainApp extends Application {
             //criar plataforma
             //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
 
-            try {
-                Plataforma.carregarDados();
-            } catch (Exception e) {
-                AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Desserialização",
-                        "Não foi encontrado ficheiro com dados.").show();
-            }
+
             plataformaController.resetUserAPI();
 
             //createData();
@@ -92,13 +87,21 @@ public class MainApp extends Application {
                     }
                 }
             });
+
             stage.show();
+
+            try {
+                Plataforma.carregarDados();
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Desserialização",
+                        "Não foi encontrado ficheiro com dados.").show();
+            }
+
         } catch (IOException ex) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO,
                     "Problemas no arranque da aplicação.", ex.getMessage()).show();
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);
