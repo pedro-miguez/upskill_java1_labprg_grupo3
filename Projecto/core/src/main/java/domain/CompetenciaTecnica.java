@@ -24,9 +24,9 @@ public class CompetenciaTecnica implements Serializable {
      */
     public CompetenciaTecnica(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada) {
         this.codigoUnico = codigoUnico;
+        setAreaAtividade(areaAtividade);
         setDescricao(descricao);
         setDescDetalhada(descDetalhada);
-        setAreaAtividade(areaAtividade);
     }
 
     /**
@@ -57,7 +57,7 @@ public class CompetenciaTecnica implements Serializable {
 
     private void setDescDetalhada(String descDetalhada) {
         if (descDetalhada == null || descDetalhada.trim().isEmpty()) {
-            throw new IllegalArgumentException("Descrição inválida!! A descrição não pode estar vazia.");
+            throw new IllegalArgumentException("Descrição inválida!! A descrição detalhada não pode estar vazia.");
         } else {
             this.descDetalhada = descDetalhada;
         }
@@ -103,6 +103,8 @@ public class CompetenciaTecnica implements Serializable {
     private void setAreaAtividade(AreaAtividade areaAtividade) {
         if (areaAtividade != null) {
             this.areaAtividade = areaAtividade;
+        } else {
+            throw new IllegalArgumentException("Area de atividade inválida para criação de competência técnica");
         }
     }
 }

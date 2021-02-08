@@ -34,10 +34,10 @@ public class Organizacao implements Serializable {
     public Organizacao(String nome, NIF nif, Website website, Telefone telefone, Email email, EnderecoPostal enderecoPostal){
         setNome(nome);
         setNif(nif);
-        setWebsite(website);
-        setTelefone(telefone);
-        setEmail(email);
         setEnderecoPostal(enderecoPostal);
+        setTelefone(telefone);
+        setWebsite(website);
+        setEmail(email);
     }
 
     private void setNome(String nome) {

@@ -63,7 +63,7 @@ public class RegistarOrganizacaoUI implements Initializable {
                     txtNomeGestor.getText().trim(),
                     Integer.parseInt(txtContactoGestor.getText()),
                     txtEmailGestor.getText().trim()
-                    );
+            );
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova organização.",
                     added ? "Organização criada com sucesso! \n\n" +
@@ -74,6 +74,9 @@ public class RegistarOrganizacaoUI implements Initializable {
                 voltarJanelaInicial();
             }
 
+        } catch (NumberFormatException nfe) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    "Letras em campos de valores numéricos (NIF, Contacto Gestor ou Telefone Organização) ou campos em vazio.").show();
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
@@ -84,6 +87,7 @@ public class RegistarOrganizacaoUI implements Initializable {
     public void limparAction(ActionEvent actionEvent) {
         limparDados();
     }
+
     public void limparDados() {
         txtNomeOrg.clear();
         txtNIFOrg.clear();

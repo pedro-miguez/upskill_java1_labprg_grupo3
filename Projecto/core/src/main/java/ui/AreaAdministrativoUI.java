@@ -244,14 +244,21 @@ public class AreaAdministrativoUI implements Initializable {
                     true,
                     comboBoxGrauProficienciaCategoriaTarefa.getValue());
 
-            listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
+            if (verificarCompetenciaTecnicaAindaNaoFoiAdicionada(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem())) {
+                listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
+            } else {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
+                        "Não é possível adicionar a mesma competência técnica mais do que uma vez.").show();
+            }
             btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
         } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
                     "É obrigatório escolher um grau de proficiência").show();
         }
 
     }
+
+
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
     public void compOpcionalCategoriaTarefaAction(ActionEvent actionEvent) {
@@ -262,13 +269,27 @@ public class AreaAdministrativoUI implements Initializable {
                     false,
                     comboBoxGrauProficienciaCategoriaTarefa.getValue());
 
-            listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
+            if (verificarCompetenciaTecnicaAindaNaoFoiAdicionada(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem())) {
+                listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
+            } else {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
+                        "Não é possível adicionar a mesma competência técnica mais do que uma vez.").show();
+            }
             btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
         } else {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
                     "É obrigatório escolher um grau de proficiência").show();
         }
 
+    }
+
+    public boolean verificarCompetenciaTecnicaAindaNaoFoiAdicionada(CompetenciaTecnica competenciaTecnica) {
+        for(CaracterizacaoCompTec cct : listViewCompTecnicasSelecionadasCategoriaTarefa.getItems()) {
+            if (cct.getCompetenciaTecnica().equals(competenciaTecnica)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     //remover a última competência técnica da lista

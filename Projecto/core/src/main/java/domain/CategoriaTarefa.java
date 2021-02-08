@@ -22,8 +22,8 @@ public class CategoriaTarefa implements Serializable {
      * @param competenciasTecnicas as a list of technical competences.
      */
     public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
-        setAreaAtividade(areaAtividade);
         setDescricao(descricao);
+        setAreaAtividade(areaAtividade);
         this.competenciasTecnicas = new ArrayList<>();
     }
 
@@ -57,7 +57,7 @@ public class CategoriaTarefa implements Serializable {
         if (areaAtividade != null) {
             this.areaAtividade = areaAtividade;
         }else{
-            throw new IllegalArgumentException("Area de atividade ja existente!!!.");
+            throw new IllegalArgumentException("Area de atividade inválida");
         }
     }
 
