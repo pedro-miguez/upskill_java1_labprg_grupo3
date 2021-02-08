@@ -1,5 +1,7 @@
 @startuml_mc_uc2
 
+title UC2 - Diagrama de Classes
+
 class DefinirAreaUI{
 
 }
