@@ -1,6 +1,8 @@
 # UC1-Registar Organização
 
+<!--
 ##### [Voltar ao início](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/README.md)
+-->
 
 ## 1. Engenharia de Requisitos
 

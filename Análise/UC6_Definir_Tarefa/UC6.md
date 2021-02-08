@@ -1,6 +1,8 @@
 # UC6 – Especificar Tarefa<br/>
 
+<!--
 ##### [Voltar ao início](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/README.md)
+-->
 
 ## Formato Breve:<br/><br/>
 
