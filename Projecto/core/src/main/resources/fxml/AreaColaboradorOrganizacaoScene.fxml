@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@../styles/professional-images-for-website-background-13-Ride-Now-Pte-Ltd.jpg" />
+            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post.png" />
          </image>
       </ImageView>
       <BorderPane prefHeight="593.0" prefWidth="782.0">
@@ -24,7 +24,7 @@
                            <children>
                               <Button fx:id="submeterTarefa" mnemonicParsing="false" onAction="#submeterTarefaAction" text="Submeter tarefa">
                                  <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
                               <Button fx:id="btnLimparDadosTarefa" mnemonicParsing="false" onAction="#btnLimparDadosTarefaAction" text="Limpar dados">
@@ -34,7 +34,7 @@
                               </Button>
                            </children>
                            <BorderPane.margin>
-                              <Insets right="25.0" />
+                              <Insets right="229.0" />
                            </BorderPane.margin>
                         </HBox>
                      </bottom>
@@ -43,8 +43,8 @@
                            <children>
                               <GridPane alignment="CENTER" prefHeight="465.0" prefWidth="702.0">
                                 <columnConstraints>
-                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="171.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="419.0" />
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="150.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.0" minWidth="10.0" prefWidth="520.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -60,57 +60,80 @@
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
                                     </Label>
-                                    <Label text="Descrição informal: " GridPane.rowIndex="2" />
-                                    <Label text="Descrição técnica: " GridPane.rowIndex="3" />
-                                    <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4" />
-                                    <Label text="Custo estimado: " GridPane.rowIndex="5" />
-                                    <Label text="Categoria da tarefa: " GridPane.rowIndex="6" />
+                                    <Label text="Descrição informal: " GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
+                                    <Label text="Descrição técnica: " GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
+                                    <Label text="Custo estimado: " GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
+                                    <Label text="Categoria da tarefa: " GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
                                     <TextField fx:id="txtCodigoUnicoTarefa" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                                        <GridPane.margin>
-                                          <Insets right="20.0" />
+                                          <Insets right="234.0" />
                                        </GridPane.margin>
                                     </TextField>
                                     <TextField fx:id="txtCustoEstimadoTarefa" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <GridPane.margin>
-                                          <Insets right="20.0" />
+                                          <Insets right="234.0" />
                                        </GridPane.margin>
                                     </TextField>
                                     <TextArea fx:id="txtDescricaoInformalTarefa" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <GridPane.margin>
-                                          <Insets bottom="5.0" right="20.0" />
+                                          <Insets bottom="5.0" right="234.0" />
                                        </GridPane.margin>
                                     </TextArea>
                                     <TextArea fx:id="txtDescricaoTecnicaTarefa" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <GridPane.margin>
-                                          <Insets right="20.0" top="5.0" />
+                                          <Insets right="234.0" top="5.0" />
                                        </GridPane.margin>
                                     </TextArea>
                                     <TextField fx:id="txtDuracaoEstimadaTarefa" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <GridPane.margin>
-                                          <Insets right="20.0" />
+                                          <Insets right="234.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <ComboBox fx:id="comboCategoriaTarefa" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <Label alignment="CENTER_RIGHT" text="Designação: " />
+                                    <ComboBox fx:id="comboCategoriaTarefa" prefHeight="29.0" prefWidth="150.0" promptText="Selecionar" visibleRowCount="100" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label alignment="CENTER_RIGHT" text="Designação: ">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
                                     <TextField fx:id="txtNomeTarefa" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets right="20.0" />
+                                          <Insets right="234.0" />
                                        </GridPane.margin>
                                     </TextField>
-                                    <Label alignment="CENTER_RIGHT" text="Designação: " />
                                  </children>
                               </GridPane>
                            </children>
                         </StackPane>
                      </center>
                      <top>
-                        <Label prefHeight="27.0" prefWidth="160.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
+                        <Label prefHeight="27.0" prefWidth="320.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
                      </top>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
                   </BorderPane>
                </children>
             </StackPane>
