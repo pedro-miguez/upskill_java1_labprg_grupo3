@@ -5,7 +5,6 @@ left to right direction
 
 class Plataforma {
     designacao
-    
 }
 
 class Organizacao {
@@ -36,13 +35,17 @@ class Utilizador {
     password
 }
 
+class Role {
+    designacao
+}
+
 class CategoriaTarefa {
     identificadorCategoria
     descricao
     areaAtividade
 }
 
-class CTCategoriaTarefa {
+class CaraterizaçãoCategoriaTarefa {
     identificadorCompTec
     caracter
     nivelGrauMinimo
@@ -103,12 +106,14 @@ Colaborador "0..1" --> "1" Utilizador: atua como
 Tarefa "*" --> "1" Colaborador: especificada por
 Tarefa "*" --> "1" CategoriaTarefa: enquadra-se em
 
-CategoriaTarefa "*" --> "*" CTCategoriaTarefa: requer
+CategoriaTarefa "*" --> "*" CaraterizaçãoCategoriaTarefa: requer
 CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
 
-CTCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
+CaraterizaçãoCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
 
 CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
 CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica
+
+Utilizador "1" --> "1..2" "Role": tem
 
 @enduml

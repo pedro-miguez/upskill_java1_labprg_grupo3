@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post.png" />
+            <Image url="@../../../../../../../../../Downloads/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
          </image>
       </ImageView>
       <BorderPane prefHeight="593.0" prefWidth="782.0">
@@ -75,7 +75,10 @@
                                     <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
-                                       </font></Label>
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="3.0" />
+                                       </GridPane.margin></Label>
                                     <Label text="Custo estimado: " GridPane.rowIndex="5">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
