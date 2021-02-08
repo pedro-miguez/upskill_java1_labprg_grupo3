@@ -1,9 +1,12 @@
 @startuml
+
 class RegistarOrganizacaoUI{
 }
+
 class RegistarOrganizacaoController{
 +registarOrganizacao(String nomeOrg, int nif, String website, int telefone,String email, String rua, \nString localidade, String codigoPostal,String nomeGestor, int telefoneGestor, String emailGestor)
 }
+
 class Organizacao{
     -String nome
     -NIF nif
@@ -15,6 +18,7 @@ class Organizacao{
     +EnderecoPostal novoEndereco(local,codPostal,localidade)
     +Colaborador novoColaborador(nome,funcao,tlf,email)
 }
+
 class RepositorioOrganizacao{
     +Organizacao criarOrganizacao(String nomeOrg, int nif, String website, int telefone, \nString email, String rua, String localidade, String codigoPostal)
     -getInstance()
@@ -25,6 +29,7 @@ class RepositorioOrganizacao{
     -registaGestorComoUtilizador(Colaborador colab)
     -enviaPwd(String emailG, String pwd)
 }
+
 class Plataforma{
     -String designacao
     --
@@ -33,6 +38,7 @@ class Plataforma{
     +UsersAPI
     +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
 }
+
 class EnderecoPostal{
     -String local
     -String codPostal
@@ -40,6 +46,7 @@ class EnderecoPostal{
     --
     +EnderecoPostal(local,codPostal,localidade)
 }
+
 class Colaborador{
     -String nome
     -String funcao
@@ -50,6 +57,7 @@ class Colaborador{
     +String getNome()
     +String getEmail()
 }
+
 class UsersAPI{
     +registerUserWithRoles(String username, String email, String password, String rolenames)
 }

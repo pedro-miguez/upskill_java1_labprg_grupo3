@@ -4,68 +4,94 @@ left to right direction
 
 title UC5 - Especificar Colaborador de Organizacao \n
 
-Class Plataforma <<Singleton>> {
+
+
+Class AreaGestorUI {
+}
+
+Class RegistarColaboradorController {
+    +registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String gestorEmail)
+}
+
+
+class Plataforma <<Singleton>> {
     -String designacao
-
-    +getRegistoAreasAtividade()
-    +getRegistoCompetenciasTecnicas()
+    --
+    +RepositorioColaborador getRepoColab()
+    +RepositorioOrganizacao getRepoOrg()
+    +UsersAPI
+    +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
 }
 
-Class UC5_UI {
+Class RepositorioOrganizacao {
+    +getOrganizacaoByGestor(Colaborador colaborador)
 }
 
-Class UC5_CTRL {
-    +novoColaborador(String nome, Telefone telefone, Email email)
-    +registaColaborador()
-}
-
-Class GestaoUtilizadoresFacade {
-    +getSessaoAtual()
-    +registaUtilizadorComPapel(String nome, Email email, Password password)
-}
-
-Class SessaoUtilizador {
-    +getEmailUtilizador()
-
-}
-
-Class RegistoOrganizacoes {
+Class RepositorioColaborador {
     +getOrganizacaoByEmail(Email email)
+    +addColaborador(Colaborador colaborador)
 }
 
-Class Organizacao {
-    +novoColaborador(String nome, Telefone telefone, Email email)
-    +validarColaborador(Colaborador colaborador)
-    +registaColaborador(Colaborador colaborador)
+class Organizacao {
+    -String nome
+    -NIF nif
+    -Telefone telefone
+    -Email email
+    -Website website
+    --
+    +Organizacao(nome,NIF,webSite,telefone,email,endereco,gestorColaborador)
+    +EnderecoPostal novoEndereco(local,codPostal,localidade)
+    +Colaborador novoColaborador(nome,funcao,tlf,email)
 }
 
 Class AlgoritmoGeradorPasswords {
     +getPassword()
 }
 
-Class Colaborador {
-    +create(String nome, Telefone telefone, Email email)
+class AuthenticationController {
+    +registarGestorComoUtilizador(Colaborador colaborador)
+}
+
+class UsersAPI {
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class UsersAPIAdapter {
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class Colaborador {
+    -String nome
+    -String funcao
+    -String telefone
+    -String email
+    --
+    +Colaborador(nome,função,tlf,email)
+    +String getNome()
+    +String getEmail()
 }
 
 
-UC5_UI .> UC5_CTRL
-
-UC5_CTRL .> Plataforma
-UC5_CTRL .> GestaoUtilizadoresFacade
-UC5_CTRL .> SessaoUtilizador
-UC5_CTRL .> RegistoOrganizacoes
-UC5_CTRL .> Organizacao
-UC5_CTRL .> AlgoritmoGeradorPasswords
-
-Plataforma "1" -down-> "1" RegistoOrganizacoes: tem
-Plataforma "1" -down-> "1" Organizacao: tem
-Plataforma "1" -down-> "1" SessaoUtilizador: tem
-Plataforma "1" -down-> "1" AlgoritmoGeradorPasswords: tem
-
-
-Organizacao "1" -down-> "*" Colaborador: tem
-
-RegistoOrganizacoes .> Organizacao
+AreaGestorUI ..> RegistarColaboradorController
+RegistarColaboradorController ..> Organizacao
+RegistarColaboradorController ..> RepositorioOrganizacao
+RegistarColaboradorController ..> Plataforma
+RegistarColaboradorController ..> AuthenticationController
+RegistarColaboradorController ..> RepositorioColaborador
+AuthenticationController ..> UsersAPI
+UsersAPI --> AlgoritmoGeradorPasswords : usa
+UsersAPI ..> UsersAPIAdapter
+Plataforma "1" --> "1" RepositorioColaborador : tem
+Plataforma "1" --> "1" RepositorioOrganizacao : tem
+RepositorioColaborador "1"--> "1..*" Colaborador : tem
+RepositorioOrganizacao "1" --> "*" Organizacao : tem registadas
+RepositorioOrganizacao ..> UsersAPI
+RepositorioOrganizacao ..> AlgoritmoGeradorPasswords
+Organizacao "1" --> "1" EnderecoPostal : localizada em
+Organizacao "1" --> "1..*" Colaborador : tem
+Organizacao "1" --> "1" Colaborador: tem gestor
+RepositorioOrganizacao ..> Colaborador
+RepositorioOrganizacao ..> EnderecoPostal
 
 
 

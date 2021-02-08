@@ -13,11 +13,11 @@
 
 ## Modelo de Domínio
 
-![Modelo de Domínio](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\Modelo_Domínio.png)
+![Modelo de Domínio](Análise\Modelo_Domínio.png)
 
 ## Diagrama Casos de Uso
 
-![Diagrama Casos de Uso](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UseCaseDiagram.png)
+![Diagrama Casos de Uso](Análise\UseCaseDiagram.png)
 
 :[Requisitos Funcionais e Não Funcionais](Análise/Requisitos_Funcionais&FURPS+.md)
 
@@ -27,7 +27,7 @@
 
 :[UC3 - Definir Categoria de Tarefa](Análise/UC3_Definir_Categoria_de_Tarefa/UC3.md)
 
-:[UC4 - Definir Competência Técnica](Análise/UC3_Definir_Categoria_de_Tarefa/UC3.md)
+:[UC4 - Definir Competência Técnica](Análise/UC4_Definir_Competência_Técnica\UC4.md)
 
 :[UC5 - Especificar Colaboradores da Organização](Análise/UC5_Especificar_Colaboradores_da_Organização/UC5.md)
 
