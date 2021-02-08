@@ -8,16 +8,16 @@ O colaborador da organização inicia a criação no sistema uma nova tarefa. O 
 
 #### SSD
 
-![UC6_SSD.png](UC6_SSD.png)
+![UC6_SSD.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC6_Definir_Tarefa\UC6_SSD.png)
 
 ##### Diagrama de Sequência
 
-![UC6_DS.png](UC6_DS.png)
+![UC6_DS.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC6_Definir_Tarefa\UC6_DS.png)
 
 #### Diagrama de Classes
 
-![UC6_DClasses.png](UC6_DClasses.png)
+![UC6_DClasses.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC6_Definir_Tarefa\UC6_DClasses.png)
 
 #### Excerto Modelo de Domínio
 
-![UC6_ModeloDominio.png](UC6_ModeloDominio.png)
+![UC6_ModeloDominio.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC6_Definir_Tarefa\UC6_ModeloDominio.png)

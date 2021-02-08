@@ -7,13 +7,7 @@ activate ":Sistema"
 deactivate ":Sistema"
 Administrativo -> ":Sistema" : 3 introduz os dados solicitados
 activate ":Sistema"
-loop
-":Sistema" --> Administrativo : 4 solicita os varios graus de proficiencia aplicaveis
-deactivate ":Sistema"
-Administrativo -> ":Sistema": 5 introduz os dados de cada grau
-activate ":Sistema"
-end
-":Sistema" --> Administrativo : 6 apresenta os dados e informa do sucesso da operacao
+":Sistema" --> Administrativo : 4 a apresenta os dados e informa do sucesso da operacao
 deactivate ":Sistema"
 
 @enduml

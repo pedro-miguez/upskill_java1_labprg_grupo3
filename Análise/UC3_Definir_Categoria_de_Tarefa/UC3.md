@@ -8,16 +8,16 @@ O administrativo define uma categoria de tarefa, indicando em sistema os dados n
 
 #### SSD
 
-![UC3_SSD.png](UC3_SSD.png)
+![UC3_SSD.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC3_Definir_Categoria_de_Tarefa\UC3_SSD.png)
 
 ##### Diagrama de Sequência
 
-![UC3_DSQ.png](UC3_DSQ.png)
+![UC3_DSQ.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC3_Definir_Categoria_de_Tarefa\UC3_DSQ.png)
 
 #### Diagrama de Classes
 
-![UC3_DClasses.png](UC3_DClasses.png)
+![UC3_DClasses.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC3_Definir_Categoria_de_Tarefa\UC3_DClasses.png)
 
 #### Excerto Modelo de Domínio
 
-![UC3_ModeloDomínio.png](UC3_ModeloDomínio.png)
+![UC3_ModeloDomínio.png](E:\Documents\GitHub\upskill_java1_labprg_grupo3\Análise\UC3_Definir_Categoria_de_Tarefa\UC3_ModeloDomínio.png)
