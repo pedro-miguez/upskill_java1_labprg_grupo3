@@ -15,7 +15,7 @@ import java.nio.file.Paths;
  */
 public class Plataforma implements Serializable {
 
-    static final String PLATAFORMA_FILE = "dados_plataforma.dat";
+    static final String PLATAFORMA_FILE = "Projecto/dados_plataforma.dat";
 
     private static Plataforma plataforma;
 
