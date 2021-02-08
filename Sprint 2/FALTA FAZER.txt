@@ -1,0 +1,42 @@
+UC1
+
+SSD: falta alterar tirar o apresenta dados e solicita confirmaçao
+Diagrama Sequencia: feito
+Excerto Modelo Dominio: falta alterar?
+Diagrama Classes: falta atualizar
+------------------------------------------------------------------------------
+UC2 
+
+SSD: falta alterar tirar o apresenta dados e solicita confirmaçao
+Diagrama Sequencia: feito
+Excerto Modelo Dominio: falta
+Diagrama Classes: feito
+------------------------------------------------------------------------------
+UC3
+
+SSD: falta alterar tirar o apresenta dados e solicita confirmaçao
+Diagrama Sequencia: feito
+Excerto Modelo Dominio: falta alterar?
+Diagrama Classes: falta alterar? 
+------------------------------------------------------------------------------
+UC4
+
+SSD:falta alterar tirar o apresenta dados e solicita confirmaçao
+Diagrama Sequencia: perguntar vitor
+Excerto Modelo Dominio:falta alterar?
+Diagrama Classes: falta alterar?
+------------------------------------------------------------------------------
+UC5
+
+SSD: alterar, função nao é atributo pedido
+Diagrama Sequencia: feito
+Excerto Modelo Dominio: falta alterar
+Diagrama Classes: falta alterar 
+Diagrama Sequencia Registar Colaborador Como Utilizador: falta
+------------------------------------------------------------------------------
+UC6
+
+SSD: falta alterar tirar o apresenta dados e solicita confirmaçao
+Diagrama Sequencia: feito
+Excerto Modelo Dominio: falta alterar?
+Diagrama Classes: falta
