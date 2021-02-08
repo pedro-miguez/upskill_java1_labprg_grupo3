@@ -2,7 +2,7 @@
 
 title UC2 - Diagrama de Classes
 
-class DefinirAreaUI{
+class AreaAdministrativoUI{
 
 }
 
@@ -31,7 +31,7 @@ class CodigoUnico{
     -String codigoUnico
 }
 
-DefinirAreaUI ..> DefinirAreaController
+AreaAdministrativoUI ..> DefinirAreaController
 DefinirAreaController ..> AreaAtividade
 DefinirAreaController ..> Plataforma
 DefinirAreaController ..> RepositorioAreaAtividade
