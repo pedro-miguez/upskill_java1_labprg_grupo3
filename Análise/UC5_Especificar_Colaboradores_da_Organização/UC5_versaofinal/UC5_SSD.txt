@@ -1,5 +1,7 @@
 @startuml
 
+title UC5 - Diagrama de sequência de sistema
+
 actor GestorOrganizacao
 participant Sistema
 
@@ -10,12 +12,9 @@ Sistema --> GestorOrganizacao: 2 solicita os dados (nome, contacto telefonico, e
 deactivate Sistema
 GestorOrganizacao -> Sistema: 3 introduz os dados solicitados
 activate Sistema
-Sistema --> GestorOrganizacao:4 apresenta os dados e solicita confirmacao
+Sistema --> GestorOrganizacao:4 apresenta os dados e informa sucesso da operacao
 deactivate Sistema
-GestorOrganizacao -> Sistema: 5 confirma os dados
-activate Sistema
-Sistema --> GestorOrganizacao:6 informa do sucesso de operacao
-deactivate Sistema
+
 deactivate GestorOrganizacao
 
 @enduml
