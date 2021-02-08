@@ -1,6 +1,6 @@
 # UC1-Registar Organização
 
-##### [Voltar ao início](https://github.com/ajorgesantosp/upskill_java1_g1/blob/main/README.md)
+##### [Voltar ao início](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/README.md)
 
 ## 1. Engenharia de Requisitos
 
@@ -33,6 +33,16 @@ O sistema valida e apresenta os dados ao colaborador da organização, pedindo q
 
 ![UC1_SSD.png](UC1_SSD.png)
 
-##### Diagrama de Sequências
+##### Diagrama de Sequência
 
-![UC1_Registar_Organização.png](UC1_Registar_Organização.png)
+![UC1_SequenceDiagram.png](UC1_SequenceDiagram.png)
+
+![UC1_SD_RegistarGestorComoUtilizador.png](UC1_SD_RegistarGestorComoUtilizador.png)
+
+#### Diagrama de Classes
+
+![UC1_DiagramaClasses.png](UC1_DiagramaClasses.png)
+
+#### Excerto Modelo de Domínio
+
+![UC1_ModeloDominio.png](UC1_ModeloDominio.png)
