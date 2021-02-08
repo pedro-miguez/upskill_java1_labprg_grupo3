@@ -16,7 +16,7 @@ Class Plataforma <<Singleton>> {
     -RepositorioTarefa repoTarefa
     -RepositorioCategoriaTarefa repoCategoriaTarefa
 
-    +getInstance
+    +getInstance()
     +getRepoAreaAtiv()
     +getRepoCompTec()
     +getRepoCategoriaTarefa()
@@ -64,7 +64,7 @@ Class Tarefa {
     - Organizacao organizacao
 }
 
-Class Organizacao {
+Class Organização {
     - String nome
     - NIF nif
     - Website website
@@ -132,7 +132,7 @@ DefinirTarefaController .> RepositorioColaborador
 DefinirTarefaController .> RepositorioTarefa
 
 Plataforma "1" -down-> "1" RepositorioTarefa: tem
-Plataforma "1" -down-> "1" RepositorioCategproaTarefa: tem
+Plataforma "1" -down-> "1" RepositorioCategoriaTarefa: tem
 Plataforma "1" -down-> "1" RepositorioColaborador: tem
 
 RepositorioCategoriaTarefa "1" -> "*" CategoriaTarefa: possui
@@ -141,6 +141,7 @@ RepositorioTarefa "1" -> "*" Tarefa: possui
 
 Colaborador "1" -> "1" Organização: pertence a
 Tarefa "1" -> "1" Organização: relativa a
+Tarefa "1" -> "1" CategoriaTarefa: relativa a
 
 
 @enduml
