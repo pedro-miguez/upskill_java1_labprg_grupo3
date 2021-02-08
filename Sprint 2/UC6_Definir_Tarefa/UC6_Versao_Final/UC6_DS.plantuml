@@ -1,0 +1,51 @@
+@startuml_sd_uc6
+
+title UC6 - Diagrama de sequência
+
+actor ColaboradorUtilizador
+participant AreaColaboradorUI
+participant DefinirTarefaCTRL
+participant Plataforma
+
+activate ColaboradorUtilizador
+
+ColaboradorUtilizador -> AreaColaboradorUI: 1 Inicia a especificação de uma tarefa
+activate AreaColaboradorUI
+AreaColaboradorUI -> PlataformaController: 2 getCategoriasTarefa()
+activate PlataformaController
+deactivate PlataformaController
+PlataformaController -> "rct:RepositorioCategoriaTarefa" : 3 listarCategoriasTarefa()
+activate "rct:RepositorioCategoriaTarefa"
+deactivate "rct:RepositorioCategoriaTarefa"
+AreaColaboradorUI -> DefinirTarefaCTRL: 4 definirTarefa(String codigoUnico, String designacao, \nString descricaoInformal, String descricaoTecnica, int duracaoHoras,\n float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail)
+activate DefinirTarefaCTRL
+DefinirTarefaCTRL -> Plataforma: 5 plat = Plataforma.getInstance()
+activate Plataforma
+deactivate Plataforma
+DefinirTarefaCTRL -> "rc:RepositorioColaborador" : 6 repoColab = plat.getRepoColab()
+activate "rc:RepositorioColaborador"
+DefinirTarefaCTRL -> "rc:RepositorioColaborador" : 7 colab = repoColab.getColaboradorByEmail(Email)
+"rc:RepositorioColaborador" -> Email ** :  8 emailColab = create(colaboradorEmail)
+"rc:RepositorioColaborador" -> Colaborador ** : 9 repoColab.getColaboradorByEmail(emailColab)
+activate Colaborador
+Colaborador --> "rc:RepositorioColaborador" : 10 colab
+deactivate "rc:RepositorioColaborador"
+Colaborador -> Organizacao ** : 11 org = colab.getOrganizacao()
+activate Organizacao
+Organizacao --> Colaborador : 12 org
+deactivate Organizacao
+deactivate Colaborador
+DefinirTarefaCTRL -> "rt:RepositorioTarefa" : 13 plat.getRepoTarefa()
+activate "rt:RepositorioTarefa"
+deactivate "rt:RepositorioTarefa"
+DefinirTarefaCTRL -> "rt:RepositorioTarefa" : 14 tarefa = criarTarefa(codigoUnico,designacao, descricaoInformal, \ndescricaoTecnica, duracaoHoras, custo, categoriaTarefa, org)
+activate "rt:RepositorioTarefa"
+"rt:RepositorioTarefa" -> CodigoUnico** : 15 create(codigoUnico)
+DefinirTarefaCTRL -> "rt:RepositorioTarefa" : 16 addTarefa(tarefa)
+"rt:RepositorioTarefa" --> DefinirTarefaCTRL : 17 ok
+deactivate "rt:RepositorioTarefa"
+deactivate DefinirTarefaCTRL
+AreaColaboradorUI --> ColaboradorUtilizador : 18 operação bem sucedida, mostra os dados
+deactivate AreaColaboradorUI
+deactivate ColaboradorUtilizador
+@enduml_sd_uc6
