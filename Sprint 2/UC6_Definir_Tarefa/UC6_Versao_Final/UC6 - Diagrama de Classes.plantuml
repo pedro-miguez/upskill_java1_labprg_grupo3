@@ -6,42 +6,18 @@ title UC6 - Diagrama de Classes \n
 
 Class Plataforma <<Singleton>> {
     -String designacao
-    -AlgoritmoGeradorPasswords agp
-    -UsersAPI uapi
     -RepositorioColaborador repoColab
-    -RepositorioOrganizacao repoOrg
-    -RepositorioCompetenciaTecnica repoCompTec
-    -RepositorioAreaAtividade repoAreaAtiv
-    -RepositorioUtilizador repoUser
     -RepositorioTarefa repoTarefa
     -RepositorioCategoriaTarefa repoCategoriaTarefa
 
     +getInstance()
-    +getRepoAreaAtiv()
-    +getRepoCompTec()
     +getRepoCategoriaTarefa()
     +getRepoColab()
-    +getRepoOrg()
-    +getRepoUser()
     +getRepoTarefa()
-    +getUsersAPI()
-    +guardarDados()
-    +carregarDados()
-    -resetUserAPI()
 }
 
 Class PlataformaController {
-    +getAreasAtividade()
-    +getGrausProficiencia()
     +getCategoriasTarefa()
-    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
-    +resetUserAPI
-    +getAreaATividadeToStringCompletoByCodigoUnico(String codigoUnico)
-    +getCategoriaTarefaToStringCompletoByNome(String nome)
-    +getColaboradorToStringCompletoByEmail(String email)
-    +getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico)
-    +getOrganizacaoToStringCompletoByEmail(String email)
-    +getTarefaToStringCompletoByCodigoUnico(String codigoUnico)
 }
 
 Class Colaborador {
@@ -91,30 +67,16 @@ Class DefinirTarefaController {
 
 Class RepositorioColaborador <<Singleton>> {
     +getInstance()
-    +addColaborador(Colaborador colaborador)
-    +getColaboradorByEmail(Email email)
-    +getColaboradoresOrganizacao (Organizacao organizacao)
-    +listarColaboradores()
-    +criarColaborador(String nomeColaborador,int contactoColaborador, String emailColaborador, Organizacao org)
-    +criarGestor(String nomeGestor,int contactoGestor, String emailGestor, Organizacao org)
-                                                
+    +getColaboradorByEmail(Email email)                         
 }
 
 Class RepositorioTarefa <<Singleton>> {
     +getInstance()
     +addTarefa(Tarefa tarefa)
-    +getTarefaByCodigoUnico(CodigoUnico codigoUnico)
-    +getTarefasOrganizacao (Organizacao organizacao)
-    +criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org)
-    +listarTarefas()
-                            
-                                         
+    +criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org)            
 }
 
 Class RepositorioCategoriaTarefa <<Singleton>> {
-    +criarCategoriaTarefa(String descricao, Area Atividade areaAtividade, List<CaracterizacaoCT> competenciasTecnicas)
-    +addCategoriaTarefa(CategoriaTarefa categoriaTarefa)
-    +getCategoriaTarefaByDescricao(String descricao)
     +listarCategoriasTarefa()
 }
 
