@@ -79,7 +79,9 @@ public class AreaGestorUI implements Initializable {
                             plataformaController.getColaboradorToStringCompletoByEmail(txtEmailColaborador.getText().trim())
                             : "Não foi possível registar o colaborador.").show();
 
-            limparDadosRegistarColaboradorPane();
+            if (registou) {
+                limparDadosRegistarColaboradorPane();
+            }
 
         } catch (NumberFormatException nfe) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",

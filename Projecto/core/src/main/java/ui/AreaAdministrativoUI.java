@@ -68,8 +68,6 @@ public class AreaAdministrativoUI implements Initializable {
 
     public Button btnLogout;
 
-    
-
     private DefinirAreaAtividadeController areaAtividadeController;
     private DefinirCompetenciaTecnicaController competenciaTecnicaController;
     private DefinirCategoriaTarefaController categoriaTarefaController;

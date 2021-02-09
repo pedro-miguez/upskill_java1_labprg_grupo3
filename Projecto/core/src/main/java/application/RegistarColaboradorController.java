@@ -42,7 +42,7 @@ public class RegistarColaboradorController {
         
         Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org);
 
-        if (repoColab.addColaborador(colaborador)) {
+        if (!repoColab.addColaborador(colaborador)) {
             return false;
         } else return authController.registarColaboradorComoUtilizador(colaborador);
     }
