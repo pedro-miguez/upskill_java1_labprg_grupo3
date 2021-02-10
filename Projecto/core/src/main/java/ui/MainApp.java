@@ -31,19 +31,6 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/JanelaInicialScene.fxml"));
             Parent root = loader.load();
 
-            plataformaController = new PlataformaController();
-
-            Plataforma plataforma = Plataforma.getInstance();
-
-            //criar plataforma
-            //Plataforma.guardarDados(); //COMENTAR ou DESCOMENTAR para testar funcionalidades
-
-
-            plataformaController.resetUserAPI();
-
-            //createData();
-
-
             Scene scene = new Scene(root);
             //scene.getStylesheets().add("/styles/Styles.css");
             scene.getStylesheets().addAll(this.getClass().getResource("/styles/Styles.css").toExternalForm());
@@ -92,10 +79,15 @@ public class MainApp extends Application {
 
             try {
                 Plataforma.carregarDados();
+
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Desserialização",
                         "Não foi encontrado ficheiro com dados.").show();
             }
+
+            plataformaController = new PlataformaController();
+
+            plataformaController.resetUserAPI();
 
         } catch (IOException ex) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO,

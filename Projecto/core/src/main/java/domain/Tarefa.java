@@ -21,7 +21,6 @@ public class Tarefa implements Serializable {
     private CategoriaTarefa categoria;
     private Organizacao organizacao;
 
-
     /**
      * Instantiates a new task (as Tarefa) with set parameters.
      *
@@ -34,6 +33,7 @@ public class Tarefa implements Serializable {
      * @param categoria         the task category it falls under
      * @param organizacao       the the organization that belongs
      */
+    
     public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
                   int duracaoHoras, float custo, CategoriaTarefa categoria, Organizacao organizacao) {
         this.codigoUnico = codigoUnico;
