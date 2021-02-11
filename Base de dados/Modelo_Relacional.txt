@@ -4,15 +4,11 @@ left to right direction
 
 hide circle
 
-entity Plataforma {
-    designacao {PK}
-}
-
 entity Organizacao {
     idOrganizacao {PK}
     NIF {UNIQUE}
     email {UNIQUE}
-    idGestor (idColaborador) {N, FK}
+    idGestor (idColaborador - Colaborador) {N, FK}
     nome 
     contactoTelefonico 
     enderecoWeb 
@@ -24,21 +20,15 @@ entity Administrativo {
 }
 
 entity Colaborador {
-    idColaborador {PK}
-    idOrganizacao {PK, FK}
-    idFuncao {FK}
+    idColaborador (idUtilizador - Utilizador) {PK, FK}
+    idOrganizacao {FK}
     nome 
     contactoTelefonico 
     email 
 }
 
-entity Funcao {
-    idFuncao {PK}
-    idColaborador {FK}
-}
-
 entity Freelancer {
-    idFreelancer {PK}
+    idFreelancer (idUtilizador - Utilizador) {PK}
     NIF {UNIQUE}
     nome 
     contactoTelefonico 
@@ -89,7 +79,7 @@ entity CaraterizaçãoCompetenciatecnica {
 
 entity Tarefa {
     idTarefa {PK}
-    idOrganizacao {PK, FK}
+    {UNIQUE referenciaTarefa, idOrganizacao {FK}}
     idCategoria {FK}
     idEstadoTarefa {FK}
     designacao
@@ -106,8 +96,7 @@ entity EstadoTarefa {
 
 entity Anuncio {
     idAnuncio {PK}
-    idTarefa {UNIQUE, FK}
-    idOrganizacao {FK}
+    idTarefa {FK}
     dataInicioPublicitacao
     dataFimPublicitacao
     dataInicioCandidatura
@@ -117,9 +106,8 @@ entity Anuncio {
 }
 
 entity Candidatura {
-    idFreelancer {FK}
     idAnuncio {PK, FK}
-    idCandidatura {PK}
+    idFreelancer {PK, FK}
     dataCandidatura
     valorPretendido
     nrDias
@@ -141,7 +129,7 @@ entity ProcessoSeriacao {
 
 entity Classificacao {
     idAnuncio{PK, FK}
-    idCandidatura{PK, FK}
+    idFreelancer{PK, FK}
     lugar 
 }
 
@@ -178,14 +166,6 @@ entity EnderecoPostal {
     localidade
 }
 
-Plataforma "1" --> "1..*" Administrativo: tem
-Plataforma "1" --> "*" Organizacao: tem registada
-Plataforma "1" --> "*" Freelancer: tem/usa
-Plataforma "1" --> "*" CategoriaTarefa: possui
-Plataforma "1" --> "*" CompetenciaTecnica: possui
-Plataforma "1" --> "*" AreaAtividade: possui
-Plataforma "1" --> "*" TipoRegimento: suporta
-
 Organizacao "1" --> "1" EnderecoPostal: localizada em
 Organizacao "1" --> "1..*" Colaborador: tem
 Organizacao "1" --> "1" Colaborador: tem gestor
@@ -194,8 +174,6 @@ Organizacao "1" --> "*" Tarefa: possui
 Freelancer "0..1" --> "1" Utilizador: atua como
 Freelancer "1" --> "*" HabilitacaoAcademica: tem
 Freelancer "0..1" --> "*" ReconhecimentoCT: recebe
-
-Colaborador "1" --> "1" Funcao: desempenha
 
 ReconhecimentoCT "*" --> "1" GrauProficiencia: reconhece
 
