@@ -9,14 +9,15 @@ create table ReconhecimentoCT (
     --(nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites
     -- min e max dos niveis associados à competencia tecnica em GrauProficiencia)
         constraint nnReconhecimentoCTnivelGrauProficiencia not null
-        constraint ckReconhecimentoCTnivelGrauProficiencia check (0 < nivelGrauProficiencia =< 5)********************************
+        --constraint ckReconhecimentoCTnivelGrauProficiencia check (0 < nivelGrauProficiencia =< 5)********************************
     dataReconhecimento date
         constraint nnReconhecimentoCTdataReconhecimento not null
         constraint ckReconhecimentoCTdataReconhecimento check (sysdate < dataReconhecimento < 2000))
-    constraint pkReconhecimentoCTidCompetenciaTecnicaidFreelancer primary key (idCompetenciaTecnica, idFreelancer)*************
+
+    constraint pkReconhecimentoCTidCompetenciaTecnicaidFreelancer primary key (idCompetenciaTecnica, idFreelancer)
 )
 
-create table Utilizador ( *********************************n tem FK?
+create table Utilizador (
     idUtilizador INTEGER
         constraint nnUtilizadorIdUtilizador not null
         constraint ckUtilizadorIdUtilizador check (0 < idUtilizador)
@@ -36,6 +37,7 @@ create table Role (
         constraint nnRoleidUtilizador not null
     designacao varchar(40)
         constraint nnRoleDesignacao not null
+
     constraint pkRoleIdUtilizadorDesignacao primary key (idUtilizador, designacao)
 )
 
@@ -48,10 +50,11 @@ create table CategoriaTarefa (
         constraint ckCategoriaTarefaIdAreaAtividade check (0 < idAreaAtividade)
     descricao varchar(100)
         constraint nnCategoriaTarefaDescricao not null
+
     constraint pkCategoriaTarefaIdCategoriaIdAreaAtividade primary key (idCategoria, idAreaAtividade)
 )
 
-create table  CaraterizaçãoCategoriaTarefa ()
+create table  CaraterizacaoCategoriaTarefa (
     idCompTec {FK} INTEGER
         constraint nnCaraterizaçãoCategoriaTarefaIdCompTec not null
         constraint ckCaraterizaçãoCategoriaTarefaIdCompTec check (0 < idCompTec)
@@ -65,6 +68,7 @@ create table  CaraterizaçãoCategoriaTarefa ()
     -- (nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites min e max dos
     -- niveis associados à competencia tecnica em GrauProficiencia)
         constraint nnCaraterizaçãoCategoriaTarefaNivelGrauMinimo not null
-        constraint ckCaraterizaçãoCategoriaTarefaNivelGrauMinimo check (0 < nivelGrauMinimo =< 5)***************
+        --constraint ckCaraterizaçãoCategoriaTarefaNivelGrauMinimo check (0 < nivelGrauMinimo =< 5)***************
+
     constraint pkCaraterizaçãoCategoriaTarefaIdCompTecIdCategoria primary key (idCompTec, idCategoria)
 )
