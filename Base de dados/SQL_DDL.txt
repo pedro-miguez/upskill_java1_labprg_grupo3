@@ -1,0 +1,138 @@
+CREATE TABLE Plataforma {
+designacao VARCHAR(30) PRIMARY KEY
+}
+
+CREATE TABLE Organizacao {
+idOrganizacao PRIMARY KEY,
+    NIF UNIQUE,
+    email UNIQUE,
+    idGestor (idColaborador) Foreign Key,
+    nome VARCHAR(30),
+    contactoTelefonico ,
+    enderecoWeb VARCHAR(30) 
+}
+
+CREATE TABLE Administrativo {
+nome PRIMARY KEY
+}
+
+CREATE TABLE Colaborador {
+idColaborador PRIMARY KEY,
+    idOrganizacao PRIMARY KEY, Foreign Key,
+    nome ,
+    funcao ,
+    contactoTelefonico ,
+    email 
+}
+
+CREATE TABLE Freelancer {
+idFreelancer PRIMARY KEY,
+    NIF UNIQUE,
+    nome ,
+    contactoTelefonico ,
+    email 
+}
+
+CREATE TABLE HabAcad {
+idHabilitacao PRIMARY KEY,
+    grau ,
+    designacaoCurso ,
+    nomeInstituicao ,
+    mediaCurso 
+}
+
+CREATE TABLE ReconhecimentoCT {
+identificadorCompetenciaTecnica PRIMARY KEY, Foreign Key,
+    idFreelancer PRIMARY KEY, Foreign Key,
+    grauProficiencia,
+    dataReconhecimento
+}
+
+CREATE TABLE Utilizador {
+nome,
+    email,
+    password
+}
+
+CREATE TABLE Role {
+designacao
+}
+
+CREATE TABLE CategoriaTarefa {
+identificadorCategoria,
+    descricao,
+    areaAtividade
+}
+
+CREATE TABLE CaracterizaCatTarefa{
+identificadorCompTec,
+    caracter,
+    nivelGrauMinimo
+}
+
+CREATE TABLE Tarefa {
+identificadorTarefa,
+    designacao,
+    descricaoInformal,
+    descricaoTecnica,
+    estimativaDuracao,
+    estimativaCusto
+}
+
+CREATE TABLE Anuncio {
+idAnuncio PRIMARY KEY,
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+CREATE TABLE Candidatura {
+dataFimCandidatura
+    valorPretendido
+    nrDias
+    txtApresentacao
+    txtMotivacao
+}
+
+CREATE TABLE ProcessoSeriacao {
+dataRealizacao
+}
+
+CREATE TABLE Classificacao {
+lugar
+}
+
+CREATE TABLE TipoRegimento {
+designacao
+    descricaoRegras
+}
+
+CREATE TABLE CompetenciaTecnica {
+nome 
+    identificadorCompetenciaTecnica
+    descricaoBreve
+    descricaoDetalhada
+    grausProficiencia
+}
+
+CREATE TABLE GrauProficiencia {
+nivel
+    designacao
+}
+
+CREATE TABLE AreaAtividade {
+identificadorAreaAtividade
+    descricaoBreve
+    descricaoDetalhada
+}
+
+CREATE TABLE EnderecoPostal {
+idOrganizacao PRIMARY KEY,
+    morada
+    codigoPostal
+    localidade
+}
+
