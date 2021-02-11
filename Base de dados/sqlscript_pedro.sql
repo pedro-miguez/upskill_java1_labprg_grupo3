@@ -43,7 +43,7 @@ create table Candidatura (
 
 create table ProcessoSeriacao (
     idAnuncio integer primary key check (idAnuncio > 0),
-    idTipoRegimento integer not nullcheck (idTipoRegimento > 0),
+    idTipoRegimento integer not null check (idTipoRegimento > 0),
     dataCandidatura date not null
 );
 
