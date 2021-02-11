@@ -1,0 +1,57 @@
+@startuml
+title Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao  
+}
+
+class Organizacao {
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
+}
+
+class Colaborador {
+    nome
+    funcao
+    contactoTelefonico
+    email
+}
+
+class Utilizador {
+    nome
+    email
+    password
+}
+
+class CategoriaTarefa {
+    identificadorCategoria
+    descricao
+    areaAtividade
+}
+
+class Tarefa {
+    identificadorTarefa
+    designacao
+    descricaoInformal
+    descricaoTecnica
+    estimativaDuracao
+    estimativaCusto
+}
+
+Plataforma "1" --> "*" Organizacao: tem registada
+Plataforma "1" --> "*" CategoriaTarefa: possui
+
+Organizacao "1" --> "1..*" Colaborador: tem
+Organizacao "1" --> "*" Tarefa: possui
+
+Colaborador "0..1" --> "1" Utilizador: atua como
+
+Tarefa "*" --> "1" Colaborador: especificada por
+Tarefa "*" --> "1" CategoriaTarefa: enquadra-se em
+
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+
+title UC5 - Diagrama de Sequência
+
+actor GestorOrganizacao as GestorOrganizacao
+GestorOrganizacao -> "AreaGestorUI" : 1 Introduz os dados solicitados
+activate "AreaGestorUI"
+"AreaGestorUI" -> "RegistarColaboradorController" : 2 registarColaborador(String nomeColaborador, \n int contactoColaborador, String emailColaborador, \n String gestorEmail)
+activate "RegistarColaboradorController"
+"RegistarColaboradorController" -> ":Plataforma" : 3 plat = Plataforma.getInstance()
+activate ":Plataforma"
+deactivate ":Plataforma"
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 4 repoOrg = plat.getRepoOrg()
+activate "ro:RepositorioOrganizacao"
+deactivate "ro:RepositorioOrganizacao"
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 5 repoColab = plat.getRepoColab()
+activate "rc:RepositorioColaborador"
+deactivate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Email** : 7 gestorEmail = create(email)
+activate "rc:RepositorioColaborador"
+
+
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 6 gestor = getColaboradorByEmail(gestorEmail)
+
+deactivate "rc:RepositorioColaborador"
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 8 org = getOrganizacaoByGestor(gestor)
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 9 colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+activate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Colaborador** : 11 criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+
+
+
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 10 addColaborador(colaborador)
+deactivate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" --> "RegistarColaboradorController" : 12 ok
+
+activate "rc:RepositorioColaborador"
+
+"rc:RepositorioColaborador" -> Telefone** : 13 create(telefone)
+
+"rc:RepositorioColaborador" -> Email : 14 create(email)
+activate Email
+deactivate Email
+
+ref over RegistarColaboradorController, Colaborador : UC5_SD_RegistarColaboradorComoUtilizador
+deactivate "RegistarColaboradorController"
+"AreaGestorUI" --> GestorOrganizacao : 15 operação bem sucedida, \n mostra dados
+deactivate "AreaGestorUI"
+
+@enduml

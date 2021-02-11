@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LoginUI">
+   <children>
+      <ImageView fitHeight="617.0" fitWidth="814.0" layoutX="-5.0" layoutY="-11.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="200.0" prefHeight="31.0" prefWidth="237.0" text="Bem-vindo!">
+         <font>
+            <Font name="Cambria" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="252.0" text="Username" />
+      <Label layoutX="232.0" layoutY="298.0" text="Password" />
+      <TextField fx:id="txtUsername" layoutX="295.0" layoutY="248.0" prefHeight="25.0" prefWidth="230.0" />
+      <PasswordField fx:id="txtPassoword" layoutX="295.0" layoutY="294.0" onKeyReleased="#entrarButtonActivate" prefHeight="25.0" prefWidth="230.0" />
+      <Button fx:id="btnLogin" layoutX="330.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginAction" text="Entrar" />
+      <Button fx:id="btnVoltar" layoutX="430.0" layoutY="352.0" mnemonicParsing="false" onAction="#voltarAction" text="Voltar" />
+   </children>
+</AnchorPane>

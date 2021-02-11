@@ -1,54 +1,46 @@
 @startuml
-title Modelo Relacional
+title Modelo de Dominio
 left to right direction
 
+
 class Plataforma {
-    designacao {PK}
+    designacao
 }
 
 class Organizacao {
-    idOrganizacao {PK}
-    NIF {UNIQUE}
-    email {UNIQUE}
-    idGestor (idColaborador) {N, FK}
-    nome 
-    contactoTelefonico 
-    enderecoWeb 
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
 }
 
 class Administrativo {
-    nome {PK}
+    nome
 }
 
 class Colaborador {
-    idColaborador {PK}
-    idOrganizacao {PK, FK}
-    nome 
-    funcao 
-    contactoTelefonico 
-    email 
+    nome
+    funcao
+    contactoTelefonico
+    email
 }
 
 class Freelancer {
-    idFreelancer {PK}
-    NIF {UNIQUE}
-    nome 
-    contactoTelefonico 
-    email 
+    nome
+    NIF
+    contactoTelefonico
+    email
 }
 
 class HabilitacaoAcademica {
-    idHabilitacao {PK}
-    grau 
-    designacaoCurso 
-    nomeInstituicao 
-    mediaCurso 
+    grau
+    designacaoCurso
+    nomeInstituicao
+    mediaCurso
 }
 
-class ReconhecimentoCT { 
-    identificadorCompetenciaTecnica {PK, FK}
-    idFreelancer {PK, FK}
-    grauProficiencia
+class ReconhecimentoCT {
     dataReconhecimento
 }
 
@@ -84,7 +76,6 @@ class Tarefa {
 }
 
 class Anuncio {
-    idAnuncio {PK}
     dataInicioPublicitacao
     dataFimPublicitacao
     dataInicioCandidatura
@@ -134,7 +125,6 @@ class AreaAtividade{
 }
 
 class EnderecoPostal {
-    idOrganizacao {PK}
     morada
     codigoPostal
     localidade
@@ -181,7 +171,7 @@ Classificacao "0..1" --> "1" Candidatura: referente a
 
 Candidatura "*" --> "1" Freelancer: realizada por
 
-CategoriaTarefa "1" --> "*" CaraterizaçãoCategoriaTarefa: requer
+CategoriaTarefa "*" --> "*" CaraterizaçãoCategoriaTarefa: requer
 CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
 
 CaraterizaçãoCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 

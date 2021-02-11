@@ -20,6 +20,7 @@ entity Organizacao {
 
 entity Administrativo {
     nome {PK}
+    idUtilizador {FK} 
 }
 
 entity Colaborador {
@@ -56,7 +57,7 @@ entity HabilitacaoAcademica {
 entity ReconhecimentoCT { 
     idCompetenciaTecnica {PK, FK}
     idFreelancer {PK, FK}
-    grauProficiencia
+    nivelGrauProficiencia (nivel) {FK}
     dataReconhecimento
 }
 
@@ -75,15 +76,15 @@ entity Role {
 
 entity CategoriaTarefa {
     idCategoria {PK}
+    idAreaAtividade {PK, FK}
     descricao
-    areaAtividade
 }
 
-entity CaraterizaçãoCategoriaTarefa {
-    idCompTec {PK, FK}
+entity CaraterizaçãoCompetenciatecnica {
+    idCompetenciaTecnica {PK, FK}
     idCategoria {PK, FK}
     caracter
-    nivelGrauMinimo
+    nivelGrauMinimo (nivel - GrauProficiencia) {FK}
 }
 
 entity Tarefa {
@@ -119,11 +120,17 @@ entity Candidatura {
     idFreelancer {FK}
     idAnuncio {PK, FK}
     idCandidatura {PK}
-    dataFimCandidatura
+    dataCandidatura
     valorPretendido
     nrDias
     txtApresentacao
     txtMotivacao
+}
+
+entity ProcessoSeriacaoColaborador {
+    idAnuncio {PK, FK}
+    idColaborador {PK, FK}
+    idOrganizacao {PK, FK}
 }
 
 entity ProcessoSeriacao {
@@ -205,18 +212,19 @@ Anuncio "0..1" --> "1" Tarefa: publicita
 Anuncio "1" --> "*" Candidatura: recebe
 Anuncio "1" --> "0..1" ProcessoSeriacao: despoleta
 
-ProcessoSeriacao "1" --> "1..*" Colaborador: realizado por
+ProcessoSeriacaoColaborador "1..*"<-- "1" Colaborador: realizado por
 ProcessoSeriacao "1" --> "*" Classificacao: resulta em
 ProcessoSeriacao "*" --> "1" TipoRegimento: decorre em concordância com
+ProcessoSeriacao "1*" --> "1..*" ProcessoSeriacaoColaborador: tem
 
 Classificacao "0..1" --> "1" Candidatura: referente a
 
 Candidatura "*" --> "1" Freelancer: realizada por
 
-CategoriaTarefa "1" --> "*" CaraterizaçãoCategoriaTarefa: requer
+CategoriaTarefa "1" --> "*" CaraterizaçãoCompetenciatecnica: requer
 CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
 
-CaraterizaçãoCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
+CaraterizaçãoCompetenciatecnica "*" --> "1" CompetenciaTecnica : referente a 
 
 CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
 CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica

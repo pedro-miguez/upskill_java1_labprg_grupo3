@@ -1,0 +1,44 @@
+@startuml_mc_uc2
+
+title UC2 - Diagrama de Classes
+
+class AreaAdministrativoUI{
+
+}
+
+class DefinirAreaController{
+    +definirAreaAtividade(String codigoUnico, String descBreve, String descDetalhada)
+}
+
+Class Plataforma <<Singleton>> {
+    -String designacao
+    -RepositorioAreaAtividade repoAreaAtiv
+    +getInstance()
+    +getRepoAreaAtiv()
+}
+
+class RepositorioAreaAtividade{
+    +AreaAtividade criarAreaAtividade(String codigoUnico, String descBreve, String descDetalhada)
+    -addAreaAtividade(AreaAtividade area)
+    -AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico)
+    -ArrayList<AreaAtividade> listarAreaAtividade()
+}
+
+class AreaAtividade{
+    -String descBreve
+    -String descDetalhada
+    +AreaAtividade(CodigoUnico codigoUnico, String descBreve, String descDetalhada)
+}
+
+class CodigoUnico{
+    -String codigoUnico
+}
+
+AreaAdministrativoUI ..> DefinirAreaController
+DefinirAreaController ..> AreaAtividade
+DefinirAreaController ..> Plataforma
+DefinirAreaController ..> RepositorioAreaAtividade
+Plataforma "1" --> "1" RepositorioAreaAtividade: tem
+RepositorioAreaAtividade "1" --> "*" AreaAtividade: possui
+AreaAtividade "1" --> "1" CodigoUnico : tem
+@enduml_mc_uc2
