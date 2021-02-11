@@ -67,3 +67,37 @@ CREATE TABLE EnderecoPostal {
 }
 
 --DROP TABLE EnderecoPostal CASCADE CONSTRAINTS PURGE;
+
+
+ALTER TABLE ProcessoSeriacaoColaborador
+    ADD CONSTRAINTS fkProcessoSeriacaoColaboradoridAnuncio FOREIGN KEY (idAnuncio)
+        REFERENCES Anuncio (idAnuncio);
+
+ALTER TABLE ProcessoSeriacaoColaborador
+    ADD CONSTRAINTS fkProcessoSeriacaoColaboradoridColaborador FOREIGN KEY (idColaborador)
+        REFERENCES Colaborador (idColaborador);
+
+ALTER TABLE ProcessoSeriacaoColaborador
+    ADD CONSTRAINTS fkProcessoSeriacaoColaboradoridOrganizacao FOREIGN KEY (idOrganizacao)
+        REFERENCES Organizacao (idOrganizacao);
+
+
+--ALTER TABLE TipoRegimento
+
+
+ALTER TABLE CompetenciaTecnica
+    ADD CONSTRAINTS fkCompetenciaTecnicaidAreaAtividade FOREIGN KEY (idAreaAtividade)
+        REFERENCES AreaAtividade (idAreaAtividade);
+
+
+ALTER TABLE GrauProficiencia
+    ADD CONSTRAINTS fkGrauProficienciaidCompetenciaTecnica FOREIGN KEY (idCompetenciaTecnica)
+        REFERENCES CompetenciaTecnica (idCompetenciaTecnica);
+
+
+--ALTER TABLE AreaAtividade
+
+
+ALTER TABLE EnderecoPostal
+    ADD CONSTRAINTS fkEnderecoPostalidOrganizacao FOREIGN KEY (idOrganizacao)
+        REFERENCES Organizacao (idOrganizacao);
