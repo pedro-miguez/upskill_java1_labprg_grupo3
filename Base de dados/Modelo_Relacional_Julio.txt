@@ -2,11 +2,13 @@
 title Modelo Relacional
 left to right direction
 
-class Plataforma {
+hide circle
+
+entity Plataforma {
     designacao {PK}
 }
 
-class Organizacao {
+entity Organizacao {
     idOrganizacao {PK}
     NIF {UNIQUE}
     email {UNIQUE}
@@ -16,11 +18,11 @@ class Organizacao {
     enderecoWeb 
 }
 
-class Administrativo {
+entity Administrativo {
     nome {PK}
 }
 
-class Colaborador {
+entity Colaborador {
     idColaborador {PK}
     idOrganizacao {PK, FK}
     nome 
@@ -29,7 +31,7 @@ class Colaborador {
     email 
 }
 
-class Freelancer {
+entity Freelancer {
     idFreelancer {PK}
     NIF {UNIQUE}
     nome 
@@ -37,45 +39,52 @@ class Freelancer {
     email 
 }
 
-class HabilitacaoAcademica {
+entity HabilitacaoAcademica {
     idHabilitacao {PK}
+    idFreelancer {FK}
     grau 
     designacaoCurso 
     nomeInstituicao 
     mediaCurso 
 }
 
-class ReconhecimentoCT { 
-    identificadorCompetenciaTecnica {PK, FK}
+entity ReconhecimentoCT { 
+    idCompetenciaTecnica {PK, FK}
     idFreelancer {PK, FK}
     grauProficiencia
     dataReconhecimento
 }
 
-class Utilizador {
+entity Utilizador {
+    idUtilizador{PK}
     nome
     email
     password
 }
 
-class Role {
-    designacao
+entity Role {
+    idUtilizador{PK, FK}
+    designacao {PK}
 }
 
-class CategoriaTarefa {
-    identificadorCategoria
+entity CategoriaTarefa {
+    idCategoria {PK}
     descricao
     areaAtividade
 }
 
-class CaraterizaçãoCategoriaTarefa {
-    identificadorCompTec
+entity CaraterizaçãoCategoriaTarefa {
+    idCompTec {PK, FK}
+    idCategoria {PK, FK}
     caracter
     nivelGrauMinimo
 }
 
-class Tarefa {
-    identificadorTarefa
+entity Tarefa {
+    idTarefa {PK}
+    idOrganizacao {PK, FK}
+    idCategoria {FK}
+    idEstadoTarefa {FK}
     designacao
     descricaoInformal
     descricaoTecnica
@@ -83,8 +92,15 @@ class Tarefa {
     estimativaCusto
 }
 
-class Anuncio {
+entity EstadoTarefa {
+    idEstadoTarefa {PK}
+    designacao
+}
+
+entity Anuncio {
     idAnuncio {PK}
+    idTarefa {UNIQUE, FK}
+    idOrganizacao {FK}
     dataInicioPublicitacao
     dataFimPublicitacao
     dataInicioCandidatura
@@ -93,7 +109,7 @@ class Anuncio {
     dataFimSeriacao
 }
 
-class Candidatura {
+entity Candidatura {
     dataFimCandidatura
     valorPretendido
     nrDias
@@ -101,40 +117,42 @@ class Candidatura {
     txtMotivacao
 }
 
-class ProcessoSeriacao {
+entity ProcessoSeriacao {
+    idAnuncio {PK, FK}
     dataRealizacao
 }
 
-class Classificacao {
+entity Classificacao {
     lugar
 }
 
-class TipoRegimento {
+entity TipoRegimento {
+    idTipoRegimento{PK}
     designacao
     descricaoRegras
 }
 
-class CompetenciaTecnica {
+entity CompetenciaTecnica {
+    idCompetenciaTecnica{PK}
     nome 
-    identificadorCompetenciaTecnica
-    descricaoBreve
-    descricaoDetalhada
-    grausProficiencia
-}
-
-class GrauProficiencia {
-    nivel
-    designacao
-}
-
-class AreaAtividade{
-    identificadorAreaAtividade
     descricaoBreve
     descricaoDetalhada
 }
 
-class EnderecoPostal {
-    idOrganizacao {PK}
+entity GrauProficiencia {
+    idCompetenciaTecnica{PK, FK}
+    nivel {PK}
+    designacao 
+}
+
+entity AreaAtividade{
+    idAreaAtividade
+    descricaoBreve
+    descricaoDetalhada
+}
+
+entity EnderecoPostal {
+    idOrganizacao {PK, FK}
     morada
     codigoPostal
     localidade
@@ -166,6 +184,7 @@ Colaborador "0..1" --> "1" Utilizador: atua como
 Tarefa "*" --> "1" Colaborador: especificada por
 Tarefa "*" --> "1" CategoriaTarefa: enquadra-se em
 Tarefa "1" --> "0..1" Anuncio: dá origem
+Tarefa "1" --> "1" EstadoTarefa: tem 
 
 Anuncio "*" --> "1" TipoRegimento: rege-se por
 Anuncio "*" --> "1" Colaborador: publicado por
