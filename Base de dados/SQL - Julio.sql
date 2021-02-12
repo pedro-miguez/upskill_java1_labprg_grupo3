@@ -77,7 +77,7 @@ create table HabilitacaoAcademica(
 );
 
 alter table Organizacao
-add constraint fkOrganizacaoIdGestor FOREIGN KEY (idGestor) references Colaborador (idColaborador);
+add constraint fkOrganizacaoIdGestor FOREIGN KEY (idGestor) references Utilizador (idUtilizador);
 
 alter table Administrativo
 add constraint fkAdministrativoIdUtilizador FOREIGN KEY (idUtilizador) references Utilizador (idUtilizador);
