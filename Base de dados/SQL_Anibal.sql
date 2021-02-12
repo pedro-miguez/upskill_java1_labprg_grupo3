@@ -1,11 +1,18 @@
 --SQL ProcessoSeriacaoColaborador
 
-CREATE TABLE ProcessoSeriacaoColaborador {
+CREATE TABLE ProcessoSeriacaoColaborador (
     --dataRealizacao
-    idAnuncio INTEGER CHECK (0 <) PRIMARY KEY, FOREIGN KEY,
-    idColaborador INTEGER CHECK (0 <) PRIMARY KEY, FOREIGN KEY,
-    idOrganizacao INTEGER CHECK (0 <) PRIMARY KEY, FOREIGN KEY
-}
+    idAnuncio INTEGER
+        CONSTRAINT ckProcessoSeriacaoColaboradorIdAnuncio CHECK (idAnuncio > 0),
+
+    idColaborador INTEGER 
+        CONSTRAINT ckProcessoSeriacaoColaboradorIdColaborador CHECK (idColaborador > 0),
+
+    idOrganizacao INTEGER 
+        CONSTRAINT ckProcessoSeriacaoColaboradorIdOrganizacao CHECK (idOrganizacao > 0),
+
+    CONSTRAINT pkProcessoSeriacaoColaboradorIdAnuncioIdColaboradorIdOrganizacao PRIMARY KEY (idAnuncio, idColaborador, idOrganizacao)
+);
 
 --DROP TABLE ProcessoSeriacaoColaborador CASCADE CONSTRAINTS PURGE;
 
@@ -13,8 +20,11 @@ CREATE TABLE ProcessoSeriacaoColaborador {
 --SQL TipoRegimento
 
 CREATE TABLE TipoRegimento {
-    idTipoRegimento INTEGER CHECK (0 <) PRIMARY KEY,
-    designacao VARCHAR(500) not null,
+    idTipoRegimento INTEGER PRIMARY KEY
+        CONSTRAINT ckTipoRegimentoIdTipoRegimento CHECK (idTipoRegimento > 0),
+
+    designacao VARCHAR(500) not null
+        CONSTRAINT nnTipoRegimentoDesignacao
     descricaoRegras VARCHAR(1000) not null
 }
 
