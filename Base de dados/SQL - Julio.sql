@@ -33,8 +33,7 @@ create table Colaborador(
         constraint ckColaboradorIdOrganizacaoValido check (idOrganizacao > 0),
     nome varchar(40)
         constraint nnColaboradorNome not null, 
-    idFuncao integer
-        constraint ckColaboradorIdFuncaoValido check (idFuncao > 0)
+    funcao varchar(20)
         constraint nnColaboradorIdFuncao not null,
     telefone integer
         constraint ckColaboradorTelefoneValido check (telefone between 100000000 and 999999999)
@@ -87,9 +86,6 @@ add constraint fkColaboradorIdColaborador FOREIGN KEY (idColaborador) references
 
 alter table Colaborador
 add constraint fkColaboradorIdOrganizacao FOREIGN KEY (idOrganizacao) references Organizacao (idOrganizacao);
-
-alter table Colaborador
-add constraint fkColaboradorIdFuncao FOREIGN KEY (idFuncao) references Funcao (idFuncao);
 
 alter table HabilitacaoAcademica
 add constraint fkHabilitacaoAcademicaIdFreelancer FOREIGN KEY (idFreelancer) referencer Freelancer (idFreelancer);
