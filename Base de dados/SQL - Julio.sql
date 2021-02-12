@@ -40,7 +40,7 @@ create table Colaborador(
         constraint nnColaboradorTelefone not null,
     email varchar(40) UNIQUE
         constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
-        constraint nnColaboradorEmail not null,
+        constraint nnColaboradorEmail not null
 );
 
 create table Freelancer(
@@ -70,7 +70,7 @@ create table HabilitacaoAcademica(
         constraint nnHabilitacaoAcademicaDesigancaoCurso not null,
     nomeInstituicao varchar(40)
         constraint nnHabilitacaoAcademicaNomeInstituicao not null,
-    mediaCurso float(2,1) 
+    mediaCurso float(2) 
         constraint nnHabilitacaoAcademicaMedia not null
         constraint ckHabilitacaoAcademicaMediaCurso check (mediaCurso between 0 and 20)
 );
@@ -88,4 +88,4 @@ alter table Colaborador
 add constraint fkColaboradorIdOrganizacao FOREIGN KEY (idOrganizacao) references Organizacao (idOrganizacao);
 
 alter table HabilitacaoAcademica
-add constraint fkHabilitacaoAcademicaIdFreelancer FOREIGN KEY (idFreelancer) referencer Freelancer (idFreelancer);
+add constraint fkHabilitacaoAcademicaIdFreelancer FOREIGN KEY (idFreelancer) references Freelancer (idFreelancer);
