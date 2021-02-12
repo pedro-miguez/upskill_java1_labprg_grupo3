@@ -13,5 +13,6 @@ public enum Funcao {
     /**
      * Collaborator (COLABORADOR) role.
      */
-    COLABORADOR
+    COLABORADOR,
+
 }

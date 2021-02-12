@@ -17,5 +17,7 @@ public enum Role {
     /**
      * Administrative (ADMINISTRATIVO) role, for the platform (Plataforma) administrative.
      */
-    ADMINISTRATIVO
+    ADMINISTRATIVO,
+
+    FREELANCER
 }

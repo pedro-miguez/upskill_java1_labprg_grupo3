@@ -48,6 +48,5 @@ public class RegistarOrganizacaoController {
         } else if(!repoColab.addColaborador(gestor)) {
             return false;
         } else return authController.registarGestorComoUtilizador(gestor);
-
     }
 }
