@@ -179,3 +179,149 @@ CREATE TABLE EnderecoPostal (
     localidade VARCHAR(50) 
         CONSTRAINT nnEnderecoPostalLocalidade not null
 );
+
+create table Organizacao(
+    idOrganizacao integer PRIMARY KEY
+        constraint ckOrganizacaoIdOrganizacaoValido check (idOrganizacao > 0),
+    NIF integer UNIQUE
+        constraint ckOrganizacaoNIFValido check (NIF between 100000000 and 999999999)
+        constraint nnOrganizacaoNIF not null,
+    email varchar(40) UNIQUE
+        constraint ckOrganizacaoEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        constraint nnOrganizacaoEmail not null,
+    idGestor integer 
+        constraint ckOrganizacaoIdGestorValido check (idGestor > 0),
+    nome varchar(40)
+        constraint nnOrganizacaoNomeOrganizacao not null,
+    telefone integer
+        constraint ckOrganizacaoTelefoneValido check (telefone between 100000000 and 999999999)
+        constraint nnOrganizacaoTelefone not null,
+    website varchar(40)
+        constraint ckOrganizacaoWebsiteValido check (regexp_like(website, '^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z]+.[a-zA-Z]*.[a-z0-9]+)\.(([a-z]){2,3})?$'))
+        constraint nnOrganizacaoWebsite not null
+);
+
+create table Administrativo(
+    nome varchar(40) PRIMARY KEY,
+    idUtilizador integer
+        constraint ckAdministrativoIdUtilizador check (idUtilizador > 0)
+        constraint nnAdministrativoIdUtilizador not null
+);
+
+create table Colaborador(
+    idColaborador integer PRIMARY KEY
+        constraint ckColaboradorIdColaboradorValido check (idColaborador > 0),
+    idOrganizacao integer
+        constraint ckColaboradorIdOrganizacaoValido check (idOrganizacao > 0),
+    nome varchar(40)
+        constraint nnColaboradorNome not null, 
+    funcao varchar(20)
+        constraint nnColaboradorIdFuncao not null,
+    telefone integer
+        constraint ckColaboradorTelefoneValido check (telefone between 100000000 and 999999999)
+        constraint nnColaboradorTelefone not null,
+    email varchar(40) UNIQUE
+        constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        constraint nnColaboradorEmail not null
+);
+
+create table Freelancer(
+    idFreelancer integer PRIMARY KEY
+        constraint ckFreelancerIdFreelancer check (idFreelancer > 0),
+    NIF integer UNIQUE
+        constraint ckFreelancerNIFValido check (NIF between 100000000 and 999999999)
+        constraint nnFreelancerNIF not null,
+    nome varchar(40)
+        constraint nnFreelancerNomeFreelancer not null,
+    telefone integer
+        constraint ckFreelancerTelefoneValido check (telefone between 100000000 and 999999999)
+        constraint nnFreelancerTelefone not null,
+    email varchar(40) UNIQUE
+        constraint ckFreelancerEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        constraint nnFreelancerEmail not null
+);
+
+create table HabilitacaoAcademica(
+    idHabilitacao integer PRIMARY KEY
+        constraint ckHabilitacaoAcademicaIdHabilitacao check (idHabilitacao > 0),
+    idFreelancer integer
+        constraint ckHabilitacaoAcademicaIdFreelancer check (idFreelancer > 0),
+    grau varchar(40)
+        constraint nnHabilitacaoAcademicaGrau not null,
+    designacaoCurso varchar(40)
+        constraint nnHabilitacaoAcademicaDesigancaoCurso not null,
+    nomeInstituicao varchar(40)
+        constraint nnHabilitacaoAcademicaNomeInstituicao not null,
+    mediaCurso float(2) 
+        constraint nnHabilitacaoAcademicaMedia not null
+        constraint ckHabilitacaoAcademicaMediaCurso check (mediaCurso between 0 and 20)
+);
+
+create table ReconhecimentoCT (
+    idCompetenciaTecnica INTEGER
+        constraint nnReconhecimentoCTidCompetenciaTecnica not null
+        constraint ckReconhecimentoCTidCompetenciaTecnica check (0 < idCompetenciaTecnica),
+    idFreelancer INTEGER
+        constraint nnReconhecimentoCTidFreelancer not null
+        constraint ckReconhecimentoCTidFreelancer check (0 < idFreelancer),
+    nivelGrauProficiencia INTEGER 
+    --(nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites
+    -- min e max dos niveis associados à competencia tecnica em GrauProficiencia)
+        constraint nnReconhecimentoCTnivelGrauProficiencia not null,
+    dataReconhecimento date
+        constraint nnReconhecimentoCTdataReconhecimento not null
+        constraint ckReconhecimentoCTdataReconhecimento check (dataReconhecimento > TO_DATE('2021-01-01', 'yyyy-mm-dd')),
+
+    constraint pkReconhecimentoCTidCompetenciaTecnicaidFreelancer primary key (idCompetenciaTecnica, idFreelancer)
+);
+
+create table Utilizador (
+    idUtilizador INTEGER
+        constraint nnUtilizadorIdUtilizador not null
+        constraint ckUtilizadorIdUtilizador check (0 < idUtilizador)
+        constraint pkUtilizadorIdUtilizador primary key,
+    nome varchar(40)
+        constraint nnUtilizadorNome not null,
+    email varchar(40)
+        constraint nnUtilizadorEmail not null
+        constraint ckUtilizadorEmail check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,6}$')),
+    palavraPasse varchar(10)
+        constraint nnUtilizadorPassword not null,
+    designacao varchar(40)
+        constraint nnUtilizadorDesignacao not null
+);
+
+create table Role (
+    designacao varchar(40) primary key
+);
+
+create table CategoriaTarefa (
+    idCategoria INTEGER
+        constraint nnCategoriaTarefaIdCategoria not null
+        constraint ckCategoriaTarefaIdCategoria check (0 < idCategoria),
+    idAreaAtividade INTEGER
+        constraint nnCategoriaTarefaIdAreaAtividade not null
+        constraint ckCategoriaTarefaIdAreaAtividade check (0 < idAreaAtividade),
+    descricao varchar(100)
+        constraint nnCategoriaTarefaDescricao not null,
+
+    constraint pkCategoriaTarefaIdCategoriaIdAreaAtividade primary key (idCategoria, idAreaAtividade)
+);
+
+create table  CaraterizacaoCompetenciaTecnica (
+    idCompetenciaTecnica INTEGER
+        constraint nnCaraterizacaoCompetenciaTecnicaIdCompTec not null
+        constraint ckCaraterizacaoCompetenciaTecnicaIdCompTec check (0 < idCompetenciaTecnica),
+    idCategoria INTEGER
+        constraint nnCaraterizacaoCompetenciaTecnicaTarefaIdCategoria not null
+        constraint ckCaraterizacaoCompetenciaTecnicaIdCategoria check (0 < idCategoria), 
+    caracter char(3)
+        constraint nnCaraterizacaoCompetenciaTecnicaCaracter not null
+        constraint ckCaraterizacaoCompetenciaTecnicaCaracter check (upper(caracter) in ('OBR ', 'OPC')),
+    nivelGrauMinimo INTEGER
+    -- (nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites min e max dos
+    -- niveis associados à competencia tecnica em GrauProficiencia)
+        constraint nnCaraterizacaoCompetenciaTecnicaNivelGrauMinimo not null,
+       
+    constraint pkCaraterizacaoCompetenciaTecnicaIdCompTecIdCategoria primary key (idCompetenciaTecnica, idCategoria)
+);
