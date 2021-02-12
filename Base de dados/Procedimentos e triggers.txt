@@ -1,5 +1,8 @@
 Procedimentos/triggers
 
+FALTA FAZER:
+ - Triggers Vitor!!
+
 UC1
  - createOrganização()
  	- cria organização sem idGestor
@@ -37,16 +40,13 @@ UC 6
  	- estado PRIVATE
  	- associa-se idOrganizacao
 
-
-
 - createUtilizadorFreelancer()
 - createUtilizadorAdministrador()
 
- 
- - getAreaAtividadeToStringCompletoByIdAreaAtividade
- - getCategoriaTarefaToStringCompletoByIdCategoria
- - getColaboradorToStringCompletoByIdUtilizador
- - getCompetenciaTecnicaToStringCompletoByIdCompetenciaTecnica
- - getOrganizacaoToStringCompletoByNIF
- - getTarefaToStringCompletoByIDTarefa
+- getAreaAtividadeToStringCompletoByIdAreaAtividade
+- getCategoriaTarefaToStringCompletoByIdCategoria
+- getColaboradorToStringCompletoByIdUtilizador
+- getCompetenciaTecnicaToStringCompletoByIdCompetenciaTecnica
+- getOrganizacaoToStringCompletoByNIF
+- getTarefaToStringCompletoByIDTarefa
  
