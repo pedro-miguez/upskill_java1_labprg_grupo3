@@ -1,0 +1,24 @@
+@startuml
+
+actor "Colaborador de Organizacao"
+activate "Colaborador de Organizacao"
+"Colaborador de Organizacao" -> ":Sistema" : 1 Inicia o processo nao automatico de seriacao dos\n candidatos a realizacao de um anuncio
+activate ":Sistema"
+":Sistema" --> "Colaborador de Organizacao" : 2 mostra os anuncios publicados pelo colaborador em fase de seriacao nao automatica e que\n ainda nao foram seriados e pede-lhe para escolher um
+deactivate ":Sistema"
+"Colaborador de Organizacao" -> ":Sistema" : 3 seleciona um anuncio
+activate ":Sistema"
+":Sistema" --> "Colaborador de Organizacao" : 4 mostra as candidaturas existentes
+loop
+"Colaborador de Organizacao" -> ":Sistema" : 5 classifica candidatura
+end
+":Sistema" --> "Colaborador de Organizacao" : 6 mostra os colaboradores da organizacao e pede para selecionar os outros participantes
+deactivate ":Sistema"
+loop
+"Colaborador de Organizacao" -> ":Sistema" : 7 seleciona outros colaboradores participantes
+activate ":Sistema"
+end
+":Sistema" --> "Colaborador de Organizacao" : 8 apresenta os dados e informa do sucesso da operacao
+deactivate ":Sistema"
+
+@enduml
