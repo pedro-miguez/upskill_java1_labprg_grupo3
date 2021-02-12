@@ -25,6 +25,7 @@ entity Colaborador {
     nome 
     contactoTelefonico 
     email 
+    funcao
 }
 
 entity Freelancer {
@@ -60,7 +61,6 @@ entity Utilizador {
 }
 
 entity Role {
-    idUtilizador{PK, FK}
     designacao {PK}
 }
 
@@ -82,6 +82,7 @@ entity Tarefa {
     {UNIQUE referenciaTarefa, idOrganizacao {FK}}
     idCategoria {FK}
     idEstadoTarefa {FK}
+    idOrganizacao {FK}
     designacao
     descricaoInformal
     descricaoTecnica
@@ -96,7 +97,7 @@ entity EstadoTarefa {
 
 entity Anuncio {
     idAnuncio {PK}
-    idTarefa {FK}
+    idTarefa {FK, UNIQUE}
     dataInicioPublicitacao
     dataFimPublicitacao
     dataInicioCandidatura
@@ -188,7 +189,6 @@ Tarefa "1" --> "1" EstadoTarefa
 
 Anuncio "*" --> "1" TipoRegimento
 Anuncio "*" --> "1" Colaborador
-Anuncio "0..1" --> "1" Tarefa
 Anuncio "1" --> "*" Candidatura
 Anuncio "1" --> "0..1" ProcessoSeriacao
 
