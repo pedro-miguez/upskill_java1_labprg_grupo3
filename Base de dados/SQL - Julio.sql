@@ -1,7 +1,3 @@
-create table Plataforma(
-    designacao varchar(40) PRIMARY KEY
-);
-
 create table Organizacao(
     idOrganizacao integer PRIMARY KEY
         constraint ckOrganizacaoIdOrganizacaoValido check (idOrganizacao > 0),
@@ -31,7 +27,7 @@ create table Administrativo(
 );
 
 create table Colaborador(
-    idColaborador integer 
+    idColaborador integer PRIMARY KEY
         constraint ckColaboradorIdColaboradorValido check (idColaborador > 0),
     idOrganizacao integer
         constraint ckColaboradorIdOrganizacaoValido check (idOrganizacao > 0),
@@ -46,7 +42,6 @@ create table Colaborador(
     email varchar(40) UNIQUE
         constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
         constraint nnColaboradorEmail not null,
-    constraint pkColaboradorIdColaboradorIdOrganizacao PRIMARY KEY (idColaborador, idOrganizacao)
 );
 
 create table Freelancer(
@@ -82,10 +77,13 @@ create table HabilitacaoAcademica(
 );
 
 alter table Organizacao
-add constraint fkOrganizacaoIdGestor FOREIGN KEY (idGestor) references Colaborador (idColaborador);
+add constraint fkOrganizacaoIdGestor FOREIGN KEY (idGestor) references Utilizador (idUtilizador);
 
 alter table Administrativo
 add constraint fkAdministrativoIdUtilizador FOREIGN KEY (idUtilizador) references Utilizador (idUtilizador);
+
+alter table Colaborador
+add constraint fkColaboradorIdColaborador FOREIGN KEY (idColaborador) references Utilizador (idUtilizador);
 
 alter table Colaborador
 add constraint fkColaboradorIdOrganizacao FOREIGN KEY (idOrganizacao) references Organizacao (idOrganizacao);
