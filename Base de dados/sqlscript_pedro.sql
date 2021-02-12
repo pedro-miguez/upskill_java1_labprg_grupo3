@@ -161,21 +161,20 @@ end;
 /
 
 create or replace trigger trgProcessoSeriacao after insert on ProcessoSeriacao for each row
+
 declare
  v_dataRealizacao date;
-begin
- v_dataRealizacao := trunc(:new.dataRealizacao);
+ v_datainicioseri date;
+ v_datafimseri date;
 
- if v_datafimpub <= v_datainiciopub then
-    raise_application_error(-20000, 'Erro na data de fim de publicitacao');
- else if v_datainiciocandidatura <= v_datafimpub then
-    raise_application_error(-20000, 'Erro na data de inicio de candidatura');
- else if v_datafimcandidatura <= v_datainiciocandidatura then
-    raise_application_error(-20000, 'Erro na data de fim de candidatura');
- else if v_datainicioseriacao <= v_datafimcandidatura then
-    raise_application_error(-20000, 'Erro na data de inicio de seriacao');
- else if v_datafimseriaca <= v_datainicioseriacao then
-    raise_application_error(-20000, 'Erro na data de fim de seriacao');
+begin
+ SELECT dataInicioSeriacao INTO v_datainicioseri from Anuncio where idAnuncio = :new.idAnuncio;
+ SELECT dataFimSeriacao INTO v_datafimseri from Anuncio where idAnuncio = :new.idAnuncio;
+
+ if v_dataRealizacao <= v_datainicioseri then
+    raise_application_error(-20000, 'Erro na data de realizacao (inferior à data de inicio de seriação do anuncio)');
+ else if v_dataRealizacao >= v_datafimseri then
+    raise_application_error(-20000, 'Erro na data de realizacao (superior à data de fim de seriação do anuncio)');
  end if;
 end;
 /
