@@ -1,0 +1,66 @@
+@startuml
+
+title UC7 - Excerto de Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+}
+
+class Freelancer {
+    nome
+    NIF
+    contactoTelefonico
+    email
+}
+
+class HabilitacaoAcademica {
+    grau
+    designacaoCurso
+    nomeInstituicao
+    mediaCurso
+}
+
+class ReconhecimentoCT {
+    dataReconhecimento
+}
+
+class Utilizador {
+    nome
+    email
+    password
+}
+
+class Role {
+    designacao
+}
+
+class CompetenciaTecnica {
+    nome 
+    identificadorCompetenciaTecnica
+    descricaoBreve
+    descricaoDetalhada
+    grausProficiencia
+}
+
+class GrauProficiencia {
+    nivel
+    designacao
+}
+
+Plataforma "1" --> "*" Freelancer: tem/usa >
+Plataforma "1" --> "*" CompetenciaTecnica: possui >
+
+Freelancer "0..1" --> "1" Utilizador: atua como >
+Freelancer "1" --> "*" HabilitacaoAcademica: tem >
+Freelancer "0..1" --> "*" ReconhecimentoCT: recebe >
+
+ReconhecimentoCT "*" --> "1" GrauProficiencia: reconhece >
+ReconhecimentoCT "*" --> "1" CompetenciaTecnica: relativa a > 
+
+CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica >
+
+Utilizador "1" --> "1..2" Role: tem >
+
+@enduml
