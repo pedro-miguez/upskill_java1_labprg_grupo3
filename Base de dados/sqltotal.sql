@@ -98,6 +98,88 @@ create table Classificacao (
     constraint pk_Classificacao_idAnuncio_idCandidatura primary key (idAnuncio, idCandidatura)
 );
 
+CREATE TABLE ProcessoSeriacaoColaborador (
+
+    idAnuncio INTEGER
+        CONSTRAINT ckProcessoSeriacaoColaboradorIdAnuncio CHECK (idAnuncio > 0),
+
+    idColaborador INTEGER 
+        CONSTRAINT ckProcessoSeriacaoColaboradorIdColaborador CHECK (idColaborador > 0),
+
+    idOrganizacao INTEGER 
+        CONSTRAINT ckProcessoSeriacaoColaboradorIdOrganizacao CHECK (idOrganizacao > 0),
+
+    CONSTRAINT pkProcessoSeriacaoColaboradorIdAnuncioIdColaboradorIdOrganizacao PRIMARY KEY (idAnuncio, idColaborador, idOrganizacao)
+);
+
+
+CREATE TABLE TipoRegimento (
+    idTipoRegimento INTEGER PRIMARY KEY
+        CONSTRAINT ckTipoRegimentoIdTipoRegimento CHECK (idTipoRegimento > 0),
+
+    designacao VARCHAR(500) 
+        CONSTRAINT nnTipoRegimentoDesignacao not null,
+
+    descricaoRegras VARCHAR(1000)
+        CONSTRAINT nnTipoRegimentoDescricaoRegras not null
+);
+
+CREATE TABLE CompetenciaTecnica (
+    idCompetenciaTecnica INTEGER PRIMARY KEY
+        CONSTRAINT ckCompetenciaTecnicaIdCompetenciaTecnica CHECK (idCompetenciaTecnica > 0),
+
+    idAreaAtividade INTEGER
+        constraint ck_CompetenciaTecnica_idAreaAtividade CHECK (idAreaAtividade > 0),
+
+    nome VARCHAR(50) 
+        CONSTRAINT nnCompetenciaTecnicaNome not null,
+
+    descricaoBreve VARCHAR(100)
+        CONSTRAINT nnCompetenciaTecnicaDescricaoBreve not null,
+
+    descricaoDetalhada VARCHAR(1000)
+        CONSTRAINT nnCompetenciaTecnicaDescricaoDetalhada not null
+
+);
+
+CREATE TABLE GrauProficiencia (
+    idCompetenciaTecnica INTEGER
+        CONSTRAINT ckGrauProficienciaIdCompetenciaTecnica CHECK (idCompetenciaTecnica > 0),
+
+    nivel INTEGER,
+        CONSTRAINT ckGrauProficienciaNivel CHECK (nivel > 0),
+
+    designacao VARCHAR(50) 
+        CONSTRAINT nnGrauProficienciaDesignacao not null,
+        
+        constraint pk_GrauProficiencia_idCompetenciaTecnica_Nivel primary key (idCompetenciaTecnica, Nivel)
+);
+
+CREATE TABLE AreaAtividade (
+    idAreaAtividade INTEGER PRIMARY KEY
+        CONSTRAINT ckAreaAtividadeIdAreaAtividade CHECK (idAreaAtividade > 0),
+
+    descricaoBreve VARCHAR(100) 
+        CONSTRAINT nnAreaAtividadeDescricaoBreve not null,
+
+    descricaoDetalhada VARCHAR(1000) 
+        CONSTRAINT nnAreaAtividadeDescricaoDetalhada not null
+);
+
+CREATE TABLE EnderecoPostal (
+    idOrganizacao INTEGER PRIMARY KEY
+        CONSTRAINT ckEnderecoPostalIdOrganizacao CHECK (idOrganizacao > 0),
+
+    morada VARCHAR(100) 
+        CONSTRAINT nnEnderecoPostalMorada not null,
+
+    codigoPostal VARCHAR(8) 
+        CONSTRAINT ckEnderecoPostalCodigoPostal CHECK ( regexp_like(codigoPostal, '^\d{4}(-\d{3})?$')),
+
+    localidade VARCHAR(50) 
+        CONSTRAINT nnEnderecoPostalLocalidade not null
+);
+
 create table Organizacao(
     idOrganizacao integer PRIMARY KEY
         constraint ckOrganizacaoIdOrganizacaoValido check (idOrganizacao > 0),
@@ -140,7 +222,7 @@ create table Colaborador(
         constraint nnColaboradorTelefone not null,
     email varchar(40) UNIQUE
         constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
-        constraint nnColaboradorEmail not null,
+        constraint nnColaboradorEmail not null
 );
 
 create table Freelancer(
@@ -170,171 +252,76 @@ create table HabilitacaoAcademica(
         constraint nnHabilitacaoAcademicaDesigancaoCurso not null,
     nomeInstituicao varchar(40)
         constraint nnHabilitacaoAcademicaNomeInstituicao not null,
-    mediaCurso float(2,1) 
+    mediaCurso float(2) 
         constraint nnHabilitacaoAcademicaMedia not null
         constraint ckHabilitacaoAcademicaMediaCurso check (mediaCurso between 0 and 20)
 );
 
-CREATE TABLE ProcessoSeriacaoColaborador (
-    
-    idAnuncio INTEGER
-        CONSTRAINT ckProcessoSeriacaoColaboradorIdAnuncio CHECK (idAnuncio > 0),
+create table ReconhecimentoCT (
+    idCompetenciaTecnica INTEGER
+        constraint nnReconhecimentoCTidCompetenciaTecnica not null
+        constraint ckReconhecimentoCTidCompetenciaTecnica check (0 < idCompetenciaTecnica),
+    idFreelancer INTEGER
+        constraint nnReconhecimentoCTidFreelancer not null
+        constraint ckReconhecimentoCTidFreelancer check (0 < idFreelancer),
+    nivelGrauProficiencia INTEGER 
+    --(nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites
+    -- min e max dos niveis associados à competencia tecnica em GrauProficiencia)
+        constraint nnReconhecimentoCTnivelGrauProficiencia not null,
+    dataReconhecimento date
+        constraint nnReconhecimentoCTdataReconhecimento not null
+        constraint ckReconhecimentoCTdataReconhecimento check (dataReconhecimento > TO_DATE('2021-01-01', 'yyyy-mm-dd')),
 
-    idColaborador INTEGER 
-        CONSTRAINT ckProcessoSeriacaoColaboradorIdColaborador CHECK (idColaborador > 0),
-
-    idOrganizacao INTEGER 
-        CONSTRAINT ckProcessoSeriacaoColaboradorIdOrganizacao CHECK (idOrganizacao > 0),
-
-    CONSTRAINT pkProcessoSeriacaoColaboradorIdAnuncioIdColaboradorIdOrganizacao PRIMARY KEY (idAnuncio, idColaborador, idOrganizacao)
+    constraint pkReconhecimentoCTidCompetenciaTecnicaidFreelancer primary key (idCompetenciaTecnica, idFreelancer)
 );
 
-CREATE TABLE TipoRegimento (
-    idTipoRegimento INTEGER PRIMARY KEY
-        CONSTRAINT ckTipoRegimentoIdTipoRegimento CHECK (idTipoRegimento > 0),
-
-    designacao VARCHAR(500) not null
-        CONSTRAINT nnTipoRegimentoDesignacao not null
-
-    descricaoRegras VARCHAR(1000) not null
-        CONSTRAINT nnTipoRegimentoDescricaoRegras not null
+create table Utilizador (
+    idUtilizador INTEGER
+        constraint nnUtilizadorIdUtilizador not null
+        constraint ckUtilizadorIdUtilizador check (0 < idUtilizador)
+        constraint pkUtilizadorIdUtilizador primary key,
+    nome varchar(40)
+        constraint nnUtilizadorNome not null,
+    email varchar(40)
+        constraint nnUtilizadorEmail not null
+        constraint ckUtilizadorEmail check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,6}$')),
+    palavraPasse varchar(10)
+        constraint nnUtilizadorPassword not null,
+    designacao varchar(40)
+        constraint nnUtilizadorDesignacao not null
 );
 
-CREATE TABLE CompetenciaTecnica (
-    idCompetenciaTecnica INTEGER PRIMARY KEY
-        CONSTRAINT ckCompetenciaTecnicaIdCompetenciaTecnica CHECK (idCompetenciaTecnica > 0),
-
-    idAreaAtividade INTEGER CHECK (0 <) FOREIGN KEY,
-
-    nome VARCHAR(50) not null
-        CONSTRAINT nnCompetenciaTecnicaNome not null,
-
-    descricaoBreve VARCHAR(100) not null
-        CONSTRAINT nnCompetenciaTecnicaDescricaoBreve not null,
-
-    descricaoDetalhada VARCHAR(1000) not null
-        CONSTRAINT nnCompetenciaTecnicaDescricaoDetalhada not null
-
+create table Role (
+    designacao varchar(40) primary key
 );
 
-CREATE TABLE GrauProficiencia (
-    idCompetenciaTecnica INTEGER PRIMARY KEY, FOREIGN KEY,
-        CONSTRAINT ckGrauProficienciaIdCompetenciaTecnica CHECK (idCompetenciaTecnica > 0),
+create table CategoriaTarefa (
+    idCategoria INTEGER
+        constraint nnCategoriaTarefaIdCategoria not null
+        constraint ckCategoriaTarefaIdCategoria check (0 < idCategoria),
+    idAreaAtividade INTEGER
+        constraint nnCategoriaTarefaIdAreaAtividade not null
+        constraint ckCategoriaTarefaIdAreaAtividade check (0 < idAreaAtividade),
+    descricao varchar(100)
+        constraint nnCategoriaTarefaDescricao not null,
 
-    nivel INTEGER CHECK (0 <) PRIMARY KEY,
-        CONSTRAINT ckGrauProficienciaNivel CHECK (nivel > 0),
-
-    designacao VARCHAR(50) not null
-        CONSTRAINT nnGrauProficienciaDesignacao not null
+    constraint pkCategoriaTarefaIdCategoriaIdAreaAtividade primary key (idCategoria, idAreaAtividade)
 );
 
-CREATE TABLE AreaAtividade (
-    idAreaAtividade INTEGER PRIMARY KEY
-        CONSTRAINT ckAreaAtividadeIdAreaAtividade CHECK (idAreaAtividade > 0),
-
-    descricaoBreve VARCHAR(100) not null
-        CONSTRAINT nnAreaAtividadeDescricaoBreve not null,
-
-    descricaoDetalhada VARCHAR(1000) not null
-        CONSTRAINT nnAreaAtividadeDescricaoDetalhada not null
+create table  CaraterizacaoCompetenciaTecnica (
+    idCompetenciaTecnica INTEGER
+        constraint nnCaraterizacaoCompetenciaTecnicaIdCompTec not null
+        constraint ckCaraterizacaoCompetenciaTecnicaIdCompTec check (0 < idCompetenciaTecnica),
+    idCategoria INTEGER
+        constraint nnCaraterizacaoCompetenciaTecnicaTarefaIdCategoria not null
+        constraint ckCaraterizacaoCompetenciaTecnicaIdCategoria check (0 < idCategoria), 
+    caracter char(3)
+        constraint nnCaraterizacaoCompetenciaTecnicaCaracter not null
+        constraint ckCaraterizacaoCompetenciaTecnicaCaracter check (upper(caracter) in ('OBR ', 'OPC')),
+    nivelGrauMinimo INTEGER
+    -- (nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites min e max dos
+    -- niveis associados à competencia tecnica em GrauProficiencia)
+        constraint nnCaraterizacaoCompetenciaTecnicaNivelGrauMinimo not null,
+       
+    constraint pkCaraterizacaoCompetenciaTecnicaIdCompTecIdCategoria primary key (idCompetenciaTecnica, idCategoria)
 );
-
-
-CREATE TABLE EnderecoPostal (
-    idOrganizacao INTEGER PRIMARY KEY, FOREIGN KEY,
-        CONSTRAINT ckEnderecoPostalIdOrganizacao CHECK (idOrganizacao > 0),
-
-    morada VARCHAR(100) not null
-        CONSTRAINT nnEnderecoPostalMorada not null,
-
-    codigoPostal VARCHAR(8) not null
-        CONSTRAINT ckEnderecoPostalCodigoPostal CHECK (regexp_like(^\d{4}(-\d{3})?$)),
-
-    localidade VARCHAR(50) not null
-        CONSTRAINT nnEnderecoPostalLocalidade not null
-);
-
-alter table Tarefa
-add constraint fk_Tarefa_idOrganizacao FOREIGN KEY (idOrganizacao) references Organizacao (idOrganizacao);
-
-alter table Tarefa
-add constraint fk_Tarefa_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria);
-
-alter table Tarefa
-add constraint fk_Tarefa_idEstadoTarefa FOREIGN KEY (idEstadoTarefa) references EstadoTarefa (idEstadoTarefa);
-
-alter table Anuncio
-add constraint fk_Anuncio_idTarefa FOREIGN KEY (idTarefa) references Tarefa (idTarefa);
-
-alter table Candidatura
-add constraint fk_Candidatura_idAnuncio FOREIGN KEY (idAnuncio) references Anuncio (idAnuncio);
-
-alter table Candidatura
-add constraint fk_Candidatura_idFreelancer FOREIGN KEY (idFreelancer) references Freelancer (idFreelancer);
-
-alter table Classificacao
-add constraint fk_Classificacao_idAnuncio FOREIGN KEY (idAnuncio) references Anuncio (idAnuncio);
-
-alter table Classificacao
-add constraint fk_Classificacao_idFreelancer FOREIGN KEY (idFreelancer) references Freelancer (idFreelancer);
-
-alter table ProcessoSeriacao
-add constraint fk_ProcessoSeriacao_idAnuncio FOREIGN KEY (idAnuncio) references Anuncio (idAnuncio);
-
-alter table ProcessoSeriacao
-add constraint fk_ProcessoSeriacao_idTipoRegimento FOREIGN KEY (idTipoRegimento) references TipoRegimento (idTipoRegimento);
-
-
-create or replace trigger trgAnuncio after insert on Anuncio for each row
-declare
- v_datainiciopub date;
- v_datafimpub date;
- v_datainiciocandidatura date;
- v_datafimcandidatura date;
- v_datainicioseri date;
- v_datafimseri date;
-begin
- v_datainiciopub := trunc(:new.dataInicioPublicitacao);
- v_datafimpub := trunc(:new.dataFimPublicitacao);
- v_datainiciocandidatura := trunc(:new.dataInicioCandidatura);
- v_datafimcandidatura := trunc(:new.dataFimCandidatura);
- v_datainicioseri := trunc(:new.dataInicioSeriacao);
- v_datafimseri := trunc(:new.dataFimSeriacao);
-
- if v_datafimpub <= v_datainiciopub then
-    raise_application_error(-20000, 'Erro na data de fim de publicitacao');
- else if v_datainiciocandidatura <= v_datafimpub then
-    raise_application_error(-20000, 'Erro na data de inicio de candidatura');
- else if v_datafimcandidatura <= v_datainiciocandidatura then
-    raise_application_error(-20000, 'Erro na data de fim de candidatura');
- else if v_datainicioseriacao <= v_datafimcandidatura then
-    raise_application_error(-20000, 'Erro na data de inicio de seriacao');
- else if v_datafimseriaca <= v_datainicioseriacao then
-    raise_application_error(-20000, 'Erro na data de fim de seriacao');
- end if;
-end;
-/
-
-create or replace trigger trgProcessoSeriacao after insert on ProcessoSeriacao for each row
-
-declare
- v_dataRealizacao date;
- v_datainicioseri date;
- v_datafimseri date;
-
-begin
- SELECT dataInicioSeriacao INTO v_datainicioseri from Anuncio where idAnuncio = :new.idAnuncio;
- SELECT dataFimSeriacao INTO v_datafimseri from Anuncio where idAnuncio = :new.idAnuncio;
-
- if v_dataRealizacao <= v_datainicioseri then
-    raise_application_error(-20000, 'Erro na data de realizacao (inferior à data de inicio de seriação do anuncio)');
- else if v_dataRealizacao >= v_datafimseri then
-    raise_application_error(-20000, 'Erro na data de realizacao (superior à data de fim de seriação do anuncio)');
- end if;
-end;
-/
-
-
-
-
-
