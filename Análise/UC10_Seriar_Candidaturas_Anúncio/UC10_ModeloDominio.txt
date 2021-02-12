@@ -1,0 +1,83 @@
+@startuml
+title UC10 - Excerto Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+}
+
+class Organizacao {
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
+}
+
+class Colaborador {
+    nome
+    funcao
+    contactoTelefonico
+    email
+}
+
+class Anuncio {
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+class Candidatura {
+    dataFimCandidatura
+    valorPretendido
+    nrDias
+    txtApresentacao
+    txtMotivacao
+}
+
+class ProcessoSeriacao {
+    dataRealizacao
+}
+
+class Classificacao {
+    lugar
+}
+
+class TipoRegimento {
+    designacao
+    descricaoRegras
+}
+
+class Freelancer {
+    nome
+    NIF
+    contactoTelefonico
+    email
+}
+
+Plataforma "1" --> "*" Organizacao: tem registada
+Plataforma "1" --> "*" Anuncio: publicita
+Plataforma "1" --> "*" TipoRegimento: suporta
+Plataforma "1" --> "*" Freelancer: tem/usa
+
+Anuncio "*" --> "1" TipoRegimento: rege-se por
+Anuncio "*" --> "1" Colaborador: publicado por
+Anuncio "1" --> "*" Candidatura: recebe
+Anuncio "1" --> "0..1" ProcessoSeriacao: despoleta
+
+ProcessoSeriacao "1" --> "1..*" Colaborador: realizado por
+ProcessoSeriacao "1" --> "*" Classificacao: resulta em
+ProcessoSeriacao "*" --> "1" TipoRegimento: decorre em concordância com
+
+Organizacao "1" --> "1..*" Colaborador: tem
+
+Classificacao "0..1" --> "1" Candidatura: referente a
+
+Candidatura "*" --> "1" Freelancer: realizada por
+
+
+@enduml

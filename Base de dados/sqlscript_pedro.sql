@@ -82,8 +82,8 @@ create table ProcessoSeriacao (
     idTipoRegimento integer 
         constraint nn_ProcessoSeriacao_idTipoRegimento not null 
         constraint ck_ProcessoSeriacao_idTipoRegimento check (idTipoRegimento > 0),
-    dataCandidatura date 
-        constraint nn_ProcessoSeriacao_dataCandidatura not null
+    dataRealizacao date 
+        constraint nn_ProcessoSeriacao_dataRealizacao not null
 );
 
 create table Classificacao (
@@ -128,6 +128,59 @@ add constraint fk_ProcessoSeriacao_idAnuncio FOREIGN KEY (idAnuncio) references 
 
 alter table ProcessoSeriacao
 add constraint fk_ProcessoSeriacao_idTipoRegimento FOREIGN KEY (idTipoRegimento) references TipoRegimento (idTipoRegimento);
+
+
+create or replace trigger trgAnuncio after insert on Anuncio for each row
+declare
+ v_datainiciopub date;
+ v_datafimpub date;
+ v_datainiciocandidatura date;
+ v_datafimcandidatura date;
+ v_datainicioseri date;
+ v_datafimseri date;
+begin
+ v_datainiciopub := trunc(:new.dataInicioPublicitacao);
+ v_datafimpub := trunc(:new.dataFimPublicitacao);
+ v_datainiciocandidatura := trunc(:new.dataInicioCandidatura);
+ v_datafimcandidatura := trunc(:new.dataFimCandidatura);
+ v_datainicioseri := trunc(:new.dataInicioSeriacao);
+ v_datafimseri := trunc(:new.dataFimSeriacao);
+
+ if v_datafimpub <= v_datainiciopub then
+    raise_application_error(-20000, 'Erro na data de fim de publicitacao');
+ else if v_datainiciocandidatura <= v_datafimpub then
+    raise_application_error(-20000, 'Erro na data de inicio de candidatura');
+ else if v_datafimcandidatura <= v_datainiciocandidatura then
+    raise_application_error(-20000, 'Erro na data de fim de candidatura');
+ else if v_datainicioseriacao <= v_datafimcandidatura then
+    raise_application_error(-20000, 'Erro na data de inicio de seriacao');
+ else if v_datafimseriaca <= v_datainicioseriacao then
+    raise_application_error(-20000, 'Erro na data de fim de seriacao');
+ end if;
+end;
+/
+
+create or replace trigger trgProcessoSeriacao after insert on ProcessoSeriacao for each row
+declare
+ v_dataRealizacao date;
+begin
+ v_dataRealizacao := trunc(:new.dataRealizacao);
+
+ if v_datafimpub <= v_datainiciopub then
+    raise_application_error(-20000, 'Erro na data de fim de publicitacao');
+ else if v_datainiciocandidatura <= v_datafimpub then
+    raise_application_error(-20000, 'Erro na data de inicio de candidatura');
+ else if v_datafimcandidatura <= v_datainiciocandidatura then
+    raise_application_error(-20000, 'Erro na data de fim de candidatura');
+ else if v_datainicioseriacao <= v_datafimcandidatura then
+    raise_application_error(-20000, 'Erro na data de inicio de seriacao');
+ else if v_datafimseriaca <= v_datainicioseriacao then
+    raise_application_error(-20000, 'Erro na data de fim de seriacao');
+ end if;
+end;
+/
+
+
 
 
 
