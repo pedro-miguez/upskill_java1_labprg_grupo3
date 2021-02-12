@@ -1,56 +1,133 @@
 create table Tarefa( 
-    idTarefa integer check (idTarefa > 0), 
-    idOrganizacao integer check (idOrganizacao > 0), 
-    idCategoria integer not null check (idCategoria > 0), 
-    designacao varchar(100) not null, 
-    descricaoInformal varchar(250) not null, 
-    descricaoTecnica varchar(500) not null, 
-    estimativaDuracao integer not null check (estimativaDuracao > 0), 
-    estimativaCusto float(2,2) check (estimativaCusto > 0), 
+
+    idTarefa integer primary key 
+        constraint ck_Tarefa_idTarefa check (idTarefa > 0), 
+    referenciaTarefa integer 
+        constraint ck_Tarefa_referenciaTarefa check (referenciaTarefa > 0),
+    idOrganizacao integer 
+        constraint ck_Tarefa_idOrganizacao check (idOrganizacao > 0), 
+    idCategoria integer 
+        constraint nn_Tarefa_idCategoria not null 
+        constraint ck_Tarefa_idCategoria check (idCategoria > 0), 
+    idEstadoTarefa integer 
+        constraint nn_Tarefa_idEstadoTarefa not null 
+        constraint ck_Tarefa_idEstadoTarefa check (idEstadoTarefa > 0),
+    designacao varchar(100) 
+        constraint nn_Tarefa_designacao not null, 
+    descricaoInformal varchar(250) 
+        constraint nn_Tarefa_descricaoInformal not null, 
+    descricaoTecnica varchar(500) 
+        constraint nn_Tarefa_descricaoTarefa not null, 
+    estimativaDuracao integer 
+        constraint nn_Tarefa_estimativaDuracao not null 
+        constraint ck_Tarefa_estimativaDuracao check (estimativaDuracao > 0), 
+    estimativaCusto float(2) 
+        constraint nn_Tarefa_estimativaCusto not null 
+        constraint ck_Tarefa_estimativaCusto check (estimativaCusto > 0), 
      
-    constraint pk_Tarefa_idTarefa_idOrganizacao primary key (idTarefa, idOrganizacao)
+    constraint uq_Tarefa_referenciaTarefa_idOrganizacao unique (referenciaTarefa, idOrganizacao)
 );
 
 create table EstadoTarefa (
-    idEstadoTarefa integer primary key check (idEstadoTarefa > 0),
-    designacao varchar(100) not null
+    idEstadoTarefa integer primary key 
+        constraint ck_EstadoTarefa_idEstadoTarefa check (idEstadoTarefa > 0),
+    designacao varchar(100) 
+        constraint nn_EstadoTarefa_designacao not null
 );
 
 create table Anuncio (
-    idAnuncio integer primary key check (idAnuncio > 0),
-    idTarefa integer unique check (idTarefa > 0),
-    idOrganizacao integer check (idOrganizacao > 0),
-    dataInicioPublicitacao date not null check (dataInicioPublicitacao > TO_DATE('2021-01-01', 'yyyy-mm-dd')),
-    dataFimPublicitacao date not null,
-    dataInicioCandidatura date not null,
-    dataFimCandidatura date not null,
-    dataInicioSeriacao date not null,
-    dataFimSeriacao date not null
+    idAnuncio integer primary key 
+        constraint ck_Anuncio_idAnuncio check (idAnuncio > 0),
+    idTarefa integer 
+        constraint uq_Anuncio_idTarefa unique 
+        constraint ck_Anuncio_idTarefa check (idTarefa > 0),
+    dataInicioPublicitacao date 
+        constraint nn_Anuncio_dataInicioPublicitacao not null 
+        constraint ck_Anuncio_dataInicioPublicitacao check (dataInicioPublicitacao > TO_DATE('2021-01-01', 'yyyy-mm-dd')),
+    dataFimPublicitacao date 
+        constraint nn_Anuncio_dataFimPublicitacao not null,
+    dataInicioCandidatura date 
+        constraint nn_Anuncio_dataInicioCandidatura not null,
+    dataFimCandidatura date 
+        constraint nn_Anuncio_dataFimCandidatura not null,
+    dataInicioSeriacao date 
+        constraint nn_Anuncio_dataInicioSeriacao not null,
+    dataFimSeriacao date 
+        constraint nn_Anuncio_dataFimSeriacao not null
 );
 
 create table Candidatura (
-    idAnuncio integer check (idAnuncio > 0),
-    idCandidatura integer check (idCandidatura > 0),
-    idFreelancer integer not null check(idFreelancer > 0),
-    dataCandidatura date not null,
-    valorPretendido float(2,2) not null check (valorPretendido > 0),
-    nrDias integer check (nrDias > 0),
-    txtApresentacao varchar(500) not null,
-    txtMotivacao varchar(500) not null,
+    idAnuncio integer 
+        constraint ck_Candidatura_idAnuncio check (idAnuncio > 0),
+    idFreelancer integer 
+        constraint ck_Candidatura_idFreelancer check(idFreelancer > 0),
+    dataCandidatura date 
+        constraint nn_Candidatura_dataCandidatura not null,
+    valorPretendido float(2) 
+        constraint nn_Candidatura_valorPretendido not null 
+        constraint ck_Candidatura_valorPretendido check (valorPretendido > 0),
+    nrDias integer 
+        constraint ck_Candidatura_nrDias check (nrDias > 0),
+    txtApresentacao varchar(500) 
+        constraint nn_Candidatura_txtApresentacao not null,
+    txtMotivacao varchar(500) 
+        constraint nn_Candidatura_txtMotivacao not null,
     
-    constraint pk_Candidatura_idAnuncio_idCandidatura primary key (idAnuncio, idCandidatura)
+    constraint pk_Candidatura_idAnuncio_idFreelancer primary key (idAnuncio, idFreelancer)
 );
 
 create table ProcessoSeriacao (
-    idAnuncio integer primary key check (idAnuncio > 0),
-    idTipoRegimento integer not null check (idTipoRegimento > 0),
-    dataCandidatura date not null
+    idAnuncio integer primary key 
+        constraint ck_ProcessoSeriacao_idAnuncio check (idAnuncio > 0),
+    idTipoRegimento integer 
+        constraint nn_ProcessoSeriacao_idTipoRegimento not null 
+        constraint ck_ProcessoSeriacao_idTipoRegimento check (idTipoRegimento > 0),
+    dataCandidatura date 
+        constraint nn_ProcessoSeriacao_dataCandidatura not null
 );
 
 create table Classificacao (
-    idAnuncio integer check (idAnuncio > 0),
-    idCandidatura integer check (idCandidatura > 0),
-    lugar integer not null check (lugar > 0),
+    idAnuncio integer 
+        constraint ck_Classificacao_idAnuncio check (idAnuncio > 0),
+    idCandidatura integer 
+         constraint ck_Classificacao_idCandidatura check (idCandidatura > 0),
+    lugar integer 
+        constraint nn_Classificacao_lugar not null 
+        constraint ck_Classificacao_lugar check (lugar > 0),
     
     constraint pk_Classificacao_idAnuncio_idCandidatura primary key (idAnuncio, idCandidatura)
 );
+
+
+alter table Tarefa
+add constraint fk_Tarefa_idOrganizacao FOREIGN KEY (idOrganizacao) references Organizacao (idOrganizacao);
+
+alter table Tarefa
+add constraint fk_Tarefa_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria);
+
+alter table Tarefa
+add constraint fk_Tarefa_idEstadoTarefa FOREIGN KEY (idEstadoTarefa) references EstadoTarefa (idEstadoTarefa);
+
+alter table Anuncio
+add constraint fk_Anuncio_idTarefa FOREIGN KEY (idTarefa) references Tarefa (idTarefa);
+
+alter table Candidatura
+add constraint fk_Candidatura_idAnuncio FOREIGN KEY (idAnuncio) references Anuncio (idAnuncio);
+
+alter table Candidatura
+add constraint fk_Candidatura_idFreelancer FOREIGN KEY (idFreelancer) references Freelancer (idFreelancer);
+
+alter table Classificacao
+add constraint fk_Classificacao_idAnuncio FOREIGN KEY (idAnuncio) references Anuncio (idAnuncio);
+
+alter table Classificacao
+add constraint fk_Classificacao_idFreelancer FOREIGN KEY (idFreelancer) references Freelancer (idFreelancer);
+
+alter table ProcessoSeriacao
+add constraint fk_ProcessoSeriacao_idAnuncio FOREIGN KEY (idAnuncio) references Anuncio (idAnuncio);
+
+alter table ProcessoSeriacao
+add constraint fk_ProcessoSeriacao_idTipoRegimento FOREIGN KEY (idTipoRegimento) references TipoRegimento (idTipoRegimento);
+
+
+
