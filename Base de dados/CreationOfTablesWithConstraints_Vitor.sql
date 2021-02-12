@@ -75,7 +75,6 @@ alter table CaraterizacaoCompetenciaTecnica
 add constraint fk_CaraterizacaoCompetenciaTecnica_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria);
 
 
-
 alter table CategoriaTarefa
 add constraint fk_CategoriaTarefa_idAreaAtividade FOREIGN KEY (idAreaAtividade) references AreaAtividade (idAreaAtividade);
 
@@ -86,6 +85,14 @@ add constraint fk_Utilizador_designacao FOREIGN KEY (designacao) references Role
 
 alter table ReconhecimentoCT
 add constraint fk_ReconhecimentoCT_idCompetenciatecnica FOREIGN KEY (idCompetenciatecnica) references CompetenciaTecnica (idCompetenciatecnica);
+
+
+alter table ReconhecimentoCT
+add constraint fk_ReconhecimentoCT_idCompetenciatecnica FOREIGN KEY (idCompetenciatecnica) references CompetenciaTecnica (idCompetenciatecnica);
+
+
+alter table ReconhecimentoCT
+add constraint fk_ReconhecimentoCT_idCompetenciatecnica_nivelGrauProficiencia FOREIGN KEY (idCompetenciatecnica, nivelGrauProficiencia) references GrauProficiencia (idCompetenciatecnica, nivel);
 
 
 alter table ReconhecimentoCT
