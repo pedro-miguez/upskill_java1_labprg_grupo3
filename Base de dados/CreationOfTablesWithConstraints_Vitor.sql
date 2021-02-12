@@ -28,7 +28,9 @@ create table Utilizador (
         constraint nnUtilizadorEmail not null
         constraint ckUtilizadorEmail check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,6}$'))**********
     password varchar(10)
-        constraint nnUtilizadorPassword not null*******************************n ha mais restricoes a este nivel?
+        constraint nnUtilizadorPassword not null
+    designacao(role) {FK} varchar(40)
+        constraint nnUtilizadorDesignacao not null
 )
 
 create table Role (
