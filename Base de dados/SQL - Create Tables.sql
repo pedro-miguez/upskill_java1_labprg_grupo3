@@ -265,8 +265,6 @@ create table ReconhecimentoCT (
         constraint nnReconhecimentoCTidFreelancer not null
         constraint ckReconhecimentoCTidFreelancer check (0 < idFreelancer),
     nivelGrauProficiencia INTEGER 
-    --(nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites
-    -- min e max dos niveis associados à competencia tecnica em GrauProficiencia)
         constraint nnReconhecimentoCTnivelGrauProficiencia not null,
     dataReconhecimento date
         constraint nnReconhecimentoCTdataReconhecimento not null
@@ -296,16 +294,14 @@ create table Role (
 );
 
 create table CategoriaTarefa (
-    idCategoria INTEGER
+    idCategoria INTEGER PRIMARY KEY
         constraint nnCategoriaTarefaIdCategoria not null
         constraint ckCategoriaTarefaIdCategoria check (0 < idCategoria),
     idAreaAtividade INTEGER
         constraint nnCategoriaTarefaIdAreaAtividade not null
         constraint ckCategoriaTarefaIdAreaAtividade check (0 < idAreaAtividade),
     descricao varchar(100)
-        constraint nnCategoriaTarefaDescricao not null,
-
-    constraint pkCategoriaTarefaIdCategoriaIdAreaAtividade primary key (idCategoria, idAreaAtividade)
+        constraint nnCategoriaTarefaDescricao not null
 );
 
 create table  CaraterizacaoCompetenciaTecnica (
@@ -319,9 +315,9 @@ create table  CaraterizacaoCompetenciaTecnica (
         constraint nnCaraterizacaoCompetenciaTecnicaCaracter not null
         constraint ckCaraterizacaoCompetenciaTecnicaCaracter check (upper(caracter) in ('OBR ', 'OPC')),
     nivelGrauMinimo INTEGER
-    -- (nivel - GrauProficiencia) (trigger para verificar se o nível está dentro dos limites min e max dos
-    -- niveis associados à competencia tecnica em GrauProficiencia)
         constraint nnCaraterizacaoCompetenciaTecnicaNivelGrauMinimo not null,
        
     constraint pkCaraterizacaoCompetenciaTecnicaIdCompTecIdCategoria primary key (idCompetenciaTecnica, idCategoria)
 );
+
+
