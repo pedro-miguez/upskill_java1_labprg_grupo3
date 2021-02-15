@@ -1,0 +1,30 @@
+create function getCompetenciasTecnicasByAreaAtividade (p_idAreaAtividade) return sys_refcursor is
+ v_ret sys_refcursor;
+begin
+ open v_ret for
+ select * from CompetenciaTecnica where idAreaAtividade = p_idAreaAtividade;
+ return v_ret;
+end;
+/
+declare
+ v_cur sys_refcursor;
+ r CompetenciaTecnica%rowtype;
+begin
+ v_cur := getCompetenciasTecnicasByAreaAtividade;
+ fetch v_cur into r;
+ while v_cur%found loop
+ dbms_output.put_line('ID_CompetenciaTecnica: '||r.idCompetenciaTecnica||', ID_AreaAtividade: '||r.idAreaAtividade||', Nome: '||r.nome||', Descrição Breve: '||r.descricaoBreve||', Descrição Detalhada: '||r.descricaoDetalhada);
+ fetch v_cur into r;
+ end loop;
+ close v_cur;
+end;
+/
+select getCompetenciasTecnicasByAreaAtividade from dual;
+
+
+
+idCompetenciaTecnica{PK}
+    idAreaAtividade {FK}
+    nome 
+    descricaoBreve
+    descricaoDetalhada

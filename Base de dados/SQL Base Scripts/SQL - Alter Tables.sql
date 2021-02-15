@@ -1,10 +1,10 @@
 
 alter table CaraterizacaoCompetenciaTecnica
-add constraint fk_CaraterizacaoCompetenciaTecnica_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria); -- ************************************
+add constraint fk_CaraterizacaoCompetenciaTecnica_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria); 
 
 
 alter table Tarefa
-add constraint fk_Tarefa_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria);  -- ************************************
+add constraint fk_Tarefa_idCategoria FOREIGN KEY (idCategoria) references CategoriaTarefa (idCategoria);  
 
 
 alter table Tarefa

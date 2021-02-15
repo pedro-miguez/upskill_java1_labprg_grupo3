@@ -1,6 +1,6 @@
 create table Tarefa( 
 
-    idTarefa integer primary key 
+    idTarefa integer generated as identity primary key 
         constraint ck_Tarefa_idTarefa check (idTarefa > 0), 
     referenciaTarefa integer 
         constraint ck_Tarefa_referenciaTarefa check (referenciaTarefa > 0),
@@ -29,14 +29,14 @@ create table Tarefa(
 );
 
 create table EstadoTarefa (
-    idEstadoTarefa integer primary key 
+    idEstadoTarefa integer generated as identity primary key 
         constraint ck_EstadoTarefa_idEstadoTarefa check (idEstadoTarefa > 0),
     designacao varchar(100) 
         constraint nn_EstadoTarefa_designacao not null
 );
 
 create table Anuncio (
-    idAnuncio integer primary key 
+    idAnuncio integer generated as identity primary key 
         constraint ck_Anuncio_idAnuncio check (idAnuncio > 0),
     idTarefa integer 
         constraint uq_Anuncio_idTarefa unique 
@@ -114,7 +114,7 @@ CREATE TABLE ProcessoSeriacaoColaborador (
 
 
 CREATE TABLE TipoRegimento (
-    idTipoRegimento INTEGER PRIMARY KEY
+    idTipoRegimento INTEGER generated as identity PRIMARY KEY
         CONSTRAINT ckTipoRegimentoIdTipoRegimento CHECK (idTipoRegimento > 0),
 
     designacao VARCHAR(500) 
@@ -130,9 +130,6 @@ CREATE TABLE CompetenciaTecnica (
 
     idAreaAtividade INTEGER
         constraint ck_CompetenciaTecnica_idAreaAtividade CHECK (idAreaAtividade > 0),
-
-    nome VARCHAR(50) 
-        CONSTRAINT nnCompetenciaTecnicaNome not null,
 
     descricaoBreve VARCHAR(100)
         CONSTRAINT nnCompetenciaTecnicaDescricaoBreve not null,
@@ -181,13 +178,13 @@ CREATE TABLE EnderecoPostal (
 );
 
 create table Organizacao(
-    idOrganizacao integer PRIMARY KEY
+    idOrganizacao integer generated as identity PRIMARY KEY
         constraint ckOrganizacaoIdOrganizacaoValido check (idOrganizacao > 0),
     NIF integer UNIQUE
         constraint ckOrganizacaoNIFValido check (NIF between 100000000 and 999999999)
         constraint nnOrganizacaoNIF not null,
     email varchar(40) UNIQUE
-        constraint ckOrganizacaoEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        --constraint ckOrganizacaoEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
         constraint nnOrganizacaoEmail not null,
     idGestor integer 
         constraint ckOrganizacaoIdGestorValido check (idGestor > 0),
@@ -221,7 +218,7 @@ create table Colaborador(
         constraint ckColaboradorTelefoneValido check (telefone between 100000000 and 999999999)
         constraint nnColaboradorTelefone not null,
     email varchar(40) UNIQUE
-        constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        --constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
         constraint nnColaboradorEmail not null
 );
 
@@ -237,12 +234,12 @@ create table Freelancer(
         constraint ckFreelancerTelefoneValido check (telefone between 100000000 and 999999999)
         constraint nnFreelancerTelefone not null,
     email varchar(40) UNIQUE
-        constraint ckFreelancerEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        --constraint ckFreelancerEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
         constraint nnFreelancerEmail not null
 );
 
 create table HabilitacaoAcademica(
-    idHabilitacao integer PRIMARY KEY
+    idHabilitacao integer generated as identity PRIMARY KEY
         constraint ckHabilitacaoAcademicaIdHabilitacao check (idHabilitacao > 0),
     idFreelancer integer
         constraint ckHabilitacaoAcademicaIdFreelancer check (idFreelancer > 0),
@@ -274,15 +271,15 @@ create table ReconhecimentoCT (
 );
 
 create table Utilizador (
-    idUtilizador INTEGER
+    idUtilizador INTEGER generated as identity
         constraint nnUtilizadorIdUtilizador not null
         constraint ckUtilizadorIdUtilizador check (0 < idUtilizador)
         constraint pkUtilizadorIdUtilizador primary key,
     nome varchar(40)
         constraint nnUtilizadorNome not null,
     email varchar(40)
-        constraint nnUtilizadorEmail not null
-        constraint ckUtilizadorEmail check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,6}$')),
+        constraint nnUtilizadorEmail not null,
+        --constraint ckUtilizadorEmail check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,6}$')),
     palavraPasse varchar(10)
         constraint nnUtilizadorPassword not null,
     designacao varchar(40)
