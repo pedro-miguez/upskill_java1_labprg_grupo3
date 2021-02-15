@@ -7,8 +7,6 @@
  	- associa idGestor à organização
 
 
-
-
 create or replace procedure createOrganizacao(
  p_NIF Organizacao.NIF%type
 , p_emailOrg Organizacao.email%type
@@ -22,12 +20,13 @@ create or replace procedure createOrganizacao(
 is
  v_id Organizacao.idOrganizacao%type;
 begin
+
  insert into Organizacao(NIF, email, nome, telefone, website)
- values(p_NIF, p_email, p_nome, p_telefone, p_website) returning idOrganizacao into v_id;
+ values(p_NIF, p_emailOrg, p_nomeOrg, p_telefoneOrg, p_websiteOrg) returning idOrganizacao into v_id;
+
  createUtilizadorGestor(p_nomeGestor, p_emailGestor, p_palavraPasseGestor, p_telefoneGestor, v_id);
 end;
 /
-
 
 create or replace procedure createUtilizadorGestor(
  p_nome utilizador.nome%type

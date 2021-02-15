@@ -271,14 +271,14 @@ create table ReconhecimentoCT (
 );
 
 create table Utilizador (
-    idUtilizador generated as identity INTEGER
+    idUtilizador INTEGER generated as identity
         constraint nnUtilizadorIdUtilizador not null
         constraint ckUtilizadorIdUtilizador check (0 < idUtilizador)
         constraint pkUtilizadorIdUtilizador primary key,
     nome varchar(40)
         constraint nnUtilizadorNome not null,
     email varchar(40)
-        constraint nnUtilizadorEmail not null
+        constraint nnUtilizadorEmail not null,
         --constraint ckUtilizadorEmail check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,6}$')),
     palavraPasse varchar(10)
         constraint nnUtilizadorPassword not null,
