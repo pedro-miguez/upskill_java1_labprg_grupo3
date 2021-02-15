@@ -1,4 +1,38 @@
+--Obter Áreas Atividade
 
+select * from AreaAtividade;
+
+--Procedimento para criar Competência Técnica
+create or replace procedure createCompetenciaTecnica(
+p_idCompetenciaTecnica competenciaTecnica.idCompetenciaTecnica%type,
+p_descricao competenciaTecnica.descricaoBreve%type,
+p_descDetalhada competenciaTecnica.descricaoDetalhada%type,
+p_areaAtividade AreaAtividade.idAreaAtividade%type)
+is 
+ v_count int;   
+ ex_areaAtividade exception;
+begin
+    select count (*) into v_count
+        from AreaAtividade where idAreaAtividade = p_areaAtividade;
+        if v_count= 0 then
+        raise ex_areaAtividade;
+        end if;
+    insert into CompetenciaTecnica(idCompetenciaTecnica, idAreaAtividade, descricaoBreve, descricaoDetalhada) values (p_idCompetenciaTecnica, p_areaAtividade, p_descricao, p_descDetalhada);
+    exception when ex_areaAtividade then
+    raise_application_error(-20001,'Área de Atividade inexistente');
+end;
+/
+
+
+--Exemplo
+--begin 
+--createCompetenciaTecnica(1, 'Good with javadoc', 'Knows how to create javadoc files', 3);
+--end;
+--/
+
+
+--Área de Atividade toString
+--Função para obter Areas de Atividade como Cursor
 create function funcGetAreasAtividade return sys_refcursor is
 v_ret sys_refcursor;
 begin
@@ -8,17 +42,23 @@ begin
 end;
 /
 
-create or replace function createCompetenciaTecnica(
-p_idCompetenciaTecnica competenciaTecnica.idCompetenciaTecnica%type,
-p_descricao competenciaTecnica.descricao%type,
-p_descDetalhada competenciaTecnica.descDetalhada%type,
-p_areaAtividade AreaAtividade.idAreaAtividade%type) 
-return competenciaTecnica.idCompetenciaTecnica%type
-is 
-v_id competenciaTecnica.idCompetenciaTecnica%type;
+--Procedimento para invocar a função
+create or replace procedure procGetAreaAtividade is  
+v_cur sys_refcursor;
+r AreaAtividade%rowtype;
 begin
-    insert into CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricao, descDetalhada) values (p_idCompetenciaTecnica, p_areaAtividade, p_descricao, p_descDetalhada) 
-    returning idCompetenciaTecnica into v_id;
-return v_id;
+    v_cur:=funcGetAreasAtividade;
+    fetch v_cur into r;
+    while v_cur%found loop
+    dbms_output.put_line('Código Único: '||r.idAreaAtividade|| ', Descrição Breve: ' ||r.descricaoBreve|| ', Descrição Detalhada: ' ||r.descricaoDetalhada );
+ fetch v_cur into r;
+ end loop;
+ close v_cur;
 end;
 /
+
+--Método para testar o procedimento
+--begin
+--procGetAreaAtividade;
+--end;
+--/
