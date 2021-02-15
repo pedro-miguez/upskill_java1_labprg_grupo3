@@ -1,0 +1,114 @@
+Organizacao
+
+insert into Organizacao(idOrganizacao, NIF, email, idGestor, nome, telefone, website) values (1, 212121211, 'juliocesar@gmail.pt', 1, 'julinho', 911074589, 'www.grande-julio1.com');
+insert into Organizacao(idOrganizacao, NIF, email, idGestor, nome, telefone, website) values (2, 212121212, 'juliogoat@gmail.pt', 10, 'julao', 911074580, 'www.grande-julio2.com');
+insert into Organizacao(idOrganizacao, NIF, email, idGestor, nome, telefone, website) values (3, 212121213, 'juliothegreatest@gmail.pt', 100, 'julinhozito', 911074589, 'www.grande-julio3.com');
+insert into Organizacao(idOrganizacao, NIF, email, idGestor, nome, telefone, website) values (4, 212121214, 'juliothebest@gmail.pt', 1000, 'julinhozinhozao', 911074589, 'www.grande-julio4.com');
+insert into Organizacao(idOrganizacao, NIF, email, idGestor, nome, telefone, website) values (5, 212121215, 'juliopaizao@gmail.pt', 10000, 'julao', 911074589, 'www.grande-julio5.com');
+
+Utilizador
+
+insert into Utilizador (idUtilizador, nome, email, palavrapasse, designacao) values (1, 'gestor123', 'gestor@org123.pt', '111222333', 'gestor');
+
+Role
+
+insert into Role (designacao) values ('gestor');
+
+Tarefa
+
+insert into Tarefa (idTarefa, idOrganizacao, idCategoria, idEstadoTarefa, 
+designacao, descricaoInformal, descricaoTecnica, estimativaDuracao, estimativaCusto) 
+values (AAA-11, 1, 1, 1, 'lavador', 'lavar pratos', 'pretende-se um empreendedor de 
+lavagem de praots para restaurante', 7, 500);
+
+EstadoTarefa 
+
+insert into EstadoTarefa (idEstadoTarefa, designacao ) values (1, 'por publicar');
+
+Anuncio 
+
+insert into Anuncio (idAnuncio , idTarefa, dataInicioPublicitacao, dataFimPublicitacao, 
+dataInicioCandidatura, dataFimCandidatura, dataInicioSeriacao, dataFimSeriacao) values 
+(1, AAA-11, '2021-05-01', '2021-06-01', '2021-05-01', '2021-06-01', '2021-06-01', '2021-07-01');
+
+Candidatura
+
+insert into Candidatura(idAnuncio , idFreelancer, dataCandidatura, valorPretendido, nrDias, 
+txtApresentacao, txtMotivacao) values (1, 1, '2021-05-01', 1600, 45, 'Ola, eu sou o...', 'O motivo
+que me faz querer trabalhar convosco e...');
+
+ProcessoSeriacao 
+
+insert into ProcessoSeriacao ( idAnuncio, idTipoRegimento, dataRealizacao) values (1, 1, '2021-07-01');
+
+Classificacao 
+
+insert into Classificacao ( idAnuncio, idFreelancer, lugar) values (1, 1, 3);
+
+ProcessoSeriacaoColaborador 
+
+insert into ProcessoSeriacaoColaborador ( idAnuncio, idColaborador, idOrganizacao values (1, 1, 1);
+
+TipoRegimento 
+
+insert into TipoRegimento ( idTipoRegimento, designacao, descricaoRegras) values (1, 'Regimento Militar',
+ 'Levantar cedo e cedo erguer');
+
+CompetenciaTecnica 
+
+insert into CompetenciaTecnica ( idCompetenciaTecnica, idAreaAtividade, nome, descricaoBreve,
+ descricaoDetalhada) values ('ABC-11', 'AAA-99', 'Resistencia ao stress', 'Lavar 100 pratos por minuto',
+'A lavagem deve ser efetuada usando padroes e estrategias de lavagem de pratos descrita na grande biblia das lavagens, capitulo VI');
+
+GrauProficiencia 
+
+insert into GrauProficiencia ( idCompetenciaTecnica, nivel, designacao) values ('ABC-11', 2, 'Avancado');
+
+AreaAtividade 
+
+insert into AreaAtividade ( idAreaAtividade, descricaoBreve, descricaoDetalhada ) values ('AAA-99',
+ 'Restauracao', 'Servicos de hotelaria');
+
+EnderecoPostal
+
+insert into EnderecoPostal( idOrganizacao, morada, codigoPostal, localidade) values (1, 'Rua dos testos',
+'4500-650', 'Braga');
+
+Administrativo
+
+insert into Administrativo (nome, idUtilizador) values ('Hannibal', 1);
+
+Colaborador
+
+insert into Colaborador(idColaborador , idOrganizacao, nome, funcao, telefone, email) values (1, 1,
+'Estagiario', 911015897, 'stilllearning@theprowannabe.com');
+
+Freelancer
+
+insert into Freelancer ( idFreelancer , NIF , nome, telefone, email) values (1, 224050800, 'Lecter',
+912005005, 'getoverit@dealwithit.com');
+
+HabilitacaoAcademica
+
+insert into HabilitacaoAcademica(idHabilitacao, idFreelancer, grau, designacaoCurso, nomeInstituicao, mediaCurso)
+ values (1, 1, 'Mestre', 'Belas Artes', 'ISEP', 9.5);
+
+ReconhecimentoCT 
+
+insert into ReconhecimentoCT (idCompetenciaTecnica, idFreelancer, nivelGrauProficiencia, dataReconhecimento)
+ values ('ABC-11', 1, 2, '2020-01-01');
+
+CategoriaTarefa 
+
+insert into CategoriaTarefa (idCategoria, idAreaAtividade, descricao) values (1, 'AAA-99', 'Servicos');
+
+CaraterizacaoCompetenciaTecnica 
+
+insert into CaraterizacaoCompetenciaTecnica (idCompetenciaTecnica, idCategoria, caracter, nivelGrauMinimo)
+ values ('ABC-11', 1, 'OBR', 2);
+
+
+
+
+
+
