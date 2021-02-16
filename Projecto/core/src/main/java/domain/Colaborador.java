@@ -13,8 +13,7 @@ public class Colaborador implements Serializable {
     private String nome;
     private Telefone telefone;
     private Email email;
-    private Funcao funcao;
-    private Organizacao organizacao;
+    private String funcao;
 
     /**
      * Instantiates a new collaborator.
@@ -22,31 +21,13 @@ public class Colaborador implements Serializable {
      * @param nome        as name
      * @param telefone    as telephone
      * @param email       as email
-     * @param organizacao as organization
      * @param funcao      as role (only the organization managers have this attribute)
      */
-    public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao, Funcao funcao) {
+    public Colaborador(String nome, Telefone telefone, Email email, String funcao) {
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
-        setOrganizacao(organizacao);
         setFuncao(funcao);
-    }
-
-    /**
-     * Instantiates a new collaborator.
-     *
-     * @param nome        as name
-     * @param telefone    as telephone
-     * @param email       as email
-     * @param organizacao as organization
-     */
-    public Colaborador(String nome, Telefone telefone, Email email, Organizacao organizacao) {
-        setNome(nome);
-        setTelefone(telefone);
-        setEmail(email);
-        setOrganizacao(organizacao);
-        setFuncao(Funcao.COLABORADOR);
     }
 
     private void setNome(String nome) {
@@ -64,7 +45,7 @@ public class Colaborador implements Serializable {
         this.email = email;
     }
 
-    private void setFuncao(Funcao funcao) {
+    private void setFuncao(String funcao) {
         this.funcao = funcao;
     }
 
@@ -86,33 +67,16 @@ public class Colaborador implements Serializable {
         return email;
     }
 
-    /**
-     * Is organization manager.
-     *
-     * @return the boolean.
-     */
-    public boolean isGestor() {
-        return funcao == Funcao.GESTOR;
+    public Telefone getTelefone() {
+        return this.telefone;
     }
 
 
-    /**
-     * Gets organization.
-     *
-     * @return the organization.
-     */
-    public Organizacao getOrganizacao() {
-        return organizacao;
-    }
-
-    private void setOrganizacao(Organizacao organizacao) {
-        this.organizacao = organizacao;
-    }
 
     @Override
     public String toString() {
-        return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nFunção: %s%nOrganização: %s",
-                this.nome, this.telefone, this.email, this.funcao, this.organizacao.getNome());
+        return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nFunção: %s",
+                this.nome, this.telefone, this.email, this.funcao);
     }
 
     /**
@@ -134,8 +98,7 @@ public class Colaborador implements Serializable {
         return Objects.equals(getNome(), that.getNome()) &&
                 Objects.equals(telefone, that.telefone) &&
                 Objects.equals(getEmail(), that.getEmail()) &&
-                funcao == that.funcao &&
-                Objects.equals(getOrganizacao(), that.getOrganizacao());
+                funcao.equals(that.funcao);
     }
 
 }

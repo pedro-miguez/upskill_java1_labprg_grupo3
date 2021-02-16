@@ -92,8 +92,6 @@ alter table ReconhecimentoCT
 add constraint fk_ReconhecimentoCT_idCompetenciatecnica FOREIGN KEY (idCompetenciatecnica) references CompetenciaTecnica (idCompetenciatecnica);
 
 
-alter table ReconhecimentoCT
-add constraint fk_ReconhecimentoCT_idCompetenciatecnica FOREIGN KEY (idCompetenciatecnica) references CompetenciaTecnica (idCompetenciatecnica);
 
 
 alter table ReconhecimentoCT

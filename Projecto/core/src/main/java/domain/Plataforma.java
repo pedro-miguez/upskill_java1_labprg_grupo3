@@ -6,6 +6,7 @@ import persistence.*;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 
 /**
  * Current class enables to create a new Platform object which hosts some of the critical functions available in the app. For this
@@ -21,25 +22,10 @@ public class Plataforma implements Serializable {
 
     private AlgoritmoGeradorPasswords agp;
     private UsersAPI uapi;
-    private RepositorioColaborador repoColab;
-    private RepositorioOrganizacao repoOrg;
-    private RepositorioCompetenciaTecnica repoCompTec;
-    private RepositorioAreaAtividade repoAreaAtiv;
-    private RepositorioUtilizador repoUser;
-    private RepositorioTarefa repoTarefa;
-    private RepositorioCategoriaTarefa repoCategoriaTarefa;
 
     private Plataforma() {
         agp = new AlgoritmoGeradorPasswords();
         uapi = new UsersAPI();
-
-        repoColab = RepositorioColaborador.getInstance();
-        repoOrg = RepositorioOrganizacao.getInstance();
-        repoCompTec = RepositorioCompetenciaTecnica.getInstance();
-        repoAreaAtiv = RepositorioAreaAtividade.getInstance();
-        repoUser = RepositorioUtilizador.getInstance();
-        repoTarefa = RepositorioTarefa.getInstance();
-        repoCategoriaTarefa = RepositorioCategoriaTarefa.getInstance();
     }
 
     /**
@@ -72,99 +58,6 @@ public class Plataforma implements Serializable {
         return uapi;
     }
 
-    /**
-     * Method that enables to save data.
-     *
-     * @return the boolean
-     */
-    public static boolean guardarDados(){
-        Path file = Paths.get(PLATAFORMA_FILE);
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file.toString()));
-            Object obj = Plataforma.getInstance();
-            out.writeObject(obj);
-            out.close();
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Method that enables to load data.
-     *
-     * @throws IOException            the io exception
-     * @throws ClassNotFoundException the class not found exception
-     */
-    public static void carregarDados() throws IOException, ClassNotFoundException {
-        Plataforma.plataforma = new Plataforma();
-        Path file = Paths.get(PLATAFORMA_FILE);
-        ObjectInputStream o = new ObjectInputStream(new FileInputStream(file.toString()));
-        Plataforma.plataforma = (Plataforma) o.readObject();
-        o.close();
-    }
-
-
-    /**
-     * Gets collaborator repository
-     *
-     * @return the collaborator repository
-     */
-    public RepositorioColaborador getRepoColab() {
-        return repoColab;
-    }
-
-    /**
-     * Gets organization repository
-     *
-     * @return the organization repository
-     */
-    public RepositorioOrganizacao getRepoOrg() {
-        return repoOrg;
-    }
-
-    /**
-     * Gets technical competence repository
-     *
-     * @return the technical competence repository
-     */
-    public RepositorioCompetenciaTecnica getRepoCompTec() {
-        return repoCompTec;
-    }
-
-    /**
-     * Gets activity area repository
-     *
-     * @return the activity area repository
-     */
-    public RepositorioAreaAtividade getRepoAreaAtiv() {
-        return repoAreaAtiv;
-    }
-
-    /**
-     * Gets user repository.
-     *
-     * @return the user repository.
-     */
-    public RepositorioUtilizador getRepoUser() {
-        return repoUser;
-    }
-
-    /**
-     * Gets task repository
-     *
-     * @return the task repository
-     */
-    public RepositorioTarefa getRepoTarefa() { return repoTarefa; }
-
-    /**
-     * Gets task category repository
-     *
-     * @return the task category repository
-     */
-    public RepositorioCategoriaTarefa getRepoCategoriaTarefa() {
-        return repoCategoriaTarefa;
-    }
 
     /**
      * Method that allows to reset user api.

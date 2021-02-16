@@ -1,3 +1,4 @@
+/*
 package application;
 
 import domain.*;
@@ -22,7 +23,8 @@ public class PlataformaControllerTest {
         assertEquals(expected, result);
     }
 
-    /*@Test
+    */
+/*@Test
     public void testGetCategoriasTarefa(){
 
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
@@ -46,7 +48,8 @@ public class PlataformaControllerTest {
                 adicionar
                         get
 
-    }*/
+    }*//*
 
 
-}
+
+}*/

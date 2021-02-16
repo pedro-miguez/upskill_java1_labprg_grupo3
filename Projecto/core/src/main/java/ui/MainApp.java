@@ -66,24 +66,12 @@ public class MainApp extends Application {
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         event.consume();
-                    } else {
-                        if (!Plataforma.guardarDados()) {
-                            AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO, "Guardar Dados",
-                                    "Problema ao guardar dados!").show();
-                        }
                     }
                 }
             });
 
             stage.show();
 
-            try {
-                Plataforma.carregarDados();
-
-            } catch (Exception e) {
-                AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Desserialização",
-                        "Não foi encontrado ficheiro com dados.").show();
-            }
 
             plataformaController = new PlataformaController();
 
@@ -103,15 +91,5 @@ public class MainApp extends Application {
         return screenController;
     }
 
-    private static void createData() {
-        Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
-                new Email("org@org.com"), new EnderecoPostal("Rua da Povoa 23", "Porto", "4200-432"));
-        Colaborador gestor = new Colaborador("gestorGrupo3", new Telefone(999999999), new Email("colab@org.com"), org, Funcao.GESTOR);
-
-        Plataforma.getInstance().getRepoOrg().addOrganizacao(org);
-        Plataforma.getInstance().getRepoOrg().addGestor(gestor, org);
-
-        //Plataforma.getInstance().getRepoOrg().registarGestorComoUtilizador(gestor);
-    }
 }
 

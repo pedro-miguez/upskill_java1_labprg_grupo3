@@ -41,5 +41,6 @@ begin
  values(p_nome, p_email, p_palavraPasse, 'gestor') returning idUtilizador into v_id;
  insert into Colaborador(idColaborador, idOrganizacao, nome, funcao, telefone, email) 
  values(v_id, p_idOrganizacao, p_nome, 'gestor', p_telefone, p_email);
+ insert into Organizacao(idgestor) values (v_id) where idOrganizacao = p_idOrganizacao;
 end;
 /

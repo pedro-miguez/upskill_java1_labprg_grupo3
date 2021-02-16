@@ -25,7 +25,7 @@ public class DefinirCompetenciaTecnicaController {
                                              String descricao, String descDetalhada) {
 
         Plataforma plataforma = Plataforma.getInstance();
-        RepositorioCompetenciaTecnica repo = plataforma.getRepoCompTec();
+        RepositorioCompetenciaTecnica repo = RepositorioCompetenciaTecnica.getInstance();
 
         CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, areaAtividade, descricao, descDetalhada);
 

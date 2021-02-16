@@ -26,7 +26,7 @@ public class DefinirTarefaController {
     public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
                                  int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail){
 
-        Plataforma plataforma = Plataforma.getInstance();
+/*        Plataforma plataforma = Plataforma.getInstance();
         RepositorioColaborador repositorioColaborador = plataforma.getRepoColab();
         RepositorioTarefa repositorioTarefa = plataforma.getRepoTarefa();
 
@@ -37,7 +37,8 @@ public class DefinirTarefaController {
         Tarefa tarefa = repositorioTarefa.criarTarefa(codigoUnico, designacao, descricaoInformal,
                 descricaoTecnica, duracaoHoras, custo, categoriaTarefa, org);
 
-        return repositorioTarefa.addTarefa(tarefa);
+        return repositorioTarefa.addTarefa(tarefa);*/
+        return false;
     }
 
 

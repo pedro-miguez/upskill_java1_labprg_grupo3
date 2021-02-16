@@ -24,7 +24,7 @@ public class DefinirCategoriaTarefaController {
                                           List<CaracterizacaoCompTec> competenciasTecnicas) {
 
         Plataforma plataforma = Plataforma.getInstance();
-        RepositorioCategoriaTarefa repo = plataforma.getRepoCategoriaTarefa();
+        RepositorioCategoriaTarefa repo = RepositorioCategoriaTarefa.getInstance();
 
         CategoriaTarefa categoriaTarefa = repo.criarCategoriaTarefa(areaAtividade, descricao, competenciasTecnicas);
 

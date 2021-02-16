@@ -19,7 +19,7 @@ public class Organizacao implements Serializable {
     private Telefone telefone;
     private Email email;
     private EnderecoPostal enderecoPostal;
-    private Colaborador gestor;
+
 
     /**
      * Instantiates a new organization (as Organizacao) with set parameters.
@@ -56,6 +56,18 @@ public class Organizacao implements Serializable {
         return this.nome;
     }
 
+    public NIF getNIF() {
+        return this.nif;
+    }
+
+    public Website getWebsite() {
+        return this.website;
+    }
+
+    public Telefone getTelefone() {
+        return this.telefone;
+    }
+
     private void setNif(NIF nif) {
         this.nif = nif;
     }
@@ -76,30 +88,6 @@ public class Organizacao implements Serializable {
         return this.email;
     }
 
-    /**
-     * Gets the manager of the organization.
-     *
-     * @return the manager of the organization.
-     */
-    public Colaborador getGestor() {
-        return gestor;
-    }
-
-    /**
-     * Sets the manager of the organization.
-     *
-     * @param gestor the manager of the organization.
-     * @return the manager of the organization.
-     */
-    public boolean setGestor(Colaborador gestor) {
-        if (gestor.isGestor()) {
-            this.gestor = gestor;
-            return true;
-        } else {
-            throw new IllegalArgumentException("Colaborador não tem a função de Gestor");
-        }
-    }
-
     private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
         this.enderecoPostal = enderecoPostal;
     }
@@ -112,8 +100,8 @@ public class Organizacao implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("Nome: %s%nNIF: %s%nWebsite: %s%nTelefone: %s%nE-mail: %s%nEndereço Postal: %s%nGestor: %s",
-                this.getNome(), this.nif, this.website, this.telefone, this.email, this.enderecoPostal, this.gestor.getNome());
+        return String.format("Nome: %s%nNIF: %s%nWebsite: %s%nTelefone: %s%nE-mail: %s%nEndereço Postal: %s",
+                this.getNome(), this.nif, this.website, this.telefone, this.email, this.enderecoPostal);
     }
 
     /**

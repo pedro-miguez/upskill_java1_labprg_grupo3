@@ -202,7 +202,10 @@ create table Administrativo(
     nome varchar(40) PRIMARY KEY,
     idUtilizador integer
         constraint ckAdministrativoIdUtilizador check (idUtilizador > 0)
-        constraint nnAdministrativoIdUtilizador not null
+        constraint nnAdministrativoIdUtilizador not null,
+    email varchar(40) UNIQUE
+        --constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        constraint nnColaboradorEmail not null
 );
 
 create table Colaborador(
@@ -291,7 +294,7 @@ create table Role (
 );
 
 create table CategoriaTarefa (
-    idCategoria INTEGER PRIMARY KEY
+    idCategoria INTEGER generated as identity PRIMARY KEY
         constraint nnCategoriaTarefaIdCategoria not null
         constraint ckCategoriaTarefaIdCategoria check (0 < idCategoria),
     idAreaAtividade INTEGER

@@ -1,3 +1,4 @@
+/*
 package application;
 
 import domain.*;
@@ -24,4 +25,4 @@ public class RegistarOrganizacaoControllerTest {
 
     }
 
-}
+}*/

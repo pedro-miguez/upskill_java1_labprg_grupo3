@@ -4,6 +4,8 @@ import domain.*;
 import persistence.RepositorioColaborador;
 import persistence.RepositorioOrganizacao;
 
+import java.sql.SQLException;
+
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for registering new
  * organizations.
@@ -29,24 +31,26 @@ public class RegistarOrganizacaoController {
      */
     public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
                                        String email, String rua, String localidade, String codigoPostal,
-                                       String nomeGestor, int telefoneGestor, String emailGestor) {
+                                       String nomeGestor, int telefoneGestor, String emailGestor) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
-        RepositorioOrganizacao repoOrg = plataforma.getRepoOrg();
-        RepositorioColaborador repoColab = plataforma.getRepoColab();
+        RepositorioOrganizacao repoOrg = RepositorioOrganizacao.getInstance();
+        RepositorioColaborador repoColab = RepositorioColaborador.getInstance();
         AuthenticationController authController = new AuthenticationController();
 
         Organizacao org = repoOrg.criarOrganizacao(nomeOrg, nif, website, telefone, email,
                 rua, localidade, codigoPostal);
 
-        Colaborador gestor = repoColab.criarGestor(nomeGestor, telefoneGestor, emailGestor, org);
+        Colaborador gestor = repoColab.criarColaborador(nomeGestor, telefoneGestor, emailGestor, "gestor");
 
-        if (!repoOrg.addOrganizacao(org)) {
+        String password = authController.registarGestorComoUtilizador(gestor);
+        System.out.println(password);
+
+        if (!password.equals("failed")) {
+            return repoOrg.createOrganizacao(org, gestor, password);
+        } else {
             return false;
-        } else if (!repoOrg.addGestor(gestor, org)) {
-            return false;
-        } else if(!repoColab.addColaborador(gestor)) {
-            return false;
-        } else return authController.registarGestorComoUtilizador(gestor);
+        }
+
     }
 }

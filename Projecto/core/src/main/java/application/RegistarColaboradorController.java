@@ -32,7 +32,7 @@ public class RegistarColaboradorController {
 
     public boolean registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String gestorEmail) {
 
-        Plataforma plataforma = Plataforma.getInstance();
+      /*  Plataforma plataforma = Plataforma.getInstance();
         RepositorioColaborador repoColab = plataforma.getRepoColab();
         RepositorioOrganizacao repoOrg = plataforma.getRepoOrg();
 
@@ -44,6 +44,7 @@ public class RegistarColaboradorController {
 
         if (!repoColab.addColaborador(colaborador)) {
             return false;
-        } else return authController.registarColaboradorComoUtilizador(colaborador);
+        } else return authController.registarColaboradorComoUtilizador(colaborador);*/
+        return false;
     }
 }

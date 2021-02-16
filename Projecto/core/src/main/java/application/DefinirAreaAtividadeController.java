@@ -21,8 +21,7 @@ public class DefinirAreaAtividadeController {
      */
     public boolean definirAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) {
 
-        Plataforma plataforma = Plataforma.getInstance();
-        RepositorioAreaAtividade repo = plataforma.getRepoAreaAtiv();
+        RepositorioAreaAtividade repo = RepositorioAreaAtividade.getInstance();
 
         AreaAtividade areaAtividade = repo.criarAreaAtividade(codigoUnico, descricao, descricaoDetalhada);
 

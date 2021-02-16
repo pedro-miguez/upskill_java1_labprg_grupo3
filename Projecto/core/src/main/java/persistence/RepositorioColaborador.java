@@ -74,11 +74,6 @@ public class RepositorioColaborador implements Serializable {
     public ArrayList<Colaborador> getColaboradoresOrganizacao (Organizacao organizacao) {
         ArrayList<Colaborador> colaboradoresOrganizacao = new ArrayList<>();
 
-        for (Colaborador c : colaboradoresRegistados) {
-            if (c.getOrganizacao().equals(organizacao)) {
-                colaboradoresOrganizacao.add(c);
-            }
-        }
 
         return colaboradoresOrganizacao;
     }
@@ -92,16 +87,11 @@ public class RepositorioColaborador implements Serializable {
     }
 
     public Colaborador criarColaborador(String nomeColaborador,int contactoColaborador,
-                                        String emailColaborador, Organizacao org) {
+                                        String emailColaborador, String funcao) {
         return new Colaborador(nomeColaborador, new Telefone(contactoColaborador),
-                new Email(emailColaborador), org, Funcao.COLABORADOR);
+                new Email(emailColaborador), funcao);
     }
 
-    public Colaborador criarGestor(String nomeGestor,int contactoGestor,
-                              String emailGestor, Organizacao org) {
-        return new Colaborador(nomeGestor, new Telefone(contactoGestor),
-                new Email(emailGestor), org, Funcao.GESTOR);
-    }
     /**
      * Method to check if two objects (in this case, collaborators) are the same.
      * @param o

@@ -17,6 +17,7 @@ import persistence.RepositorioOrganizacao;
 import persistence.RepositorioUtilizador;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -67,7 +68,7 @@ public class RegistarOrganizacaoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova organização.",
                     added ? "Organização criada com sucesso! \n\n" +
-                            plataformaController.getOrganizacaoToStringCompletoByEmail(txtEmailOrg.getText().trim())
+                            plataformaController.getOrganizacaoToStringCompletoByEmail(txtEmailOrg.getText().trim()) //MUDAR
                             : "Não foi possível registar a organização.").show();
             if (added) {
                 limparDados();
@@ -80,6 +81,9 @@ public class RegistarOrganizacaoUI implements Initializable {
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Problema ao fazer registo na base de dados.",
+                    throwables.getMessage()).show();
         }
     }
 

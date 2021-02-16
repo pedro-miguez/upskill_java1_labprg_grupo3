@@ -1,7 +1,9 @@
 package application;
 
 import domain.*;
+import persistence.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,7 +20,7 @@ public class PlataformaController {
      * @return the list of tasks categories
      */
     public ArrayList<CategoriaTarefa> getCategoriasTarefa() {
-        return Plataforma.getInstance().getRepoCategoriaTarefa().listarCategoriasTarefa();
+        return RepositorioCategoriaTarefa.getInstance().listarCategoriasTarefa();
     }
 
     /**
@@ -27,7 +29,7 @@ public class PlataformaController {
      * @return the list of activity areas.
      */
     public ArrayList<AreaAtividade> getAreasAtividade() {
-        return Plataforma.getInstance().getRepoAreaAtiv().listarAreaAtividade();
+        return RepositorioAreaAtividade.getInstance().listarAreaAtividade();
     }
 
     /**
@@ -46,7 +48,7 @@ public class PlataformaController {
      * @return the technical competence by area of activity.
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) {
-        return Plataforma.getInstance().getRepoCompTec().getCompetenciasTecnicasByAreaAtividade(areaAtividade);
+        return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaAtividade(areaAtividade);
     }
 
     /**
@@ -63,7 +65,7 @@ public class PlataformaController {
      * @return the the complete representation of an activity area object by its unique code.
      */
     public String getAreaAtividadeToStringCompletoByCodigoUnico(String codigoUnico) {
-        return Plataforma.getInstance().getRepoAreaAtiv().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnico)).toStringCompleto();
+        return RepositorioAreaAtividade.getInstance().getAreaAtividadeByCodUnico(new CodigoUnico(codigoUnico)).toStringCompleto();
     }
 
     /**
@@ -73,7 +75,7 @@ public class PlataformaController {
      * @return the complete representation of a task category object by its name.
      */
     public String getCategoriaTarefaToStringCompletoByNome(String nome) {
-        return Plataforma.getInstance().getRepoCategoriaTarefa().getCategoriaTarefaByDescricao(nome).toStringCompleto();
+        return RepositorioCategoriaTarefa.getInstance().getCategoriaTarefaByDescricao(nome).toStringCompleto();
     }
 
     /**
@@ -83,7 +85,7 @@ public class PlataformaController {
      * @return the complete representation of a collaborator object by its email.
      */
     public String getColaboradorToStringCompletoByEmail(String email) {
-        return Plataforma.getInstance().getRepoColab().getColaboradorByEmail(new Email(email)).toString();
+        return RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(email)).toString();
     }
 
     /**
@@ -93,7 +95,7 @@ public class PlataformaController {
      * @return the the complete representation of a technical competence object by its unique code.
      */
     public String getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico) {
-        return Plataforma.getInstance().getRepoCompTec().getCompetenciaTecnicaByCodUnico(new CodigoUnico(codigoUnico)).toString();
+        return RepositorioCompetenciaTecnica.getInstance().getCompetenciaTecnicaByCodUnico(new CodigoUnico(codigoUnico)).toString();
     }
 
     /**
@@ -102,8 +104,8 @@ public class PlataformaController {
      * @param email as email
      * @return the complete representation of an organization object by its email.
      */
-    public String getOrganizacaoToStringCompletoByEmail(String email) {
-        return Plataforma.getInstance().getRepoOrg().getOrganizacaoByEmail(new Email(email)).toString();
+    public String getOrganizacaoToStringCompletoByEmail(String email) throws SQLException {
+        return RepositorioOrganizacao.getInstance().getOrganizacaoByEmail(new Email(email)).toString();
     }
 
     /**
@@ -113,6 +115,6 @@ public class PlataformaController {
      * @return the complete representation of a task object by its unique code.
      */
     public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico) {
-        return Plataforma.getInstance().getRepoTarefa().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico)).toString();
+        return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico)).toString();
     }
 }

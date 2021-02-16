@@ -1,3 +1,4 @@
+/*
 package persistence;
 
 import exceptions.EmailNaoAssociadoException;
@@ -74,4 +75,4 @@ public class RepositorioColaboradorTest {
 
         assertEquals(expected, result);
     }
-}
+}*/

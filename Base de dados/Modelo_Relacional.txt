@@ -17,6 +17,7 @@ entity Organizacao {
 entity Administrativo {
     nome {PK}
     idUtilizador {FK} 
+    email
 }
 
 entity Colaborador {

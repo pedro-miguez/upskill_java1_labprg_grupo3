@@ -1,3 +1,4 @@
+/*
 package domain;
 
 import org.junit.Test;
@@ -40,4 +41,4 @@ public class ColaboradorTest {
         new Colaborador("nome", new Telefone(999999999), new Email("colaborg.com"), org);
     }
 
-}
+}*/
