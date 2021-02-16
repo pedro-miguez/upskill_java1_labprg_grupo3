@@ -18,18 +18,12 @@ import java.util.List;
 public class RepositorioOrganizacao implements Serializable {
 
     private static RepositorioOrganizacao instance;
-    private Connection conn;
 
     /**
      * Organizations that will be added (registered) to the repository.
      */
     private RepositorioOrganizacao() throws SQLException {
-        OracleDataSource ods = new OracleDataSource();
-        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-        ods.setURL(url);
-        ods.setUser("UPSKILL_BD_TURMA1_14");
-        ods.setPassword("qwerty");
-        conn = ods.getConnection();
+
     }
 
     /**
@@ -42,6 +36,15 @@ public class RepositorioOrganizacao implements Serializable {
             instance = new RepositorioOrganizacao();
         }
         return instance;
+    }
+
+    public Connection openConnection() throws SQLException {
+        OracleDataSource ods = new OracleDataSource();
+        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+        ods.setURL(url);
+        ods.setUser("UPSKILL_BD_TURMA1_14");
+        ods.setPassword("qwerty");
+        return  ods.getConnection();
     }
 
     /**
@@ -57,55 +60,44 @@ public class RepositorioOrganizacao implements Serializable {
         ods.setURL(url);
         ods.setUser("UPSKILL_BD_TURMA1_14");
         ods.setPassword("qwerty");
-        conn = ods.getConnection();
+        Connection conn = openConnection();
 
         CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
         System.out.println(1);
         ResultSet rs = null;
 
         try {
-            System.out.println(1.1);
             conn.setAutoCommit(false);
 
-            System.out.println(1.2);
-
             cs.setInt(1, Integer.parseInt(organizacao.getNIF().toString()));
-            System.out.println(2);
             cs.setString(2, organizacao.getEmail().toString());
-            System.out.println(3);
             cs.setString(3, organizacao.getNome());
-            System.out.println(4);
             cs.setInt(4, Integer.parseInt(organizacao.getTelefone().toString()));
-            System.out.println(5);
             cs.setString(5, organizacao.getWebsite().toString());
-            System.out.println(6);
             cs.setString(6, gestor.getNome());
-            System.out.println(7);
             cs.setString(7, gestor.getEmail().toString());
-            System.out.println(8);
             cs.setString(8, password);
-            System.out.println(9);
             cs.setInt(9, Integer.parseInt(gestor.getTelefone().toString()));
-            System.out.println(10);
             //rs = cs.executeQuery();
+
             cs.executeQuery();
-            System.out.println(11);
+
             conn.commit();
-            System.out.println(12);
+
+            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
-            if (conn != null) {
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    conn.rollback();
-                } catch (SQLException excep) {
-                    excep.getErrorCode();
-                }
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
             }
         }
 
+        conn.close();
         //ADICIONAR GETORGANIZACAO TO STRING;
         return false;
 
