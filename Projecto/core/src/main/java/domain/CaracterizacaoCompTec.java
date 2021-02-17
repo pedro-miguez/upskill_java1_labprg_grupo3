@@ -1,7 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Technical competence characterization class allows to set a kind of mastery to the technical competence
@@ -14,7 +13,7 @@ public class CaracterizacaoCompTec implements Serializable {
 
     private boolean obrigatorio;
 
-    private GrauProficiencia grauProficiencia;
+    private GrauProficienciaa grauProficienciaa;
 
 
     /**
@@ -22,12 +21,12 @@ public class CaracterizacaoCompTec implements Serializable {
      *
      * @param competenciaTecnica as Technical competence
      * @param obrigatorio        as mandatory
-     * @param grauProficiencia   as mastery level
+     * @param grauProficienciaa   as mastery level
      */
-    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, boolean obrigatorio, GrauProficiencia grauProficiencia) {
+    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, boolean obrigatorio, GrauProficienciaa grauProficienciaa) {
         this.competenciaTecnica = competenciaTecnica;
         this.obrigatorio = obrigatorio;
-        this.grauProficiencia = grauProficiencia;
+        this.grauProficienciaa = grauProficienciaa;
     }
 
     /**
@@ -62,8 +61,8 @@ public class CaracterizacaoCompTec implements Serializable {
      *
      * @return the grade of mastery.
      */
-    public GrauProficiencia getGrauProficiencia() {
-        return grauProficiencia;
+    public GrauProficienciaa getGrauProficiencia() {
+        return grauProficienciaa;
     }
 
 
@@ -71,7 +70,7 @@ public class CaracterizacaoCompTec implements Serializable {
     public String toString() {
         return  competenciaTecnica.toString() +
                 "\nobrigatorio: " + obrigatorio +
-                "\ngrauProficiencia: " + grauProficiencia;
+                "\ngrauProficienciaa: " + grauProficienciaa;
     }
 
     /**

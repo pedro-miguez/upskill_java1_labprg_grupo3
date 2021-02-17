@@ -37,8 +37,8 @@ public class PlataformaController {
      *
      * @return the required mastery
      */
-    public ArrayList<GrauProficiencia> getGrausProficiencia() {
-        return new ArrayList<>(Arrays.asList(GrauProficiencia.values()));
+    public ArrayList<GrauProficienciaa> getGrausProficiencia() {
+        return new ArrayList<>(Arrays.asList(GrauProficienciaa.values()));
     }
 
     /**
