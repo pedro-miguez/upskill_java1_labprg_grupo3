@@ -204,8 +204,8 @@ create table Administrativo(
         constraint ckAdministrativoIdUtilizador check (idUtilizador > 0)
         constraint nnAdministrativoIdUtilizador not null,
     email varchar(40) UNIQUE
-        --constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
-        constraint nnColaboradorEmail not null
+        --constraint ckAdministrativoEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        constraint nnAdministrativoEmail not null
 );
 
 create table Colaborador(
