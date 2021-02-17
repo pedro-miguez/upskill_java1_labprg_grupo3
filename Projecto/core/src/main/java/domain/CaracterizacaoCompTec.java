@@ -13,7 +13,7 @@ public class CaracterizacaoCompTec implements Serializable {
 
     private boolean obrigatorio;
 
-    private GrauProficienciaa grauProficienciaa;
+    private GrauProficiencia grauProficiencia;
 
 
     /**
@@ -21,12 +21,12 @@ public class CaracterizacaoCompTec implements Serializable {
      *
      * @param competenciaTecnica as Technical competence
      * @param obrigatorio        as mandatory
-     * @param grauProficienciaa   as mastery level
+     * @param grauProficiencia   as mastery level
      */
-    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, boolean obrigatorio, GrauProficienciaa grauProficienciaa) {
+    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, boolean obrigatorio, GrauProficiencia grauProficiencia) {
         this.competenciaTecnica = competenciaTecnica;
         this.obrigatorio = obrigatorio;
-        this.grauProficienciaa = grauProficienciaa;
+        this.grauProficiencia = grauProficiencia;
     }
 
     /**
@@ -61,16 +61,16 @@ public class CaracterizacaoCompTec implements Serializable {
      *
      * @return the grade of mastery.
      */
-    public GrauProficienciaa getGrauProficiencia() {
-        return grauProficienciaa;
+    public GrauProficiencia getGrauProficiencia() {
+        return grauProficiencia;
     }
 
 
     @Override
     public String toString() {
-        return  competenciaTecnica.toString() +
-                "\nobrigatorio: " + obrigatorio +
-                "\ngrauProficienciaa: " + grauProficienciaa;
+        return  competenciaTecnica.getDescricao() +
+                (obrigatorio ? "\nObrigatória " : "\nOpcional") +
+                "\nGrau de Proficiência: " + grauProficiencia.getDesginacao();
     }
 
     /**

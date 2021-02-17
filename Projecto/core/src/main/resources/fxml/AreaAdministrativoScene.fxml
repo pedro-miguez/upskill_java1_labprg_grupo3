@@ -102,7 +102,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="criarCategoriaTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0">
                      <top>
                         <Label prefHeight="20.0" prefWidth="327.0" text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
@@ -152,7 +152,7 @@
                                  <center>
                                     <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="97.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <ComboBox fx:id="comboBoxGrauProficienciaCategoriaTarefa" prefHeight="25.0" prefWidth="103.0" promptText="Proficiencia">
+                                          <ComboBox fx:id="comboBoxGrauProficienciaCategoriaTarefa" onShowing="#popularComboBoxGrauProficienciaCategoriaTarefa" prefHeight="25.0" prefWidth="103.0" promptText="Proficiencia">
                                              <VBox.margin>
                                                 <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -213,7 +213,7 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
-                  <BorderPane fx:id="criarCompetenciaTecnicaPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarCompetenciaTecnicaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <top>
                         <Label prefHeight="21.0" prefWidth="364.0" text="Criar Competencia Técnica" BorderPane.alignment="CENTER">
                            <font>
