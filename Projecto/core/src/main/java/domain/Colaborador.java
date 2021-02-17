@@ -71,7 +71,9 @@ public class Colaborador implements Serializable {
         return this.telefone;
     }
 
-
+    public String getFuncao() {
+        return funcao;
+    }
 
     @Override
     public String toString() {
