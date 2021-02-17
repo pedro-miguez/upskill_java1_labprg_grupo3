@@ -19,7 +19,7 @@
          <center>
             <StackPane prefHeight="474.0" prefWidth="696.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarAreaAtividadePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <GridPane prefHeight="366.0" prefWidth="721.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -213,9 +213,9 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
-                  <BorderPane fx:id="criarCompetenciaTecnicaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarCompetenciaTecnicaPane" prefHeight="200.0" prefWidth="200.0">
                      <top>
-                        <Label prefHeight="20.0" prefWidth="232.0" text="Criar Competencia Técnica" BorderPane.alignment="CENTER">
+                        <Label prefHeight="21.0" prefWidth="364.0" text="Criar Competencia Técnica" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -227,14 +227,15 @@
                      <center>
                         <GridPane BorderPane.alignment="CENTER">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="245.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="476.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="168.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="532.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="141.0" minHeight="0.0" prefHeight="51.0" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="272.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="373.0" minHeight="10.0" prefHeight="151.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label text="Código Único: " GridPane.halignment="RIGHT">
@@ -257,14 +258,81 @@
                               <ComboBox fx:id="comboBoxAreaAtividadeCompetenciaTecnica" prefWidth="150.0" promptText="Áreas de Atividade" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="txtDescBreveCompetenciaTecnica" promptText="Nome da competência técnica" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="100.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextArea fx:id="txtDescDetalhadaCompetenciaTecnica" prefHeight="283.0" prefWidth="393.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <TextArea fx:id="txtDescDetalhadaCompetenciaTecnica" prefHeight="123.0" prefWidth="416.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
-                                    <Insets right="50.0" />
+                                    <Insets bottom="5.0" right="100.0" />
                                  </GridPane.margin>
                               </TextArea>
+                              <Label layoutX="122.0" layoutY="128.0" text="Graus de Proficiência:" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <center>
+                                    <VBox alignment="CENTER" prefHeight="164.0" prefWidth="212.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnAdicionarGrauProficienciaCompetenciaTecnica" prefHeight="44.0" prefWidth="67.0" text="Adicionar">
+                                             <VBox.margin>
+                                                <Insets bottom="20.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#btnRemoverGrauProficienciaCompetenciaTecnica" prefHeight="21.0" prefWidth="67.0" text="Remover">
+                                             <VBox.margin>
+                                                <Insets bottom="65.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </center>
+                                 <right>
+                                    <ListView fx:id="listViewGrauProficienciaCompetenciaTecnica" prefHeight="164.0" prefWidth="139.0" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets right="100.0" top="5.0" />
+                                       </BorderPane.margin>
+                                    </ListView>
+                                 </right>
+                                 <left>
+                                    <GridPane prefHeight="164.0" prefWidth="167.0" BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="41.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Nível:" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                                             <GridPane.margin>
+                                                <Insets bottom="13.0" right="5.0" top="10.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Designação:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                             <GridPane.margin>
+                                                <Insets right="5.0" top="13.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="txtNivelGrauProficienciaCriarCompetenciaTecnica" GridPane.columnIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="20.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="txtDesignacaoGrauProficienciaCriarCompetenciaTecnica" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                             <GridPane.margin>
+                                                <Insets top="10.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                       </children>
+                                    </GridPane>
+                                 </left>
+                              </BorderPane>
                            </children>
                         </GridPane>
                      </center>
@@ -283,7 +351,7 @@
                               </Button>
                            </children>
                            <BorderPane.margin>
-                              <Insets right="40.0" />
+                              <Insets right="90.0" />
                            </BorderPane.margin>
                         </HBox>
                      </bottom>
