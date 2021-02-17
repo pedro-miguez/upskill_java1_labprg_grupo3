@@ -17,17 +17,6 @@ createAreaAtividade(4, 'Informática', 'Desenvolvimento de software');
 end;
 /
 
--- return aa.codUnico%type is v_cod aa.codUnico%type;
-
---     begin
---         insert into AreaAtividade(codUnico, descricao, descDet) values (p_codunico, p_descricao, p_descdetailed)
---         returning codUnico into v_cod;
-
---         return v_cod;
---     end;
-
--- /
-
 declare
     v_cod int;
 begin
