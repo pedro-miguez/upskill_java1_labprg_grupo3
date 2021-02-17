@@ -72,6 +72,28 @@ public class Anuncio implements Serializable {
     }
     
     
+
+    public String toString(){
+        return String.format("ID Tarefa: %s%nData de Inicio da Publicitacao: %s%n" +
+                "Data de Fim de Publicitacao: %s%nData de Inicio da Candidatura: %s" +
+                "%nData de Fim da Candidatura: %d Data de Inicio de Seriacao%n" + 
+                "Data de Fim de Seriacao: %s", this.idTarefa,
+                this.dataInicioPublicitacao, this.dataFimPublicitacao,
+                this.dataInicioCandidatura, this.dataFimCandidatura,
+                this.dataInicioSeriacao, this.dataFimSeriacao);
+    }
+    
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Anuncio)) return false;
+
+        Anuncio anuncio = (Anuncio) o;
+
+        if (!getIdTarefa().equals(anuncio.getIdTarefa())) return false;
+        return getIdTarefa().equals(anuncio.getIdTarefa());
+    }
     
     
     //getAnuncioByOrganizacao
