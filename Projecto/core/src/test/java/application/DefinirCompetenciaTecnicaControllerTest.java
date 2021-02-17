@@ -1,3 +1,4 @@
+/*
 package application;
 
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ public class DefinirCompetenciaTecnicaControllerTest {
 
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
 
-        AreaAtividade areaAtividade = new AreaAtividade(codigoUnico, "Programação de Jogos", "Programação de variados jogos em JAVA");
+        AreaAtividade areaAtividade = new AreaAtividade(codigoUnico, "Programaï¿½ï¿½o de Jogos", "Programaï¿½ï¿½o de variados jogos em JAVA");
 
         DefinirCompetenciaTecnicaController controller = new DefinirCompetenciaTecnicaController();
         assertTrue(controller.definirCompetenciaTecnica("abc-12", areaAtividade, "Canalizacao",
@@ -23,4 +24,4 @@ public class DefinirCompetenciaTecnicaControllerTest {
     }
 
 
-}
+}*/
