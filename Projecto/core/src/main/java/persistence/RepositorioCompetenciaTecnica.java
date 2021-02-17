@@ -97,7 +97,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 excep.getErrorCode();
             }
         }
-        
+
         conn.close();
         return false;
     }
