@@ -129,14 +129,14 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * @param codigoUnico
      * @return 
      */
-    public CompetenciaTecnica getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico){
+    public CompetenciaTecnica getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico, AreaAtividade areaAtividade){
         try {
             Connection conn = openConnection();
             String idCompetenciaTecnica = codigoUnico.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
             pstmt.setString(1, idCompetenciaTecnica);
 
-            return montarCompetenciaTecnica(pstmt.executeQuery());
+            return montarCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhuma Competência Técnica com esse código único.");
         }
