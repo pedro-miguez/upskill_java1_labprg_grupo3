@@ -26,7 +26,7 @@ public class RepositorioCompetenciaTecnicaTest {
 
         int expected = RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas().size() + 1;
 
-        RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(ct);
+        RepositorioCompetenciaTecnica.getInstance().createCompetenciaTecnica(ct);
 
         int result = RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas().size();
 
@@ -40,12 +40,12 @@ public class RepositorioCompetenciaTecnicaTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "Programação Java", "Programação muito boa em Java");
 
-        RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(ct);
+        RepositorioCompetenciaTecnica.getInstance().createCompetenciaTecnica(ct);
 
         CompetenciaTecnica ct2 = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "Programação Java", "Programação muito boa em Java");
 
-        assertFalse(RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(ct2));
+        assertFalse(RepositorioCompetenciaTecnica.getInstance().createCompetenciaTecnica(ct2));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class RepositorioCompetenciaTecnicaTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "Programação Java", "Programação muito boa em Java");
 
-        RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(ct);
+        RepositorioCompetenciaTecnica.getInstance().createCompetenciaTecnica(ct);
 
         assertEquals(ct, RepositorioCompetenciaTecnica.getInstance().getCompetenciaTecnicaByCodUnico(new CodigoUnico("JAV-01")));
     }
@@ -72,7 +72,7 @@ public class RepositorioCompetenciaTecnicaTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-05"), areaAtividade,
                 "Programação Java", "Programação muito boa em Java");
 
-        RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(ct);
+        RepositorioCompetenciaTecnica.getInstance().createCompetenciaTecnica(ct);
 
         int expected = 1;
         int result = RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaAtividade(areaAtividade).size();

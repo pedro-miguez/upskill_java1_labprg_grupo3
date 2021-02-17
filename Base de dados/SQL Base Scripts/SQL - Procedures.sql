@@ -1,3 +1,21 @@
+create or replace procedure createUtilizadorGestor(
+ p_nome utilizador.nome%type
+, p_email utilizador.email%type
+, p_palavraPasse utilizador.palavraPasse%type
+, p_telefone colaborador.telefone%type
+, p_idOrganizacao Organizacao.idOrganizacao%type)
+is
+ v_id utilizador.idUtilizador%type;
+begin
+ insert into Utilizador(nome, email, palavraPasse, designacao)
+ values(p_nome, p_email, p_palavraPasse, 'gestor') returning idUtilizador into v_id;
+ insert into Colaborador(idColaborador, idOrganizacao, nome, funcao, telefone, email) 
+ values(v_id, p_idOrganizacao, p_nome, 'gestor', p_telefone, p_email);
+ update Organizacao set idgestor = v_id where idOrganizacao = p_idOrganizacao;
+end;
+/
+
+
 create or replace procedure createOrganizacao(
  p_NIF Organizacao.NIF%type
 , p_emailOrg Organizacao.email%type
@@ -24,22 +42,7 @@ begin
 end;
 /
 
-create or replace procedure createUtilizadorGestor(
- p_nome utilizador.nome%type
-, p_email utilizador.email%type
-, p_palavraPasse utilizador.palavraPasse%type
-, p_telefone colaborador.telefone%type
-, p_idOrganizacao Organizacao.idOrganizacao%type)
-is
- v_id utilizador.idUtilizador%type;
-begin
- insert into Utilizador(nome, email, palavraPasse, designacao)
- values(p_nome, p_email, p_palavraPasse, 'gestor') returning idUtilizador into v_id;
- insert into Colaborador(idColaborador, idOrganizacao, nome, funcao, telefone, email) 
- values(v_id, p_idOrganizacao, p_nome, 'gestor', p_telefone, p_email);
- update Organizacao set idgestor = v_id where idOrganizacao = p_idOrganizacao;
-end;
-/
+
 
 create or replace procedure createAreaAtividade( 
     p_codunico AreaAtividade.IdAreaAtividade%type, 
@@ -88,5 +91,40 @@ create or replace procedure createCaraterizacaoCompetenciaTecnica(
     is
     begin 
 insert into CaraterizacaoCompetenciaTecnica(idCompetenciaTecnica, idCategoria, caracter, nivelGrauMinimo) values (p_idCompetenciaTecnica, p_idCategoria, p_caracter, p_nivelGrauMinimo); 
+end;
+/
+
+create or replace procedure createGrauProficiencia( 
+    p_idCompetenciaTecnica competenciaTecnica.idCompetenciaTecnica%type,
+    p_nivel GrauProficiencia.nivel%type,
+    p_designacao GrauProficiencia.designacao%type) 
+    is
+    begin 
+insert into GrauProficiencia(idCompetenciaTecnica, nivel, designacao) values (p_idCompetenciaTecnica, p_nivel, p_designacao); 
+end;
+/
+
+create or replace function getOrganizacaoByEmailColaborador (p_email Colaborador.Email%type) return int 
+is
+v_id int;
+begin
+select idOrganizacao into v_id from Colaborador where email = p_email;
+return v_id;
+end;
+/
+
+create or replace procedure createTarefa(
+p_refTarefa Tarefa.referenciaTarefa%type,
+p_designacao Tarefa.designacao%type,
+p_descInformal Tarefa.descricaoInformal%type,
+p_descTecnica Tarefa.descricaoTecnica%type,
+p_duracao Tarefa.estimativaDuracao%type,
+p_custo Tarefa.estimativaCusto%type,
+p_idOrganizacao Organizacao.idOrganizacao%type,
+p_idCategoria CategoriaTarefa.idCategoria%type)
+is 
+begin
+    insert into Tarefa(referenciaTarefa, idOrganizacao, idCategoria, idEstadoTarefa, designacao, descricaoInformal, descricaoTecnica, estimativaDuracao, estimativaCusto) 
+    values (p_refTarefa, p_idOrganizacao, p_idCategoria, 1, p_designacao, p_descInformal, p_descTecnica, p_duracao, p_custo);
 end;
 /
