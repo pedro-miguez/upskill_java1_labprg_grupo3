@@ -158,7 +158,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova competência técnica.",
                     adicionou ? "Competência Técnica criada com sucesso! \n\n" +
-                            plataformaController.getCompetenciaTecnicaToStringCompletoByCodigoUnico(txtCodigoUnicoCompetenciaTecnica.getText().trim())
+                            plataformaController.getCompetenciaTecnicaToStringCompletoByCodigoUnico(txtCodigoUnicoCompetenciaTecnica.getText().trim(), comboBoxAreaAtividadeCompetenciaTecnica.getValue() )
                             : "Não foi possível registar a Competência Técnica.").show();
 
             if (adicionou) {

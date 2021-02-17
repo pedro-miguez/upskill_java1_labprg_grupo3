@@ -94,8 +94,8 @@ public class PlataformaController {
      * @param codigoUnico as unique code
      * @return the the complete representation of a technical competence object by its unique code.
      */
-    public String getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico) {
-        return RepositorioCompetenciaTecnica.getInstance().getCompetenciaTecnicaByCodUnico(new CodigoUnico(codigoUnico)).toString();
+    public String getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico, AreaAtividade areaAtividade) {
+        return RepositorioCompetenciaTecnica.getInstance().getCompetenciaTecnicaByCodUnico(new CodigoUnico(codigoUnico), areaAtividade).toString();
     }
 
     /**
