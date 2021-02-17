@@ -2,8 +2,10 @@ package persistence;
 
 import domain.*;
 import exceptions.EmailNaoAssociadoException;
+import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +17,21 @@ public class RepositorioColaborador implements Serializable {
 
     private static RepositorioColaborador instance;
 
+    public Connection openConnection() throws SQLException {
+        OracleDataSource ods = new OracleDataSource();
+        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+        ods.setURL(url);
+        ods.setUser("UPSKILL_BD_TURMA1_14");
+        ods.setPassword("qwerty");
+        return  ods.getConnection();
+    }
+
     /**
      * Collaborators that will be added to the repository.
      */
     private RepositorioColaborador(){
-        colaboradoresRegistados = new ArrayList<>();
-    }
 
-    private List<Colaborador> colaboradoresRegistados;
+    }
 
     /**
      * Static method that returns a unique reference to the class object, which 
@@ -42,12 +51,49 @@ public class RepositorioColaborador implements Serializable {
      * @param colaborador
      * @return 
      */
-    public boolean addColaborador(Colaborador colaborador) {
-        if (this.colaboradoresRegistados.contains(colaborador)) {
-            return false;
-        } else {
-            return this.colaboradoresRegistados.add(colaborador);
+    public boolean createUtilizadorColaborador(Colaborador colaborador, String password, String emailGestor) throws SQLException {
+        Connection conn = openConnection();
+
+        CallableStatement cs = conn.prepareCall ("{CALL createUtilizadorColaborador(?, ?, ?, ?, ?, ?)}");
+        ResultSet rs = null;
+
+        CallableStatement css = conn.prepareCall ("{? = call getOrganizacaoByEmailColaborador(?)}");
+        css.registerOutParameter(1, Types.INTEGER);
+        css.setString(2, emailGestor.toString());
+        css.executeUpdate();
+
+        int orgID = css.getInt(1);
+
+        try {
+            conn.setAutoCommit(false);
+
+            cs.setString(1, colaborador.getNome());
+            cs.setString(2, colaborador.getEmail().toString());
+            cs.setString(3, password);
+            cs.setInt(4, Integer.parseInt(colaborador.getTelefone().toString()));
+            cs.setString(5, colaborador.getFuncao());
+            cs.setInt(6, orgID);
+
+            cs.executeQuery();
+
+            conn.commit();
+
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
         }
+
+        conn.close();
+        return false;
+
     }
 
     /**
@@ -90,19 +136,6 @@ public class RepositorioColaborador implements Serializable {
                                         String emailColaborador, String funcao) {
         return new Colaborador(nomeColaborador, new Telefone(contactoColaborador),
                 new Email(emailColaborador), funcao);
-    }
-
-    /**
-     * Method to check if two objects (in this case, collaborators) are the same.
-     * @param o
-     * @return 
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RepositorioColaborador that = (RepositorioColaborador) o;
-        return colaboradoresRegistados.equals(that.colaboradoresRegistados);
     }
 
 }
