@@ -154,7 +154,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idAreaAtividade = ?");
             pstmt.setString(1, idAreaAtividade);
 
-            return montarListaCompetenciaTecnica(pstmt.executeQuery());
+            return montarListaCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
         } catch (SQLException e) {
             e.printStackTrace();
             e.getSQLState();
@@ -167,16 +167,31 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         row.next();
         Connection conn = openConnection();
         PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
-
         CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
+        pstmt.setString(1, idCompetenciaTecnica.toString());
         String descricaoBreve = row.getString(3);
         String descricaoDetalhada = row.getString(4);
-        ArrayList <GrauProficiencia>
+        ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
 
-        return new ;
+        return new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
     }
 
-    private ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows) {
+    private ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
+        ArrayList<CompetenciaTecnica> listaCompetencias = new ArrayList<>();
+        Connection conn = openConnection();
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
+        while(rows.next()) {
+            CodigoUnico idCompetenciaTecnica = new CodigoUnico(rows.getString(1));
+            pstmt.setString(1, idCompetenciaTecnica.toString());
+            String descricaoBreve = rows.getString(3);
+            String descricaoDetalhada = rows.getString(4);
+            ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+            listaCompetencias.add(new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus));
+            pstmt.clearParameters();
+        }
+
+        return listaCompetencias;
+
     }
 
     private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
