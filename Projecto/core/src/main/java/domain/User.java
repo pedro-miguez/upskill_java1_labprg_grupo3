@@ -111,4 +111,12 @@ public class User implements Serializable {
                 getRole() == user.getRole();
     }
 
+    @Override
+    public String toString() {
+        return "User/Utilizador{" +
+                "username='" + username + '\'' +
+                ", email=" + email +
+                ", role=" + role +
+                '}';
+    }
 }
