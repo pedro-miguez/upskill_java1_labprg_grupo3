@@ -17,13 +17,10 @@ public class RepositorioCompetenciaTecnica implements Serializable {
 
     private static RepositorioCompetenciaTecnica instance;
 
-    private List<CompetenciaTecnica> competenciasTecnicas;
-
     /**
      * Technical skills that will be added to the repository.
      */
     private RepositorioCompetenciaTecnica(){
-        competenciasTecnicas = new ArrayList<>();
     }
 
     public Connection openConnection() throws SQLException {

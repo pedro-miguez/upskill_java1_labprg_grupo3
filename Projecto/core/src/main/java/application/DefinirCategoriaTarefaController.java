@@ -3,7 +3,7 @@ package application;
 import domain.*;
 import persistence.RepositorioCategoriaTarefa;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,14 +21,14 @@ public class DefinirCategoriaTarefaController {
      * @return the boolean
      */
     public boolean definirCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
-                                          List<CaracterizacaoCompTec> competenciasTecnicas) {
+                                          List<CaracterizacaoCompTec> competenciasTecnicas) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioCategoriaTarefa repo = RepositorioCategoriaTarefa.getInstance();
 
         CategoriaTarefa categoriaTarefa = repo.criarCategoriaTarefa(areaAtividade, descricao, competenciasTecnicas);
 
-        return repo.addCategoriaTarefa(categoriaTarefa);
+        return repo.createCategoriaTarefa(categoriaTarefa);
     }
 
 }
