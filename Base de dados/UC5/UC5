@@ -1,0 +1,31 @@
+UC5
+
+create or replace function getOrganizacaoByEmail(p_email Organizacao.Email%type) return int
+    is
+    v_ret int;
+    begin
+    select idOrganizacao into v_ret
+    from Organizacao
+    where email = p_email;
+ return v_ret;
+    end;
+/
+    select getOrganizacaoByEmail('juliothegreatest@gmail.pt') from dual;
+
+
+create or replace procedure createUtilizadorColaborador(
+ p_nome utilizador.nome%type,
+ p_email utilizador.email%type,
+ p_telefone colaborador.telefone%type,
+ p_funcao  colaborador.funcao%type,
+ p_idOrganizacao organizacao.idOrganizacao%type
+ p_password utilizador.palavraPasse%type)
+is
+v_id utilizador.idUtilizador%type;
+begin
+insert into Utilizador(nome, email, password, designacao)
+ values(p_nome, p_email, p_password, 'Colaborador') returning idUtilizador into v_id;
+ insert into Colaborador(idUtilizador, nome, email, telefone, funcao, idOrganizacao) 
+ values(v_id, p_nome, p_email, p_contacto, p_funcao, p_idOrganizacao);
+end;
+/
