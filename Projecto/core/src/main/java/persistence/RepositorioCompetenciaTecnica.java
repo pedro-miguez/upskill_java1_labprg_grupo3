@@ -5,10 +5,7 @@ import exceptions.CodigoNaoAssociadoException;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
-import java.sql.Array;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,13 +53,38 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * @param competenciaTecnica
      * @return 
      */
-    public boolean createCompetenciaTecnica(CompetenciaTecnica competenciaTecnica){
-        if(this.competenciasTecnicas.contains(competenciaTecnica)){
-            return false;
-        } else {
-            this.competenciasTecnicas.add(competenciaTecnica);
-            return true;
+    public boolean createCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws SQLException {
+        Connection conn = openConnection();
+
+        CallableStatement cs = conn.prepareCall ("{CALL createCompetenciaTecnica(?, ?, ?, ?)}");
+        ResultSet rs = null;
+
+        try {
+            conn.setAutoCommit(false);
+
+            cs.setString(1, competenciaTecnica.getCodigoUnico().toString());
+            cs.setString(2, competenciaTecnica.getDescricao());
+            cs.setString(3, competenciaTecnica.getDescDetalhada());
+            cs.setString(4, competenciaTecnica.getAreaAtividade().getCodigoUnico().toString());
+
+            cs.executeQuery();
+
+            conn.commit();
+
+            conn.close();
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
         }
+
+        conn.close();
+        return createGrausProficiencia(competenciaTecnica);
     }
 
     public boolean createGrausProficiencia(CompetenciaTecnica compTec) throws SQLException {
@@ -108,44 +130,70 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * @return 
      */
     public CompetenciaTecnica getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico){
-        for (CompetenciaTecnica ct: competenciasTecnicas) {
-            if(ct.getCodigoUnico() != null && ct.getCodigoUnico().equals(codigoUnico)) {
-                return ct;
-            }
+        try {
+            Connection conn = openConnection();
+            String idCompetenciaTecnica = codigoUnico.toString();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
+            pstmt.setString(1, idCompetenciaTecnica);
+
+            return montarCompetenciaTecnica(pstmt.executeQuery());
+        } catch (SQLException e) {
+            throw new CodigoNaoAssociadoException("Não existe nenhuma Competência Técnica com esse código único.");
         }
-        throw new CodigoNaoAssociadoException("Não existe competência técnica com esse código único.");
     }
 
     /**
-     * Method for obtaining technical skills on the list by their area of ​​activity.
+     * Method for obtaining technical skills on the list by their area of activity.
      * @param areaAtividade
      * @return 
      */
-    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) {
-        ArrayList<CompetenciaTecnica> competenciasAreaAtividade = new ArrayList<>();
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
+        try {
+            Connection conn = openConnection();
+            String idAreaAtividade = areaAtividade.getCodigoUnico().toString();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idAreaAtividade = ?");
+            pstmt.setString(1, idAreaAtividade);
 
-        for (CompetenciaTecnica ct : competenciasTecnicas) {
-            if (ct.getAreaAtividade().equals(areaAtividade)) {
-                competenciasAreaAtividade.add(ct);
-            }
+            return montarListaCompetenciaTecnica(pstmt.executeQuery());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getSQLState();
+            e.getErrorCode();
+            throw new SQLException("Erro ao listar competências técnicas.");
+        }
+    }
+
+    private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+        row.next();
+        Connection conn = openConnection();
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
+
+        CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
+        String descricaoBreve = row.getString(3);
+        String descricaoDetalhada = row.getString(4);
+        ArrayList <GrauProficiencia>
+
+        return new ;
+    }
+
+    private ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows) {
+    }
+
+    private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
+        ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
+
+        while(rows.next()) {
+            int nivel = rows.getInt(2);
+            String designacao = rows.getString(3);
+            listaGraus.add(new GrauProficiencia(nivel, designacao));
         }
 
-        return competenciasAreaAtividade;
+        return listaGraus;
     }
 
     public CompetenciaTecnica criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
                                                       String descricao, String descDetalhada, List<GrauProficiencia> graus) {
-        return new CompetenciaTecnica(new CodigoUnico(codigoUnico),
-                areaAtividade,
-                descricao, descDetalhada, graus);
-    }
-
-    /**
-     * Method for listing technical skills.
-     * @return 
-     */
-    public ArrayList<CompetenciaTecnica> listarCompetenciasTecnicas(){
-        return  new ArrayList<>(this.competenciasTecnicas);
+        return new CompetenciaTecnica(new CodigoUnico(codigoUnico), areaAtividade, descricao, descDetalhada, graus);
     }
 
 

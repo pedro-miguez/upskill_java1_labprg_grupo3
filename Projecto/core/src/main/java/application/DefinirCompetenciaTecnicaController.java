@@ -7,6 +7,7 @@ import domain.Plataforma;
 import persistence.RepositorioCompetenciaTecnica;
 
 import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class DefinirCompetenciaTecnicaController {
      * @return the boolean
      */
     public boolean definirCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
-                                             String descricao, String descDetalhada, List<GrauProficiencia> graus) {
+                                             String descricao, String descDetalhada, List<GrauProficiencia> graus) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioCompetenciaTecnica repo = RepositorioCompetenciaTecnica.getInstance();

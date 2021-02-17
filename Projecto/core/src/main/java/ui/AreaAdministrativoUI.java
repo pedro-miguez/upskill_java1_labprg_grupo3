@@ -165,7 +165,7 @@ public class AreaAdministrativoUI implements Initializable {
                 limparDadosCompetenciaTecnica();
             }
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | SQLException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
         }
@@ -241,7 +241,11 @@ public class AreaAdministrativoUI implements Initializable {
 
     //confirmar área de atividade selecionada para popular o ListView de competencias tecnicas
     public void comboBoxAreaAtividadeCategoriaTarefaSelectAction(ActionEvent actionEvent) {
-        listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
+        try {
+            listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
