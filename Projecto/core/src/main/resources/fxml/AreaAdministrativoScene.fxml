@@ -152,7 +152,7 @@
                                  <center>
                                     <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="97.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <ComboBox fx:id="comboBoxGrauProficienciaCategoriaTarefa" onContextMenuRequested="#popularComboBoxGrauProficienciaCategoriaTarefa" prefHeight="25.0" prefWidth="103.0" promptText="Proficiencia">
+                                          <ComboBox fx:id="comboBoxGrauProficienciaCategoriaTarefa" onShowing="#popularComboBoxGrauProficienciaCategoriaTarefa" prefHeight="25.0" prefWidth="103.0" promptText="Proficiencia">
                                              <VBox.margin>
                                                 <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>

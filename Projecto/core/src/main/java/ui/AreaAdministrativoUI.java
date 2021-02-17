@@ -3,9 +3,9 @@ package ui;
 import application.*;
 import domain.*;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -423,7 +423,7 @@ public class AreaAdministrativoUI implements Initializable {
         listViewGrauProficienciaCompetenciaTecnica.getItems().remove(listViewGrauProficienciaCompetenciaTecnica.getSelectionModel().getSelectedItem());
     }
 
-    public void popularComboBoxGrauProficienciaCategoriaTarefa(ContextMenuEvent contextMenuEvent) {
+    public void popularComboBoxGrauProficienciaCategoriaTarefa(Event actionEvent) {
         if (listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem()));
         } else {
