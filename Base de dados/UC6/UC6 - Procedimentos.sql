@@ -18,37 +18,20 @@ end;
 
 create or replace procedure createTarefa(
 p_refTarefa Tarefa.referenciaTarefa%type,
-p_idOrganizacao Organizacao.idOrganizacao%type,
-p_idCategoria CategoriaTarefa.idCategoria%type,
 p_designacao Tarefa.designacao%type,
 p_descInformal Tarefa.descricaoInformal%type,
 p_descTecnica Tarefa.descricaoTecnica%type,
 p_duracao Tarefa.estimativaDuracao%type,
-p_custo Tarefa.estimativaCusto%type)
+p_custo Tarefa.estimativaCusto%type,
+p_idOrganizacao Organizacao.idOrganizacao%type,
+p_idCategoria CategoriaTarefa.idCategoria%type)
 is 
- v_count int;
- v_count1 int;   
- ex_organizacao exception;
- ex_categoriaTarefa exception;
 begin
-    select count (*) into v_count
-        from Organizacao where idOrganizacao = p_idOrganizacao;
-        if v_count= 0 then
-        raise ex_organizacao;
-        end if;
-    select count (*) into v_count1
-        from CategoriaTarefa where idCategoriaTarefa = p_idCategoriaTarefa;
-        if v_count1= 0 then
-        raise ex_categoriaTarefa;
-        end if;
     insert into Tarefa(referenciaTarefa, idOrganizacao, idCategoria, idEstadoTarefa, designacao, descricaoInformal, descricaoTecnica, estimativaDuracao, estimativaCusto) 
-    values (p_refTarefa, p_idOrganizacao, p_idCategoriaTarefa, 1, p_designacao, p_descInformal, p_descTecnica, p_duracao, p_custo);
-    exception when ex_organizacao then
-    raise_application_error(-20001,'Organização inexistente');
-    exception when ex_categoriaTarefa then
-    raise_application_error(-20001,'Categoria de Tarefa inexistente');
+    values (p_refTarefa, p_idOrganizacao, p_idCategoria, 1, p_designacao, p_descInformal, p_descTecnica, p_duracao, p_custo);
 end;
 /
+
 
 - createUtilizadorFreelancer()
 
