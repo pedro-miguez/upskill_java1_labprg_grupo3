@@ -102,15 +102,6 @@ public class RepositorioOrganizacao implements Serializable {
 
     }
 
-    /**
-     * Boolean method that checks if a manager exists in the organization, 
-     * otherwise it is added (as being a collaborator).
-     * @param colaborador
-     * @param organizacao
-     * @return 
-     */
-
-
 
     /**
      * Method for obtaining an organization through its manager.

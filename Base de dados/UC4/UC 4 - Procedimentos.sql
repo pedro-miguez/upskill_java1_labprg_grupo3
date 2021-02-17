@@ -11,6 +11,7 @@ p_areaAtividade AreaAtividade.idAreaAtividade%type)
 is 
  v_count int;   
  ex_areaAtividade exception;
+ v_id competenciaTecnica.idCompetenciaTecnica%type;
 begin
     select count (*) into v_count
         from AreaAtividade where idAreaAtividade = p_areaAtividade;
@@ -20,6 +21,16 @@ begin
     insert into CompetenciaTecnica(idCompetenciaTecnica, idAreaAtividade, descricaoBreve, descricaoDetalhada) values (p_idCompetenciaTecnica, p_areaAtividade, p_descricao, p_descDetalhada);
     exception when ex_areaAtividade then
     raise_application_error(-20001,'Área de Atividade inexistente');
+end;
+/
+
+create or replace procedure createGrauProficiencia( 
+    p_idCompetenciaTecnica competenciaTecnica.idCompetenciaTecnica%type,
+    p_nivel GrauProficiencia.nivel%type,
+    p_designacao GrauProficiencia.designacao%type) 
+    is
+    begin 
+insert into GrauProficiencia(idCompetenciaTecnica, nivel, designacao) values (p_idCompetenciaTecnica, p_nivel, p_designacao); 
 end;
 /
 
