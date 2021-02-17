@@ -1,6 +1,8 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Current class enables to create new technical competences, wich may or not be mandatory - defined in the CaracterizacaoCompTec Class.
@@ -13,6 +15,8 @@ public class CompetenciaTecnica implements Serializable {
     private AreaAtividade areaAtividade;
     private String descricao;
     private String descDetalhada;
+    private List<GrauProficiencia> graus;
+
 
     /**
      * Instantiates a new technical competence.
@@ -22,11 +26,12 @@ public class CompetenciaTecnica implements Serializable {
      * @param descricao     as description
      * @param descDetalhada as detailed description
      */
-    public CompetenciaTecnica(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada) {
+    public CompetenciaTecnica(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada, List<GrauProficiencia> graus) {
         this.codigoUnico = codigoUnico;
         setAreaAtividade(areaAtividade);
         setDescricao(descricao);
         setDescDetalhada(descDetalhada);
+        this.graus = new ArrayList<>();
     }
 
     /**
@@ -72,6 +77,15 @@ public class CompetenciaTecnica implements Serializable {
         return codigoUnico;
     }
 
+    public List<GrauProficiencia> getGraus() {
+        return graus;
+    }
+
+    public void setGraus(List<GrauProficiencia> graus) {
+        this.graus = graus;
+    }
+
+
     @Override
     public String toString() {
         return String.format("%s%n%s",
@@ -81,6 +95,14 @@ public class CompetenciaTecnica implements Serializable {
     public String toStringCompleto() {
         return String.format("Código Único: %s%nArea de Atividade: %s%nDescrição breve: %s%nDescrição detalhada: %s",
                 this.codigoUnico, this.areaAtividade.getDescricao(), this.descricao, this.descDetalhada);
+    }
+
+    public void adicionaGrau(ArrayList<GrauProficiencia> grausProficiencia){
+        for (GrauProficiencia grau: grausProficiencia) {
+            if (!this.graus.contains(grau)){
+                this.graus.add(grau);
+            }
+        }
     }
 
     @Override

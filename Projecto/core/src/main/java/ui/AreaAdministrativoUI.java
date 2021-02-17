@@ -1,10 +1,7 @@
 package ui;
 
 import application.*;
-import domain.AreaAtividade;
-import domain.CaracterizacaoCompTec;
-import domain.CompetenciaTecnica;
-import domain.GrauProficienciaa;
+import domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -32,7 +29,7 @@ public class AreaAdministrativoUI implements Initializable {
     public TextField txtDescricaoCategoriaTarefa;
 
     public ComboBox<AreaAtividade> comboBoxAreaAtividadeCategoriaTarefa;
-    public ComboBox<GrauProficienciaa> comboBoxGrauProficienciaCategoriaTarefa;
+    public ComboBox<GrauProficiencia> comboBoxGrauProficienciaCategoriaTarefa;
     public ListView<CompetenciaTecnica> listViewCompTecnicasPorSelecionarCategoriaTarefa;
     public ListView<CaracterizacaoCompTec> listViewCompTecnicasSelecionadasCategoriaTarefa;
 
