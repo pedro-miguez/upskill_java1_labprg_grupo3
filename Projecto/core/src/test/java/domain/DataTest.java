@@ -22,14 +22,49 @@ public class DataTest {
         
         String expected = "Quarta-feira, 17 de Fevereiro de 2021";
         
-        int result = data.getDia();
+        int result1 = data.getDia();
         
-        assertEquals (expected, result);
+        assertEquals (expected, result1);
     }
+    
+    @Test
+    public void testMesValido () {
+        
+        Data data = new Data (2021, 02, 17);
+        
+        String expected = "Quarta-feira, 17 de Fevereiro de 2021";
+        
+        int result2 = data.getMes();
+        
+        assertEquals (expected, result2);
+    }
+    
+    @Test
+    public void testAnoValido () {
+        
+        Data data = new Data (2021, 02, 17);
+        
+        String expected = "Quarta-feira, 17 de Fevereiro de 2021";
+        
+        int result3 = data.getAno();
+        
+        assertEquals (expected, result3);
+    }
+    
     
     @Test(expected = IllegalArgumentException.class)
     public void diaInvalido(){
         new Data(2021, 02, 40);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void mesInvalido(){
+        new Data(2021, 17, 17);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void anoInvalido(){
+        new Data(0, 02, 17);
     }
     
 }
