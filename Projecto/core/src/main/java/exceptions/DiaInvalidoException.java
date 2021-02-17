@@ -5,7 +5,6 @@
  */
 package exceptions;
 
-//package org.upskill.datagui.model;
 
 /**
  * Representa uma exceção para ser lançada quando uma aplicação tenta 
