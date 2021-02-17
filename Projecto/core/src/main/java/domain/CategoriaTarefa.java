@@ -66,8 +66,8 @@ public class CategoriaTarefa implements Serializable {
      *
      * @return list of technical competences.
      */
-    public List<CaracterizacaoCompTec> getCompetenciasTecnicas() {
-        return new ArrayList<CaracterizacaoCompTec>(this.competenciasTecnicas);
+    public ArrayList<CaracterizacaoCompTec> getCompetenciasTecnicas() {
+        return new ArrayList<>(this.competenciasTecnicas);
     }
 
     /**

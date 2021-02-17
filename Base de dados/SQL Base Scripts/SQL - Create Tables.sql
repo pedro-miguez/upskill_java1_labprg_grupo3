@@ -321,3 +321,12 @@ create table  CaraterizacaoCompetenciaTecnica (
 );
 
 
+insert into Role (designacao) values ('gestor');
+insert into Role (designacao) values ('colaborador');
+insert into Role (designacao) values ('freelancer');
+insert into Role (designacao) values ('administrativo');
+
+insert into EstadoTarefa (designacao) values ('private');
+insert into EstadoTarefa (designacao) values ('published');
+insert into EstadoTarefa (designacao) values ('closed');
+

@@ -136,7 +136,8 @@ public class AreaAdministrativoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova categoria de tarefa.",
                     adicionou ? "Categoria de Tarefa criada com sucesso! \n\n" +
-                            plataformaController.getCategoriaTarefaToStringCompletoByNome(txtDescricaoCategoriaTarefa.getText().trim())
+                            plataformaController.getCategoriaTarefaToStringCompletoByNome(txtDescricaoCategoriaTarefa.getText().trim(),
+                                    comboBoxAreaAtividadeCategoriaTarefa.getValue())
                             : "Não foi possível registar a categoria de tarefa.").show();
 
             if (adicionou) {
@@ -144,7 +145,7 @@ public class AreaAdministrativoUI implements Initializable {
                 listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
             }
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | SQLException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
         }

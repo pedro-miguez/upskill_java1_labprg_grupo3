@@ -5,7 +5,6 @@ import persistence.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for some of the critical functions
@@ -74,8 +73,8 @@ public class PlataformaController {
      * @param nome as name
      * @return the complete representation of a task category object by its name.
      */
-    public String getCategoriaTarefaToStringCompletoByNome(String nome) {
-        return RepositorioCategoriaTarefa.getInstance().getCategoriaTarefaByDescricao(nome).toStringCompleto();
+    public String getCategoriaTarefaToStringCompletoByNome(String nome, AreaAtividade areaAtividade) {
+        return RepositorioCategoriaTarefa.getInstance().getCategoriaTarefaByDescricaoAndAreaAtividade(nome, areaAtividade).toStringCompleto();
     }
 
     /**

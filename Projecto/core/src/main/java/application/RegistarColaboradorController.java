@@ -10,6 +10,8 @@ import persistence.RepositorioColaborador;
 import persistence.RepositorioCompetenciaTecnica;
 import persistence.RepositorioOrganizacao;
 
+import java.sql.SQLException;
+
 /**
  *  Current class is the one responsible to connect the GUI with the methods responsible for registering new
  *  collaborators.
@@ -30,21 +32,20 @@ public class RegistarColaboradorController {
      * @return the boolean
      */
 
-    public boolean registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String gestorEmail) {
+    public boolean registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String funcao, String gestorEmail) throws SQLException {
 
-      /*  Plataforma plataforma = Plataforma.getInstance();
-        RepositorioColaborador repoColab = plataforma.getRepoColab();
-        RepositorioOrganizacao repoOrg = plataforma.getRepoOrg();
+        Plataforma plataforma = Plataforma.getInstance();
+        RepositorioColaborador repoColab = RepositorioColaborador.getInstance();
 
-        Colaborador gestor = repoColab.getColaboradorByEmail(new Email(gestorEmail));
+        Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, funcao);
 
-        Organizacao org = repoOrg.getOrganizacaoByGestor(gestor);
-        
-        Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org);
+        String password = authController.registarColaboradorComoUtilizador(colaborador);
+        System.out.println(password);
 
-        if (!repoColab.addColaborador(colaborador)) {
+        if (!password.equals("failed")) {
+            return repoColab.createUtilizadorColaborador(colaborador, password, gestorEmail);
+        } else {
             return false;
-        } else return authController.registarColaboradorComoUtilizador(colaborador);*/
-        return false;
+        }
     }
 }

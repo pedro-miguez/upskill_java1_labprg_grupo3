@@ -67,7 +67,7 @@ public class AreaGestorUI implements Initializable {
     //Registar Colaborador
     @FXML
     void registarColaboradorAction(ActionEvent event) {
-        try {
+/*        try {
             boolean registou = registarColaboradorController.registarColaborador(txtNomeColaborador.getText().trim(),
                     Integer.parseInt(txtContactoColaborador.getText().trim()),
                     txtEmailColaborador.getText().trim(),
@@ -89,7 +89,7 @@ public class AreaGestorUI implements Initializable {
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
-        }
+        }*/
     }
 
     //Criar Tarefa

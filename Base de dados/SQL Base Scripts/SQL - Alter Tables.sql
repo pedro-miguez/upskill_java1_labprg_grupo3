@@ -100,3 +100,7 @@ add constraint fk_ReconhecimentoCT_idCompetenciatecnica_nivelGrauProficiencia FO
 
 alter table ReconhecimentoCT
 add constraint fk_ReconhecimentoCT_idFreelancer FOREIGN KEY (idFreelancer) references Freelancer (idFreelancer);
+
+
+alter table CategoriaTarefa
+add constraint uk_CategoriaTarefa_descricao_idAreaAtividade UNIQUE (descricao, idAreaAtividade);
