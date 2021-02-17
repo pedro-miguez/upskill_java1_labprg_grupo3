@@ -4,14 +4,12 @@ import application.*;
 import domain.AreaAtividade;
 import domain.CaracterizacaoCompTec;
 import domain.CompetenciaTecnica;
-import domain.GrauProficiencia;
+import domain.GrauProficienciaa;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class AreaAdministrativoUI implements Initializable {
     public TextField txtDescricaoCategoriaTarefa;
 
     public ComboBox<AreaAtividade> comboBoxAreaAtividadeCategoriaTarefa;
-    public ComboBox<GrauProficiencia> comboBoxGrauProficienciaCategoriaTarefa;
+    public ComboBox<GrauProficienciaa> comboBoxGrauProficienciaCategoriaTarefa;
     public ListView<CompetenciaTecnica> listViewCompTecnicasPorSelecionarCategoriaTarefa;
     public ListView<CaracterizacaoCompTec> listViewCompTecnicasSelecionadasCategoriaTarefa;
 

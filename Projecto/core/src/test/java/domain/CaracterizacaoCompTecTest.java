@@ -15,7 +15,7 @@ public class CaracterizacaoCompTecTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "Programação Java", "Programação muito boa em Java");
 
-        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, GrauProficiencia.ALTO);
+        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, GrauProficienciaa.ALTO);
 
         boolean expected = true;
         boolean result = cct.isObrigatorio();
@@ -32,7 +32,7 @@ public class CaracterizacaoCompTecTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "", "Programação muito boa em Java");
 
-        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, GrauProficiencia.ALTO);
+        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, GrauProficienciaa.ALTO);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -43,7 +43,7 @@ public class CaracterizacaoCompTecTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "Programação Java", "");
 
-        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, GrauProficiencia.ALTO);
+        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, GrauProficienciaa.ALTO);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -54,6 +54,6 @@ public class CaracterizacaoCompTecTest {
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
                 "Programação Java", "");
 
-        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, false, GrauProficiencia.ALTO);
+        CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, false, GrauProficienciaa.ALTO);
     }
 }
