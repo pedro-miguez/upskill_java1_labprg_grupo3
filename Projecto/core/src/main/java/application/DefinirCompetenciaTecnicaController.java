@@ -1,7 +1,6 @@
 package application;
 
 import domain.AreaAtividade;
-import domain.CodigoUnico;
 import domain.CompetenciaTecnica;
 import domain.Plataforma;
 import persistence.RepositorioCompetenciaTecnica;
@@ -29,7 +28,7 @@ public class DefinirCompetenciaTecnicaController {
 
         CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, areaAtividade, descricao, descDetalhada);
 
-        return repo.addCompetenciaTecnica(competenciaTecnica);
+        return repo.createCompetenciaTecnica(competenciaTecnica);
     }
 
 }

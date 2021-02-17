@@ -1,12 +1,14 @@
 package persistence;
 
-import domain.AreaAtividade;
-import domain.CodigoUnico;
-import domain.Colaborador;
-import domain.CompetenciaTecnica;
+import domain.*;
 import exceptions.CodigoNaoAssociadoException;
+import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
+import java.sql.Array;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,15 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         competenciasTecnicas = new ArrayList<>();
     }
 
+    public Connection openConnection() throws SQLException {
+        OracleDataSource ods = new OracleDataSource();
+        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+        ods.setURL(url);
+        ods.setUser("UPSKILL_BD_TURMA1_14");
+        ods.setPassword("qwerty");
+        return  ods.getConnection();
+    }
+
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
@@ -45,13 +56,50 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * @param competenciaTecnica
      * @return 
      */
-    public boolean addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica){
+    public boolean createCompetenciaTecnica(CompetenciaTecnica competenciaTecnica){
         if(this.competenciasTecnicas.contains(competenciaTecnica)){
             return false;
         } else {
             this.competenciasTecnicas.add(competenciaTecnica);
             return true;
         }
+    }
+
+    public boolean createGrausProficiencia(CompetenciaTecnica compTec) throws SQLException {
+        Connection conn = openConnection();
+        String idCompetenciaTecnica = compTec.getCodigoUnico().toString();
+        ArrayList<GrauProficiencia> listaGraus = compTec.getGraus();
+
+        try {
+            conn.setAutoCommit(false);
+            CallableStatement cs = conn.prepareCall ("{CALL createGrauProficiencia(?, ?, ?)}");
+
+            for (GrauProficiencia gp : listaGraus) {
+                cs.setString(1, idCompetenciaTecnica);
+                cs.setInt(2, gp.getNivel());
+                cs.setString(3, gp.getDesginacao());
+
+                cs.executeQuery();
+                cs.clearParameters();
+            }
+            cs.close();
+            conn.commit();
+            conn.close();
+            return true;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
+        }
+        
+        conn.close();
+        return false;
     }
 
     /**

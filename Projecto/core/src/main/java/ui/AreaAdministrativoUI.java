@@ -66,6 +66,9 @@ public class AreaAdministrativoUI implements Initializable {
     public Button btnCriarCompetenciaTecnicaSelect;
 
     public Button btnLogout;
+    public ListView listViewGrauProficienciaCompetenciaTecnica;
+    public TextField txtNivelGrauProficienciaCriarCompetenciaTecnica;
+    public TextField txtDesignacaoGrauProficienciaCriarCompetenciaTecnica;
 
     private DefinirAreaAtividadeController areaAtividadeController;
     private DefinirCompetenciaTecnicaController competenciaTecnicaController;
@@ -379,5 +382,11 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
      {
+    }
+
+    public void btnAdicionarGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
+    }
+
+    public void btnRemoverGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
     }
 }
