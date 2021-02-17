@@ -13,4 +13,19 @@ import java.io.Serializable;
  */
 public class Anuncio implements Serializable {
     
+    private int idAnuncio;
+    
+    private Tarefa idTarefa;
+    
+    private Data dataInicioPublicitacao;
+    private Data dataFimPublicitacao;
+    private Data dataInicioCandidatura;
+    private Data dataFimCandidatura;
+    private Data dataInicioSeriacao;
+    private Data dataFimSeriacao;
+    
+    
+    
+    //getAnuncioByOrganizacao
+    
 }
