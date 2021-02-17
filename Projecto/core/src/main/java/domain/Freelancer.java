@@ -1,11 +1,10 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Current class represents the tool for creating new collaborators from an organization. This ones may have different
- * roles within their organization (wich are listed in the Funcao enum class). Each of them is also described by their name,
+ * roles within their organization (which are listed in the Funcao enum class). Each of them is also described by their name,
  * mobile phone and email.
  */
 
@@ -15,6 +14,7 @@ public class Freelancer implements Serializable {
     private Telefone telefone;
     private Email email;
     private NIF nif;
+
 
     /**
      * Instantiates a new Freelancer.
@@ -72,6 +72,7 @@ public class Freelancer implements Serializable {
         return this.telefone;
     }
 
+    public NIF getNif() { return this.nif; }
 
     @Override
     public String toString() {
@@ -97,7 +98,6 @@ public class Freelancer implements Serializable {
         return getNome().equals(that.getNome()) && getTelefone().equals(that.getTelefone())
                 && getEmail().equals(that.getEmail()) && nif.equals(that.nif);
     }
-
 
 }
 
