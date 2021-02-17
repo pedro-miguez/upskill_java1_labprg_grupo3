@@ -141,6 +141,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             if (adicionou) {
                 limparDadosCategoriaTarefa();
+                listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
             }
 
         } catch (IllegalArgumentException e) {
