@@ -1,10 +1,12 @@
 package persistence;
 
-import domain.AreaAtividade;
-import domain.CodigoUnico;
+import domain.*;
 import exceptions.CodigoNaoAssociadoException;
+import exceptions.EmailNaoAssociadoException;
+import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,13 +19,20 @@ public class RepositorioAreaAtividade implements Serializable {
 
     private static RepositorioAreaAtividade instance;
 
-    private List<AreaAtividade> areasAdicionadas;
+    public Connection openConnection() throws SQLException {
+        OracleDataSource ods = new OracleDataSource();
+        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+        ods.setURL(url);
+        ods.setUser("UPSKILL_BD_TURMA1_14");
+        ods.setPassword("qwerty");
+        return  ods.getConnection();
+    }
 
     /**
      * Activity areas that will be added to the repository.
      */
     private RepositorioAreaAtividade(){
-        areasAdicionadas = new ArrayList<>();
+
     }
 
     /**
@@ -44,13 +53,38 @@ public class RepositorioAreaAtividade implements Serializable {
      * @param areaAtividade
      * @return 
      */
-    public boolean addAreaAtividade(AreaAtividade areaAtividade){
-        if(this.areasAdicionadas.contains(areaAtividade)){
-            return false;
-        } else {
-            this.areasAdicionadas.add(areaAtividade);
+    public boolean createAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
+        Connection conn = openConnection();
+
+        CallableStatement cs = conn.prepareCall ("{CALL createAreaAtividade(?, ?, ?)}");
+        ResultSet rs = null;
+
+        try {
+            conn.setAutoCommit(false);
+
+            cs.setString(1, areaAtividade.getCodigoUnico().toString());
+            cs.setString(2, areaAtividade.getDescricao());
+            cs.setString(3, areaAtividade.getDescDetalhada());
+
+            cs.executeQuery();
+
+            conn.commit();
+
+            conn.close();
             return true;
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
         }
+
+        conn.close();
+        return false;
     }
 
     /**
@@ -59,38 +93,59 @@ public class RepositorioAreaAtividade implements Serializable {
      * @return 
      */
     public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico){
-        for (AreaAtividade a: areasAdicionadas) {
-            if(a.getCodigoUnico() != null && a.getCodigoUnico().equals(codigoUnico)) {
-                return a;
-            }
-        }
+        try {
+            Connection conn = openConnection();
+            String idAreaAtividade = codigoUnico.toString();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade where idAreaAtividade = ?");
+            pstmt.setString(1, idAreaAtividade);
+
+            return montarAreaAtividade(pstmt.executeQuery());
+        } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhuma área de atividade com esse código único.");
+        }
     }
 
-    /**
-     * Method to list areas of activities.
-     * @return 
-     */
-    public ArrayList<AreaAtividade> listarAreaAtividade(){
-        return  new ArrayList<>(this.areasAdicionadas);
+    public ArrayList<AreaAtividade> listarAreasAtividade() throws SQLException {
+        try {
+            Connection conn = openConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade");
+
+            return montarListaAreaAtividade(pstmt.executeQuery());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getSQLState();
+            e.getErrorCode();
+            throw new SQLException("Erro ao listar áreas de atividade.");
+        }
     }
+
+    public AreaAtividade montarAreaAtividade(ResultSet row) throws SQLException {
+        row.next();
+        CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
+        String descricaoBreve = row.getString(2);
+        String descricaoDetalhada = row.getString(3);
+
+        return new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada);
+    }
+
+    public ArrayList<AreaAtividade> montarListaAreaAtividade(ResultSet row) throws SQLException {
+        ArrayList<AreaAtividade> listaAreas = new ArrayList<>();
+
+        while(row.next()) {
+            CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
+            String descricaoBreve = row.getString(2);
+            String descricaoDetalhada = row.getString(3);
+            listaAreas.add(new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada));
+        }
+
+        return listaAreas;
+    }
+
 
 
     public AreaAtividade criarAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) {
         return new AreaAtividade(new CodigoUnico(codigoUnico), descricao, descricaoDetalhada);
     }
 
-    /**
-     * Method to check if two objects (in this case, areas of activity) are the same.
-     * @param o
-     * @return 
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RepositorioAreaAtividade)) return false;
-        RepositorioAreaAtividade that = (RepositorioAreaAtividade) o;
-        return areasAdicionadas.equals(that.areasAdicionadas);
-    }
 
 }

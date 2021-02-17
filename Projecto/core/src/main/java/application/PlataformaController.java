@@ -28,8 +28,8 @@ public class PlataformaController {
      *
      * @return the list of activity areas.
      */
-    public ArrayList<AreaAtividade> getAreasAtividade() {
-        return RepositorioAreaAtividade.getInstance().listarAreaAtividade();
+    public ArrayList<AreaAtividade> getAreasAtividade() throws SQLException {
+        return RepositorioAreaAtividade.getInstance().listarAreasAtividade();
     }
 
     /**

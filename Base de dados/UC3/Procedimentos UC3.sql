@@ -31,3 +31,33 @@ begin
 end;
 /
 
+- createCaracterizacaoCompetenciaTecnica(ArrayList<CaraterizacaoCompetenciatecnica> lista)
+create or replace procedure createCaraterizacaoCompetenciaTecnica( 
+    p_idCompetenciaTecnica CompetenciaTecnica.idCompetenciaTecnica%type,
+    p_idCategoria CategoriaTarefa.idCategoria%type,
+    p_caracter CaraterizacaoCompetenciaTecnica.caracter%type, 
+    p_nivelGrauMinimo GrauProficiencia.nivel%type) 
+    is
+    begin 
+insert into CaraterizacaoCompetenciaTecnica(idCompetenciaTecnica, idCategoria, caracter, nivelGrauMinimo) values (p_idCompetenciaTecnica, p_idCategoria, p_caracter, p_nivelGrauMinimo); 
+end;
+/
+
+
+- createCategoriaTarefa(idAreaAtividade)
+create or replace procedure createCategoriaTarefa( 
+    p_codunico AreaAtividade.IdAreaAtividade%type, 
+    p_descricao CategoriaTarefa.descricao%type) 
+    is
+    begin 
+insert into CategoriaTarefa(IdAreaAtividade, descricao) values (p_codunico, p_descricao); 
+end;
+/
+
+begin
+createAreaAtividade(4, 'Informática', 'Desenvolvimento de software');
+end;
+/
+
+
+
