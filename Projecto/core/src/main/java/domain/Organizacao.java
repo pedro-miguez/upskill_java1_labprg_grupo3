@@ -1,7 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 
 /**
@@ -101,7 +100,7 @@ public class Organizacao implements Serializable {
     @Override
     public String toString() {
         return String.format("Nome: %s%nNIF: %s%nWebsite: %s%nTelefone: %s%nE-mail: %s%nEndereço Postal: %s",
-                this.getNome(), this.nif, this.website, this.telefone, this.email, this.enderecoPostal);
+                this.getNome(), this.nif, this.website, this.telefone, this.email, this.getEnderecoPostal());
     }
 
     /**
@@ -123,4 +122,7 @@ public class Organizacao implements Serializable {
         return nome.equals(that.nome);
     }
 
+    public EnderecoPostal getEnderecoPostal() {
+        return enderecoPostal;
+    }
 }

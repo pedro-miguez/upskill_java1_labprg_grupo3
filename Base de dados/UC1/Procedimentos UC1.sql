@@ -13,6 +13,9 @@ create or replace procedure createOrganizacao(
 , p_nomeOrg Organizacao.nome%type
 , p_telefoneOrg Organizacao.telefone%type
 , p_websiteOrg Organizacao.website%type
+, p_moradaOrg EnderecoPostal.morada%type
+, p_codigoPostalOrg EnderecoPostal.morada%type
+, p_localidadeOrg EnderecoPostal.localidade%type
 , p_nomeGestor utilizador.nome%type
 , p_emailGestor utilizador.email%type
 , p_palavraPasseGestor utilizador.palavraPasse%type
@@ -23,6 +26,8 @@ begin
 
  insert into Organizacao(NIF, email, nome, telefone, website)
  values(p_NIF, p_emailOrg, p_nomeOrg, p_telefoneOrg, p_websiteOrg) returning idOrganizacao into v_id;
+
+ insert into EnderecoPostal(idOrganizacao, morada, codigoPostal, localidade) values (v_id, p_moradaOrg, p_codigoPostalOrg, p_localidadeOrg);
 
  createUtilizadorGestor(p_nomeGestor, p_emailGestor, p_palavraPasseGestor, p_telefoneGestor, v_id);
 end;
