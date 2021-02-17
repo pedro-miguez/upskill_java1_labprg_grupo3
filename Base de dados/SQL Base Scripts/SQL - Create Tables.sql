@@ -2,8 +2,8 @@ create table Tarefa(
 
     idTarefa integer generated as identity primary key 
         constraint ck_Tarefa_idTarefa check (idTarefa > 0), 
-    referenciaTarefa integer 
-        constraint ck_Tarefa_referenciaTarefa check (referenciaTarefa > 0),
+    referenciaTarefa CHAR(6)
+        CONSTRAINT ckTarefaReferenciaTarefa CHECK (regexp_like(referenciaTarefa, '^([a-zA-Z]){3}(-\d{2})?$')),
     idOrganizacao integer 
         constraint ck_Tarefa_idOrganizacao check (idOrganizacao > 0), 
     idCategoria integer 
@@ -125,11 +125,11 @@ CREATE TABLE TipoRegimento (
 );
 
 CREATE TABLE CompetenciaTecnica (
-    idCompetenciaTecnica INTEGER PRIMARY KEY
-        CONSTRAINT ckCompetenciaTecnicaIdCompetenciaTecnica CHECK (idCompetenciaTecnica > 0),
+    idCompetenciaTecnica CHAR(6) PRIMARY KEY
+        CONSTRAINT ckCompetenciaTecnicaIdCompetenciaTecnica CHECK (regexp_like(idCompetenciaTecnica, '^([a-zA-Z]){3}(-\d{2})?$')),
 
-    idAreaAtividade INTEGER
-        constraint ck_CompetenciaTecnica_idAreaAtividade CHECK (idAreaAtividade > 0),
+    idAreaAtividade CHAR(6) 
+        CONSTRAINT ckCompetenciaTecnicaIdAreaAtividade CHECK (regexp_like(idAreaAtividade, '^([a-zA-Z]){3}(-\d{2})?$')),
 
     descricaoBreve VARCHAR(100)
         CONSTRAINT nnCompetenciaTecnicaDescricaoBreve not null,
@@ -140,8 +140,8 @@ CREATE TABLE CompetenciaTecnica (
 );
 
 CREATE TABLE GrauProficiencia (
-    idCompetenciaTecnica INTEGER
-        CONSTRAINT ckGrauProficienciaIdCompetenciaTecnica CHECK (idCompetenciaTecnica > 0),
+    idCompetenciaTecnica CHAR(6) 
+        CONSTRAINT ckGrauProficienciaIdCompetenciaTecnica CHECK (regexp_like(idCompetenciaTecnica, '^([a-zA-Z]){3}(-\d{2})?$')),
 
     nivel INTEGER,
         CONSTRAINT ckGrauProficienciaNivel CHECK (nivel > 0),
@@ -153,8 +153,8 @@ CREATE TABLE GrauProficiencia (
 );
 
 CREATE TABLE AreaAtividade (
-    idAreaAtividade INTEGER PRIMARY KEY
-        CONSTRAINT ckAreaAtividadeIdAreaAtividade CHECK (idAreaAtividade > 0),
+    idAreaAtividade CHAR(6) PRIMARY KEY
+        CONSTRAINT ckAreaAtividadeIdAreaAtividade CHECK (regexp_like(idAreaAtividade, '^([a-zA-Z]){3}(-\d{2})?$')),
 
     descricaoBreve VARCHAR(100) 
         CONSTRAINT nnAreaAtividadeDescricaoBreve not null,
@@ -204,8 +204,8 @@ create table Administrativo(
         constraint ckAdministrativoIdUtilizador check (idUtilizador > 0)
         constraint nnAdministrativoIdUtilizador not null,
     email varchar(40) UNIQUE
-        --constraint ckColaboradorEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
-        constraint nnColaboradorEmail not null
+        --constraint ckAdministrativoEmailValido check (regexp_like(email, '^[\w!#$%&+/=?{|}~^-]+(?:\.[\w!#$%&+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$'))
+        constraint nnAdministrativoEmail not null
 );
 
 create table Colaborador(
@@ -258,9 +258,9 @@ create table HabilitacaoAcademica(
 );
 
 create table ReconhecimentoCT (
-    idCompetenciaTecnica INTEGER
-        constraint nnReconhecimentoCTidCompetenciaTecnica not null
-        constraint ckReconhecimentoCTidCompetenciaTecnica check (0 < idCompetenciaTecnica),
+    idCompetenciaTecnica CHAR(6) 
+        CONSTRAINT ckReconhecimentoCTidCompetenciaTecnica CHECK (regexp_like(idCompetenciaTecnica, '^([a-zA-Z]){3}(-\d{2})?$'))
+        constraint nnReconhecimentoCTidCompetenciaTecnica not null,
     idFreelancer INTEGER
         constraint nnReconhecimentoCTidFreelancer not null
         constraint ckReconhecimentoCTidFreelancer check (0 < idFreelancer),
@@ -297,17 +297,17 @@ create table CategoriaTarefa (
     idCategoria INTEGER generated as identity PRIMARY KEY
         constraint nnCategoriaTarefaIdCategoria not null
         constraint ckCategoriaTarefaIdCategoria check (0 < idCategoria),
-    idAreaAtividade INTEGER
-        constraint nnCategoriaTarefaIdAreaAtividade not null
-        constraint ckCategoriaTarefaIdAreaAtividade check (0 < idAreaAtividade),
+    idAreaAtividade CHAR(6)
+        CONSTRAINT ckCategoriaTarefaIdAreaAtividade CHECK (regexp_like(idAreaAtividade, '^([a-zA-Z]){3}(-\d{2})?$'))
+        constraint nnCategoriaTarefaIdAreaAtividade not null,
     descricao varchar(100)
         constraint nnCategoriaTarefaDescricao not null
 );
 
 create table  CaraterizacaoCompetenciaTecnica (
-    idCompetenciaTecnica INTEGER
-        constraint nnCaraterizacaoCompetenciaTecnicaIdCompTec not null
-        constraint ckCaraterizacaoCompetenciaTecnicaIdCompTec check (0 < idCompetenciaTecnica),
+    idCompetenciaTecnica CHAR(6) 
+        CONSTRAINT ckCaraterizacaoCompetenciaTecnicaIdCompTec CHECK (regexp_like(idCompetenciaTecnica, '^([a-zA-Z]){3}(-\d{2})?$'))
+        constraint nnCaraterizacaoCompetenciaTecnicaIdCompTec not null,
     idCategoria INTEGER
         constraint nnCaraterizacaoCompetenciaTecnicaTarefaIdCategoria not null
         constraint ckCaraterizacaoCompetenciaTecnicaIdCategoria check (0 < idCategoria), 

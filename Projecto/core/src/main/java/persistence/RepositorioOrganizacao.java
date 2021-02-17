@@ -1,9 +1,11 @@
 package persistence;
 
-import application.UsersAPI;
+import java.sql.Types;
+
 import domain.*;
 import exceptions.EmailNaoAssociadoException;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;
+import jdk.internal.org.objectweb.asm.Type;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
@@ -55,15 +57,9 @@ public class RepositorioOrganizacao implements Serializable {
      */
     public boolean createOrganizacao(Organizacao organizacao, Colaborador gestor, String password) throws SQLException {
 
-        OracleDataSource ods = new OracleDataSource();
-        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-        ods.setURL(url);
-        ods.setUser("UPSKILL_BD_TURMA1_14");
-        ods.setPassword("qwerty");
         Connection conn = openConnection();
 
-        CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
-        System.out.println(1);
+        CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
         ResultSet rs = null;
 
         try {
@@ -74,10 +70,13 @@ public class RepositorioOrganizacao implements Serializable {
             cs.setString(3, organizacao.getNome());
             cs.setInt(4, Integer.parseInt(organizacao.getTelefone().toString()));
             cs.setString(5, organizacao.getWebsite().toString());
-            cs.setString(6, gestor.getNome());
-            cs.setString(7, gestor.getEmail().toString());
-            cs.setString(8, password);
-            cs.setInt(9, Integer.parseInt(gestor.getTelefone().toString()));
+            cs.setString(6, organizacao.getEnderecoPostal().getLocal());
+            cs.setString(7, organizacao.getEnderecoPostal().getCodPostal());
+            cs.setString(8, organizacao.getEnderecoPostal().getLocalidade());
+            cs.setString(9, gestor.getNome());
+            cs.setString(10, gestor.getEmail().toString());
+            cs.setString(11, password);
+            cs.setInt(12, Integer.parseInt(gestor.getTelefone().toString()));
             //rs = cs.executeQuery();
 
             cs.executeQuery();
@@ -103,15 +102,6 @@ public class RepositorioOrganizacao implements Serializable {
 
     }
 
-    /**
-     * Boolean method that checks if a manager exists in the organization, 
-     * otherwise it is added (as being a collaborator).
-     * @param colaborador
-     * @param organizacao
-     * @return 
-     */
-
-
 
     /**
      * Method for obtaining an organization through its manager.
@@ -123,7 +113,41 @@ public class RepositorioOrganizacao implements Serializable {
     }
 
     public Organizacao getOrganizacaoByEmail(Email email) {
-        throw new EmailNaoAssociadoException("Não existe nenhuma organização associada a este e-mail.");
+        try {
+            Connection conn = openConnection();
+            CallableStatement cs = conn.prepareCall ("{? = call getOrganizacaoByEmailColaborador(?)}");
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.setString(2, email.toString());
+            cs.executeUpdate();
+
+            int orgID = cs.getInt(1);
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Organizacao where idOrganizacao = ?");
+            pstmt.setInt(1, orgID);
+
+            return montarOrganizacao(pstmt.executeQuery());
+        } catch (SQLException e) {
+            throw new EmailNaoAssociadoException("Não existe nenhuma organização associada a este e-mail.");
+        }
+    }
+
+    public Organizacao montarOrganizacao(ResultSet row) throws SQLException {
+        row.next();
+        NIF nif = new NIF(Integer.parseInt(row.getString(2)));
+        Email email = new Email(row.getString(3));
+        String nomeorg = row.getString(5);
+        Telefone telefone = new Telefone(Integer.parseInt(row.getString(6)));
+        Website website = new Website(row.getString(7));
+
+        PreparedStatement pstmt = openConnection().prepareStatement("SELECT * FROM EnderecoPostal where idOrganizacao = ?");
+        pstmt.setInt(1, row.getInt(1));
+
+        ResultSet rset = pstmt.executeQuery();
+
+        rset.next();
+        EnderecoPostal enderecoPostal = new EnderecoPostal(rset.getString(2), rset.getString(4), rset.getString(3));
+
+        return new Organizacao(nomeorg, nif, website, telefone, email, enderecoPostal);
     }
 
     /**

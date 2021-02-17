@@ -4,15 +4,14 @@ import application.*;
 import domain.AreaAtividade;
 import domain.CaracterizacaoCompTec;
 import domain.CompetenciaTecnica;
-import domain.GrauProficiencia;
+import domain.GrauProficienciaa;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -34,7 +33,7 @@ public class AreaAdministrativoUI implements Initializable {
     public TextField txtDescricaoCategoriaTarefa;
 
     public ComboBox<AreaAtividade> comboBoxAreaAtividadeCategoriaTarefa;
-    public ComboBox<GrauProficiencia> comboBoxGrauProficienciaCategoriaTarefa;
+    public ComboBox<GrauProficienciaa> comboBoxGrauProficienciaCategoriaTarefa;
     public ListView<CompetenciaTecnica> listViewCompTecnicasPorSelecionarCategoriaTarefa;
     public ListView<CaracterizacaoCompTec> listViewCompTecnicasSelecionadasCategoriaTarefa;
 
@@ -84,10 +83,18 @@ public class AreaAdministrativoUI implements Initializable {
         authenticationController = new AuthenticationController();
 
         //popular combo box do painel Criar Competencia Tecnica
-        comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(plataformaController.getAreasAtividade());
+        try {
+            comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(plataformaController.getAreasAtividade());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         //popular combo boxes do painel Criar Categoria de Tarefa
-        comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
+        try {
+            comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia());
 
     }
@@ -110,7 +117,7 @@ public class AreaAdministrativoUI implements Initializable {
                 limparDadosAreaAtividade();
             }
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | SQLException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
         }
@@ -188,7 +195,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //mudar para o painel Criar Categoria de Tarefa
-    public void criarCategoriaTarefaSelectAction(ActionEvent actionEvent) {
+    public void criarCategoriaTarefaSelectAction(ActionEvent actionEvent) throws SQLException {
         //desligar
         criarCompetenciaTecnicaPane.setVisible(false);
         criarCompetenciaTecnicaPane.setDisable(true);
@@ -205,7 +212,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //mudar para o painel Criar Competencia Tecnica
-    public void criarCompetenciaTecnicaSelectAction(ActionEvent actionEvent) {
+    public void criarCompetenciaTecnicaSelectAction(ActionEvent actionEvent) throws SQLException {
         //desligar
         criarCategoriaTarefaPane.setVisible(false);
         criarCategoriaTarefaPane.setDisable(true);
