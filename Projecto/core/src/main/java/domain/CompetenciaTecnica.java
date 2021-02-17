@@ -31,7 +31,7 @@ public class CompetenciaTecnica implements Serializable {
         setAreaAtividade(areaAtividade);
         setDescricao(descricao);
         setDescDetalhada(descDetalhada);
-        this.graus = new ArrayList<>();
+        this.graus = new ArrayList<>(graus);
     }
 
     /**
@@ -77,8 +77,8 @@ public class CompetenciaTecnica implements Serializable {
         return codigoUnico;
     }
 
-    public List<GrauProficiencia> getGraus() {
-        return graus;
+    public ArrayList<GrauProficiencia> getGraus() {
+        return new ArrayList<>(graus);
     }
 
     public void setGraus(List<GrauProficiencia> graus) {

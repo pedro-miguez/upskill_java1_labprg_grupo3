@@ -5,6 +5,7 @@ import domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -57,15 +58,18 @@ public class AreaAdministrativoUI implements Initializable {
     public TextField txtCodigoUnicoCompetenciaTecnica;
 
 
+    public ListView<GrauProficiencia> listViewGrauProficienciaCompetenciaTecnica;
+    public TextField txtNivelGrauProficienciaCriarCompetenciaTecnica;
+    public TextField txtDesignacaoGrauProficienciaCriarCompetenciaTecnica;
+
+
     //Elementos gerais
     public Button btnCriarAreaAtividadeSelect;
     public Button btnCriarCategoriaTarefaSelect;
     public Button btnCriarCompetenciaTecnicaSelect;
 
     public Button btnLogout;
-    public ListView listViewGrauProficienciaCompetenciaTecnica;
-    public TextField txtNivelGrauProficienciaCriarCompetenciaTecnica;
-    public TextField txtDesignacaoGrauProficienciaCriarCompetenciaTecnica;
+
 
     private DefinirAreaAtividadeController areaAtividadeController;
     private DefinirCompetenciaTecnicaController competenciaTecnicaController;
@@ -95,7 +99,7 @@ public class AreaAdministrativoUI implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia());
+
 
     }
 
@@ -150,7 +154,7 @@ public class AreaAdministrativoUI implements Initializable {
         try {
             boolean adicionou = competenciaTecnicaController.definirCompetenciaTecnica(txtCodigoUnicoCompetenciaTecnica.getText().trim(),
                     comboBoxAreaAtividadeCompetenciaTecnica.getValue(), txtDescBreveCompetenciaTecnica.getText().trim(),
-                    txtDescDetalhadaCompetenciaTecnica.getText().trim());
+                    txtDescDetalhadaCompetenciaTecnica.getText().trim(), listViewGrauProficienciaCompetenciaTecnica.getItems());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova competência técnica.",
                     adicionou ? "Competência Técnica criada com sucesso! \n\n" +
@@ -299,6 +303,15 @@ public class AreaAdministrativoUI implements Initializable {
         return true;
     }
 
+    public boolean grauProficienciaAindaNaoFoiAdicionado(GrauProficiencia grauProficiencia) {
+        for(GrauProficiencia gp : listViewGrauProficienciaCompetenciaTecnica.getItems()) {
+            if (gp.equals(grauProficiencia)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //remover a última competência técnica da lista
     public void removerUltimaCompTecCategoriaTarefaAction(ActionEvent actionEvent) {
         listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().remove(listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().size() - 1);
@@ -378,12 +391,39 @@ public class AreaAdministrativoUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
-     {
-    }
 
     public void btnAdicionarGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
+        if (txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.getText() != null &&
+                txtNivelGrauProficienciaCriarCompetenciaTecnica.getText() != null) {
+            GrauProficiencia gp = new GrauProficiencia(
+                    Integer.parseInt(txtNivelGrauProficienciaCriarCompetenciaTecnica.getText().trim()),
+                    txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.getText().trim()
+                    );
+
+            if (grauProficienciaAindaNaoFoiAdicionado(gp)){
+                listViewGrauProficienciaCompetenciaTecnica.getItems().add(gp);
+                txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.clear();
+                txtNivelGrauProficienciaCriarCompetenciaTecnica.clear();
+            } else {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar novo grau.",
+                        "Não é possível adicionar o mesmo grau de proficiência mais do que uma vez.").show();
+            }
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar novo grau.",
+                    "É obrigatório designar um nível e uma designação para cada grau a adicionar.").show();
+        }
     }
 
     public void btnRemoverGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
+        listViewGrauProficienciaCompetenciaTecnica.getItems().remove(listViewGrauProficienciaCompetenciaTecnica.getSelectionModel().getSelectedItem());
+    }
+
+    public void popularComboBoxGrauProficienciaCategoriaTarefa(ContextMenuEvent contextMenuEvent) {
+        if (listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
+            comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem()));
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Competência técnica",
+                    "Precisa selecionar uma competência técnica primeiro.").show();
+        }
     }
 }

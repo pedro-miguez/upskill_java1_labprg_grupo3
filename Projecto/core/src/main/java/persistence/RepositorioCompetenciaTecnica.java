@@ -134,10 +134,10 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     }
 
     public CompetenciaTecnica criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
-                                                      String descricao, String descDetalhada) {
+                                                      String descricao, String descDetalhada, List<GrauProficiencia> graus) {
         return new CompetenciaTecnica(new CodigoUnico(codigoUnico),
                 areaAtividade,
-                descricao, descDetalhada);
+                descricao, descDetalhada, graus);
     }
 
     /**
