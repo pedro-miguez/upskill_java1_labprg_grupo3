@@ -47,7 +47,7 @@ public class PlataformaController {
      * @param areaAtividade as area of activity.
      * @return the technical competence by area of activity.
      */
-    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) {
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaAtividade(areaAtividade);
     }
 
