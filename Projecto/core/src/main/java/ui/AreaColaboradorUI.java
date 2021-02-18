@@ -66,7 +66,8 @@ public class AreaColaboradorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
                     criou ? "Tarefa criada com sucesso! \n\n" +
-                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim())
+                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim(),
+                                    authenticationController.getEmail())
                             : "Não foi possível criar a tarefa.").show();
 
             if (criou) {
@@ -77,6 +78,11 @@ public class AreaColaboradorUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
                     e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
         }
 
     }
