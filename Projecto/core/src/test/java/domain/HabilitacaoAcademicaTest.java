@@ -6,25 +6,38 @@ import static org.junit.Assert.*;
 
 public class HabilitacaoAcademicaTest {
 
-    public HabilitacaoAcademica(String nome, Telefone telefone, Email email, NIF nif) {
-        setGrau(grau);
-        setDesignacaoCurso(designacaoCurso);
-        setNomeInstituicao(nomeInstituicao);
-        setMediaCurso(mediaCurso);
-    }
-
     @Test
-    public void testHabilitacaoAcademicaValida() {
+    public void testCreateHabilitacaoAcademicaValida() {
 
-        Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999), new Email("colab@org.com"),
-                new NIF(214852581));
+        HabilitacaoAcademica ha = new HabilitacaoAcademica("Mestre", "Contabilidade", "ISCAP", 19.9);
 
-        HabilitacaoAcademica ha = new HabilitacaoAcademica(" ")
-
-        String expected = "Bob Marley";
-        String result = freelancer.getNome();
+        String expected = "ISCAP";
+        String result = ha.getNomeInstituicao();
 
         assertEquals(expected, result);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateHabilitacaoAcademicaGrauInvalido() {
+
+        HabilitacaoAcademica ha = new HabilitacaoAcademica("", "Contabilidade", "ISCAP", 19.9);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateHabilitacaoAcademicaDesignacaoCursoInvalido() {
+
+        HabilitacaoAcademica ha = new HabilitacaoAcademica("Mestre", "", "ISCAP", 19.9);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateHabilitacaoAcademicaNomeInstituicaoInvalido() {
+
+        HabilitacaoAcademica ha = new HabilitacaoAcademica("Mestre", "Contabilidade", "", 19.9);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateHabilitacaoAcademicaMediaCursoInvalido() {
+
+        HabilitacaoAcademica ha = new HabilitacaoAcademica("Mestre", "Contabilidade", "ISCAP", 9.4);
+    }
 }
