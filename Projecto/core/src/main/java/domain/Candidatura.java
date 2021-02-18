@@ -40,6 +40,19 @@ public class Candidatura implements Serializable {
     }
     
     
+    public Anuncio getIdAnuncio() {
+        return this.idAnuncio;
+    }
+    
+    public Freelancer getIdFreelancer() {
+        return this.idFreelancer;
+    }
+    
+    public Data getDataCandidatura() {
+        return this.dataCandidatura;
+    }
+    
+    
     private void setValorPretendido(int valorPretendido) {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
