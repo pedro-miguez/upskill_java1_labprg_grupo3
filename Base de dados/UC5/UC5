@@ -16,10 +16,11 @@ create or replace function getOrganizacaoByEmail(p_email Organizacao.Email%type)
 create or replace procedure createUtilizadorColaborador(
  p_nome utilizador.nome%type,
  p_email utilizador.email%type,
+ p_password utilizador.palavraPasse%type,
  p_telefone colaborador.telefone%type,
  p_funcao  colaborador.funcao%type,
  p_idOrganizacao organizacao.idOrganizacao%type
- p_password utilizador.palavraPasse%type)
+)
 is
 v_id utilizador.idUtilizador%type;
 begin
