@@ -1,9 +1,11 @@
-/*
+
 package domain;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class CompetenciaTecnicaTest {
 
@@ -12,7 +14,7 @@ public class CompetenciaTecnicaTest {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "Programação Java", "Programação muito boa em Java");
+                "Programação Java", "Programação muito boa em Java", new ArrayList<>());
 
         String expected = "JAV-01";
         String result = ct.getCodigoUnico().toString();
@@ -25,7 +27,7 @@ public class CompetenciaTecnicaTest {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                " ", "Programação muito boa em Java");
+                " ", "Programação muito boa em Java", new ArrayList<>());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -33,7 +35,7 @@ public class CompetenciaTecnicaTest {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "PROG ", " ");
+                "PROG ", " ", new ArrayList<>());
     }
 
     @Test
@@ -41,7 +43,7 @@ public class CompetenciaTecnicaTest {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"), "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "Programação Java", "Programação muito boa em Java");
+                "Programação Java", "Programação muito boa em Java", new ArrayList<>());
     }
 
-}*/
+}
