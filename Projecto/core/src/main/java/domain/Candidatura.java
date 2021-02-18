@@ -25,8 +25,9 @@ public class Candidatura implements Serializable {
     private String txtMotivacao;
     
     
-    public Candidatura (Anuncio idAnuncio, Freelancer idFreelancer, Data dataCandidatura,
-                        int valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao) {
+    public Candidatura (Anuncio idAnuncio, Freelancer idFreelancer, 
+                        Data dataCandidatura, int valorPretendido, int nrDias,
+                        String txtApresentacao, String txtMotivacao) {
         
         this.idAnuncio = idAnuncio;
         this.idFreelancer = idFreelancer;
@@ -51,23 +52,27 @@ public class Candidatura implements Serializable {
     public Data getDataCandidatura() {
         return this.dataCandidatura;
     }
+
     
     
     
+    public void setDataCandidatura(Data dataCandidatura) {
+        this.dataCandidatura = dataCandidatura;
+    }
     
     
     private void setValorPretendido(int valorPretendido) {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
         } else
-            throw new IllegalArgumentException("Deve de introduzir um valor maior que zero.");
+            throw new IllegalArgumentException("Deve introduzir um valor maior que zero.");
     }
     
     private void setNrDias(int nrDias) {
         if (nrDias > 0) {
             this.nrDias = nrDias;
         } else
-            throw new IllegalArgumentException("Deve de introduzir um valor maior que zero.");
+            throw new IllegalArgumentException("Deve introduzir um valor maior que zero.");
     }
     
     private void setTxtApresentacao(String txtApresentacao) {
