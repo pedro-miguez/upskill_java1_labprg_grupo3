@@ -1,47 +1,45 @@
 package domain;
 
-import java.util.Objects;
-
 public class ReconhecimentoCT {
 
-    CompetenciaTecnica ct;
-    Freelancer fr;
-    GrauProficiencia gp;
+    CompetenciaTecnica competenciaTecnica;
+    Freelancer freelancer;
+    GrauProficiencia grauProficiencia;
     Data dataReconhecimento;
 
-    public ReconhecimentoCT(CompetenciaTecnica ct, Freelancer fr, GrauProficiencia gp, Data dataReconhecimento) {
-        this.ct = ct;
-        this.fr = fr;
-        this.gp = gp;
-        this.dataReconhecimento = dataReconhecimento;
+    public ReconhecimentoCT(CompetenciaTecnica competenciaTecnica, Freelancer freelancer, GrauProficiencia grauProficiencia, Data dataReconhecimento) {
+        setCompetenciaTecnica(competenciaTecnica);
+        setFreelancer(freelancer);
+        setGrauProficiencia(grauProficiencia);
+        setDataReconhecimento(dataReconhecimento);
     }
 
-    public CompetenciaTecnica getCt() {
-        return ct;
+    public CompetenciaTecnica getCompetenciaTecnica() {
+        return competenciaTecnica;
     }
 
-    public Freelancer getFr() {
-        return fr;
+    public Freelancer getFreelancer() {
+        return freelancer;
     }
 
-    public GrauProficiencia getGp() {
-        return gp;
+    public GrauProficiencia getGrauProficiencia() {
+        return grauProficiencia;
     }
 
     public Data getDataReconhecimento() {
         return dataReconhecimento;
     }
 
-    public void setCt(CompetenciaTecnica ct) {
-        this.ct = ct;
+    public void setCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
+        this.competenciaTecnica = competenciaTecnica;
     }
 
-    public void setFr(Freelancer fr) {
-        this.fr = fr;
+    public void setFreelancer(Freelancer freelancer) {
+        this.freelancer = freelancer;
     }
 
-    public void setGp(GrauProficiencia gp) {
-        this.gp = gp;
+    public void setGrauProficiencia(GrauProficiencia grauProficiencia) {
+        this.grauProficiencia = grauProficiencia;
     }
 
     public void setDataReconhecimento(Data dataReconhecimento) {
@@ -53,9 +51,18 @@ public class ReconhecimentoCT {
         if (this == o) return true;
         if (!(o instanceof ReconhecimentoCT)) return false;
         ReconhecimentoCT that = (ReconhecimentoCT) o;
-        return getCt().equals(that.getCt()) && getFr().equals(that.getFr()) &&
-                getGp().equals(that.getGp()) && getDataReconhecimento().equals(that.getDataReconhecimento());
+        return getCompetenciaTecnica().equals(that.getCompetenciaTecnica()) && getFreelancer().equals(that.getFreelancer()) &&
+                getGrauProficiencia().equals(that.getGrauProficiencia()) && getDataReconhecimento().equals(that.getDataReconhecimento());
     }
 
+    @Override
+    public String toString() {
+        return "ReconhecimentoCT{" +
+                "competenciaTecnica=" + competenciaTecnica +
+                ", freelancer=" + freelancer +
+                ", grauProficiencia=" + grauProficiencia +
+                ", dataReconhecimento=" + dataReconhecimento +
+                '}';
     }
+}
 
