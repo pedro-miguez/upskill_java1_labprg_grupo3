@@ -49,8 +49,6 @@ public class RepositorioColaborador implements Serializable {
     public boolean insertUtilizadorColaborador(Colaborador colaborador, String password, String emailGestor) throws SQLException {
         Connection conn = connectionHandler.openConnection();
 
-
-
         try {
             conn.setAutoCommit(false);
 

@@ -51,14 +51,10 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
         try {
             conn.setAutoCommit(false);
-
             CallableStatement cs = conn.prepareCall ("{CALL createCategoriaTarefa(?, ?)}");
-
             cs.setString(1, categoriaTarefa.getAreaAtividade().getCodigoUnico().toString());
             cs.setString(2, categoriaTarefa.getDescricao());
-
             cs.executeQuery();
-
             conn.commit();
 
             conn.close();
@@ -72,7 +68,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 excep.getErrorCode();
             }
         }
-
         conn.close();
         return insertCaracterizacoesCompetenciaTecnica(categoriaTarefa);
     }
@@ -80,19 +75,21 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     public boolean insertCaracterizacoesCompetenciaTecnica(CategoriaTarefa categoriaTarefa) throws SQLException {
         Connection conn = connectionHandler.openConnection();
-        PreparedStatement pstmt = conn.prepareStatement("select idCategoria from CategoriaTarefa where " +
-                "descricao = ? and " +
-                "idareaatividade = ?");
-        pstmt.setString(1, categoriaTarefa.getDescricao());
-        pstmt.setString(2, categoriaTarefa.getAreaAtividade().getCodigoUnico().toString());
-        ResultSet result = pstmt.executeQuery();
-        result.next();
-        int idCategoriaTarefa = result.getInt(1);
-
-        ArrayList<CaracterizacaoCompTec> listaCompetencias = categoriaTarefa.getCompetenciasTecnicas();
 
         try {
             conn.setAutoCommit(false);
+
+            PreparedStatement pstmt = conn.prepareStatement("select idCategoria from CategoriaTarefa where " +
+                    "descricao = ? and " +
+                    "idareaatividade = ?");
+            pstmt.setString(1, categoriaTarefa.getDescricao());
+            pstmt.setString(2, categoriaTarefa.getAreaAtividade().getCodigoUnico().toString());
+            ResultSet result = pstmt.executeQuery();
+            result.next();
+            int idCategoriaTarefa = result.getInt(1);
+
+            ArrayList<CaracterizacaoCompTec> listaCompetencias = categoriaTarefa.getCompetenciasTecnicas();
+
             CallableStatement cs = conn.prepareCall ("{CALL createCaraterizacaoCompetenciaTecnica(?, ?, ?, ?)}");
 
             for (CaracterizacaoCompTec cpt : listaCompetencias) {
@@ -104,11 +101,11 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 cs.executeQuery();
                 cs.clearParameters();
             }
+
             cs.close();
             conn.commit();
             conn.close();
             return true;
-
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -119,7 +116,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 excep.getErrorCode();
             }
         }
-
         conn.close();
         return false;
     }
@@ -158,7 +154,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
      */
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa() throws SQLException {
         Connection conn = connectionHandler.openConnection();
-
         ArrayList<CategoriaTarefa> listaTodasCategorias = new ArrayList<>();
         ArrayList<AreaAtividade> listaTodasAreas = listarAreasAtividade();
         PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CategoriaTarefa where idAreaAtividade = ?");
