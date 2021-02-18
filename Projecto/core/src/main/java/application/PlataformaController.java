@@ -18,7 +18,7 @@ public class PlataformaController {
      *
      * @return the list of tasks categories
      */
-    public ArrayList<CategoriaTarefa> getCategoriasTarefa() {
+    public ArrayList<CategoriaTarefa> getCategoriasTarefa() throws SQLException {
         return RepositorioCategoriaTarefa.getInstance().listarCategoriasTarefa();
     }
 
