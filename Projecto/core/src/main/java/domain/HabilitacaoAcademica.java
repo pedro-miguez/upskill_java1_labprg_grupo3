@@ -5,22 +5,12 @@ import java.util.Objects;
 
 public class HabilitacaoAcademica implements Serializable {
 
-    private Freelancer freelancer;
     private String grau;
     private String designacaoCurso;
     private String nomeInstituicao;
     private double mediaCurso;
 
-    /**
-     * Instantiates a new Freelancer.
-     *
-     * @param nome     as name
-     * @param telefone as telephone
-     * @param email    as email
-     * @param nif      as tax identification nr
-     */
-    public HabilitacaoAcademica(String nome, Telefone telefone, Email email, NIF nif) {
-        this.freelancer = freelancer;
+    public HabilitacaoAcademica(String grau, String designacaoCurso, String nomeInstituicao, double mediaCurso) {
         setGrau(grau);
         setDesignacaoCurso(designacaoCurso);
         setNomeInstituicao(nomeInstituicao);
@@ -47,16 +37,13 @@ public class HabilitacaoAcademica implements Serializable {
         }
         this.nomeInstituicao = nomeInstituicao;
     }
-        private void setMediaCurso ( double mediaCurso){
-            if (mediaCurso < 0 || mediaCurso > 20) {
-                throw new IllegalArgumentException("Número de telefone inválido");
-            } else {
-            }
-            this.mediaCurso = mediaCurso;
-        }
 
-    public Freelancer getFreelancer() {
-        return freelancer;
+    private void setMediaCurso(double mediaCurso) {
+        if (mediaCurso < 0 || mediaCurso > 20) {
+            throw new IllegalArgumentException("Número de telefone inválido");
+        } else {
+        }
+        this.mediaCurso = mediaCurso;
     }
 
     public String getGrau() {
@@ -78,7 +65,7 @@ public class HabilitacaoAcademica implements Serializable {
     @Override
     public String toString() {
         return String.format("Freelancer: %s%Grau: %s%nDesignacaoCurso: %s%NomeInstituicao: %s%nMediaCurso: %d",
-                this.freelancer, this.grau, this.designacaoCurso, this.nomeInstituicao, this.mediaCurso);
+                this.grau, this.designacaoCurso, this.nomeInstituicao, this.mediaCurso);
     }
 
     /**
@@ -96,9 +83,7 @@ public class HabilitacaoAcademica implements Serializable {
         if (this == o) return true;
         if (!(o instanceof HabilitacaoAcademica)) return false;
         HabilitacaoAcademica that = (HabilitacaoAcademica) o;
-        return Double.compare(that.getMediaCurso(), getMediaCurso()) == 0 &&
-                getFreelancer().equals(that.getFreelancer()) && getGrau().equals(that.getGrau()) &&
-                getDesignacaoCurso().equals(that.getDesignacaoCurso()) && getNomeInstituicao().equals(that.getNomeInstituicao());
+        return Double.compare(that.getMediaCurso(), getMediaCurso()) == 0 && getGrau().equals(that.getGrau()) && getDesignacaoCurso().equals(that.getDesignacaoCurso()) && getNomeInstituicao().equals(that.getNomeInstituicao());
     }
 
 }
