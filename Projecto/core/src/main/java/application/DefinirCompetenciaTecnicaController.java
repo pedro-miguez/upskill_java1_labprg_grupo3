@@ -6,9 +6,7 @@ import domain.GrauProficiencia;
 import domain.Plataforma;
 import persistence.RepositorioCompetenciaTecnica;
 
-import java.lang.reflect.Array;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class DefinirCompetenciaTecnicaController {
 
         CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, areaAtividade, descricao, descDetalhada, graus);
 
-        return repo.createCompetenciaTecnica(competenciaTecnica);
+        return repo.insertCompetenciaTecnica(competenciaTecnica);
     }
 
 }

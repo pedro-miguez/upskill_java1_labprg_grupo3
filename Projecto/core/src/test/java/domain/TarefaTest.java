@@ -25,7 +25,7 @@ public class TarefaTest {
 
         int expected = 100;
 
-        int result = tarefa.getDuracaoHoras();
+        int result = tarefa.getDuracaoDias();
 
         assertEquals(expected, result);
 

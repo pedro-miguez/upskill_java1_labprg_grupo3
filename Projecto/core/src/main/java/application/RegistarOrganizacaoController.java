@@ -47,7 +47,7 @@ public class RegistarOrganizacaoController {
         System.out.println(password);
 
         if (!password.equals("failed")) {
-            return repoOrg.createOrganizacao(org, gestor, password);
+            return repoOrg.insertOrganizacao(org, gestor, password);
         } else {
             return false;
         }

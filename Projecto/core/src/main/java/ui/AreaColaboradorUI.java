@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AreaColaboradorUI implements Initializable {
@@ -42,7 +43,11 @@ public class AreaColaboradorUI implements Initializable {
         criarTarefaController = new DefinirTarefaController();
         plataformaController = new PlataformaController();
         authenticationController = new AuthenticationController();
-        comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //método para submeter a criação de tarefa
@@ -61,7 +66,8 @@ public class AreaColaboradorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
                     criou ? "Tarefa criada com sucesso! \n\n" +
-                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim())
+                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim(),
+                                    authenticationController.getEmail())
                             : "Não foi possível criar a tarefa.").show();
 
             if (criou) {
@@ -72,12 +78,21 @@ public class AreaColaboradorUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
                     e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
         }
 
     }
 
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
-        comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //logout

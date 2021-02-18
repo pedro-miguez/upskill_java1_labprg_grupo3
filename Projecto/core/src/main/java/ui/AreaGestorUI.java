@@ -62,7 +62,11 @@ public class AreaGestorUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
         authController = new AuthenticationController();
         plataformaController = new PlataformaController();
-        comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         tarefaController = new DefinirTarefaController();
     }
 
@@ -109,7 +113,8 @@ public class AreaGestorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
                     criou ? "Tarefa criada com sucesso! \n\n" +
-                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim())
+                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim(),
+                                    authController.getEmail())
                             : "Não foi possível criar a tarefa.").show();
 
             if (criou) {
@@ -122,6 +127,11 @@ public class AreaGestorUI implements Initializable {
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
         }
     }
 
@@ -167,7 +177,11 @@ public class AreaGestorUI implements Initializable {
         criarTarefaPane.setDisable(false);
 
         //popular elementos
-        comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //fazer logout

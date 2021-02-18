@@ -13,9 +13,9 @@ import java.io.Serializable;
  */
 public class Candidatura implements Serializable {
     
-    private Anuncio idAnuncio;
+    private CodigoUnico idAnuncio;
     
-    private Freelancer idFreelancer;
+    private CodigoUnico idFreelancer;
     
     private Data dataCandidatura;
     
@@ -25,8 +25,9 @@ public class Candidatura implements Serializable {
     private String txtMotivacao;
     
     
-    public Candidatura (Anuncio idAnuncio, Freelancer idFreelancer, Data dataCandidatura,
-                        int valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao) {
+    public Candidatura (CodigoUnico idAnuncio, CodigoUnico idFreelancer, 
+                        Data dataCandidatura, int valorPretendido, int nrDias,
+                        String txtApresentacao, String txtMotivacao) {
         
         this.idAnuncio = idAnuncio;
         this.idFreelancer = idFreelancer;
@@ -40,16 +41,38 @@ public class Candidatura implements Serializable {
     }
     
     
-    public Anuncio getIdAnuncio() {
+    public CodigoUnico getIdAnuncio() {
         return this.idAnuncio;
     }
     
-    public Freelancer getIdFreelancer() {
+    public CodigoUnico getIdFreelancer() {
         return this.idFreelancer;
     }
     
     public Data getDataCandidatura() {
         return this.dataCandidatura;
+    }
+
+    
+    public int getValorPretendido() {
+        return valorPretendido;
+    }
+    
+    public int getNrDias() {
+        return nrDias;
+    }
+    
+    public String getTxtApresentacao() {
+        return txtApresentacao;
+    }
+    
+    public String getTxtMotivacao() {
+        return txtMotivacao;
+    }
+    
+    
+    public void setDataCandidatura(Data dataCandidatura) {
+        this.dataCandidatura = dataCandidatura;
     }
     
     
@@ -57,14 +80,14 @@ public class Candidatura implements Serializable {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
         } else
-            throw new IllegalArgumentException("Deve de introduzir um valor maior que zero.");
+            throw new IllegalArgumentException("Deve introduzir um valor maior que zero.");
     }
     
     private void setNrDias(int nrDias) {
         if (nrDias > 0) {
             this.nrDias = nrDias;
         } else
-            throw new IllegalArgumentException("Deve de introduzir um valor maior que zero.");
+            throw new IllegalArgumentException("Deve introduzir um valor maior que zero.");
     }
     
     private void setTxtApresentacao(String txtApresentacao) {

@@ -2,6 +2,8 @@ package persistence;
 
 import domain.*;
 import exceptions.CodigoNaoAssociadoException;
+import exceptions.FetchingProblemException;
+import network.ConnectionHandler;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
@@ -16,21 +18,17 @@ import java.util.List;
 public class RepositorioCompetenciaTecnica implements Serializable {
 
     private static RepositorioCompetenciaTecnica instance;
+    private ConnectionHandler connectionHandler;
 
     /**
      * Technical skills that will be added to the repository.
      */
+
     private RepositorioCompetenciaTecnica(){
+        connectionHandler = new ConnectionHandler();
     }
 
-    public Connection openConnection() throws SQLException {
-        OracleDataSource ods = new OracleDataSource();
-        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-        ods.setURL(url);
-        ods.setUser("UPSKILL_BD_TURMA1_14");
-        ods.setPassword("qwerty");
-        return  ods.getConnection();
-    }
+
 
     /**
      * Static method that returns a unique reference to the class object, which 
@@ -50,11 +48,10 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * @param competenciaTecnica
      * @return 
      */
-    public boolean createCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws SQLException {
-        Connection conn = openConnection();
+    public boolean insertCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws SQLException {
+        Connection conn = connectionHandler.openConnection();
 
         CallableStatement cs = conn.prepareCall ("{CALL createCompetenciaTecnica(?, ?, ?, ?)}");
-        ResultSet rs = null;
 
         try {
             conn.setAutoCommit(false);
@@ -80,12 +77,11 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             }
         }
 
-        conn.close();
-        return createGrausProficiencia(competenciaTecnica);
+        return insertGrausProficiencia(competenciaTecnica);
     }
 
-    public boolean createGrausProficiencia(CompetenciaTecnica compTec) throws SQLException {
-        Connection conn = openConnection();
+    public boolean insertGrausProficiencia(CompetenciaTecnica compTec) throws SQLException {
+        Connection conn = connectionHandler.openConnection();
         String idCompetenciaTecnica = compTec.getCodigoUnico().toString();
         ArrayList<GrauProficiencia> listaGraus = compTec.getGraus();
 
@@ -128,7 +124,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      */
     public CompetenciaTecnica getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico, AreaAtividade areaAtividade){
         try {
-            Connection conn = openConnection();
+            Connection conn = connectionHandler.openConnection();
             String idCompetenciaTecnica = codigoUnico.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
             pstmt.setString(1, idCompetenciaTecnica);
@@ -146,7 +142,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
         try {
-            Connection conn = openConnection();
+            Connection conn = connectionHandler.openConnection();
             String idAreaAtividade = areaAtividade.getCodigoUnico().toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idAreaAtividade = ?");
             pstmt.setString(1, idAreaAtividade);
@@ -161,46 +157,79 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     }
 
     private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
-        row.next();
-        Connection conn = openConnection();
-        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
-        CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
-        pstmt.setString(1, idCompetenciaTecnica.toString());
-        String descricaoBreve = row.getString(3);
-        String descricaoDetalhada = row.getString(4);
-        ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+        Connection conn = connectionHandler.openConnection();
+        CompetenciaTecnica competenciaTecnica = null;
 
-        return new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+        try {
+            row.next();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
+            CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
+            pstmt.setString(1, idCompetenciaTecnica.toString());
+            String descricaoBreve = row.getString(3);
+            String descricaoDetalhada = row.getString(4);
+            ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+            competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+        }
+
+        if (competenciaTecnica != null) {
+            return competenciaTecnica;
+        } else {
+            throw new FetchingProblemException("Problema ao montar Competencia Tecnica");
+        }
+
     }
 
     private ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         ArrayList<CompetenciaTecnica> listaCompetencias = new ArrayList<>();
-        Connection conn = openConnection();
-        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
-        while(rows.next()) {
-            CodigoUnico idCompetenciaTecnica = new CodigoUnico(rows.getString(1));
-            pstmt.setString(1, idCompetenciaTecnica.toString());
-            String descricaoBreve = rows.getString(3);
-            String descricaoDetalhada = rows.getString(4);
-            ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
-            listaCompetencias.add(new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus));
-            pstmt.clearParameters();
+        Connection conn = connectionHandler.openConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
+            while (rows.next()) {
+                CodigoUnico idCompetenciaTecnica = new CodigoUnico(rows.getString(1));
+                pstmt.setString(1, idCompetenciaTecnica.toString());
+                String descricaoBreve = rows.getString(3);
+                String descricaoDetalhada = rows.getString(4);
+                ArrayList<GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+                listaCompetencias.add(new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus));
+                pstmt.clearParameters();
+            }
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
         }
 
-        return listaCompetencias;
-
+        if (listaCompetencias.size() != 0) {
+            return listaCompetencias;
+        } else {
+            throw new FetchingProblemException("Lista de Competências técnicas vazia");
+        }
     }
 
     private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
         ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
 
-        while(rows.next()) {
-            int nivel = rows.getInt(2);
-            String designacao = rows.getString(3);
-            listaGraus.add(new GrauProficiencia(nivel, designacao));
+        try {
+            while(rows.next()) {
+                int nivel = rows.getInt(2);
+                String designacao = rows.getString(3);
+                listaGraus.add(new GrauProficiencia(nivel, designacao));
+            }
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
         }
 
-        return listaGraus;
+        if (listaGraus.size() != 0) {
+            return listaGraus;
+        } else {
+            throw new FetchingProblemException("Lista de Graus de Proficiência vazia");
+        }
+
     }
 
     public CompetenciaTecnica criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,

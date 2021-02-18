@@ -1,8 +1,10 @@
 package application;
 
 import domain.*;
-import persistence.RepositorioColaborador;
+import persistence.RepositorioOrganizacao;
 import persistence.RepositorioTarefa;
+
+import java.sql.SQLException;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for setting new
@@ -24,21 +26,21 @@ public class DefinirTarefaController {
      * @return the boolean
      */
     public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
-                                 int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail){
+                                 int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail) throws SQLException {
 
-/*        Plataforma plataforma = Plataforma.getInstance();
-        RepositorioColaborador repositorioColaborador = plataforma.getRepoColab();
-        RepositorioTarefa repositorioTarefa = plataforma.getRepoTarefa();
 
-        Colaborador collab = repositorioColaborador.getColaboradorByEmail(new Email(colaboradorEmail));
+        RepositorioOrganizacao repositorioOrganizacao = RepositorioOrganizacao.getInstance();
+        RepositorioTarefa repositorioTarefa = RepositorioTarefa.getInstance();
 
-        Organizacao org = collab.getOrganizacao();
+
+
+        Organizacao org = repositorioOrganizacao.getOrganizacaoByEmail(new Email(colaboradorEmail));
 
         Tarefa tarefa = repositorioTarefa.criarTarefa(codigoUnico, designacao, descricaoInformal,
                 descricaoTecnica, duracaoHoras, custo, categoriaTarefa, org);
 
-        return repositorioTarefa.addTarefa(tarefa);*/
-        return false;
+        return repositorioTarefa.insertTarefa(tarefa, colaboradorEmail);
+
     }
 
 

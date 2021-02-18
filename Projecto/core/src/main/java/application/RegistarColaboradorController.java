@@ -7,8 +7,6 @@ package application;
 
 import domain.*;
 import persistence.RepositorioColaborador;
-import persistence.RepositorioCompetenciaTecnica;
-import persistence.RepositorioOrganizacao;
 
 import java.sql.SQLException;
 
@@ -43,7 +41,7 @@ public class RegistarColaboradorController {
         System.out.println(password);
 
         if (!password.equals("failed")) {
-            return repoColab.createUtilizadorColaborador(colaborador, password, gestorEmail);
+            return repoColab.insertUtilizadorColaborador(colaborador, password, gestorEmail);
         } else {
             return false;
         }

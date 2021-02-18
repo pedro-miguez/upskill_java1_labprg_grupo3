@@ -4,8 +4,10 @@ import java.sql.Types;
 
 import domain.*;
 import exceptions.EmailNaoAssociadoException;
+import exceptions.FetchingProblemException;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;
 import jdk.internal.org.objectweb.asm.Type;
+import network.ConnectionHandler;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
@@ -20,12 +22,13 @@ import java.util.List;
 public class RepositorioOrganizacao implements Serializable {
 
     private static RepositorioOrganizacao instance;
+    private ConnectionHandler connectionHandler;
 
     /**
      * Organizations that will be added (registered) to the repository.
      */
-    private RepositorioOrganizacao() throws SQLException {
-
+    private RepositorioOrganizacao() {
+        connectionHandler = new ConnectionHandler();
     }
 
     /**
@@ -33,21 +36,13 @@ public class RepositorioOrganizacao implements Serializable {
      * implements a singleton.
      * @return 
      */
-    public static RepositorioOrganizacao getInstance() throws SQLException {
+    public static RepositorioOrganizacao getInstance() {
         if(instance == null){
             instance = new RepositorioOrganizacao();
         }
         return instance;
     }
 
-    public Connection openConnection() throws SQLException {
-        OracleDataSource ods = new OracleDataSource();
-        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-        ods.setURL(url);
-        ods.setUser("UPSKILL_BD_TURMA1_14");
-        ods.setPassword("qwerty");
-        return  ods.getConnection();
-    }
 
     /**
      * Boolean method that checks if an organization exists in the repository, 
@@ -55,12 +50,11 @@ public class RepositorioOrganizacao implements Serializable {
      * @param organizacao
      * @return 
      */
-    public boolean createOrganizacao(Organizacao organizacao, Colaborador gestor, String password) throws SQLException {
+    public boolean insertOrganizacao(Organizacao organizacao, Colaborador gestor, String password) throws SQLException {
 
-        Connection conn = openConnection();
+        Connection conn = connectionHandler.openConnection();
 
         CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
-        ResultSet rs = null;
 
         try {
             conn.setAutoCommit(false);
@@ -77,9 +71,11 @@ public class RepositorioOrganizacao implements Serializable {
             cs.setString(10, gestor.getEmail().toString());
             cs.setString(11, password);
             cs.setInt(12, Integer.parseInt(gestor.getTelefone().toString()));
-            //rs = cs.executeQuery();
+
 
             cs.executeQuery();
+
+            cs.close();
 
             conn.commit();
 
@@ -95,11 +91,8 @@ public class RepositorioOrganizacao implements Serializable {
                 excep.getErrorCode();
             }
         }
-
         conn.close();
-        //ADICIONAR GETORGANIZACAO TO STRING;
         return false;
-
     }
 
 
@@ -114,7 +107,7 @@ public class RepositorioOrganizacao implements Serializable {
 
     public Organizacao getOrganizacaoByEmail(Email email) {
         try {
-            Connection conn = openConnection();
+            Connection conn = connectionHandler.openConnection();
             CallableStatement cs = conn.prepareCall ("{? = call getOrganizacaoByEmailColaborador(?)}");
             cs.registerOutParameter(1, Types.INTEGER);
             cs.setString(2, email.toString());
@@ -125,13 +118,20 @@ public class RepositorioOrganizacao implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Organizacao where idOrganizacao = ?");
             pstmt.setInt(1, orgID);
 
+            pstmt.close();
+            cs.close();
             return montarOrganizacao(pstmt.executeQuery());
         } catch (SQLException e) {
             throw new EmailNaoAssociadoException("Não existe nenhuma organização associada a este e-mail.");
         }
     }
 
-    public Organizacao montarOrganizacao(ResultSet row) throws SQLException {
+    public Organizacao montarOrganizacao(ResultSet row) {
+
+        Organizacao org = null;
+
+        try {
+
         row.next();
         NIF nif = new NIF(Integer.parseInt(row.getString(2)));
         Email email = new Email(row.getString(3));
@@ -139,7 +139,7 @@ public class RepositorioOrganizacao implements Serializable {
         Telefone telefone = new Telefone(Integer.parseInt(row.getString(6)));
         Website website = new Website(row.getString(7));
 
-        PreparedStatement pstmt = openConnection().prepareStatement("SELECT * FROM EnderecoPostal where idOrganizacao = ?");
+        PreparedStatement pstmt = connectionHandler.openConnection().prepareStatement("SELECT * FROM EnderecoPostal where idOrganizacao = ?");
         pstmt.setInt(1, row.getInt(1));
 
         ResultSet rset = pstmt.executeQuery();
@@ -147,7 +147,21 @@ public class RepositorioOrganizacao implements Serializable {
         rset.next();
         EnderecoPostal enderecoPostal = new EnderecoPostal(rset.getString(2), rset.getString(4), rset.getString(3));
 
-        return new Organizacao(nomeorg, nif, website, telefone, email, enderecoPostal);
+        pstmt.close();
+        org = new Organizacao(nomeorg, nif, website, telefone, email, enderecoPostal);
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+        }
+
+        if (org != null) {
+            return org;
+        } else {
+            throw new FetchingProblemException("Problema ao montar organização");
+        }
+
     }
 
     /**
