@@ -13,9 +13,9 @@ import java.io.Serializable;
  */
 public class Candidatura implements Serializable {
     
-    private Anuncio idAnuncio;
+    private CodigoUnico idAnuncio;
     
-    private Freelancer idFreelancer;
+    private CodigoUnico idFreelancer;
     
     private Data dataCandidatura;
     
@@ -25,7 +25,7 @@ public class Candidatura implements Serializable {
     private String txtMotivacao;
     
     
-    public Candidatura (Anuncio idAnuncio, Freelancer idFreelancer, 
+    public Candidatura (CodigoUnico idAnuncio, CodigoUnico idFreelancer, 
                         Data dataCandidatura, int valorPretendido, int nrDias,
                         String txtApresentacao, String txtMotivacao) {
         
@@ -41,11 +41,11 @@ public class Candidatura implements Serializable {
     }
     
     
-    public Anuncio getIdAnuncio() {
+    public CodigoUnico getIdAnuncio() {
         return this.idAnuncio;
     }
     
-    public Freelancer getIdFreelancer() {
+    public CodigoUnico getIdFreelancer() {
         return this.idFreelancer;
     }
     
@@ -54,6 +54,21 @@ public class Candidatura implements Serializable {
     }
 
     
+    public int getValorPretendido() {
+        return valorPretendido;
+    }
+    
+    public int getNrDias() {
+        return nrDias;
+    }
+    
+    public String getTxtApresentacao() {
+        return txtApresentacao;
+    }
+    
+    public String getTxtMotivacao() {
+        return txtMotivacao;
+    }
     
     
     public void setDataCandidatura(Data dataCandidatura) {
