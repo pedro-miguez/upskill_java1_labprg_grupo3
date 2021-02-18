@@ -83,7 +83,7 @@ public class PlataformaController {
      * @param email as email
      * @return the complete representation of a collaborator object by its email.
      */
-    public String getColaboradorToStringCompletoByEmail(String email) {
+    public String getColaboradorToStringCompletoByEmail(String email) throws SQLException {
         return RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(email)).toString();
     }
 

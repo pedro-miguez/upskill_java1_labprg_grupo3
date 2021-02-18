@@ -20,7 +20,7 @@
                <children>
                   <BorderPane fx:id="registarColaboradorPane" prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <GridPane fx:id="regColaboradorPane" prefHeight="195.0" prefWidth="631.0" BorderPane.alignment="CENTER">
+                        <GridPane fx:id="regColaboradorPane" prefHeight="233.0" prefWidth="674.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="102.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.0" minWidth="10.0" prefWidth="525.0" />
@@ -29,6 +29,7 @@
                               <RowConstraints maxHeight="127.0" minHeight="9.0" prefHeight="61.0" valignment="CENTER" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="64.0" valignment="CENTER" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="62.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="62.0" valignment="CENTER" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label text="Nome: ">
@@ -64,11 +65,21 @@
                                     <Insets right="230.0" />
                                  </GridPane.margin>
                               </TextField>
+                              <Label text="Função: " GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtFuncaoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
                            </children>
                         </GridPane>
                      </center>
                      <bottom>
-                        <HBox alignment="TOP_RIGHT" prefHeight="242.0" prefWidth="599.0" BorderPane.alignment="CENTER">
+                        <HBox alignment="TOP_RIGHT" prefHeight="194.0" prefWidth="449.0" BorderPane.alignment="CENTER">
                            <children>
                               <Button fx:id="btnRegistarColaborador" mnemonicParsing="false" onAction="#registarColaboradorAction" text="Registar">
                                  <HBox.margin>
