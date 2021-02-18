@@ -252,9 +252,9 @@ public class RepositorioCategoriaTarefa implements Serializable {
             while(rows.next()) {
 
                 //montar competencia tecnica
-                PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM Competenciatecnica where idCompetenciaTecnica = ?");
-                int idCompetenciatecnica = rows.getInt(1);
-                pstmt1.setInt(1, idCompetenciatecnica);
+                PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
+                String idCompetenciatecnica = rows.getString(1);
+                pstmt1.setString(1, idCompetenciatecnica);
                 competencia = montarCompetenciaTecnica(pstmt1.executeQuery(), areaAtividade);
 
                 //obrigatoriedade
@@ -266,9 +266,10 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
                 //montar grau proficiencia
                 PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ? AND nivel = ?");
-                pstmt2.setInt(1, idCompetenciatecnica);
+                pstmt2.setString(1, idCompetenciatecnica);
                 pstmt2.setInt(2, rows.getInt(4));
                 ResultSet linhaGrau = pstmt2.executeQuery();
+                linhaGrau.next();
                 grau = new GrauProficiencia(linhaGrau.getInt(2), linhaGrau.getString(3));
                 competencias.add(new CaracterizacaoCompTec(competencia, obrigatorio, grau));
             }
