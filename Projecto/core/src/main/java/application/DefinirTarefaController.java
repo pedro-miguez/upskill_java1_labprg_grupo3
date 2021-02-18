@@ -39,7 +39,7 @@ public class DefinirTarefaController {
         Tarefa tarefa = repositorioTarefa.criarTarefa(codigoUnico, designacao, descricaoInformal,
                 descricaoTecnica, duracaoHoras, custo, categoriaTarefa, org);
 
-        return repositorioTarefa.insertTarefa(tarefa);
+        return repositorioTarefa.insertTarefa(tarefa, colaboradorEmail);
 
     }
 

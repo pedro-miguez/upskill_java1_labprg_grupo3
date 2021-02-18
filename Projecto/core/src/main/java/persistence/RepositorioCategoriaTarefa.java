@@ -59,9 +59,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
             cs.setString(1, categoriaTarefa.getAreaAtividade().getCodigoUnico().toString());
             cs.setString(2, categoriaTarefa.getDescricao());
-
             cs.executeQuery();
-
             conn.commit();
 
             conn.close();
@@ -75,7 +73,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 excep.getErrorCode();
             }
         }
-
         conn.close();
         return insertCaracterizacoesCompetenciaTecnica(categoriaTarefa);
     }
@@ -85,6 +82,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
         Connection conn = connectionHandler.openConnection();
 
         ArrayList<CaracterizacaoCompTec> listaCompetencias = categoriaTarefa.getCompetenciasTecnicas();
+
 
         try {
             PreparedStatement pstmt = conn.prepareStatement("select idCategoria from CategoriaTarefa where " +
@@ -98,7 +96,9 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
 
             conn.setAutoCommit(false);
+
             CallableStatement cs = conn.prepareCall("{CALL createCaraterizacaoCompetenciaTecnica(?, ?, ?, ?)}");
+
 
             for (CaracterizacaoCompTec cpt : listaCompetencias) {
                 cs.setString(1, cpt.getCodigoUnicoCompTec().toString());
@@ -109,11 +109,11 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 cs.executeQuery();
                 cs.clearParameters();
             }
+
             cs.close();
             conn.commit();
             conn.close();
             return true;
-
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -124,7 +124,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 excep.getErrorCode();
             }
         }
-
         conn.close();
         return false;
     }
@@ -165,7 +164,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
      */
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa() throws SQLException {
         Connection conn = connectionHandler.openConnection();
-
         ArrayList<CategoriaTarefa> listaTodasCategorias = new ArrayList<>();
         ArrayList<AreaAtividade> listaTodasAreas = listarAreasAtividade();
 

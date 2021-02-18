@@ -113,7 +113,7 @@ public class PlataformaController {
      * @param codigoUnico as unique code
      * @return the complete representation of a task object by its unique code.
      */
-    public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico) {
-        return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico)).toString();
+    public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico, String emailColaborador) {
+        return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico), emailColaborador).toString();
     }
 }

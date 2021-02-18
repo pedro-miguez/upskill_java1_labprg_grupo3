@@ -121,9 +121,14 @@ public class AreaAdministrativoUI implements Initializable {
                 limparDadosAreaAtividade();
             }
 
-        } catch (IllegalArgumentException | SQLException e) {
+        } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
         }
 
     }
@@ -145,9 +150,14 @@ public class AreaAdministrativoUI implements Initializable {
                 listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
             }
 
-        } catch (IllegalArgumentException | SQLException e) {
+        } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
         }
     }
 
@@ -167,9 +177,14 @@ public class AreaAdministrativoUI implements Initializable {
                 limparDadosCompetenciaTecnica();
             }
 
-        } catch (IllegalArgumentException | SQLException e) {
+        } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
         }
 
     }
