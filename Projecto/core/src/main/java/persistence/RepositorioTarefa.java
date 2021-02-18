@@ -20,8 +20,6 @@ public class RepositorioTarefa implements Serializable {
     private static RepositorioTarefa instance;
     private ConnectionHandler connectionHandler;
 
-    public ArrayList<Tarefa> tarefasRegistadas;
-
     /**
      * Tasks that will be added (registered) in the repository.
      */
@@ -346,17 +344,29 @@ public class RepositorioTarefa implements Serializable {
     }
 
     private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
-        row.next();
         Connection conn = connectionHandler.openConnection();
-        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
-        CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
-        pstmt.setString(1, idCompetenciaTecnica.toString());
-        String descricaoBreve = row.getString(3);
-        String descricaoDetalhada = row.getString(4);
-        ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+        CompetenciaTecnica competenciaTecnica = null;
 
-        conn.close();
-        return new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+        try {
+            row.next();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
+            CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
+            pstmt.setString(1, idCompetenciaTecnica.toString());
+            String descricaoBreve = row.getString(3);
+            String descricaoDetalhada = row.getString(4);
+            ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+            competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+        }
+
+        if (competenciaTecnica != null) {
+            return competenciaTecnica;
+        } else {
+            throw new FetchingProblemException("Problema ao montar Competencia Tecnica");
+        }
     }
 
     private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {

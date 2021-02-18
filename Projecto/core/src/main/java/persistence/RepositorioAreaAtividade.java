@@ -105,18 +105,20 @@ public class RepositorioAreaAtividade implements Serializable {
         }
     }
 
-    public ArrayList<AreaAtividade> listarAreasAtividade() throws SQLException {
+    public ArrayList<AreaAtividade> listarAreasAtividade()  {
+        ArrayList<AreaAtividade> areasAtividade = new ArrayList<>();
         try {
             Connection conn = connectionHandler.openConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade");
 
-            return montarListaAreaAtividade(pstmt.executeQuery());
+            areasAtividade = montarListaAreaAtividade(pstmt.executeQuery());
         } catch (SQLException e) {
             e.printStackTrace();
             e.getSQLState();
             e.getErrorCode();
-            throw new SQLException("Erro ao listar áreas de atividade.");
         }
+
+        return areasAtividade;
     }
 
     public AreaAtividade montarAreaAtividade(ResultSet row) throws SQLException {

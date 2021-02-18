@@ -32,6 +32,7 @@ public class AreaColaboradorUI implements Initializable {
     public TextField txtCodigoUnicoTarefa;
     public TextArea txtDescricaoInformalTarefa;
     public Button btnLimparDadosTarefa;
+    public Button submeterTarefa;
 
 
     private DefinirTarefaController criarTarefaController;

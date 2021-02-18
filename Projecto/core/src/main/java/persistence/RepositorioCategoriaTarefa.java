@@ -173,19 +173,23 @@ public class RepositorioCategoriaTarefa implements Serializable {
             for (AreaAtividade a : listaTodasAreas) {
                 pstmt.setString(1, a.getCodigoUnico().toString());
 
-                listaTodasCategorias.addAll(montarListaCategoriasTarefa(pstmt.executeQuery(), a));
+                for (CategoriaTarefa cat : montarListaCategoriasTarefa(pstmt.executeQuery(), a)) {
+                    if (!listaTodasCategorias.contains(cat)) {
+                        listaTodasCategorias.add(cat);
+                    }
+                }
+
+                pstmt.clearParameters();
             }
+            conn.close();
+            pstmt.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
         }
 
+        return listaTodasCategorias;
 
-        if (listaTodasCategorias.size() != 0) {
-            return listaTodasCategorias;
-        } else {
-            throw new FetchingProblemException("Lista de categorias de tarefa vazia");
-        }
     }
 
     private CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
@@ -269,11 +273,9 @@ public class RepositorioCategoriaTarefa implements Serializable {
             e.printStackTrace();
         }
 
-        if (listaCategorias.size() != 0) {
-            return listaCategorias;
-        } else {
-            throw new FetchingProblemException("Lista de categorias de tarefas vazia");
-        }
+
+        return listaCategorias;
+
     }
 
     private ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
@@ -314,11 +316,8 @@ public class RepositorioCategoriaTarefa implements Serializable {
             e.printStackTrace();
         }
 
-        if (competencias.size() != 0) {
-            return competencias;
-        } else {
-            throw new FetchingProblemException("Lista de competencias técnicas vazia");
-        }
+        return competencias;
+
 
 
     }
@@ -364,11 +363,8 @@ public class RepositorioCategoriaTarefa implements Serializable {
             e.printStackTrace();
         }
 
-        if (listaGraus.size() != 0) {
-            return listaGraus;
-        } else {
-            throw new FetchingProblemException("Lista de graus de proficiência vazia");
-        }
+        return listaGraus;
+
     }
 
 }

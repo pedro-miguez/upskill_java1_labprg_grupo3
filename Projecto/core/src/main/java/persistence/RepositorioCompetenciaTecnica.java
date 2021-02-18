@@ -169,18 +169,14 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             String descricaoDetalhada = row.getString(4);
             ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
             competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+            conn.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
 
         }
 
-        if (competenciaTecnica != null) {
-            return competenciaTecnica;
-        } else {
-            throw new FetchingProblemException("Problema ao montar Competencia Tecnica");
-        }
-
+        return competenciaTecnica;
     }
 
     private ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
@@ -197,17 +193,17 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 ArrayList<GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
                 listaCompetencias.add(new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus));
                 pstmt.clearParameters();
+                pstmt.close();
+                conn.close();
             }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
         }
 
-        if (listaCompetencias.size() != 0) {
-            return listaCompetencias;
-        } else {
-            throw new FetchingProblemException("Lista de Competências técnicas vazia");
-        }
+
+        return listaCompetencias;
+
     }
 
     private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
@@ -224,11 +220,8 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             e.printStackTrace();
         }
 
-        if (listaGraus.size() != 0) {
-            return listaGraus;
-        } else {
-            throw new FetchingProblemException("Lista de Graus de Proficiência vazia");
-        }
+
+        return listaGraus;
 
     }
 

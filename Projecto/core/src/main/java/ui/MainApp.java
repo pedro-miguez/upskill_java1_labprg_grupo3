@@ -48,9 +48,9 @@ public class MainApp extends Application {
             screenController.addScreen("AreaAdministrativo",
                     FXMLLoader.load(getClass().getResource("/fxml/AreaAdministrativoScene.fxml")));
             screenController.addScreen("AreaColaborador",
-                    FXMLLoader.load(getClass().getResource("/fxml/AreaColaboradorOrganizacaoScene.fxml")));
+                   FXMLLoader.load(getClass().getResource("/fxml/AreaColaboradorOrganizacaoScene.fxml")));
             screenController.addScreen("AreaGestor",
-                    FXMLLoader.load(getClass().getResource("/fxml/AreaGestorOrganizacaoScene.fxml")));
+                   FXMLLoader.load(getClass().getResource("/fxml/AreaGestorOrganizacaoScene.fxml")));
 
 
             stage.setTitle(TITULO_APLICACAO);

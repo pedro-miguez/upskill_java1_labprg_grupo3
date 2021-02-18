@@ -5,6 +5,7 @@ import application.DefinirTarefaController;
 import application.PlataformaController;
 import application.RegistarColaboradorController;
 import domain.CategoriaTarefa;
+import exceptions.FetchingProblemException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
