@@ -61,12 +61,4 @@ public class DataTest {
     public void mesInvalido(){
         new Data(2021, 17, 17);
     }
-    
-    /*@Test(expected = IllegalArgumentException.class)
-    public void anoInvalido(){ new Data(0, 02, 17); }*/
-
-    //Hannibal, o ano nao tem nenhuma restricao na classe dai o teste estar sempre a falhar
-    //tambem passei os expected de string para int sem a data completa (consoante o caso so o dia ou mes ou ano) pq
-    //com a data completa tbm falhavam. de resto ta fixe grande hannibal
-    
 }
