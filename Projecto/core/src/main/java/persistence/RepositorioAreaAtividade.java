@@ -3,6 +3,7 @@ package persistence;
 import domain.*;
 import exceptions.CodigoNaoAssociadoException;
 import exceptions.EmailNaoAssociadoException;
+import exceptions.FetchingProblemException;
 import network.ConnectionHandler;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -25,36 +26,39 @@ public class RepositorioAreaAtividade implements Serializable {
     /**
      * Activity areas that will be added to the repository.
      */
-    private RepositorioAreaAtividade(){
+    private RepositorioAreaAtividade() {
         connectionHandler = new ConnectionHandler();
 
     }
 
     /**
-     * Static method that returns a unique reference to the class object, which 
+     * Static method that returns a unique reference to the class object, which
      * implements a singleton.
-     * @return 
+     *
+     * @return
      */
-    public static RepositorioAreaAtividade getInstance(){
-        if (instance == null){
+    public static RepositorioAreaAtividade getInstance() {
+        if (instance == null) {
             instance = new RepositorioAreaAtividade();
         }
         return instance;
     }
 
     /**
-     * Boolean method that checks if an area of ​​activity exists in the repository, 
+     * Boolean method that checks if an area of ​​activity exists in the repository,
      * otherwise it is added to it.
+     *
      * @param areaAtividade
-     * @return 
+     * @return
      */
     public boolean insertAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
         Connection conn = connectionHandler.openConnection();
 
-        CallableStatement cs = conn.prepareCall ("{CALL createAreaAtividade(?, ?, ?)}");
-        ResultSet rs = null;
-
         try {
+            CallableStatement cs = conn.prepareCall("{CALL createAreaAtividade(?, ?, ?)}");
+            ResultSet rs = null;
+
+
             conn.setAutoCommit(false);
 
             cs.setString(1, areaAtividade.getCodigoUnico().toString());
@@ -84,10 +88,11 @@ public class RepositorioAreaAtividade implements Serializable {
 
     /**
      * Method for obtaining an area of ​​activity using its unique code.
+     *
      * @param codigoUnico
-     * @return 
+     * @return
      */
-    public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico){
+    public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico) {
         try {
             Connection conn = connectionHandler.openConnection();
             String idAreaAtividade = codigoUnico.toString();
@@ -115,27 +120,47 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
     public AreaAtividade montarAreaAtividade(ResultSet row) throws SQLException {
-        row.next();
-        CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
-        String descricaoBreve = row.getString(2);
-        String descricaoDetalhada = row.getString(3);
 
-        return new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada);
+        AreaAtividade areaAtividade = null;
+
+        try {
+            row.next();
+            CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
+            String descricaoBreve = row.getString(2);
+            String descricaoDetalhada = row.getString(3);
+            areaAtividade = new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada);
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+        }
+        if (areaAtividade != null) {
+            return areaAtividade;
+        } else {
+            throw new FetchingProblemException("Problema ao montar área de atividade");
+        }
     }
 
     public ArrayList<AreaAtividade> montarListaAreaAtividade(ResultSet row) throws SQLException {
         ArrayList<AreaAtividade> listaAreas = new ArrayList<>();
-
-        while(row.next()) {
-            CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
-            String descricaoBreve = row.getString(2);
-            String descricaoDetalhada = row.getString(3);
-            listaAreas.add(new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada));
+        try {
+            while (row.next()) {
+                CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
+                String descricaoBreve = row.getString(2);
+                String descricaoDetalhada = row.getString(3);
+                listaAreas.add(new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada));
+            }
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
         }
 
-        return listaAreas;
+        if (listaAreas.size() != 0) {
+            return listaAreas;
+        } else {
+            throw new FetchingProblemException("Lista de áreas de atividade vazia");
+        }
     }
-
 
 
     public AreaAtividade criarAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) {
