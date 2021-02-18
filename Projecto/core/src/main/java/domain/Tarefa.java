@@ -16,7 +16,7 @@ public class Tarefa implements Serializable {
     private String designacao;
     private String descricaoInformal;
     private String descricaoTecnica;
-    private int duracaoHoras;
+    private int duracaoDias;
     private float custo;
     private CategoriaTarefa categoria;
     private Organizacao organizacao;
@@ -28,20 +28,20 @@ public class Tarefa implements Serializable {
      * @param designacao        the designation of the task
      * @param descricaoInformal the informal description of the task
      * @param descricaoTecnica  the technical description of the task
-     * @param duracaoHoras      the estimated time to complete the task
+     * @param duracaoDias      the estimated time to complete the task
      * @param custo             the estimated cost to perform the task
      * @param categoria         the task category it falls under
      * @param organizacao       the the organization that belongs
      */
     
     public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
-                  int duracaoHoras, float custo, CategoriaTarefa categoria, Organizacao organizacao) {
+                  int duracaoDias, float custo, CategoriaTarefa categoria, Organizacao organizacao) {
         this.codigoUnico = codigoUnico;
         this.organizacao = organizacao;
         setDesignacao(designacao);
         setDescricaoInformal(descricaoInformal);
         setDescricaoTecnica(descricaoTecnica);
-        setDuracaoHoras(duracaoHoras);
+        setDuracaoDias(duracaoDias);
         setCusto(custo);
         this.categoria = categoria;
     }
@@ -118,13 +118,13 @@ public class Tarefa implements Serializable {
      *
      * @return the estimated time to complete the task.
      */
-    public int getDuracaoHoras() {
-        return duracaoHoras;
+    public int getDuracaoDias() {
+        return duracaoDias;
     }
 
-    private void setDuracaoHoras(int duracaoHoras) {
-        if (duracaoHoras > 0) {
-            this.duracaoHoras = duracaoHoras;
+    private void setDuracaoDias(int duracaoDias) {
+        if (duracaoDias > 0) {
+            this.duracaoDias = duracaoDias;
         } else
             throw new IllegalArgumentException("Deve de introduzir um valor maior que zero.");
     }
@@ -163,7 +163,7 @@ public class Tarefa implements Serializable {
     public String toString(){
         return String.format("Código Único: %s%nDesignacao: %s%nDescrição Informal: %s%nDescrição Técnica: %s" +
                 "%nEstimativa de Duração: %d horas%nEstimativa de Custo: %.2f €%nCategoria Tarefa: %s", this.codigoUnico.toString(),
-                this.designacao, this.descricaoInformal, this.descricaoTecnica, this.duracaoHoras, this.custo,
+                this.designacao, this.descricaoInformal, this.descricaoTecnica, this.duracaoDias, this.custo,
                 this.categoria.getDescricao());
     }
 

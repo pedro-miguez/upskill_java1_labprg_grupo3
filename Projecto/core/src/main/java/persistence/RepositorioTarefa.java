@@ -5,6 +5,7 @@ import domain.CodigoUnico;
 import domain.Organizacao;
 import domain.Tarefa;
 import exceptions.CodigoNaoAssociadoException;
+import network.ConnectionHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class RepositorioTarefa implements Serializable {
 
     private static RepositorioTarefa instance;
+    private ConnectionHandler connectionHandler;
 
     public ArrayList<Tarefa> tarefasRegistadas;
 
@@ -23,7 +25,7 @@ public class RepositorioTarefa implements Serializable {
      * Tasks that will be added (registered) in the repository.
      */
     private RepositorioTarefa() {
-        tarefasRegistadas = new ArrayList<>();
+        connectionHandler = new ConnectionHandler();
     }
 
     /**
@@ -44,7 +46,7 @@ public class RepositorioTarefa implements Serializable {
      * @param tarefa
      * @return 
      */
-    public boolean addTarefa(Tarefa tarefa) {
+    public boolean insertTarefa(Tarefa tarefa) {
         if (this.tarefasRegistadas.contains(tarefa)) {
             return false;
         } else {

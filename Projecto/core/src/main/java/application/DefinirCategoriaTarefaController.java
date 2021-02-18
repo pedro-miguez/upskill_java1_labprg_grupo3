@@ -28,7 +28,7 @@ public class DefinirCategoriaTarefaController {
 
         CategoriaTarefa categoriaTarefa = repo.criarCategoriaTarefa(areaAtividade, descricao, competenciasTecnicas);
 
-        return repo.createCategoriaTarefa(categoriaTarefa);
+        return repo.insertCategoriaTarefa(categoriaTarefa);
     }
 
 }

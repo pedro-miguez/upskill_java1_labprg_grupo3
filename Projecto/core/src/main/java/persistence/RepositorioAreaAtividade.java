@@ -3,6 +3,7 @@ package persistence;
 import domain.*;
 import exceptions.CodigoNaoAssociadoException;
 import exceptions.EmailNaoAssociadoException;
+import network.ConnectionHandler;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.io.Serializable;
@@ -18,20 +19,14 @@ import java.util.Objects;
 public class RepositorioAreaAtividade implements Serializable {
 
     private static RepositorioAreaAtividade instance;
+    private ConnectionHandler connectionHandler;
 
-    public Connection openConnection() throws SQLException {
-        OracleDataSource ods = new OracleDataSource();
-        String url = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-        ods.setURL(url);
-        ods.setUser("UPSKILL_BD_TURMA1_14");
-        ods.setPassword("qwerty");
-        return  ods.getConnection();
-    }
 
     /**
      * Activity areas that will be added to the repository.
      */
     private RepositorioAreaAtividade(){
+        connectionHandler = new ConnectionHandler();
 
     }
 
@@ -53,8 +48,8 @@ public class RepositorioAreaAtividade implements Serializable {
      * @param areaAtividade
      * @return 
      */
-    public boolean createAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = openConnection();
+    public boolean insertAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
+        Connection conn = connectionHandler.openConnection();
 
         CallableStatement cs = conn.prepareCall ("{CALL createAreaAtividade(?, ?, ?)}");
         ResultSet rs = null;
@@ -94,7 +89,7 @@ public class RepositorioAreaAtividade implements Serializable {
      */
     public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico){
         try {
-            Connection conn = openConnection();
+            Connection conn = connectionHandler.openConnection();
             String idAreaAtividade = codigoUnico.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade where idAreaAtividade = ?");
             pstmt.setString(1, idAreaAtividade);
@@ -107,7 +102,7 @@ public class RepositorioAreaAtividade implements Serializable {
 
     public ArrayList<AreaAtividade> listarAreasAtividade() throws SQLException {
         try {
-            Connection conn = openConnection();
+            Connection conn = connectionHandler.openConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade");
 
             return montarListaAreaAtividade(pstmt.executeQuery());
