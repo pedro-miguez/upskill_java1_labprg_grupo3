@@ -175,7 +175,7 @@ public class RepositorioColaborador implements Serializable {
         if (listaColaboradores.size() != 0) {
             return listaColaboradores;
         } else {
-            throw new FetchingProblemException("Lista de Competências técnicas vazia");
+            throw new FetchingProblemException("Lista de Colaboradores vazia");
         }
     }
 
