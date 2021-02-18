@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ReconhecimentoCTTest {
+/*
 
     @Test
     public void testReconhecimentoCTValido() {
@@ -87,5 +88,6 @@ public class ReconhecimentoCTTest {
                 new GrauProficiencia(1, "Baixo"), new Data (2021, 02, 17));
     }
 
+*/
 
 }

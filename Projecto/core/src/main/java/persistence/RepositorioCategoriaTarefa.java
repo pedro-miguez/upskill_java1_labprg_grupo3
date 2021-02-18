@@ -95,7 +95,9 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 "idareaatividade = ?");
         pstmt.setString(1, categoriaTarefa.getDescricao());
         pstmt.setString(2, categoriaTarefa.getAreaAtividade().getCodigoUnico().toString());
-        int idCategoriaTarefa = pstmt.executeQuery().getInt(1);
+        ResultSet result = pstmt.executeQuery();
+        result.next();
+        int idCategoriaTarefa = result.getInt(1);
 
         ArrayList<CaracterizacaoCompTec> listaCompetencias = categoriaTarefa.getCompetenciasTecnicas();
 
@@ -147,6 +149,9 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
             return montarCategoriaTarefa(pstmt.executeQuery(), areaAtividade);
         } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
             throw new NomeNaoAssociadoException("Não existe nenhuma categoria de tarefa com esse nome.");
         }
     }

@@ -24,7 +24,7 @@ public class CategoriaTarefa implements Serializable {
     public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
         setDescricao(descricao);
         setAreaAtividade(areaAtividade);
-        this.competenciasTecnicas = new ArrayList<>();
+        this.competenciasTecnicas = new ArrayList<>(competenciasTecnicas);
     }
 
     /**

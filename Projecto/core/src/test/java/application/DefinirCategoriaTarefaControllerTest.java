@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class DefinirCategoriaTarefaControllerTest {
 
-    @Test
+    /*@Test
     public void testDefinirCategoriaTarefaValida() {
 
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
@@ -21,5 +21,5 @@ public class DefinirCategoriaTarefaControllerTest {
         DefinirCategoriaTarefaController controller = new DefinirCategoriaTarefaController();
 
         assertTrue(controller.definirCategoriaTarefa(areaAtividade, "Canalizacao", competenciasTecnicas));
-    }
+    }*/
 }

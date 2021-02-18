@@ -62,7 +62,11 @@ public class AreaGestorUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
         authController = new AuthenticationController();
         plataformaController = new PlataformaController();
-        comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         tarefaController = new DefinirTarefaController();
     }
 
@@ -167,7 +171,11 @@ public class AreaGestorUI implements Initializable {
         criarTarefaPane.setDisable(false);
 
         //popular elementos
-        comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //fazer logout
