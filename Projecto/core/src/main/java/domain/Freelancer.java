@@ -1,6 +1,9 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Current class represents the tool for creating new collaborators from an organization. This ones may have different
@@ -14,7 +17,7 @@ public class Freelancer implements Serializable {
     private Telefone telefone;
     private Email email;
     private NIF nif;
-
+    private List<ReconhecimentoCT> reconhecimento;
 
     /**
      * Instantiates a new Freelancer.
@@ -24,11 +27,12 @@ public class Freelancer implements Serializable {
      * @param email    as email
      * @param nif      as tax identification nr
      */
-    public Freelancer(String nome, Telefone telefone, Email email, NIF nif) {
+    public Freelancer(String nome, Telefone telefone, Email email, NIF nif, List<ReconhecimentoCT> reconhecimento) {
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
         setNif(nif);
+        this.reconhecimento = new ArrayList<>(reconhecimento);
     }
 
     private void setNome(String nome) {
@@ -49,6 +53,7 @@ public class Freelancer implements Serializable {
     private void setNif(NIF nif) {
         this.nif = nif;
     }
+
 
     /**
      * Gets name.
@@ -74,10 +79,26 @@ public class Freelancer implements Serializable {
 
     public NIF getNif() { return this.nif; }
 
+    public ArrayList<ReconhecimentoCT> getReconhecimento() {
+        return new ArrayList<>(reconhecimento);
+    }
+
+    private void setReconhecimento(List<ReconhecimentoCT> reconhecimento) {
+        this.reconhecimento = reconhecimento;
+    }
+
     @Override
     public String toString() {
         return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nNIF: %d",
                 this.nome, this.telefone, this.email, this.nif);
+    }
+
+    public void adicionaReconhecimentoCT(ArrayList<ReconhecimentoCT> reconhecimentoCTS){
+        for (ReconhecimentoCT reconhecimentoCT: reconhecimentoCTS) {
+            if (!this.reconhecimento.contains(reconhecimentoCT)){
+                this.reconhecimento.add(reconhecimentoCT);
+            }
+        }
     }
 
     /**
@@ -95,8 +116,9 @@ public class Freelancer implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Freelancer)) return false;
         Freelancer that = (Freelancer) o;
-        return getNome().equals(that.getNome()) && getTelefone().equals(that.getTelefone())
-                && getEmail().equals(that.getEmail()) && nif.equals(that.nif);
+        return getNome().equals(that.getNome()) && getTelefone().equals(that.getTelefone()) &&
+                getEmail().equals(that.getEmail()) && getNif().equals(that.getNif()) &&
+                getReconhecimento().equals(that.getReconhecimento());
     }
 
 }

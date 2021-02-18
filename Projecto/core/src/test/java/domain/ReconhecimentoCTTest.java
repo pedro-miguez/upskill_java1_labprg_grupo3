@@ -12,7 +12,7 @@ public class ReconhecimentoCTTest {
     @Test
     public void testReconhecimentoCTValido() {
         Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
-                new Email("colab@org.com"), new NIF(214852581));
+                new Email("colab@org.com"), new NIF(214852581), new ArrayList<>());
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
@@ -32,7 +32,7 @@ public class ReconhecimentoCTTest {
     @Test(expected = IllegalArgumentException.class)
     public void testReconhecimentoCTComDataInvalida() {
         Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
-                new Email("colab@org.com"), new NIF(214852581));
+                new Email("colab@org.com"), new NIF(214852581), new ArrayList<>());
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
@@ -47,7 +47,7 @@ public class ReconhecimentoCTTest {
     @Test(expected = IllegalArgumentException.class)
     public void testReconhecimentoCTComGrauProficienciaInvalido() {
         Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
-                new Email("colab@org.com"), new NIF(214852581));
+                new Email("colab@org.com"), new NIF(214852581), new ArrayList<>());
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
@@ -62,7 +62,7 @@ public class ReconhecimentoCTTest {
     @Test(expected = IllegalArgumentException.class)
     public void testReconhecimentoCTComGrauProficienciaInvalido2() {
         Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
-                new Email("colab@org.com"), new NIF(214852581));
+                new Email("colab@org.com"), new NIF(214852581), new ArrayList<>());
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
@@ -77,7 +77,7 @@ public class ReconhecimentoCTTest {
     @Test
     public void testEqualsTrue() {
         Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
-                new Email("colab@org.com"), new NIF(214852581));
+                new Email("colab@org.com"), new NIF(214852581), new ArrayList<>());
 
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
