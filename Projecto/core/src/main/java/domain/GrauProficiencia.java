@@ -14,7 +14,7 @@ public class GrauProficiencia {
         return nivel;
     }
 
-    public void setNivel(int nivel) {
+    private void setNivel(int nivel) {
         if (nivel > 0) {
             this.nivel = nivel;
         } else
@@ -25,7 +25,7 @@ public class GrauProficiencia {
         return designacao;
     }
 
-    public void setDesignacao(String designacao) {
+    private void setDesignacao(String designacao) {
         if (designacao == null || designacao.trim().isEmpty()) {
             throw new IllegalArgumentException("Designação inválida!! A designação não pode estar vazia.");
         } else
