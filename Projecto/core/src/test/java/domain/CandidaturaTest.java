@@ -31,4 +31,81 @@ public class CandidaturaTest {
         
     }
     
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComIdAnuncioInvalido() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CADT-02"),
+                            new CodigoUnico("FRL-21"),
+                            new Data(2021, 02, 18),
+                            1200, 90, "Projeto novo", "Novos desafios");
+        
+    }
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComIdFreelancerInvalido() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
+                            new CodigoUnico("FRL-212"),
+                            new Data(2021, 02, 18),
+                            1200, 90, "Projeto novo", "Novos desafios");
+        
+    }
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComDataInvalida() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
+                            new CodigoUnico("FRL-21"),
+                            new Data(2021, 18, 51),
+                            1200, 90, "Projeto novo", "Novos desafios");
+        
+    }
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComValorInvalido() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
+                            new CodigoUnico("FRL-21"),
+                            new Data(2021, 02, 18),
+                            0, 90, "Projeto novo", "Novos desafios");
+        
+    }
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComNrDiasInvalido() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
+                            new CodigoUnico("FRL-21"),
+                            new Data(2021, 02, 18),
+                            1200, 0, "Projeto novo", "Novos desafios");
+        
+    }
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComApresentacaoInvalida() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
+                            new CodigoUnico("FRL-21"),
+                            new Data(2021, 02, 18),
+                            1200, 90, " ", "Novos desafios");
+        
+    }
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateCandidaturaComMotivacaoInvalida() {
+        
+        Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
+                            new CodigoUnico("FRL-21"),
+                            new Data(2021, 02, 18),
+                            1200, 90, "Projeto novo", " ");
+        
+    }
+    
 }
