@@ -39,7 +39,7 @@ public class HabilitacaoAcademica implements Serializable {
     }
 
     private void setMediaCurso(double mediaCurso) {
-        if (mediaCurso < 0 || mediaCurso > 20) {
+        if (mediaCurso < 9.5 || mediaCurso > 20) {
             throw new IllegalArgumentException("Número de telefone inválido");
         } else {
         }
@@ -64,7 +64,7 @@ public class HabilitacaoAcademica implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Freelancer: %s%Grau: %s%nDesignacaoCurso: %s%NomeInstituicao: %s%nMediaCurso: %d",
+        return String.format("Habilitacao Academica: %s%Grau: %s%nDesignacaoCurso: %s%NomeInstituicao: %s%nMediaCurso: %d",
                 this.grau, this.designacaoCurso, this.nomeInstituicao, this.mediaCurso);
     }
 
