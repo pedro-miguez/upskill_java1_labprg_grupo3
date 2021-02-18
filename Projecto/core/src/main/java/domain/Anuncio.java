@@ -59,20 +59,37 @@ public class Anuncio implements Serializable {
          
     }
 
+    
     public void setDataInicioCandidatura(Data dataInicioCandidatura) {
         this.dataInicioCandidatura = dataInicioCandidatura;
     }
 
     public void setDataFimCandidatura(Data dataFimCandidatura) {
-        this.dataFimCandidatura = dataFimCandidatura;
+        if ((dataFimCandidatura.getDia() < dataInicioCandidatura.getDia()) && 
+            (dataFimCandidatura.getMes() < dataInicioCandidatura.getMes()) &&
+            (dataFimCandidatura.getAno() < dataInicioCandidatura.getAno())) {
+            throw new IllegalArgumentException("A data de fim de candidatura "
+                    + "não deve ser inferior à data de início de candidatura!");
+        } else {
+            this.dataFimCandidatura = dataFimCandidatura;
+        }
     }
 
+    
     public void setDataInicioSeriacao(Data dataInicioSeriacao) {
         this.dataInicioSeriacao = dataInicioSeriacao;
     }
 
     public void setDataFimSeriacao(Data dataFimSeriacao) {
-        this.dataFimSeriacao = dataFimSeriacao;
+        
+        if ((dataFimSeriacao.getDia() < dataInicioSeriacao.getDia()) && 
+            (dataFimSeriacao.getMes() < dataInicioSeriacao.getMes()) &&
+            (dataFimSeriacao.getAno() < dataInicioSeriacao.getAno())) {
+            throw new IllegalArgumentException("A data de fim de seriação "
+                    + "não deve ser inferior à data de início de seriação!");
+        } else {
+            this.dataFimSeriacao = dataFimSeriacao;
+        }
     }
     
     

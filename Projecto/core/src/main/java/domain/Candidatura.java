@@ -53,6 +53,9 @@ public class Candidatura implements Serializable {
     }
     
     
+    
+    
+    
     private void setValorPretendido(int valorPretendido) {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
