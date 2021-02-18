@@ -40,6 +40,19 @@ public class Candidatura implements Serializable {
     }
     
     
+    public Anuncio getIdAnuncio() {
+        return this.idAnuncio;
+    }
+    
+    public Freelancer getIdFreelancer() {
+        return this.idFreelancer;
+    }
+    
+    public Data getDataCandidatura() {
+        return this.dataCandidatura;
+    }
+    
+    
     private void setValorPretendido(int valorPretendido) {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
@@ -66,6 +79,28 @@ public class Candidatura implements Serializable {
             throw new IllegalArgumentException("Motivação inválida!! Este campo não pode estar vazio.");
         } else
             this.txtMotivacao = txtMotivacao;
+    }
+    
+    
+    public String toString(){
+        return String.format("ID Anúncio: %s%nID Freelancer: %s%n" +
+                "Data Candidatura: %s%nValor pretendido: %s" +
+                "%nN.º de dias: %d Apresentação:%n" + 
+                "Motivação: %s", this.idAnuncio, this.idFreelancer,
+                this.dataCandidatura, this.valorPretendido, this.nrDias,
+                this.txtApresentacao, this.txtMotivacao);
+    }
+    
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Candidatura)) return false;
+
+        Candidatura candid = (Candidatura) o;
+
+        if (!getIdAnuncio().equals(candid.getIdAnuncio())) return false;
+        return getIdFreelancer().equals(candid.getIdFreelancer());
     }
     
 }

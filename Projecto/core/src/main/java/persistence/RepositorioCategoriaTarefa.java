@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.*;
+import exceptions.CodigoNaoAssociadoException;
 import exceptions.NomeNaoAssociadoException;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -136,11 +137,17 @@ public class RepositorioCategoriaTarefa implements Serializable {
      * @return the matching task category
      */
     public CategoriaTarefa getCategoriaTarefaByDescricaoAndAreaAtividade(String descricao, AreaAtividade areaAtividade){
-        for (CategoriaTarefa catt : categoriasTarefas) {
-            if(catt.getDescricao() != null && catt.getDescricao().equals(descricao)) {
-                return catt;
-            }
-        } throw new NomeNaoAssociadoException("Não existe nenhuma categoria de tarefa com esse nome.");
+        try {
+            Connection conn = openConnection();
+            String idAreaAtividade = areaAtividade.getCodigoUnico().toString();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CategoriaTarefa where descricao = ? AND idAreaAtividade = ?");
+            pstmt.setString(1, descricao);
+            pstmt.setString(2, idAreaAtividade);
+
+            return montarCategoriaTarefa(pstmt.executeQuery(), areaAtividade);
+        } catch (SQLException e) {
+            throw new NomeNaoAssociadoException("Não existe nenhuma categoria de tarefa com esse nome.");
+        }
     }
 
     public CategoriaTarefa criarCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
@@ -155,6 +162,48 @@ public class RepositorioCategoriaTarefa implements Serializable {
      */
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa(){
         return  new ArrayList<>(this.categoriasTarefas);
+    }
+
+    private CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+        row.next();
+        Connection conn = openConnection();
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CaraterizacaoCompetenciaTecnica where idCategoria = ?");
+        int idCategoriaTarefa = row.getInt(1);
+        pstmt.setInt(1, idCategoriaTarefa);
+        String descricao = row.getString(3);
+        ArrayList <CaracterizacaoCompTec> competencias = montarlistaCaracterizacaoCompetenciaTecnica(pstmt.executeQuery());
+
+        return new CategoriaTarefa(areaAtividade, descricao, competencias);
+    }
+
+    private ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows) throws SQLException {
+            ArrayList<CaracterizacaoCompTec> competencias = new ArrayList<>();
+            boolean obrigatorio;
+            CompetenciaTecnica competencia;
+            GrauProficiencia grau;
+
+            while(rows.next()) {
+
+                //montar competencia tecnica
+
+
+                //obrigatoriedade
+                if (rows.getString(3).equals("OBR")) {
+                    obrigatorio = true;
+                } else {
+                    obrigatorio = false;
+                }
+
+                //montar grau proficiencia
+
+
+
+
+                competencias.add(new CaracterizacaoCompTec(competencia, obrigatorio, grau));
+            }
+
+            return competencias;
+        }
     }
 
 }
