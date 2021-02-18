@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -26,6 +27,7 @@ public class AreaGestorUI implements Initializable {
     public TextField txtNomeColaborador;
     public TextField txtContactoColaborador;
     public TextField txtEmailColaborador;
+    public TextField txtFuncaoColaborador;
 
 
     //Criar Tarefa Elements
@@ -67,12 +69,10 @@ public class AreaGestorUI implements Initializable {
     //Registar Colaborador
     @FXML
     void registarColaboradorAction(ActionEvent event) {
-/*        try {
+       try {
             boolean registou = registarColaboradorController.registarColaborador(txtNomeColaborador.getText().trim(),
                     Integer.parseInt(txtContactoColaborador.getText().trim()),
-                    txtEmailColaborador.getText().trim(),
-                    authController.getEmail()
-            );
+                    txtEmailColaborador.getText().trim(), txtFuncaoColaborador.getText().trim(), authController.getEmail());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
                     registou ? "Colaborador criado com sucesso! \n\n" +
@@ -89,7 +89,9 @@ public class AreaGestorUI implements Initializable {
         } catch (IllegalArgumentException iae) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
-        }*/
+        } catch (SQLException throwables) {
+           throwables.printStackTrace();
+       }
     }
 
     //Criar Tarefa
