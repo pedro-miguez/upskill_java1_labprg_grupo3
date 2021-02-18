@@ -15,7 +15,7 @@ public class Anuncio implements Serializable {
     
     //private int idAnuncio;
     
-    private Tarefa idTarefa;
+    private CodigoUnico idTarefa;
     
     private Data dataInicioPublicitacao;
     private Data dataFimPublicitacao;
@@ -25,7 +25,7 @@ public class Anuncio implements Serializable {
     private Data dataFimSeriacao;
     
     
-    public Anuncio (Tarefa idTarefa, Data dataInicioPublicitacao,
+    public Anuncio (CodigoUnico idTarefa, Data dataInicioPublicitacao,
                     Data dataFimPublicitacao, Data dataInicioCandidatura,
                     Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao) {
         
@@ -41,9 +41,43 @@ public class Anuncio implements Serializable {
         this.dataFimSeriacao = dataFimSeriacao;
         
     }
+
+    
+    public void setDataInicioPublicitacao(Data dataInicioPublicitacao) {
+        this.dataInicioPublicitacao = dataInicioPublicitacao;
+    }
+
+    public void setDataFimPublicitacao(Data dataFimPublicitacao) {
+        if ((dataFimPublicitacao.getDia() < dataInicioPublicitacao.getDia()) && 
+            (dataFimPublicitacao.getMes() < dataInicioPublicitacao.getMes()) &&
+            (dataFimPublicitacao.getAno() < dataInicioPublicitacao.getAno())) {
+            throw new IllegalArgumentException("A data de fim de publicitação "
+                    + "não deve ser inferior à data de início de publicitação!");
+        } else {
+            this.dataFimPublicitacao = dataFimPublicitacao;
+        }
+         
+    }
+
+    public void setDataInicioCandidatura(Data dataInicioCandidatura) {
+        this.dataInicioCandidatura = dataInicioCandidatura;
+    }
+
+    public void setDataFimCandidatura(Data dataFimCandidatura) {
+        this.dataFimCandidatura = dataFimCandidatura;
+    }
+
+    public void setDataInicioSeriacao(Data dataInicioSeriacao) {
+        this.dataInicioSeriacao = dataInicioSeriacao;
+    }
+
+    public void setDataFimSeriacao(Data dataFimSeriacao) {
+        this.dataFimSeriacao = dataFimSeriacao;
+    }
     
     
-    public Tarefa getIdTarefa() {
+    
+    public CodigoUnico getIdTarefa() {
         return this.idTarefa;
     }
     
