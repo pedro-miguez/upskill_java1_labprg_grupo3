@@ -1,11 +1,13 @@
 package domain;
 
-public class ReconhecimentoCT {
+import java.io.Serializable;
 
-    CompetenciaTecnica competenciaTecnica;
-    Freelancer freelancer;
-    GrauProficiencia grauProficiencia;
-    Data dataReconhecimento;
+public class ReconhecimentoCT implements Serializable {
+
+    private CompetenciaTecnica competenciaTecnica;
+    private Freelancer freelancer;
+    private GrauProficiencia grauProficiencia;
+    private Data dataReconhecimento;
 
     public ReconhecimentoCT(CompetenciaTecnica competenciaTecnica, Freelancer freelancer, GrauProficiencia grauProficiencia, Data dataReconhecimento) {
         setCompetenciaTecnica(competenciaTecnica);
@@ -30,19 +32,19 @@ public class ReconhecimentoCT {
         return dataReconhecimento;
     }
 
-    public void setCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
+    private void setCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
         this.competenciaTecnica = competenciaTecnica;
     }
 
-    public void setFreelancer(Freelancer freelancer) {
+    private void setFreelancer(Freelancer freelancer) {
         this.freelancer = freelancer;
     }
 
-    public void setGrauProficiencia(GrauProficiencia grauProficiencia) {
+    private void setGrauProficiencia(GrauProficiencia grauProficiencia) {
         this.grauProficiencia = grauProficiencia;
     }
 
-    public void setDataReconhecimento(Data dataReconhecimento) {
+    private void setDataReconhecimento(Data dataReconhecimento) {
         this.dataReconhecimento = dataReconhecimento;
     }
 

@@ -1,7 +1,9 @@
-/*
+
 package domain;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +16,7 @@ public class CaracterizacaoCompTecTest {
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "Programação Java", "Programação muito boa em Java");
+                "Programação Java", "Programação muito boa em Java", new ArrayList<>());
 
         CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, new GrauProficiencia(1, "Baixo"));
 
@@ -31,7 +33,7 @@ public class CaracterizacaoCompTecTest {
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "", "Programação muito boa em Java");
+                "", "Programação muito boa em Java", new ArrayList<>());
 
         CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, new GrauProficiencia(3, "Alto"));
     }
@@ -42,7 +44,7 @@ public class CaracterizacaoCompTecTest {
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "Programação Java", "");
+                "Programação Java", "", new ArrayList<>());
 
         CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, new GrauProficiencia(3, "Alto"));
     }
@@ -53,8 +55,8 @@ public class CaracterizacaoCompTecTest {
                 "Programação de Jogos", "Programação de variados jogos em JAVA");
 
         CompetenciaTecnica ct = new CompetenciaTecnica(new CodigoUnico("JAV-01"), areaAtividade,
-                "Programação Java", "");
+                "Programação Java", "", new ArrayList<>());
 
         CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, false, new GrauProficiencia(3, "Alto"));
     }
-}*/
+}

@@ -1,3 +1,4 @@
+/*
 package persistence;
 
 import static org.junit.Assert.*;
@@ -69,4 +70,4 @@ public class RepositorioUtilizadorTest {
     public void testGetUtilizadorByNameInvalido() {
         RepositorioUtilizador.getInstance().getUserByUsername("123");
     }
-}
+}*/
