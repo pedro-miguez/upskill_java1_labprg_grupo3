@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AreaColaboradorUI implements Initializable {
@@ -42,7 +43,11 @@ public class AreaColaboradorUI implements Initializable {
         criarTarefaController = new DefinirTarefaController();
         plataformaController = new PlataformaController();
         authenticationController = new AuthenticationController();
-        comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //método para submeter a criação de tarefa
@@ -77,7 +82,11 @@ public class AreaColaboradorUI implements Initializable {
     }
 
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
-        comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        try {
+            comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //logout
