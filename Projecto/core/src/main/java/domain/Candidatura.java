@@ -13,9 +13,9 @@ import java.io.Serializable;
  */
 public class Candidatura implements Serializable {
     
-    private CodigoUnico idAnuncio;
+    private CodigoUnico idAnuncio; //Mudar para private Anuncio anuncio
     
-    private CodigoUnico idFreelancer;
+    private CodigoUnico idFreelancer; //mudar para private Freelancer freelancer
     
     private Data dataCandidatura;
     

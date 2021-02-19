@@ -60,14 +60,14 @@ public class RepositorioColaborador implements Serializable {
             int orgID = cs1.getInt(1);
 
             CallableStatement cs2 = conn.prepareCall("{CALL createUtilizadorColaborador(?, ?, ?, ?, ?, ?)}");
-            cs1.setString(1, colaborador.getNome());
-            cs1.setString(2, colaborador.getEmail().toString());
-            cs1.setString(3, password);
-            cs1.setInt(4, Integer.parseInt(colaborador.getTelefone().toString()));
-            cs1.setString(5, colaborador.getFuncao());
-            cs1.setInt(6, orgID);
+            cs2.setString(1, colaborador.getNome());
+            cs2.setString(2, colaborador.getEmail().toString());
+            cs2.setString(3, password);
+            cs2.setInt(4, Integer.parseInt(colaborador.getTelefone().toString()));
+            cs2.setString(5, colaborador.getFuncao());
+            cs2.setInt(6, orgID);
 
-            cs1.executeQuery();
+            cs2.executeQuery();
 
             conn.commit();
 

@@ -77,6 +77,8 @@ public class AreaAdministrativoUI implements Initializable {
     private PlataformaController plataformaController;
     private AuthenticationController authenticationController;
 
+    static int grauCounter = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //inicializar controllers
@@ -99,6 +101,8 @@ public class AreaAdministrativoUI implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+
 
 
     }
@@ -148,6 +152,7 @@ public class AreaAdministrativoUI implements Initializable {
             if (adicionou) {
                 limparDadosCategoriaTarefa();
                 listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
+                grauCounter = 0;
             }
 
         } catch (IllegalArgumentException e) {
@@ -175,6 +180,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             if (adicionou) {
                 limparDadosCompetenciaTecnica();
+                listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
             }
 
         } catch (IllegalArgumentException e) {

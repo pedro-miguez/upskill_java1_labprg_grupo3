@@ -15,7 +15,10 @@ public class Anuncio implements Serializable {
     
     //private int idAnuncio;
     
-    private CodigoUnico idTarefa;
+    private CodigoUnico idTarefa; //mudar para Tarefa tarefa
+
+    //private TipoRegimento tipoRegimento;
+
     
     private Data dataInicioPublicitacao;
     private Data dataFimPublicitacao;
@@ -23,6 +26,7 @@ public class Anuncio implements Serializable {
     private Data dataFimCandidatura;
     private Data dataInicioSeriacao;
     private Data dataFimSeriacao;
+    //
     
     
     public Anuncio (CodigoUnico idTarefa, Data dataInicioPublicitacao,

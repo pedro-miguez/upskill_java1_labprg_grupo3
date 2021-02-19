@@ -18,6 +18,7 @@ public class Freelancer implements Serializable {
     private Email email;
     private NIF nif;
     private List<ReconhecimentoCT> reconhecimento;
+    //private List<HabilitacaoAcademica>
 
     /**
      * Instantiates a new Freelancer.
