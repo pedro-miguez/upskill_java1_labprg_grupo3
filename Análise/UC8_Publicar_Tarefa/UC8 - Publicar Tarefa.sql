@@ -14,3 +14,29 @@ insert into Anuncio(IdTarefa, dataInicioPublicitacao, dataFimPublicitacao, dataI
                     p_dataInicioCand, p_dataFimCand, p_dataInicioSer, p_dataFimSer); 
 end;
 /
+
+create or replace function getAnunciobyRefTarefa_IdOrg in p_refTarefa in p_IdOrg(
+
+    p_refTarefa tarefa.ReferenciaTarefa%type,
+    p_IdOrg organizacao.IdOrganizacao%type
+
+)
+
+return int 
+
+is
+
+v_idT int;
+
+v_idA int;
+
+begin
+
+select idTarefa into v_idT from Tarefa where ReferenciaTarefa = p_refTarefa and IdOrganizacao = p_IdOrg;
+
+select idAnuncio into v_idA from Anuncio where IdTarefa = v_idT;
+
+return v_idA;
+
+end;
+/
