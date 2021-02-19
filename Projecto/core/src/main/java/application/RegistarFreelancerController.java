@@ -9,6 +9,7 @@ import domain.*;
 import persistence.RepositorioFreelancer;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,31 +19,14 @@ public class RegistarFreelancerController {
     
     private AuthenticationController authController = new AuthenticationController();
 
-    /**
-     * Freelancer Registry boolean.
-     *
-     * @param nomeFreelancer     as freelancer name
-     * @param nifFreelancer as freelancer contact
-     * @param moradaFreelancer    as freelancer adress
-     * @param contactoFreelancer         as freelancer contact
-     * @param emailFreelancer         as freelancer email
-     * @return the boolean
-     */
-
-    public boolean registarFreelancer(String nomeFreelancer, int nifFreelancer, 
-                                        String moradaFreelancer, 
-                                        int contactoFreelancer, 
-                                        String emailFreelancer) throws SQLException {
+    public boolean registarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
+                                      List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioFreelancer repoFlr = RepositorioFreelancer.getInstance();
 
-        Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, 
-                                                        nifFreelancer, 
-                                                        moradaFreelancer, 
-                                                        contactoFreelancer,
-                                                        emailFreelancer);
-
+        Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer,
+                                                            reconhecimento, habilitacoes );
         String password = authController.registarFreelancerComoUtilizador(freelancer);
         System.out.println(password);
 

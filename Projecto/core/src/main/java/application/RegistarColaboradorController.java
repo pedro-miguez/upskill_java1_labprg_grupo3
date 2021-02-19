@@ -30,7 +30,8 @@ public class RegistarColaboradorController {
      * @return the boolean
      */
 
-    public boolean registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String funcao, String gestorEmail) throws SQLException {
+    public boolean registarColaborador(String nomeColaborador, int contactoColaborador,
+                                       String emailColaborador, String funcao, String gestorEmail) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioColaborador repoColab = RepositorioColaborador.getInstance();
