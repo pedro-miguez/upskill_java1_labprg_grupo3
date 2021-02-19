@@ -90,15 +90,24 @@ public class RepositorioAnuncio {
 
             int idOrganizacao = cs1.getInt("idOrganizacao");
 
-            CallableStatement cs2 = conn.prepareCall("{getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            CallableStatement cs2 = conn.prepareCall("{? = getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            cs2.registerOutParameter(1, Types.INTEGER);
+            cs2.setString(2, refTarefa);
+            cs2.setInt(3, idOrganizacao);
+            
+            int idAnuncio = cs2.getInt(1);
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Freelancer where Email = ?");
-            pstmt.setString(1, emailFreelancer);
-
-            return montarFreelancer(pstmt.executeQuery());
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Anuncio where idAnuncio = ?");
+            pstmt.setInt(1, idAnuncio);
+            
+            return montarAnuncio(pstmt.executeQuery());
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhum freelancer com esse email.");
         }
+    }
+
+    private Anuncio montarAnuncio(ResultSet executeQuery) {
+
     }
 
 }
