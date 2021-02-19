@@ -184,14 +184,14 @@ end;
 /
 
 create or replace procedure createReconhecimentoCT(
-  p_idFreelancer Freelancer.idFreelancer%type
+  p_idFreelancer Utilizador.idUtilizador%type
 , p_idCompetenciaTecnica CompetenciaTecnica.idCompetenciaTecnica%type
 , p_nivelGrauProficiencia GrauProficiencia.nivel%type
 , p_dataReconhecimento ReconhecimentoCT.dataReconhecimento%type
 )
 is
 begin
-insert into ReconhecimentoCT(idCompetenciaTecnica, idFreelancer, nivelGrauProficiencia, dataReconhecimento) 
+insert into ReconhecimentoCT(idFreelancer, idCompetenciaTecnica, nivelGrauProficiencia, dataReconhecimento) 
  values(p_idFreelancer, p_idCompetenciaTecnica, p_nivelGrauProficiencia, p_dataReconhecimento);
 
 end;

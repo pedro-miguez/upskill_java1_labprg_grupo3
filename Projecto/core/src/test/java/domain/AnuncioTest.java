@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * @author Grupo 3
  */
 public class AnuncioTest {
-    
+ /*
     @Test
     public void testCreateAnuncioValido() {
         
@@ -47,5 +47,5 @@ public class AnuncioTest {
                                     new Data(2021, 06, 30));
         
     }
-    
+    */
 }

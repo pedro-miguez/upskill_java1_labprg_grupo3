@@ -5,6 +5,7 @@ import exceptions.CodigoNaoAssociadoException;
 import exceptions.FetchingProblemException;
 import network.ConnectionHandler;
 
+import javax.xml.transform.Result;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class RepositorioFreelancer implements Serializable {
             csFreelancerIdByEmail.setString(2, freelancer.getEmail().toString());
             csFreelancerIdByEmail.executeUpdate();
 
-            int idFreelancer = csFreelancerIdByEmail.getInt("idFreelancer");
+            int idFreelancer = csFreelancerIdByEmail.getInt(1);
 
             CallableStatement csCreateHabilitacaoAcademica = conn.prepareCall(
                     "{CALL createHabilitacaoAcademica(?, ?, ?, ? ,?)}");
@@ -131,26 +132,6 @@ public class RepositorioFreelancer implements Serializable {
 
     }
 
-    public ArrayList<Colaborador> getColaboradoresOrganizacaoByEmail(Email email){
-        try {
-            Connection conn = connectionHandler.openConnection();
-
-            CallableStatement cs = conn.prepareCall("SELECT idOrganizacao FROM Colaborador WHERE email = ?");
-            cs.setString(1, email.toString());
-
-            int orgID = cs.getInt("idOrganizacao");
-
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Colaborador WHERE idOrganizacao = ?");
-            pstmt.setInt(1, orgID);
-
-            return montarListaColaboradores(pstmt.executeQuery());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getSQLState();
-            e.getErrorCode();
-            throw new FetchingProblemException("Erro ao listar colaboradores.");
-        }
-    }
 
     public Freelancer montarFreelancer(ResultSet row) throws SQLException {
         Freelancer freelancer = null;
@@ -171,11 +152,11 @@ public class RepositorioFreelancer implements Serializable {
 
             PreparedStatement pstmt2 = conn.prepareStatement(
                     "SELECT * FROM ReconhecimentoCT WHERE idFreelancer = ?");
-            pstmt.setInt(1, row.getInt("idFreelancer"));
+            pstmt2.setInt(1, row.getInt("idFreelancer"));
             ArrayList<ReconhecimentoCT> reconhecimentoCTS = montarListaReconhecimentoCT(pstmt2.executeQuery());
 
 
-            freelancer = new Freelancer(nome, telefone, email, nif, habilitacaoAcademicas, reconhecimentoCTS );
+            freelancer = new Freelancer(nome, telefone, email, nif, reconhecimentoCTS, habilitacaoAcademicas );
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -190,15 +171,56 @@ public class RepositorioFreelancer implements Serializable {
 
     }
 
-    private ArrayList<ReconhecimentoCT> montarListaReconhecimentoCT(ResultSet rows) {
+    public ArrayList<ReconhecimentoCT> montarListaReconhecimentoCT(ResultSet rows) throws SQLException {
         ArrayList<ReconhecimentoCT> listaReconhecimentoCT = new ArrayList<>();
+        Connection conn = connectionHandler.openConnection();
 
         try {
             while (rows.next()) {
-                CompetenciaTecnica ct =
+                //Montar Área Atividade
+                PreparedStatement pstmt = conn.prepareStatement(
+                        "SELECT idAreaAtividade FROM CompetenciaTecnica WHERE idCompetenciaTecnica = ?");
+                pstmt.setString(1, rows.getString("idCompetenciaTecnica"));
+                ResultSet rSetAreaAtividade = pstmt.executeQuery();
+                rSetAreaAtividade.next();
+                String idAreaAtividade = rSetAreaAtividade.getString("idAreaAtividade");
+
+                PreparedStatement pstmt2 = conn.prepareStatement(
+                        "SELECT * FROM AreaAtividade WHERE idAreaAtividade = ?");
+                pstmt2.setString(1, idAreaAtividade);
+
+                AreaAtividade areaAtividade = RepositorioAreaAtividade.getInstance().montarAreaAtividade(pstmt2.executeQuery());
+
+                //Montar Competência Técnica
+                PreparedStatement pstmt3 = conn.prepareStatement(
+                        "SELECT * FROM CompetenciaTecnica WHERE idCompetenciatecnica = ?");
+                pstmt3.setString(1, rows.getString("idCompetenciaTecnica"));
 
 
-                listaReconhecimentoCT.add(new ReconhecimentoCT(CompetenciaTecnica, GrauProficiencia, dataReconhecimento));
+                CompetenciaTecnica ct = RepositorioCompetenciaTecnica.getInstance().montarCompetenciaTecnica(
+                        pstmt3.executeQuery(), areaAtividade);
+
+                //Montar Grau Proficiência
+                PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ? AND nivel = ?");
+                pstmt4.setString(1, rows.getString("idCompetenciaTecnica"));
+                pstmt4.setInt(2, rows.getInt(4));
+                ResultSet linhaGrau = pstmt4.executeQuery();
+                linhaGrau.next();
+                GrauProficiencia grauProficiencia = new GrauProficiencia(linhaGrau.getInt(2), linhaGrau.getString(3));
+
+                //data
+                java.sql.Date data = rows.getDate("dataReconhecimento");
+                String[] dataString = data.toString().split("-");
+
+                Data dataReconhecimento = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
+                        , Integer.parseInt(dataString[2]));
+                listaReconhecimentoCT.add(new ReconhecimentoCT(ct, grauProficiencia, dataReconhecimento));
+
+                pstmt.clearParameters();
+                pstmt2.clearParameters();
+                pstmt3.clearParameters();
+                pstmt4.clearParameters();
+                rSetAreaAtividade.close();
             }
         }catch (SQLException e) {
             e.getSQLState();
