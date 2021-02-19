@@ -9,6 +9,7 @@ import javax.xml.transform.Result;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class responsible for creating a repository to store information about
@@ -250,11 +251,13 @@ public class RepositorioFreelancer implements Serializable {
         return listaHabilitacoes;
     }
 
+    public Freelancer criarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
+                                       List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) {
 
-    public Colaborador criarColaborador(String nomeColaborador, int contactoColaborador,
-                                        String emailColaborador, String funcao) {
-        return new Colaborador(nomeColaborador, new Telefone(contactoColaborador),
-                new Email(emailColaborador), funcao);
-    }
+
+        return new Freelancer(nomeFreelancer, new Telefone(contactoFreelancer), new Email(emailFreelancer), new NIF(nifFreelancer),
+                 reconhecimento, habilitacoes);
 
 }
+}
+

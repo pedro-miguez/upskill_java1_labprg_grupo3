@@ -76,7 +76,7 @@ public class AuthenticationController {
     }
 
     /**
-     * Allows to register a new user not as a manager.
+     * Allows to register a new user not as a colaborator.
      *
      * @param colaborador as colaborator
      * @return the boolean
@@ -92,6 +92,23 @@ public class AuthenticationController {
         UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
 
         if (uapi.registerUserWithRoles(nome, email, password, "colaborador")) {
+            return password;
+        } else {
+            return "failed";
+        }
+    }
+
+    public String registarFreelancerComoUtilizador(Freelancer freelancer) {
+        String nome = freelancer.getNome();
+        String email = freelancer.getEmail().toString();
+
+        AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
+        String password = alg.geraPassword();
+        System.out.println(password);
+
+        UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
+
+        if (uapi.registerUserWithRoles(nome, email, password, "freelancer")) {
             return password;
         } else {
             return "failed";
