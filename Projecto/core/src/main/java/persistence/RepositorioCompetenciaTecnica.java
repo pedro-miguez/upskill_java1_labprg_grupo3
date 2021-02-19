@@ -156,7 +156,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         }
     }
 
-    private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+    public CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         CompetenciaTecnica competenciaTecnica = null;
 
@@ -179,7 +179,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         return competenciaTecnica;
     }
 
-    private ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
+    public ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         ArrayList<CompetenciaTecnica> listaCompetencias = new ArrayList<>();
         Connection conn = connectionHandler.openConnection();
 
@@ -206,7 +206,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
 
     }
 
-    private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
+    public ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
         ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
 
         try {

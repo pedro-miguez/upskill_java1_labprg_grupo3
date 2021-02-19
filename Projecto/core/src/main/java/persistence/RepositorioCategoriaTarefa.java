@@ -189,7 +189,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     }
 
-    private CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+    public CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
 
         Connection conn = connectionHandler.openConnection();
         CategoriaTarefa categoriaTarefa = null;
@@ -250,7 +250,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
 
-    private ArrayList<CategoriaTarefa> montarListaCategoriasTarefa(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
+    public ArrayList<CategoriaTarefa> montarListaCategoriasTarefa(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         ArrayList<CategoriaTarefa> listaCategorias = new ArrayList<>();
         try {
@@ -274,7 +274,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     }
 
-    private ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
+    public ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         ArrayList<CaracterizacaoCompTec> competencias = new ArrayList<>();
         boolean obrigatorio;
@@ -315,7 +315,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
         return competencias;
     }
 
-    private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+    public CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         CompetenciaTecnica competenciaTecnica = null;
         try {
@@ -342,7 +342,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     }
 
-    private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) {
+    public ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) {
         ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
         try {
             while (rows.next()) {
@@ -358,5 +358,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
         return listaGraus;
     }
+
+
 
 }

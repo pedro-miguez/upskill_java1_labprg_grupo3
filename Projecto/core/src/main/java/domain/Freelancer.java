@@ -91,7 +91,7 @@ public class Freelancer implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nNIF: %d",
+        return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nNIF: %s",
                 this.nome, this.telefone, this.email, this.nif);
     }
 
@@ -111,6 +111,22 @@ public class Freelancer implements Serializable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Freelancer that = (Freelancer) o;
+
+        if (!getNome().equals(that.getNome())) return false;
+        if (!getTelefone().equals(that.getTelefone())) return false;
+        if (!getEmail().equals(that.getEmail())) return false;
+        if (!getNif().equals(that.getNif())) return false;
+        if (!getReconhecimento().equals(that.getReconhecimento())) return false;
+        return getHabilitacoes().equals(that.getHabilitacoes());
+    }
+
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>
@@ -121,15 +137,7 @@ public class Freelancer implements Serializable {
      * @return {@code true} if this object is the same as the obj
      * argument; {@code false} otherwise.
      */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Freelancer)) return false;
-        Freelancer that = (Freelancer) o;
-        return getNome().equals(that.getNome()) && getTelefone().equals(that.getTelefone()) &&
-                getEmail().equals(that.getEmail()) && getNif().equals(that.getNif()) &&
-                getReconhecimento().equals(that.getReconhecimento()) && getHabilitacoes().equals(that.getHabilitacoes());
-    }
+
 
     public List<HabilitacaoAcademica> getHabilitacoes() {
         return new ArrayList<HabilitacaoAcademica>(habilitacoes);
