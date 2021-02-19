@@ -81,7 +81,7 @@ public class CompetenciaTecnica implements Serializable {
         return new ArrayList<>(graus);
     }
 
-    public void setGraus(List<GrauProficiencia> graus) {
+    private void setGraus(List<GrauProficiencia> graus) {
         this.graus = graus;
     }
 

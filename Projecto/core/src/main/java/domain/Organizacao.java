@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 /**
@@ -114,13 +115,24 @@ public class Organizacao implements Serializable {
      *          argument; {@code false} otherwise.
      *
      */
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Organizacao that = (Organizacao) o;
         return nome.equals(that.nome);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Organizacao)) return false;
+        Organizacao that = (Organizacao) o;
+        return getNome().equals(that.getNome()) && nif.equals(that.nif) &&
+                getWebsite().equals(that.getWebsite()) && getTelefone().equals(that.getTelefone())
+                && getEmail().equals(that.getEmail());
     }
+
 
     public EnderecoPostal getEnderecoPostal() {
         return enderecoPostal;
