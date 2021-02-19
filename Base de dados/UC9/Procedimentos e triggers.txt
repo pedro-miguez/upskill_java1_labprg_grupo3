@@ -1,0 +1,53 @@
+Procedimentos/triggers
+
+FALTA FAZER:
+ - Triggers Vitor!!
+
+UC1
+ - createOrganização()
+ 	- cria organização sem idGestor
+ 
+ - createUtilizadorGestor()
+ 	- cria utilizador
+ 	- cria gestor (com idUtilizador, com idOrganizacao)
+ 	- associa idGestor à organização
+ 
+UC2
+ - createAreaAtividade()
+ 
+ - constraint codigo unico regex
+
+UC3
+ - getAreasAtividade
+ - getCompetenciasTecnicasByAreaAtividade (idAreaAtividade)
+ - createCaracterizacaoCompetenciaTecnica(ArrayList<CaraterizacaoCompetenciatecnica> lista)
+ - createCategoriaTarefa(idAreaAtividade)
+
+UC4 
+ - getAreasAtividade
+ - createCompetenciaTecnica(idAreaAtividade)
+     - cria graus proficiencia associados
+
+UC5
+ - getOrganizacaoByEmailColaborador()
+ - createUtilizadorColaborador()
+ 	- cria utilizador
+ 	- cria colaborador (com idUtilizador, com idOrganizacao)
+
+UC 6 
+ - getCategoriasTarefa()
+ - getOrganizacaoByEmailColaborador()
+ - createTarefa()
+ 	- estado PRIVATE
+ 	- associa-se idOrganizacao
+
+- createUtilizadorFreelancer()
+- createUtilizadorAdministrador()
+
+- getAreaAtividadeToStringCompletoByIdAreaAtividade
+- getCategoriaTarefaToStringCompletoByIdCategoria
+- getColaboradorToStringCompletoByIdUtilizador
+- getCompetenciaTecnicaToStringCompletoByIdCompetenciaTecnica
+- getOrganizacaoToStringCompletoByNIF
+- getTarefaToStringCompletoByIDTarefa
+ 

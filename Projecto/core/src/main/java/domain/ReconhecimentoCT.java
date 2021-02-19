@@ -5,23 +5,17 @@ import java.io.Serializable;
 public class ReconhecimentoCT implements Serializable {
 
     private CompetenciaTecnica competenciaTecnica;
-    private Freelancer freelancer;
     private GrauProficiencia grauProficiencia;
     private Data dataReconhecimento;
 
-    public ReconhecimentoCT(CompetenciaTecnica competenciaTecnica, Freelancer freelancer, GrauProficiencia grauProficiencia, Data dataReconhecimento) {
+    public ReconhecimentoCT(CompetenciaTecnica competenciaTecnica, GrauProficiencia grauProficiencia, Data dataReconhecimento) {
         setCompetenciaTecnica(competenciaTecnica);
-        setFreelancer(freelancer);
         setGrauProficiencia(grauProficiencia);
         setDataReconhecimento(dataReconhecimento);
     }
 
     public CompetenciaTecnica getCompetenciaTecnica() {
         return competenciaTecnica;
-    }
-
-    public Freelancer getFreelancer() {
-        return freelancer;
     }
 
     public GrauProficiencia getGrauProficiencia() {
@@ -34,10 +28,6 @@ public class ReconhecimentoCT implements Serializable {
 
     private void setCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
         this.competenciaTecnica = competenciaTecnica;
-    }
-
-    private void setFreelancer(Freelancer freelancer) {
-        this.freelancer = freelancer;
     }
 
     private void setGrauProficiencia(GrauProficiencia grauProficiencia) {
@@ -53,7 +43,7 @@ public class ReconhecimentoCT implements Serializable {
         if (this == o) return true;
         if (!(o instanceof ReconhecimentoCT)) return false;
         ReconhecimentoCT that = (ReconhecimentoCT) o;
-        return getCompetenciaTecnica().equals(that.getCompetenciaTecnica()) && getFreelancer().equals(that.getFreelancer()) &&
+        return getCompetenciaTecnica().equals(that.getCompetenciaTecnica()) &&
                 getGrauProficiencia().equals(that.getGrauProficiencia()) && getDataReconhecimento().equals(that.getDataReconhecimento());
     }
 
@@ -61,10 +51,10 @@ public class ReconhecimentoCT implements Serializable {
     public String toString() {
         return "ReconhecimentoCT{" +
                 "competenciaTecnica=" + competenciaTecnica +
-                ", freelancer=" + freelancer +
                 ", grauProficiencia=" + grauProficiencia +
                 ", dataReconhecimento=" + dataReconhecimento +
                 '}';
     }
+
 }
 

@@ -232,7 +232,7 @@ public class Data implements Comparable<Data> {
      * @return caraterísticas da data.
      */
     public String toAnoMesDiaString() {
-        return String.format("%04d/%02d/%02d", ano, mes.ordinal()+1, dia);
+        return String.format("%02d/%02d/%04d", dia, mes.ordinal()+1, ano);
     }
     
     /**

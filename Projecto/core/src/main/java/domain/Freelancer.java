@@ -18,7 +18,7 @@ public class Freelancer implements Serializable {
     private Email email;
     private NIF nif;
     private List<ReconhecimentoCT> reconhecimento;
-    //private List<HabilitacaoAcademica>
+    private List<HabilitacaoAcademica> habilitacoes;
 
     /**
      * Instantiates a new Freelancer.
@@ -28,12 +28,13 @@ public class Freelancer implements Serializable {
      * @param email    as email
      * @param nif      as tax identification nr
      */
-    public Freelancer(String nome, Telefone telefone, Email email, NIF nif, List<ReconhecimentoCT> reconhecimento) {
+    public Freelancer(String nome, Telefone telefone, Email email, NIF nif, List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) {
         setNome(nome);
         setTelefone(telefone);
         setEmail(email);
         setNif(nif);
         this.reconhecimento = new ArrayList<>(reconhecimento);
+        this.habilitacoes = new ArrayList<>(habilitacoes);
     }
 
     private void setNome(String nome) {
@@ -102,6 +103,14 @@ public class Freelancer implements Serializable {
         }
     }
 
+    public void adicionaHabilitacaoAcademica(ArrayList<HabilitacaoAcademica> habilitacaoAcademicas){
+        for (HabilitacaoAcademica habilitacaoAcademica: habilitacaoAcademicas) {
+            if (!this.habilitacoes.contains(habilitacaoAcademica)){
+                this.habilitacoes.add(habilitacaoAcademica);
+            }
+        }
+    }
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>
@@ -119,9 +128,12 @@ public class Freelancer implements Serializable {
         Freelancer that = (Freelancer) o;
         return getNome().equals(that.getNome()) && getTelefone().equals(that.getTelefone()) &&
                 getEmail().equals(that.getEmail()) && getNif().equals(that.getNif()) &&
-                getReconhecimento().equals(that.getReconhecimento());
+                getReconhecimento().equals(that.getReconhecimento()) && getHabilitacoes().equals(that.getHabilitacoes());
     }
 
+    public List<HabilitacaoAcademica> getHabilitacoes() {
+        return new ArrayList<HabilitacaoAcademica>(habilitacoes);
+    }
 }
 
 

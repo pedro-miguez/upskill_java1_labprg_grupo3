@@ -13,36 +13,30 @@ import java.io.Serializable;
  */
 public class Anuncio implements Serializable {
     
-    //private int idAnuncio;
-    
-    private CodigoUnico idTarefa; //mudar para Tarefa tarefa
 
-    //private TipoRegimento tipoRegimento;
+    private Tarefa tarefa;
 
-    
+    private TipoRegimento tipoRegimento;
+
     private Data dataInicioPublicitacao;
     private Data dataFimPublicitacao;
     private Data dataInicioCandidatura;
     private Data dataFimCandidatura;
     private Data dataInicioSeriacao;
     private Data dataFimSeriacao;
-    //
-    
-    
-    public Anuncio (CodigoUnico idTarefa, Data dataInicioPublicitacao,
+
+    public Anuncio (Tarefa tarefa, TipoRegimento tipoRegimento, Data dataInicioPublicitacao,
                     Data dataFimPublicitacao, Data dataInicioCandidatura,
                     Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao) {
-        
-        //setIdAnuncio(idAnuncio);
-        
-        this.idTarefa = idTarefa;
-        
+
         this.dataInicioPublicitacao = dataInicioPublicitacao;
         this.dataFimPublicitacao = dataFimPublicitacao;
         this.dataInicioCandidatura = dataInicioCandidatura;
         this.dataFimCandidatura = dataFimCandidatura;
         this.dataInicioSeriacao = dataInicioSeriacao;
         this.dataFimSeriacao = dataFimSeriacao;
+        this.tarefa = tarefa;
+        this.tipoRegimento = tipoRegimento;
         
     }
 
@@ -95,13 +89,7 @@ public class Anuncio implements Serializable {
             this.dataFimSeriacao = dataFimSeriacao;
         }
     }
-    
-    
-    
-    public CodigoUnico getIdTarefa() {
-        return this.idTarefa;
-    }
-    
+
     public Data getDataInicioPublicitacao() {
         return this.dataInicioPublicitacao;
     }
@@ -132,7 +120,7 @@ public class Anuncio implements Serializable {
         return String.format("ID Tarefa: %s%nData de Inicio da Publicitacao: %s%n" +
                 "Data de Fim de Publicitacao: %s%nData de Inicio da Candidatura: %s" +
                 "%nData de Fim da Candidatura: %d Data de Inicio de Seriacao%n" + 
-                "Data de Fim de Seriacao: %s", this.idTarefa,
+                "Data de Fim de Seriacao: %s", this.tarefa.getCodigoUnico(),
                 this.dataInicioPublicitacao, this.dataFimPublicitacao,
                 this.dataInicioCandidatura, this.dataFimCandidatura,
                 this.dataInicioSeriacao, this.dataFimSeriacao);
@@ -146,11 +134,15 @@ public class Anuncio implements Serializable {
 
         Anuncio anuncio = (Anuncio) o;
 
-        if (!getIdTarefa().equals(anuncio.getIdTarefa())) return false;
-        return getIdTarefa().equals(anuncio.getIdTarefa());
+        return getTarefa().equals(anuncio.tarefa);
     }
-    
-    
-    //getAnuncioByOrganizacao
-    
+
+    public Tarefa getTarefa() {
+        return tarefa;
+    }
+
+    public TipoRegimento getTipoRegimento() {
+        return tipoRegimento;
+    }
+
 }
