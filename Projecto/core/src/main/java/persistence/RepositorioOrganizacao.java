@@ -118,7 +118,6 @@ public class RepositorioOrganizacao implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Organizacao where idOrganizacao = ?");
             pstmt.setInt(1, orgID);
 
-            pstmt.close();
             cs.close();
             return montarOrganizacao(pstmt.executeQuery());
         } catch (SQLException e) {
@@ -153,7 +152,6 @@ public class RepositorioOrganizacao implements Serializable {
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
-
         }
 
         if (org != null) {

@@ -20,7 +20,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
     private static RepositorioCategoriaTarefa instance;
     private ConnectionHandler connectionHandler;
 
-
     /**
      * Task categories that will be added to the repository.
      */
@@ -94,11 +93,9 @@ public class RepositorioCategoriaTarefa implements Serializable {
             result.next();
             int idCategoriaTarefa = result.getInt(1);
 
-
             conn.setAutoCommit(false);
 
             CallableStatement cs = conn.prepareCall("{CALL createCaraterizacaoCompetenciaTecnica(?, ?, ?, ?)}");
-
 
             for (CaracterizacaoCompTec cpt : listaCompetencias) {
                 cs.setString(1, cpt.getCodigoUnicoCompTec().toString());
@@ -208,7 +205,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
-
         }
         if (categoriaTarefa != null) {
             return categoriaTarefa;
@@ -317,9 +313,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
         }
 
         return competencias;
-
-
-
     }
 
     private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
@@ -349,7 +342,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     }
 
-    private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
+    private ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) {
         ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
         try {
             while (rows.next()) {
@@ -364,7 +357,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
         }
 
         return listaGraus;
-
     }
 
 }

@@ -67,15 +67,15 @@ public class RepositorioTarefa implements Serializable {
             int idCategoriaTarefa = result.getInt(1);
 
             CallableStatement cs2 = conn.prepareCall("{CALL createTarefa(?, ?, ?, ?, ?, ?, ?, ?)}");
-            cs1.setString(1, tarefa.getCodigoUnico().toString());
-            cs1.setString(2, tarefa.getDesignacao());
-            cs1.setString(3, tarefa.getDescricaoInformal());
-            cs1.setString(4, tarefa.getDescricaoTecnica());
-            cs1.setInt(5, tarefa.getDuracaoDias());
-            cs1.setFloat(6, tarefa.getCusto());
-            cs1.setInt(7, orgID);
-            cs1.setInt(7, idCategoriaTarefa);
-            cs1.executeQuery();
+            cs2.setString(1, tarefa.getCodigoUnico().toString());
+            cs2.setString(2, tarefa.getDesignacao());
+            cs2.setString(3, tarefa.getDescricaoInformal());
+            cs2.setString(4, tarefa.getDescricaoTecnica());
+            cs2.setInt(5, tarefa.getDuracaoDias());
+            cs2.setFloat(6, tarefa.getCusto());
+            cs2.setInt(7, orgID);
+            cs2.setInt(8, idCategoriaTarefa);
+            cs2.executeQuery();
 
             conn.commit();
 
