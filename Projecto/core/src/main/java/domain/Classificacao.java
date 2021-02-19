@@ -38,4 +38,17 @@ public class Classificacao {
         else
             throw new IllegalArgumentException("Freelancer Inválido");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Classificacao)) return false;
+
+        Classificacao that = (Classificacao) o;
+
+        if (getLugar() != that.getLugar()) return false;
+        if (getAnuncio() != null ? !getAnuncio().equals(that.getAnuncio()) : that.getAnuncio() != null) return false;
+        return getFreelancer() != null ? getFreelancer().equals(that.getFreelancer()) : that.getFreelancer() == null;
+    }
+
 }
