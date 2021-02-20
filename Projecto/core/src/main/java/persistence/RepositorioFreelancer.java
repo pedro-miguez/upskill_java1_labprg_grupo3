@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Class responsible for creating a repository to store information about
- * collaborator.
+ * freelancer.
  */
 public class RepositorioFreelancer implements Serializable {
 
@@ -20,7 +20,7 @@ public class RepositorioFreelancer implements Serializable {
     private ConnectionHandler connectionHandler;
 
     /**
-     * Collaborators that will be added to the repository.
+     * Freelancers that will be added to the repository.
      */
     private RepositorioFreelancer() {
         connectionHandler = new ConnectionHandler();
@@ -113,7 +113,7 @@ public class RepositorioFreelancer implements Serializable {
     }
 
     /**
-     * Method to obtain a collaborator through your email.
+     * Method to obtain a freelancer through your email.
      *
      * @param email
      * @return
@@ -250,11 +250,18 @@ public class RepositorioFreelancer implements Serializable {
         return listaHabilitacoes;
     }
 
+    
 
-    public Colaborador criarColaborador(String nomeColaborador, int contactoColaborador,
-                                        String emailColaborador, String funcao) {
-        return new Colaborador(nomeColaborador, new Telefone(contactoColaborador),
-                new Email(emailColaborador), funcao);
+    public Freelancer criarFreelancer(String nome, int telefone,
+                                        String email, int nif,
+                                        ReconhecimentoCT reconhecimento,
+                                        HabilitacaoAcademica habilitacoes) {
+        
+        return new Freelancer(nome, new Telefone(telefone),
+                                new Email(email), new NIF(nif),
+                                new ReconhecimentoCT(reconhecimento),
+                                new HabilitacaoAcademica(habilitacoes));
+                
     }
 
 }

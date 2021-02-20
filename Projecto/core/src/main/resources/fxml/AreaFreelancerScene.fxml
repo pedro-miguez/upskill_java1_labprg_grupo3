@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="ÁREA   DO   FREELANCER" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="showAnuncios" layoutX="200.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </Pane>
+   </center>
+   <bottom>
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnCandidatar" mnemonicParsing="false" onAction="#candidatarTarefaAction" prefHeight="51.0" prefWidth="102.0" text="Candidatar" />
+            <Button fx:id="btnSair" alignment="CENTER" mnemonicParsing="false" onAction="#sairAction" prefHeight="51.0" prefWidth="48.0" text="Sair" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

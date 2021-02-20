@@ -97,4 +97,30 @@ public class AuthenticationController {
             return "failed";
         }
     }
+    
+    
+    /**
+     * Allows to register a new freelancer.
+     *
+     * @param freelancer as user
+     * @return the boolean
+     */
+    public String registarFreelancerComoUtilizador(Freelancer freelancer) {
+        
+        String nome = freelancer.getNome();
+        String email = freelancer.getEmail().toString();
+        
+
+        AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
+        String password = alg.geraPassword();
+        System.out.println(password);
+
+        UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
+
+        if (uapi.registerUserWithRoles(nome, email, password, "freelancer")) {
+            return password;
+        } else {
+            return "failed";
+        }
+    }
 }
