@@ -453,4 +453,276 @@ public class AreaAdministrativoUI implements Initializable {
                     "Precisa selecionar uma competência técnica primeiro.").show();
         }
     }
+
+    //SKELETON FOR CREATION OF FREELANCER (TO BE CONTINUED)
+
+    /*package ui;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+
+    public class AreaAdministrativoUI {
+
+        @FXML
+        private TextField txtDescBreveAreaAtividade;
+
+        @FXML
+        private TextField txtDesignacaoGrauProficienciaCriarCompetenciaTecnica;
+
+        @FXML
+        private BorderPane criarAreaAtividadePane;
+
+        @FXML
+        private ComboBox<?> comboBoxAreaAtividadeCategoriaTarefa;
+
+        @FXML
+        private ListView<?> listViewCompTecnicasPorSelecionarCategoriaTarefa1;
+
+        @FXML
+        private TextArea txtDescDetalhadaCompetenciaTecnica;
+
+        @FXML
+        private Button btnCompOpcionalCategoriaTarefa;
+
+        @FXML
+        private Button btnRemoverUltimaCompTecCategoriaTarefa;
+
+        @FXML
+        private Button btnCriarCompetenciaTecnicaSelect;
+
+        @FXML
+        private Button btnConfirmarCompetenciaTecnica;
+
+        @FXML
+        private ComboBox<?> comboBoxAreaAtividadeCategoriaTarefa1;
+
+        @FXML
+        private ListView<?> listViewCompTecnicasSelecionadasCategoriaTarefa;
+
+        @FXML
+        private Button btnConfirmarCategoriaTarefa1;
+
+        @FXML
+        private ListView<?> listViewCompTecnicasPorSelecionarCategoriaTarefa;
+
+        @FXML
+        private Button btnRemoverUltimaCompTecCategoriaTarefa1;
+
+        @FXML
+        private Button btnCriarCategoriaTarefaSelect1;
+
+        @FXML
+        private Button btnConfirmarAreaAtividade;
+
+        @FXML
+        private Button btnCriarAreaAtividadeSelect;
+
+        @FXML
+        private BorderPane criarCategoriaTarefaPane1;
+
+        @FXML
+        private Button btnCompObrigatoriaCategoriaTarefa1;
+
+        @FXML
+        private BorderPane criarCategoriaTarefaPane;
+
+        @FXML
+        private Button btnLimparCompetenciaTecnica;
+
+        @FXML
+        private ListView<?> listViewCompTecnicasSelecionadasCategoriaTarefa1;
+
+        @FXML
+        private TextField txtDescricaoCategoriaTarefa;
+
+        @FXML
+        private ComboBox<?> comboBoxGrauProficienciaCategoriaTarefa1;
+
+        @FXML
+        private Button btnLimparCategoriaTarefa;
+
+        @FXML
+        private TextField txtDescBreveCompetenciaTecnica;
+
+        @FXML
+        private ComboBox<?> comboBoxAreaAtividadeCompetenciaTecnica;
+
+        @FXML
+        private Button btnLogout;
+
+        @FXML
+        private TextField txtCodigoUnicoCompetenciaTecnica;
+
+        @FXML
+        private Button btnLimparCategoriaTarefa1;
+
+        @FXML
+        private TextArea txtDescDetalhadaAreaAtividade;
+
+        @FXML
+        private TextField txtNivelGrauProficienciaCriarCompetenciaTecnica;
+
+        @FXML
+        private TextField txtDescricaoCategoriaTarefa1;
+
+        @FXML
+        private TextField txtCodUnicoAreaAtividade;
+
+        @FXML
+        private BorderPane criarCompetenciaTecnicaPane;
+
+        @FXML
+        private ListView<?> listViewGrauProficienciaCompetenciaTecnica;
+
+        @FXML
+        private Button btnLimparAreaAtividade;
+
+        @FXML
+        private Button btnCompOpcionalCategoriaTarefa1;
+
+        @FXML
+        private Button btnCompObrigatoriaCategoriaTarefa;
+
+        @FXML
+        private Button btnConfirmarCategoriaTarefa;
+
+        @FXML
+        private ComboBox<?> comboBoxGrauProficienciaCategoriaTarefa;
+
+        @FXML
+        private Button btnCriarCategoriaTarefaSelect;
+
+        @FXML
+        void confirmarAreaAtividadeAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void limparAreaAtividadeAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void confirmarCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void limparCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void popularComboBoxGrauProficienciaCategoriaTarefa(ActionEvent event) {
+
+        }
+
+        @FXML
+        void compObrigatoriaCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void compOpcionalCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void removerUltimaCompTecCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void comboBoxAreaAtividadeCategoriaTarefaSelectAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void confirmarCompetenciaTecnicaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void limparCompetenciaTecnicaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void btnAdicionarGrauProficienciaCompetenciaTecnica(ActionEvent event) {
+
+        }
+
+        @FXML
+        void btnRemoverGrauProficienciaCompetenciaTecnica(ActionEvent event) {
+
+        }
+
+        @FXML
+        void confirmarCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void limparCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void popularComboBoxGrauProficienciaCategoriaTarefa(ActionEvent event) {
+
+        }
+
+        @FXML
+        void compObrigatoriaCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void compOpcionalCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void removerUltimaCompTecCategoriaTarefaAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void comboBoxAreaAtividadeCategoriaTarefaSelectAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void criarAreaAtividadeSelectAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void criarCompetenciaTecnicaSelectAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void criarCategoriaTarefaSelectAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void criarCategoriaTarefaSelectAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void logoutAction(ActionEvent event) {
+
+        }
+
+    }*/
+
+
 }
