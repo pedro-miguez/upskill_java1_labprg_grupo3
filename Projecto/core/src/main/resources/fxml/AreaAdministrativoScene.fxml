@@ -102,7 +102,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarCategoriaTarefaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <top>
                         <Label prefHeight="20.0" prefWidth="327.0" text="Criar Categoria de Tarefa" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
@@ -356,6 +356,175 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
+                  <BorderPane fx:id="criarCategoriaTarefaPane1" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="76.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnConfirmarCategoriaTarefa1" mnemonicParsing="false" onAction="#confirmarCategoriaTarefaAction" text="Confirmar">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnLimparCategoriaTarefa1" mnemonicParsing="false" onAction="#limparCategoriaTarefaAction" text="Limpar">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets right="40.0" />
+                           </padding>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <GridPane prefHeight="447.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="NIF:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Escolaridade:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label prefHeight="17.0" prefWidth="148.0" text="Competencias Técnicas: " GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="txtDescricaoCategoriaTarefa1" prefHeight="25.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <center>
+                                    <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="97.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ComboBox fx:id="comboBoxGrauProficienciaCategoriaTarefa1" onShowing="#popularComboBoxGrauProficienciaCategoriaTarefa" prefHeight="38.0" prefWidth="103.0" promptText="Proficiencia">
+                                             <VBox.margin>
+                                                <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <Button fx:id="btnCompObrigatoriaCategoriaTarefa1" mnemonicParsing="false" onAction="#compObrigatoriaCategoriaTarefaAction" prefHeight="46.0" prefWidth="103.0" text="Reconhecida" textAlignment="CENTER" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnCompOpcionalCategoriaTarefa1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#compOpcionalCategoriaTarefaAction" prefHeight="46.0" prefWidth="103.0" text="Por Comprovar" textAlignment="CENTER" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnRemoverUltimaCompTecCategoriaTarefa1" disable="true" layoutX="15.0" layoutY="116.0" mnemonicParsing="false" onAction="#removerUltimaCompTecCategoriaTarefaAction" prefHeight="24.0" prefWidth="103.0" text="Remover Última" textAlignment="CENTER" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" />
+                                       </BorderPane.margin>
+                                    </VBox>
+                                 </center>
+                                 <left>
+                                    <ListView fx:id="listViewCompTecnicasPorSelecionarCategoriaTarefa1" prefHeight="258.0" prefWidth="158.0" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <ListView fx:id="listViewCompTecnicasSelecionadasCategoriaTarefa1" prefHeight="258.0" prefWidth="158.0" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets right="50.0" />
+                                       </BorderPane.margin>
+                                    </ListView>
+                                 </right>
+                              </BorderPane>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                 <children>
+                                    <ComboBox fx:id="comboBoxAreaAtividadeCategoriaTarefa1" onAction="#comboBoxAreaAtividadeCategoriaTarefaSelectAction" prefHeight="25.0" prefWidth="243.0" promptText="Habilitacoes Academicas Relevantes" />
+                                 </children>
+                              </HBox>
+                              <Label text="Email:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label prefHeight="17.0" prefWidth="63.0" text="Telefone:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Nome:" GridPane.halignment="RIGHT">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="166.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="534.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="221.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="194.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </center>
+                     <top>
+                        <Label prefHeight="20.0" prefWidth="327.0" text="Criar Registo de Freelancer" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                  </BorderPane>
                </children>
             </StackPane>
          </center>
@@ -394,6 +563,14 @@
                      </font>
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnCriarCategoriaTarefaSelect1" mnemonicParsing="false" onAction="#criarCategoriaTarefaSelectAction" prefHeight="52.0" prefWidth="90.0" text="Criar Registo de Freelancer" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Verdana" size="11.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" />
                      </VBox.margin>
                   </Button>
                   <Button fx:id="btnLogout" layoutX="20.0" layoutY="174.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="37.0" prefWidth="70.0" text="Logout" textAlignment="CENTER" wrapText="true">
