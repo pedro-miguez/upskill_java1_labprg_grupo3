@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Current class represents the tool for creating new advertisement so that 
+ * Current class implements the tool for creating new advertisement so that 
  * tasks can be announced.
  *
  * @author Grupo 3
@@ -29,6 +29,18 @@ public class Anuncio implements Serializable {
     private Data dataInicioSeriacao;
     private Data dataFimSeriacao;
 
+    /**
+     * Instantiates a new advertisement.
+     *
+     * @param tarefa                 as the task
+     * @param tipoRegimento          as the type of regiment
+     * @param dataInicioPublicitacao as the advertisement start date
+     * @param dataFimPublicitacao    as the advertisement end date
+     * @param dataInicioCandidatura  as the application start date
+     * @param dataFimCandidatura     as the application end date
+     * @param dataInicioSeriacao     as the serialization start date
+     * @param dataFimSeriacao        as the serialization end date
+     */
     public Anuncio (Tarefa tarefa, TipoRegimento tipoRegimento, Data dataInicioPublicitacao,
                     Data dataFimPublicitacao, Data dataInicioCandidatura,
                     Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao) {
@@ -44,15 +56,25 @@ public class Anuncio implements Serializable {
         
     }
 
+    
+    /**
+     * Sets the type of regiment.
+     */
     public void setTipoRegimento(TipoRegimento tipoRegimento) {
         this.tipoRegimento = tipoRegimento;
     }
 
 
+    /**
+     * Sets the advertisement start date.
+     */
     public void setDataInicioPublicitacao(Data dataInicioPublicitacao) {
         this.dataInicioPublicitacao = dataInicioPublicitacao;
     }
 
+    /**
+     * Sets the advertisement end date.
+     */
     public void setDataFimPublicitacao(Data dataFimPublicitacao) {
         if ((dataFimPublicitacao.getDia() < dataInicioPublicitacao.getDia()) && 
             (dataFimPublicitacao.getMes() < dataInicioPublicitacao.getMes()) &&
@@ -65,10 +87,16 @@ public class Anuncio implements Serializable {
          
     }
 
+    /**
+     * Sets the application start date.
+     */
     public void setDataInicioCandidatura(Data dataInicioCandidatura) {
         this.dataInicioCandidatura = dataInicioCandidatura;
     }
 
+    /**
+     * Sets the application end date.
+     */
     public void setDataFimCandidatura(Data dataFimCandidatura) {
         if ((dataFimCandidatura.getDia() < dataInicioCandidatura.getDia()) && 
             (dataFimCandidatura.getMes() < dataInicioCandidatura.getMes()) &&
@@ -80,11 +108,16 @@ public class Anuncio implements Serializable {
         }
     }
 
-    
+    /**
+     * Sets the serialization start date.
+     */
     public void setDataInicioSeriacao(Data dataInicioSeriacao) {
         this.dataInicioSeriacao = dataInicioSeriacao;
     }
 
+    /**
+     * Sets the serialization end date.
+     */
     public void setDataFimSeriacao(Data dataFimSeriacao) {
         
         if ((dataFimSeriacao.getDia() < dataInicioSeriacao.getDia()) && 
@@ -97,34 +130,74 @@ public class Anuncio implements Serializable {
         }
     }
 
+    /**
+     * Gets the advertisement start date.
+     *
+     * @return the advertisement start date.
+     */
     public Data getDataInicioPublicitacao() {
         return this.dataInicioPublicitacao;
     }
     
+    /**
+     * Gets the advertisement end date.
+     *
+     * @return the advertisement end date.
+     */
     public Data getDataFimPublicitacao() {
         return this.dataFimPublicitacao;
     }
 
+    /**
+     * Gets the application start date.
+     *
+     * @return the application start date.
+     */
     public Data getDataInicioCandidatura() {
         return this.dataInicioCandidatura;
     }
     
+    /**
+     * Gets the application end date.
+     *
+     * @return the application end date.
+     */
     public Data getDataFimCandidatura() {
         return this.dataFimCandidatura;
     }
     
+    /**
+     * Gets the serialization start date.
+     *
+     * @return the serialization start date.
+     */
     public Data getDataInicioSeriacao() {
         return this.dataInicioSeriacao;
     }
     
+    /**
+     * Gets the serialization end date.
+     *
+     * @return the serialization end date.
+     */
     public Data getDataFimSeriacao() {
         return this.dataFimSeriacao;
     }
 
+    /**
+     * Gets the task.
+     *
+     * @return the task.
+     */
     public Tarefa getTarefa() {
         return tarefa;
     }
 
+    /**
+     * Gets the type of regiment.
+     *
+     * @return the type of regiment.
+     */
     public TipoRegimento getTipoRegimento() {
         return tipoRegimento;
     }
@@ -165,7 +238,16 @@ public class Anuncio implements Serializable {
     }
     
     
-
+    /**
+     * Returns a string representation of the object advertisement and its attributes.
+     *
+     * The result should be a concise but informative representation that is easy
+     * for a person to read.
+     * It is overriden by all subclasses.
+     *
+     * @return  a string representation of the object.
+     *
+     */
     public String toString(){
         return String.format("ID Tarefa: %s%nData de Inicio da Publicitacao: %s%n" +
                 "Data de Fim de Publicitacao: %s%nData de Inicio da Candidatura: %s%n" +
@@ -177,6 +259,17 @@ public class Anuncio implements Serializable {
     }
     
     
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * <p>
+     * The {@code equals} method implements an equivalence relation
+     * on non-null object references:
+     *
+     * @param   o   the reference object with which to compare.
+     * @return  {@code true} if this object is the same as the obj
+     *          argument; {@code false} otherwise.
+     *
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

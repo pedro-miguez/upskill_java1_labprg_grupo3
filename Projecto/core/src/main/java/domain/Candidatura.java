@@ -8,6 +8,8 @@ package domain;
 import java.io.Serializable;
 
 /**
+ * Current class implements the tool for creating new application so that 
+ * freelancers can apply.
  *
  * @author Grupo 3
  */
@@ -24,7 +26,18 @@ public class Candidatura implements Serializable {
     private String txtApresentacao;
     private String txtMotivacao;
     
-    
+    /**
+     * Instantiates a new application.
+     *
+     * @param idAnuncio       as the unique-code of the advertisement
+     * @param idFreelancer    as the unique-code of the freelancer
+     * @param dataCandidatura as the application date
+     * @param valorPretendido as the target value
+     * @param nrDias          as the number of days
+     * @param txtApresentacao as the presentation text
+     * @param txtMotivacao    as the motivation text
+     * 
+     */
     public Candidatura (CodigoUnico idAnuncio, CodigoUnico idFreelancer, 
                         Data dataCandidatura, int valorPretendido, int nrDias,
                         String txtApresentacao, String txtMotivacao) {
@@ -105,6 +118,16 @@ public class Candidatura implements Serializable {
     }
     
     
+    /**
+     * Returns a string representation of the object application and its attributes.
+     *
+     * The result should be a concise but informative representation that is easy
+     * for a person to read.
+     * It is overriden by all subclasses.
+     *
+     * @return  a string representation of the object.
+     *
+     */
     public String toString(){
         return String.format("ID Anúncio: %s%nID Freelancer: %s%n" +
                 "Data Candidatura: %s%nValor pretendido: %s" +
@@ -115,6 +138,17 @@ public class Candidatura implements Serializable {
     }
     
     
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * <p>
+     * The {@code equals} method implements an equivalence relation
+     * on non-null object references:
+     *
+     * @param   o   the reference object with which to compare.
+     * @return  {@code true} if this object is the same as the obj
+     *          argument; {@code false} otherwise.
+     *
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
