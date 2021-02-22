@@ -7,6 +7,7 @@ import jdk.nashorn.internal.codegen.CompilerConstants;
 import network.ConnectionHandler;
 import oracle.jdbc.proxy.annotation.Pre;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public class RepositorioAnuncio {
         return instance;
     }
 
+    private RepositorioAnuncio() {
+        connectionHandler = new ConnectionHandler();
+    }
+
     public boolean insertAnuncio(Anuncio anuncio) throws SQLException {
         Connection conn = connectionHandler.openConnection();
 
@@ -30,13 +35,17 @@ public class RepositorioAnuncio {
 
             CallableStatement cs1 = conn.prepareCall("SELECT idTarefa FROM Tarefa WHERE referenciaTarefa = ?");
             cs1.setString(1, anuncio.getTarefa().getCodigoUnico().toString());
+            ResultSet rSetidTarefa = cs1.executeQuery();
+            rSetidTarefa.next();
 
-            int idTarefa = cs1.getInt("idTarefa");
+            int idTarefa = rSetidTarefa.getInt(1);
 
             CallableStatement cs2 = conn.prepareCall("SELECT idTipoRegimento FROM TipoRegimento where designacao = ?");
             cs2.setString(1, anuncio.getTipoRegimento().getDesignacao());
+            ResultSet rSetidTipoRegimento = cs2.executeQuery();
+            rSetidTipoRegimento.next();
 
-            int idTipoRegimento = cs2.getInt("idTipoRegimento");
+            int idTipoRegimento = rSetidTipoRegimento.getInt(1);
 
             CallableStatement cs3 = conn.prepareCall("{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?)}");
             ResultSet rs = null;
@@ -112,15 +121,20 @@ public class RepositorioAnuncio {
             Connection conn = connectionHandler.openConnection();
             String refTarefa = tarefa.getCodigoUnico().toString();
 
-            CallableStatement cs1 = conn.prepareCall("SELECT idOrganizacao FROM tarefa WHERE referenciaTarefa = ?");
-            cs1.setString(1, refTarefa);
+            int nif = Integer.parseInt(tarefa.getOrganizacao().getNIF().toString());
 
-            int idOrganizacao = cs1.getInt("idOrganizacao");
+            CallableStatement cs1 = conn.prepareCall("SELECT idOrganizacao FROM Organizacao WHERE NIF = ?");
+            cs1.setInt(1, nif);
+            ResultSet rSetIdOrg = cs1.executeQuery();
+            rSetIdOrg.next();
 
-            CallableStatement cs2 = conn.prepareCall("{? = getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            int idOrganizacao = rSetIdOrg.getInt("idOrganizacao");
+
+            CallableStatement cs2 = conn.prepareCall("{? = call getAnunciobyRefTarefa_IdOrg(?, ?)}");
             cs2.registerOutParameter(1, Types.INTEGER);
             cs2.setString(2, refTarefa);
             cs2.setInt(3, idOrganizacao);
+            cs2.executeUpdate();
 
             int idAnuncio = cs2.getInt(1);
 
@@ -129,7 +143,7 @@ public class RepositorioAnuncio {
 
             return montarAnuncio(pstmt.executeQuery());
         } catch (SQLException e) {
-            throw new CodigoNaoAssociadoException("Não existe nenhum freelancer com esse email.");
+            throw new CodigoNaoAssociadoException("Não existe nenhum anuncio associado a esta tarefa.");
         }
     }
 
@@ -146,6 +160,7 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt = conn.prepareStatement("SELECT idTarefa FROM Anuncio WHERE idAnuncio = ?");
             pstmt.setInt(1, row.getInt("idAnuncio"));
             ResultSet rSetTarefa = pstmt.executeQuery();
+            rSetTarefa.next();
             int idTarefa = rSetTarefa.getInt("idTarefa");
 
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
@@ -158,11 +173,13 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt3 = conn.prepareStatement("SELECT idTipoRegimento FROM Anuncio WHERE idAnuncio = ?");
             pstmt3.setInt(1, row.getInt("idAnuncio"));
             ResultSet rSetTipoRegimento = pstmt3.executeQuery();
+            rSetTipoRegimento.next();
             int idTipoRegimento = rSetTipoRegimento.getInt("idTipoRegimento");
 
             PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM TipoRegimento WHERE idTipoRegimento = ?");
             pstmt4.setInt(1, idTipoRegimento);
             ResultSet rSetTipoRegimento2 = pstmt4.executeQuery();
+            rSetTipoRegimento2.next();
 
             String designacao = rSetTipoRegimento2.getString("designacao");
             String regras = rSetTipoRegimento2.getString("descricaoRegras");
