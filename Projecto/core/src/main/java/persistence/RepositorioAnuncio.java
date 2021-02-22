@@ -55,24 +55,12 @@ public class RepositorioAnuncio {
 
             cs3.setInt(1, idTarefa);
             cs3.setInt(2, idTipoRegimento);
-            long dataInicioPub = Date.parse(anuncio.getDataInicioPublicitacao().toAnoMesDiaString());
-            Date sqlDate = new java.sql.Date(dataInicioPub);
-            cs3.setDate(3, sqlDate);
-            long dataFimPub = Date.parse(anuncio.getDataFimPublicitacao().toAnoMesDiaString());
-            Date sqlDate2 = new java.sql.Date(dataFimPub);
-            cs3.setDate(4, sqlDate2);
-            long dataInicioCand = Date.parse(anuncio.getDataInicioCandidatura().toAnoMesDiaString());
-            Date sqlDate3 = new java.sql.Date(dataInicioCand);
-            cs3.setDate(5, sqlDate3);
-            long dataFimCand = Date.parse(anuncio.getDataFimCandidatura().toAnoMesDiaString());
-            Date sqlDate4 = new java.sql.Date(dataFimCand);
-            cs3.setDate(6, sqlDate4);
-            long dataInicioSer = Date.parse(anuncio.getDataInicioSeriacao().toAnoMesDiaString());
-            Date sqlDate5 = new java.sql.Date(dataInicioSer);
-            cs3.setDate(7, sqlDate5);
-            long dataFimSer = Date.parse(anuncio.getDataFimSeriacao().toAnoMesDiaString());
-            Date sqlDate6 = new java.sql.Date(dataFimSer);
-            cs3.setDate(8, sqlDate6);
+            cs3.setDate(3, anuncio.getDataInicioPublicitacao().getDataSQL());
+            cs3.setDate(4, anuncio.getDataFimPublicitacao().getDataSQL());
+            cs3.setDate(5, anuncio.getDataInicioCandidatura().getDataSQL());
+            cs3.setDate(6, anuncio.getDataFimCandidatura().getDataSQL());
+            cs3.setDate(7, anuncio.getDataInicioSeriacao().getDataSQL());
+            cs3.setDate(8, anuncio.getDataFimSeriacao().getDataSQL());
 
 
             cs3.executeQuery();
@@ -114,6 +102,23 @@ public class RepositorioAnuncio {
         return tiposRegimento;
     }
 
+    public ArrayList<Anuncio> getAllAnuncios () {
+        try {
+            Connection conn = connectionHandler.openConnection();
+
+            PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio");
+            ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
+
+            return montarListaAnuncios(rSetAnuncios);
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
+            throw new FetchingProblemException("Problemas ao montar a lista de anuncios");
+        }
+    }
+
 
     public Anuncio getAnuncioByTarefa(Tarefa tarefa) {
 
@@ -148,13 +153,17 @@ public class RepositorioAnuncio {
     }
 
 
+
+
     private Anuncio montarAnuncio(ResultSet row) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         Anuncio anuncio = null;
 
 
         try {
-            row.next();
+            if (row.getRow() < 1) {
+                row.next();
+            }
 
             //montar tarefa
             PreparedStatement pstmt = conn.prepareStatement("SELECT idTarefa FROM Anuncio WHERE idAnuncio = ?");
@@ -226,12 +235,13 @@ public class RepositorioAnuncio {
 
     }
 
+
+
     public ArrayList<Anuncio> montarListaAnuncios(ResultSet rows) throws SQLException {
         ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
 
         try {
             while (rows.next()) {
-
                 Anuncio anuncio = montarAnuncio(rows);
                 listaAnuncios.add(anuncio);
             }

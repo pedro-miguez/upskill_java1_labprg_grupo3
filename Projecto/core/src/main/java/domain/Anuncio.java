@@ -6,6 +6,8 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Current class represents the tool for creating new advertisement so that 
@@ -125,6 +127,41 @@ public class Anuncio implements Serializable {
 
     public TipoRegimento getTipoRegimento() {
         return tipoRegimento;
+    }
+
+    public boolean verificaCompetencias(List<ReconhecimentoCT> reconhecimentosFreelancer) {
+        ArrayList<CompetenciaTecnica> competenciasObrigatorias = new ArrayList<>();
+        for (CaracterizacaoCompTec cct : this.getTarefa().getCategoria().getCompetenciasTecnicas()) {
+            if (cct.isObrigatorio()) {
+                competenciasObrigatorias.add(cct.getCompetenciaTecnica());
+            }
+        }
+
+        ArrayList<CompetenciaTecnica> competenciasFreelancer = new ArrayList<>();
+        for (ReconhecimentoCT rct : reconhecimentosFreelancer) {
+            competenciasFreelancer.add(rct.getCompetenciaTecnica());
+        }
+
+        for (CompetenciaTecnica ctec : competenciasObrigatorias) {
+            if (!competenciasFreelancer.contains(ctec)) {
+                return false;
+            }
+        }
+
+        int counter = 0;
+
+        for (CaracterizacaoCompTec cct : this.getTarefa().getCategoria().getCompetenciasTecnicas()) {
+            for (ReconhecimentoCT rct : reconhecimentosFreelancer) {
+                if (cct.isObrigatorio()
+                        && cct.getCompetenciaTecnica().equals(rct.getCompetenciaTecnica())
+                        && cct.getGrauProficiencia().getNivel() <= rct.getGrauProficiencia().getNivel()) {
+                    counter++;
+                }
+            }
+        }
+
+        return counter == competenciasObrigatorias.size();
+
     }
     
     

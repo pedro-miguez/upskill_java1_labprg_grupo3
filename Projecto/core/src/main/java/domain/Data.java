@@ -238,8 +238,9 @@ public class Data implements Comparable<Data> {
         return String.format("%02d/%02d/%04d", dia, mes.ordinal()+1, ano);
     }
 
+
     public String dataSQLtoString() {
-        return String.format("TO_DATE('%04d-%02d-%02d', 'yyyy-mm-dd')", ano, mes.ordinal()+1, dia);
+        return String.format("%04d-%02d-%02d", ano, mes.ordinal()+1, dia);
     }
     
     /**
@@ -385,8 +386,7 @@ public class Data implements Comparable<Data> {
     }
 
     public Date getDataSQL() {
-        LocalDate locald = LocalDate.of(this.ano, this.getMes(), this.dia);
-        return Date.valueOf(locald);
+        return Date.valueOf(this.dataSQLtoString());
     }
     
 }
