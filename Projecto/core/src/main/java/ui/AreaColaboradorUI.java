@@ -73,8 +73,12 @@ public class AreaColaboradorUI implements Initializable {
             throwables.printStackTrace();
         }
 
-
-
+        //popular combo boxes do painel Publicar Tarefa
+        try {
+            btnTipoRegimento.getItems().setAll(serviceController.getTiposRegimento());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
