@@ -87,6 +87,26 @@ public class RepositorioAnuncio {
         return false;
     }
 
+    public ArrayList<TipoRegimento> getTiposRegimento() {
+        ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
+        try {
+            Connection conn = connectionHandler.openConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM TipoRegimento");
+            ResultSet rSetTipoRegimento = pstmt.executeQuery();
+            while(rSetTipoRegimento.next()) {
+                String designacao = rSetTipoRegimento.getString("designacao");
+                String regras = rSetTipoRegimento.getString("descricaoRegras");
+
+                tiposRegimento.add(new TipoRegimento(designacao, regras));
+            }
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+
+        return tiposRegimento;
+    }
+
     public Anuncio getAnuncioByRefTarefaIdOrg(Tarefa tarefa, TipoRegimento tipoRegimento) {
 
         try {
@@ -143,9 +163,10 @@ public class RepositorioAnuncio {
 
             PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM TipoRegimento WHERE idTipoRegimento = ?");
             pstmt4.setInt(1, idTipoRegimento);
+            ResultSet rSetTipoRegimento2 = pstmt4.executeQuery();
 
-            String designacao = pstmt4.executeQuery().getString("designacao");
-            String regras = pstmt4.executeQuery().getString("descricaoRegras");
+            String designacao = rSetTipoRegimento2.getString("designacao");
+            String regras = rSetTipoRegimento2.getString("descricaoRegras");
 
             TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
 
@@ -190,66 +211,13 @@ public class RepositorioAnuncio {
     }
 
     public ArrayList<Anuncio> montarListaAnuncios(ResultSet rows) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
         ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
 
         try {
             while (rows.next()) {
 
-                //Montar Tarefa
-
-                PreparedStatement pstmt = conn.prepareStatement("SELECT idTarefa FROM Anuncio WHERE idAnuncio = ?");
-                pstmt.setInt(1,rows.getInt("idAnuncio"));
-                ResultSet rSetTarefa = pstmt.executeQuery();
-                int idTarefa = rSetTarefa.getInt("idTarefa");
-
-                PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
-                pstmt2.setInt(1,idTarefa);
-
-                Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
-
-                //Montar TipoRegimento
-
-                PreparedStatement pstmt3 = conn.prepareStatement("SELECT idTipoRegimento FROM Anuncio WHERE idAnuncio = ?");
-                pstmt3.setInt(1,rows.getInt("idAnuncio"));
-                int idTipoRegimento = pstmt3.executeQuery().getInt("idTipoRegimento");
-
-                PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM TipoRegimento WHERE idTipoRegimento = ?");
-                pstmt4.setInt(1, idTipoRegimento);
-
-                String designacao = pstmt4.executeQuery().getString("designacao");
-                String regras = pstmt4.executeQuery().getString("descricaoRegras");
-
-                TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
-
-                //Datas Anúncio
-
-                Date datasql = rows.getDate(2);
-                String[] dataString = datasql.toString().split("-");
-                Data dataInicioPub = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
-                        , Integer.parseInt(dataString[2]));
-                Date datasql2 = rows.getDate(2);
-                String[] dataString2 = datasql2.toString().split("-");
-                Data dataFimPub = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
-                        , Integer.parseInt(dataString[2]));
-                Date datasql3 = rows.getDate(2);
-                String[] dataString3 = datasql3.toString().split("-");
-                Data dataInicioCand = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
-                        , Integer.parseInt(dataString[2]));
-                Date datasql4 = rows.getDate(2);
-                String[] dataString4 = datasql4.toString().split("-");
-                Data dataFimCand = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
-                        , Integer.parseInt(dataString[2]));
-                Date datasql5 = rows.getDate(2);
-                String[] dataString5 = datasql5.toString().split("-");
-                Data dataInicioSer = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
-                        , Integer.parseInt(dataString[2]));
-                Date datasql6 = rows.getDate(2);
-                String[] dataString6 = datasql6.toString().split("-");
-                Data dataFimSer = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
-                        , Integer.parseInt(dataString[2]));
-
-                listaAnuncios.add(new Anuncio(tarefa, tipoRegimento, dataInicioPub, dataFimPub, dataInicioCand, dataFimCand, dataInicioSer, dataFimSer));
+                Anuncio anuncio = montarAnuncio(rows);
+                listaAnuncios.add(anuncio);
             }
 
         } catch (SQLException e) {
@@ -258,6 +226,8 @@ public class RepositorioAnuncio {
         }
         return listaAnuncios;
     }
+
+
 
     public Anuncio criarAnuncio(Tarefa tarefa, TipoRegimento tipoRegimento, LocalDate dataInicioPub,
                                 LocalDate dataFimPub, LocalDate dataInicioCand, LocalDate dataFimCand,

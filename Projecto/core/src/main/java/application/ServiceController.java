@@ -130,4 +130,8 @@ public class ServiceController {
     public ArrayList<CompetenciaTecnica> getAllCompetenciasTecnicas() {
         return RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas();
     }
+
+    public ArrayList<TipoRegimento> getTiposRegimento() {
+        return RepositorioAnuncio.getInstance().getTiposRegimento();
+    }
 }
