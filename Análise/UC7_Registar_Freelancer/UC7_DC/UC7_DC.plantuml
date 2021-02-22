@@ -1,0 +1,74 @@
+@startuml
+
+title UC7 - Registar Freelancer \n
+
+Class AreaAdministradorUI {
+}
+
+Class RegistarFreelancerController {
+    +registarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,\nList<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes)
+}
+
+Class Repositoriofreelancer {
+    +getFreelancerByEmail(Email email)
+    +insertUtilizadorFreelancer(Freelancer freelancer, String password)
+}
+
+Class Freelancer {
+    - String nome;
+    - Telefone telefone;
+    - Email email;
+    - NIF nif;
+    - List<ReconhecimentoCT> reconhecimento;
+    - List<HabilitacaoAcademica> habilitacoes;
+    + Freelancer(String nome, Telefone telefone,\nEmail email, NIF nif, List<ReconhecimentoCT> reconhecimento,\nList<HabilitacaoAcademica> habilitacoes)
+}
+
+Class ReconhecimentoCT {
+    - CompetenciaTecnica competenciaTecnica;
+    - GrauProficiencia grauProficiencia;
+    - Data dataReconhecimento;
+
+    + ReconhecimentoCT(CompetenciaTecnica\ncompetenciaTecnica, GrauProficiencia grauProficiencia,\nData dataReconhecimento)
+}
+
+Class HabilitacaoAcademica {
+    - String grau;
+    - String designacaoCurso;
+    - String nomeInstituicao;
+    - double mediaCurso;
+
+    + HabilitacaoAcademica(String grau,\nString designacaoCurso, String\nnomeInstituicao, double mediaCurso)
+}
+
+
+
+Class AlgoritmoGeradorPasswords {
+    +getPassword()
+}
+
+class AuthenticationController {
+    +registarFreelancerComoUtilizador(Freelancer freelancer)
+}
+
+class UsersAPI {
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class UsersAPIAdapter {
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+
+
+AreaAdministradorUI ..> RegistarFreelancerController
+RegistarFreelancerController ..> AuthenticationController
+RegistarFreelancerController ..> Repositoriofreelancer
+AuthenticationController ..> UsersAPI
+UsersAPI --> AlgoritmoGeradorPasswords : usa
+UsersAPI ..> UsersAPIAdapter
+Repositoriofreelancer "1"--> "1..*" Freelancer : cria
+Freelancer "1" --> "1..*" ReconhecimentoCT : necessita
+Freelancer "1" --> "1..*" HabilitacaoAcademica : possui
+
+@enduml

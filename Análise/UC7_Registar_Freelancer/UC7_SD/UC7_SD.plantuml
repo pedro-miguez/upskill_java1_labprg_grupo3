@@ -10,16 +10,18 @@ activate "rf:RepositorioFreelancer"
 "rf:RepositorioFreelancer" -> NIF ** : 7 create(nif)
 "rf:RepositorioFreelancer" -> Telefone ** : 9 create(contacto)
 "rf:RepositorioFreelancer" -> Email ** : 10 create(email)
-ref over RegistrarFreelancerController, ReconhecimentoCT
-"rf:RepositorioFreelancer" -> ReconhecimentoCT ** : 11 create(reconhecimento)
-"rf:RepositorioFreelancer" -> HabilitacaoAcademica ** : 11 create(habilitacoes)
-"rf:RepositorioFreelancer" -> Freelancer ** : 12 create(nomeFreelancer,\n contactoFreelancer, emailFreelancer,\n nifFreelancer, reconhecimento, habilitacoes)
+group loop
+"rf:RepositorioFreelancer" -> HabilitacaoAcademica ** : 11 create(grau, designacaoCurso, nomeInstituicao, mediaCurso)
+end
+group loop
+    "rf:RepositorioFreelancer" -> ReconhecimentoCT ** : 11 create(competenciaTecnica, grauProficiencia, dataReconhecimento)
+end
+"rf:RepositorioFreelancer" -> Freelancer ** : 12 create(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer, reconhecimento, habilitacoes)
 deactivate "rf:RepositorioFreelancer"
 "RegistrarFreelancerController" -> "rf:RepositorioFreelancer" : 17 addFreelancer(freelancer)
 activate "rf:RepositorioFreelancer"
 "RegistrarFreelancerController" <-- "rf:RepositorioFreelancer" : 18 ok
 deactivate "rf:RepositorioFreelancer"
-ref over RegistrarFreelancerController, HabilitacaoAcademica
 deactivate "RegistrarFreelancerController"
 "AreaAdministrativoUI" --> Administrativo : 23 operação bem sucedida, \n mostra dados
 deactivate "AreaAdministrativoUI"
