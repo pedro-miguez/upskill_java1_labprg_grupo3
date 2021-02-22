@@ -55,13 +55,9 @@ public class RepositorioAnuncio {
 
             cs3.setInt(1, idTarefa);
             cs3.setInt(2, idTipoRegimento);
-            //long dataInicioPub = Date.parse(anuncio.getDataInicioPublicitacao().toAnoMesDiaString());
-            //Date sqlDate = new java.sql.Date(dataInicioPub);
-            Date sqlData = new java.sql.Date(anuncio.getDataInicioPublicitacao().getAno(),
-                    anuncio.getDataInicioPublicitacao().getMes(),
-                    anuncio.getDataInicioPublicitacao().getDia());
-
-            cs3.setString(3, anuncio.getDataInicioPublicitacao().dataSQLtoString());
+            long dataInicioPub = Date.parse(anuncio.getDataInicioPublicitacao().toAnoMesDiaString());
+            Date sqlDate = new java.sql.Date(dataInicioPub);
+            cs3.setDate(3, sqlDate);
             long dataFimPub = Date.parse(anuncio.getDataFimPublicitacao().toAnoMesDiaString());
             Date sqlDate2 = new java.sql.Date(dataFimPub);
             cs3.setDate(4, sqlDate2);
