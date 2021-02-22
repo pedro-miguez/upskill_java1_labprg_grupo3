@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.security.SecureRandom;
 
 /**
- * Current class represents the tool for creating new random passwords so that users can have access to the Platform
- * and enjoy all of its functions.
+ * Current class represents the tool for creating new random passwords so that 
+ * users can have access to the Platform and enjoy all of its functions.
  *
  * @author nunocastro
  */

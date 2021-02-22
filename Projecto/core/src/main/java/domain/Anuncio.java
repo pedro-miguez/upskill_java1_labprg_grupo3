@@ -8,6 +8,8 @@ package domain;
 import java.io.Serializable;
 
 /**
+ * Current class represents the tool for creating new advertisement so that 
+ * tasks can be announced.
  *
  * @author Grupo 3
  */
