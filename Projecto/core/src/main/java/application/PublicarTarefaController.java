@@ -10,6 +10,7 @@ import persistence.RepositorioOrganizacao;
 import persistence.RepositorioTarefa;
 
 import java.sql.SQLException;
+import persistence.RepositorioAnuncio;
 
 /**
  *
@@ -17,9 +18,21 @@ import java.sql.SQLException;
  */
 public class PublicarTarefaController {
     
-    public boolean publicarTarefa() throws SQLException {
+    public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
+                                    Data dataInicioPublicitacao, Data dataFimPublicitacao,
+                                    Data dataInicioCandidatura, Data dataFimCandidatura,
+                                    Data dataInicioSeriacao, Data dataFimSeriacao) 
+                                throws SQLException {
         
+        RepositorioAnuncio repAnuncio = RepositorioAnuncio.getInstance();
         
+        RepositorioTarefa repTarefa = RepositorioTarefa.getInstance();
+        
+        Tarefa tarefa = repTarefa.getTarefasPublishedOrganizacao(organizacao);
+        
+        Anuncio anuncio = repositorioAnuncio
+                
+        return repositorioAnuncio.
         
     }
     
