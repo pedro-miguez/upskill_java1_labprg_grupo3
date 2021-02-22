@@ -77,6 +77,10 @@ public class PlataformaController {
         return RepositorioCategoriaTarefa.getInstance().getCategoriaTarefaByDescricaoAndAreaAtividade(nome, areaAtividade).toStringCompleto();
     }
 
+    public String getFreelancerToStringCompletoByEmail(String email) throws SQLException {
+        return RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(email)).toString();
+    }
+
     /**
      * Gets the complete representation of a collaborator object by its email.
      *

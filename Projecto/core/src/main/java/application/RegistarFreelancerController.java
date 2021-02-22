@@ -19,14 +19,33 @@ public class RegistarFreelancerController {
     
     private AuthenticationController authController = new AuthenticationController();
 
+
+    /**
+     * Freelancer Registry boolean.
+     *
+     * @param nomeFreelancer as freelancer name
+     * @param telefone       as freelancer contact
+     * @param email          as freelancer email
+     * @param nif            as freelancer nif
+     * @param reconhecimento as freelancer tec skills
+     * @param habilitacoes   as freelancer qualifications
+     * @return the boolean
+     */
+
+    
+    
+
     public boolean registarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
                                       List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) throws SQLException {
+
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioFreelancer repoFlr = RepositorioFreelancer.getInstance();
 
+
         Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer,
                                                             reconhecimento, habilitacoes );
+
         String password = authController.registarFreelancerComoUtilizador(freelancer);
         System.out.println(password);
 

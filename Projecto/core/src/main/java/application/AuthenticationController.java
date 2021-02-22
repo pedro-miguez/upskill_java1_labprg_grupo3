@@ -98,9 +98,19 @@ public class AuthenticationController {
         }
     }
 
+    
+    /**
+     * Allows to register a new freelancer.
+     *
+     * @param freelancer as user
+     * @return the boolean
+     */
+    
+
     public String registarFreelancerComoUtilizador(Freelancer freelancer) {
         String nome = freelancer.getNome();
         String email = freelancer.getEmail().toString();
+
 
         AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         String password = alg.geraPassword();
