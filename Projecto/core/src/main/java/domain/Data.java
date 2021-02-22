@@ -7,6 +7,9 @@ package domain;
 
 import exceptions.DiaInvalidoException;
 import exceptions.MesInvalidoException;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 /**
@@ -232,7 +235,11 @@ public class Data implements Comparable<Data> {
      * @return caraterísticas da data.
      */
     public String toAnoMesDiaString() {
-        return String.format("%02d/%02d/%04d", dia, mes.ordinal()+1, ano);
+        return String.format("%02d-%02d-%04d", dia, mes.ordinal()+1, ano);
+    }
+
+    public String dataSQLtoString() {
+        return String.format("TO_DATE('%04d-%02d-%02d', 'yyyy-mm-dd')", ano, mes.ordinal()+1, dia);
     }
     
     /**
@@ -375,6 +382,11 @@ public class Data implements Comparable<Data> {
         totalDias += dia;
 
         return totalDias;
+    }
+
+    public Date getDataSQL() {
+        LocalDate locald = LocalDate.of(this.ano, this.getMes(), this.dia);
+        return Date.valueOf(locald);
     }
     
 }

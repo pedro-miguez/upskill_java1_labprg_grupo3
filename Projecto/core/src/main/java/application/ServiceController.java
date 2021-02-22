@@ -77,6 +77,12 @@ public class ServiceController {
         return RepositorioCategoriaTarefa.getInstance().getCategoriaTarefaByDescricaoAndAreaAtividade(nome, areaAtividade).toStringCompleto();
     }
 
+    /**
+     * Gets the complete representation of a freelancer object by his email.
+     *
+     * @param email as email
+     * @return the complete representation of a freelancer object by his email.
+     */
     public String getFreelancerToStringCompletoByEmail(String email) throws SQLException {
         return RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(email)).toString();
     }
@@ -121,21 +127,42 @@ public class ServiceController {
         return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico), emailColaborador).toString();
     }
 
+    /**
+     * Gets the tasks by organization.
+     *
+     * @param emailColaborador as email of collaborator
+     * @return the tasks by organization.
+     */
     public ArrayList<Tarefa> getTarefasOrganizacao(String emailColaborador) {
         Organizacao org = RepositorioOrganizacao.getInstance().getOrganizacaoByEmail(new Email(emailColaborador));
 
         return RepositorioTarefa.getInstance().getTarefasOrganizacao(org);
     }
 
+    /**
+     * Gets list of technical skills
+     *
+     * @return the list of technical skills
+     */
     public ArrayList<CompetenciaTecnica> getAllCompetenciasTecnicas() {
         return RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas();
     }
 
+     /**
+     * Gets list of regiment types
+     *
+     * @return the list of regiment types
+     */
     public ArrayList<TipoRegimento> getTiposRegimento() throws SQLException {
         return RepositorioAnuncio.getInstance().getTiposRegimento();
     }
 
-
+    /**
+     * Gets the complete representation of a advertisement object by its task.
+     *
+     * @param tarefa as task
+     * @return the complete representation of a advertisement object by its task.
+     */
     public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa){
         return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
     }
