@@ -88,22 +88,19 @@ public class RepositorioAnuncio {
     }
 
 
-    public ArrayList<TipoRegimento> getTiposRegimento() {
+    public ArrayList<TipoRegimento> getTiposRegimento() throws SQLException {
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
-        try {
-            Connection conn = connectionHandler.openConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM TipoRegimento");
-            ResultSet rSetTipoRegimento = pstmt.executeQuery();
-            while(rSetTipoRegimento.next()) {
-                String designacao = rSetTipoRegimento.getString("designacao");
-                String regras = rSetTipoRegimento.getString("descricaoRegras");
 
-                tiposRegimento.add(new TipoRegimento(designacao, regras));
-            }
-        } catch (SQLException e) {
-            e.getSQLState();
-            e.printStackTrace();
+        Connection conn = connectionHandler.openConnection();
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM TipoRegimento");
+        ResultSet rSetTipoRegimento = pstmt.executeQuery();
+        while (rSetTipoRegimento.next()) {
+            String designacao = rSetTipoRegimento.getString("designacao");
+            String regras = rSetTipoRegimento.getString("descricaoRegras");
+
+            tiposRegimento.add(new TipoRegimento(designacao, regras));
         }
+
 
         return tiposRegimento;
     }
@@ -147,19 +144,19 @@ public class RepositorioAnuncio {
 
             //montar tarefa
             PreparedStatement pstmt = conn.prepareStatement("SELECT idTarefa FROM Anuncio WHERE idAnuncio = ?");
-            pstmt.setInt(1,row.getInt("idAnuncio"));
+            pstmt.setInt(1, row.getInt("idAnuncio"));
             ResultSet rSetTarefa = pstmt.executeQuery();
             int idTarefa = rSetTarefa.getInt("idTarefa");
 
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
-            pstmt2.setInt(1,idTarefa);
+            pstmt2.setInt(1, idTarefa);
 
             Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
 
             //montar tipoRegimento
 
             PreparedStatement pstmt3 = conn.prepareStatement("SELECT idTipoRegimento FROM Anuncio WHERE idAnuncio = ?");
-            pstmt3.setInt(1,row.getInt("idAnuncio"));
+            pstmt3.setInt(1, row.getInt("idAnuncio"));
             ResultSet rSetTipoRegimento = pstmt3.executeQuery();
             int idTipoRegimento = rSetTipoRegimento.getInt("idTipoRegimento");
 
@@ -232,7 +229,7 @@ public class RepositorioAnuncio {
 
     public Anuncio criarAnuncio(Tarefa tarefa, TipoRegimento tipoRegimento, Data dataInicioPub,
                                 LocalDate dataFimPub, LocalDate dataInicioCand, LocalDate dataFimCand,
-                                LocalDate dataInicioSer, LocalDate dataFimSer){
+                                LocalDate dataInicioSer, LocalDate dataFimSer) {
 
         return new Anuncio(tarefa, tipoRegimento, dataInicioPub, new Data(dataFimPub.getYear(), dataFimPub.getMonth().getValue(),
                 dataFimPub.getDayOfMonth()), new Data(dataInicioCand.getYear(), dataInicioCand.getMonth().getValue(),

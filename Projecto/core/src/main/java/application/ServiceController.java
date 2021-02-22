@@ -134,6 +134,8 @@ public class ServiceController {
     public ArrayList<TipoRegimento> getTiposRegimento() {
         return RepositorioAnuncio.getInstance().getTiposRegimento();
 
+    }
+
     public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa){
         return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
     }
