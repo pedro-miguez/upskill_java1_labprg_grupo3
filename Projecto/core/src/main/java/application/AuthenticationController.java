@@ -76,7 +76,7 @@ public class AuthenticationController {
     }
 
     /**
-     * Allows to register a new user not as a manager.
+     * Allows to register a new user not as a colaborator.
      *
      * @param colaborador as colaborator
      * @return the boolean
@@ -97,7 +97,7 @@ public class AuthenticationController {
             return "failed";
         }
     }
-    
+
     
     /**
      * Allows to register a new freelancer.
@@ -105,11 +105,12 @@ public class AuthenticationController {
      * @param freelancer as user
      * @return the boolean
      */
+    
+
     public String registarFreelancerComoUtilizador(Freelancer freelancer) {
-        
         String nome = freelancer.getNome();
         String email = freelancer.getEmail().toString();
-        
+
 
         AlgoritmoGeradorPasswords alg = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         String password = alg.geraPassword();

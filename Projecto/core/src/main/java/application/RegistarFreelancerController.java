@@ -9,6 +9,7 @@ import domain.*;
 import persistence.RepositorioFreelancer;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 public class RegistarFreelancerController {
     
     private AuthenticationController authController = new AuthenticationController();
+
 
     /**
      * Freelancer Registry boolean.
@@ -31,18 +33,18 @@ public class RegistarFreelancerController {
      */
 
     
-    public boolean registarFreelancer(String nomeFreelancer, int telefone, 
-                                        String email, int nif,
-                                        ReconhecimentoCT reconhecimento, 
-                                        HabilitacaoAcademica habilitacoes) throws SQLException {
+    
+
+    public boolean registarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
+                                      List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) throws SQLException {
+
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioFreelancer repoFlr = RepositorioFreelancer.getInstance();
 
-        Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, 
-                                                        telefone, email, nif,
-                                                        reconhecimento,
-                                                        habilitacoes);
+
+        Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer,
+                                                            reconhecimento, habilitacoes );
 
         String password = authController.registarFreelancerComoUtilizador(freelancer);
         System.out.println(password);
