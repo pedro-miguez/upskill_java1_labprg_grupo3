@@ -527,10 +527,10 @@ public class AreaAdministrativoUI implements Initializable {
     public void competenciaPorComprovarFreelancerAction(ActionEvent actionEvent) {
         if (comboBoxGrauProficienciaFreelancer.getValue() != null &&
                 listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
-            CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
+            ReconhecimentoCT ct = new ReconhecimentoCT(
                     listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem(),
-                    false,
-                    comboBoxGrauProficienciaFreelancer.getValue());
+                    comboBoxGrauProficienciaFreelancer.getValue(),
+                    Data.dataAtual());
 
             if (competenciaTecnicaAindaNaoFoiAdicionadaFreelancer(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem())) {
                 listViewCompTecnicasSelecionadasFreelancer.getItems().add(ct);
@@ -606,7 +606,6 @@ public class AreaAdministrativoUI implements Initializable {
         txtEmailFreelancer.clear();
         txtNIFFreelancer.clear();
 
-        listViewCompTecnicasPorSelecionarFreelancer.getItems().setAll(new ArrayList<>());
         listViewCompTecnicasSelecionadasFreelancer.getItems().setAll(new ArrayList<>());
     }
 
