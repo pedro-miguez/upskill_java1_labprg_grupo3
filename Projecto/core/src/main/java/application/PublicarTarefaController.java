@@ -25,12 +25,12 @@ public class PublicarTarefaController {
      *
      * @param tarefa                 as task
      * @param tipoRegimento          as type of regiment
-     * @param dataInicioPublicitacao as advertising start date
-     * @param dataFimPublicitacao    as advertising end date
-     * @param dataInicioCandidatura  as application start date
-     * @param dataFimCandidatura     as application end date
-     * @param dataInicioSeriacao     as serial start date
-     * @param dataFimSeriacao        as serial end date
+     * @param dataInicioPublicitacao as the advertisement start date
+     * @param dataFimPublicitacao    as the advertisement end date
+     * @param dataInicioCandidatura  as the application start date
+     * @param dataFimCandidatura     as the application end date
+     * @param dataInicioSeriacao     as the serialization start date
+     * @param dataFimSeriacao        as the serialization end date
      * @return the boolean
      */
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
