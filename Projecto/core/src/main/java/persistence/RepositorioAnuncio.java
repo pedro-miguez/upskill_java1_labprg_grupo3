@@ -64,8 +64,7 @@ public class RepositorioAnuncio {
             long dataFimSer = Date.parse(anuncio.getDataFimSeriacao().toAnoMesDiaString());
             Date sqlDate6 = new java.sql.Date(dataFimSer);
             cs3.setDate(8, sqlDate6);
-
-            //Sempre que se insere um anúncio fazer update à tarefa para alterar o estado da tarefa... trigger
+            
 
             cs3.executeQuery();
 

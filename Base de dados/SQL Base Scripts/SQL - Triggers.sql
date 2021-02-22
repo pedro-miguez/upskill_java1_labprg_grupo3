@@ -51,3 +51,11 @@ begin
  end if;
 end;
 /
+
+create or replace trigger trgAnuncioTarefa after insert on Anuncio for each row
+
+declare 
+begin
+UPDATE Tarefa SET idEstadoTarefa = 2 WHERE idTarefa = :new.idTarefa;
+end;
+/
