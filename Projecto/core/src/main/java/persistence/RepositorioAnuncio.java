@@ -5,6 +5,7 @@ import exceptions.CodigoNaoAssociadoException;
 import exceptions.FetchingProblemException;
 import jdk.nashorn.internal.codegen.CompilerConstants;
 import network.ConnectionHandler;
+import oracle.jdbc.proxy.annotation.Pre;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,35 +32,41 @@ public class RepositorioAnuncio {
 
             int idTarefa = cs1.getInt("idTarefa");
 
-            CallableStatement cs2 = conn.prepareCall("{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?)}");
+            CallableStatement cs2 = conn.prepareCall("SELECT idTipoRegimento FROM TipoRegimento where designacao = ?");
+            cs2.setString(1, anuncio.getTipoRegimento().getDesignacao());
+
+            int idTipoRegimento = cs2.getInt("idTipoRegimento");
+
+            CallableStatement cs3 = conn.prepareCall("{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?)}");
             ResultSet rs = null;
 
 
             conn.setAutoCommit(false);
 
-            cs2.setInt(1, idTarefa);
+            cs3.setInt(1, idTarefa);
+            cs3.setInt(2, idTipoRegimento);
             long dataInicioPub = Date.parse(anuncio.getDataInicioPublicitacao().toAnoMesDiaString());
             Date sqlDate = new java.sql.Date(dataInicioPub);
-            cs2.setDate(3, sqlDate);
+            cs3.setDate(3, sqlDate);
             long dataFimPub = Date.parse(anuncio.getDataFimPublicitacao().toAnoMesDiaString());
             Date sqlDate2 = new java.sql.Date(dataFimPub);
-            cs2.setDate(4, sqlDate2);
+            cs3.setDate(4, sqlDate2);
             long dataInicioCand = Date.parse(anuncio.getDataInicioCandidatura().toAnoMesDiaString());
             Date sqlDate3 = new java.sql.Date(dataInicioCand);
-            cs2.setDate(5, sqlDate3);
+            cs3.setDate(5, sqlDate3);
             long dataFimCand = Date.parse(anuncio.getDataFimCandidatura().toAnoMesDiaString());
             Date sqlDate4 = new java.sql.Date(dataFimCand);
-            cs2.setDate(6, sqlDate4);
+            cs3.setDate(6, sqlDate4);
             long dataInicioSer = Date.parse(anuncio.getDataInicioSeriacao().toAnoMesDiaString());
             Date sqlDate5 = new java.sql.Date(dataInicioSer);
-            cs2.setDate(7, sqlDate5);
+            cs3.setDate(7, sqlDate5);
             long dataFimSer = Date.parse(anuncio.getDataFimSeriacao().toAnoMesDiaString());
             Date sqlDate6 = new java.sql.Date(dataFimSer);
-            cs2.setDate(8, sqlDate6);
+            cs3.setDate(8, sqlDate6);
 
             //Sempre que se insere um anúncio fazer update à tarefa para alterar o estado da tarefa... trigger
 
-            cs2.executeQuery();
+            cs3.executeQuery();
 
             conn.commit();
 
@@ -129,6 +136,20 @@ public class RepositorioAnuncio {
 
             //montar tipoRegimento
 
+            PreparedStatement pstmt3 = conn.prepareStatement("SELECT idTipoRegimento FROM Anuncio WHERE idAnuncio = ?");
+            pstmt3.setInt(1,row.getInt("idAnuncio"));
+            ResultSet rSetTipoRegimento = pstmt3.executeQuery();
+            int idTipoRegimento = rSetTipoRegimento.getInt("idTipoRegimento");
+
+            PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM TipoRegimento WHERE idTipoRegimento = ?");
+            pstmt4.setInt(1, idTipoRegimento);
+
+            String designacao = pstmt4.executeQuery().getString("designacao");
+            String regras = pstmt4.executeQuery().getString("descricaoRegras");
+
+            TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
+
+            //Datas Anúncio
 
             Date datasql = row.getDate("dataInicioPublicitacao");
             String[] dataString = datasql.toString().split("-");
@@ -168,7 +189,7 @@ public class RepositorioAnuncio {
 
     }
 
-    public ArrayList<Anuncio> montarListaAnuncios(ResultSet rows, Tarefa tarefa, TipoRegimento tipoRegimento) throws SQLException {
+    public ArrayList<Anuncio> montarListaAnuncios(ResultSet rows) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
 
@@ -185,9 +206,23 @@ public class RepositorioAnuncio {
                 PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
                 pstmt2.setInt(1,idTarefa);
 
-                Tarefa tarefa1 = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
+                Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
 
                 //Montar TipoRegimento
+
+                PreparedStatement pstmt3 = conn.prepareStatement("SELECT idTipoRegimento FROM Anuncio WHERE idAnuncio = ?");
+                pstmt3.setInt(1,rows.getInt("idAnuncio"));
+                int idTipoRegimento = pstmt3.executeQuery().getInt("idTipoRegimento");
+
+                PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM TipoRegimento WHERE idTipoRegimento = ?");
+                pstmt4.setInt(1, idTipoRegimento);
+
+                String designacao = pstmt4.executeQuery().getString("designacao");
+                String regras = pstmt4.executeQuery().getString("descricaoRegras");
+
+                TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
+
+                //Datas Anúncio
 
                 Date datasql = rows.getDate(2);
                 String[] dataString = datasql.toString().split("-");
@@ -214,7 +249,7 @@ public class RepositorioAnuncio {
                 Data dataFimSer = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
                         , Integer.parseInt(dataString[2]));
 
-                listaAnuncios.add(new Anuncio(tarefa1, tipoRegimento, dataInicioPub, dataFimPub, dataInicioCand, dataFimCand, dataInicioSer, dataFimSer));
+                listaAnuncios.add(new Anuncio(tarefa, tipoRegimento, dataInicioPub, dataFimPub, dataInicioCand, dataFimCand, dataInicioSer, dataFimSer));
             }
 
         } catch (SQLException e) {
