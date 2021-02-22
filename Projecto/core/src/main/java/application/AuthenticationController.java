@@ -105,8 +105,6 @@ public class AuthenticationController {
      * @param freelancer as user
      * @return the boolean
      */
-    
-
     public String registarFreelancerComoUtilizador(Freelancer freelancer) {
         String nome = freelancer.getNome();
         String email = freelancer.getEmail().toString();
