@@ -204,7 +204,7 @@ public class RepositorioFreelancer implements Serializable {
                 //Montar Grau Proficiência
                 PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ? AND nivel = ?");
                 pstmt4.setString(1, rows.getString("idCompetenciaTecnica"));
-                pstmt4.setInt(2, rows.getInt(4));
+                pstmt4.setInt(2, rows.getInt(3));
                 ResultSet linhaGrau = pstmt4.executeQuery();
                 linhaGrau.next();
                 GrauProficiencia grauProficiencia = new GrauProficiencia(linhaGrau.getInt(2), linhaGrau.getString(3));

@@ -139,8 +139,8 @@ public class Freelancer implements Serializable {
      */
 
 
-    public List<HabilitacaoAcademica> getHabilitacoes() {
-        return new ArrayList<HabilitacaoAcademica>(habilitacoes);
+    public ArrayList<HabilitacaoAcademica> getHabilitacoes() {
+        return new ArrayList<>(habilitacoes);
     }
 }
 

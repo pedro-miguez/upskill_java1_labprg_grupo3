@@ -220,9 +220,9 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 ArrayList<GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
                 listaCompetencias.add(new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus));
                 pstmt.clearParameters();
-                pstmt.close();
-                conn.close();
             }
+            pstmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

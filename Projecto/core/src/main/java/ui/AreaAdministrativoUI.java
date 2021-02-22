@@ -70,13 +70,19 @@ public class AreaAdministrativoUI implements Initializable {
     public TextField txtEmailFreelancer;
     public TextField txtNIFFreelancer;
 
-    public ComboBox<HabilitacaoAcademica> comboBoxHabilitacoesAcademicasFreelancer;
     public ComboBox<GrauProficiencia> comboBoxGrauProficienciaFreelancer;
     public ListView<CompetenciaTecnica> listViewCompTecnicasPorSelecionarFreelancer;
     public ListView<ReconhecimentoCT> listViewCompTecnicasSelecionadasFreelancer;
+    public ListView<HabilitacaoAcademica> listViewHabilitacaoAcademicaRegistoFreelancer;
+
+    public TextField txtGrauFreelancer;
+    public TextField txtDesignacaoCurso;
+    public TextField txtNomeInstituicao;
+    public TextField txtMediaCurso;
+    public Button btnAdicionarHabilitacaoAcademica;
+    public Button btnRemoverUltimaHabilitacaoAcademicaAdicionada;
 
     public Button btnCompetenciaReconhecidaFreelancer;
-    public Button btnCompetenciaPorComprovarFreelancer;
     public Button btnRemoverUltimaCompTecFreelancer;
 
     public Button btnConfirmarCriacaoFreelancer;
@@ -89,6 +95,7 @@ public class AreaAdministrativoUI implements Initializable {
     public Button btnCriarFreelancerSelect;
 
     public Button btnLogout;
+    public Button btnRemoverGrauProficienciaCompetenciaTecnica;
 
 
     private DefinirAreaAtividadeController areaAtividadeController;
@@ -218,7 +225,7 @@ public class AreaAdministrativoUI implements Initializable {
         try {
             boolean adicionou = registarFreelancerController.registarFreelancer(txtNomeFreelancer.getText().trim(), Integer.parseInt(txtTelefoneFreelancer.getText()),
                     txtEmailFreelancer.getText().trim(), Integer.parseInt(txtNIFFreelancer.getText()), listViewCompTecnicasSelecionadasFreelancer.getItems(),
-                    comboBoxHabilitacoesAcademicasFreelancer.getValue());
+                    listViewHabilitacaoAcademicaRegistoFreelancer.getItems());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo Freelancer.",
                     adicionou ? "Freelancer criado com sucesso! \n\n" +
@@ -419,112 +426,11 @@ public class AreaAdministrativoUI implements Initializable {
         }
     }
 
-    /*//adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
-    public void compObrigatoriaCategoriaTarefaAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
-                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
-            CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
-                    listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
-                    true,
-                    comboBoxGrauProficienciaCategoriaTarefa.getValue());
-
-            if (competenciaTecnicaAindaNaoFoiAdicionada(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem())) {
-                listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
-                btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
-            } else {
-                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
-                        "Não é possível adicionar a mesma competência técnica mais do que uma vez.").show();
-            }
-        } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
-                    "É obrigatório escolher um grau de proficiência").show();
-        }
-
-    }
-
-
-
-    //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
-    public void compOpcionalCategoriaTarefaAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
-                listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
-            CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
-                    listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem(),
-                    false,
-                    comboBoxGrauProficienciaCategoriaTarefa.getValue());
-
-            if (competenciaTecnicaAindaNaoFoiAdicionada(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem())) {
-                listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().add(ct);
-                btnRemoverUltimaCompTecCategoriaTarefa.setDisable(false);
-            } else {
-                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
-                        "Não é possível adicionar a mesma competência técnica mais do que uma vez.").show();
-            }
-        } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
-                    "É obrigatório escolher um grau de proficiência").show();
-        }
-
-
-
-    }
-
-    public boolean competenciaTecnicaAindaNaoFoiAdicionada(CompetenciaTecnica competenciaTecnica) {
-        for(CaracterizacaoCompTec cct : listViewCompTecnicasSelecionadasCategoriaTarefa.getItems()) {
-            if (cct.getCompetenciaTecnica().equals(competenciaTecnica)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean grauProficienciaAindaNaoFoiAdicionado(GrauProficiencia grauProficiencia) {
-        for(GrauProficiencia gp : listViewGrauProficienciaCompetenciaTecnica.getItems()) {
-            if (gp.equals(grauProficiencia)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //remover a última competência técnica da lista
-    public void removerUltimaCompTecCategoriaTarefaAction(ActionEvent actionEvent) {
-        listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().remove(listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().size() - 1);
-
-        if (listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().size() == 0) {
-            btnRemoverUltimaCompTecCategoriaTarefa.setDisable(true);
-        }
-    }*/
 
     //###########################################
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira no Freelancer
     public void competenciaReconhecidaFreelancerAction(ActionEvent actionEvent) {
-        if (comboBoxGrauProficienciaFreelancer.getValue() != null &&
-                listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
-            CaracterizacaoCompTec ct = new CaracterizacaoCompTec(
-                    listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem(),
-                    true,
-                    comboBoxGrauProficienciaFreelancer.getValue());
-
-            if (competenciaTecnicaAindaNaoFoiAdicionadaFreelancer(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem())) {
-                listViewCompTecnicasSelecionadasFreelancer.getItems().add(ct);
-                btnRemoverUltimaCompTecFreelancer.setDisable(false);
-            } else {
-                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
-                        "Não é possível adicionar a mesma competência técnica mais do que uma vez.").show();
-            }
-        } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
-                    "É obrigatório escolher um grau de proficiência").show();
-        }
-
-    }
-
-
-
-    //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
-    public void competenciaPorComprovarFreelancerAction(ActionEvent actionEvent) {
         if (comboBoxGrauProficienciaFreelancer.getValue() != null &&
                 listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
             ReconhecimentoCT ct = new ReconhecimentoCT(
@@ -540,13 +446,13 @@ public class AreaAdministrativoUI implements Initializable {
                         "Não é possível adicionar a mesma competência técnica mais do que uma vez.").show();
             }
         } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Adicionar nova competencia tecnica.",
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar nova competencia tecnica.",
                     "É obrigatório escolher um grau de proficiência").show();
         }
 
-
-
     }
+
+
 
     public boolean competenciaTecnicaAindaNaoFoiAdicionadaFreelancer(CompetenciaTecnica competenciaTecnica) {
         for(ReconhecimentoCT rct : listViewCompTecnicasSelecionadasFreelancer.getItems()) {
@@ -606,7 +512,13 @@ public class AreaAdministrativoUI implements Initializable {
         txtEmailFreelancer.clear();
         txtNIFFreelancer.clear();
 
+        txtMediaCurso.clear();
+        txtDesignacaoCurso.clear();
+        txtGrauFreelancer.clear();
+        txtNomeInstituicao.clear();
+
         listViewCompTecnicasSelecionadasFreelancer.getItems().setAll(new ArrayList<>());
+        listViewHabilitacaoAcademicaRegistoFreelancer.getItems().setAll(new ArrayList<>());
     }
 
     //limpar dados criar competencia tecnica
@@ -678,13 +590,16 @@ public class AreaAdministrativoUI implements Initializable {
 
     public void btnRemoverGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
         listViewGrauProficienciaCompetenciaTecnica.getItems().remove(listViewGrauProficienciaCompetenciaTecnica.getSelectionModel().getSelectedItem());
+        if (listViewGrauProficienciaCompetenciaTecnica.getItems().size() == 0) {
+            btnRemoverGrauProficienciaCompetenciaTecnica.setDisable(true);
+        }
     }
 
     public void popularComboBoxGrauProficienciaCategoriaTarefa(Event actionEvent) {
         if (listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem()));
         } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Competência técnica",
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Graus de proficiência",
                     "Precisa selecionar uma competência técnica primeiro.").show();
         }
     }
@@ -693,12 +608,47 @@ public class AreaAdministrativoUI implements Initializable {
         if (listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
             comboBoxGrauProficienciaFreelancer.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem()));
         } else {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Competência técnica",
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Graus de proficiência",
                     "Precisa selecionar uma competência técnica primeiro.").show();
+        }
+    }
+
+
+    public void adicionarhabilitacaoAcademicaFreelancerAction(ActionEvent actionEvent) {
+        if (!txtNomeInstituicao.getText().isEmpty() &&
+                !txtGrauFreelancer.getText().isEmpty() && !txtDesignacaoCurso.getText().isEmpty() && !txtMediaCurso.getText().isEmpty()) {
+
+            try {
+                HabilitacaoAcademica ha = new HabilitacaoAcademica(txtGrauFreelancer.getText(), txtDesignacaoCurso.getText(),
+                        txtNomeInstituicao.getText(), Double.parseDouble(txtMediaCurso.getText())
+                );
+
+                if(!listViewHabilitacaoAcademicaRegistoFreelancer.getItems().contains(ha)) {
+                    listViewHabilitacaoAcademicaRegistoFreelancer.getItems().add(ha);
+                    btnRemoverUltimaHabilitacaoAcademicaAdicionada.setDisable(false);
+                } else {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar habilitação académica.",
+                            "Não é possível adicionar a mesma habilitação académica mais do que uma vez.").show();
+                }
+
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar habilitação.",
+                        "A média do curso tem de ser um valor numérico").show();
+            }
+
+
+
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar habilitação.",
+                    "É obrigatório preencher todos os campos").show();
         }
 
     }
 
-
-
+    public void removerUltimaHabilitacaoAcademicaAdicionadaFreelancerAction(ActionEvent actionEvent) {
+        listViewHabilitacaoAcademicaRegistoFreelancer.getItems().remove(listViewHabilitacaoAcademicaRegistoFreelancer.getSelectionModel().getSelectedItem());
+        if (listViewHabilitacaoAcademicaRegistoFreelancer.getItems().size() == 0) {
+            btnRemoverUltimaHabilitacaoAcademicaAdicionada.setDisable(true);
+        }
+    }
 }

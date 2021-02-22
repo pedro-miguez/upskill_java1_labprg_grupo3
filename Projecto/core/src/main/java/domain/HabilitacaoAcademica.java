@@ -64,7 +64,7 @@ public class HabilitacaoAcademica implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Habilitacao Academica: %s%Grau: %s%nDesignacaoCurso: %s%NomeInstituicao: %s%nMediaCurso: %d",
+        return String.format("Habilitacao Academica: %nGrau: %s%nDesignacaoCurso: %s%nNomeInstituicao: %s%nMediaCurso: %.2f",
                 this.grau, this.designacaoCurso, this.nomeInstituicao, this.mediaCurso);
     }
 

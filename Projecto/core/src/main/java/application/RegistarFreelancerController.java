@@ -39,7 +39,7 @@ public class RegistarFreelancerController {
                                       List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) throws SQLException {
 
 
-        Plataforma plataforma = Plataforma.getInstance();
+
         RepositorioFreelancer repoFlr = RepositorioFreelancer.getInstance();
 
 
