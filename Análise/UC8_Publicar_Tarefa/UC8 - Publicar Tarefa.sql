@@ -15,10 +15,10 @@ insert into Anuncio(IdTarefa, dataInicioPublicitacao, dataFimPublicitacao, dataI
 end;
 /
 
-create or replace function getAnunciobyRefTarefa_IdOrg in p_refTarefa in p_IdOrg(
+create or replace function getAnunciobyRefTarefa_IdOrg p_refTarefa p_IdOrg(
 
-    p_refTarefa tarefa.ReferenciaTarefa%type,
-    p_IdOrg organizacao.IdOrganizacao%type
+    p_refTarefa in tarefa.ReferenciaTarefa%type,
+    p_IdOrg in organizacao.IdOrganizacao%type
 
 )
 
