@@ -8,6 +8,7 @@ import network.ConnectionHandler;
 import oracle.jdbc.proxy.annotation.Pre;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RepositorioAnuncio {
@@ -257,6 +258,18 @@ public class RepositorioAnuncio {
             e.printStackTrace();
         }
         return listaAnuncios;
+    }
+
+    public Anuncio criarAnuncio(Tarefa tarefa, TipoRegimento tipoRegimento, LocalDate dataInicioPub,
+                                LocalDate dataFimPub, LocalDate dataInicioCand, LocalDate dataFimCand,
+                                LocalDate dataInicioSer, LocalDate dataFimSer){
+        return new Anuncio(tarefa, tipoRegimento, new Data(dataInicioPub.getYear(), dataInicioPub.getMonth().getValue(),
+                dataInicioPub.getDayOfMonth()), new Data(dataFimPub.getYear(), dataFimPub.getMonth().getValue(),
+                dataFimPub.getDayOfMonth()), new Data(dataInicioCand.getYear(), dataInicioCand.getMonth().getValue(),
+                dataInicioCand.getDayOfMonth()), new Data(dataFimCand.getYear(), dataFimCand.getMonth().getValue(),
+                dataFimCand.getDayOfMonth()), new Data(dataInicioSer.getYear(), dataInicioSer.getMonth().getValue(),
+                dataInicioSer.getDayOfMonth()), new Data(dataFimSer.getYear(), dataFimSer.getMonth().getValue(),
+                dataFimSer.getDayOfMonth()));
     }
 
 }
