@@ -6,10 +6,11 @@
 package application;
 
 import domain.*;
-import persistence.RepositorioOrganizacao;
-import persistence.RepositorioTarefa;
+//import persistence.RepositorioOrganizacao;
+//import persistence.RepositorioTarefa;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import persistence.RepositorioAnuncio;
 
 /**
@@ -19,20 +20,20 @@ import persistence.RepositorioAnuncio;
 public class PublicarTarefaController {
     
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
-                                    Data dataInicioPublicitacao, Data dataFimPublicitacao,
-                                    Data dataInicioCandidatura, Data dataFimCandidatura,
-                                    Data dataInicioSeriacao, Data dataFimSeriacao) 
+                                    LocalDate dataInicioPublicitacao, LocalDate dataFimPublicitacao,
+                                    LocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,
+                                    LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao) 
                                 throws SQLException {
         
         RepositorioAnuncio repAnuncio = RepositorioAnuncio.getInstance();
         
-        RepositorioTarefa repTarefa = RepositorioTarefa.getInstance();
         
-        Tarefa tarefa = repTarefa.getTarefasPublishedOrganizacao(organizacao);
-        
-        Anuncio anuncio = repositorioAnuncio
+        Anuncio anuncio = repAnuncio.criarAnuncio(tarefa, tipoRegimento, 
+                            dataInicioPublicitacao, dataFimPublicitacao, 
+                            dataInicioCandidatura, dataFimCandidatura, 
+                            dataInicioSeriacao, dataFimSeriacao);
                 
-        return repositorioAnuncio.
+        return repAnuncio.insertAnuncio(anuncio);
         
     }
     
