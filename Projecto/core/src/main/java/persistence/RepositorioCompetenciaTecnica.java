@@ -117,6 +117,33 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         return false;
     }
 
+    public ArrayList<CompetenciaTecnica> listarCompetenciasTecnicas() {
+
+        ArrayList<CompetenciaTecnica> listaTodasCompetencias = new ArrayList<>();
+        ArrayList<AreaAtividade> listaTodasAreas = RepositorioAreaAtividade.getInstance().listarAreasAtividade();
+
+        try {
+            Connection conn = connectionHandler.openConnection();
+
+            for (AreaAtividade a : listaTodasAreas) {
+                for (CompetenciaTecnica cpt : getCompetenciasTecnicasByAreaAtividade(a)) {
+                    if (!listaTodasCompetencias.contains(cpt)) {
+                        listaTodasCompetencias.add(cpt);
+                    }
+                }
+            }
+            conn.close();
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+
+        return listaTodasCompetencias;
+
+    }
+
+
     /**
      * Method for obtaining technical competence through its unique code.
      * @param codigoUnico

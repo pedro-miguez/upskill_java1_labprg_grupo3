@@ -18,7 +18,7 @@
          <center>
             <StackPane prefHeight="539.0" prefWidth="632.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="899.0">
+                  <BorderPane fx:id="criarTarefaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="899.0">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="709.0" BorderPane.alignment="CENTER">
                            <children>
@@ -140,11 +140,11 @@
                         <Insets />
                      </StackPane.margin>
                   </BorderPane>
-                  <BorderPane disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="publicarTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ListView prefHeight="346.0" prefWidth="799.0">
+                              <ListView fx:id="listViewTarefasMatchedPublicarTarefa" prefHeight="346.0" prefWidth="799.0">
                                  <VBox.margin>
                                     <Insets right="100.0" />
                                  </VBox.margin>
@@ -157,12 +157,12 @@
                                     <Label text="Data Início de Seriação: " GridPane.rowIndex="3" />
                                     <Label text="Data Fim de Seriação: " GridPane.rowIndex="4" />
                                     <Label text="Tipo de Regimento aplicável: " GridPane.rowIndex="5" />
-                                    <DatePicker fx:id="btnDataFimPub" onAction="#definirDataFimPubAction" GridPane.columnIndex="1" />
-                                    <DatePicker fx:id="btnDataInicioCand" onAction="#definirDataInicioCandAction" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="btnDataFimCand" onAction="#definirDataFimCandAction" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <DatePicker fx:id="btnDataInicioSeriacao" onAction="#definirDataInicioSeriacaoAction" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <DatePicker fx:id="btnDataFimSeriacao" onAction="#definirDataFimSeriacaoAction" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <ComboBox fx:id="btnTipoRegimento" onAction="#escolherTipoRegimentoAction" prefWidth="150.0" promptText="Escolha um tipo..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <DatePicker fx:id="btnDataFimPub" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="btnDataInicioCand" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="btnDataFimCand" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="btnDataInicioSeriacao" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="btnDataFimSeriacao" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="btnTipoRegimento" prefWidth="150.0" promptText="Escolha um tipo..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -190,12 +190,12 @@
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="submeterTarefa1" mnemonicParsing="false" onAction="#submeterTarefaAction" text="Publicar Tarefa">
+                              <Button fx:id="btnPublicarTarefa" mnemonicParsing="false" onAction="#publicarTarefaAction" text="Publicar Tarefa">
                                  <HBox.margin>
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnLimparDadosTarefa1" mnemonicParsing="false" onAction="#btnLimparDadosTarefaAction" text="Limpar dados">
+                              <Button fx:id="btnLimparDadosPublicarTarefa" mnemonicParsing="false" onAction="#btnLimparDadosPublicarTarefaAction" text="Limpar dados">
                                  <HBox.margin>
                                     <Insets right="150.0" />
                                  </HBox.margin>

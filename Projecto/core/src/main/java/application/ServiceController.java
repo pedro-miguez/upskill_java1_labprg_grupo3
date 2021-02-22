@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * that the Singleton class Platform (the class where the app runs around) hosts methods to save or load data via files,
  * or establish/reset the connection to the users API among others.
  */
-public class PlataformaController {
+public class ServiceController {
 
     /**
      * Gets list of tasks categories
@@ -119,5 +119,15 @@ public class PlataformaController {
      */
     public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico, String emailColaborador) {
         return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico), emailColaborador).toString();
+    }
+
+    public ArrayList<Tarefa> getTarefasOrganizacao(String emailColaborador) {
+        Organizacao org = RepositorioOrganizacao.getInstance().getOrganizacaoByEmail(new Email(emailColaborador));
+
+        return RepositorioTarefa.getInstance().getTarefasOrganizacao(org);
+    }
+
+    public ArrayList<CompetenciaTecnica> getAllCompetenciasTecnicas() {
+        return RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas();
     }
 }

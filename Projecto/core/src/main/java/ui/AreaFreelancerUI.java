@@ -7,16 +7,13 @@ package ui;
 
 import application.AuthenticationController;
 //import application.DefinirTarefaController;
-import application.PlataformaController;
-import domain.CategoriaTarefa;
+import application.ServiceController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.Button;
@@ -45,7 +42,7 @@ public class AreaFreelancerUI implements Initializable {
     //private Button btnSair;
     
     
-    private PlataformaController plataformaController;
+    private ServiceController serviceController;
     private AuthenticationController authenticationController;
     
     
@@ -54,7 +51,7 @@ public class AreaFreelancerUI implements Initializable {
         
         //candidatarAnuncioController ?? (...)
         
-        plataformaController = new PlataformaController();
+        serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         
         /*try {
@@ -80,7 +77,7 @@ public class AreaFreelancerUI implements Initializable {
         } else {
             //limparDados();
             authenticationController.logout();
-            plataformaController.resetUserAPI();
+            serviceController.resetUserAPI();
             voltarJanelaInicial();
         }
 

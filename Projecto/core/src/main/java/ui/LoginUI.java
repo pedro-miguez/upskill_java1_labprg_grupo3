@@ -1,7 +1,7 @@
 package ui;
 
 import application.AuthenticationController;
-import application.PlataformaController;
+import application.ServiceController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -24,12 +24,12 @@ public class LoginUI implements Initializable {
     public PasswordField txtPassoword;
 
     private AuthenticationController authController;
-    private PlataformaController plataformaController;
+    private ServiceController serviceController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         authController = new AuthenticationController();
-        plataformaController = new PlataformaController();
+        serviceController = new ServiceController();
     }
 
 
@@ -54,7 +54,7 @@ public class LoginUI implements Initializable {
     public void login() {
         boolean login = authController.login(txtUsername.getText(), txtPassoword.getText());
         if (login) {
-            //plataformaController.resetUserAPI();
+            //serviceController.resetUserAPI();
             txtPassoword.clear();
             txtUsername.clear();
             switch(authController.getRole()) {

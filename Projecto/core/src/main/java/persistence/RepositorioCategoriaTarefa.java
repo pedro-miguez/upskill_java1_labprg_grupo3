@@ -162,7 +162,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa() throws SQLException {
         Connection conn = connectionHandler.openConnection();
         ArrayList<CategoriaTarefa> listaTodasCategorias = new ArrayList<>();
-        ArrayList<AreaAtividade> listaTodasAreas = listarAreasAtividade();
+        ArrayList<AreaAtividade> listaTodasAreas = RepositorioAreaAtividade.getInstance().listarAreasAtividade();
 
         try {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CategoriaTarefa where idAreaAtividade = ?");
@@ -213,41 +213,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
         }
     }
 
-    public ArrayList<AreaAtividade> listarAreasAtividade() throws SQLException {
-        try {
-            Connection conn = connectionHandler.openConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade");
-
-            return montarListaAreaAtividade(pstmt.executeQuery());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getSQLState();
-            e.getErrorCode();
-            throw new SQLException("Erro ao listar áreas de atividade.");
-        }
-    }
-
-    public ArrayList<AreaAtividade> montarListaAreaAtividade(ResultSet row) throws SQLException {
-        ArrayList<AreaAtividade> listaAreas = new ArrayList<>();
-
-        try {
-            while (row.next()) {
-                CodigoUnico idAreaAtividade = new CodigoUnico(row.getString(1));
-                String descricaoBreve = row.getString(2);
-                String descricaoDetalhada = row.getString(3);
-                listaAreas.add(new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada));
-            }
-        } catch (SQLException e) {
-            e.getSQLState();
-            e.printStackTrace();
-        }
-
-        if (listaAreas.size() != 0) {
-            return listaAreas;
-        } else {
-            throw new FetchingProblemException("Lista de áreas de atividade vazia");
-        }
-    }
 
 
     public ArrayList<CategoriaTarefa> montarListaCategoriasTarefa(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
@@ -287,7 +252,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
                 String idCompetenciatecnica = rows.getString(1);
                 pstmt1.setString(1, idCompetenciatecnica);
-                competencia = montarCompetenciaTecnica(pstmt1.executeQuery(), areaAtividade);
+                competencia = RepositorioCompetenciaTecnica.getInstance().montarCompetenciaTecnica(pstmt1.executeQuery(), areaAtividade);
 
                 //obrigatoriedade
                 if (rows.getString(3).equals("OBR")) {
@@ -315,49 +280,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
         return competencias;
     }
 
-    public CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
-        CompetenciaTecnica competenciaTecnica = null;
-        try {
-            row.next();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
-            CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
-            pstmt.setString(1, idCompetenciaTecnica.toString());
-            String descricaoBreve = row.getString(3);
-            String descricaoDetalhada = row.getString(4);
-            ArrayList<GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
-            competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
-            conn.close();
-        } catch (SQLException e) {
-            e.getSQLState();
-            e.printStackTrace();
 
-        }
-
-        if (competenciaTecnica != null) {
-            return competenciaTecnica;
-        } else {
-            throw new FetchingProblemException("Problema ao montar Competencia Tecnica");
-        }
-
-    }
-
-    public ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) {
-        ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
-        try {
-            while (rows.next()) {
-                int nivel = rows.getInt(2);
-                String designacao = rows.getString(3);
-                listaGraus.add(new GrauProficiencia(nivel, designacao));
-            }
-
-        } catch (SQLException e) {
-            e.getSQLState();
-            e.printStackTrace();
-        }
-
-        return listaGraus;
-    }
 
 
 

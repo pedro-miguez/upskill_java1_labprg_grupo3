@@ -1,20 +1,13 @@
 package ui;
 
-import application.PlataformaController;
+import application.ServiceController;
 import application.RegistarOrganizacaoController;
-import domain.Plataforma;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import persistence.RepositorioColaborador;
-import persistence.RepositorioOrganizacao;
-import persistence.RepositorioUtilizador;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -38,12 +31,12 @@ public class RegistarOrganizacaoUI implements Initializable {
     public Button limparDados;
     public Button registarOrganizacao;
 
-    private PlataformaController plataformaController;
+    private ServiceController serviceController;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        plataformaController = new PlataformaController();
+        serviceController = new ServiceController();
     }
 
 
@@ -68,7 +61,7 @@ public class RegistarOrganizacaoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova organização.",
                     added ? "Organização criada com sucesso! \n\n" +
-                            plataformaController.getOrganizacaoToStringCompletoByEmail(txtEmailGestor.getText().trim()) //MUDAR
+                            serviceController.getOrganizacaoToStringCompletoByEmail(txtEmailGestor.getText().trim()) //MUDAR
                             : "Não foi possível registar a organização.").show();
             if (added) {
                 limparDados();

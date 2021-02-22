@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class PlataformaControllerTest {
-    private PlataformaController plataformaController = new PlataformaController();
+    private ServiceController plataformaController = new ServiceController();
 
     @Test
     public void testGetAreaAtividadeToStringCompletoByCodigoUnicoValido() {
@@ -40,7 +40,7 @@ public class PlataformaControllerTest {
                 ct.add(0,catTar);
 
         Plataforma.getInstance().getRepoCategoriaTarefa().listarCategoriasTarefa();
-        PlataformaController c = new PlataformaController();
+        ServiceController c = new ServiceController();
 
         assertTrue(controller.getCategoriasTarefa(catTar));
 

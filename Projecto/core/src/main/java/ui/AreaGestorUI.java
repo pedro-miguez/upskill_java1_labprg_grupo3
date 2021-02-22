@@ -2,17 +2,14 @@ package ui;
 
 import application.AuthenticationController;
 import application.DefinirTarefaController;
-import application.PlataformaController;
+import application.ServiceController;
 import application.RegistarColaboradorController;
 import domain.CategoriaTarefa;
-import exceptions.FetchingProblemException;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -54,7 +51,7 @@ public class AreaGestorUI implements Initializable {
 
     private RegistarColaboradorController registarColaboradorController;
     private AuthenticationController authController;
-    private PlataformaController plataformaController;
+    private ServiceController serviceController;
     private DefinirTarefaController tarefaController;
 
 
@@ -62,9 +59,9 @@ public class AreaGestorUI implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         registarColaboradorController = new RegistarColaboradorController();
         authController = new AuthenticationController();
-        plataformaController = new PlataformaController();
+        serviceController = new ServiceController();
         try {
-            comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+            comboCategoria.getItems().setAll(serviceController.getCategoriasTarefa());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -81,7 +78,7 @@ public class AreaGestorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
                     registou ? "Colaborador criado com sucesso! \n\n" +
-                            plataformaController.getColaboradorToStringCompletoByEmail(txtEmailColaborador.getText().trim())
+                            serviceController.getColaboradorToStringCompletoByEmail(txtEmailColaborador.getText().trim())
                             : "Não foi possível registar o colaborador.").show();
 
             if (registou) {
@@ -114,7 +111,7 @@ public class AreaGestorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar nova tarefa.",
                     criou ? "Tarefa criada com sucesso! \n\n" +
-                            plataformaController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim(),
+                            serviceController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim(),
                                     authController.getEmail())
                             : "Não foi possível criar a tarefa.").show();
 
@@ -179,7 +176,7 @@ public class AreaGestorUI implements Initializable {
 
         //popular elementos
         try {
-            comboCategoria.getItems().setAll(plataformaController.getCategoriasTarefa());
+            comboCategoria.getItems().setAll(serviceController.getCategoriasTarefa());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -194,7 +191,7 @@ public class AreaGestorUI implements Initializable {
         } else {
             limparTodosOsCampos();
             authController.logout();
-            plataformaController.resetUserAPI();
+            serviceController.resetUserAPI();
             voltarJanelaInicial();
         }
     }

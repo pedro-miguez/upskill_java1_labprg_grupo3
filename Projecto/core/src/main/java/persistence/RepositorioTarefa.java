@@ -275,7 +275,7 @@ public class RepositorioTarefa implements Serializable {
     }
 
     public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) {
-        ArrayList<Tarefa> listaTarefas = new ArrayList<>();
+
         try {
             Connection conn = connectionHandler.openConnection();
             NIF nif = organizacao.getNIF();

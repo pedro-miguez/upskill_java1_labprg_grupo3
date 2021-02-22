@@ -94,7 +94,7 @@ public class AreaAdministrativoUI implements Initializable {
     private DefinirAreaAtividadeController areaAtividadeController;
     private DefinirCompetenciaTecnicaController competenciaTecnicaController;
     private DefinirCategoriaTarefaController categoriaTarefaController;
-    private PlataformaController plataformaController;
+    private ServiceController serviceController;
     private AuthenticationController authenticationController;
     private RegistarFreelancerController registarFreelancerController;
 
@@ -106,20 +106,20 @@ public class AreaAdministrativoUI implements Initializable {
         areaAtividadeController = new DefinirAreaAtividadeController();
         competenciaTecnicaController = new DefinirCompetenciaTecnicaController();
         categoriaTarefaController = new DefinirCategoriaTarefaController();
-        plataformaController = new PlataformaController();
+        serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         registarFreelancerController = new RegistarFreelancerController();
 
         //popular combo box do painel Criar Competencia Tecnica
         try {
-            comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(plataformaController.getAreasAtividade());
+            comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         //popular combo boxes do painel Criar Categoria de Tarefa
         try {
-            comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
+            comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -136,7 +136,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova área de atividade.",
                     adicionou ? "Area de atividade criada com sucesso! \n\n" +
-                            plataformaController.getAreaAtividadeToStringCompletoByCodigoUnico(txtCodUnicoAreaAtividade.getText().trim())
+                            serviceController.getAreaAtividadeToStringCompletoByCodigoUnico(txtCodUnicoAreaAtividade.getText().trim())
                             : "Não foi possível registar a área de atividade.").show();
 
             if (adicionou) {
@@ -163,7 +163,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova categoria de tarefa.",
                     adicionou ? "Categoria de Tarefa criada com sucesso! \n\n" +
-                            plataformaController.getCategoriaTarefaToStringCompletoByNome(txtDescricaoCategoriaTarefa.getText().trim(),
+                            serviceController.getCategoriaTarefaToStringCompletoByNome(txtDescricaoCategoriaTarefa.getText().trim(),
                                     comboBoxAreaAtividadeCategoriaTarefa.getValue())
                             : "Não foi possível registar a categoria de tarefa.").show();
 
@@ -193,7 +193,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova competência técnica.",
                     adicionou ? "Competência Técnica criada com sucesso! \n\n" +
-                            plataformaController.getCompetenciaTecnicaToStringCompletoByCodigoUnico(txtCodigoUnicoCompetenciaTecnica.getText().trim(), comboBoxAreaAtividadeCompetenciaTecnica.getValue() )
+                            serviceController.getCompetenciaTecnicaToStringCompletoByCodigoUnico(txtCodigoUnicoCompetenciaTecnica.getText().trim(), comboBoxAreaAtividadeCompetenciaTecnica.getValue() )
                             : "Não foi possível registar a Competência Técnica.").show();
 
             if (adicionou) {
@@ -222,7 +222,7 @@ public class AreaAdministrativoUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo Freelancer.",
                     adicionou ? "Freelancer criado com sucesso! \n\n" +
-                            plataformaController.getFreelancerToStringCompletoByEmail(txtEmailFreelancer.getText().trim())
+                            serviceController.getFreelancerToStringCompletoByEmail(txtEmailFreelancer.getText().trim())
                             : "Não foi possível registar o freelancer.").show();
 
             if (adicionou) {
@@ -284,7 +284,7 @@ public class AreaAdministrativoUI implements Initializable {
         txtDescricaoCategoriaTarefa.requestFocus();
 
         //popular elementos
-        comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(plataformaController.getAreasAtividade());
+        comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
     }
 
     //mudar para o painel Criar Competencia Tecnica
@@ -303,7 +303,7 @@ public class AreaAdministrativoUI implements Initializable {
         txtCodigoUnicoCompetenciaTecnica.requestFocus();
 
         //popular elementos
-        comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(plataformaController.getAreasAtividade());
+        comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
     }
 
     //mudar para o painel Criar Freelancer
@@ -320,6 +320,10 @@ public class AreaAdministrativoUI implements Initializable {
         criarFreelancerPane.setVisible(true);
         criarFreelancerPane.setDisable(false);
         txtNomeFreelancer.requestFocus();
+
+        //popular elementos
+        listViewCompTecnicasPorSelecionarFreelancer.getItems().setAll(serviceController.getAllCompetenciasTecnicas());
+
     }
 
     // ##########################################
@@ -332,7 +336,7 @@ public class AreaAdministrativoUI implements Initializable {
     //confirmar área de atividade selecionada para popular o ListView de competencias tecnicas
     public void comboBoxAreaAtividadeCategoriaTarefaSelectAction(ActionEvent actionEvent) {
         try {
-            listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
+            listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(serviceController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -545,8 +549,8 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     public boolean competenciaTecnicaAindaNaoFoiAdicionadaFreelancer(CompetenciaTecnica competenciaTecnica) {
-        for(CaracterizacaoCompTec cct : listViewCompTecnicasSelecionadasFreelancer.getItems()) {
-            if (cct.getCompetenciaTecnica().equals(competenciaTecnica)) {
+        for(ReconhecimentoCT rct : listViewCompTecnicasSelecionadasFreelancer.getItems()) {
+            if (rct.getCompetenciaTecnica().equals(competenciaTecnica)) {
                 return false;
             }
         }
@@ -640,7 +644,7 @@ public class AreaAdministrativoUI implements Initializable {
         } else {
             limparTodosOsDados();
             authenticationController.logout();
-            plataformaController.resetUserAPI();
+            serviceController.resetUserAPI();
             voltarJanelaInicial();
         }
     }
@@ -679,7 +683,7 @@ public class AreaAdministrativoUI implements Initializable {
 
     public void popularComboBoxGrauProficienciaCategoriaTarefa(Event actionEvent) {
         if (listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
-            comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(plataformaController.getGrausProficiencia(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem()));
+            comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem()));
         } else {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Competência técnica",
                     "Precisa selecionar uma competência técnica primeiro.").show();
@@ -688,7 +692,7 @@ public class AreaAdministrativoUI implements Initializable {
 
     public void popularComboBoxGrauProficienciaFreelancer(Event actionEvent) {
         if (listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
-            comboBoxGrauProficienciaFreelancer.getItems().setAll(plataformaController.getGrausProficiencia(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem()));
+            comboBoxGrauProficienciaFreelancer.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem()));
         } else {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Competência técnica",
                     "Precisa selecionar uma competência técnica primeiro.").show();

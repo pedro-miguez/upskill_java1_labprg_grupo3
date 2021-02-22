@@ -1,7 +1,6 @@
 package ui;
 
-import application.PlataformaController;
-import domain.*;
+import application.ServiceController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import persistence.RepositorioOrganizacao;
-import persistence.RepositorioUtilizador;
 
 import java.io.IOException;
 
@@ -22,7 +18,7 @@ public class MainApp extends Application {
     public static final String TITULO_APLICACAO = "T4J - Tasks For Joe";
 
     public static ScreenController screenController; //private + get
-    private PlataformaController plataformaController;
+    private ServiceController serviceController;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -73,9 +69,9 @@ public class MainApp extends Application {
             stage.show();
 
 
-            plataformaController = new PlataformaController();
+            serviceController = new ServiceController();
 
-            plataformaController.resetUserAPI();
+            serviceController.resetUserAPI();
 
         } catch (IOException ex) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, TITULO_APLICACAO,
