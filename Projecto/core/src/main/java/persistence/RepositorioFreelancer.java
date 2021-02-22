@@ -88,7 +88,9 @@ public class RepositorioFreelancer implements Serializable {
 
                 long dataReconhecimento = Date.parse(rct.getDataReconhecimento().toAnoMesDiaString());
                 Date sqlDate = new java.sql.Date(dataReconhecimento);
-                csCreateReconhecimentoCT.setDate(4, sqlDate);
+
+
+                csCreateReconhecimentoCT.setDate(4, rct.getDataReconhecimento().getDataSQL());
 
                 csCreateReconhecimentoCT.executeQuery();
 

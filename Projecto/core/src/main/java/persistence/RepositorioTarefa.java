@@ -107,7 +107,7 @@ public class RepositorioTarefa implements Serializable {
 
             CallableStatement cs1 = conn.prepareCall("{? = call getOrganizacaoByEmailColaborador(?)}");
             cs1.registerOutParameter(1, Types.INTEGER);
-            cs1.setString(2, emailColaborador.toString());
+            cs1.setString(2, emailColaborador);
             cs1.executeUpdate();
             int idOrganizacao = cs1.getInt(1);
 
@@ -119,7 +119,7 @@ public class RepositorioTarefa implements Serializable {
 
             return montarTarefa(pstmt.executeQuery());
         } catch (SQLException e) {
-            throw new CodigoNaoAssociadoException("Não existe nenhuma área de atividade com esse código único.");
+            throw new CodigoNaoAssociadoException("Não existe nenhuma tarefa com esse código único.");
         }
     }
 
@@ -135,11 +135,9 @@ public class RepositorioTarefa implements Serializable {
             e.getSQLState();
         }
 
-        if (listaTarefas.size() != 0) {
-            return listaTarefas;
-        } else {
-            throw new FetchingProblemException("Lista de Tarefas vazia");
-        }
+
+        return listaTarefas;
+
 
     }
 
@@ -148,7 +146,9 @@ public class RepositorioTarefa implements Serializable {
 
         try {
             Connection conn = connectionHandler.openConnection();
-            rSetTarefa.next();
+            if (rSetTarefa.getRow() < 1) {
+                rSetTarefa.next();
+            }
 
             //Parâmetros da Tarefa disponíveis
             CodigoUnico referenciaTarefa = new CodigoUnico(rSetTarefa.getString("referenciaTarefa"));
@@ -160,7 +160,7 @@ public class RepositorioTarefa implements Serializable {
 
 
             //Construir Objecto Organização
-            PreparedStatement pstmtOrg = connectionHandler.openConnection().prepareStatement("SELECT * FROM " +
+            PreparedStatement pstmtOrg = conn.prepareStatement("SELECT * FROM " +
                     "Organizacao where idOrganizacao = ?");
             pstmtOrg.setInt(1, rSetTarefa.getInt( "idOrganizacao"));
             ResultSet rSetOrg = pstmtOrg.executeQuery();
@@ -172,9 +172,9 @@ public class RepositorioTarefa implements Serializable {
             Telefone telefone = new Telefone(Integer.parseInt(rSetOrg.getString("telefone")));
             Website website = new Website(rSetOrg.getString("website"));
 
-            PreparedStatement pstmtEndereco = connectionHandler.openConnection().prepareStatement("SELECT * FROM " +
+            PreparedStatement pstmtEndereco = conn.prepareStatement("SELECT * FROM " +
                     "EnderecoPostal where idOrganizacao = ?");
-            pstmtEndereco.setInt(1, rSetTarefa.getInt(1));
+            pstmtEndereco.setInt(1, rSetTarefa.getInt("idOrganizacao"));
 
             ResultSet rsetEndereco = pstmtEndereco.executeQuery();
 
@@ -182,6 +182,8 @@ public class RepositorioTarefa implements Serializable {
             EnderecoPostal enderecoPostal = new EnderecoPostal(rsetEndereco.getString("morada"),
                     rsetEndereco.getString("localidade"), rsetEndereco.getString("codigoPostal"));
 
+
+            pstmtEndereco.clearParameters();
             pstmtEndereco.close();
             Organizacao org = new Organizacao(nomeorg, nif, website, telefone, email, enderecoPostal);
 
@@ -280,11 +282,11 @@ public class RepositorioTarefa implements Serializable {
             Connection conn = connectionHandler.openConnection();
             NIF nif = organizacao.getNIF();
             PreparedStatement pstmtOrganizacao = conn.prepareStatement("SELECT idOrganizacao FROM Organizacao where NIF = ?");
-            pstmtOrganizacao.setString(1, nif.toString());
+            pstmtOrganizacao.setInt(1, Integer.parseInt(nif.toString()));
             ResultSet rSetOrganizacao = pstmtOrganizacao.executeQuery();
             rSetOrganizacao.next();
 
-            PreparedStatement pstmtTarefas = conn.prepareStatement("SELECT * FROM Tarefa where idOrganizacao = ?");
+            PreparedStatement pstmtTarefas = conn.prepareStatement("SELECT * FROM Tarefa where idOrganizacao = ? AND idEstadoTarefa = 1");
             pstmtTarefas.setInt(1, rSetOrganizacao.getInt("idOrganizacao"));
             ResultSet rSetTarefas = pstmtTarefas.executeQuery();
 

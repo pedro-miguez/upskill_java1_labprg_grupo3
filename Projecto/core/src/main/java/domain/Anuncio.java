@@ -129,8 +129,8 @@ public class Anuncio implements Serializable {
 
     public String toString(){
         return String.format("ID Tarefa: %s%nData de Inicio da Publicitacao: %s%n" +
-                "Data de Fim de Publicitacao: %s%nData de Inicio da Candidatura: %s" +
-                "%nData de Fim da Candidatura: %d Data de Inicio de Seriacao%n" + 
+                "Data de Fim de Publicitacao: %s%nData de Inicio da Candidatura: %s%n" +
+                "Data de Fim da Candidatura: %s%nData de Inicio de Seriacao: %s%n" +
                 "Data de Fim de Seriacao: %s", this.tarefa.getCodigoUnico(),
                 this.dataInicioPublicitacao, this.dataFimPublicitacao,
                 this.dataInicioCandidatura, this.dataFimCandidatura,
