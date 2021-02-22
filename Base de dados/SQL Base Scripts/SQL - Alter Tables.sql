@@ -104,3 +104,7 @@ add constraint fk_ReconhecimentoCT_idFreelancer FOREIGN KEY (idFreelancer) refer
 
 alter table CategoriaTarefa
 add constraint uk_CategoriaTarefa_descricao_idAreaAtividade UNIQUE (descricao, idAreaAtividade);
+
+
+alter table Anuncio
+add constraint fk_Anuncio_idTipoRegimento FOREIGN KEY (idTipoRegimento) references TipoRegimento (idTipoRegimento);

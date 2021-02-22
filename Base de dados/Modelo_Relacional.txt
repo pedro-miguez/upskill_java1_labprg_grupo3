@@ -99,6 +99,7 @@ entity EstadoTarefa {
 entity Anuncio {
     idAnuncio {PK}
     idTarefa {FK, UNIQUE}
+    idTipoRegimento {FK}
     dataInicioPublicitacao
     dataFimPublicitacao
     dataInicioCandidatura
