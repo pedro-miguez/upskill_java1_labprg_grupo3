@@ -19,7 +19,7 @@
          <center>
             <StackPane prefHeight="474.0" prefWidth="696.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarAreaAtividadePane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <GridPane prefHeight="366.0" prefWidth="721.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -356,7 +356,7 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
-                  <BorderPane fx:id="criarFreelancerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarFreelancerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="76.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                            <children>
