@@ -40,7 +40,11 @@ public class Anuncio implements Serializable {
         
     }
 
-    
+    public void setTipoRegimento(TipoRegimento tipoRegimento) {
+        this.tipoRegimento = tipoRegimento;
+    }
+
+
     public void setDataInicioPublicitacao(Data dataInicioPublicitacao) {
         this.dataInicioPublicitacao = dataInicioPublicitacao;
     }
@@ -57,7 +61,6 @@ public class Anuncio implements Serializable {
          
     }
 
-    
     public void setDataInicioCandidatura(Data dataInicioCandidatura) {
         this.dataInicioCandidatura = dataInicioCandidatura;
     }
@@ -97,7 +100,7 @@ public class Anuncio implements Serializable {
     public Data getDataFimPublicitacao() {
         return this.dataFimPublicitacao;
     }
-    
+
     public Data getDataInicioCandidatura() {
         return this.dataInicioCandidatura;
     }
@@ -112,6 +115,14 @@ public class Anuncio implements Serializable {
     
     public Data getDataFimSeriacao() {
         return this.dataFimSeriacao;
+    }
+
+    public Tarefa getTarefa() {
+        return tarefa;
+    }
+
+    public TipoRegimento getTipoRegimento() {
+        return tipoRegimento;
     }
     
     
@@ -135,14 +146,6 @@ public class Anuncio implements Serializable {
         Anuncio anuncio = (Anuncio) o;
 
         return getTarefa().equals(anuncio.tarefa);
-    }
-
-    public Tarefa getTarefa() {
-        return tarefa;
-    }
-
-    public TipoRegimento getTipoRegimento() {
-        return tipoRegimento;
     }
 
 }
