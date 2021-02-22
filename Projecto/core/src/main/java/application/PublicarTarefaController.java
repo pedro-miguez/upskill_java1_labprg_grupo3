@@ -14,11 +14,25 @@ import java.time.LocalDate;
 import persistence.RepositorioAnuncio;
 
 /**
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for setting new task publishing.
  *
  * @author Grupo 3
  */
 public class PublicarTarefaController {
-    
+    /**
+     * Setting new task publishing boolean.
+     *
+     * @param tarefa                 as task
+     * @param tipoRegimento          as type of regiment
+     * @param dataInicioPublicitacao as advertising start date
+     * @param dataFimPublicitacao    as advertising end date
+     * @param dataInicioCandidatura  as application start date
+     * @param dataFimCandidatura     as application end date
+     * @param dataInicioSeriacao     as serial start date
+     * @param dataFimSeriacao        as serial end date
+     * @return the boolean
+     */
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
                                   Data dataInicioPublicitacao, LocalDate dataFimPublicitacao,
                                     LocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,
