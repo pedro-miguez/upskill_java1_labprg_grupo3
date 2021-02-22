@@ -158,10 +158,10 @@ public class ServiceController {
     }
 
     /**
-     * Gets the complete representation of a task object by its unique code.
+     * Gets the complete representation of a advertisement object by its task.
      *
-     * @param codigoUnico as unique code
-     * @return the complete representation of a task object by its unique code.
+     * @param tarefa as task
+     * @return the complete representation of a advertisement object by its task.
      */
     public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa){
         return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
