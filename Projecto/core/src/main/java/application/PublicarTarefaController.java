@@ -20,7 +20,7 @@ import persistence.RepositorioAnuncio;
 public class PublicarTarefaController {
     
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
-                                    LocalDate dataInicioPublicitacao, LocalDate dataFimPublicitacao,
+                                  Data dataInicioPublicitacao, LocalDate dataFimPublicitacao,
                                     LocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,
                                     LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao) 
                                 throws SQLException {

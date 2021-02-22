@@ -130,4 +130,8 @@ public class ServiceController {
     public ArrayList<CompetenciaTecnica> getAllCompetenciasTecnicas() {
         return RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas();
     }
+
+    public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa){
+        return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
+    }
 }

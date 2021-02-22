@@ -64,7 +64,7 @@ public class RepositorioAnuncio {
             long dataFimSer = Date.parse(anuncio.getDataFimSeriacao().toAnoMesDiaString());
             Date sqlDate6 = new java.sql.Date(dataFimSer);
             cs3.setDate(8, sqlDate6);
-            
+
 
             cs3.executeQuery();
 
@@ -87,7 +87,7 @@ public class RepositorioAnuncio {
         return false;
     }
 
-    public Anuncio getAnuncioByRefTarefaIdOrg(Tarefa tarefa, TipoRegimento tipoRegimento) {
+    public Anuncio getAnuncioByTarefa(Tarefa tarefa) {
 
         try {
             Connection conn = connectionHandler.openConnection();
@@ -259,11 +259,11 @@ public class RepositorioAnuncio {
         return listaAnuncios;
     }
 
-    public Anuncio criarAnuncio(Tarefa tarefa, TipoRegimento tipoRegimento, LocalDate dataInicioPub,
+    public Anuncio criarAnuncio(Tarefa tarefa, TipoRegimento tipoRegimento, Data dataInicioPub,
                                 LocalDate dataFimPub, LocalDate dataInicioCand, LocalDate dataFimCand,
                                 LocalDate dataInicioSer, LocalDate dataFimSer){
-        return new Anuncio(tarefa, tipoRegimento, new Data(dataInicioPub.getYear(), dataInicioPub.getMonth().getValue(),
-                dataInicioPub.getDayOfMonth()), new Data(dataFimPub.getYear(), dataFimPub.getMonth().getValue(),
+
+        return new Anuncio(tarefa, tipoRegimento, dataInicioPub, new Data(dataFimPub.getYear(), dataFimPub.getMonth().getValue(),
                 dataFimPub.getDayOfMonth()), new Data(dataInicioCand.getYear(), dataInicioCand.getMonth().getValue(),
                 dataInicioCand.getDayOfMonth()), new Data(dataFimCand.getYear(), dataFimCand.getMonth().getValue(),
                 dataFimCand.getDayOfMonth()), new Data(dataInicioSer.getYear(), dataInicioSer.getMonth().getValue(),
