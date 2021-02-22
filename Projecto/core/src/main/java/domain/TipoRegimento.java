@@ -26,4 +26,8 @@ public class TipoRegimento {
         this.regras = regras;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Designação: %s; Regras: %s", designacao, regras);
+    }
 }
