@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for registering new freelancers.
  *
  * @author Grupo 3
  */
@@ -31,10 +33,6 @@ public class RegistarFreelancerController {
      * @param habilitacoes   as freelancer qualifications
      * @return the boolean
      */
-
-    
-    
-
     public boolean registarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
                                       List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) throws SQLException {
 
