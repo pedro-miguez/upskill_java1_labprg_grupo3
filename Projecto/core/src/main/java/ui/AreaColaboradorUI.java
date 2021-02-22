@@ -7,8 +7,10 @@ package ui;
 
 import application.AuthenticationController;
 import application.DefinirTarefaController;
+import application.PublicarTarefaController;
 import application.ServiceController;
 import domain.CategoriaTarefa;
+import domain.Data;
 import domain.Tarefa;
 import domain.TipoRegimento;
 import javafx.event.ActionEvent;
@@ -55,6 +57,7 @@ public class AreaColaboradorUI implements Initializable {
 
 
     private DefinirTarefaController criarTarefaController;
+    private PublicarTarefaController publicarTarefaController;
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
 
@@ -63,6 +66,7 @@ public class AreaColaboradorUI implements Initializable {
         criarTarefaController = new DefinirTarefaController();
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
+        publicarTarefaController = new PublicarTarefaController();
         try {
             comboCategoriaTarefa.getItems().setAll(serviceController.getCategoriasTarefa());
         } catch (SQLException throwables) {
@@ -162,6 +166,31 @@ public class AreaColaboradorUI implements Initializable {
     }
 
     public void publicarTarefaAction(ActionEvent actionEvent) {
+
+        try {
+            boolean publicou = publicarTarefaController.publicarTarefa(listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem(),
+                    btnTipoRegimento.getValue(), Data.dataAtual() ,btnDataFimPub.getValue(), btnDataInicioCand.getValue(),
+                    btnDataFimCand.getValue(), btnDataInicioSeriacao.getValue(),btnDataFimSeriacao.getValue());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar novo Anúncio.",
+                    publicou ? "Anúncio criado com sucesso! \n\n" +
+                            serviceController.getAnunciotoStringCompletoByTarefa(listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem())
+                            : "Não foi possível criar o anúncio.").show();
+
+            if (publicou) {
+                limparDados();
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
+        }
 
     }
 
