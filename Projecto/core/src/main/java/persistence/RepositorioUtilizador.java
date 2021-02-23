@@ -28,7 +28,7 @@ public class RepositorioUtilizador implements Serializable {
     /**
      * Static method that returns a unique reference to the class object,
      * that implements a singleton.
-     * @return 
+     * @return instance
      */
     public static RepositorioUtilizador getInstance(){
         if(instance == null){
@@ -41,7 +41,7 @@ public class RepositorioUtilizador implements Serializable {
      * Boolean method that checks if a user exists in the repository,
      * otherwise it is added to it.
      * @param user
-     * @return 
+     * @return boolean
      */
     public boolean addUtilizador(User user) {
         if (this.utilizadoresRegistados.contains(user)) {
@@ -54,7 +54,7 @@ public class RepositorioUtilizador implements Serializable {
     /**
      * Method to get a user through your email.
      * @param email
-     * @return 
+     * @return u
      */
     public User getUserByEmail(Email email) {
         for (User u : utilizadoresRegistados) {
@@ -68,7 +68,7 @@ public class RepositorioUtilizador implements Serializable {
     /**
      * Method for obtaining a user using his username.
      * @param nome
-     * @return 
+     * @return u
      */
     public User getUserByUsername(String nome) {
         for (User u : utilizadoresRegistados) {
@@ -83,7 +83,7 @@ public class RepositorioUtilizador implements Serializable {
     /**
      * Method for obtaining a user through their role.
      * @param role
-     * @return 
+     * @return usersByRole
      */
     public ArrayList<User> getUtilizadoresByRole (Role role) {
         ArrayList<User> usersByRole = new ArrayList<>();
@@ -99,11 +99,10 @@ public class RepositorioUtilizador implements Serializable {
 
     /**
      * Method for listing (registering) users.
-     * @return 
+     * @return new ArrayList<>
      */
     public ArrayList<User> listarUtilizadores() {
         return new ArrayList<>(this.utilizadoresRegistados);
     }
-
 
 }

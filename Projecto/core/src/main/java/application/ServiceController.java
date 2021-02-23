@@ -167,4 +167,12 @@ public class ServiceController {
     public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa){
         return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
     }
+
+    //public String getCandidaturatoStringCompleto()??
+
+
+    //Como fazer o match dos anuncios com o freelancer? Método no repositório?
+    public ArrayList<Anuncio> getAnunciosMatchFreelancer(Freelancer freelancer){
+        return RepositorioAnuncio.getInstance().getAllAnuncios();
+    }
 }
