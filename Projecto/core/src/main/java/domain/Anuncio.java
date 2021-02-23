@@ -209,6 +209,13 @@ public class Anuncio implements Serializable {
         return tipoRegimento;
     }
 
+    
+    /**
+     * Checks existing skills on the freelancer technical skills recognition list.
+     * 
+     * @param reconhecimentosFreelancer
+     * @return boolean
+     */
     public boolean verificaCompetencias(List<ReconhecimentoCT> reconhecimentosFreelancer) {
         ArrayList<CompetenciaTecnica> competenciasObrigatorias = new ArrayList<>();
         for (CaracterizacaoCompTec cct : this.getTarefa().getCategoria().getCompetenciasTecnicas()) {

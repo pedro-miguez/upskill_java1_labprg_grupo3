@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Current class represents the tool for creating and condition new unique references either when instantiating objects of type Activity
- * Area as for objects of type Technical Skill.
+ * Current class represents the tool for creating and condition new unique 
+ * references either when instantiating objects of type Activity Area as for 
+ * objects of type Technical Skill.
  */
 public class CodigoUnico implements Serializable {
 
