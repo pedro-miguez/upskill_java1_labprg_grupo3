@@ -112,7 +112,6 @@ public class RepositorioFreelancer implements Serializable {
             csCreateHabilitacaoAcademica.close();
             csCreateReconhecimentoCT.close();
             csFreelancerIdByEmail.close();
-
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -166,7 +165,9 @@ public class RepositorioFreelancer implements Serializable {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
-            row.next();
+            if (row.getRow() < 1) {
+                row.next();
+            }
             String nome = row.getString("nome");
             Telefone telefone = new Telefone(Integer.parseInt(row.getString("telefone")));
             Email email = new Email(row.getString("email"));

@@ -69,6 +69,8 @@ public class RepositorioColaborador implements Serializable {
             cs2.executeQuery();
 
             conn.commit();
+            cs1.close();
+            cs2.close();
 
             return true;
         } catch (SQLException e) {
@@ -98,7 +100,9 @@ public class RepositorioColaborador implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Colaborador where Email = ?");
             pstmt.setString(1, emailColaborador);
 
-            return montarColaborador(pstmt.executeQuery());
+            Colaborador colaborador = montarColaborador(pstmt.executeQuery());
+            pstmt.close();
+            return colaborador;
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhum colaborador com esse email.");
         }
@@ -123,7 +127,12 @@ public class RepositorioColaborador implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Colaborador WHERE idOrganizacao = ?");
             pstmt.setInt(1, orgID);
 
-            return montarListaColaboradores(pstmt.executeQuery());
+            ArrayList<Colaborador> listaColaboradores = montarListaColaboradores(pstmt.executeQuery());
+
+            cs.close();
+            pstmt.close();
+
+            return listaColaboradores;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getSQLState();
@@ -149,6 +158,10 @@ public class RepositorioColaborador implements Serializable {
             Telefone telefone = new Telefone(Integer.parseInt(row.getString(5)));
             Email email = new Email(row.getString(6));
             colaborador = new Colaborador(nome, telefone, email, funcao);
+
+            if (row.isLast()) {
+                row.close();
+            }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -181,16 +194,16 @@ public class RepositorioColaborador implements Serializable {
                 Email email = new Email(row.getString(6));
                 listaColaboradores.add(new Colaborador(nome, telefone, email, funcao));
             }
+
+            row.close();
         }catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
         }
 
-        if (listaColaboradores.size() != 0) {
-            return listaColaboradores;
-        } else {
-            throw new FetchingProblemException("Lista de Colaboradores vazia");
-        }
+
+        return listaColaboradores;
+
     }
 
 

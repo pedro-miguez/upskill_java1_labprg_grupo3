@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainApp extends Application {
 
@@ -48,6 +49,8 @@ public class MainApp extends Application {
                    FXMLLoader.load(getClass().getResource("/fxml/AreaColaboradorOrganizacaoScene.fxml")));
             screenController.addScreen("AreaGestor",
                    FXMLLoader.load(getClass().getResource("/fxml/AreaGestorOrganizacaoScene.fxml")));
+            screenController.addScreen("AreaFreelancer",
+                    FXMLLoader.load(getClass().getResource("/fxml/AreaFreelancerScene.fxml")));
 
             Plataforma plataforma = Plataforma.getInstance();
 
@@ -64,6 +67,14 @@ public class MainApp extends Application {
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         event.consume();
+                    } else {
+                        try {
+                            Plataforma.getInstance().getConnectionHandler().closeConnection();
+                        } catch (SQLException throwables) {
+                            AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, TITULO_APLICACAO,
+                                    "Confirmação da ação.", throwables.getMessage());
+                            throwables.printStackTrace();
+                        }
                     }
                 }
             });

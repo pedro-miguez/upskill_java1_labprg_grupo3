@@ -243,6 +243,7 @@ public class Anuncio implements Serializable {
                         && cct.getCompetenciaTecnica().equals(rct.getCompetenciaTecnica())
                         && cct.getGrauProficiencia().getNivel() <= rct.getGrauProficiencia().getNivel()) {
                     counter++;
+                    break;
                 }
             }
         }
