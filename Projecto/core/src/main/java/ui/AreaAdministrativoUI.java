@@ -553,10 +553,17 @@ public class AreaAdministrativoUI implements Initializable {
         if (alerta.showAndWait().get() == ButtonType.CANCEL) {
             actionEvent.consume();
         } else {
-            limparTodosOsDados();
-            authenticationController.logout();
-            serviceController.resetUserAPI();
-            voltarJanelaInicial();
+            try {
+                limparTodosOsDados();
+                authenticationController.logout();
+                serviceController.resetUserAPI();
+                voltarJanelaInicial();
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao fazer logout.",
+                        e.getMessage()).show();
+            }
+
         }
     }
 

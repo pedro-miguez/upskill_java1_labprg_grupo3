@@ -62,6 +62,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             cs.executeQuery();
 
             conn.commit();
+            cs.close();
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -102,9 +103,9 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 cs.executeQuery();
                 cs.clearParameters();
             }
-            cs.close();
-            conn.commit();
 
+            conn.commit();
+            cs.close();
             return true;
 
         } catch (SQLException e) {
@@ -164,7 +165,11 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
             pstmt.setString(1, idCompetenciaTecnica);
 
-            return montarCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
+            CompetenciaTecnica competenciaTecnica = montarCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
+
+            pstmt.close();
+
+            return competenciaTecnica;
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhuma Competência Técnica com esse código único.");
         }
@@ -182,7 +187,10 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idAreaAtividade = ?");
             pstmt.setString(1, idAreaAtividade);
 
-            return montarListaCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
+            ArrayList<CompetenciaTecnica> listaCompetencias =  montarListaCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
+
+            pstmt.close();
+            return listaCompetencias;
         } catch (SQLException e) {
             e.printStackTrace();
             e.getSQLState();
@@ -212,6 +220,10 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             String descricaoDetalhada = row.getString(4);
             ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
             competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+
+            if(row.isLast()) {
+                row.close();
+            }
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -246,6 +258,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 pstmt.clearParameters();
             }
             pstmt.close();
+            rows.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -272,6 +285,8 @@ public class RepositorioCompetenciaTecnica implements Serializable {
                 String designacao = rows.getString(3);
                 listaGraus.add(new GrauProficiencia(nivel, designacao));
             }
+
+            rows.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

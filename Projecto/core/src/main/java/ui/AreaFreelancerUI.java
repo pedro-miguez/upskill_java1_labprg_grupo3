@@ -27,8 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import persistence.RepositorioFreelancer;
 
-public class AreaFreelancerUI {
+public class AreaFreelancerUI implements Initializable {
 
+    public BorderPane homeBorderPane;
     @FXML
     private Button btnConfirmarCandidatura;
     @FXML
@@ -67,21 +68,29 @@ public class AreaFreelancerUI {
 
         try{
 
-            //criar metodo no service controller para obter freelancer por email? em vez de invocar aqui o repositorio?
-        boolean efetuou = efetuarCandidaturaController.efetuarCandidatura(listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
-                RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(authenticationController.getEmail())),
-                LocalDate.now(), Double.parseDouble(txtValorPretendido.getText()), Integer.parseInt(txtDuracaoDias.getText()),
-                txtApresentacao.getText(), txtMotivacao.getText());
+            boolean efetuou = efetuarCandidaturaController.efetuarCandidatura(listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
+                    authenticationController.getEmail(),
+                    LocalDate.now(), Double.parseDouble(txtValorPretendido.getText()), Integer.parseInt(txtDuracaoDias.getText()),
+                    txtApresentacao.getText(), txtMotivacao.getText());
 
 
-// Ver método para o toString
-//            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Efetuar nova candidatura.",
-//                    efetuou ? "Candidatura efetuada com sucesso! \n\n" +
-//                            serviceController.)
-//                            : "Não foi possível efetuar a candidatura.").show();
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Efetuar nova candidatura.",
+                    efetuou ? "Candidatura efetuada com sucesso! \n\n" +
+                            serviceController.getCandidaturatoStringCompletoByAnuncioFreelancer(
+                                    listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
+                                    authenticationController.getEmail())
+                            : "Não foi possível efetuar a candidatura.").show();
 
             if (efetuou) {
                 limparDados();
+                try {
+                    listViewAnunciosMatchedFreelancer.getItems().setAll(efetuarCandidaturaController.getAnunciosMatched(
+                            authenticationController.getEmail()));
+                } catch (Exception e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Erro ao preencher a lista de anúncios.",
+                            e.getMessage()).show();
+                }
                 txtValorPretendido.requestFocus();
             }
 
@@ -111,18 +120,30 @@ public class AreaFreelancerUI {
         txtMotivacao.clear();
     }
 
+    public void btnGoHomeAction(ActionEvent actionEvent) {
+        homeBorderPane.setDisable(false);
+        homeBorderPane.setVisible(true);
+        efetuarCandidaturaPane.setDisable(true);
+        efetuarCandidaturaPane.setVisible(false);
+    }
+
+
     @FXML
     void efetuarCandidaturaAction(ActionEvent event) throws SQLException {
-
-        btnConfirmarCandidatura.setVisible(true);
-        btnLimparDadosEfetuarCandidatura.setVisible(true);
+        homeBorderPane.setDisable(true);
+        homeBorderPane.setVisible(false);
         efetuarCandidaturaPane.setDisable(false);
         efetuarCandidaturaPane.setVisible(true);
 
+        try {
+            listViewAnunciosMatchedFreelancer.getItems().setAll(efetuarCandidaturaController.getAnunciosMatched(
+                    authenticationController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro ao preencher a lista de anúncios.",
+                    e.getMessage()).show();
+        }
 
-        //ir buscar anuncios consoante o match de competencias tecnicas com o freelancer, falta fazer método
-        listViewAnunciosMatchedFreelancer.getItems().setAll(serviceController.getAnunciosMatchFreelancer(
-                RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(authenticationController.getEmail()))));
 
     }
 
@@ -135,9 +156,16 @@ public class AreaFreelancerUI {
             event.consume();
         } else {
             //limparDados();
-            authenticationController.logout();
-            serviceController.resetUserAPI();
-            voltarJanelaInicial();
+            try {
+                authenticationController.logout();
+                serviceController.resetUserAPI();
+                voltarJanelaInicial();
+            } catch (SQLException e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Erro de SQL.",
+                        e.getMessage()).show();
+            }
+
         }
 
     }
@@ -146,6 +174,7 @@ public class AreaFreelancerUI {
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
     }
+
 
 }
 

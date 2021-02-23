@@ -78,6 +78,9 @@ public class RepositorioTarefa implements Serializable {
             cs2.executeQuery();
 
             conn.commit();
+            cs1.close();
+            cs2.close();
+            pstmt.close();
 
             return true;
         } catch (SQLException e) {

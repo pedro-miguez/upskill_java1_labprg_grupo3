@@ -2,6 +2,8 @@ package application;
 
 import domain.*;
 
+import java.sql.SQLException;
+
 /**
  * JavaFX controller works based on MVC(Model-View-Controller) and can be achieved by FXML (EFF-ects eXtended Markup Language).
  * FXML is an XML based language used to develop the graphical user interfaces for JavaFX applications as in the HTML.
@@ -21,7 +23,7 @@ public class AuthenticationController {
      * @param password as password
      * @return the boolean
      */
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password) throws SQLException {
         return Plataforma.getInstance().getUsersAPI().login(username, password);
     }
 
@@ -30,7 +32,7 @@ public class AuthenticationController {
      *
      * @return the boolean
      */
-    public boolean logout() {
+    public boolean logout() throws SQLException {
         return Plataforma.getInstance().getUsersAPI().logout();
     }
 
@@ -39,7 +41,7 @@ public class AuthenticationController {
      *
      * @return the role
      */
-    public String getRole() {
+    public String getRole() throws SQLException {
         return Plataforma.getInstance().getUsersAPI().getRole();
     }
 
@@ -48,7 +50,7 @@ public class AuthenticationController {
      *
      * @return the email
      */
-    public String getEmail() {
+    public String getEmail() throws SQLException {
         return Plataforma.getInstance().getUsersAPI().getEmail();
     }
 
@@ -58,7 +60,7 @@ public class AuthenticationController {
      * @param colaborador as colaborator
      * @return the boolean
      */
-    public String registarGestorComoUtilizador(Colaborador colaborador) {
+    public String registarGestorComoUtilizador(Colaborador colaborador) throws SQLException {
         String nome = colaborador.getNome();
         String email = colaborador.getEmail().toString();
 
@@ -81,7 +83,7 @@ public class AuthenticationController {
      * @param colaborador as colaborator
      * @return the boolean
      */
-    public String registarColaboradorComoUtilizador(Colaborador colaborador) {
+    public String registarColaboradorComoUtilizador(Colaborador colaborador) throws SQLException {
         String nome = colaborador.getNome();
         String email = colaborador.getEmail().toString();
 
@@ -105,7 +107,7 @@ public class AuthenticationController {
      * @param freelancer as user
      * @return the boolean
      */
-    public String registarFreelancerComoUtilizador(Freelancer freelancer) {
+    public String registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
         String nome = freelancer.getNome();
         String email = freelancer.getEmail().toString();
 

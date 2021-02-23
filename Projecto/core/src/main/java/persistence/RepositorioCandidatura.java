@@ -30,6 +30,7 @@ public class RepositorioCandidatura {
 
         try {
 
+            conn.setAutoCommit(false);
             int nif = Integer.parseInt(candidatura.getAnuncio().getTarefa().getOrganizacao().getNIF().toString());
 
             CallableStatement csIdOrg= conn.prepareCall("SELECT idOrganizacao FROM Organizacao WHERE NIF = ?");
@@ -58,7 +59,6 @@ public class RepositorioCandidatura {
 
             CallableStatement csCreateCandidatura = conn.prepareCall("{CALL createCandidatura(?, ?, ?, ?, ?, ?, ?)}");
 
-            conn.setAutoCommit(false);
 
             csCreateCandidatura.setInt(1, idAnuncio);
             csCreateCandidatura.setInt(2, idFreelancer);
@@ -75,7 +75,7 @@ public class RepositorioCandidatura {
             csIdAnuncio.close();
             csFreelancerIdByEmail.close();
             csCreateCandidatura.close();
-
+            rSetIdOrg.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -89,6 +89,106 @@ public class RepositorioCandidatura {
         }
 
         return false;
+    }
+
+    public Candidatura getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+            int nif = Integer.parseInt(anuncio.getTarefa().getOrganizacao().getNIF().toString());
+
+            CallableStatement csIdOrg= conn.prepareCall("SELECT idOrganizacao FROM Organizacao WHERE NIF = ?");
+            csIdOrg.setInt(1, nif);
+            ResultSet rSetIdOrg = csIdOrg.executeQuery();
+            rSetIdOrg.next();
+
+            int idOrganizacao = rSetIdOrg.getInt("idOrganizacao");
+            String referenciaTarefa = anuncio.getTarefa().getCodigoUnico().toString();
+
+            CallableStatement csIdAnuncio = conn.prepareCall("{? = call getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            csIdAnuncio.registerOutParameter(1, Types.INTEGER);
+            csIdAnuncio.setString(2, referenciaTarefa );
+            csIdAnuncio.setInt(3, idOrganizacao);
+            csIdAnuncio.executeUpdate();
+
+            int idAnuncio = csIdAnuncio.getInt(1);
+
+            Freelancer freelancer = RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(emailFreelancer));
+
+            CallableStatement csFreelancerIdByEmail = conn.prepareCall("{? = call getFreelancerIDByEmail(?)}");
+            csFreelancerIdByEmail.registerOutParameter(1, Types.INTEGER);
+            csFreelancerIdByEmail.setString(2, freelancer.getEmail().toString());
+            csFreelancerIdByEmail.executeUpdate();
+
+            int idFreelancer = csFreelancerIdByEmail.getInt(1);
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Candidatura where idAnuncio = ? AND idFreelancer = ?");
+            pstmt.setInt(1, idAnuncio);
+            pstmt.setInt(2, idFreelancer);
+
+            Candidatura candidatura = montarCandidatura(pstmt.executeQuery());
+
+            csFreelancerIdByEmail.close();
+            csIdAnuncio.close();
+            csIdOrg.close();
+            rSetIdOrg.close();
+            pstmt.close();
+
+            return candidatura;
+        } catch (SQLException e) {
+            throw new CodigoNaoAssociadoException("Não existe nenhum anuncio associado a esta tarefa.");
+        }
+    }
+
+    public ArrayList<Candidatura> getAllCandidaturas() {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+            PreparedStatement pstmtCandidaturas = conn.prepareStatement("SELECT * FROM Candidatura");
+            ResultSet rSetCandidaturas = pstmtCandidaturas.executeQuery();
+
+            ArrayList<Candidatura> listaCandidaturas = montarListaCandidaturas(rSetCandidaturas);
+            pstmtCandidaturas.close();
+            rSetCandidaturas.close();
+            return listaCandidaturas;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
+            throw new FetchingProblemException("Problemas ao montar a lista de candidaturas");
+        }
+    }
+
+    public ArrayList<Candidatura> getAllCandidaturasFreelancer(Email emailFreelancer) {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+            CallableStatement csFreelancerIdByEmail = conn.prepareCall("{? = call getFreelancerIDByEmail(?)}");
+            csFreelancerIdByEmail.registerOutParameter(1, Types.INTEGER);
+            csFreelancerIdByEmail.setString(2, emailFreelancer.toString());
+            csFreelancerIdByEmail.executeUpdate();
+
+            int idFreelancer = csFreelancerIdByEmail.getInt(1);
+
+            PreparedStatement pstmtCandidaturas = conn.prepareStatement("SELECT * FROM Candidatura where idFreelancer = ?");
+            pstmtCandidaturas.setInt(1, idFreelancer);
+            ResultSet rSetCandidaturas = pstmtCandidaturas.executeQuery();
+
+            ArrayList<Candidatura> listaCandidaturas = montarListaCandidaturas(rSetCandidaturas);
+
+            csFreelancerIdByEmail.close();
+            pstmtCandidaturas.close();
+            rSetCandidaturas.close();
+
+            return listaCandidaturas;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
+            throw new FetchingProblemException("Problemas ao montar a lista de candidaturas");
+        }
     }
 
 
@@ -109,7 +209,7 @@ public class RepositorioCandidatura {
 
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Anuncio WHERE idAnuncio = ?");
             pstmt2.setInt(1, idAnuncio);
-            ResultSet rSetAnuncio = pstmt2.getResultSet();
+            ResultSet rSetAnuncio = pstmt2.executeQuery();
 
             Anuncio anuncio = RepositorioAnuncio.getInstance().montarAnuncio(rSetAnuncio);
 
@@ -118,7 +218,6 @@ public class RepositorioCandidatura {
             PreparedStatement pstmt3 = conn.prepareStatement("SELECT * FROM Freelancer WHERE idFreelancer = ?");
             pstmt3.setInt(1, row.getInt("idFreelancer"));
             ResultSet rSetFreelancer = pstmt3.executeQuery();
-            rSetFreelancer.next();
 
             Freelancer freelancer = RepositorioFreelancer.getInstance().montarFreelancer(rSetFreelancer);
 
@@ -135,6 +234,15 @@ public class RepositorioCandidatura {
 
 
             candidatura = new Candidatura(anuncio, freelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao);
+
+            pstmt2.close();
+            pstmt3.close();
+            rSetAnuncio.close();
+            rSetFreelancer.close();
+
+            if(row.isLast()) {
+                row.close();
+            }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -157,6 +265,8 @@ public class RepositorioCandidatura {
                 Candidatura candidatura = montarCandidatura(rows);
                 listaCandidaturas.add(candidatura);
             }
+
+            rows.close();
 
         } catch (SQLException e) {
             e.getSQLState();
