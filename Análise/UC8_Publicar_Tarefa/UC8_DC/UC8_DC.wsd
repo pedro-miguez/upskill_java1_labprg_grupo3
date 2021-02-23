@@ -6,7 +6,13 @@ Class AreaColaboradorUI {
 }
 
 Class PublicarTarefaController {
-    +publicarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail)
+    +publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento, 
+    LocalDate dataInicioPublicitacao, 
+    LocalDate dataFimPublicitacao, 
+    LocalDate dataInicioCandidatura, 
+    LocalDate dataFimCandidatura, 
+    LocalDate dataInicioSeriacao, 
+    LocalDate dataFimSeriacao)
 
 }
 
@@ -19,10 +25,10 @@ Class Plataforma <<Singleton>> {
     -String designacao
     -RepositorioColaborador repoColab
     -RepositorioTarefa repoTarefa
-    -RepositorioCategoriaTarefa repoCategoriaTarefa
+    -RepositorioAnuncio repoAnuncio
 
     +getInstance()
-    +getRepoCategoriaTarefa()
+    +getRepoAnuncio()
     +getRepoColab()
     +getRepoTarefa()
 }
@@ -35,11 +41,14 @@ Class RepositorioColaborador <<Singleton>> {
 Class RepositorioTarefa <<Singleton>> {
     +getInstance()
     +addTarefa(Tarefa tarefa)
-    +criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica, int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org)            
+    +criarTarefa(String codigoUnico, String designacao, 
+    String descricaoInformal, String descricaoTecnica, 
+    int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, 
+    Organizacao org)            
 }
 
-Class RepositorioCategoriaTarefa <<Singleton>> {
-    +listarCategoriasTarefa()
+Class RepositorioAnuncio <<Singleton>> {
+    
 }
 
 
@@ -73,37 +82,40 @@ Class Organização {
     - Colaborador gestor
 }
 
-Class CategoriaTarefa {
-    -String descricao
-    -AreaAtividade areaAtividade
-    -List<CaracterizacaoCompTec> competenciasTecnicas
+Class Anuncio {
+    - dataInicioPublicitacao
+    - dataFimPublicitacao
+    - dataInicioCandidatura
+    - dataFimCandidatura
+    - dataInicioSeriacao
+    - dataFimSeriacao
 }
 
 
-AreaColaboradorUI .> DefinirTarefaController
+AreaColaboradorUI .> PublicarTarefaController
 AreaColaboradorUI .> PlataformaController
 
 PlataformaController .> RepositorioColaborador
+PlataformaController .> RepositorioAnuncio
 PlataformaController .> RepositorioTarefa
-PlataformaController .> RepositorioCategoriaTarefa
 PlataformaController .> Plataforma
 
-DefinirTarefaController .> Plataforma
-DefinirTarefaController .> RepositorioCategoriaTarefa
-DefinirTarefaController .> RepositorioColaborador
-DefinirTarefaController .> RepositorioTarefa
+PublicarTarefaController .> Plataforma
+PublicarTarefaController .> RepositorioAnuncio
+PublicarTarefaController .> RepositorioColaborador
+PublicarTarefaController .> RepositorioTarefa
 
 Plataforma "1" -> "1" RepositorioTarefa: tem
-Plataforma "1" -> "1" RepositorioCategoriaTarefa: tem
+Plataforma "1" -> "1" RepositorioAnuncio: tem
 Plataforma "1" -> "1" RepositorioColaborador: tem
 
-RepositorioCategoriaTarefa "1" -> "*" CategoriaTarefa: possui
+RepositorioAnuncio "1" -> "*" Tarefa: possui
 RepositorioColaborador "1" -> "*" Colaborador: possui
 RepositorioTarefa "1" -> "*" Tarefa: possui
 
 Colaborador "1" -> "1" Organização: pertence a
 Tarefa "1" -> "1" Organização: relativa a
-Tarefa "1" -> "1" CategoriaTarefa: relativa a
+Tarefa "1" -> "1" Anuncio: relativo a
 
 
 @enduml
