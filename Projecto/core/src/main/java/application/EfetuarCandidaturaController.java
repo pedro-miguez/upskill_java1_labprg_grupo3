@@ -26,10 +26,15 @@ public class EfetuarCandidaturaController {
 
         for (Anuncio a : todosAnuncios) {
             if (a.verificaCompetencias(freelancer.getReconhecimento())) {
+                boolean candidaturaExiste = false;
                 for (Candidatura c : candidaturasFreelancers) {
-                    if (!c.getAnuncio().equals(a)) {
-                        anunciosMatched.add(a);
+                    if (c.getAnuncio().equals(a)) {
+                        candidaturaExiste = true;
+                        break;
                     }
+                }
+                if (!candidaturaExiste) {
+                    anunciosMatched.add(a);
                 }
             }
         }

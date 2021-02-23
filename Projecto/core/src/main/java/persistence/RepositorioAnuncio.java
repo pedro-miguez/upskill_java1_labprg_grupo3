@@ -67,7 +67,7 @@ public class RepositorioAnuncio {
             int idTipoRegimento = rSetidTipoRegimento.getInt(1);
 
             CallableStatement cs3 = conn.prepareCall("{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?)}");
-            ResultSet rs = null;
+
 
 
             conn.setAutoCommit(false);
@@ -88,6 +88,9 @@ public class RepositorioAnuncio {
             cs1.close();
             cs2.close();
             cs3.close();
+            rSetidTarefa.close();
+            rSetidTipoRegimento.close();
+
 
             return true;
         } catch (SQLException e) {
@@ -124,6 +127,7 @@ public class RepositorioAnuncio {
         }
 
         pstmt.close();
+        rSetTipoRegimento.close();
         return tiposRegimento;
     }
 
@@ -138,7 +142,10 @@ public class RepositorioAnuncio {
             PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio");
             ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
 
-            return montarListaAnuncios(rSetAnuncios);
+            ArrayList<Anuncio> listaAnuncios = montarListaAnuncios(rSetAnuncios);
+            pstmtAnuncios.close();
+            rSetAnuncios.close();
+            return listaAnuncios;
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -180,8 +187,13 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Anuncio where idAnuncio = ?");
             pstmt.setInt(1, idAnuncio);
 
+            Anuncio anuncio = montarAnuncio(pstmt.executeQuery());
 
-            return montarAnuncio(pstmt.executeQuery());
+            cs1.close();
+            rSetIdOrg.close();
+            cs2.close();
+            pstmt.close();
+            return anuncio;
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhum anuncio associado a esta tarefa.");
         }
@@ -259,6 +271,14 @@ public class RepositorioAnuncio {
                     , Integer.parseInt(dataString6[2]));
 
             anuncio = new Anuncio(tarefa, tipoRegimento, dataInicioPub, dataFimPub, dataInicioCand, dataFimCand, dataInicioSer, dataFimSer);
+
+            pstmt.close();
+            pstmt2.close();
+            pstmt3.close();
+            pstmt4.close();
+            rSetTarefa.close();
+            rSetTipoRegimento.close();
+            rSetTipoRegimento2.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

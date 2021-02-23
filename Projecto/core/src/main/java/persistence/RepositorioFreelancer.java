@@ -108,6 +108,10 @@ public class RepositorioFreelancer implements Serializable {
             }
 
             conn.commit();
+            csCreateFreelancer.close();
+            csCreateHabilitacaoAcademica.close();
+            csCreateReconhecimentoCT.close();
+            csFreelancerIdByEmail.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();

@@ -75,7 +75,7 @@ public class RepositorioCandidatura {
             csIdAnuncio.close();
             csFreelancerIdByEmail.close();
             csCreateCandidatura.close();
-
+            rSetIdOrg.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -126,7 +126,15 @@ public class RepositorioCandidatura {
             pstmt.setInt(1, idAnuncio);
             pstmt.setInt(2, idFreelancer);
 
-            return montarCandidatura(pstmt.executeQuery());
+            Candidatura candidatura = montarCandidatura(pstmt.executeQuery());
+
+            csFreelancerIdByEmail.close();
+            csIdAnuncio.close();
+            csIdOrg.close();
+            rSetIdOrg.close();
+            pstmt.close();
+
+            return candidatura;
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhum anuncio associado a esta tarefa.");
         }
@@ -139,7 +147,10 @@ public class RepositorioCandidatura {
             PreparedStatement pstmtCandidaturas = conn.prepareStatement("SELECT * FROM Candidatura");
             ResultSet rSetCandidaturas = pstmtCandidaturas.executeQuery();
 
-            return montarListaCandidaturas(rSetCandidaturas);
+            ArrayList<Candidatura> listaCandidaturas = montarListaCandidaturas(rSetCandidaturas);
+            pstmtCandidaturas.close();
+            rSetCandidaturas.close();
+            return listaCandidaturas;
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -161,9 +172,16 @@ public class RepositorioCandidatura {
             int idFreelancer = csFreelancerIdByEmail.getInt(1);
 
             PreparedStatement pstmtCandidaturas = conn.prepareStatement("SELECT * FROM Candidatura where idFreelancer = ?");
+            pstmtCandidaturas.setInt(1, idFreelancer);
             ResultSet rSetCandidaturas = pstmtCandidaturas.executeQuery();
 
-            return montarListaCandidaturas(rSetCandidaturas);
+            ArrayList<Candidatura> listaCandidaturas = montarListaCandidaturas(rSetCandidaturas);
+
+            csFreelancerIdByEmail.close();
+            pstmtCandidaturas.close();
+            rSetCandidaturas.close();
+
+            return listaCandidaturas;
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -216,6 +234,15 @@ public class RepositorioCandidatura {
 
 
             candidatura = new Candidatura(anuncio, freelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao);
+
+            pstmt2.close();
+            pstmt3.close();
+            rSetAnuncio.close();
+            rSetFreelancer.close();
+
+            if(row.isLast()) {
+                row.close();
+            }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -238,6 +265,8 @@ public class RepositorioCandidatura {
                 Candidatura candidatura = montarCandidatura(rows);
                 listaCandidaturas.add(candidatura);
             }
+
+            rows.close();
 
         } catch (SQLException e) {
             e.getSQLState();
