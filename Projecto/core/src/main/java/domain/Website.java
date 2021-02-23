@@ -5,8 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Current class implements the tools to create new websites (as Website). It has implementations to get a string
- * representation through the toString() method of the object.
+ * Current class implements the tools to create new websites (as Website). 
+ * It has implementations to get a string representation through the toString() 
+ * method of the object.
  */
 public class Website implements Serializable {
 

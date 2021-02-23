@@ -59,6 +59,7 @@ public class Anuncio implements Serializable {
     
     /**
      * Sets the type of regiment.
+     * @param tipoRegimento
      */
     public void setTipoRegimento(TipoRegimento tipoRegimento) {
         this.tipoRegimento = tipoRegimento;
@@ -67,6 +68,7 @@ public class Anuncio implements Serializable {
 
     /**
      * Sets the advertisement start date.
+     * @param dataInicioPublicitacao
      */
     public void setDataInicioPublicitacao(Data dataInicioPublicitacao) {
         this.dataInicioPublicitacao = dataInicioPublicitacao;
@@ -74,6 +76,7 @@ public class Anuncio implements Serializable {
 
     /**
      * Sets the advertisement end date.
+     * @param dataFimPublicitacao
      */
     public void setDataFimPublicitacao(Data dataFimPublicitacao) {
         if ((dataFimPublicitacao.getDia() < dataInicioPublicitacao.getDia()) && 
@@ -89,6 +92,7 @@ public class Anuncio implements Serializable {
 
     /**
      * Sets the application start date.
+     * @param dataInicioCandidatura
      */
     public void setDataInicioCandidatura(Data dataInicioCandidatura) {
         this.dataInicioCandidatura = dataInicioCandidatura;
@@ -96,6 +100,7 @@ public class Anuncio implements Serializable {
 
     /**
      * Sets the application end date.
+     * @param dataFimCandidatura
      */
     public void setDataFimCandidatura(Data dataFimCandidatura) {
         if ((dataFimCandidatura.getDia() < dataInicioCandidatura.getDia()) && 
@@ -110,6 +115,7 @@ public class Anuncio implements Serializable {
 
     /**
      * Sets the serialization start date.
+     * @param dataInicioSeriacao
      */
     public void setDataInicioSeriacao(Data dataInicioSeriacao) {
         this.dataInicioSeriacao = dataInicioSeriacao;
@@ -117,6 +123,7 @@ public class Anuncio implements Serializable {
 
     /**
      * Sets the serialization end date.
+     * @param dataFimSeriacao
      */
     public void setDataFimSeriacao(Data dataFimSeriacao) {
         

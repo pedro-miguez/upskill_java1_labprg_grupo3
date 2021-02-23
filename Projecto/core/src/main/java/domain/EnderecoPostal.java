@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Current class implements the tool for creating new addresses (as EnderecoPostal) with specific parameters such as
- * street data (local), city and country (optional) data (localidade) and a post code. It has implementations to get all
+ * Current class implements the tool for creating new addresses (as EnderecoPostal)
+ * with specific parameters such as street data (local), city and country (optional) 
+ * data (localidade) and a post code. It has implementations to get all
  * parameters and a toString() method that returns a representation of the object.
- *
  */
 public class EnderecoPostal implements Serializable {
 
@@ -75,7 +75,7 @@ public class EnderecoPostal implements Serializable {
     /**
      * Returns a string representation of the object.
      *
-     * @return Returns a string representation of the object.
+     * @return a string representation of the object.
      */
     @Override
     public String toString() {

@@ -3,12 +3,13 @@ package domain;
 import java.io.Serializable;
 
 /**
- * Current class implements the tools for creating new tasks (as Tarefa) with specific parameters such as unique code
- * (codigoUnico), designation (designacao), informal description (descricaoInformal), technical description
- * (descricaoTecnica), estimated time to complete the task (duracaoHoras), estimated cost to perform the task (custo),
- * the task category it falls under (categoria) and the organization that belongs (organizacao).
+ * Current class implements the tools for creating new tasks (as Tarefa) with 
+ * specific parameters such as unique code (codigoUnico), designation (designacao), 
+ * informal description (descricaoInformal), technical description (descricaoTecnica), 
+ * estimated time to complete the task (duracaoHoras), estimated cost to perform 
+ * the task (custo), the task category it falls under (categoria) and the organization 
+ * that belongs (organizacao).
  * It has implementations to get all these parameters through toString() method.
- *
  */
 public class Tarefa implements Serializable {
 

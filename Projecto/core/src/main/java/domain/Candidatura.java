@@ -53,42 +53,82 @@ public class Candidatura implements Serializable {
         
     }
     
-    
+    /**
+     * Gets the unique-code of the advertisement.
+     *
+     * @return idAnuncio.
+     */
     public CodigoUnico getIdAnuncio() {
         return this.idAnuncio;
     }
     
+    /**
+     * Gets the unique-code of the freelancer.
+     *
+     * @return idFreelancer.
+     */
     public CodigoUnico getIdFreelancer() {
         return this.idFreelancer;
     }
     
+    /**
+     * Gets the application date.
+     *
+     * @return dataCandidatura.
+     */
     public Data getDataCandidatura() {
         return this.dataCandidatura;
     }
 
-    
+    /**
+     * Gets the target value.
+     *
+     * @return valorPretendido.
+     */
     public int getValorPretendido() {
         return valorPretendido;
     }
     
+    /**
+     * Gets the number of days.
+     *
+     * @return nrDias.
+     */
     public int getNrDias() {
         return nrDias;
     }
     
+    /**
+     * Gets the presentation text.
+     *
+     * @return txtApresentacao.
+     */
     public String getTxtApresentacao() {
         return txtApresentacao;
     }
     
+    /**
+     * Gets the motivation text.
+     *
+     * @return txtMotivacao.
+     */
     public String getTxtMotivacao() {
         return txtMotivacao;
     }
     
     
+    /**
+     * Sets the application date.
+     * @param dataCandidatura 
+     */
     public void setDataCandidatura(Data dataCandidatura) {
         this.dataCandidatura = dataCandidatura;
     }
     
-    
+    /**
+     * Sets the target value.
+     * @param valorPretendido 
+     */
     private void setValorPretendido(int valorPretendido) {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
@@ -96,6 +136,11 @@ public class Candidatura implements Serializable {
             throw new IllegalArgumentException("Deve introduzir um valor maior que zero.");
     }
     
+    
+    /**
+     * Sets the number of days.
+     * @param nrDias 
+     */
     private void setNrDias(int nrDias) {
         if (nrDias > 0) {
             this.nrDias = nrDias;
@@ -103,6 +148,10 @@ public class Candidatura implements Serializable {
             throw new IllegalArgumentException("Deve introduzir um valor maior que zero.");
     }
     
+    /**
+     * Sets the presentation text.
+     * @param txtApresentacao 
+     */
     private void setTxtApresentacao(String txtApresentacao) {
         if (txtApresentacao == null || txtApresentacao.trim().isEmpty()) {
             throw new IllegalArgumentException("Apresentação inválida!! Este campo não pode estar vazio.");
@@ -110,6 +159,10 @@ public class Candidatura implements Serializable {
             this.txtApresentacao = txtApresentacao;
     }
     
+    /**
+     * Sets the motivation text.
+     * @param txtMotivacao 
+     */
     private void setTxtMotivacao(String txtMotivacao) {
         if (txtMotivacao == null || txtMotivacao.trim().isEmpty()) {
             throw new IllegalArgumentException("Motivação inválida!! Este campo não pode estar vazio.");

@@ -9,10 +9,13 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 /**
- * Current class enables to create a new Platform object which hosts some of the critical functions available in the app. For this
- * reason it is implemented as a Singleton Class. This design pattern only allows to instantiate one object of this kind, meaning
- * that if a new one is attempted to be built, the program will return the existing one. Some of the critical functions that the class
- * hosts are a method to save or load data via files, or establish/reset the connection to the users API.
+ * Current class enables to create a new Platform object which hosts some of the 
+ * critical functions available in the app. For this reason it is implemented as 
+ * a Singleton Class. This design pattern only allows to instantiate one object 
+ * of this kind, meaning that if a new one is attempted to be built, the program 
+ * will return the existing one. Some of the critical functions that the class
+ * hosts are a method to save or load data via files, or establish/reset the 
+ * connection to the users API.
  */
 public class Plataforma implements Serializable {
 
