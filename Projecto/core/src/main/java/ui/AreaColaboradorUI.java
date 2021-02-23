@@ -143,10 +143,17 @@ public class AreaColaboradorUI implements Initializable {
         if (alerta.showAndWait().get() == ButtonType.CANCEL) {
             actionEvent.consume();
         } else {
-            limparDados();
-            authenticationController.logout();
-            serviceController.resetUserAPI();
-            voltarJanelaInicial();
+            try {
+                limparDados();
+                authenticationController.logout();
+                serviceController.resetUserAPI();
+                voltarJanelaInicial();
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao fazer logout.",
+                        e.getMessage()).show();
+            }
+
         }
     }
 
@@ -214,6 +221,13 @@ public class AreaColaboradorUI implements Initializable {
 
 
         //popular elementos
-        listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authenticationController.getEmail()));
+        try {
+            listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authenticationController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }
+
     }
 }

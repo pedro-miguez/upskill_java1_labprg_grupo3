@@ -59,6 +59,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
             cs.setString(2, categoriaTarefa.getDescricao());
             cs.executeQuery();
             conn.commit();
+            cs.close();
 
 
         } catch (SQLException e) {
@@ -114,8 +115,12 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 cs.clearParameters();
             }
 
-            cs.close();
+
             conn.commit();
+            cs.close();
+            pstmt.close();
+            result.close();
+
 
             return true;
         } catch (SQLException e) {
@@ -146,7 +151,12 @@ public class RepositorioCategoriaTarefa implements Serializable {
             pstmt.setString(1, descricao);
             pstmt.setString(2, idAreaAtividade);
 
-            return montarCategoriaTarefa(pstmt.executeQuery(), areaAtividade);
+            CategoriaTarefa categoriaTarefa = montarCategoriaTarefa(pstmt.executeQuery(), areaAtividade);
+
+            pstmt.close();
+
+
+            return categoriaTarefa;
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -225,6 +235,11 @@ public class RepositorioCategoriaTarefa implements Serializable {
             String descricao = row.getString(3);
             ArrayList<CaracterizacaoCompTec> competencias = montarlistaCaracterizacaoCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
             categoriaTarefa = new CategoriaTarefa(areaAtividade, descricao, competencias);
+            pstmt.close();
+
+            if(row.isLast()) {
+                row.close();
+            }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -259,6 +274,8 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 pstmt.clearParameters();
             }
 
+            pstmt.close();
+            rows.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -307,8 +324,11 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 linhaGrau.next();
                 grau = new GrauProficiencia(linhaGrau.getInt(2), linhaGrau.getString(3));
                 competencias.add(new CaracterizacaoCompTec(competencia, obrigatorio, grau));
+                pstmt1.close();
+                pstmt2.close();
+                linhaGrau.close();
             }
-
+            rows.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

@@ -54,7 +54,7 @@ public class ServiceController {
     /**
      * Reset user api method.
      */
-    public void resetUserAPI() {
+    public void resetUserAPI() throws SQLException {
         Plataforma.getInstance().resetUserAPI();
     }
 
@@ -168,11 +168,10 @@ public class ServiceController {
         return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
     }
 
-    //public String getCandidaturatoStringCompleto()??
-
-
-    //Como fazer o match dos anuncios com o freelancer? Método no repositório?
-    public ArrayList<Anuncio> getAnunciosMatchFreelancer(Freelancer freelancer){
-        return RepositorioAnuncio.getInstance().getAllAnuncios();
+    public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
+        return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
     }
+
+
+
 }

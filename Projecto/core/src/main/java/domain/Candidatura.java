@@ -147,10 +147,7 @@ public class Candidatura implements Serializable {
      * @param txtApresentacao 
      */
     private void setTxtApresentacao(String txtApresentacao) {
-        if (txtApresentacao == null || txtApresentacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("Apresentação inválida!! Este campo não pode estar vazio.");
-        } else
-            this.txtApresentacao = txtApresentacao;
+        this.txtApresentacao = txtApresentacao;
     }
     
     /**
@@ -158,10 +155,7 @@ public class Candidatura implements Serializable {
      * @param txtMotivacao 
      */
     private void setTxtMotivacao(String txtMotivacao) {
-        if (txtMotivacao == null || txtMotivacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("Motivação inválida!! Este campo não pode estar vazio.");
-        } else
-            this.txtMotivacao = txtMotivacao;
+        this.txtMotivacao = txtMotivacao;
     }
     
     
