@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Current class represents the tool for creating new collaborators from an organization. This ones may have different
- * roles within their organization (wich are listed in the Funcao enum class). Each of them is also described by their name,
- * mobile phone and email.
+ * Current class represents the tool for creating new collaborators from an 
+ * organization. This ones may have different roles within their organization 
+ *(which are listed in the Funcao enum class). Each of them is also described by
+ * their name,mobile phone and email.
  */
 public class Colaborador implements Serializable {
 
@@ -67,14 +68,26 @@ public class Colaborador implements Serializable {
         return email;
     }
 
+    /**
+     * Gets the phone number.
+     * @return telefone
+     */
     public Telefone getTelefone() {
         return this.telefone;
     }
 
+    /**
+     * Gets the role.
+     * @return funcao
+     */
     public String getFuncao() {
         return funcao;
     }
 
+    /**
+     * Returns a string representation of the object collaborator and its attributes.
+     * @return a string representation of the object.
+     */
     @Override
     public String toString() {
         return String.format("Nome: %s%nTelefone: %s%nE-mail: %s%nFunção: %s",

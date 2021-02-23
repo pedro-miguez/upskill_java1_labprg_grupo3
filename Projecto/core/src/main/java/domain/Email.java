@@ -8,9 +8,10 @@ import java.util.regex.Pattern;
 
 
 /**
- * Current class implements the tools to create new emails (as Email) following certain rules how an email should be.
- * It has implementations to get a string representation through the toString() method of the object.
- *
+ * Current class implements the tools to create new emails (as Email) following 
+ * certain rules how an email should be.
+ * It has implementations to get a string representation through the toString() 
+ * method of the object.
  */
 public class Email implements Serializable {
 

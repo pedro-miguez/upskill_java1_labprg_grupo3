@@ -3,6 +3,11 @@ package domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Current class implements the tool for creating new academic qualifications.
+ * 
+ * @author Grupo 3
+ */
 public class HabilitacaoAcademica implements Serializable {
 
     private String grau;
@@ -10,7 +15,15 @@ public class HabilitacaoAcademica implements Serializable {
     private String nomeInstituicao;
     private double mediaCurso;
 
-    public HabilitacaoAcademica(String grau, String designacaoCurso, String nomeInstituicao, double mediaCurso) {
+    /**
+     * Instantiates a new academic qualification.
+     * @param grau
+     * @param designacaoCurso
+     * @param nomeInstituicao
+     * @param mediaCurso 
+     */
+    public HabilitacaoAcademica(String grau, String designacaoCurso, String nomeInstituicao, 
+                                double mediaCurso) {
         setGrau(grau);
         setDesignacaoCurso(designacaoCurso);
         setNomeInstituicao(nomeInstituicao);
@@ -46,22 +59,43 @@ public class HabilitacaoAcademica implements Serializable {
         this.mediaCurso = mediaCurso;
     }
 
+    
+    /**
+     * Gets the level of qualification.
+     * @return grau
+     */
     public String getGrau() {
         return grau;
     }
 
+    /**
+     * Gets the course designation.
+     * @return designacaoCurso
+     */
     public String getDesignacaoCurso() {
         return designacaoCurso;
     }
 
+    /**
+     * Gets the Institution Name.
+     * @return nomeInstituicao
+     */
     public String getNomeInstituicao() {
         return nomeInstituicao;
     }
 
+    /**
+     * Gets the final course average.
+     * @return mediaCurso
+     */
     public double getMediaCurso() {
         return mediaCurso;
     }
 
+    /**
+     * Returns a string representation of the object academic qualifications.
+     * @return a string representation of the object
+     */
     @Override
     public String toString() {
         return String.format("Habilitacao Academica: %nGrau: %s%nDesignacaoCurso: %s%nNomeInstituicao: %s%nMediaCurso: %.2f",
@@ -83,7 +117,10 @@ public class HabilitacaoAcademica implements Serializable {
         if (this == o) return true;
         if (!(o instanceof HabilitacaoAcademica)) return false;
         HabilitacaoAcademica that = (HabilitacaoAcademica) o;
-        return Double.compare(that.getMediaCurso(), getMediaCurso()) == 0 && getGrau().equals(that.getGrau()) && getDesignacaoCurso().equals(that.getDesignacaoCurso()) && getNomeInstituicao().equals(that.getNomeInstituicao());
+        return Double.compare(that.getMediaCurso(), getMediaCurso()) == 0 && 
+                getGrau().equals(that.getGrau()) && 
+                getDesignacaoCurso().equals(that.getDesignacaoCurso()) && 
+                getNomeInstituicao().equals(that.getNomeInstituicao());
     }
 
 }

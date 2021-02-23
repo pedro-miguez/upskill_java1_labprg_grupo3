@@ -5,11 +5,11 @@ import java.util.Objects;
 
 
 /**
- * Current class implements the tools for creating new organizations (as Organizacao) with specific parameters such as
- * name (nome), tax id number (nif), website, phone number (telefone), email, address and a manager (gestor).
- * It has implementations to get all these parameters through toString() method and a method to set the manager from an
- * organization.
- *
+ * Current class implements the tools for creating new organizations (as Organizacao) 
+ * with specific parameters such as name (nome), tax id number (nif), website, 
+ * phone number (telefone), email, address and a manager (gestor).
+ * It has implementations to get all these parameters through toString() method 
+ * and a method to set the manager from an organization.
  */
 public class Organizacao implements Serializable {
 
@@ -31,7 +31,8 @@ public class Organizacao implements Serializable {
      * @param email          the email of the Organization
      * @param enderecoPostal the adress of the Organization
      */
-    public Organizacao(String nome, NIF nif, Website website, Telefone telefone, Email email, EnderecoPostal enderecoPostal){
+    public Organizacao(String nome, NIF nif, Website website, Telefone telefone,
+                        Email email, EnderecoPostal enderecoPostal){
         setNome(nome);
         setNif(nif);
         setEnderecoPostal(enderecoPostal);
@@ -56,18 +57,46 @@ public class Organizacao implements Serializable {
         return this.nome;
     }
 
+    /**
+     * Gets the nif of the organization.
+     * @return nif
+     */
     public NIF getNIF() {
         return this.nif;
     }
 
+    /**
+     * Gets the website of the organization.
+     * @return website
+     */
     public Website getWebsite() {
         return this.website;
     }
 
+    /**
+     * Gets the phone number of the organization.
+     * @return telefone
+     */
     public Telefone getTelefone() {
         return this.telefone;
     }
 
+    /**
+     * Gets the email of the organization.
+     * @return email
+     */
+    public Email getEmail() {
+        return this.email;
+    }
+
+    /**
+     * Gets the address of the organization.
+     * @return endereçoPostal
+     */
+    public EnderecoPostal getEnderecoPostal() {
+        return enderecoPostal;
+    }
+    
     private void setNif(NIF nif) {
         this.nif = nif;
     }
@@ -84,16 +113,14 @@ public class Organizacao implements Serializable {
         this.email = email;
     }
 
-    public Email getEmail() {
-        return this.email;
-    }
-
     private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
         this.enderecoPostal = enderecoPostal;
     }
 
+    
     /**
-     * Returns a string representation with very concise but precise information about the object and its attributes.
+     * Returns a string representation with very concise but precise information 
+     * about the object and its attributes.
      *
      * @return a string representation of the object (organization).
      *
@@ -101,9 +128,11 @@ public class Organizacao implements Serializable {
     @Override
     public String toString() {
         return String.format("Nome: %s%nNIF: %s%nWebsite: %s%nTelefone: %s%nE-mail: %s%nEndereço Postal: %s",
-                this.getNome(), this.nif, this.website, this.telefone, this.email, this.getEnderecoPostal());
+                this.getNome(), this.nif, this.website, this.telefone, this.email, 
+                this.getEnderecoPostal());
     }
 
+    
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>
@@ -122,19 +151,16 @@ public class Organizacao implements Serializable {
         Organizacao that = (Organizacao) o;
         return nome.equals(that.nome);
     }*/
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Organizacao)) return false;
         Organizacao that = (Organizacao) o;
         return getNome().equals(that.getNome()) && nif.equals(that.nif) &&
-                getWebsite().equals(that.getWebsite()) && getTelefone().equals(that.getTelefone())
+                getWebsite().equals(that.getWebsite()) && 
+                getTelefone().equals(that.getTelefone())
                 && getEmail().equals(that.getEmail());
     }
-
-
-    public EnderecoPostal getEnderecoPostal() {
-        return enderecoPostal;
-    }
+    
 }
