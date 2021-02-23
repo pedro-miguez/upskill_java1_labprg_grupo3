@@ -18,7 +18,7 @@
          <center>
             <StackPane prefHeight="539.0" prefWidth="632.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="publicarTarefaPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="efetuarCandidaturaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
@@ -75,22 +75,6 @@
                            </font>
                         </Label>
                      </top>
-                     <bottom>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button fx:id="btnConfirmarCandidatura" mnemonicParsing="false" onAction="#confirmarCandidaturaAction" text="Confirmar">
-                                 <HBox.margin>
-                                    <Insets right="15.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnLimparDadosEfetuarCandidatura" mnemonicParsing="false" onAction="#btnLimparDadosEfetuarCandidaturaAction" text="Limpar dados">
-                                 <HBox.margin>
-                                    <Insets right="150.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </bottom>
                   </BorderPane>
                </children>
             </StackPane>
@@ -117,6 +101,22 @@
                </BorderPane.margin>
             </VBox>
          </left>
+         <bottom>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnConfirmarCandidatura" mnemonicParsing="false" onAction="#confirmarCandidaturaAction" text="Confirmar">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnLimparDadosEfetuarCandidatura" mnemonicParsing="false" onAction="#btnLimparDadosEfetuarCandidaturaAction" text="Limpar dados">
+                     <HBox.margin>
+                        <Insets right="150.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

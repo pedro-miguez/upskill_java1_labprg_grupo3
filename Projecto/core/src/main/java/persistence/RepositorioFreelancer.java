@@ -42,7 +42,17 @@ public class RepositorioFreelancer implements Serializable {
     }
 
 
-    public boolean insertUtilizadorFreelancer(Freelancer freelancer, String password) throws SQLException {
+    /**
+     * Boolean method that checks if a freelancer exists in the repository,
+     * otherwise it is added to it.
+     * 
+     * @param freelancer
+     * @param password
+     * @return boolean
+     * @throws SQLException 
+     */
+    public boolean insertUtilizadorFreelancer(Freelancer freelancer, 
+                                                String password) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
@@ -118,7 +128,7 @@ public class RepositorioFreelancer implements Serializable {
      * Method to obtain a freelancer through your email.
      *
      * @param email
-     * @return
+     * @return montarFreelancer
      */
     public Freelancer getFreelancerByEmail(Email email) throws SQLException {
         try {
@@ -135,6 +145,13 @@ public class RepositorioFreelancer implements Serializable {
     }
 
 
+    /**
+     * Method to set an freelancer.
+     * 
+     * @param row
+     * @return freelancer
+     * @throws SQLException 
+     */
     public Freelancer montarFreelancer(ResultSet row) throws SQLException {
         Freelancer freelancer = null;
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -173,6 +190,13 @@ public class RepositorioFreelancer implements Serializable {
 
     }
 
+    /**
+     * Method to create a list of recognition of technical skills.
+     * 
+     * @param rows
+     * @return listaReconhecimentoCT
+     * @throws SQLException 
+     */
     public ArrayList<ReconhecimentoCT> montarListaReconhecimentoCT(ResultSet rows) throws SQLException {
         ArrayList<ReconhecimentoCT> listaReconhecimentoCT = new ArrayList<>();
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -232,6 +256,12 @@ public class RepositorioFreelancer implements Serializable {
         return listaReconhecimentoCT;
     }
 
+    /**
+     * Method to create a list of academic qualifications.
+     * 
+     * @param row
+     * @return listaHabilitacoes
+     */
     public ArrayList<HabilitacaoAcademica> montarListaHabilitacoesAcademicas(ResultSet row) {
 
         ArrayList<HabilitacaoAcademica> listaHabilitacoes = new ArrayList<>();
@@ -242,7 +272,8 @@ public class RepositorioFreelancer implements Serializable {
                 String designacaoCurso = row.getString("designacaoCurso");
                 String nomeInstituicao = row.getString("nomeInstituicao");
                 double mediaCurso = row.getDouble("mediaCurso");
-                listaHabilitacoes.add(new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso));
+                listaHabilitacoes.add(new HabilitacaoAcademica(grau, designacaoCurso, 
+                                                            nomeInstituicao, mediaCurso));
             }
         }catch (SQLException e) {
             e.getSQLState();
@@ -253,14 +284,25 @@ public class RepositorioFreelancer implements Serializable {
     }
 
 
-    public Freelancer criarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
-                                       List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) {
+    /**
+     * Method to create new Freelancer.
+     * 
+     * @param nomeFreelancer
+     * @param contactoFreelancer
+     * @param emailFreelancer
+     * @param nifFreelancer
+     * @param reconhecimento
+     * @param habilitacoes
+     * @return new Freelancer
+     */
+    public Freelancer criarFreelancer(String nomeFreelancer, int contactoFreelancer, 
+                                      String emailFreelancer, int nifFreelancer,
+                                      List<ReconhecimentoCT> reconhecimento, 
+                                      List<HabilitacaoAcademica> habilitacoes) {
 
 
-        return new Freelancer(nomeFreelancer, new Telefone(contactoFreelancer), new Email(emailFreelancer), new NIF(nifFreelancer),
-                 reconhecimento, habilitacoes);
-
-
+        return new Freelancer(nomeFreelancer, new Telefone(contactoFreelancer), 
+                                new Email(emailFreelancer), new NIF(nifFreelancer),
+                                reconhecimento, habilitacoes);
+    }
 }
-}
-
