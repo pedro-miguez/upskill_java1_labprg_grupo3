@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for setting new
- * technical competences.
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for setting new technical competences.
  */
 public class DefinirCompetenciaTecnicaController {
 
@@ -25,12 +25,14 @@ public class DefinirCompetenciaTecnicaController {
      * @return the boolean
      */
     public boolean definirCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
-                                             String descricao, String descDetalhada, List<GrauProficiencia> graus) throws SQLException {
+                                             String descricao, String descDetalhada, 
+                                             List<GrauProficiencia> graus) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioCompetenciaTecnica repo = RepositorioCompetenciaTecnica.getInstance();
 
-        CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, areaAtividade, descricao, descDetalhada, graus);
+        CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, 
+                                                    areaAtividade, descricao, descDetalhada, graus);
 
         return repo.insertCompetenciaTecnica(competenciaTecnica);
     }

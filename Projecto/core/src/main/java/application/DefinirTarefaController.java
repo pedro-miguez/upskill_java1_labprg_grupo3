@@ -7,8 +7,8 @@ import persistence.RepositorioTarefa;
 import java.sql.SQLException;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for setting new
- * tasks.
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for setting new tasks.
  */
 public class DefinirTarefaController {
 
@@ -25,8 +25,10 @@ public class DefinirTarefaController {
      * @param colaboradorEmail  as colaborator email
      * @return the boolean
      */
-    public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
-                                 int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail) throws SQLException {
+    public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, 
+                                String descricaoTecnica, int duracaoHoras, float custo, 
+                                CategoriaTarefa categoriaTarefa, 
+                                String colaboradorEmail) throws SQLException {
 
 
         RepositorioOrganizacao repositorioOrganizacao = RepositorioOrganizacao.getInstance();

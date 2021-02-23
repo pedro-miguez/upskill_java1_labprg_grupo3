@@ -11,8 +11,8 @@ import persistence.RepositorioColaborador;
 import java.sql.SQLException;
 
 /**
- *  Current class is the one responsible to connect the GUI with the methods responsible for registering new
- *  collaborators.
+ *  Current class is the one responsible to connect the GUI with the methods 
+ * responsible for registering new collaborators.
  *
  * @author Grupo 3
  */
@@ -31,12 +31,14 @@ public class RegistarColaboradorController {
      */
 
     public boolean registarColaborador(String nomeColaborador, int contactoColaborador,
-                                       String emailColaborador, String funcao, String gestorEmail) throws SQLException {
+                                       String emailColaborador, String funcao, 
+                                       String gestorEmail) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioColaborador repoColab = RepositorioColaborador.getInstance();
 
-        Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, funcao);
+        Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, 
+                                    contactoColaborador, emailColaborador, funcao);
 
         String password = authController.registarColaboradorComoUtilizador(colaborador);
         System.out.println(password);
