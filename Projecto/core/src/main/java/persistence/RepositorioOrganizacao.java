@@ -34,7 +34,7 @@ public class RepositorioOrganizacao implements Serializable {
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
-     * @return 
+     * @return instance
      */
     public static RepositorioOrganizacao getInstance() {
         if(instance == null){
@@ -48,9 +48,10 @@ public class RepositorioOrganizacao implements Serializable {
      * Boolean method that checks if an organization exists in the repository, 
      * otherwise it is added to it.
      * @param organizacao
-     * @return 
+     * @return boolean
      */
-    public boolean insertOrganizacao(Organizacao organizacao, Colaborador gestor, String password) throws SQLException {
+    public boolean insertOrganizacao(Organizacao organizacao, Colaborador gestor, 
+                                        String password) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -98,12 +99,19 @@ public class RepositorioOrganizacao implements Serializable {
     /**
      * Method for obtaining an organization through its manager.
      * @param colaborador
-     * @return 
+     * @return montarOrganizacao
      */
     public Organizacao getOrganizacaoByGestor(Colaborador colaborador) {
         throw new GestorNaoRelacionadoANenhumaOrgException("Não existe nenhuma organização associada a este gestor");
     }
 
+    
+    /**
+     * Method for obtaining an Organization by its email.
+     * 
+     * @param email
+     * @return montarOrganizacao
+     */
     public Organizacao getOrganizacaoByEmail(Email email) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -124,6 +132,13 @@ public class RepositorioOrganizacao implements Serializable {
         }
     }
 
+    
+    /**
+     * Method to set an Organization.
+     * 
+     * @param row
+     * @return org
+     */
     public Organizacao montarOrganizacao(ResultSet row) {
 
         Organizacao org = null;
@@ -163,14 +178,14 @@ public class RepositorioOrganizacao implements Serializable {
 
     /**
      * Method for listing (registering) organizations.
-     * @return 
+     * @return new Organizacao
      */
-
-    public Organizacao criarOrganizacao(String nomeOrg, int nif, String website, int telefone,
-                                        String email, String rua, String localidade, String codigoPostal) {
+    public Organizacao criarOrganizacao(String nomeOrg, int nif, String website, 
+                                        int telefone, String email, String rua,
+                                        String localidade, String codigoPostal) {
+        
         return new Organizacao(nomeOrg, new NIF(nif), new Website(website),
-                new Telefone(telefone), new Email(email) , new EnderecoPostal(rua, localidade, codigoPostal));
+                                new Telefone(telefone), new Email(email) , 
+                                new EnderecoPostal(rua, localidade, codigoPostal));
     }
-
-
 }
