@@ -6,19 +6,26 @@
 package ui;
 
 import application.AuthenticationController;
+import application.EfetuarCandidaturaController;
 import application.ServiceController;
 import domain.Anuncio;
+import domain.Email;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import persistence.RepositorioFreelancer;
 
 public class AreaFreelancerUI {
 
@@ -45,21 +52,48 @@ public class AreaFreelancerUI {
 
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
+    private EfetuarCandidaturaController efetuarCandidaturaController;
 
     public void initialize(URL location, ResourceBundle resources) {
 
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
-        
-        /*try {
-            //(...)
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+        efetuarCandidaturaController = new EfetuarCandidaturaController();
+
     }
 
     @FXML
-    void confirmarCandidaturaAction(ActionEvent event) {
+    void confirmarCandidaturaAction(ActionEvent event) throws SQLException {
+
+        try{
+        boolean efetuou = efetuarCandidaturaController.efetuarCandidatura(listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
+                RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(authenticationController.getEmail())),
+                LocalDate.now(), Double.parseDouble(txtValorPretendido.getText()), Integer.parseInt(txtDuracaoDias.getText()),
+                txtApresentacao.getText(), txtMotivacao.getText());
+
+
+// Ver método para o toString
+//            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Efetuar nova candidatura.",
+//                    efetuou ? "Candidatura efetuada com sucesso! \n\n" +
+//                            serviceController.)
+//                            : "Não foi possível efetuar a candidatura.").show();
+
+            if (efetuou) {
+                limparDados();
+                txtValorPretendido.requestFocus();
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
+        }
+
 
     }
 
@@ -76,12 +110,17 @@ public class AreaFreelancerUI {
     }
 
     @FXML
-    void efetuarCandidaturaAction(ActionEvent event) {
+    void efetuarCandidaturaAction(ActionEvent event) throws SQLException {
 
         btnConfirmarCandidatura.setVisible(true);
         btnLimparDadosEfetuarCandidatura.setVisible(true);
         efetuarCandidaturaPane.setDisable(false);
         efetuarCandidaturaPane.setVisible(true);
+
+
+        //ir buscar anuncios consoante o match de competencias tecnicas com o freelancer, falta fazer método
+        listViewAnunciosMatchedFreelancer.getItems().setAll(serviceController.getAnunciosMatchFreelancer(
+                RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(authenticationController.getEmail()))));
 
     }
 
