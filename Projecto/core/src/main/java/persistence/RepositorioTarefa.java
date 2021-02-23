@@ -145,9 +145,8 @@ public class RepositorioTarefa implements Serializable {
                 listaTarefas.add(montarTarefa(rSetTarefa));
             }
 
-            if(rSetTarefa.isLast()){
-                rSetTarefa.close();
-            }
+            rSetTarefa.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -251,9 +250,8 @@ public class RepositorioTarefa implements Serializable {
             rSetOrg.close();
             rSetListaCaracterizacao.close();
 
-            if(rSetTarefa.isLast()){
-                rSetTarefa.close();
-            }
+             rSetTarefa.close();
+
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -468,9 +466,6 @@ public class RepositorioTarefa implements Serializable {
 
             pstmt.close();
 
-            if(row.isLast()){
-                row.close();
-            }
 
         } catch (SQLException e) {
             e.getSQLState();

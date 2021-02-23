@@ -189,9 +189,6 @@ public class RepositorioFreelancer implements Serializable {
 
             pstmt.close();
             pstmt2.close();
-            if(row.isLast()){
-                row.close();
-            }
 
         } catch (SQLException e) {
             e.getSQLState();
