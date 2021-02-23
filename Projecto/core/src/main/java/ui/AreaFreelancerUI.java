@@ -66,6 +66,8 @@ public class AreaFreelancerUI {
     void confirmarCandidaturaAction(ActionEvent event) throws SQLException {
 
         try{
+
+            //criar metodo no service controller para obter freelancer por email? em vez de invocar aqui o repositorio?
         boolean efetuou = efetuarCandidaturaController.efetuarCandidatura(listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
                 RepositorioFreelancer.getInstance().getFreelancerByEmail(new Email(authenticationController.getEmail())),
                 LocalDate.now(), Double.parseDouble(txtValorPretendido.getText()), Integer.parseInt(txtDuracaoDias.getText()),
