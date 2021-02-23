@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for setting new
- * task categories.
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for setting new task categories.
  */
 public class DefinirCategoriaTarefaController {
 

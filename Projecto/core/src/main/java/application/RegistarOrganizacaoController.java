@@ -7,8 +7,8 @@ import persistence.RepositorioOrganizacao;
 import java.sql.SQLException;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for registering new
- * organizations.
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for registering new organizations.
  */
 public class RegistarOrganizacaoController {
 
@@ -29,9 +29,11 @@ public class RegistarOrganizacaoController {
      * @param emailGestor    as manager email
      * @return the boolean
      */
-    public boolean registarOrganizacao(String nomeOrg, int nif, String website, int telefone,
-                                       String email, String rua, String localidade, String codigoPostal,
-                                       String nomeGestor, int telefoneGestor, String emailGestor) throws SQLException {
+    public boolean registarOrganizacao(String nomeOrg, int nif, String website, 
+                                        int telefone, String email, String rua, 
+                                        String localidade, String codigoPostal,
+                                        String nomeGestor, int telefoneGestor, 
+                                        String emailGestor) throws SQLException {
 
         Plataforma plataforma = Plataforma.getInstance();
         RepositorioOrganizacao repoOrg = RepositorioOrganizacao.getInstance();
@@ -39,9 +41,10 @@ public class RegistarOrganizacaoController {
         AuthenticationController authController = new AuthenticationController();
 
         Organizacao org = repoOrg.criarOrganizacao(nomeOrg, nif, website, telefone, email,
-                rua, localidade, codigoPostal);
+                                                    rua, localidade, codigoPostal);
 
-        Colaborador gestor = repoColab.criarColaborador(nomeGestor, telefoneGestor, emailGestor, "gestor");
+        Colaborador gestor = repoColab.criarColaborador(nomeGestor, telefoneGestor, 
+                                                        emailGestor, "gestor");
 
         String password = authController.registarGestorComoUtilizador(gestor);
         System.out.println(password);

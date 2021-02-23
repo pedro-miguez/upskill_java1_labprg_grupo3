@@ -33,16 +33,18 @@ public class RegistarFreelancerController {
      * @param habilitacoes   as freelancer qualifications
      * @return the boolean
      */
-    public boolean registarFreelancer(String nomeFreelancer, int contactoFreelancer, String emailFreelancer, int nifFreelancer,
-                                      List<ReconhecimentoCT> reconhecimento, List<HabilitacaoAcademica> habilitacoes) throws SQLException {
-
+    public boolean registarFreelancer(String nomeFreelancer, int contactoFreelancer, 
+                                      String emailFreelancer, int nifFreelancer,
+                                      List<ReconhecimentoCT> reconhecimento, 
+                                      List<HabilitacaoAcademica> habilitacoes) throws SQLException {
 
 
         RepositorioFreelancer repoFlr = RepositorioFreelancer.getInstance();
 
 
-        Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer,
-                                                            reconhecimento, habilitacoes );
+        Freelancer freelancer = repoFlr.criarFreelancer(nomeFreelancer, contactoFreelancer, 
+                                                        emailFreelancer, nifFreelancer,
+                                                        reconhecimento, habilitacoes );
 
         String password = authController.registarFreelancerComoUtilizador(freelancer);
         System.out.println(password);
