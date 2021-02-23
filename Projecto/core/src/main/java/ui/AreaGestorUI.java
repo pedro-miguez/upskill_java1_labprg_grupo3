@@ -189,10 +189,17 @@ public class AreaGestorUI implements Initializable {
         if (alerta.showAndWait().get() == ButtonType.CANCEL) {
             actionEvent.consume();
         } else {
-            limparTodosOsCampos();
-            authController.logout();
-            serviceController.resetUserAPI();
-            voltarJanelaInicial();
+            try {
+                limparTodosOsCampos();
+                authController.logout();
+                serviceController.resetUserAPI();
+                voltarJanelaInicial();
+            } catch (SQLException e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Erro de SQL.",
+                        e.getMessage()).show();
+            }
+
         }
     }
 

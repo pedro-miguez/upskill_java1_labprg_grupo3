@@ -48,6 +48,8 @@ public class MainApp extends Application {
                    FXMLLoader.load(getClass().getResource("/fxml/AreaColaboradorOrganizacaoScene.fxml")));
             screenController.addScreen("AreaGestor",
                    FXMLLoader.load(getClass().getResource("/fxml/AreaGestorOrganizacaoScene.fxml")));
+            screenController.addScreen("AreaFreelancer",
+                    FXMLLoader.load(getClass().getResource("/fxml/AreaFreelancerScene.fxml")));
 
             Plataforma plataforma = Plataforma.getInstance();
 
