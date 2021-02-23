@@ -76,6 +76,14 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
 
+    /**
+     * Boolean method to check if the characterization of technical competence
+     * was inserted.
+     * 
+     * @param categoriaTarefa
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertCaracterizacoesCompetenciaTecnica(CategoriaTarefa categoriaTarefa) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -147,6 +155,14 @@ public class RepositorioCategoriaTarefa implements Serializable {
         }
     }
 
+    /**
+     * Method to create a new task category.
+     * 
+     * @param areaAtividade
+     * @param descricao
+     * @param competenciasTecnicas
+     * @return new CategoriaTarefa
+     */
     public CategoriaTarefa criarCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
                                                 List<CaracterizacaoCompTec> competenciasTecnicas) {
         return new CategoriaTarefa(areaAtividade,
@@ -156,7 +172,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     /**
      * Method for listing task categories.
      *
-     * @return
+     * @return listaTodasCategorias
      */
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa() throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -188,6 +204,14 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     }
 
+    /**
+     * Method to set a task category.
+     * 
+     * @param row
+     * @param areaAtividade
+     * @return categoriaTarefa
+     * @throws SQLException 
+     */
     public CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -213,7 +237,14 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
 
-
+    /**
+     * Method to set a list of task categories.
+     * 
+     * @param rows
+     * @param areaAtividade
+     * @return listaCategorias
+     * @throws SQLException 
+     */
     public ArrayList<CategoriaTarefa> montarListaCategoriasTarefa(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         ArrayList<CategoriaTarefa> listaCategorias = new ArrayList<>();
@@ -238,6 +269,14 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     }
 
+    /**
+     * Method to set a list of characterization of technical skills.
+     * 
+     * @param rows
+     * @param areaAtividade
+     * @return competencias
+     * @throws SQLException 
+     */
     public ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         ArrayList<CaracterizacaoCompTec> competencias = new ArrayList<>();
@@ -277,9 +316,5 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
         return competencias;
     }
-
-
-
-
 
 }

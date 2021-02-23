@@ -111,6 +111,14 @@ public class User implements Serializable {
                 getRole() == user.getRole();
     }
 
+    
+    /**
+     * Returns a string representation with very concise but precise information 
+     * about the object and its attributes.
+     *
+     * @return a string representation of the object (user).
+     *
+     */
     @Override
     public String toString() {
         return "User/Utilizador{" +

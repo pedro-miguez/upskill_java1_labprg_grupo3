@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for some of the critical functions
- * that the Singleton class Platform (the class where the app runs around) hosts methods to save or load data via files,
- * or establish/reset the connection to the users API among others.
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for some of the critical functions that the Singleton class 
+ * Platform (the class where the app runs around) hosts methods to save or load 
+ * data via files, or establish/reset the connection to the users API among others.
  */
 public class ServiceController {
 

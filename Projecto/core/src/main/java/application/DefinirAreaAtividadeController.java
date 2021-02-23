@@ -6,8 +6,8 @@ import persistence.RepositorioAreaAtividade;
 import java.sql.SQLException;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for setting new
- * activity areas.
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for setting new activity areas.
  */
 public class DefinirAreaAtividadeController {
 
@@ -19,7 +19,8 @@ public class DefinirAreaAtividadeController {
      * @param descricaoDetalhada as detailed description
      * @return the boolean
      */
-    public boolean definirAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) throws SQLException {
+    public boolean definirAreaAtividade(String codigoUnico, String descricao, 
+                                        String descricaoDetalhada) throws SQLException {
 
         RepositorioAreaAtividade repo = RepositorioAreaAtividade.getInstance();
 

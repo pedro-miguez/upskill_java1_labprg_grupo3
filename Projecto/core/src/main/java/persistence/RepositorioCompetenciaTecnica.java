@@ -23,7 +23,6 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     /**
      * Technical skills that will be added to the repository.
      */
-
     private RepositorioCompetenciaTecnica(){
     }
 
@@ -32,7 +31,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
-     * @return 
+     * @return instance
      */
     public static RepositorioCompetenciaTecnica getInstance(){
         if (instance == null){
@@ -45,7 +44,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * Boolean method that checks if a technical competence exists in the repository, 
      * otherwise it is added to it.
      * @param competenciaTecnica
-     * @return 
+     * @return insertGrausProficiencia(competenciaTecnica)
      */
     public boolean insertCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -78,6 +77,14 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         return insertGrausProficiencia(competenciaTecnica);
     }
 
+    /**
+     * Boolean method that checks if a degree of proficiency exists in the repository, 
+     * otherwise it is added to it.
+     * 
+     * @param compTec
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertGrausProficiencia(CompetenciaTecnica compTec) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         String idCompetenciaTecnica = compTec.getCodigoUnico().toString();
@@ -90,7 +97,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             for (GrauProficiencia gp : listaGraus) {
                 cs.setString(1, idCompetenciaTecnica);
                 cs.setInt(2, gp.getNivel());
-                cs.setString(3, gp.getDesginacao());
+                cs.setString(3, gp.getDesignacao());
 
                 cs.executeQuery();
                 cs.clearParameters();
@@ -114,6 +121,11 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         return false;
     }
 
+    /**
+     * Method to create a list of technical competences.
+     * 
+     * @return listaTodasCompetencias
+     */
     public ArrayList<CompetenciaTecnica> listarCompetenciasTecnicas() {
 
         ArrayList<CompetenciaTecnica> listaTodasCompetencias = new ArrayList<>();
@@ -143,7 +155,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     /**
      * Method for obtaining technical competence through its unique code.
      * @param codigoUnico
-     * @return 
+     * @return montarCompetenciaTecnica
      */
     public CompetenciaTecnica getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico, AreaAtividade areaAtividade){
         try {
@@ -161,7 +173,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     /**
      * Method for obtaining technical skills on the list by their area of activity.
      * @param areaAtividade
-     * @return 
+     * @return montarListaCompetenciaTecnica
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
         try {
@@ -179,6 +191,14 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         }
     }
 
+    /**
+     * Method to set an technical skill.
+     * 
+     * @param row
+     * @param areaAtividade
+     * @return competenciaTecnica
+     * @throws SQLException 
+     */
     public CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         CompetenciaTecnica competenciaTecnica = null;
@@ -202,6 +222,14 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         return competenciaTecnica;
     }
 
+    /**
+     * Method to set a list of technical skill.
+     * 
+     * @param rows
+     * @param areaAtividade
+     * @return listaCompetencias
+     * @throws SQLException 
+     */
     public ArrayList<CompetenciaTecnica> montarListaCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
         ArrayList<CompetenciaTecnica> listaCompetencias = new ArrayList<>();
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -228,6 +256,13 @@ public class RepositorioCompetenciaTecnica implements Serializable {
 
     }
 
+    /**
+     * Method to set a list of proficiency degrees.
+     * 
+     * @param rows
+     * @return listaGraus
+     * @throws SQLException 
+     */
     public ArrayList<GrauProficiencia> montarListaGrauProficiencia(ResultSet rows) throws SQLException {
         ArrayList<GrauProficiencia> listaGraus = new ArrayList<>();
 
@@ -247,10 +282,18 @@ public class RepositorioCompetenciaTecnica implements Serializable {
 
     }
 
+    /**
+     * Method to create new technical skill.
+     * 
+     * @param codigoUnico
+     * @param areaAtividade
+     * @param descricao
+     * @param descDetalhada
+     * @param graus
+     * @return new CompetenciaTecnica
+     */
     public CompetenciaTecnica criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
                                                       String descricao, String descDetalhada, List<GrauProficiencia> graus) {
         return new CompetenciaTecnica(new CodigoUnico(codigoUnico), areaAtividade, descricao, descDetalhada, graus);
     }
-
-
 }

@@ -33,7 +33,7 @@ public class RepositorioAreaAtividade implements Serializable {
      * Static method that returns a unique reference to the class object, which
      * implements a singleton.
      *
-     * @return
+     * @return instance
      */
     public static RepositorioAreaAtividade getInstance() {
         if (instance == null) {
@@ -47,7 +47,7 @@ public class RepositorioAreaAtividade implements Serializable {
      * otherwise it is added to it.
      *
      * @param areaAtividade
-     * @return
+     * @return boolean
      */
     public boolean insertAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -86,7 +86,7 @@ public class RepositorioAreaAtividade implements Serializable {
      * Method for obtaining an area of ​​activity using its unique code.
      *
      * @param codigoUnico
-     * @return
+     * @return montarAreaAtividade(pstmt.executeQuery())
      */
     public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico) {
         try {
@@ -101,6 +101,11 @@ public class RepositorioAreaAtividade implements Serializable {
         }
     }
 
+    /**
+     * Method to list activity areas.
+     * 
+     * @return areasAtividade
+     */
     public ArrayList<AreaAtividade> listarAreasAtividade()  {
         ArrayList<AreaAtividade> areasAtividade = new ArrayList<>();
         try {
@@ -117,6 +122,13 @@ public class RepositorioAreaAtividade implements Serializable {
         return areasAtividade;
     }
 
+    /**
+     * Method to set an activity area.
+     * 
+     * @param row
+     * @return areaAtividade
+     * @throws SQLException 
+     */
     public AreaAtividade montarAreaAtividade(ResultSet row) throws SQLException {
 
         AreaAtividade areaAtividade = null;
@@ -139,6 +151,13 @@ public class RepositorioAreaAtividade implements Serializable {
         }
     }
 
+    /**
+     * Method to set a list of activity areas.
+     * 
+     * @param row
+     * @return listaAreas
+     * @throws SQLException 
+     */
     public ArrayList<AreaAtividade> montarListaAreaAtividade(ResultSet row) throws SQLException {
         ArrayList<AreaAtividade> listaAreas = new ArrayList<>();
         try {
@@ -161,9 +180,16 @@ public class RepositorioAreaAtividade implements Serializable {
     }
 
 
+    /**
+     * Method to create a new activity area.
+     * 
+     * @param codigoUnico
+     * @param descricao
+     * @param descricaoDetalhada
+     * @return new AreaAtividade
+     */
     public AreaAtividade criarAreaAtividade(String codigoUnico, String descricao, String descricaoDetalhada) {
         return new AreaAtividade(new CodigoUnico(codigoUnico), descricao, descricaoDetalhada);
     }
-
 
 }

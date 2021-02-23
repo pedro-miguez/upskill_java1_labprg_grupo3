@@ -29,7 +29,7 @@ public class RepositorioColaborador implements Serializable {
      * Static method that returns a unique reference to the class object, which
      * implements a singleton.
      *
-     * @return
+     * @return instance
      */
     public static RepositorioColaborador getInstance() {
         if (instance == null) {
@@ -43,7 +43,7 @@ public class RepositorioColaborador implements Serializable {
      * otherwise it is added to it.
      *
      * @param colaborador
-     * @return
+     * @return boolean
      */
     public boolean insertUtilizadorColaborador(Colaborador colaborador, String password, String emailGestor) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -89,7 +89,7 @@ public class RepositorioColaborador implements Serializable {
      * Method to obtain a collaborator through your email.
      *
      * @param email
-     * @return
+     * @return montarColaborador(pstmt.executeQuery())
      */
     public Colaborador getColaboradorByEmail(Email email) throws SQLException {
         try {
@@ -105,6 +105,12 @@ public class RepositorioColaborador implements Serializable {
 
     }
 
+    /**
+     * Method to obtain a collaborator of an organization through the email.
+     * 
+     * @param email
+     * @return montarListaColaboradores(pstmt.executeQuery())
+     */
     public ArrayList<Colaborador> getColaboradoresOrganizacaoByEmail(Email email){
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -126,6 +132,13 @@ public class RepositorioColaborador implements Serializable {
         }
     }
 
+    /**
+     * Method to set an collaborator.
+     * 
+     * @param row
+     * @return colaborador
+     * @throws SQLException 
+     */
     public Colaborador montarColaborador(ResultSet row) throws SQLException {
         Colaborador colaborador = null;
 
@@ -150,6 +163,12 @@ public class RepositorioColaborador implements Serializable {
 
     }
 
+    /**
+     * Method to create a list of collaborators.
+     * 
+     * @param row
+     * @return listaColaboradores
+     */
     public ArrayList<Colaborador> montarListaColaboradores(ResultSet row) {
 
         ArrayList<Colaborador> listaColaboradores = new ArrayList<>();
@@ -175,6 +194,15 @@ public class RepositorioColaborador implements Serializable {
     }
 
 
+    /**
+     * Method to create a new collaborator.
+     * 
+     * @param nomeColaborador
+     * @param contactoColaborador
+     * @param emailColaborador
+     * @param funcao
+     * @return new Colaborador
+     */
     public Colaborador criarColaborador(String nomeColaborador, int contactoColaborador,
                                         String emailColaborador, String funcao) {
         return new Colaborador(nomeColaborador, new Telefone(contactoColaborador),

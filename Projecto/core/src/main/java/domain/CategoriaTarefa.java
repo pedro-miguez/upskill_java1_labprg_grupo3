@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is funneled by the activity area class and hosts a list of technical competences.It is identified
- * by a description. It is also handled by the Platform administrative.
+ * This class is funneled by the activity area class and hosts a list of 
+ * technical competences.It is identified by a description. 
+ * It is also handled by the Platform administrative.
  */
 public class CategoriaTarefa implements Serializable {
 
@@ -21,7 +22,9 @@ public class CategoriaTarefa implements Serializable {
      * @param descricao            as description.
      * @param competenciasTecnicas as a list of technical competences.
      */
-    public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, List<CaracterizacaoCompTec> competenciasTecnicas) {
+    public CategoriaTarefa(AreaAtividade areaAtividade, String descricao, 
+                            List<CaracterizacaoCompTec> competenciasTecnicas) {
+        
         setDescricao(descricao);
         setAreaAtividade(areaAtividade);
         this.competenciasTecnicas = new ArrayList<>(competenciasTecnicas);

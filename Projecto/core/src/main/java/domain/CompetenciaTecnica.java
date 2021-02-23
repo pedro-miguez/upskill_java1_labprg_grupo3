@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Current class enables to create new technical competences, wich may or not be mandatory - defined in the CaracterizacaoCompTec Class.
- * They are represented by a unique code, a brief and a detailed description and make part of an activity area. The Platform administrative
- * is responsible for setting the ones required for each task.
+ * Current class enables to create new technical competences, wich may or not be 
+ * mandatory - defined in the CaracterizacaoCompTec Class.
+ * They are represented by a unique code, a brief and a detailed description and 
+ * make part of an activity area. The Platform administrative is responsible for 
+ * setting the ones required for each task.
  */
 public class CompetenciaTecnica implements Serializable {
 
@@ -26,7 +28,9 @@ public class CompetenciaTecnica implements Serializable {
      * @param descricao     as description
      * @param descDetalhada as detailed description
      */
-    public CompetenciaTecnica(CodigoUnico codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada, List<GrauProficiencia> graus) {
+    public CompetenciaTecnica(CodigoUnico codigoUnico, AreaAtividade areaAtividade, 
+            String descricao, String descDetalhada, List<GrauProficiencia> graus) {
+        
         this.codigoUnico = codigoUnico;
         setAreaAtividade(areaAtividade);
         setDescricao(descricao);
@@ -77,6 +81,10 @@ public class CompetenciaTecnica implements Serializable {
         return codigoUnico;
     }
 
+    /**
+     * Gets list of proficiency degrees.
+     * @return graus
+     */
     public ArrayList<GrauProficiencia> getGraus() {
         return new ArrayList<>(graus);
     }
@@ -85,33 +93,6 @@ public class CompetenciaTecnica implements Serializable {
         this.graus = graus;
     }
 
-
-    @Override
-    public String toString() {
-        return String.format("%s%n%s",
-                 this.codigoUnico, this.descricao);
-    }
-
-    public String toStringCompleto() {
-        return String.format("Código Único: %s%nArea de Atividade: %s%nDescrição breve: %s%nDescrição detalhada: %s",
-                this.codigoUnico, this.areaAtividade.getDescricao(), this.descricao, this.descDetalhada);
-    }
-
-    public void adicionaGrau(ArrayList<GrauProficiencia> grausProficiencia){
-        for (GrauProficiencia grau: grausProficiencia) {
-            if (!this.graus.contains(grau)){
-                this.graus.add(grau);
-            }
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CompetenciaTecnica)) return false;
-        CompetenciaTecnica that = (CompetenciaTecnica) o;
-        return getCodigoUnico().equals(that.getCodigoUnico()) && this.areaAtividade.equals(that.areaAtividade);
-    }
 
     /**
      * Gets activity area
@@ -128,5 +109,49 @@ public class CompetenciaTecnica implements Serializable {
         } else {
             throw new IllegalArgumentException("Area de atividade inválida para criação de competência técnica");
         }
+    }
+    
+    /**
+     * Adds degrees of proficiency to the list.
+     * @param grausProficiencia 
+     */
+    public void adicionaGrau(ArrayList<GrauProficiencia> grausProficiencia){
+        for (GrauProficiencia grau: grausProficiencia) {
+            if (!this.graus.contains(grau)){
+                this.graus.add(grau);
+            }
+        }
+    }
+    
+    
+    /**
+     * Returns a string representation of the object degrees of proficiency and 
+     * its attributes.
+     * @return a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s%n%s",
+                 this.codigoUnico, this.descricao);
+    }
+
+    public String toStringCompleto() {
+        return String.format("Código Único: %s%nArea de Atividade: %s%nDescrição breve: %s%nDescrição detalhada: %s",
+                this.codigoUnico, this.areaAtividade.getDescricao(), this.descricao, this.descDetalhada);
+    }
+    
+    
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * @param o the reference object with which to compare.
+     * @return {@code true} if this object is the same as the obj
+     *          argument; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CompetenciaTecnica)) return false;
+        CompetenciaTecnica that = (CompetenciaTecnica) o;
+        return getCodigoUnico().equals(that.getCodigoUnico()) && this.areaAtividade.equals(that.areaAtividade);
     }
 }

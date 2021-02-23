@@ -12,8 +12,8 @@ import utils.Response;
 import java.io.Serializable;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods responsible for creating interfaces
- * between the model and webservice (usersAPIAdapter).
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for creating interfaces between the model and webservice (usersAPIAdapter).
  */
 public class UsersAPI implements Serializable {
 
@@ -87,7 +87,8 @@ public class UsersAPI implements Serializable {
      * @param rolenames the rolenames
      * @return the boolean
      */
-    public boolean registerUserWithRoles(String username, String email, String password, String rolenames) {
+    public boolean registerUserWithRoles(String username, String email, 
+                                            String password, String rolenames) {
         return uapia.registerUserWithRoles(username, email, password, rolenames);
     }
 

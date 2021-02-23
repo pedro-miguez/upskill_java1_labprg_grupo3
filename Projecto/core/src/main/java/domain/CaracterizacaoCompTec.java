@@ -3,9 +3,9 @@ package domain;
 import java.io.Serializable;
 
 /**
- * Technical competence characterization class allows to set a kind of mastery to the technical competence
- * that may be (or not) mandatory for the task(s) in hand. This will be defined by the Platform administrative
- * accordingly.
+ * Technical competence characterization class allows to set a kind of mastery 
+ * to the technical competence that may be (or not) mandatory for the task(s) 
+ * in hand. This will be defined by the Platform administrative accordingly.
  */
 public class CaracterizacaoCompTec implements Serializable {
 
@@ -23,7 +23,8 @@ public class CaracterizacaoCompTec implements Serializable {
      * @param obrigatorio        as mandatory
      * @param grauProficiencia   as mastery level
      */
-    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, boolean obrigatorio, GrauProficiencia grauProficiencia) {
+    public CaracterizacaoCompTec(CompetenciaTecnica competenciaTecnica, 
+                                    boolean obrigatorio, GrauProficiencia grauProficiencia) {
         this.competenciaTecnica = competenciaTecnica;
         this.obrigatorio = obrigatorio;
         this.grauProficiencia = grauProficiencia;
@@ -66,11 +67,22 @@ public class CaracterizacaoCompTec implements Serializable {
     }
 
 
+    /**
+     * Returns a string representation of the object characterization of technical 
+     * competence and its attributes.
+     *
+     * The result should be a concise but informative representation that is easy
+     * for a person to read.
+     * It is overriden by all subclasses.
+     *
+     * @return  a string representation of the object.
+     *
+     */
     @Override
     public String toString() {
         return  competenciaTecnica.getDescricao() +
                 (obrigatorio ? "\nObrigatória " : "\nOpcional") +
-                "\nGrau de Proficiência: " + grauProficiencia.getDesginacao();
+                "\nGrau de Proficiência: " + grauProficiencia.getDesignacao();
     }
 
     /**

@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Current class implements the tools to create new tax id numbers (as NIF). It has implementations to get a string
- * representation through the toString() method of the object.
+ * Current class implements the tools to create new tax id numbers (as NIF). 
+ * It has implementations to get a string representation through the toString() 
+ * method of the object.
  */
 public class NIF implements Serializable {
 
