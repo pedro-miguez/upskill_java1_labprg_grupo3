@@ -20,37 +20,52 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 
-/**
- *
- * @author Grupo 3
- */
-public class AreaFreelancerUI implements Initializable {
-    
-    public Button btnCandidatar;
-    
-    public Button btnSair;
-    
-    public ListView<?> showAnuncios;
-    
-    //@FXML
-    //private Button btnCandidatar;
+package ui;
 
-    //@FXML
-    //private ListView<?> showAnuncios;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
-    //@FXML
-    //private Button btnSair;
-    
-    
+public class AreaFreelancerUI {
+
+    @FXML
+    private Button btnConfirmarCandidatura;
+
+    @FXML
+    private TextArea txtMotivacao;
+
+    @FXML
+    private ListView<?> listViewAnunciosMatchedFreelancer;
+
+    @FXML
+    private Button btnLogout;
+
+    @FXML
+    private Button btnEfetuarCandidatura;
+
+    @FXML
+    private BorderPane publicarTarefaPane;
+
+    @FXML
+    private TextField txtDuracaoDias;
+
+    @FXML
+    private TextField txtValorPretendido;
+
+    @FXML
+    private TextArea txtApresentacao;
+
+    @FXML
+    private Button btnLimparDadosEfetuarCandidatura;
+
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
-    
-    
-    @Override
+
     public void initialize(URL location, ResourceBundle resources) {
-        
-        //candidatarAnuncioController ?? (...)
-        
+
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         
@@ -60,20 +75,29 @@ public class AreaFreelancerUI implements Initializable {
             throwables.printStackTrace();
         }*/
     }
-    
 
     @FXML
-    void candidatarTarefaAction(ActionEvent event) {
+    void confirmarCandidaturaAction(ActionEvent event) {
 
     }
 
     @FXML
-    void sairAction(ActionEvent actionEvent) {
-        
+    void btnLimparDadosEfetuarCandidaturaAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void efetuarCandidaturaAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void logoutAction(ActionEvent event) {
+
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
                 "Irá voltar à pagina inicial após confirmação.", "Deseja mesmo fazer logout?");
         if (alerta.showAndWait().get() == ButtonType.CANCEL) {
-            actionEvent.consume();
+            event.consume();
         } else {
             //limparDados();
             authenticationController.logout();
@@ -87,5 +111,7 @@ public class AreaFreelancerUI implements Initializable {
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
     }
-    
+
 }
+
+
