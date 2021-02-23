@@ -1,0 +1,45 @@
+@startuml
+
+class Plataforma {
+    designacao
+}
+
+class Organizacao {
+    nome
+    nif
+    website
+    telefone
+    email
+}
+
+class Anuncio {
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+class Tarefa {
+    referencia
+    designacao
+    descInformal
+    descTecnica
+    duracaoEst
+    custoEst
+}
+
+class TipoRegimento {
+    designacao
+    descricaoRegras
+}
+
+class Colaborador {
+    nome
+    funcao
+    telefone
+    email
+}
+
+@enduml
