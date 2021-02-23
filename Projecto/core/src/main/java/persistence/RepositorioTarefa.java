@@ -30,7 +30,7 @@ public class RepositorioTarefa implements Serializable {
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
-     * @return 
+     * @return instance
      */
     public static RepositorioTarefa getInstance() {
         if (instance == null) {
@@ -43,7 +43,7 @@ public class RepositorioTarefa implements Serializable {
      * Boolean method that checks if a task exists in the repository, otherwise 
      * it is added to it.
      * @param tarefa
-     * @return 
+     * @return boolean
      */
     public boolean insertTarefa(Tarefa tarefa, String colaboradorEmail) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -97,7 +97,7 @@ public class RepositorioTarefa implements Serializable {
     /**
      * Method for obtaining a task using its unique code.
      * @param codigoUnico
-     * @return 
+     * @return montarTarefa
      */
     public Tarefa getTarefaByCodigoUnico(CodigoUnico codigoUnico, String emailColaborador) {
         try {
@@ -122,6 +122,12 @@ public class RepositorioTarefa implements Serializable {
     }
 
 
+    /**
+     * Method to set a list of tasks.
+     * 
+     * @param rSetTarefa
+     * @return listaTarefas
+     */
     public ArrayList<Tarefa> montarTarefas(ResultSet rSetTarefa) {
         ArrayList<Tarefa> listaTarefas = new ArrayList<>();
         try {
@@ -139,6 +145,12 @@ public class RepositorioTarefa implements Serializable {
 
     }
 
+    /**
+     * Method to set a task.
+     * 
+     * @param rSetTarefa
+     * @return tarefa
+     */
     public Tarefa montarTarefa(ResultSet rSetTarefa) {
         Tarefa tarefa = null;
 
@@ -226,6 +238,12 @@ public class RepositorioTarefa implements Serializable {
         }
     }
 
+    /**
+     * Method to obtain from a list the private tasks of an organization.
+     * 
+     * @param organizacao
+     * @return montarTarefas
+     */
     public ArrayList<Tarefa> getTarefasPrivadasOrganizacao (Organizacao organizacao) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -249,6 +267,12 @@ public class RepositorioTarefa implements Serializable {
         }
     }
 
+    /**
+     * Method to obtain from a list the published tasks of an organization.
+     * 
+     * @param organizacao
+     * @return montarTarefas
+     */
     public ArrayList<Tarefa> getTarefasPublishedOrganizacao (Organizacao organizacao) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -272,6 +296,12 @@ public class RepositorioTarefa implements Serializable {
         }
     }
 
+    /**
+     * Method to obtain from a list the tasks of an organization.
+     * 
+     * @param organizacao
+     * @return montarTarefas
+     */
     public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) {
 
         try {
@@ -296,14 +326,41 @@ public class RepositorioTarefa implements Serializable {
         }
     }
 
-    public Tarefa criarTarefa(String codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
-                              int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, Organizacao org) {
-        return new Tarefa(new CodigoUnico(codigoUnico), designacao, descricaoInformal, descricaoTecnica, duracaoHoras, custo
-                , categoriaTarefa, org);
+    /**
+     * Method to create new task.
+     * 
+     * @param codigoUnico
+     * @param designacao
+     * @param descricaoInformal
+     * @param descricaoTecnica
+     * @param duracaoHoras
+     * @param custo
+     * @param categoriaTarefa
+     * @param org
+     * @return new tarefa
+     */
+    public Tarefa criarTarefa(String codigoUnico, String designacao, 
+                              String descricaoInformal, String descricaoTecnica,
+                              int duracaoHoras, float custo, 
+                              CategoriaTarefa categoriaTarefa, Organizacao org) {
+        
+        return new Tarefa(new CodigoUnico(codigoUnico), designacao, 
+                            descricaoInformal, descricaoTecnica, duracaoHoras, 
+                            custo, categoriaTarefa, org);
     }
 
 
-    private ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
+    /**
+     * Method to set a list of characterization of technical competence.
+     * 
+     * @param rows
+     * @param areaAtividade
+     * @return competencias
+     * @throws SQLException 
+     */
+    private ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows,
+                               AreaAtividade areaAtividade) throws SQLException {
+        
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         ArrayList<CaracterizacaoCompTec> competencias = new ArrayList<>();
