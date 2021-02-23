@@ -70,10 +70,8 @@ create table Candidatura (
         constraint ck_Candidatura_valorPretendido check (valorPretendido > 0),
     nrDias integer 
         constraint ck_Candidatura_nrDias check (nrDias > 0),
-    txtApresentacao varchar(500) 
-        constraint nn_Candidatura_txtApresentacao not null,
-    txtMotivacao varchar(500) 
-        constraint nn_Candidatura_txtMotivacao not null,
+    txtApresentacao varchar(500),
+    txtMotivacao varchar(500),
     
     constraint pk_Candidatura_idAnuncio_idFreelancer primary key (idAnuncio, idFreelancer)
 );

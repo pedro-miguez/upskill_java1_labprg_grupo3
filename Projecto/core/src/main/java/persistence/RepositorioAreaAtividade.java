@@ -20,15 +20,13 @@ import java.util.Objects;
 public class RepositorioAreaAtividade implements Serializable {
 
     private static RepositorioAreaAtividade instance;
-    private ConnectionHandler connectionHandler;
+
 
 
     /**
      * Activity areas that will be added to the repository.
      */
     private RepositorioAreaAtividade() {
-        connectionHandler = new ConnectionHandler();
-
     }
 
     /**
@@ -52,7 +50,7 @@ public class RepositorioAreaAtividade implements Serializable {
      * @return
      */
     public boolean insertAreaAtividade(AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             CallableStatement cs = conn.prepareCall("{CALL createAreaAtividade(?, ?, ?)}");
@@ -69,7 +67,6 @@ public class RepositorioAreaAtividade implements Serializable {
 
             conn.commit();
 
-            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -82,7 +79,6 @@ public class RepositorioAreaAtividade implements Serializable {
             }
         }
 
-        conn.close();
         return false;
     }
 
@@ -94,7 +90,7 @@ public class RepositorioAreaAtividade implements Serializable {
      */
     public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico) {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             String idAreaAtividade = codigoUnico.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade where idAreaAtividade = ?");
             pstmt.setString(1, idAreaAtividade);
@@ -108,7 +104,7 @@ public class RepositorioAreaAtividade implements Serializable {
     public ArrayList<AreaAtividade> listarAreasAtividade()  {
         ArrayList<AreaAtividade> areasAtividade = new ArrayList<>();
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade");
 
             areasAtividade = montarListaAreaAtividade(pstmt.executeQuery());

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class RepositorioAnuncio {
 
     private static RepositorioAnuncio instance;
-    private ConnectionHandler connectionHandler;
+
 
     public static RepositorioAnuncio getInstance() {
         if (instance == null) {
@@ -25,11 +25,11 @@ public class RepositorioAnuncio {
     }
 
     private RepositorioAnuncio() {
-        connectionHandler = new ConnectionHandler();
+
     }
 
     public boolean insertAnuncio(Anuncio anuncio) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
 
@@ -66,8 +66,10 @@ public class RepositorioAnuncio {
             cs3.executeQuery();
 
             conn.commit();
+            cs1.close();
+            cs2.close();
+            cs3.close();
 
-            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -80,7 +82,6 @@ public class RepositorioAnuncio {
             }
         }
 
-        conn.close();
         return false;
     }
 
@@ -88,7 +89,7 @@ public class RepositorioAnuncio {
     public ArrayList<TipoRegimento> getTiposRegimento() throws SQLException {
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
 
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM TipoRegimento");
         ResultSet rSetTipoRegimento = pstmt.executeQuery();
         while (rSetTipoRegimento.next()) {
@@ -98,13 +99,13 @@ public class RepositorioAnuncio {
             tiposRegimento.add(new TipoRegimento(designacao, regras));
         }
 
-
+        pstmt.close();
         return tiposRegimento;
     }
 
     public ArrayList<Anuncio> getAllAnuncios () {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
             PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio");
             ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
@@ -123,7 +124,7 @@ public class RepositorioAnuncio {
     public Anuncio getAnuncioByTarefa(Tarefa tarefa) {
 
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             String refTarefa = tarefa.getCodigoUnico().toString();
 
             int nif = Integer.parseInt(tarefa.getOrganizacao().getNIF().toString());
@@ -146,6 +147,7 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Anuncio where idAnuncio = ?");
             pstmt.setInt(1, idAnuncio);
 
+
             return montarAnuncio(pstmt.executeQuery());
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhum anuncio associado a esta tarefa.");
@@ -155,8 +157,8 @@ public class RepositorioAnuncio {
 
 
 
-    private Anuncio montarAnuncio(ResultSet row) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+    public Anuncio montarAnuncio(ResultSet row) throws SQLException {
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         Anuncio anuncio = null;
 
 

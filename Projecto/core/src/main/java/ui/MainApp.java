@@ -1,6 +1,7 @@
 package ui;
 
 import application.ServiceController;
+import domain.Plataforma;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,7 @@ public class MainApp extends Application {
             screenController.addScreen("AreaGestor",
                    FXMLLoader.load(getClass().getResource("/fxml/AreaGestorOrganizacaoScene.fxml")));
 
+            Plataforma plataforma = Plataforma.getInstance();
 
             stage.setTitle(TITULO_APLICACAO);
             stage.setScene(scene);

@@ -15,13 +15,13 @@ import java.io.Serializable;
  */
 public class Candidatura implements Serializable {
     
-    private CodigoUnico idAnuncio; //Mudar para private Anuncio anuncio
+    private Anuncio anuncio;
     
-    private CodigoUnico idFreelancer; //mudar para private Freelancer freelancer
+    private Freelancer freelancer;
     
     private Data dataCandidatura;
     
-    private int valorPretendido;
+    private double valorPretendido;
     private int nrDias;
     private String txtApresentacao;
     private String txtMotivacao;
@@ -29,8 +29,8 @@ public class Candidatura implements Serializable {
     /**
      * Instantiates a new application.
      *
-     * @param idAnuncio       as the unique-code of the advertisement
-     * @param idFreelancer    as the unique-code of the freelancer
+     * @param anuncio         as the advertisement associated with this
+     * @param freelancer      as the freelancer associated with this
      * @param dataCandidatura as the application date
      * @param valorPretendido as the target value
      * @param nrDias          as the number of days
@@ -38,12 +38,12 @@ public class Candidatura implements Serializable {
      * @param txtMotivacao    as the motivation text
      * 
      */
-    public Candidatura (CodigoUnico idAnuncio, CodigoUnico idFreelancer, 
-                        Data dataCandidatura, int valorPretendido, int nrDias,
+    public Candidatura (Anuncio anuncio, Freelancer freelancer,
+                        Data dataCandidatura, double valorPretendido, int nrDias,
                         String txtApresentacao, String txtMotivacao) {
         
-        this.idAnuncio = idAnuncio;
-        this.idFreelancer = idFreelancer;
+        this.anuncio = anuncio;
+        this.freelancer = freelancer;
         this.dataCandidatura = dataCandidatura;
         
         setValorPretendido(valorPretendido);
@@ -54,12 +54,12 @@ public class Candidatura implements Serializable {
     }
     
     
-    public CodigoUnico getIdAnuncio() {
-        return this.idAnuncio;
+    public Anuncio getAnuncio() {
+        return this.anuncio;
     }
     
-    public CodigoUnico getIdFreelancer() {
-        return this.idFreelancer;
+    public Freelancer getFreelancer() {
+        return this.freelancer;
     }
     
     public Data getDataCandidatura() {
@@ -67,7 +67,7 @@ public class Candidatura implements Serializable {
     }
 
     
-    public int getValorPretendido() {
+    public double getValorPretendido() {
         return valorPretendido;
     }
     
@@ -89,7 +89,7 @@ public class Candidatura implements Serializable {
     }
     
     
-    private void setValorPretendido(int valorPretendido) {
+    private void setValorPretendido(double valorPretendido) {
         if (valorPretendido > 0) {
             this.valorPretendido = valorPretendido;
         } else
@@ -129,10 +129,10 @@ public class Candidatura implements Serializable {
      *
      */
     public String toString(){
-        return String.format("ID Anúncio: %s%nID Freelancer: %s%n" +
+        return String.format("ID Anúncio: %s%nEmail Freelancer: %s%n" +
                 "Data Candidatura: %s%nValor pretendido: %s" +
-                "%nN.º de dias: %d Apresentação:%n" + 
-                "Motivação: %s", this.idAnuncio, this.idFreelancer,
+                "%nN.º de dias: %d%nApresentação:%s%n" +
+                "Motivação: %s", this.anuncio.getTarefa().getCodigoUnico(), this.freelancer.getEmail(),
                 this.dataCandidatura, this.valorPretendido, this.nrDias,
                 this.txtApresentacao, this.txtMotivacao);
     }
@@ -156,8 +156,8 @@ public class Candidatura implements Serializable {
 
         Candidatura candid = (Candidatura) o;
 
-        if (!getIdAnuncio().equals(candid.getIdAnuncio())) return false;
-        return getIdFreelancer().equals(candid.getIdFreelancer());
+        if (this.anuncio.equals(candid.getAnuncio())) return false;
+        return this.freelancer.equals(candid.getFreelancer());
     }
     
 }

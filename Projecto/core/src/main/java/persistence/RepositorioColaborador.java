@@ -16,13 +16,12 @@ import java.util.ArrayList;
 public class RepositorioColaborador implements Serializable {
 
     private static RepositorioColaborador instance;
-    private ConnectionHandler connectionHandler;
+
 
     /**
      * Collaborators that will be added to the repository.
      */
     private RepositorioColaborador() {
-        connectionHandler = new ConnectionHandler();
 
     }
 
@@ -47,7 +46,7 @@ public class RepositorioColaborador implements Serializable {
      * @return
      */
     public boolean insertUtilizadorColaborador(Colaborador colaborador, String password, String emailGestor) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             conn.setAutoCommit(false);
@@ -71,7 +70,6 @@ public class RepositorioColaborador implements Serializable {
 
             conn.commit();
 
-            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -84,7 +82,6 @@ public class RepositorioColaborador implements Serializable {
             }
         }
 
-        conn.close();
         return false;
     }
 
@@ -96,7 +93,7 @@ public class RepositorioColaborador implements Serializable {
      */
     public Colaborador getColaboradorByEmail(Email email) throws SQLException {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             String emailColaborador = email.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Colaborador where Email = ?");
             pstmt.setString(1, emailColaborador);
@@ -110,7 +107,7 @@ public class RepositorioColaborador implements Serializable {
 
     public ArrayList<Colaborador> getColaboradoresOrganizacaoByEmail(Email email){
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
             CallableStatement cs = conn.prepareCall("SELECT idOrganizacao FROM Colaborador WHERE email = ?");
             cs.setString(1, email.toString());

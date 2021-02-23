@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  */
 public class CandidaturaTest {
     
-    @Test
+   /* @Test
     public void testCreateCandidaturaValida() {
         
         Candidatura cand = new Candidatura(new CodigoUnico("CDT-02"),
@@ -106,6 +106,6 @@ public class CandidaturaTest {
                             new Data(2021, 02, 18),
                             1200, 90, "Projeto novo", " ");
         
-    }
+    }*/
     
 }

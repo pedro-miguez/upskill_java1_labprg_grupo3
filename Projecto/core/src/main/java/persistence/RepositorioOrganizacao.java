@@ -22,13 +22,13 @@ import java.util.List;
 public class RepositorioOrganizacao implements Serializable {
 
     private static RepositorioOrganizacao instance;
-    private ConnectionHandler connectionHandler;
+
 
     /**
      * Organizations that will be added (registered) to the repository.
      */
     private RepositorioOrganizacao() {
-        connectionHandler = new ConnectionHandler();
+
     }
 
     /**
@@ -52,7 +52,7 @@ public class RepositorioOrganizacao implements Serializable {
      */
     public boolean insertOrganizacao(Organizacao organizacao, Colaborador gestor, String password) throws SQLException {
 
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
@@ -79,7 +79,6 @@ public class RepositorioOrganizacao implements Serializable {
 
             conn.commit();
 
-            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -91,7 +90,7 @@ public class RepositorioOrganizacao implements Serializable {
                 excep.getErrorCode();
             }
         }
-        conn.close();
+
         return false;
     }
 
@@ -107,7 +106,7 @@ public class RepositorioOrganizacao implements Serializable {
 
     public Organizacao getOrganizacaoByEmail(Email email) {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             CallableStatement cs = conn.prepareCall ("{? = call getOrganizacaoByEmailColaborador(?)}");
             cs.registerOutParameter(1, Types.INTEGER);
             cs.setString(2, email.toString());
@@ -138,7 +137,7 @@ public class RepositorioOrganizacao implements Serializable {
         Telefone telefone = new Telefone(Integer.parseInt(row.getString(6)));
         Website website = new Website(row.getString(7));
 
-        PreparedStatement pstmt = connectionHandler.openConnection().prepareStatement("SELECT * FROM EnderecoPostal where idOrganizacao = ?");
+        PreparedStatement pstmt = Plataforma.getInstance().getConnectionHandler().getConnection().prepareStatement("SELECT * FROM EnderecoPostal where idOrganizacao = ?");
         pstmt.setInt(1, row.getInt(1));
 
         ResultSet rset = pstmt.executeQuery();

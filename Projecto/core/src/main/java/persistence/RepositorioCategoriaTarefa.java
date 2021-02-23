@@ -18,13 +18,12 @@ import java.util.List;
 public class RepositorioCategoriaTarefa implements Serializable {
 
     private static RepositorioCategoriaTarefa instance;
-    private ConnectionHandler connectionHandler;
+
 
     /**
      * Task categories that will be added to the repository.
      */
     private RepositorioCategoriaTarefa() {
-        connectionHandler = new ConnectionHandler();
 
     }
 
@@ -49,7 +48,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
      * @return
      */
     public boolean insertCategoriaTarefa(CategoriaTarefa categoriaTarefa) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             conn.setAutoCommit(false);
@@ -61,7 +60,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
             cs.executeQuery();
             conn.commit();
 
-            conn.close();
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -72,13 +71,13 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 excep.getErrorCode();
             }
         }
-        conn.close();
+
         return insertCaracterizacoesCompetenciaTecnica(categoriaTarefa);
     }
 
 
     public boolean insertCaracterizacoesCompetenciaTecnica(CategoriaTarefa categoriaTarefa) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         ArrayList<CaracterizacaoCompTec> listaCompetencias = categoriaTarefa.getCompetenciasTecnicas();
 
@@ -109,7 +108,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
             cs.close();
             conn.commit();
-            conn.close();
+
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -121,7 +120,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 excep.getErrorCode();
             }
         }
-        conn.close();
+
         return false;
     }
 
@@ -133,7 +132,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
      */
     public CategoriaTarefa getCategoriaTarefaByDescricaoAndAreaAtividade(String descricao, AreaAtividade areaAtividade) {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             String idAreaAtividade = areaAtividade.getCodigoUnico().toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CategoriaTarefa where descricao = ? AND idAreaAtividade = ?");
             pstmt.setString(1, descricao);
@@ -160,7 +159,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
      * @return
      */
     public ArrayList<CategoriaTarefa> listarCategoriasTarefa() throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         ArrayList<CategoriaTarefa> listaTodasCategorias = new ArrayList<>();
         ArrayList<AreaAtividade> listaTodasAreas = RepositorioAreaAtividade.getInstance().listarAreasAtividade();
 
@@ -178,7 +177,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
                 pstmt.clearParameters();
             }
-            conn.close();
+
             pstmt.close();
         } catch (SQLException e) {
             e.getSQLState();
@@ -191,7 +190,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
     public CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
 
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         CategoriaTarefa categoriaTarefa = null;
 
         try {
@@ -216,7 +215,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
 
 
     public ArrayList<CategoriaTarefa> montarListaCategoriasTarefa(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         ArrayList<CategoriaTarefa> listaCategorias = new ArrayList<>();
         try {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CaraterizacaoCompetenciaTecnica where idCategoria = ?");
@@ -240,7 +239,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
     }
 
     public ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         ArrayList<CaracterizacaoCompTec> competencias = new ArrayList<>();
         boolean obrigatorio;
         CompetenciaTecnica competencia;
@@ -271,7 +270,6 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 competencias.add(new CaracterizacaoCompTec(competencia, obrigatorio, grau));
             }
 
-            conn.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

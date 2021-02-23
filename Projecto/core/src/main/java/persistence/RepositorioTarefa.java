@@ -18,13 +18,13 @@ import java.util.ArrayList;
 public class RepositorioTarefa implements Serializable {
 
     private static RepositorioTarefa instance;
-    private ConnectionHandler connectionHandler;
+
 
     /**
      * Tasks that will be added (registered) in the repository.
      */
     private RepositorioTarefa() {
-        connectionHandler = new ConnectionHandler();
+
     }
 
     /**
@@ -46,7 +46,7 @@ public class RepositorioTarefa implements Serializable {
      * @return 
      */
     public boolean insertTarefa(Tarefa tarefa, String colaboradorEmail) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             conn.setAutoCommit(false);
@@ -79,7 +79,6 @@ public class RepositorioTarefa implements Serializable {
 
             conn.commit();
 
-            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -92,7 +91,6 @@ public class RepositorioTarefa implements Serializable {
             }
         }
 
-        conn.close();
         return false;
     }
 
@@ -103,7 +101,7 @@ public class RepositorioTarefa implements Serializable {
      */
     public Tarefa getTarefaByCodigoUnico(CodigoUnico codigoUnico, String emailColaborador) {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
             CallableStatement cs1 = conn.prepareCall("{? = call getOrganizacaoByEmailColaborador(?)}");
             cs1.registerOutParameter(1, Types.INTEGER);
@@ -145,7 +143,7 @@ public class RepositorioTarefa implements Serializable {
         Tarefa tarefa = null;
 
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             if (rSetTarefa.getRow() < 1) {
                 rSetTarefa.next();
             }
@@ -229,9 +227,8 @@ public class RepositorioTarefa implements Serializable {
     }
 
     public ArrayList<Tarefa> getTarefasPrivadasOrganizacao (Organizacao organizacao) {
-        ArrayList<Tarefa> listaTarefas = new ArrayList<>();
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             NIF nif = organizacao.getNIF();
             PreparedStatement pstmtOrganizacao = conn.prepareStatement("SELECT idOrganizacao FROM Organizacao where NIF = ?");
             pstmtOrganizacao.setString(1, nif.toString());
@@ -253,9 +250,8 @@ public class RepositorioTarefa implements Serializable {
     }
 
     public ArrayList<Tarefa> getTarefasPublishedOrganizacao (Organizacao organizacao) {
-        ArrayList<Tarefa> listaTarefas = new ArrayList<>();
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             NIF nif = organizacao.getNIF();
             PreparedStatement pstmtOrganizacao = conn.prepareStatement("SELECT idOrganizacao FROM Organizacao where NIF = ?");
             pstmtOrganizacao.setString(1, nif.toString());
@@ -279,7 +275,7 @@ public class RepositorioTarefa implements Serializable {
     public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) {
 
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             NIF nif = organizacao.getNIF();
             PreparedStatement pstmtOrganizacao = conn.prepareStatement("SELECT idOrganizacao FROM Organizacao where NIF = ?");
             pstmtOrganizacao.setInt(1, Integer.parseInt(nif.toString()));
@@ -308,7 +304,7 @@ public class RepositorioTarefa implements Serializable {
 
 
     private ArrayList<CaracterizacaoCompTec> montarlistaCaracterizacaoCompetenciaTecnica(ResultSet rows, AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         ArrayList<CaracterizacaoCompTec> competencias = new ArrayList<>();
         boolean obrigatorio;
@@ -340,13 +336,12 @@ public class RepositorioTarefa implements Serializable {
             competencias.add(new CaracterizacaoCompTec(competencia, obrigatorio, grau));
         }
 
-        conn.close();
         return competencias;
 
     }
 
     private CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         CompetenciaTecnica competenciaTecnica = null;
 
         try {

@@ -18,13 +18,13 @@ import java.util.List;
 public class RepositorioFreelancer implements Serializable {
 
     private static RepositorioFreelancer instance;
-    private ConnectionHandler connectionHandler;
+
 
     /**
      * Freelancers that will be added to the repository.
      */
     private RepositorioFreelancer() {
-        connectionHandler = new ConnectionHandler();
+
 
     }
 
@@ -43,7 +43,7 @@ public class RepositorioFreelancer implements Serializable {
 
 
     public boolean insertUtilizadorFreelancer(Freelancer freelancer, String password) throws SQLException {
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             conn.setAutoCommit(false);
@@ -98,7 +98,6 @@ public class RepositorioFreelancer implements Serializable {
             }
 
             conn.commit();
-            conn.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -111,7 +110,7 @@ public class RepositorioFreelancer implements Serializable {
             }
         }
 
-        conn.close();
+
         return false;
     }
 
@@ -123,7 +122,7 @@ public class RepositorioFreelancer implements Serializable {
      */
     public Freelancer getFreelancerByEmail(Email email) throws SQLException {
         try {
-            Connection conn = connectionHandler.openConnection();
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             String emailFreelancer = email.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Freelancer where Email = ?");
             pstmt.setString(1, emailFreelancer);
@@ -138,7 +137,7 @@ public class RepositorioFreelancer implements Serializable {
 
     public Freelancer montarFreelancer(ResultSet row) throws SQLException {
         Freelancer freelancer = null;
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             row.next();
@@ -176,7 +175,7 @@ public class RepositorioFreelancer implements Serializable {
 
     public ArrayList<ReconhecimentoCT> montarListaReconhecimentoCT(ResultSet rows) throws SQLException {
         ArrayList<ReconhecimentoCT> listaReconhecimentoCT = new ArrayList<>();
-        Connection conn = connectionHandler.openConnection();
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
             while (rows.next()) {

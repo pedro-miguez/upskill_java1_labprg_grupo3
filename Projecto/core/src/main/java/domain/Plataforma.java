@@ -1,6 +1,7 @@
 package domain;
 
 import application.UsersAPI;
+import network.ConnectionHandler;
 import persistence.*;
 
 import java.io.*;
@@ -22,18 +23,21 @@ public class Plataforma implements Serializable {
 
     private AlgoritmoGeradorPasswords agp;
     private UsersAPI uapi;
+    private ConnectionHandler connectionHandler;
 
-    private Plataforma() {
+    private Plataforma() throws SQLException {
         agp = new AlgoritmoGeradorPasswords();
         uapi = new UsersAPI();
+        connectionHandler = new ConnectionHandler();
     }
 
     /**
      * Gets instance Plataforma.
      *
+     *
      * @return the instance Plataforma that already exists or creates a new one in case none exists.
      */
-    public static Plataforma getInstance() {
+    public static Plataforma getInstance() throws SQLException {
         if (Plataforma.plataforma == null) {
             Plataforma.plataforma = new Plataforma();
         }
@@ -66,4 +70,7 @@ public class Plataforma implements Serializable {
         this.uapi = new UsersAPI();
     }
 
+    public ConnectionHandler getConnectionHandler() {
+        return connectionHandler;
+    }
 }
