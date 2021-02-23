@@ -15,5 +15,18 @@ public class UserTest {
         assertEquals(expected, result);
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserInvalido1() {
+        User user = new User("", "qwerty", new Email("testmanpedro@gmail.com"), Role.ADMINISTRATIVO);
+    }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserInvalido2() {
+        User user = new User("testmanpedro", "", new Email("testmanpedro@gmail.com"), Role.ADMINISTRATIVO);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserInvalido3() {
+        User user = new User("testmanpedro", "qwerty", new Email("testmanpedrogmail.com"), Role.ADMINISTRATIVO);
+    }
 }
