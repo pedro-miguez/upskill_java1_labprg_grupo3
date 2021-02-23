@@ -6,23 +6,13 @@
 package ui;
 
 import application.AuthenticationController;
-//import application.DefinirTarefaController;
 import application.ServiceController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-
-
-package ui;
-
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -33,31 +23,22 @@ public class AreaFreelancerUI {
 
     @FXML
     private Button btnConfirmarCandidatura;
-
     @FXML
     private TextArea txtMotivacao;
-
     @FXML
     private ListView<?> listViewAnunciosMatchedFreelancer;
-
     @FXML
     private Button btnLogout;
-
     @FXML
     private Button btnEfetuarCandidatura;
-
     @FXML
     private BorderPane publicarTarefaPane;
-
     @FXML
     private TextField txtDuracaoDias;
-
     @FXML
     private TextField txtValorPretendido;
-
     @FXML
     private TextArea txtApresentacao;
-
     @FXML
     private Button btnLimparDadosEfetuarCandidatura;
 
