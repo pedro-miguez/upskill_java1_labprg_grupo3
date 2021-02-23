@@ -76,9 +76,9 @@ public class RepositorioOrganizacao implements Serializable {
 
             cs.executeQuery();
 
-            cs.close();
-
             conn.commit();
+
+            cs.close();
 
             return true;
         } catch (SQLException e) {
@@ -125,8 +125,11 @@ public class RepositorioOrganizacao implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Organizacao where idOrganizacao = ?");
             pstmt.setInt(1, orgID);
 
+            Organizacao organizacao = montarOrganizacao(pstmt.executeQuery());
+
             cs.close();
-            return montarOrganizacao(pstmt.executeQuery());
+
+            return organizacao;
         } catch (SQLException e) {
             throw new EmailNaoAssociadoException("Não existe nenhuma organização associada a este e-mail.");
         }
@@ -160,8 +163,11 @@ public class RepositorioOrganizacao implements Serializable {
         rset.next();
         EnderecoPostal enderecoPostal = new EnderecoPostal(rset.getString(2), rset.getString(4), rset.getString(3));
 
-        pstmt.close();
         org = new Organizacao(nomeorg, nif, website, telefone, email, enderecoPostal);
+
+        pstmt.close();
+
+        rset.close();
 
         } catch (SQLException e) {
             e.getSQLState();

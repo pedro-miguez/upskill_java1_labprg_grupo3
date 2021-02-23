@@ -82,6 +82,9 @@ public class RepositorioTarefa implements Serializable {
             cs2.close();
             pstmt.close();
 
+            cs1.close();
+            cs2.close();
+
             return true;
         } catch (SQLException e) {
             e.getSQLState();
@@ -118,7 +121,11 @@ public class RepositorioTarefa implements Serializable {
             pstmt.setInt(1, idOrganizacao);
             pstmt.setString(2, referenciaTarefa);
 
-            return montarTarefa(pstmt.executeQuery());
+            Tarefa tarefa = montarTarefa(pstmt.executeQuery());
+            cs1.close();
+            pstmt.close();
+
+            return tarefa;
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhuma tarefa com esse código único.");
         }
@@ -131,17 +138,21 @@ public class RepositorioTarefa implements Serializable {
      * @param rSetTarefa
      * @return listaTarefas
      */
-    public ArrayList<Tarefa> montarTarefas(ResultSet rSetTarefa) {
+    public ArrayList<Tarefa> montarTarefas(ResultSet rSetTarefa)  {
         ArrayList<Tarefa> listaTarefas = new ArrayList<>();
         try {
             while (rSetTarefa.next()) {
                 listaTarefas.add(montarTarefa(rSetTarefa));
             }
+
+            if(rSetTarefa.isLast()){
+                rSetTarefa.close();
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
             e.getSQLState();
         }
-
 
         return listaTarefas;
 
@@ -229,6 +240,21 @@ public class RepositorioTarefa implements Serializable {
             tarefa = new Tarefa(referenciaTarefa, designacao, descricaoInformal,
                     descricaoTecnica, estimativaDuracao, estimativaCusto, categoriaTarefa, org);
 
+            pstmtCategoriTarefa.close();
+            pstmtAreaAtividade.close();
+            pstmtEndereco.close();
+            pstmtListaCaracterizacao.close();
+            pstmtOrg.close();
+            rsetEndereco.close();
+            rSetAreaAtividade.close();
+            rSetCategoriaTarefa.close();
+            rSetOrg.close();
+            rSetListaCaracterizacao.close();
+
+            if(rSetTarefa.isLast()){
+                rSetTarefa.close();
+            }
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -260,7 +286,14 @@ public class RepositorioTarefa implements Serializable {
             pstmtTarefas.setInt(1, rSetOrganizacao.getInt("idOrganizacao"));
             ResultSet rSetTarefas = pstmtTarefas.executeQuery();
 
-            return montarTarefas(rSetTarefas);
+            ArrayList<Tarefa> listaTarefasOrganizacao = montarTarefas(rSetTarefas);
+
+            pstmtOrganizacao.close();
+            pstmtTarefas.close();
+            rSetOrganizacao.close();
+            rSetTarefas.close();
+
+            return listaTarefasOrganizacao;
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -289,7 +322,14 @@ public class RepositorioTarefa implements Serializable {
             pstmtTarefas.setInt(1, rSetOrganizacao.getInt("idOrganizacao"));
             ResultSet rSetTarefas = pstmtTarefas.executeQuery();
 
-            return montarTarefas(rSetTarefas);
+            ArrayList<Tarefa> listaTarefasOrganizacao = montarTarefas(rSetTarefas);
+
+            pstmtOrganizacao.close();
+            pstmtTarefas.close();
+            rSetOrganizacao.close();
+            rSetTarefas.close();
+
+            return listaTarefasOrganizacao;
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -319,7 +359,14 @@ public class RepositorioTarefa implements Serializable {
             pstmtTarefas.setInt(1, rSetOrganizacao.getInt("idOrganizacao"));
             ResultSet rSetTarefas = pstmtTarefas.executeQuery();
 
-            return montarTarefas(rSetTarefas);
+            ArrayList<Tarefa> listaTarefasOrganizacao = montarTarefas(rSetTarefas);
+
+            pstmtOrganizacao.close();
+            pstmtTarefas.close();
+            rSetOrganizacao.close();
+            rSetTarefas.close();
+
+            return listaTarefasOrganizacao;
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -394,7 +441,12 @@ public class RepositorioTarefa implements Serializable {
             linhaGrau.next();
             grau = new GrauProficiencia(linhaGrau.getInt(2), linhaGrau.getString(3));
             competencias.add(new CaracterizacaoCompTec(competencia, obrigatorio, grau));
+
+            pstmt1.close();
+            pstmt2.close();
         }
+
+        rows.close();
 
         return competencias;
 
@@ -413,6 +465,13 @@ public class RepositorioTarefa implements Serializable {
             String descricaoDetalhada = row.getString(4);
             ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
             competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+
+            pstmt.close();
+
+            if(row.isLast()){
+                row.close();
+            }
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -433,7 +492,10 @@ public class RepositorioTarefa implements Serializable {
             int nivel = rows.getInt(2);
             String designacao = rows.getString(3);
             listaGraus.add(new GrauProficiencia(nivel, designacao));
+
         }
+
+        rows.close();
 
         return listaGraus;
     }
