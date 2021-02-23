@@ -2,6 +2,26 @@
 
 title UC8 - Diagrama de Sequência de Sistema
 
-actor Colaborador da Organização
-activate Colaborador da Organização
+actor Colaborador_Organizacao
+activate Colaborador_Organizacao
 
+Colaborador_Organizacao -> ":Sistema": 1 inicia a publicação de uma tarefa
+activate ":Sistema"
+":Sistema" --> Colaborador_Organizacao: 2 solicita identificação da tarefa previamente criada
+deactivate ":Sistema"
+Colaborador_Organizacao -> ":Sistema": 3 introduz a identificação da tarefa
+activate ":Sistema"
+":Sistema" --> Colaborador_Organizacao: 4 solicita dados para a publicação da tarefa (período de publicação, período de candidaturas, período de seriação e tipo de regimento)
+deactivate ":Sistema"
+Colaborador_Organizacao -> ":Sistema": 5 introduz os dados solicitados
+activate ":Sistema"
+":Sistema" --> Colaborador_Organizacao: 6 apresenta os dados e solicita confirmação
+deactivate ":Sistema"
+Colaborador_Organizacao -> ":Sistema": 7 confirma
+activate ":Sistema"
+":Sistema" --> Colaborador_Organizacao: 8 cria o anúncio e informa do sucesso da operação
+deactivate ":Sistema"
+deactivate Colaborador_Organizacao
+
+
+@enduml
