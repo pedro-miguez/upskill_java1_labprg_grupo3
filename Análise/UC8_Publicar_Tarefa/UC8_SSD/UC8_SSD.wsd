@@ -1,0 +1,7 @@
+@startuml
+
+title UC8 - Diagrama de Sequência de Sistema
+
+actor Colaborador da Organização
+activate Colaborador da Organização
+
