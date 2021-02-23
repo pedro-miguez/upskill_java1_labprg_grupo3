@@ -7,6 +7,7 @@ package ui;
 
 import application.AuthenticationController;
 import application.ServiceController;
+import domain.Anuncio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,13 +27,13 @@ public class AreaFreelancerUI {
     @FXML
     private TextArea txtMotivacao;
     @FXML
-    private ListView<?> listViewAnunciosMatchedFreelancer;
+    private ListView<Anuncio> listViewAnunciosMatchedFreelancer;
     @FXML
     private Button btnLogout;
     @FXML
     private Button btnEfetuarCandidatura;
     @FXML
-    private BorderPane publicarTarefaPane;
+    private BorderPane efetuarCandidaturaPane;
     @FXML
     private TextField txtDuracaoDias;
     @FXML
@@ -64,11 +65,23 @@ public class AreaFreelancerUI {
 
     @FXML
     void btnLimparDadosEfetuarCandidaturaAction(ActionEvent event) {
+        limparDados();
+    }
 
+    public void limparDados() {
+        txtValorPretendido.clear();
+        txtDuracaoDias.clear();
+        txtApresentacao.clear();
+        txtMotivacao.clear();
     }
 
     @FXML
     void efetuarCandidaturaAction(ActionEvent event) {
+
+        btnConfirmarCandidatura.setVisible(true);
+        btnLimparDadosEfetuarCandidatura.setVisible(true);
+        efetuarCandidaturaPane.setDisable(false);
+        efetuarCandidaturaPane.setVisible(true);
 
     }
 
