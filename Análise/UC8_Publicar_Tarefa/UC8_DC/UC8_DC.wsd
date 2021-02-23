@@ -1,0 +1,123 @@
+@startuml
+
+title UC8 - Diagrama de Classes
+
+left to right direction
+
+Class AreaColaboradorUI {
+}
+
+Class PublicarTarefaController {
+    +publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento, 
+    LocalDate dataInicioPublicitacao, 
+    LocalDate dataFimPublicitacao, 
+    LocalDate dataInicioCandidatura, 
+    LocalDate dataFimCandidatura, 
+    LocalDate dataInicioSeriacao, 
+    LocalDate dataFimSeriacao)
+
+}
+
+Class PlataformaController {
+    +getCategoriasTarefa()
+}
+
+
+Class Plataforma <<Singleton>> {
+    -String designacao
+    -RepositorioColaborador repoColab
+    -RepositorioTarefa repoTarefa
+    -RepositorioAnuncio repoAnuncio
+
+    +getInstance()
+    +getRepoAnuncio()
+    +getRepoColab()
+    +getRepoTarefa()
+}
+
+Class RepositorioColaborador <<Singleton>> {
+    +getInstance()
+    +getColaboradorByEmail(Email email)                         
+}
+
+Class RepositorioTarefa <<Singleton>> {
+    +getInstance()
+    +addTarefa(Tarefa tarefa)
+    +criarTarefa(String codigoUnico, String designacao, 
+    String descricaoInformal, String descricaoTecnica, 
+    int duracaoHoras, float custo, CategoriaTarefa categoriaTarefa, 
+    Organizacao org)            
+}
+
+Class RepositorioAnuncio <<Singleton>> {
+    
+}
+
+
+Class Colaborador {
+    - String nome
+    - Telefone telefone
+    - Email email
+    - Funcao funcao
+    - Organizacao organizacao
+    +isGestor()
+}
+
+Class Tarefa {
+    - CodigoUnico codigoUnico
+    - String designacao
+    - String descricaoInformal
+    - String descricaoTecnica
+    - int duracaoHoras
+    - float custo
+    - CategoriaTarefa categoria
+    - Organizacao organizacao
+}
+
+Class Organização {
+    - String nome
+    - NIF nif
+    - Website website
+    - Telefone telefone
+    - Email email
+    - EnderecoPostal enderecoPostal
+    - Colaborador gestor
+}
+
+Class Anuncio {
+    - dataInicioPublicitacao
+    - dataFimPublicitacao
+    - dataInicioCandidatura
+    - dataFimCandidatura
+    - dataInicioSeriacao
+    - dataFimSeriacao
+}
+
+
+AreaColaboradorUI .> PublicarTarefaController
+AreaColaboradorUI .> PlataformaController
+
+PlataformaController .> RepositorioColaborador
+PlataformaController .> RepositorioAnuncio
+PlataformaController .> RepositorioTarefa
+PlataformaController .> Plataforma
+
+PublicarTarefaController .> Plataforma
+PublicarTarefaController .> RepositorioAnuncio
+PublicarTarefaController .> RepositorioColaborador
+PublicarTarefaController .> RepositorioTarefa
+
+Plataforma "1" -> "1" RepositorioTarefa: tem
+Plataforma "1" -> "1" RepositorioAnuncio: tem
+Plataforma "1" -> "1" RepositorioColaborador: tem
+
+RepositorioAnuncio "1" -> "*" Tarefa: possui
+RepositorioColaborador "1" -> "*" Colaborador: possui
+RepositorioTarefa "1" -> "*" Tarefa: possui
+
+Colaborador "1" -> "1" Organização: pertence a
+Tarefa "1" -> "1" Organização: relativa a
+Tarefa "1" -> "1" Anuncio: relativo a
+
+
+@enduml

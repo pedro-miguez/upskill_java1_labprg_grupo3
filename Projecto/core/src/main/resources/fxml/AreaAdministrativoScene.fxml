@@ -102,7 +102,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="criarCompetenciaTecnicaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="criarCompetenciaTecnicaPane" prefHeight="200.0" prefWidth="200.0">
                      <top>
                         <Label prefHeight="21.0" prefWidth="364.0" text="Criar Competencia Técnica" BorderPane.alignment="CENTER">
                            <font>
@@ -160,7 +160,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                                  <GridPane.margin>
-                                    <Insets bottom="10.0" top="10.0" />
+                                    <Insets bottom="10.0" top="15.0" />
                                  </GridPane.margin>
                               </Label>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -172,7 +172,7 @@
                                                 <Insets bottom="20.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <Button fx:id="btnRemoverGrauProficienciaCompetenciaTecnica" mnemonicParsing="false" onAction="#btnRemoverGrauProficienciaCompetenciaTecnica" prefHeight="21.0" prefWidth="67.0" text="Remover">
+                                          <Button fx:id="btnRemoverGrauProficienciaCompetenciaTecnica" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnRemoverGrauProficienciaCompetenciaTecnica" prefHeight="42.0" prefWidth="67.0" text="Remover Última" textAlignment="CENTER" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="65.0" />
                                              </VBox.margin>
@@ -194,28 +194,17 @@
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="41.0" valignment="BOTTOM" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Label text="Nível:" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                                          <Label text="Designação:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                                              <GridPane.margin>
-                                                <Insets bottom="13.0" right="5.0" top="10.0" />
+                                                <Insets right="5.0" top="18.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Label text="Designação:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                          <TextField fx:id="txtDesignacaoGrauProficienciaCriarCompetenciaTecnica" GridPane.columnIndex="1" GridPane.valignment="TOP">
                                              <GridPane.margin>
-                                                <Insets right="5.0" top="13.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField fx:id="txtNivelGrauProficienciaCriarCompetenciaTecnica" GridPane.columnIndex="1">
-                                             <GridPane.margin>
-                                                <Insets bottom="10.0" top="20.0" />
-                                             </GridPane.margin>
-                                          </TextField>
-                                          <TextField fx:id="txtDesignacaoGrauProficienciaCriarCompetenciaTecnica" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                             <GridPane.margin>
-                                                <Insets top="10.0" />
+                                                <Insets top="15.0" />
                                              </GridPane.margin>
                                           </TextField>
                                        </children>
@@ -356,7 +345,7 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
-                  <BorderPane fx:id="criarFreelancerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarFreelancerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="76.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                            <children>

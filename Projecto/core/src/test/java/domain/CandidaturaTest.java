@@ -132,6 +132,7 @@ public class CandidaturaTest {
 
         Candidatura cand = new Candidatura(a, freelancer, new Data(2021, 02, 18), 1200, 0, "Projeto novo", "Novos desafios");
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateCandidaturaComIdAnuncioInvalido3() {
 

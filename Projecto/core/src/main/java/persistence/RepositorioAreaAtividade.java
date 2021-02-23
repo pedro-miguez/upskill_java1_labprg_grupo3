@@ -144,7 +144,6 @@ public class RepositorioAreaAtividade implements Serializable {
             String descricaoBreve = row.getString(2);
             String descricaoDetalhada = row.getString(3);
             areaAtividade = new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada);
-            row.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

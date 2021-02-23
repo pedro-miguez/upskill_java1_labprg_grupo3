@@ -141,7 +141,11 @@ public class RepositorioFreelancer implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Freelancer where Email = ?");
             pstmt.setString(1, emailFreelancer);
 
-            return montarFreelancer(pstmt.executeQuery());
+            Freelancer freelancer =  montarFreelancer(pstmt.executeQuery());
+
+            pstmt.close();
+
+            return freelancer;
         } catch (SQLException e) {
             throw new CodigoNaoAssociadoException("Não existe nenhum freelancer com esse email.");
         }
@@ -182,6 +186,10 @@ public class RepositorioFreelancer implements Serializable {
 
 
             freelancer = new Freelancer(nome, telefone, email, nif, reconhecimentoCTS, habilitacaoAcademicas );
+
+            pstmt.close();
+            pstmt2.close();
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -252,12 +260,19 @@ public class RepositorioFreelancer implements Serializable {
                 pstmt2.clearParameters();
                 pstmt3.clearParameters();
                 pstmt4.clearParameters();
+                pstmt.close();
+                pstmt2.close();
+                pstmt3.close();
+                pstmt4.close();
                 rSetAreaAtividade.close();
+
             }
         }catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
         }
+
+        rows.close();
 
         return listaReconhecimentoCT;
     }
@@ -281,6 +296,9 @@ public class RepositorioFreelancer implements Serializable {
                 listaHabilitacoes.add(new HabilitacaoAcademica(grau, designacaoCurso, 
                                                             nomeInstituicao, mediaCurso));
             }
+
+            row.close();
+
         }catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

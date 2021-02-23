@@ -240,9 +240,6 @@ public class RepositorioCandidatura {
             rSetAnuncio.close();
             rSetFreelancer.close();
 
-            if(row.isLast()) {
-                row.close();
-            }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

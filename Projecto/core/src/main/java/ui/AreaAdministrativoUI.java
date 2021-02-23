@@ -206,6 +206,7 @@ public class AreaAdministrativoUI implements Initializable {
             if (adicionou) {
                 limparDadosCompetenciaTecnica();
                 listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
+                grauCounter = 0;
             }
 
         } catch (IllegalArgumentException e) {
@@ -574,10 +575,9 @@ public class AreaAdministrativoUI implements Initializable {
 
 
     public void btnAdicionarGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
-        if (txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.getText() != null &&
-                txtNivelGrauProficienciaCriarCompetenciaTecnica.getText() != null) {
+        if (txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.getText() != null) {
             GrauProficiencia gp = new GrauProficiencia(
-                    Integer.parseInt(txtNivelGrauProficienciaCriarCompetenciaTecnica.getText().trim()),
+                    ++grauCounter,
                     txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.getText().trim()
                     );
 
@@ -585,6 +585,7 @@ public class AreaAdministrativoUI implements Initializable {
                 listViewGrauProficienciaCompetenciaTecnica.getItems().add(gp);
                 txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.clear();
                 txtNivelGrauProficienciaCriarCompetenciaTecnica.clear();
+                btnRemoverGrauProficienciaCompetenciaTecnica.setDisable(false);
             } else {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar novo grau.",
                         "Não é possível adicionar o mesmo grau de proficiência mais do que uma vez.").show();
@@ -596,7 +597,8 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     public void btnRemoverGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
-        listViewGrauProficienciaCompetenciaTecnica.getItems().remove(listViewGrauProficienciaCompetenciaTecnica.getSelectionModel().getSelectedItem());
+        listViewGrauProficienciaCompetenciaTecnica.getItems().remove(listViewGrauProficienciaCompetenciaTecnica.getItems().size()-1);
+        grauCounter += -1;
         if (listViewGrauProficienciaCompetenciaTecnica.getItems().size() == 0) {
             btnRemoverGrauProficienciaCompetenciaTecnica.setDisable(true);
         }
