@@ -12,11 +12,23 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for creating a repository to store information about
+ * advertisements.
+ * 
+ * @author Grupo 3
+ */
 public class RepositorioAnuncio {
 
     private static RepositorioAnuncio instance;
     private ConnectionHandler connectionHandler;
 
+    
+    /**
+     * Static method that returns a unique reference to the class object, which
+     * implements a singleton.
+     * @return instance
+     */
     public static RepositorioAnuncio getInstance() {
         if (instance == null) {
             instance = new RepositorioAnuncio();
@@ -28,6 +40,13 @@ public class RepositorioAnuncio {
         connectionHandler = new ConnectionHandler();
     }
 
+    /**
+     * Boolean method that checks if a advertisement exists in the repository,
+     * otherwise it is added to it.
+     * @param anuncio
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertAnuncio(Anuncio anuncio) throws SQLException {
         Connection conn = connectionHandler.openConnection();
 
@@ -85,6 +104,11 @@ public class RepositorioAnuncio {
     }
 
 
+    /**
+     * Method to obtain a type of regiment from the list 'TipoRegimento'.
+     * @return tiposRegimento
+     * @throws SQLException 
+     */
     public ArrayList<TipoRegimento> getTiposRegimento() throws SQLException {
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
 
@@ -102,6 +126,10 @@ public class RepositorioAnuncio {
         return tiposRegimento;
     }
 
+    /**
+     * Method to obtain all the advertisements from the list 'Anuncio'.
+     * @return montarListaAnuncios(rSetAnuncios)
+     */
     public ArrayList<Anuncio> getAllAnuncios () {
         try {
             Connection conn = connectionHandler.openConnection();
@@ -120,6 +148,11 @@ public class RepositorioAnuncio {
     }
 
 
+    /**
+     * Method to obtain a advertisement by a task.
+     * @param tarefa
+     * @return montarAnuncio(pstmt.executeQuery())
+     */
     public Anuncio getAnuncioByTarefa(Tarefa tarefa) {
 
         try {
@@ -152,9 +185,7 @@ public class RepositorioAnuncio {
         }
     }
 
-
-
-
+    
     private Anuncio montarAnuncio(ResultSet row) throws SQLException {
         Connection conn = connectionHandler.openConnection();
         Anuncio anuncio = null;
@@ -237,6 +268,12 @@ public class RepositorioAnuncio {
 
 
 
+    /**
+     * Method that creates a list of advertisements, adding an advertisement to it. 
+     * @param rows
+     * @return listaAnuncios
+     * @throws SQLException 
+     */
     public ArrayList<Anuncio> montarListaAnuncios(ResultSet rows) throws SQLException {
         ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
 
@@ -254,6 +291,19 @@ public class RepositorioAnuncio {
     }
 
 
+    /**
+     * Method that creates an advertisement.
+     * 
+     * @param tarefa
+     * @param tipoRegimento
+     * @param dataInicioPub
+     * @param dataFimPub
+     * @param dataInicioCand
+     * @param dataFimCand
+     * @param dataInicioSer
+     * @param dataFimSer
+     * @return Anuncio
+     */
     public Anuncio criarAnuncio(Tarefa tarefa, TipoRegimento tipoRegimento, Data dataInicioPub,
                                 LocalDate dataFimPub, LocalDate dataInicioCand, LocalDate dataFimCand,
                                 LocalDate dataInicioSer, LocalDate dataFimSer) {
