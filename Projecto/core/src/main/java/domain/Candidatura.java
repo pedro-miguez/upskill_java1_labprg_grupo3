@@ -60,7 +60,7 @@ public class Candidatura implements Serializable {
     
     public Freelancer getFreelancer() {
         return this.freelancer;
-
+    }
 
    
     /**
