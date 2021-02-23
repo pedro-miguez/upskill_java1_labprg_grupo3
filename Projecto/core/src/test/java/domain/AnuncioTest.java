@@ -14,11 +14,15 @@ import static org.junit.Assert.*;
  * @author Grupo 3
  */
 public class AnuncioTest {
- /*
+
     @Test
     public void testCreateAnuncioValido() {
-        
-        Anuncio a = new Anuncio (new CodigoUnico("ANC-00"),
+
+        Tarefa tarefa = new Tarefa(new CodigoUnico("TAR-01"), "Progamador Jogo",
+                "É necessário progamador para um jogo",
+                "É necessário programador em java para desenvolvimento de um jogo", 100, 1500.00f, categoriaTarefa, org);
+
+        Anuncio a = new Anuncio (tarefa, new TipoRegimento()
                                     new Data(2021, 02, 18),
                                     new Data(2021, 02, 18),
                                     new Data(2021, 02, 22),
@@ -47,5 +51,5 @@ public class AnuncioTest {
                                     new Data(2021, 06, 30));
         
     }
-    */
+
 }
