@@ -18,7 +18,7 @@
          <center>
             <StackPane prefHeight="539.0" prefWidth="632.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarTarefaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="899.0">
+                  <BorderPane fx:id="criarTarefaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="899.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="709.0" BorderPane.alignment="CENTER">
                            <children>
@@ -140,7 +140,7 @@
                         <Insets />
                      </StackPane.margin>
                   </BorderPane>
-                  <BorderPane fx:id="publicarTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="publicarTarefaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
@@ -204,6 +204,64 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
+                  <StackPane>
+                     <children>
+                        <BorderPane fx:id="publicarTarefaPane1" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                           <bottom>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#iniciarSeriacaoAction" prefHeight="42.0" prefWidth="95.0" text="Iniciar Seriação" textAlignment="CENTER" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <center>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ListView fx:id="listViewAnunciosSeriarAnuncio" prefHeight="509.0" prefWidth="799.0">
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" left="50.0" right="50.0" top="25.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                 </children>
+                              </VBox>
+                           </center>
+                           <top>
+                              <Label prefHeight="47.0" prefWidth="218.0" text="Seriar Anúncio" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                        </BorderPane>
+                        <BorderPane fx:id="publicarTarefaPane11" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <bottom>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnPublicarTarefa11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#publicarTarefaAction" prefHeight="42.0" prefWidth="95.0" text="Iniciar Seriação" textAlignment="CENTER" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <center>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                           </center>
+                           <top>
+                              <Label prefHeight="47.0" prefWidth="218.0" text="Seriar Anúncio" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </StackPane>
                </children>
             </StackPane>
          </center>
@@ -219,6 +277,11 @@
                <children>
                   <Button fx:id="btnCriarTarefaSelect" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#criarTarefaSelectAction" prefHeight="44.0" prefWidth="95.0" text="Criar tarefa" textAlignment="CENTER" wrapText="true" />
                   <Button mnemonicParsing="false" onAction="#btnPublicarTarefaSelectAction" prefHeight="45.0" prefWidth="95.0" text="Publicar tarefa">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button layoutX="25.0" layoutY="64.0" mnemonicParsing="false" onAction="#btnSeriarAnuncioSelectAction" prefHeight="45.0" prefWidth="95.0" text="Seriar Anúncio">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
