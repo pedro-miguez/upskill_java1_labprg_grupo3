@@ -196,13 +196,22 @@ public class RepositorioAnuncio {
 
             int idColaborador = rSetIdColaborador.getInt(1);
 
+            PreparedStatement pstmtAnunciosRegistados = conn.prepareStatement("SELECT idAnuncio FROM TipoRegimento");
+            ResultSet rSetAnunciosRegistados = pstmtAnunciosRegistados.executeQuery();
+            ArrayList<Integer> idsRegistados = new ArrayList<>();
+            while (rSetAnunciosRegistados.next()) {
+                if (!idsRegistados.contains(rSetAnunciosRegistados.getInt(1))) {
+                    idsRegistados.add(rSetAnunciosRegistados.getInt(1));
+                }
+            }
+
             PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio where (? " +
                     "between dataInicioSeriacao AND dataFimSeriacao) AND idColaborador = ? ");
             pstmtAnuncios.setDate(1, Data.dataAtual().getDataSQL());
             pstmtAnuncios.setInt(2, idColaborador);
             ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
 
-            ArrayList<Anuncio> listaAnuncios = montarListaAnuncios(rSetAnuncios);
+            ArrayList<Anuncio> listaAnuncios = montarListaAnunciosAlt(rSetAnuncios, idsRegistados);
             pstmtAnuncios.close();
             rSetAnuncios.close();
             return listaAnuncios;
@@ -214,6 +223,8 @@ public class RepositorioAnuncio {
             throw new FetchingProblemException("Problemas ao montar a lista de anuncios");
         }
     }
+
+
 
 
     /**
@@ -373,6 +384,116 @@ public class RepositorioAnuncio {
             e.printStackTrace();
         }
         return listaAnuncios;
+    }
+
+    private ArrayList<Anuncio> montarListaAnunciosAlt(ResultSet rSetAnuncios, ArrayList<Integer> idsRegistados) {
+        ArrayList<Anuncio> listaAnuncios = new ArrayList<>();
+
+        try {
+            while (rSetAnuncios.next()) {
+                Anuncio anuncio = montarAnuncioAlt(rSetAnuncios, idsRegistados);
+                if (anuncio != null) {
+                    listaAnuncios.add(anuncio);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+        return listaAnuncios;
+    }
+
+    private Anuncio montarAnuncioAlt(ResultSet row, ArrayList<Integer> idsRegistados) throws SQLException {
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+        Anuncio anuncio = null;
+
+
+        try {
+            if (row.getRow() < 1) {
+                row.next();
+            }
+
+            if (idsRegistados.contains(row.getInt(1))) {
+                return anuncio;
+            }
+
+            //montar tarefa
+            PreparedStatement pstmt = conn.prepareStatement("SELECT idTarefa FROM Anuncio WHERE idAnuncio = ?");
+            pstmt.setInt(1, row.getInt("idAnuncio"));
+            ResultSet rSetTarefa = pstmt.executeQuery();
+            rSetTarefa.next();
+            int idTarefa = rSetTarefa.getInt("idTarefa");
+
+            PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
+            pstmt2.setInt(1, idTarefa);
+
+            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
+
+            //montar tipoRegimento
+
+            PreparedStatement pstmt3 = conn.prepareStatement("SELECT idTipoRegimento FROM Anuncio WHERE idAnuncio = ?");
+            pstmt3.setInt(1, row.getInt("idAnuncio"));
+            ResultSet rSetTipoRegimento = pstmt3.executeQuery();
+            rSetTipoRegimento.next();
+            int idTipoRegimento = rSetTipoRegimento.getInt("idTipoRegimento");
+
+            PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM TipoRegimento WHERE idTipoRegimento = ?");
+            pstmt4.setInt(1, idTipoRegimento);
+            ResultSet rSetTipoRegimento2 = pstmt4.executeQuery();
+            rSetTipoRegimento2.next();
+
+            String designacao = rSetTipoRegimento2.getString("designacao");
+            String regras = rSetTipoRegimento2.getString("descricaoRegras");
+
+            TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
+
+            //Datas Anúncio
+
+            Date datasql = row.getDate("dataInicioPublicitacao");
+            String[] dataString = datasql.toString().split("-");
+            Data dataInicioPub = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
+                    , Integer.parseInt(dataString[2]));
+            Date datasql2 = row.getDate("dataFimPublicitacao");
+            String[] dataString2 = datasql2.toString().split("-");
+            Data dataFimPub = new Data(Integer.parseInt(dataString2[0]), Integer.parseInt(dataString2[1])
+                    , Integer.parseInt(dataString2[2]));
+            Date datasql3 = row.getDate("dataInicioCandidatura");
+            String[] dataString3 = datasql3.toString().split("-");
+            Data dataInicioCand = new Data(Integer.parseInt(dataString3[0]), Integer.parseInt(dataString3[1])
+                    , Integer.parseInt(dataString3[2]));
+            Date datasql4 = row.getDate("dataFimCandidatura");
+            String[] dataString4 = datasql4.toString().split("-");
+            Data dataFimCand = new Data(Integer.parseInt(dataString4[0]), Integer.parseInt(dataString4[1])
+                    , Integer.parseInt(dataString4[2]));
+            Date datasql5 = row.getDate("dataInicioSeriacao");
+            String[] dataString5 = datasql5.toString().split("-");
+            Data dataInicioSer = new Data(Integer.parseInt(dataString5[0]), Integer.parseInt(dataString5[1])
+                    , Integer.parseInt(dataString5[2]));
+            Date datasql6 = row.getDate("dataFimSeriacao");
+            String[] dataString6 = datasql6.toString().split("-");
+            Data dataFimSer = new Data(Integer.parseInt(dataString6[0]), Integer.parseInt(dataString6[1])
+                    , Integer.parseInt(dataString6[2]));
+
+            anuncio = new Anuncio(tarefa, tipoRegimento, dataInicioPub, dataFimPub, dataInicioCand, dataFimCand, dataInicioSer, dataFimSer);
+
+            pstmt.close();
+            pstmt2.close();
+            pstmt3.close();
+            pstmt4.close();
+            rSetTarefa.close();
+            rSetTipoRegimento.close();
+            rSetTipoRegimento2.close();
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+        if (anuncio != null) {
+            return anuncio;
+        } else {
+            throw new FetchingProblemException("Problema ao montar anúncio");
+        }
     }
 
 
