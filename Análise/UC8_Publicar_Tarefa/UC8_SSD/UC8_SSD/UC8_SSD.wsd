@@ -10,6 +10,7 @@ activate ":Sistema"
 ":Sistema" --> Colaborador_Organizacao: 2 solicita identificação da tarefa previamente criada e os dados para a publicação da tarefa (período de publicação, período de candidaturas, período de seriação e tipo de regimento)
 deactivate ":Sistema"
 Colaborador_Organizacao -> ":Sistema": 3 introduz a identificação da tarefa e os dados solicitados
+
 activate ":Sistema"
 ":Sistema" --> Colaborador_Organizacao: 4 cria o anúncio e informa do sucesso da operação
 deactivate ":Sistema"
