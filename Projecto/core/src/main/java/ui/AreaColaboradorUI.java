@@ -50,16 +50,16 @@ public class AreaColaboradorUI implements Initializable {
 
     public BorderPane publicarTarefaPane;
     public BorderPane IniciarSeriacaoPane;
-    public ListView listViewAnunciosSeriarAnuncio;
+    public ListView<Anuncio> listViewAnunciosSeriarAnuncio;
     public BorderPane seriacaoManualPane;
-    public ListView listViewCandidaturasPorSelecionarSeriacaoManual;
-    public ListView listViewColaboradoresPorSelecionarSeriacaoManual;
-    public ListView listViewCandidaturasSelecionadasSeriacaoManual;
-    public ListView listViewColaboradoresSelecionadosSeriacaoManual;
+    public ListView<Candidatura> listViewCandidaturasPorSelecionarSeriacaoManual;
+    public ListView<Colaborador> listViewColaboradoresPorSelecionarSeriacaoManual;
+    public ListView<Candidatura> listViewCandidaturasSelecionadasSeriacaoManual;
+    public ListView<Colaborador> listViewColaboradoresSelecionadosSeriacaoManual;
     public Button adicionarColaboradorSeriacaoManualAction;
     public Button removerUltimoColaboradorSeriacaoManualAction;
     public BorderPane seriacaoAutomaticaPane;
-    public ListView listViewCandidaturasSeriarAnuncioSeriacaoAutomatica;
+    public ListView<Candidatura> listViewCandidaturasSeriarAnuncioSeriacaoAutomatica;
     public BorderPane homePane;
 
 
@@ -67,6 +67,7 @@ public class AreaColaboradorUI implements Initializable {
     private PublicarTarefaController publicarTarefaController;
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
+    private SeriarCandidaturaController seriarCandidaturaController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,6 +75,7 @@ public class AreaColaboradorUI implements Initializable {
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         publicarTarefaController = new PublicarTarefaController();
+        seriarCandidaturaController = new SeriarCandidaturaController();
 
         try {
             comboCategoriaTarefa.getItems().setAll(serviceController.getCategoriasTarefa());
@@ -279,21 +281,21 @@ public class AreaColaboradorUI implements Initializable {
         criarTarefaPane.setDisable(true);
         publicarTarefaPane.setVisible(false);
         publicarTarefaPane.setDisable(true);
-//        try {
-//        if(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem().getTipoRegimento().getDesignacao().equalsIgnoreCase("automático")){
-
-        //ligar
-        seriacaoAutomaticaPane.setDisable(false);
-        seriacaoAutomaticaPane.setVisible(true);
-//        }else
-        //ligar
-        //seriacaoManualPane.setDisable(false);
-        //seriacaoManualPane.setVisible(true);
-//        } catch (Exception e) {
-//            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-//                    "Problema ao seriar anúncios.",
-//                    e.getMessage()).show();
-//        }
+        try {
+            if (seriarCandidaturaController.isSeriacaoAutomatica(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem())) {
+                //ligar
+                seriacaoAutomaticaPane.setDisable(false);
+                seriacaoAutomaticaPane.setVisible(true);
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().setAll(seriarCandidaturaController.)
+            } else
+                //ligar
+                seriacaoManualPane.setDisable(false);
+                seriacaoManualPane.setVisible(true);
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema ao iniciar seriação.",
+                    e.getMessage()).show();
+        }
     }
 
     public void finalizarSeriacaoManualAction(ActionEvent actionEvent) {
@@ -307,14 +309,14 @@ public class AreaColaboradorUI implements Initializable {
             actionEvent.consume();
         } else {
             try {
-            listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
-            listViewCandidaturasPorSelecionarSeriacaoManual.getItems().clear();
-            listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
-            listViewColaboradoresSelecionadosSeriacaoManual.getItems().clear();
-            seriacaoManualPane.setDisable(true);
-            seriacaoManualPane.setVisible(false);
-            IniciarSeriacaoPane.setVisible(true);
-            IniciarSeriacaoPane.setDisable(false);
+                listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
+                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().clear();
+                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
+                listViewColaboradoresSelecionadosSeriacaoManual.getItems().clear();
+                seriacaoManualPane.setDisable(true);
+                seriacaoManualPane.setVisible(false);
+                IniciarSeriacaoPane.setVisible(true);
+                IniciarSeriacaoPane.setDisable(false);
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Problema ao voltar ao menu anterior.",
@@ -368,7 +370,13 @@ public class AreaColaboradorUI implements Initializable {
         //ligar
         IniciarSeriacaoPane.setDisable(false);
         IniciarSeriacaoPane.setVisible(true);
-        listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.);
+        try {
+            listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail()));
+        } catch (SQLException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }
     }
 
     public void goHomeSelectAction(ActionEvent actionEvent) {

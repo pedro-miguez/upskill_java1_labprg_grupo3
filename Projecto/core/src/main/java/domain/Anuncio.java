@@ -320,4 +320,7 @@ public class Anuncio implements Serializable {
         return getTarefa().equals(anuncio.tarefa);
     }
 
+    public boolean isSeriacaoAutomatica() {
+            return this.tipoRegimento.getDesignacao().equalsIgnoreCase("seriação automatica");
+    }
 }
