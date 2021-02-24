@@ -38,7 +38,16 @@ deactivate Colaborador
 PublicarTarefaCTRL -> "ra:RepositorioAnuncio" : 13 plat.getRepoAnuncio()
 activate "ra:RepositorioAnuncio"
 deactivate "ra:RepositorioAnuncio"
-PublicarTarefaCTRL
+PublicarTarefaCTRL -> "ra:RepositorioAnuncio" : 14 anuncio = publicarTarefa()
+activate "ra:RepositorioAnuncio"
+"ra:RepositorioAnuncio" -> CodigoUnico** : 15 create(codigoUnico)
+PublicarTarefaCTRL -> "ra:RepositorioAnuncio" : 16 addAnuncio(anuncio)
+"ra:RepositorioAnuncio" --> PublicarTarefaCTRL : 17 ok
+deactivate "ra:RepositorioAnuncio"
+deactivate PublicarTarefaCTRL
+AreaColaboradorUI --> ColaboradorUtilizador : 18 operação bem sucedida
+deactivate AreaColaboradorUI
+deactivate ColaboradorUtilizador
 
 
 @enduml
