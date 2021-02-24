@@ -333,6 +333,14 @@ public class AreaColaboradorUI implements Initializable {
                 seriacaoManualPane.setVisible(false);
                 IniciarSeriacaoPane.setVisible(true);
                 IniciarSeriacaoPane.setDisable(false);
+                try {
+                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail()));
+                } catch (SQLException e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
+
             }
 
         } catch (IllegalArgumentException e) {
@@ -428,6 +436,13 @@ public class AreaColaboradorUI implements Initializable {
                 seriacaoAutomaticaPane.setVisible(false);
                 IniciarSeriacaoPane.setVisible(true);
                 IniciarSeriacaoPane.setDisable(false);
+                try {
+                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail()));
+                } catch (SQLException e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
             }
 
         } catch (IllegalArgumentException e) {
