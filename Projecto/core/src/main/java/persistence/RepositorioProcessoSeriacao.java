@@ -37,6 +37,14 @@ public class RepositorioProcessoSeriacao {
 
     }
 
+    /**
+     * Boolean method that checks if a serialization process exists in the 
+     * repository, otherwise it is added to it.
+     * 
+     * @param processoSeriacao
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertProcessoSeriacao(ProcessoSeriacao processoSeriacao) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
