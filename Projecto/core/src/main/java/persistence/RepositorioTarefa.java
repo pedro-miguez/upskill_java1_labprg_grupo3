@@ -250,8 +250,6 @@ public class RepositorioTarefa implements Serializable {
             rSetOrg.close();
             rSetListaCaracterizacao.close();
 
-             rSetTarefa.close();
-
 
         } catch (SQLException e) {
             e.getSQLState();

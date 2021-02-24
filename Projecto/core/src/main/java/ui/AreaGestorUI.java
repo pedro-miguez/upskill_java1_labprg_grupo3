@@ -142,6 +142,7 @@ public class AreaGestorUI implements Initializable {
         txtNomeColaborador.clear();
         txtContactoColaborador.clear();
         txtEmailColaborador.clear();
+        txtFuncaoColaborador.clear();
     }
 
     //Limpar campos do registo tarefa

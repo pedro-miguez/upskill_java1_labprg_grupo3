@@ -159,9 +159,8 @@ public class RepositorioColaborador implements Serializable {
             Email email = new Email(row.getString(6));
             colaborador = new Colaborador(nome, telefone, email, funcao);
 
-            if (row.isLast()) {
-                row.close();
-            }
+            row.close();
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
