@@ -280,7 +280,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="seriacaoManualPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="seriacaoManualPane" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -343,17 +343,17 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#removerUltimaCandidaturaSeriacaoManualAction" text="Remover Última" textAlignment="CENTER" wrapText="true" />
+                                    <Button fx:id="btnRemoverUltimaCandidatura" disable="true" mnemonicParsing="false" onAction="#removerUltimaCandidaturaSeriacaoManualAction" text="Remover Última" textAlignment="CENTER" wrapText="true" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Button fx:id="adicionarColaboradorSeriacaoManualAction" mnemonicParsing="false" prefHeight="45.0" prefWidth="87.0" text="Adicionar Colaborador" textAlignment="CENTER" wrapText="true">
+                                    <Button mnemonicParsing="false" onAction="#adicionarColaboradorSeriacaoManualAction" prefHeight="45.0" prefWidth="87.0" text="Adicionar Colaborador" textAlignment="CENTER" wrapText="true">
                                        <VBox.margin>
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="removerUltimoColaboradorSeriacaoManualAction" mnemonicParsing="false" text="Remover Último" textAlignment="CENTER" wrapText="true" />
+                                    <Button fx:id="btnRemoverUltimoColaborador" disable="true" mnemonicParsing="false" onAction="#removerUltimoColaboradorSeriacaoManualAction" text="Remover Último" textAlignment="CENTER" wrapText="true" />
                                  </children>
                               </VBox>
                            </children>

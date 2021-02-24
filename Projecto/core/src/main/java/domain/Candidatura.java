@@ -170,11 +170,11 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
      *
      */
     public String toString(){
-        return String.format("ID Anúncio: %s%nEmail Freelancer: %s%n" +
-                "Data Candidatura: %s%nValor pretendido: %s POTS" +
+        return String.format("Email Freelancer: %s%n" +
+                "Valor pretendido: %s POTS" +
                 "%nN.º de dias: %d%nApresentação:%s%n" +
-                "Motivação: %s", this.anuncio.getTarefa().getCodigoUnico(), this.freelancer.getEmail(),
-                this.dataCandidatura, this.valorPretendido, this.nrDias,
+                "Motivação: %s", this.freelancer.getEmail(),
+                 this.valorPretendido, this.nrDias,
                 this.txtApresentacao, this.txtMotivacao);
     }
     

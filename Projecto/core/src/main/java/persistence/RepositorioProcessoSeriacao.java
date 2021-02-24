@@ -8,6 +8,7 @@ import exceptions.FetchingProblemException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class responsible for creating a repository to store information about
@@ -155,6 +156,11 @@ public class RepositorioProcessoSeriacao {
         }
 
         return false;
+    }
+
+    public ProcessoSeriacao criarProcessoSeriacao(Anuncio anuncio, List<Classificacao> classificacao,
+            List<Colaborador> colaboradores) {
+        return new ProcessoSeriacao(anuncio, classificacao, colaboradores);
     }
 
 }
