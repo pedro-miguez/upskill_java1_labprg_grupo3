@@ -1,0 +1,42 @@
+@startuml 
+actor FreelancerUser as FreelancerUser
+FreelancerUser -> "AreaFreelancerUI" : 1 Inicia sessao para se poder candidatar
+activate FreelancerUser
+activate AreaFreelancerUI
+AreaFreelancerUI -> EfetuarCandidaturaCtrl : 2 getAnunciosMatched(String emailFreelancer)
+activate EfetuarCandidaturaCtrl
+EfetuarCandidaturaCtrl -> RepositorioFreelancer : 3 freelancer = getFreelancerByEmail(new Email(emailFreelancer))
+activate RepositorioFreelancer
+deactivate RepositorioFreelancer
+
+EfetuarCandidaturaCtrl -> RepositorioAnuncio : 4 todosAnuncios = getAllAnunciosCandidatura()
+activate RepositorioAnuncio
+deactivate RepositorioAnuncio
+
+EfetuarCandidaturaCtrl -> RepositorioCandidatura : 5 candidaturasFreelancers = getAllCandidaturasFreelancer(freelancer.getEmail())
+activate RepositorioCandidatura
+deactivate RepositorioCandidatura
+
+EfetuarCandidaturaCtrl --> AreaFreelancerUI : lista os anuncios aos quais o freelancer se pode candidatar
+deactivate EfetuarCandidaturaCtrl
+
+AreaFreelancerUI -> EfetuarCandidaturaCtrl : efetuarCandidatura(anuncio, emailFreelancer, dataCandidatura,\nvalorPretendido, nrDias, txtApresentacao, txtMotivacao)
+activate EfetuarCandidaturaCtrl
+
+EfetuarCandidaturaCtrl -> RepositorioCandidatura : criarCandidatura(anuncio, freelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao)
+activate RepositorioCandidatura
+
+RepositorioCandidatura -> BaseDados : insertCandidatura(Candidatura candidatura)
+activate BaseDados
+RepositorioCandidatura <-- BaseDados : 12 ok
+deactivate RepositorioCandidatura
+deactivate BaseDados
+
+deactivate EfetuarCandidaturaCtrl
+AreaFreelancerUI -> RepositorioCandidatura : 13 getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+activate RepositorioCandidatura
+RepositorioCandidatura --> AreaFreelancerUI : 13 OK
+deactivate RepositorioCandidatura
+AreaFreelancerUI --> FreelancerUser : 14 operação bem sucedida, \n mostra dados
+deactivate AreaFreelancerUI
+@enduml
