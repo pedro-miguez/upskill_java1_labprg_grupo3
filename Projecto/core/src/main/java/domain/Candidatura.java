@@ -53,11 +53,18 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
         
     }
     
-  
+    /**
+     * Get advertisement.
+     * @return anuncio
+     */
     public Anuncio getAnuncio() {
         return this.anuncio;
     }
     
+    /**
+     * Get freelancer.
+     * @return freelancer
+     */
     public Freelancer getFreelancer() {
         return this.freelancer;
     }
