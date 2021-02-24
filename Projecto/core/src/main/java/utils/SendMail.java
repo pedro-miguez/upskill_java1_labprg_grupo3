@@ -1,16 +1,16 @@
-/*
 package utils;
 
-import javax.activation.*;
-import javax.jms.Session;
+import javax.mail.Session;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SendMail {
 
-    public static void sendMail(String recipient) {
-
+    public static void sendMail(String recepient) throws Exception {
+        System.out.println("Preparing to send email");
         Properties properties = new Properties();
 
         properties.put("mail.stmp.auth", "true");
@@ -29,13 +29,22 @@ public class SendMail {
             }
         });
 
-       Message message = prepareMessage();
+       Message message = prepareMessage(session, myAccountEmail, recepient);
+
+       Transport.send(message);
+       System.out.println("Message sent succesfully");
     }
 
-    private static Mesasge prepareMessage(Session session){
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(myAccountEmail));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        message
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient) {
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+            message.setSubject("Password for T4J");
+            message.setText("Hey there, \n Here is your password to be able to log in in to T4J: ");
+        } catch (Exception ex) {
+            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
-}*/
+}
