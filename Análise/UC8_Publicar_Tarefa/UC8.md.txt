@@ -1,0 +1,23 @@
+# UC8 – Publicar Tarefa<br/>
+
+##### [Voltar ao início](https://github.com/pedro-miguez/upskill_java1_labprg_grupo3/blob/main/README.md)
+
+## Formato Breve:<br/><br/>
+
+O colaborador da organização inicia a publicação de uma tarefa. O sistema solicita a identificação da tarefa previamente criada pelo colaborador da organização. O colaborador identifica a tarefa. O sistema solicita os dados necessários para a publicação da tarefa (i.e. período de publicitação, período de apresentação de candidaturas, período de seriação, período de decisão e tipo de regimento aplicável). O colaborador da organização introduz os dados solicitados. O sistema valida e apresenta os dados ao colaborador da organização e pede a sua confirmação. O colaborador da organização confirma. O sistema regista os dados e cria um anúncio e informa o colaborador do sucesso da operação.
+
+#### SSD
+
+![UC8-Diagrama de Sequência de Sistema.png](UC8-Diagrama de Sequência de Sistema.png)
+
+##### Diagrama de Sequência
+
+![UC8-Diagrama de Sequência.png](UC8-Diagrama de Sequência.png)
+
+#### Diagrama de Classes
+
+![UC8-Diagrama de Classes.png](UC8-Diagrama de Classes.png)
+
+#### Excerto Modelo de Domínio
+
+![UC8-Excerto de Modelo de Dominio.png](UC8-Excerto de Modelo de Dominio.png)
