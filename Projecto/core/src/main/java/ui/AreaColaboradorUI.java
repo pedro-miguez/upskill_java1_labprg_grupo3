@@ -291,16 +291,21 @@ public class AreaColaboradorUI implements Initializable {
                 //ligar
                 seriacaoAutomaticaPane.setDisable(false);
                 seriacaoAutomaticaPane.setVisible(true);
+                seriacaoManualPane.setDisable(true);
+                seriacaoManualPane.setVisible(false);
                 listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().setAll(seriarCandidaturaController.
                         candidaturasSeriadasPorValor(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
-            } else
+            } else {
                 //ligar
                 seriacaoManualPane.setDisable(false);
                 seriacaoManualPane.setVisible(true);
+                seriacaoAutomaticaPane.setDisable(true);
+                seriacaoAutomaticaPane.setVisible(false);
                 listViewCandidaturasPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
                         getAllCandidaturasPorSelecionar(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
                 listViewColaboradoresPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
                         getAllColaboradoresOrganizacao(authenticationController.getEmail()));
+            }
 
         } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
@@ -414,7 +419,7 @@ public class AreaColaboradorUI implements Initializable {
             boolean seriou = seriarCandidaturaController.criarProcessoSeriacao(listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems(),
                     new ArrayList<Colaborador>());
 
-            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar novo Anúncio.",
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Seriação de Candidaturas.",
                     seriou ? "Seriação Automática realizada com sucesso! \n\n"
                             : "Não foi possível seriar automáticamente as candidaturas.").show();
             if (seriou) {
