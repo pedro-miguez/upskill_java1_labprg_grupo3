@@ -121,8 +121,10 @@ public class RepositorioColaborador implements Serializable {
 
             CallableStatement cs = conn.prepareCall("SELECT idOrganizacao FROM Colaborador WHERE email = ?");
             cs.setString(1, email.toString());
+            ResultSet rSetColaborador = cs.executeQuery();
+            rSetColaborador.next();
 
-            int orgID = cs.getInt("idOrganizacao");
+            int orgID = rSetColaborador.getInt("idOrganizacao");
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Colaborador WHERE idOrganizacao = ?");
             pstmt.setInt(1, orgID);
@@ -131,6 +133,7 @@ public class RepositorioColaborador implements Serializable {
 
             cs.close();
             pstmt.close();
+            rSetColaborador.close();
 
             return listaColaboradores;
         } catch (SQLException e) {
