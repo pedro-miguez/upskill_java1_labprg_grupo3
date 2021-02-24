@@ -95,7 +95,7 @@ public class MainApp extends Application {
 
     public static void main(String[] args) throws Exception {
         launch(args);
-        SendMail.sendMail("victor88_6@msn.com");
+        /*SendMail.sendMail("victor88_6@msn.com");*/
     }
 
     public ScreenController getScreenController() {
