@@ -33,38 +33,35 @@ end;
 /
 
 
-create or replace procedure createProcessoSeriacao(
-    p_idAnuncio Anuncio.idAnuncio%type,
-    p_idTipoRegimento TipoRegimento.idTipoRegimento%type,
-    p_dataRealizacao ProcessoSeriacao.dataRealizacao%type
-)
+- createUtilizadorFreelancer()
+
+create or replace procedure createUtilizadorFreelancer(
+ p_nome utilizador.nome%type
+, p_email utilizador.email%type
+, p_palavraPasse utilizador.palavraPasse%type
+, p_telefone Freelancer.telefone%type,
+p_nif Freelancer.NIF%type)
 is
+ v_id utilizador.idUtilizador%type;
 begin
-    insert into ProcessoSeriacao(idAnuncio, idTipoRegimento, dataRealizacao)
-    values (p_idAnuncio, p_idTipoRegimento, p_dataRealizacao);
+ insert into Utilizador(nome, email, palavraPasse, designacao)
+ values(p_nome, p_email, p_palavraPasse, 'freelancer') returning idUtilizador into v_id;
+ insert into Freelancer(idFreelancer, NIF, nome, telefone, email) 
+ values(v_id, p_NIF, p_nome, p_telefone, p_email);
 end;
 /
 
-create or replace procedure createClassificacao(
-    p_idAnuncio Anuncio.idAnuncio%type,
-    p_idFreelancer Freelancer.idFreelancer%type,
-    p_lugar Classificacao.lugar%type
-)
-is
-begin
-    insert into Classificacao(idAnuncio, idFreelancer, lugar)
-    values (p_idAnuncio, p_idFreelancer, p_lugar);
-end;
-/
+- createUtilizadorAdministrativo()
 
-create or replace procedure createProcessoSeriacaoColaborador(
-    p_idAnuncio Anuncio.idAnuncio%type,
-    p_idColaborador Colaborador.idColaborador%type,
-    p_idOrganizacao Organizacao.idOrganizacao%type
-)
+create or replace procedure createUtilizadorAdministrativo(
+ p_nome utilizador.nome%type,
+ p_email utilizador.email%type)
 is
+ v_id utilizador.idUtilizador%type;
 begin
-    insert into ProcessoSeriacaoColaborador(idAnuncio, idColaborador, idOrganizacao)
-    values (p_idAnuncio, p_idColaborador, p_idOrganizacao);
+ insert into Utilizador(nome, email, palavraPasse, designacao)
+ values(p_nome, p_email, p_palavraPasse, 'administrativo') returning idUtilizador into v_id;
+ insert into Administrativo(idAdministrativo, nome, email) 
+ values(v_id, p_nome, p_email);
 end;
 /

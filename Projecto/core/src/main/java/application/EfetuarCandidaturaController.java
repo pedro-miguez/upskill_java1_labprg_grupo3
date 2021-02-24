@@ -33,7 +33,7 @@ public class EfetuarCandidaturaController {
      */
     public ArrayList<Anuncio> getAnunciosMatched(String emailFreelancer) throws SQLException {
         Freelancer freelancer = repositorioFreelancer.getFreelancerByEmail(new Email(emailFreelancer));
-        ArrayList<Anuncio> todosAnuncios = repositorioAnuncio.getAllAnuncios();
+        ArrayList<Anuncio> todosAnuncios = repositorioAnuncio.getAllAnunciosCandidatura();
         ArrayList<Candidatura> candidaturasFreelancers = repoCandidatura.getAllCandidaturasFreelancer(freelancer.getEmail());
         ArrayList<Anuncio> anunciosMatched = new ArrayList<>();
 
@@ -70,8 +70,6 @@ public class EfetuarCandidaturaController {
      */
     public boolean efetuarCandidatura(Anuncio anuncio, String emailFreelancer, LocalDate dataCandidatura,
                                       double valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao) throws SQLException {
-
-
 
         Freelancer freelancer = repositorioFreelancer.getFreelancerByEmail(new Email(emailFreelancer));
 

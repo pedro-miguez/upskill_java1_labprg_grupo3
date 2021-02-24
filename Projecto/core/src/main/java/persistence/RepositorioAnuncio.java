@@ -155,6 +155,30 @@ public class RepositorioAnuncio {
         }
     }
 
+    public ArrayList<Anuncio> getAllAnunciosCandidatura () {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+
+
+            PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio where ? " +
+                    "between dataInicioCandidatura AND dataFimCandidatura");
+            pstmtAnuncios.setDate(1, Data.dataAtual().getDataSQL());
+            ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
+
+            ArrayList<Anuncio> listaAnuncios = montarListaAnuncios(rSetAnuncios);
+            pstmtAnuncios.close();
+            rSetAnuncios.close();
+            return listaAnuncios;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
+            throw new FetchingProblemException("Problemas ao montar a lista de anuncios");
+        }
+    }
+
 
     /**
      * Method to obtain a advertisement by a task.

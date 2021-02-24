@@ -210,8 +210,8 @@ create or replace procedure createAnuncio(
     p_dataFimSer anuncio.dataFimSeriacao%type) 
     is
     begin 
-insert into Anuncio(IdTarefa, idTipoRegimento, dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
-                    dataInicioSeriacao, dataFimSeriacao) values (p_idTarefa, p_idTipoRegimento, p_dataInicioPub, p_dataFimPub,
+insert into Anuncio(IdTarefa, idTipoRegimento, idEstadoAnuncio, dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
+                    dataInicioSeriacao, dataFimSeriacao) values (p_idTarefa, p_idTipoRegimento, 1, p_dataInicioPub, p_dataFimPub,
                     p_dataInicioCand, p_dataFimCand, p_dataInicioSer, p_dataFimSer); 
 end;
 /

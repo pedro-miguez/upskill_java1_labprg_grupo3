@@ -43,6 +43,8 @@ create table Anuncio (
         constraint ck_Anuncio_idTarefa check (idTarefa > 0),
     idTipoRegimento integer
         constraint nn_Anuncio_idTipoRegimento not null,
+    idEstadoAnuncio integer
+        constraint nn_Anuncio_idEstadoAnuncio not null,
     dataInicioPublicitacao date 
         constraint nn_Anuncio_dataInicioPublicitacao not null 
         constraint ck_Anuncio_dataInicioPublicitacao check (dataInicioPublicitacao > TO_DATE('2021-01-01', 'yyyy-mm-dd')),
@@ -321,6 +323,14 @@ create table  CaraterizacaoCompetenciaTecnica (
 );
 
 
+create table EstadoAnuncio (
+    idEstadoAnuncio integer generated as identity primary key 
+        constraint ck_EstadoAnuncio_idEstadoAnuncio check (idEstadoAnuncio > 0),
+    designacao varchar(100) 
+        constraint nn_EstadoAnuncio_designacao not null
+);
+
+
 insert into Role (designacao) values ('gestor');
 insert into Role (designacao) values ('colaborador');
 insert into Role (designacao) values ('freelancer');
@@ -330,3 +340,6 @@ insert into EstadoTarefa (designacao) values ('private');
 insert into EstadoTarefa (designacao) values ('published');
 insert into EstadoTarefa (designacao) values ('closed');
 
+insert into EstadoAnuncio (designacao) values('candidatura');
+insert into EstadoAnuncio (designacao) values('seriação');
+insert into EstadoAnuncio (designacao) values('fechado');
