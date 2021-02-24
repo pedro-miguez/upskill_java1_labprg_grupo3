@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  * @author Grupo 3
  */
-public class Candidatura implements Serializable {
+public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     private Anuncio anuncio;
     
@@ -171,7 +171,7 @@ public class Candidatura implements Serializable {
      */
     public String toString(){
         return String.format("ID Anúncio: %s%nEmail Freelancer: %s%n" +
-                "Data Candidatura: %s%nValor pretendido: %s" +
+                "Data Candidatura: %s%nValor pretendido: %s POTS" +
                 "%nN.º de dias: %d%nApresentação:%s%n" +
                 "Motivação: %s", this.anuncio.getTarefa().getCodigoUnico(), this.freelancer.getEmail(),
                 this.dataCandidatura, this.valorPretendido, this.nrDias,
@@ -200,5 +200,10 @@ public class Candidatura implements Serializable {
         if (this.anuncio.equals(candid.getAnuncio())) return false;
         return this.freelancer.equals(candid.getFreelancer());
     }
-    
+
+
+    @Override
+    public int compareTo(Candidatura o) {
+        return (int) (this.getValorPretendido() - o.getValorPretendido());
+    }
 }

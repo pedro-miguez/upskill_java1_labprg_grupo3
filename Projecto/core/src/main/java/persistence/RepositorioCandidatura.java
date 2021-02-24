@@ -140,6 +140,46 @@ public class RepositorioCandidatura {
         }
     }
 
+    public ArrayList<Candidatura> getCandidaturasByAnuncio(Anuncio anuncio) {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+            int nif = Integer.parseInt(anuncio.getTarefa().getOrganizacao().getNIF().toString());
+
+            CallableStatement csIdOrg= conn.prepareCall("SELECT idOrganizacao FROM Organizacao WHERE NIF = ?");
+            csIdOrg.setInt(1, nif);
+            ResultSet rSetIdOrg = csIdOrg.executeQuery();
+            rSetIdOrg.next();
+
+            int idOrganizacao = rSetIdOrg.getInt("idOrganizacao");
+            String referenciaTarefa = anuncio.getTarefa().getCodigoUnico().toString();
+
+            CallableStatement csIdAnuncio = conn.prepareCall("{? = call getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            csIdAnuncio.registerOutParameter(1, Types.INTEGER);
+            csIdAnuncio.setString(2, referenciaTarefa );
+            csIdAnuncio.setInt(3, idOrganizacao);
+            csIdAnuncio.executeUpdate();
+
+            int idAnuncio = csIdAnuncio.getInt(1);
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Candidatura where idAnuncio = ?");
+            pstmt.setInt(1, idAnuncio);
+            ResultSet rSetCandidaturas = pstmt.executeQuery();
+
+            ArrayList<Candidatura> listaCandidaturas = montarListaCandidaturas(rSetCandidaturas);
+
+            csIdAnuncio.close();
+            csIdOrg.close();
+            rSetIdOrg.close();
+            rSetCandidaturas.close();
+            pstmt.close();
+
+            return listaCandidaturas;
+        } catch (SQLException e) {
+            throw new CodigoNaoAssociadoException("Não existem candidaturas associadas a este anuncio.");
+        }
+    }
+
     public ArrayList<Candidatura> getAllCandidaturas() {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();

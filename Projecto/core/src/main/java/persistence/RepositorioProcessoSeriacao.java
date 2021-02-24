@@ -9,11 +9,23 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for creating a repository to store information about
+ * serialization process.
+ * 
+ * @author Grupo 3
+ */
 public class RepositorioProcessoSeriacao {
 
     private static RepositorioProcessoSeriacao instance;
 
 
+    /**
+     * Static method that returns a unique reference to the class object, which 
+     * implements a singleton.
+     * 
+     * @return instance
+     */
     public static RepositorioProcessoSeriacao getInstance() {
         if (instance == null) {
             instance = new RepositorioProcessoSeriacao();
@@ -25,6 +37,14 @@ public class RepositorioProcessoSeriacao {
 
     }
 
+    /**
+     * Boolean method that checks if a serialization process exists in the 
+     * repository, otherwise it is added to it.
+     * 
+     * @param processoSeriacao
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertProcessoSeriacao(ProcessoSeriacao processoSeriacao) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 

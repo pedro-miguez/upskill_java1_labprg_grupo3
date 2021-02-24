@@ -16,4 +16,5 @@ public class SeriarCandidaturaController {
         ArrayList<Candidatura> candidaturas = RepositorioCandidatura.getInstance().get
     }
 
+
 }
