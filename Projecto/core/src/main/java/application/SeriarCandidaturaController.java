@@ -6,6 +6,12 @@ import persistence.RepositorioCandidatura;
 
 import java.util.ArrayList;
 
+/**
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for serialize application.
+ * 
+ * @author Grupo 3
+ */
 public class SeriarCandidaturaController {
 
     public boolean isSeriacaoAutomatica (Anuncio anuncio){
