@@ -368,7 +368,7 @@ public class AreaColaboradorUI implements Initializable {
         //ligar
         IniciarSeriacaoPane.setDisable(false);
         IniciarSeriacaoPane.setVisible(true);
-//        listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail());
+        listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.);
     }
 
     public void goHomeSelectAction(ActionEvent actionEvent) {
