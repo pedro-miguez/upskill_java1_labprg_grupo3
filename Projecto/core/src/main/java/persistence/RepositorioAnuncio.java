@@ -196,7 +196,7 @@ public class RepositorioAnuncio {
 
             int idColaborador = rSetIdColaborador.getInt(1);
 
-            PreparedStatement pstmtAnunciosRegistados = conn.prepareStatement("SELECT idAnuncio FROM TipoRegimento");
+            PreparedStatement pstmtAnunciosRegistados = conn.prepareStatement("SELECT idAnuncio FROM ProcessoSeriacao");
             ResultSet rSetAnunciosRegistados = pstmtAnunciosRegistados.executeQuery();
             ArrayList<Integer> idsRegistados = new ArrayList<>();
             while (rSetAnunciosRegistados.next()) {

@@ -38,8 +38,13 @@ public class SeriarCandidaturaController {
     }
 
     public boolean criarProcessoSeriacao(List<Candidatura> candidaturas,
-                                                  List<Colaborador> colaboradores) throws SQLException {
+                                                  List<Colaborador> colaboradores, String emailColaborador) throws SQLException {
     ArrayList<Classificacao> classificacoes = new ArrayList<>();
+
+    if (!colaboradores.contains(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)))) {
+        colaboradores.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)));
+    }
+
     int lugar = 0;
         for (Candidatura c : candidaturas) {
             classificacoes.add(new Classificacao(c.getAnuncio(), c.getFreelancer(), ++lugar));

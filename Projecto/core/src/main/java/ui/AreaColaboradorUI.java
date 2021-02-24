@@ -318,7 +318,8 @@ public class AreaColaboradorUI implements Initializable {
         try {
             boolean criou = seriarCandidaturaController.criarProcessoSeriacao(
                     listViewCandidaturasSelecionadasSeriacaoManual.getItems(),
-                    listViewColaboradoresSelecionadosSeriacaoManual.getItems());
+                    listViewColaboradoresSelecionadosSeriacaoManual.getItems(),
+                    authenticationController.getEmail());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Processo de seriação.",
                     criou ? "Processo de seriação realizado com sucesso!" :
@@ -425,7 +426,8 @@ public class AreaColaboradorUI implements Initializable {
         try {
 
             boolean seriou = seriarCandidaturaController.criarProcessoSeriacao(listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems(),
-                    new ArrayList<Colaborador>());
+                    new ArrayList<Colaborador>(),
+                    authenticationController.getEmail());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Seriação de Candidaturas.",
                     seriou ? "Seriação Automática realizada com sucesso! \n\n"
