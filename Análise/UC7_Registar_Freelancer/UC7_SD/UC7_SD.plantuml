@@ -18,19 +18,19 @@ group loop
 end
 "rf:RepositorioFreelancer" -> Freelancer ** : 9 create(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer, reconhecimento, habilitacoes)
 deactivate "rf:RepositorioFreelancer"
-deactivate "RegistrarFreelancerController"
-"AreaAdministrativoUI" -> RegistrarFreelancerController : 10 confirmarCriacaoFreelancerAction
-activate RegistrarFreelancerController
-"RegistrarFreelancerController" -> "ac:AuthenticationController" : 11 registarFreelancerComoUtilizador(freelancer)
+"RegistrarFreelancerController" -> "ac:AuthenticationController" : 10 registarFreelancerComoUtilizador(freelancer)
 activate "ac:AuthenticationController"
-"RegistrarFreelancerController" <-- "ac:AuthenticationController" : 12 ok
+"RegistrarFreelancerController" <-- "ac:AuthenticationController" : 11 ok
 deactivate "ac:AuthenticationController"
-"RegistrarFreelancerController" -> "SQL" : montarFreelancer
-activate "SQL"
-"RegistrarFreelancerController" <-- "SQL" : 13 ok
-deactivate "SQL"
-RegistrarFreelancerController --> AreaAdministrativoUI : 14 ok
+"RegistrarFreelancerController" -> "BaseDados" : insertUtilizadorFreelancer(freelancer, password)
+activate "BaseDados"
+"RegistrarFreelancerController" <-- "BaseDados" : 12 ok
+deactivate "BaseDados"
 deactivate "RegistrarFreelancerController"
-"AreaAdministrativoUI" --> Administrativo : 15 operação bem sucedida, \n mostra dados
+AreaAdministrativoUI -> ServiceController : 13 getFreelancerToStringCompletoByEmail(String email)
+activate ServiceController
+ServiceController --> AreaAdministrativoUI : 13 OK
+deactivate ServiceController
+"AreaAdministrativoUI" --> Administrativo : 14 operação bem sucedida, \n mostra dados
 deactivate "AreaAdministrativoUI"
 @enduml

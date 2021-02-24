@@ -149,11 +149,14 @@ public class Anuncio implements Serializable {
      */
     public void setDataFimSeriacao(Data dataFimSeriacao) {
         
-        if ((dataFimSeriacao.getDia() < dataInicioSeriacao.getDia()) && 
+        if (((dataFimSeriacao.getDia() < dataInicioSeriacao.getDia()) &&
             (dataFimSeriacao.getMes() < dataInicioSeriacao.getMes()) &&
-            (dataFimSeriacao.getAno() < dataInicioSeriacao.getAno())) {
+            (dataFimSeriacao.getAno() < dataInicioSeriacao.getAno())) ||
+                ((dataFimSeriacao.getDia() > dataFimPublicitacao.getDia()) &&
+                        (dataFimSeriacao.getMes() > dataFimPublicitacao.getMes()) &&
+                        (dataFimSeriacao.getAno() > dataFimPublicitacao.getAno()))) {
             throw new IllegalArgumentException("A data de fim de seriação "
-                    + "não deve ser inferior à data de início de seriação!");
+                    + "não deve ser inferior à data de início de seriação ou superior a data de fim de publicitacao!");
         } else {
             this.dataFimSeriacao = dataFimSeriacao;
         }
