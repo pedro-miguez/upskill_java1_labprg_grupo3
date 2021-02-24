@@ -70,7 +70,7 @@ public class EfetuarCandidaturaController {
      */
     public boolean efetuarCandidatura(Anuncio anuncio, String emailFreelancer, LocalDate dataCandidatura,
                                       double valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao) throws SQLException {
-        
+
         Freelancer freelancer = repositorioFreelancer.getFreelancerByEmail(new Email(emailFreelancer));
 
         Candidatura candidatura = repoCandidatura.criarCandidatura(anuncio, freelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao);

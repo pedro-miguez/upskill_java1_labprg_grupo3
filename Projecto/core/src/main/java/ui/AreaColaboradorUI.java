@@ -265,4 +265,7 @@ public class AreaColaboradorUI implements Initializable {
 
     public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
     }
+
+    public void goHomeSelectAction(ActionEvent actionEvent) {
+    }
 }

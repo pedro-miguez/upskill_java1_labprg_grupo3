@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -18,7 +19,19 @@
          <center>
             <StackPane prefHeight="539.0" prefWidth="632.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="criarTarefaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="899.0" visible="false">
+                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Label prefHeight="295.0" prefWidth="349.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="150.0" right="100.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="criarTarefaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="899.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="709.0" BorderPane.alignment="CENTER">
                            <children>
@@ -181,7 +194,7 @@
                         </VBox>
                      </center>
                      <top>
-                        <Label text="Publicar Tarefa" BorderPane.alignment="CENTER">
+                        <Label prefHeight="27.0" prefWidth="280.0" text="Publicar Tarefa" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -357,14 +370,25 @@
          <top>
             <Label alignment="CENTER" prefHeight="54.0" prefWidth="284.0" text="Área Colaborador" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="System Bold" size="23.0" />
+                  <Font name="System Bold" size="31.0" />
                </font>
+               <BorderPane.margin>
+                  <Insets top="15.0" />
+               </BorderPane.margin>
             </Label>
          </top>
          <left>
             <VBox alignment="TOP_CENTER" prefHeight="439.0" prefWidth="125.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnCriarTarefaSelect" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#criarTarefaSelectAction" prefHeight="44.0" prefWidth="95.0" text="Criar tarefa" textAlignment="CENTER" wrapText="true" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="110.0" mnemonicParsing="false" onAction="#goHomeSelectAction" prefHeight="31.0" prefWidth="76.0" text="Home" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="100.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnCriarTarefaSelect" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#criarTarefaSelectAction" prefHeight="44.0" prefWidth="95.0" text="Criar tarefa" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
                   <Button mnemonicParsing="false" onAction="#btnPublicarTarefaSelectAction" prefHeight="45.0" prefWidth="95.0" text="Publicar tarefa">
                      <VBox.margin>
                         <Insets top="10.0" />
