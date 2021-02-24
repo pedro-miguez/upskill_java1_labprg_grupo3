@@ -206,7 +206,7 @@
                   </BorderPane>
                   <StackPane>
                      <children>
-                        <BorderPane fx:id="IniciarSeriacaoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                        <BorderPane fx:id="IniciarSeriacaoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <bottom>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
