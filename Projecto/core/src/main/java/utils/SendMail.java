@@ -1,3 +1,4 @@
+/*
 package utils;
 
 import javax.mail.Session;
@@ -48,3 +49,4 @@ public class SendMail {
         return null;
     }
 }
+*/

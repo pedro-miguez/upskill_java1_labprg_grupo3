@@ -36,7 +36,7 @@ public class PublicarTarefaController {
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
                                   Data dataInicioPublicitacao, LocalDate dataFimPublicitacao,
                                     LocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,
-                                    LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao) 
+                                    LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao, String emailColaborador)
                                 throws SQLException {
         
         RepositorioAnuncio repAnuncio = RepositorioAnuncio.getInstance();
@@ -47,7 +47,7 @@ public class PublicarTarefaController {
                             dataInicioCandidatura, dataFimCandidatura, 
                             dataInicioSeriacao, dataFimSeriacao);
                 
-        return repAnuncio.insertAnuncio(anuncio);
+        return repAnuncio.insertAnuncio(anuncio, emailColaborador);
         
     }
     

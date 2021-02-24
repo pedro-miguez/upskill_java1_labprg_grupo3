@@ -11,7 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import utils.SendMail;
+//import utils.SendMail;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -95,7 +95,8 @@ public class MainApp extends Application {
 
     public static void main(String[] args) throws Exception {
         launch(args);
-        /*SendMail.sendMail("victor88_6@msn.com");*/
+
+        //SendMail.sendMail("victor88_6@msn.com");
     }
 
     public ScreenController getScreenController() {

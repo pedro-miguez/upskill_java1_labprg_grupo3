@@ -43,8 +43,8 @@ create table Anuncio (
         constraint ck_Anuncio_idTarefa check (idTarefa > 0),
     idTipoRegimento integer
         constraint nn_Anuncio_idTipoRegimento not null,
-    idEstadoAnuncio integer
-        constraint nn_Anuncio_idEstadoAnuncio not null,
+    idColaborador integer
+        constraint nn_Anuncio_idColaborador not null,
     dataInicioPublicitacao date 
         constraint nn_Anuncio_dataInicioPublicitacao not null 
         constraint ck_Anuncio_dataInicioPublicitacao check (dataInicioPublicitacao > TO_DATE('2021-01-01', 'yyyy-mm-dd')),

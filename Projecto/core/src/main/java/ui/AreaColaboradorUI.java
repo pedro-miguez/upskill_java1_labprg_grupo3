@@ -184,6 +184,12 @@ public class AreaColaboradorUI implements Initializable {
         txtDuracaoEstimadaTarefa.clear();
         txtCustoEstimadoTarefa.clear();
         comboCategoriaTarefa.setValue(null);
+        btnDataFimPub.getEditor().clear();
+        btnDataFimCand.getEditor().clear();
+        btnDataFimSeriacao.getEditor().clear();
+        btnDataInicioCand.getEditor().clear();
+        btnDataInicioSeriacao.getEditor().clear();
+        btnTipoRegimento.setValue(null);
     }
 
     //volta à janela inicial
@@ -194,9 +200,17 @@ public class AreaColaboradorUI implements Initializable {
     public void publicarTarefaAction(ActionEvent actionEvent) {
 
         try {
-            boolean publicou = publicarTarefaController.publicarTarefa(listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem(),
-                    btnTipoRegimento.getValue(), Data.dataAtual(), btnDataFimPub.getValue(), btnDataInicioCand.getValue(),
-                    btnDataFimCand.getValue(), btnDataInicioSeriacao.getValue(), btnDataFimSeriacao.getValue());
+
+            boolean publicou = publicarTarefaController.publicarTarefa(
+                    listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem(),
+                    btnTipoRegimento.getValue(),
+                    Data.dataAtual(),
+                    btnDataFimPub.getValue(),
+                    btnDataInicioCand.getValue(),
+                    btnDataFimCand.getValue(),
+                    btnDataInicioSeriacao.getValue(),
+                    btnDataFimSeriacao.getValue(),
+                    authenticationController.getEmail());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar novo Anúncio.",
                     publicou ? "Anúncio criado com sucesso! \n\n" +
@@ -205,19 +219,24 @@ public class AreaColaboradorUI implements Initializable {
 
             if (publicou) {
                 limparDados();
+                try {
+                    listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authenticationController.getEmail()));
+                } catch (Exception e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
             }
 
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
                     e.getMessage()).show();
-        } catch (SQLException throwables) {
+        } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Erro de SQL.",
-                    throwables.getMessage()).show();
-            throwables.printStackTrace();
+                    "Erro nos dados.",
+                    "Datas inválidas ou campos em falta");
         }
-
     }
 
     public void btnLimparDadosPublicarTarefaAction(ActionEvent actionEvent) {
@@ -349,7 +368,7 @@ public class AreaColaboradorUI implements Initializable {
         //ligar
         IniciarSeriacaoPane.setDisable(false);
         IniciarSeriacaoPane.setVisible(true);
-//        listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail());
+        listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.);
     }
 
     public void goHomeSelectAction(ActionEvent actionEvent) {

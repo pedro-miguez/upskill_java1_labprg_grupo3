@@ -47,10 +47,17 @@ public class RepositorioAnuncio {
      * @return boolean
      * @throws SQLException 
      */
-    public boolean insertAnuncio(Anuncio anuncio) throws SQLException {
+    public boolean insertAnuncio(Anuncio anuncio, String emailColaborador) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
+            CallableStatement csIdColaborador = conn.prepareCall("SELECT idColaborador FROM Colaborador WHERE email = ?");
+            csIdColaborador.setString(1, emailColaborador);
+            ResultSet rSetIdColaborador = csIdColaborador.executeQuery();
+            rSetIdColaborador.next();
+
+            int idColaborador = rSetIdColaborador.getInt(1);
+
 
             CallableStatement cs1 = conn.prepareCall("SELECT idTarefa FROM Tarefa WHERE referenciaTarefa = ?");
             cs1.setString(1, anuncio.getTarefa().getCodigoUnico().toString());
@@ -66,7 +73,7 @@ public class RepositorioAnuncio {
 
             int idTipoRegimento = rSetidTipoRegimento.getInt(1);
 
-            CallableStatement cs3 = conn.prepareCall("{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?)}");
+            CallableStatement cs3 = conn.prepareCall("{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
 
 
@@ -80,6 +87,7 @@ public class RepositorioAnuncio {
             cs3.setDate(6, anuncio.getDataFimCandidatura().getDataSQL());
             cs3.setDate(7, anuncio.getDataInicioSeriacao().getDataSQL());
             cs3.setDate(8, anuncio.getDataFimSeriacao().getDataSQL());
+            cs3.setInt(9, idColaborador);
 
 
             cs3.executeQuery();
@@ -159,11 +167,39 @@ public class RepositorioAnuncio {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
-
-
-            PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio where ? " +
-                    "between dataInicioCandidatura AND dataFimCandidatura");
+            PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio where (? " +
+                    "between dataInicioCandidatura AND dataFimCandidatura)");
             pstmtAnuncios.setDate(1, Data.dataAtual().getDataSQL());
+            ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
+
+            ArrayList<Anuncio> listaAnuncios = montarListaAnuncios(rSetAnuncios);
+            pstmtAnuncios.close();
+            rSetAnuncios.close();
+            return listaAnuncios;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
+            throw new FetchingProblemException("Problemas ao montar a lista de anuncios");
+        }
+    }
+
+    public ArrayList<Anuncio> getAllAnunciosSeriacao (String emailColaborador) {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+            CallableStatement csIdColaborador = conn.prepareCall("SELECT idColaborador FROM Colaborador WHERE email = ?");
+            csIdColaborador.setString(1, emailColaborador);
+            ResultSet rSetIdColaborador = csIdColaborador.executeQuery();
+            rSetIdColaborador.next();
+
+            int idColaborador = rSetIdColaborador.getInt(1);
+
+            PreparedStatement pstmtAnuncios = conn.prepareStatement("SELECT * FROM Anuncio where (? " +
+                    "between dataInicioSeriacao AND dataFimSeriacao) AND idColaborador = ? ");
+            pstmtAnuncios.setDate(1, Data.dataAtual().getDataSQL());
+            pstmtAnuncios.setInt(2, idColaborador);
             ResultSet rSetAnuncios = pstmtAnuncios.executeQuery();
 
             ArrayList<Anuncio> listaAnuncios = montarListaAnuncios(rSetAnuncios);

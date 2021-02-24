@@ -172,6 +172,8 @@ public class ServiceController {
         return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
     }
 
-
+public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador){
+        return RepositorioAnuncio.getInstance().
+}
 
 }
