@@ -5,19 +5,14 @@
  */
 package ui;
 
-import application.AuthenticationController;
-import application.DefinirTarefaController;
-import application.PublicarTarefaController;
-import application.ServiceController;
-import domain.CategoriaTarefa;
-import domain.Data;
-import domain.Tarefa;
-import domain.TipoRegimento;
+import application.*;
+import domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import persistence.RepositorioAnuncio;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -65,6 +60,7 @@ public class AreaColaboradorUI implements Initializable {
     public Button removerUltimoColaboradorSeriacaoManualAction;
     public BorderPane seriacaoAutomaticaPane;
     public ListView listViewCandidaturasSeriarAnuncioSeriacaoAutomatica;
+    public BorderPane homePane;
 
 
     private DefinirTarefaController criarTarefaController;
@@ -78,6 +74,7 @@ public class AreaColaboradorUI implements Initializable {
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         publicarTarefaController = new PublicarTarefaController();
+
         try {
             comboCategoriaTarefa.getItems().setAll(serviceController.getCategoriasTarefa());
         } catch (SQLException throwables) {
@@ -132,8 +129,14 @@ public class AreaColaboradorUI implements Initializable {
 
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
         //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
         publicarTarefaPane.setVisible(false);
         publicarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
 
         //ligar
         criarTarefaPane.setVisible(true);
@@ -172,6 +175,7 @@ public class AreaColaboradorUI implements Initializable {
     public void btnLimparDadosTarefaAction(ActionEvent actionEvent) {
         limparDados();
     }
+
     public void limparDados() {
         txtCodigoUnicoTarefa.clear();
         txtNomeTarefa.clear();
@@ -191,8 +195,8 @@ public class AreaColaboradorUI implements Initializable {
 
         try {
             boolean publicou = publicarTarefaController.publicarTarefa(listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem(),
-                    btnTipoRegimento.getValue(), Data.dataAtual() ,btnDataFimPub.getValue(), btnDataInicioCand.getValue(),
-                    btnDataFimCand.getValue(), btnDataInicioSeriacao.getValue(),btnDataFimSeriacao.getValue());
+                    btnTipoRegimento.getValue(), Data.dataAtual(), btnDataFimPub.getValue(), btnDataInicioCand.getValue(),
+                    btnDataFimCand.getValue(), btnDataInicioSeriacao.getValue(), btnDataFimSeriacao.getValue());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar novo Anúncio.",
                     publicou ? "Anúncio criado com sucesso! \n\n" +
@@ -221,10 +225,14 @@ public class AreaColaboradorUI implements Initializable {
 
     public void btnPublicarTarefaSelectAction(ActionEvent actionEvent) {
         //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
         criarTarefaPane.setVisible(false);
         criarTarefaPane.setDisable(true);
-
-
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
 
         //ligar
         publicarTarefaPane.setVisible(true);
@@ -243,12 +251,57 @@ public class AreaColaboradorUI implements Initializable {
     }
 
     public void iniciarSeriacaoAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+//        try {
+//        if(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem().getTipoRegimento().getDesignacao().equalsIgnoreCase("automático")){
+
+        //ligar
+        seriacaoAutomaticaPane.setDisable(false);
+        seriacaoAutomaticaPane.setVisible(true);
+//        }else
+        //ligar
+        //seriacaoManualPane.setDisable(false);
+        //seriacaoManualPane.setVisible(true);
+//        } catch (Exception e) {
+//            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+//                    "Problema ao seriar anúncios.",
+//                    e.getMessage()).show();
+//        }
     }
 
     public void finalizarSeriacaoManualAction(ActionEvent actionEvent) {
     }
 
     public void voltarSeriacaoManualAction(ActionEvent actionEvent) {
+
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar ao menu de seriação.", "Deseja mesmo fazer voltar?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            try {
+            listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
+            listViewCandidaturasPorSelecionarSeriacaoManual.getItems().clear();
+            listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
+            listViewColaboradoresSelecionadosSeriacaoManual.getItems().clear();
+            seriacaoManualPane.setDisable(true);
+            seriacaoManualPane.setVisible(false);
+            IniciarSeriacaoPane.setVisible(true);
+            IniciarSeriacaoPane.setDisable(false);
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao voltar ao menu anterior.",
+                        e.getMessage()).show();
+            }
+        }
     }
 
     public void classificarCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
@@ -261,11 +314,59 @@ public class AreaColaboradorUI implements Initializable {
     }
 
     public void voltarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
+
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar ao menu de seriação.", "Deseja mesmo fazer voltar?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            try {
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+                seriacaoAutomaticaPane.setDisable(true);
+                seriacaoAutomaticaPane.setVisible(false);
+                IniciarSeriacaoPane.setVisible(true);
+                IniciarSeriacaoPane.setDisable(false);
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao voltar ao menu anterior.",
+                        e.getMessage()).show();
+            }
+        }
+
     }
 
     public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+
+        //ligar
+        IniciarSeriacaoPane.setDisable(false);
+        IniciarSeriacaoPane.setVisible(true);
+//        listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail());
     }
 
     public void goHomeSelectAction(ActionEvent actionEvent) {
+
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+
+        //ligar
+        homePane.setVisible(true);
+        homePane.setDisable(false);
+
+
     }
 }
