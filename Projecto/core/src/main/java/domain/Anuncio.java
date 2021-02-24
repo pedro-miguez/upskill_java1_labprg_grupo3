@@ -46,11 +46,11 @@ public class Anuncio implements Serializable {
                     Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao) {
 
         this.dataInicioPublicitacao = dataInicioPublicitacao;
-        setDataFimPublicitacao(dataFimPublicitacao);
-        setDataInicioCandidatura(dataInicioCandidatura);
-        setDataFimCandidatura(dataFimCandidatura);
-        setDataInicioSeriacao(dataInicioSeriacao);
-        setDataFimSeriacao(dataFimSeriacao);
+        this.dataFimPublicitacao = dataFimPublicitacao;
+        this.dataInicioCandidatura = dataInicioCandidatura;
+        this.dataFimCandidatura = dataFimCandidatura;
+        this.dataInicioSeriacao = dataInicioSeriacao;
+        this.dataFimSeriacao = dataFimSeriacao;
         this.tarefa = tarefa;
         this.tipoRegimento = tipoRegimento;
         
@@ -79,14 +79,14 @@ public class Anuncio implements Serializable {
      * @param dataFimPublicitacao
      */
     public void setDataFimPublicitacao(Data dataFimPublicitacao) {
-        if ((dataFimPublicitacao.getDia() < dataInicioPublicitacao.getDia()) && 
+    /*    if ((dataFimPublicitacao.getDia() < dataInicioPublicitacao.getDia()) &&
             (dataFimPublicitacao.getMes() < dataInicioPublicitacao.getMes()) &&
             (dataFimPublicitacao.getAno() < dataInicioPublicitacao.getAno())) {
             throw new IllegalArgumentException("A data de fim de publicitação "
                     + "não deve ser inferior à data de início de publicitação!");
         } else {
             this.dataFimPublicitacao = dataFimPublicitacao;
-        }
+        }*/
          
     }
 
@@ -95,7 +95,7 @@ public class Anuncio implements Serializable {
      * @param dataInicioCandidatura
      */
     public void setDataInicioCandidatura(Data dataInicioCandidatura) {
-        if (((dataFimPublicitacao.getDia() < dataInicioCandidatura.getDia()) &&
+/*        if (((dataFimPublicitacao.getDia() < dataInicioCandidatura.getDia()) &&
                 (dataFimPublicitacao.getMes() < dataInicioCandidatura.getMes()) &&
                 (dataFimPublicitacao.getAno() < dataInicioCandidatura.getAno())) ||
         ((dataInicioPublicitacao.getDia() > dataInicioCandidatura.getDia()) &&
@@ -105,7 +105,7 @@ public class Anuncio implements Serializable {
                     + "deve estar compreendida entre as datas de publicitacao!");
         } else{
             this.dataInicioCandidatura = dataInicioCandidatura;
-        }
+        }*/
     }
 
 
@@ -114,7 +114,7 @@ public class Anuncio implements Serializable {
      * @param dataFimCandidatura
      */
     public void setDataFimCandidatura(Data dataFimCandidatura) {
-        if (((dataFimCandidatura.getDia() < dataInicioCandidatura.getDia()) &&
+/*        if (((dataFimCandidatura.getDia() < dataInicioCandidatura.getDia()) &&
             (dataFimCandidatura.getMes() < dataInicioCandidatura.getMes()) &&
             (dataFimCandidatura.getAno() < dataInicioCandidatura.getAno())) ||
                 ((dataFimCandidatura.getDia() > dataFimPublicitacao.getDia()) &&
@@ -124,7 +124,7 @@ public class Anuncio implements Serializable {
                     + "não deve ser inferior à data de início de candidatura nem superior a data de fimde publicitacao!");
         } else {
             this.dataFimCandidatura = dataFimCandidatura;
-        }
+        }*/
     }
 
     /**
@@ -132,14 +132,14 @@ public class Anuncio implements Serializable {
      * @param dataInicioSeriacao
      */
     public void setDataInicioSeriacao(Data dataInicioSeriacao) {
-        if ((dataInicioSeriacao.getDia() < dataFimCandidatura.getDia()) &&
+ /*       if ((dataInicioSeriacao.getDia() < dataFimCandidatura.getDia()) &&
                 (dataInicioSeriacao.getMes() < dataFimCandidatura.getMes()) &&
                 (dataInicioSeriacao.getAno() < dataFimCandidatura.getAno())) {
             throw new IllegalArgumentException("A data de inicio da seriacao nao deve "
                     + "ser inferior a data final para candidaturas!");
         } else {
             this.dataInicioSeriacao = dataInicioSeriacao;
-        }
+        }*/
 
     }
 
@@ -149,7 +149,7 @@ public class Anuncio implements Serializable {
      */
     public void setDataFimSeriacao(Data dataFimSeriacao) {
         
-        if (((dataFimSeriacao.getDia() < dataInicioSeriacao.getDia()) &&
+/*        if (((dataFimSeriacao.getDia() < dataInicioSeriacao.getDia()) &&
             (dataFimSeriacao.getMes() < dataInicioSeriacao.getMes()) &&
             (dataFimSeriacao.getAno() < dataInicioSeriacao.getAno())) ||
                 ((dataFimSeriacao.getDia() > dataFimPublicitacao.getDia()) &&
@@ -159,7 +159,7 @@ public class Anuncio implements Serializable {
                     + "não deve ser inferior à data de início de seriação ou superior a data de fim de publicitacao!");
         } else {
             this.dataFimSeriacao = dataFimSeriacao;
-        }
+        }*/
     }
 
     /**
@@ -320,4 +320,7 @@ public class Anuncio implements Serializable {
         return getTarefa().equals(anuncio.tarefa);
     }
 
+    public boolean isSeriacaoAutomatica() {
+            return this.tipoRegimento.getDesignacao().equalsIgnoreCase("seriação automatica");
+    }
 }

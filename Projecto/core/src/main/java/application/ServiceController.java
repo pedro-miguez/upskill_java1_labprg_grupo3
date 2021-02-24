@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Current class is the one responsible to connect the GUI with the methods 
- * responsible for some of the critical functions that the Singleton class 
- * Platform (the class where the app runs around) hosts methods to save or load 
+ * Current class is the one responsible to connect the GUI with the methods
+ * responsible for some of the critical functions that the Singleton class
+ * Platform (the class where the app runs around) hosts methods to save or load
  * data via files, or establish/reset the connection to the users API among others.
  */
 public class ServiceController {
@@ -149,7 +149,7 @@ public class ServiceController {
         return RepositorioCompetenciaTecnica.getInstance().listarCompetenciasTecnicas();
     }
 
-     /**
+    /**
      * Gets list of regiment types
      *
      * @return the list of regiment types
@@ -164,16 +164,16 @@ public class ServiceController {
      * @param tarefa as task
      * @return the complete representation of a advertisement object by its task.
      */
-    public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa){
-        return  RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
+    public String getAnunciotoStringCompletoByTarefa(Tarefa tarefa) {
+        return RepositorioAnuncio.getInstance().getAnuncioByTarefa(tarefa).toString();
     }
 
     public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
         return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
     }
 
-public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador){
-        return RepositorioAnuncio.getInstance().
-}
+    public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador) {
+        return RepositorioAnuncio.getInstance().getAllAnunciosSeriacao(emailColaborador);
+    }
 
 }

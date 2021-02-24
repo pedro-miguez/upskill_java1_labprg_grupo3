@@ -8,6 +8,7 @@ import exceptions.FetchingProblemException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class responsible for creating a repository to store information about
@@ -95,11 +96,11 @@ public class RepositorioProcessoSeriacao {
                 int idFreelancer = csFreelancerIdByEmail.getInt(1);
                 int lugar = classificacao.getLugar();
 
-                csCreateProcessoSeriacao.setInt(1, idAnuncio);
-                csCreateProcessoSeriacao.setInt(2, idFreelancer);
-                csCreateProcessoSeriacao.setInt(3, lugar);
+                csCreateClassificacao.setInt(1, idAnuncio);
+                csCreateClassificacao.setInt(2, idFreelancer);
+                csCreateClassificacao.setInt(3, lugar);
 
-                csCreateProcessoSeriacao.executeQuery();
+                csCreateClassificacao.executeQuery();
 
                 csFreelancerIdByEmail.clearParameters();
                 csCreateClassificacao.clearParameters();
@@ -113,6 +114,7 @@ public class RepositorioProcessoSeriacao {
 
                 csIdColaborador.setString(1, colaborador.getEmail().toString());
                 rSetIdColaborador = csIdColaborador.executeQuery();
+                rSetIdColaborador.next();
 
                 int idColaborador = rSetIdColaborador.getInt(1);
 
@@ -155,6 +157,11 @@ public class RepositorioProcessoSeriacao {
         }
 
         return false;
+    }
+
+    public ProcessoSeriacao criarProcessoSeriacao(Anuncio anuncio, List<Classificacao> classificacao,
+            List<Colaborador> colaboradores) {
+        return new ProcessoSeriacao(anuncio, classificacao, colaboradores);
     }
 
 }

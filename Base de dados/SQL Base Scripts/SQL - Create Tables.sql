@@ -75,6 +75,8 @@ create table Candidatura (
     txtApresentacao varchar(500),
     txtMotivacao varchar(500),
     
+
+    
     constraint pk_Candidatura_idAnuncio_idFreelancer primary key (idAnuncio, idFreelancer)
 );
 
