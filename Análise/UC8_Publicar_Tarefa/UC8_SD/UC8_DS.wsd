@@ -1,0 +1,14 @@
+@startuml
+
+title UC8 - Diagrama de sequência
+
+actor ColaboradorUtilizador
+participant AreaColaboradorUI
+participant PublicarTarefaCTRL
+participant Plataforma
+
+
+
+
+
+@enduml
