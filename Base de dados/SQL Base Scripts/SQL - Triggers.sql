@@ -75,3 +75,21 @@ update Anuncio SET idEstadoAnuncio = 2 where database_event between v_datainicio
 
 end;
 /
+
+
+create or replace trigger trgAnuncioIdColaborador after insert on Anuncio for each row
+
+declare
+ v_idOrg1 number;
+ v_idOrg2 number;
+ 
+
+begin
+ SELECT idOrganizacao INTO v_idOrg1 from Colaborador where idColaborador = :new.idColaborador;
+ SELECT idOrganizacao INTO v_idOrg2 from Tarefa where idTarefa = :new.idTarefa;
+
+ if v_idOrg1 != v_idOrg2 then
+    raise_application_error(-20000, 'Colaborador não pertence à organizacao correcta');
+    end if;
+end;
+/

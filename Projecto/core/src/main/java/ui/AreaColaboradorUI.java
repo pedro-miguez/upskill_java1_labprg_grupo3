@@ -191,8 +191,14 @@ public class AreaColaboradorUI implements Initializable {
 
         try {
             boolean publicou = publicarTarefaController.publicarTarefa(listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem(),
-                    btnTipoRegimento.getValue(), Data.dataAtual() ,btnDataFimPub.getValue(), btnDataInicioCand.getValue(),
-                    btnDataFimCand.getValue(), btnDataInicioSeriacao.getValue(),btnDataFimSeriacao.getValue());
+                    btnTipoRegimento.getValue(),
+                    Data.dataAtual(),
+                    btnDataFimPub.getValue(),
+                    btnDataInicioCand.getValue(),
+                    btnDataFimCand.getValue(),
+                    btnDataInicioSeriacao.getValue(),
+                    btnDataFimSeriacao.getValue(),
+                    authenticationController.getEmail());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar novo Anúncio.",
                     publicou ? "Anúncio criado com sucesso! \n\n" +

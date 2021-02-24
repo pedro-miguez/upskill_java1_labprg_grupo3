@@ -207,14 +207,16 @@ create or replace procedure createAnuncio(
     p_dataInicioCand anuncio.dataInicioCandidatura%type,
     p_dataFimCand anuncio.dataFimCandidatura%type,
     p_dataInicioSer anuncio.dataInicioSeriacao%type,
-    p_dataFimSer anuncio.dataFimSeriacao%type) 
+    p_dataFimSer anuncio.dataFimSeriacao%type,
+    p_idColaborador Colaborador.idcolaborador%type) 
     is
     begin 
-insert into Anuncio(IdTarefa, idTipoRegimento, idEstadoAnuncio, dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
-                    dataInicioSeriacao, dataFimSeriacao) values (p_idTarefa, p_idTipoRegimento, 1, p_dataInicioPub, p_dataFimPub,
-                    p_dataInicioCand, p_dataFimCand, p_dataInicioSer, p_dataFimSer); 
+insert into Anuncio(IdTarefa, idTipoRegimento, dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
+                    dataInicioSeriacao, dataFimSeriacao, idColaborador) values (p_idTarefa, p_idTipoRegimento, p_dataInicioPub, p_dataFimPub,
+                    p_dataInicioCand, p_dataFimCand, p_dataInicioSer, p_dataFimSer,p_idColaborador ); 
 end;
 /
+
 
 create or replace function getAnunciobyRefTarefa_IdOrg(
     p_refTarefa in tarefa.ReferenciaTarefa%type,
