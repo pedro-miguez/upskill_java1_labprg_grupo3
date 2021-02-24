@@ -206,7 +206,7 @@
                   </BorderPane>
                   <StackPane>
                      <children>
-                        <BorderPane fx:id="publicarTarefaPane1" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                        <BorderPane fx:id="IniciarSeriacaoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
                            <bottom>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
@@ -237,23 +237,112 @@
                               </Label>
                            </top>
                         </BorderPane>
-                        <BorderPane fx:id="publicarTarefaPane11" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                        <BorderPane fx:id="seriacaoManualPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <bottom>
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="btnPublicarTarefa11" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#publicarTarefaAction" prefHeight="42.0" prefWidth="95.0" text="Iniciar Seriação" textAlignment="CENTER" wrapText="true">
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#finalizarSeriacaoManualAction" prefHeight="42.0" prefWidth="95.0" text="Finalizar Seriação" textAlignment="CENTER" wrapText="true">
                                        <HBox.margin>
                                           <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="39.0" mnemonicParsing="false" onAction="#voltarSeriacaoManualAction" prefHeight="42.0" prefWidth="95.0" text="Voltar" textAlignment="CENTER" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
                               </HBox>
                            </bottom>
+                           <top>
+                              <Label prefHeight="47.0" prefWidth="325.0" text="Seriar Anúncio Manualmente" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </top>
                            <center>
-                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                              <GridPane BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.0" minWidth="10.0" prefWidth="392.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="87.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="420.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="337.0" minHeight="10.0" prefHeight="337.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="279.0" minHeight="10.0" prefHeight="233.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <ListView fx:id="listViewCandidaturasPorSelecionarSeriacaoManual" prefHeight="200.0" prefWidth="200.0">
+                                       <GridPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+                                       </GridPane.margin>
+                                    </ListView>
+                                    <ListView fx:id="listViewColaboradoresPorSelecionarSeriacaoManual" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+                                       </GridPane.margin>
+                                    </ListView>
+                                    <ListView fx:id="listViewCandidaturasSelecionadasSeriacaoManual" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <GridPane.margin>
+                                          <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                       </GridPane.margin>
+                                    </ListView>
+                                    <ListView fx:id="listViewColaboradoresSelecionadosSeriacaoManual" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                       </GridPane.margin>
+                                    </ListView>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#classificarCandidaturaSeriacaoManualAction" text="Classificar Candidatura" textAlignment="CENTER" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#removerUltimaCandidaturaSeriacaoManualAction" text="Remover Última" textAlignment="CENTER" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Button fx:id="adicionarColaboradorSeriacaoManualAction" mnemonicParsing="false" prefHeight="45.0" prefWidth="87.0" text="Adicionar Colaborador" textAlignment="CENTER" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button fx:id="removerUltimoColaboradorSeriacaoManualAction" mnemonicParsing="false" text="Remover Último" textAlignment="CENTER" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </GridPane>
+                           </center>
+                        </BorderPane>
+                        <BorderPane fx:id="seriacaoAutomaticaPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <bottom>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmarSeriacaoAutomaticaAction" prefHeight="42.0" prefWidth="95.0" text="Confirmar Seriação" textAlignment="CENTER" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarSeriacaoAutomaticaAction" prefHeight="42.0" prefWidth="95.0" text="Voltar" textAlignment="CENTER" wrapText="true" />
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <center>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ListView fx:id="listViewCandidaturasSeriarAnuncioSeriacaoAutomatica" prefHeight="509.0" prefWidth="799.0">
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" left="50.0" right="50.0" top="25.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                 </children>
+                              </VBox>
                            </center>
                            <top>
-                              <Label prefHeight="47.0" prefWidth="218.0" text="Seriar Anúncio" BorderPane.alignment="CENTER">
+                              <Label prefHeight="47.0" prefWidth="218.0" text="Seriação Automática" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

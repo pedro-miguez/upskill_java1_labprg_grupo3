@@ -54,6 +54,17 @@ public class AreaColaboradorUI implements Initializable {
     public Button btnPublicarTarefa;
 
     public BorderPane publicarTarefaPane;
+    public BorderPane IniciarSeriacaoPane;
+    public ListView listViewAnunciosSeriarAnuncio;
+    public BorderPane seriacaoManualPane;
+    public ListView listViewCandidaturasPorSelecionarSeriacaoManual;
+    public ListView listViewColaboradoresPorSelecionarSeriacaoManual;
+    public ListView listViewCandidaturasSelecionadasSeriacaoManual;
+    public ListView listViewColaboradoresSelecionadosSeriacaoManual;
+    public Button adicionarColaboradorSeriacaoManualAction;
+    public Button removerUltimoColaboradorSeriacaoManualAction;
+    public BorderPane seriacaoAutomaticaPane;
+    public ListView listViewCandidaturasSeriarAnuncioSeriacaoAutomatica;
 
 
     private DefinirTarefaController criarTarefaController;
@@ -229,5 +240,29 @@ public class AreaColaboradorUI implements Initializable {
                     e.getMessage()).show();
         }
 
+    }
+
+    public void iniciarSeriacaoAction(ActionEvent actionEvent) {
+    }
+
+    public void finalizarSeriacaoManualAction(ActionEvent actionEvent) {
+    }
+
+    public void voltarSeriacaoManualAction(ActionEvent actionEvent) {
+    }
+
+    public void classificarCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
+    }
+
+    public void removerUltimaCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
+    }
+
+    public void confirmarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
+    }
+
+    public void voltarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
+    }
+
+    public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
     }
 }
