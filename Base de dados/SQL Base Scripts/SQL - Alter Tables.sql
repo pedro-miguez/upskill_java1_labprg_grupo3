@@ -108,3 +108,6 @@ add constraint uk_CategoriaTarefa_descricao_idAreaAtividade UNIQUE (descricao, i
 
 alter table Anuncio
 add constraint fk_Anuncio_idTipoRegimento FOREIGN KEY (idTipoRegimento) references TipoRegimento (idTipoRegimento);
+
+alter table Anuncio
+add constraint fk_Anuncio_idEstadoAnuncio FOREIGN KEY (idEstadoAnuncio) references EstadoAnuncio (idEstadoAnuncio);

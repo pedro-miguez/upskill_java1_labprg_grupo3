@@ -1,0 +1,53 @@
+@startuml
+
+title UC8 - Diagrama de sequência
+
+actor ColaboradorUtilizador
+participant AreaColaboradorUI
+participant PublicarTarefaCTRL
+participant Plataforma
+
+
+activate ColaboradorUtilizador
+ColaboradorUtilizador -> AreaColaboradorUI: 1 Inicia a publicitação de uma tarefa
+activate AreaColaboradorUI
+AreaColaboradorUI -> PlataformaController: 2 getTarefa()
+activate PlataformaController
+deactivate PlataformaController
+PlataformaController -> "rt:RepositorioTarefa" : 3 listarTarefas()
+activate "rt:RepositorioTarefa"
+deactivate "rt:RepositorioTarefa"
+AreaColaboradorUI -> PublicarTarefaCTRL: 4 publicarTarefa()
+activate PublicarTarefaCTRL
+PublicarTarefaCTRL -> Plataforma: 5 plat = Plataforma.getInstance()
+activate Plataforma
+deactivate Plataforma
+PublicarTarefaCTRL -> "rc:RepositorioColaborador" : 6 repoColab = plat.getRepoColab()
+activate "rc:RepositorioColaborador"
+PublicarTarefaCTRL -> "rc:RepositorioColaborador" : 7 colab = repoColab.getColaboradorByEmail(Email)
+"rc:RepositorioColaborador" -> Email ** : 8 emailColab = create(colaboradorEmail)
+"rc:RepositorioColaborador" -> Colaborador ** : 9 repoColab.getColaboradorByEmail(emailColab)
+activate Colaborador
+Colaborador --> "rc:RepositorioColaborador" : 10 colab
+deactivate "rc:RepositorioColaborador"
+Colaborador -> Organizacao ** : 11 org = colab.getOrganizacao()
+activate Organizacao
+Organizacao --> Colaborador : 12 org
+deactivate Organizacao
+deactivate Colaborador
+PublicarTarefaCTRL -> "ra:RepositorioAnuncio" : 13 plat.getRepoAnuncio()
+activate "ra:RepositorioAnuncio"
+deactivate "ra:RepositorioAnuncio"
+PublicarTarefaCTRL -> "ra:RepositorioAnuncio" : 14 anuncio = publicarTarefa()
+activate "ra:RepositorioAnuncio"
+"ra:RepositorioAnuncio" -> CodigoUnico** : 15 create(codigoUnico)
+PublicarTarefaCTRL -> "ra:RepositorioAnuncio" : 16 addAnuncio(anuncio)
+"ra:RepositorioAnuncio" --> PublicarTarefaCTRL : 17 ok
+deactivate "ra:RepositorioAnuncio"
+deactivate PublicarTarefaCTRL
+AreaColaboradorUI --> ColaboradorUtilizador : 18 operação bem sucedida
+deactivate AreaColaboradorUI
+deactivate ColaboradorUtilizador
+
+
+@enduml
