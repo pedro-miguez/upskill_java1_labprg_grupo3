@@ -17,16 +17,16 @@ begin
  if v_datafimpub <= v_datainiciopub then
     raise_application_error(-20000, 'Erro na data de fim de publicitacao');
  end if;
- if v_datainiciocandidatura <= v_datafimpub then
+ if v_datainiciocandidatura > v_datafimpub and v_datainiciocandidatura < v_datainiciopub  then
     raise_application_error(-20000, 'Erro na data de inicio de candidatura');
     end if;
- if v_datafimcandidatura <= v_datainiciocandidatura then
+ if v_datafimcandidatura <= v_datainiciocandidatura and v_datafimcandidatura > v_datafimpub and v_datafimcandidatura < v_datainiciopub then
     raise_application_error(-20000, 'Erro na data de fim de candidatura');
     end if;
- if v_datainicioseri <= v_datafimcandidatura then
+ if v_datainicioseri <= v_datafimcandidatura and v_datainicioseri > v_datafimpub and v_datainicioseri < v_datainiciopub then
     raise_application_error(-20000, 'Erro na data de inicio de seriacao');
     end if;
- if v_datafimseri <= v_datainicioseri then
+ if v_datafimseri <= v_datainicioseri and v_datafimseri > v_datafimpub and v_datafimseri < v_datainiciopub then
     raise_application_error(-20000, 'Erro na data de fim de seriacao');
  end if;
 end;
@@ -57,5 +57,21 @@ create or replace trigger trgAnuncioTarefa after insert on Anuncio for each row
 declare 
 begin
 UPDATE Tarefa SET idEstadoTarefa = 2 WHERE idTarefa = :new.idTarefa;
+end;
+/
+
+
+create or replace trigger trgidEstadoAnuncio after startup on database for each row
+
+declare
+v_datainicioseri date;
+v_datafimseri date;
+
+begin
+select dataInicioSeriacao into v_datainicioseri from Anuncio;
+select dataFimSeriacao into v_datafimseri from Anuncio;
+
+update Anuncio SET idEstadoAnuncio = 2 where database_event between v_datainicioseri and v_datafimseri;
+
 end;
 /
