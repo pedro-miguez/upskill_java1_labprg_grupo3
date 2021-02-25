@@ -96,11 +96,7 @@ public class ReconhecimentoCT implements Serializable {
      */
     @Override
     public String toString() {
-        return "ReconhecimentoCT{" +
-                "competenciaTecnica=" + competenciaTecnica +
-                ", grauProficiencia=" + grauProficiencia +
-                ", dataReconhecimento=" + dataReconhecimento +
-                '}';
+        return competenciaTecnica.getDescricao() +
+                "%n" + grauProficiencia;
     }
-
 }

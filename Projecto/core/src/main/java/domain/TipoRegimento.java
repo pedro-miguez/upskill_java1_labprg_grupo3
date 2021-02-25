@@ -63,6 +63,6 @@ public class TipoRegimento {
      */
     @Override
     public String toString() {
-        return String.format("Designação: %s; Regras: %s", designacao, regras);
+        return designacao;
     }
 }

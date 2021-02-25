@@ -80,11 +80,7 @@ public class AreaColaboradorUI implements Initializable {
         publicarTarefaController = new PublicarTarefaController();
         seriarCandidaturaController = new SeriarCandidaturaController();
 
-        try {
-            comboCategoriaTarefa.getItems().setAll(serviceController.getCategoriasTarefa());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         //popular combo boxes do painel Publicar Tarefa
         try {
@@ -153,6 +149,7 @@ public class AreaColaboradorUI implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
     //logout

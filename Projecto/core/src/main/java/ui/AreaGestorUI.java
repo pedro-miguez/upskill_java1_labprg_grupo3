@@ -86,11 +86,7 @@ public class AreaGestorUI implements Initializable {
         seriarCandidaturaController = new SeriarCandidaturaController();
 
 
-        try {
-            comboCategoria.getItems().setAll(serviceController.getCategoriasTarefa());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
 
         //popular combo boxes do painel Publicar Tarefa

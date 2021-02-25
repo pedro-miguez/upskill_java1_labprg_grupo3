@@ -28,13 +28,16 @@ public class DefinirCompetenciaTecnicaController {
                                              String descricao, String descDetalhada, 
                                              List<GrauProficiencia> graus) throws SQLException {
 
-        Plataforma plataforma = Plataforma.getInstance();
         RepositorioCompetenciaTecnica repo = RepositorioCompetenciaTecnica.getInstance();
 
         CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, 
                                                     areaAtividade, descricao, descDetalhada, graus);
 
-        return repo.insertCompetenciaTecnica(competenciaTecnica);
+        if (graus.size() == 0) {
+            return false;
+        } else {
+            return repo.insertCompetenciaTecnica(competenciaTecnica);
+        }
     }
 
 }
