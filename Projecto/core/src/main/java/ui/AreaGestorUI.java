@@ -255,10 +255,69 @@ public class AreaGestorUI implements Initializable {
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoManualPane.setVisible(false);
         seriacaoManualPane.setDisable(true);
+        publicarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
 
         //ligar
         homePane.setVisible(true);
         homePane.setDisable(false);
+    }
+
+    public void btnPublicarTarefaSelectAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        registarColaboradorPane.setDisable(true);
+        registarColaboradorPane.setVisible(false);
+
+        //ligar
+        publicarTarefaPane.setVisible(true);
+        publicarTarefaPane.setDisable(false);
+
+
+        //popular elementos
+        try {
+            listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }
+    }
+
+    public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
+        registarColaboradorPane.setDisable(true);
+        registarColaboradorPane.setVisible(false);
+
+        //ligar
+        IniciarSeriacaoPane.setDisable(false);
+        IniciarSeriacaoPane.setVisible(true);
+        try {
+            listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+        } catch (SQLException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }
     }
 
     //fazer logout
@@ -427,6 +486,11 @@ public class AreaGestorUI implements Initializable {
         publicarTarefaPane.setDisable(true);
         registarColaboradorPane.setDisable(true);
         registarColaboradorPane.setVisible(false);
+        btnRemoverUltimaCandidatura.setDisable(true);
+        btnRemoverUltimoColaborador.setDisable(true);
+        listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+        listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
+
         try {
             if (seriarCandidaturaController.isSeriacaoAutomatica(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem())) {
                 //ligar
@@ -559,54 +623,4 @@ public class AreaGestorUI implements Initializable {
         limparTodosOsCampos();
     }
 
-    public void btnPublicarTarefaSelectAction(ActionEvent actionEvent) {
-        //desligar
-        homePane.setVisible(false);
-        homePane.setDisable(true);
-        criarTarefaPane.setVisible(false);
-        criarTarefaPane.setDisable(true);
-        seriacaoAutomaticaPane.setDisable(true);
-        seriacaoAutomaticaPane.setVisible(false);
-        IniciarSeriacaoPane.setDisable(true);
-        IniciarSeriacaoPane.setVisible(false);
-        registarColaboradorPane.setDisable(true);
-        registarColaboradorPane.setVisible(false);
-
-        //ligar
-        publicarTarefaPane.setVisible(true);
-        publicarTarefaPane.setDisable(false);
-
-
-        //popular elementos
-        try {
-            listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authController.getEmail()));
-        } catch (Exception e) {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Problema preencher lista de tarefas.",
-                    e.getMessage()).show();
-        }
-    }
-
-    public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
-        //desligar
-        homePane.setVisible(false);
-        homePane.setDisable(true);
-        criarTarefaPane.setVisible(false);
-        criarTarefaPane.setDisable(true);
-        publicarTarefaPane.setVisible(false);
-        publicarTarefaPane.setDisable(true);
-        seriacaoAutomaticaPane.setDisable(true);
-        seriacaoAutomaticaPane.setVisible(false);
-
-        //ligar
-        IniciarSeriacaoPane.setDisable(false);
-        IniciarSeriacaoPane.setVisible(true);
-        try {
-            listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
-        } catch (SQLException e) {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Problema preencher lista de tarefas.",
-                    e.getMessage()).show();
-        }
-    }
 }
