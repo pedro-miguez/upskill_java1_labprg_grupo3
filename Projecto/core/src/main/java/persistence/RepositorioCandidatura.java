@@ -9,11 +9,20 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for creating a repository to store information about
+ * applications.
+ * 
+ * @author Grupo 3
+ */
 public class RepositorioCandidatura {
 
     private static RepositorioCandidatura instance;
 
-
+    /**
+     * Static method that returns a unique reference to the class object.
+     * @return instance
+     */
     public static RepositorioCandidatura getInstance() {
         if (instance == null) {
             instance = new RepositorioCandidatura();
@@ -25,6 +34,13 @@ public class RepositorioCandidatura {
 
     }
 
+    /**
+     * Boolean method that checks if a application exists in the repository,
+     * otherwise it is added to it.
+     * @param candidatura
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertCandidatura(Candidatura candidatura) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -91,6 +107,13 @@ public class RepositorioCandidatura {
         return false;
     }
 
+    /**
+     * Gets an application by its advertisement of the freelancer.
+     * 
+     * @param anuncio
+     * @param emailFreelancer
+     * @return candidatura
+     */
     public Candidatura getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -140,6 +163,12 @@ public class RepositorioCandidatura {
         }
     }
 
+    /**
+     * Gets from the list 'Candidatura' the applications by its advertisements.
+     * 
+     * @param anuncio
+     * @return listaCandidaturas
+     */
     public ArrayList<Candidatura> getCandidaturasByAnuncio(Anuncio anuncio) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -180,6 +209,11 @@ public class RepositorioCandidatura {
         }
     }
 
+    /**
+     * Gets from the list 'Candidatura' all the applications. 
+     * 
+     * @return listaCandidaturas
+     */
     public ArrayList<Candidatura> getAllCandidaturas() {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -200,6 +234,12 @@ public class RepositorioCandidatura {
         }
     }
 
+    /**
+     * Gets from the list 'Candidatura' all the applications of the freelancer.
+     * 
+     * @param emailFreelancer
+     * @return listaCandidaturas
+     */
     public ArrayList<Candidatura> getAllCandidaturasFreelancer(Email emailFreelancer) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -293,7 +333,13 @@ public class RepositorioCandidatura {
     }
 
 
-
+    /**
+     * Sets a list of applications, adding a appplication to the list 'Candidatura'.
+     * 
+     * @param rows
+     * @return listaCandidaturas
+     * @throws SQLException 
+     */
     public ArrayList<Candidatura> montarListaCandidaturas(ResultSet rows) throws SQLException {
         ArrayList<Candidatura> listaCandidaturas = new ArrayList<>();
 
@@ -313,6 +359,18 @@ public class RepositorioCandidatura {
     }
 
 
+    /**
+     * Creates a (new) application.
+     * 
+     * @param anuncio
+     * @param freelancer
+     * @param dataCandidatura
+     * @param valorPretendido
+     * @param nrDias
+     * @param txtApresentacao
+     * @param txtMotivacao
+     * @return new Candidatura
+     */
     public Candidatura criarCandidatura(Anuncio anuncio, Freelancer freelancer, LocalDate dataCandidatura,
                                         double valorPretendido,
                                         int nrDias,
