@@ -137,11 +137,11 @@ public class AreaFreelancerUI implements Initializable {
                 serviceController.resetUserAPI();
                 voltarJanelaInicial();
                 //desliga
-                efetuarCandidaturaPane.setDisable(true);
-                efetuarCandidaturaPane.setVisible(false);
+                efetuarCandidaturaPane.setDisable(false);
+                efetuarCandidaturaPane.setVisible(true);
                 //liga
-                homePaneAreaFreelancer.setDisable(false);
-                homePaneAreaFreelancer.setVisible(true);
+                homePaneAreaFreelancer.setDisable(true);
+                homePaneAreaFreelancer.setVisible(false);
             } catch (SQLException e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Erro de SQL.",
