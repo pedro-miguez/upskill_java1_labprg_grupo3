@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -119,19 +120,9 @@ public class AreaAdministrativoUI implements Initializable {
         authenticationController = new AuthenticationController();
         registarFreelancerController = new RegistarFreelancerController();
 
-        //popular combo box do painel Criar Competencia Tecnica
-        try {
-            comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
-        } catch (SQLException | FetchingProblemException throwables) {
-            throwables.printStackTrace();
-        }
 
-        //popular combo boxes do painel Criar Categoria de Tarefa
-        try {
-            comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
-        } catch (SQLException | FetchingProblemException throwables) {
-            throwables.printStackTrace();
-        }
+
+
     }
 
 
@@ -179,7 +170,12 @@ public class AreaAdministrativoUI implements Initializable {
             if (adicionou) {
                 limparDadosCategoriaTarefa();
                 listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
-                grauCounter = 0;
+                try {
+                    listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(serviceController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                btnRemoverUltimaCompTecCategoriaTarefa.setDisable(true);
             }
 
         } catch (IllegalArgumentException e) {
@@ -209,6 +205,7 @@ public class AreaAdministrativoUI implements Initializable {
                 limparDadosCompetenciaTecnica();
                 listViewGrauProficienciaCompetenciaTecnica.getItems().clear();
                 grauCounter = 0;
+                btnRemoverGrauProficienciaCompetenciaTecnica.setDisable(true);
             }
 
         } catch (IllegalArgumentException e) {
@@ -319,8 +316,13 @@ public class AreaAdministrativoUI implements Initializable {
         criarCompetenciaTecnicaPane.setDisable(false);
         txtCodigoUnicoCompetenciaTecnica.requestFocus();
 
-        //popular elementos
-        comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
+
+        //popular combo box do painel Criar Competencia Tecnica
+        try {
+            comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
+        } catch (SQLException | FetchingProblemException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //mudar para o painel Criar Freelancer
@@ -373,6 +375,8 @@ public class AreaAdministrativoUI implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().clear();
     }
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
@@ -609,7 +613,6 @@ public class AreaAdministrativoUI implements Initializable {
             if (grauProficienciaAindaNaoFoiAdicionado(gp)){
                 listViewGrauProficienciaCompetenciaTecnica.getItems().add(gp);
                 txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.clear();
-                txtNivelGrauProficienciaCriarCompetenciaTecnica.clear();
                 btnRemoverGrauProficienciaCompetenciaTecnica.setDisable(false);
             } else {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar novo grau.",
@@ -687,4 +690,23 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
 
+    public void comboBoxAreaAtividadeCriarCategoriaTarefaOnShowing(Event event) {
+
+
+        //popular combo boxes do painel Criar Categoria de Tarefa
+        try {
+            comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
+        } catch (SQLException | FetchingProblemException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void listViewCompTecRegistarFreelancerOnMouseClickedAction(MouseEvent mouseEvent) {
+        if (listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
+            comboBoxGrauProficienciaFreelancer.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem()));
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Graus de proficiência",
+                    "Precisa selecionar uma competência técnica primeiro.").show();
+        }
+    }
 }

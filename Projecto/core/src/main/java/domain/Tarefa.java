@@ -163,7 +163,7 @@ public class Tarefa implements Serializable {
      */
     public String toString(){
         return String.format("Código Único: %s%nDesignacao: %s%nDescrição Informal: %s%nDescrição Técnica: %s" +
-                "%nEstimativa de Duração: %d dias%nEstimativa de Custo: %.2f €%nCategoria Tarefa: %s", this.codigoUnico.toString(),
+                "%nEstimativa de Duração: %d dias%nEstimativa de Custo: %.2f POT's%nCategoria Tarefa: %s", this.codigoUnico.toString(),
                 this.designacao, this.descricaoInformal, this.descricaoTecnica, this.duracaoDias, this.custo,
                 this.categoria.getDescricao());
     }

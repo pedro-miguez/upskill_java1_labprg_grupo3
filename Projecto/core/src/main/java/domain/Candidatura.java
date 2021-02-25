@@ -177,6 +177,12 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
      *
      */
     public String toString(){
+        if(this.txtApresentacao == null) {
+            this.txtApresentacao = " Não foi introduzido";
+        }
+        if (this.txtMotivacao == null) {
+            this.txtMotivacao = " Não foi introduzido";
+        }
         return String.format("Email Freelancer: %s%n" +
                 "Valor pretendido: %s POTS" +
                 "%nN.º de dias: %d%nApresentação:%s%n" +

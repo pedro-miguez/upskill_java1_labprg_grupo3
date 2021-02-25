@@ -287,11 +287,12 @@ public class Anuncio implements Serializable {
      *
      */
     public String toString(){
-        return String.format("ID Tarefa: %s%nTipo de Regimento: %s%nData de Inicio da Publicitacao: %s%n" +
+        return String.format("ID Tarefa: %s%nTipo de Regimento: %s%nCusto Estimado: %s POT's%nDuração Estimada: %d dias %nData de Inicio da Publicitacao: %s%n" +
                 "Data de Fim de Publicitacao: %s%nData de Inicio da Candidatura: %s%n" +
                 "Data de Fim da Candidatura: %s%nData de Inicio de Seriacao: %s%n" +
                 "Data de Fim de Seriacao: %s", this.tarefa.getCodigoUnico(),
-                this.tipoRegimento.getDesignacao(),
+                this.tipoRegimento.getDesignacao(), this.tarefa.getCusto(),
+                this.tarefa.getDuracaoDias(),
                 this.dataInicioPublicitacao, this.dataFimPublicitacao,
                 this.dataInicioCandidatura, this.dataFimCandidatura,
                 this.dataInicioSeriacao, this.dataFimSeriacao);
@@ -320,6 +321,6 @@ public class Anuncio implements Serializable {
     }
 
     public boolean isSeriacaoAutomatica() {
-            return this.tipoRegimento.getDesignacao().equalsIgnoreCase("seriação automatica");
+            return this.tipoRegimento.getDesignacao().equalsIgnoreCase("Seriação Automática");
     }
 }

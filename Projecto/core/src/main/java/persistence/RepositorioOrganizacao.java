@@ -169,6 +169,10 @@ public class RepositorioOrganizacao implements Serializable {
 
         rset.close();
 
+            if(!row.next()) {
+                row.close();
+            }
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

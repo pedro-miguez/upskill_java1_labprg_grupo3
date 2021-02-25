@@ -320,6 +320,8 @@ public class RepositorioCandidatura {
             rSetAnuncio.close();
             rSetFreelancer.close();
 
+
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

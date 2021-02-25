@@ -85,8 +85,7 @@ public class CategoriaTarefa implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("Descrição: %s; Area de Actividade: %s",
-                this.descricao, this.areaAtividade.getDescricao());
+        return this.descricao + " - " + this.getAreaAtividade().getDescricao();
         }
 
     public String toStringCompleto() {

@@ -1,3 +1,4 @@
+/*
 package utils;
 
 import com.sun.mail.smtp.SMTPTransport;
@@ -19,7 +20,9 @@ public class SendEmailSMTP {
 
     private static final String EMAIL_FROM = "upskilljavaturma1grupo3@gmail.com";
     private static final String EMAIL_TO = "upskilljavaturma1grupo3@gmail.com";
-    /*private static final String EMAIL_TO_CC = "";*/
+    */
+/*private static final String EMAIL_TO_CC = "";*//*
+
 
     private static final String EMAIL_SUBJECT = "Hello, this is your password to access T4J";
     private static final String EMAIL_TEXT = "Please log in using the password ...";
@@ -46,8 +49,10 @@ public class SendEmailSMTP {
                     InternetAddress.parse(EMAIL_TO, false));
 
             // cc
-            /*msg.setRecipients(Message.RecipientType.CC,
-                    InternetAddress.parse(EMAIL_TO_CC, false));*/
+            */
+/*msg.setRecipients(Message.RecipientType.CC,
+                    InternetAddress.parse(EMAIL_TO_CC, false));*//*
+
 
             // subject
             msg.setSubject(EMAIL_SUBJECT);
@@ -76,4 +81,4 @@ public class SendEmailSMTP {
 
 
     }
-}
+}*/

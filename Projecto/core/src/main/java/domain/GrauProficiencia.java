@@ -57,7 +57,7 @@ public class GrauProficiencia {
      */
     @Override
     public String toString() {
-        return String.format("Nível: %d Designação: %s\n", this.nivel, this.designacao);
+        return String.format("Nível: %d - %s\n", this.nivel, this.designacao);
     }
 
     

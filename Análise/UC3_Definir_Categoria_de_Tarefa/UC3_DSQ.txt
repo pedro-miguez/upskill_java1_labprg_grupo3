@@ -5,7 +5,7 @@ title UC3 - Definir Categoria de Tarefa
 actor Administrativo as admin
 participant AreaAdministrativoUI as ui
 participant DefinirCategoriaTarefaCtrl as ctrl
-participant PlataformaController as platctrl
+participant ServiceController as platctrl
 participant Plataforma as plat
 participant RepositorioAreaAtividade as repoarea
 participant GrauProficiencia as graus
@@ -38,11 +38,11 @@ ctrl -> repocat **: 13. getInstance()
 activate repocat
 repocat --> ctrl: 14. ok
 deactivate repocat
-ctrl -> repocat: 15. criarCategoriaTarefa(areaAtividade,descricao, competenciasTecnicas)
+ctrl -> repocat: 15. insertCategoriaTarefa(categoriaTarefa)
 deactivate ctrl
 activate repocat
 repocat -> cat **: 16. categTarefa = create(areaAtividade, descricao, competenciasTecnicas)
-repocat -> repocat: 17. add(categTarefa)  
+repocat -> BaseDados**: 17. createCategoriaTarefa
 deactivate repocat
 ui --> admin: mostra dados e confirma registo
 

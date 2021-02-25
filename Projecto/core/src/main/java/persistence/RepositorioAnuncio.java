@@ -366,6 +366,10 @@ public class RepositorioAnuncio {
             rSetTarefa.close();
             rSetTipoRegimento.close();
             rSetTipoRegimento2.close();
+
+            if(!row.next()) {
+                row.close();
+            }
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

@@ -80,11 +80,7 @@ public class AreaColaboradorUI implements Initializable {
         publicarTarefaController = new PublicarTarefaController();
         seriarCandidaturaController = new SeriarCandidaturaController();
 
-        try {
-            comboCategoriaTarefa.getItems().setAll(serviceController.getCategoriasTarefa());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         //popular combo boxes do painel Publicar Tarefa
         try {
@@ -140,6 +136,8 @@ public class AreaColaboradorUI implements Initializable {
         publicarTarefaPane.setDisable(true);
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
         IniciarSeriacaoPane.setDisable(true);
         IniciarSeriacaoPane.setVisible(false);
 
@@ -153,6 +151,7 @@ public class AreaColaboradorUI implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
     //logout
@@ -257,6 +256,8 @@ public class AreaColaboradorUI implements Initializable {
         criarTarefaPane.setDisable(true);
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
         IniciarSeriacaoPane.setDisable(true);
         IniciarSeriacaoPane.setVisible(false);
 
@@ -286,6 +287,10 @@ public class AreaColaboradorUI implements Initializable {
         criarTarefaPane.setDisable(true);
         publicarTarefaPane.setVisible(false);
         publicarTarefaPane.setDisable(true);
+        btnRemoverUltimaCandidatura.setDisable(true);
+        btnRemoverUltimoColaborador.setDisable(true);
+        listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
+        listViewColaboradoresSelecionadosSeriacaoManual.getItems().clear();
         try {
             if (seriarCandidaturaController.isSeriacaoAutomatica(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem())) {
                 //ligar
@@ -334,6 +339,8 @@ public class AreaColaboradorUI implements Initializable {
                 seriacaoManualPane.setVisible(false);
                 IniciarSeriacaoPane.setVisible(true);
                 IniciarSeriacaoPane.setDisable(false);
+                btnRemoverUltimoColaborador.setDisable(true);
+                btnRemoverUltimaCandidatura.setDisable(true);
                 try {
                     listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authenticationController.getEmail()));
                 } catch (SQLException e) {
@@ -372,6 +379,8 @@ public class AreaColaboradorUI implements Initializable {
                 seriacaoManualPane.setVisible(false);
                 IniciarSeriacaoPane.setVisible(true);
                 IniciarSeriacaoPane.setDisable(false);
+                btnRemoverUltimaCandidatura.setDisable(true);
+                btnRemoverUltimoColaborador.setDisable(true);
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Problema ao voltar ao menu anterior.",
@@ -491,6 +500,8 @@ public class AreaColaboradorUI implements Initializable {
         publicarTarefaPane.setDisable(true);
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
 
         //ligar
         IniciarSeriacaoPane.setDisable(false);
@@ -514,6 +525,8 @@ public class AreaColaboradorUI implements Initializable {
         publicarTarefaPane.setDisable(true);
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
 
         //ligar
         homePane.setVisible(true);

@@ -237,6 +237,8 @@ public class RepositorioCategoriaTarefa implements Serializable {
             categoriaTarefa = new CategoriaTarefa(areaAtividade, descricao, competencias);
             pstmt.close();
 
+
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
