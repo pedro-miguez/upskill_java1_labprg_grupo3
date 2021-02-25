@@ -103,4 +103,5 @@ public class UsersAPI implements Serializable {
     public boolean registerUser(String username, String email, String password) {
         return uapia.registerUser(username, email, password);
     }
+
 }
