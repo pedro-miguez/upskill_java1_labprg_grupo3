@@ -25,8 +25,7 @@ public class RepositorioAnuncio {
 
     
     /**
-     * Static method that returns a unique reference to the class object, which
-     * implements a singleton.
+     * Static method that returns a unique reference to the class object.
      * @return instance
      */
     public static RepositorioAnuncio getInstance() {
@@ -163,6 +162,11 @@ public class RepositorioAnuncio {
         }
     }
 
+    /**
+     * Obtains from the list 'Anuncio' all the advertisements for application.
+     * 
+     * @return listaAnuncios
+     */
     public ArrayList<Anuncio> getAllAnunciosCandidatura () {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -185,6 +189,12 @@ public class RepositorioAnuncio {
         }
     }
 
+    /**
+     * Obtains from the list 'Anuncio' all the advertisements for serialization.
+     * 
+     * @param emailColaborador
+     * @return listaAnuncios
+     */
     public ArrayList<Anuncio> getAllAnunciosSeriacao (String emailColaborador) {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -272,7 +282,13 @@ public class RepositorioAnuncio {
 
 
 
-
+    /**
+     * Method that sets an advertisement.
+     * 
+     * @param row
+     * @return anuncio
+     * @throws SQLException 
+     */
     public Anuncio montarAnuncio(ResultSet row) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
