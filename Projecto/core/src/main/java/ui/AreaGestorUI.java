@@ -199,6 +199,8 @@ public class AreaGestorUI implements Initializable {
         criarTarefaPane.setDisable(true);
         homePane.setVisible(false);
         homePane.setDisable(true);
+        publicarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
         IniciarSeriacaoPane.setVisible(false);
         IniciarSeriacaoPane.setDisable(true);
         seriacaoAutomaticaPane.setVisible(false);
@@ -225,6 +227,8 @@ public class AreaGestorUI implements Initializable {
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoManualPane.setVisible(false);
         seriacaoManualPane.setDisable(true);
+        publicarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
 
         //ligarr
         criarTarefaPane.setVisible(true);
