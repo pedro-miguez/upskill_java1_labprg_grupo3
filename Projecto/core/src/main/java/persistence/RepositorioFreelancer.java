@@ -190,6 +190,10 @@ public class RepositorioFreelancer implements Serializable {
             pstmt.close();
             pstmt2.close();
 
+            if(!row.next()) {
+                row.close();
+            }
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
