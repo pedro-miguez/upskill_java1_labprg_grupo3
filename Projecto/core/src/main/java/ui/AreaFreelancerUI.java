@@ -30,6 +30,7 @@ import persistence.RepositorioFreelancer;
 public class AreaFreelancerUI implements Initializable {
 
     public BorderPane homeBorderPane;
+    public BorderPane homePaneAreaFreelancer;
     @FXML
     private Button btnConfirmarCandidatura;
     @FXML
@@ -120,32 +121,7 @@ public class AreaFreelancerUI implements Initializable {
         txtMotivacao.clear();
     }
 
-    public void btnGoHomeAction(ActionEvent actionEvent) {
-        homeBorderPane.setDisable(false);
-        homeBorderPane.setVisible(true);
-        efetuarCandidaturaPane.setDisable(true);
-        efetuarCandidaturaPane.setVisible(false);
-    }
 
-
-    @FXML
-    void efetuarCandidaturaAction(ActionEvent event) throws SQLException {
-        homeBorderPane.setDisable(true);
-        homeBorderPane.setVisible(false);
-        efetuarCandidaturaPane.setDisable(false);
-        efetuarCandidaturaPane.setVisible(true);
-
-        try {
-            listViewAnunciosMatchedFreelancer.getItems().setAll(efetuarCandidaturaController.getAnunciosMatched(
-                    authenticationController.getEmail()));
-        } catch (Exception e) {
-            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Erro ao preencher a lista de anúncios.",
-                    e.getMessage()).show();
-        }
-
-
-    }
 
     @FXML
     void logoutAction(ActionEvent event) {
@@ -173,6 +149,35 @@ public class AreaFreelancerUI implements Initializable {
     //volta à janela inicial
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
+    }
+
+
+    public void goHomeSelectAction(ActionEvent actionEvent) {
+        //desliga
+        efetuarCandidaturaPane.setDisable(true);
+        efetuarCandidaturaPane.setVisible(false);
+        //liga
+        homePaneAreaFreelancer.setDisable(false);
+        homePaneAreaFreelancer.setVisible(true);
+    }
+
+    @FXML
+    void efetuarCandidaturaAction(ActionEvent event) throws SQLException {
+        homePaneAreaFreelancer.setDisable(true);
+        homePaneAreaFreelancer.setVisible(false);
+        efetuarCandidaturaPane.setDisable(false);
+        efetuarCandidaturaPane.setVisible(true);
+
+        try {
+            listViewAnunciosMatchedFreelancer.getItems().setAll(efetuarCandidaturaController.getAnunciosMatched(
+                    authenticationController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro ao preencher a lista de anúncios.",
+                    e.getMessage()).show();
+        }
+
+
     }
 
 

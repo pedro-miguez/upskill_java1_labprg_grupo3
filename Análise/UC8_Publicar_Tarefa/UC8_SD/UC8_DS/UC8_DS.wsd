@@ -7,13 +7,16 @@ participant AreaColaboradorUI
 participant PublicarTarefaCTRL
 
 activate ColaboradorUtilizador
-ColaboradorUtilizador -> AreaColaboradorUI: 1 Inicia a publicitação de uma tarefa
+ColaboradorUtilizador -> AreaColaboradorUI: Inicia a publicitação de uma tarefa
 activate AreaColaboradorUI
+AreaColaboradorUI -> RepositorioAnuncio : getTarefasPrivadasOrganizacao (Organizacao organizacao)
+activate RepositorioAnuncio
+RepositorioAnuncio --> AreaColaboradorUI : mostra a lista
+deactivate RepositorioAnuncio
 AreaColaboradorUI -> PublicarTarefaCTRL : publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,\nData dataInicioPublicitacao, LocalDate dataFimPublicitacao,\nLocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,\nLocalDate dataInicioSeriacao, LocalDate dataFimSeriacao)
 activate PublicarTarefaCTRL
-PublicarTarefaCTRL -> RepositorioAnuncio: 2 repAnuncio = RepositorioAnuncio.getInstance()
+PublicarTarefaCTRL -> RepositorioAnuncio: repAnuncio = RepositorioAnuncio.getInstance()
 activate RepositorioAnuncio
-RepositorioAnuncio --> AreaColaboradorUI : getTarefasPrivadasOrganizacao (Organizacao organizacao)
 deactivate RepositorioAnuncio
 PublicarTarefaCTRL -> RepositorioAnuncio :  criarAnuncio(tarefa, tipoRegimento, dataInicioPublicitacao,\ndataFimPublicitacao, dataInicioSeriacao, dataFimSeriacao)
 activate RepositorioAnuncio

@@ -18,18 +18,16 @@
          <center>
             <StackPane prefHeight="539.0" prefWidth="632.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="homeBorderPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="homePaneAreaFreelancer" prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <VBox prefHeight="614.0" prefWidth="788.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="719.0" prefWidth="903.0" text="Bem-Vindo à Área de Freelancer da T4J!">
-                                 <graphic>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" />
-                                 </graphic>
-                              </Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="937.0" prefWidth="899.0" />
-                           </children>
-                        </VBox>
+                        <Label prefHeight="300.0" prefWidth="338.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="150.0" right="100.0" />
+                           </BorderPane.margin>
+                        </Label>
                      </center>
                   </BorderPane>
                   <BorderPane fx:id="efetuarCandidaturaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -119,7 +117,10 @@
          <left>
             <VBox alignment="TOP_CENTER" prefHeight="439.0" prefWidth="125.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnGoHomeAction" prefHeight="44.0" prefWidth="95.0" text="Home" textAlignment="CENTER" wrapText="true" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="10.0" mnemonicParsing="false" onAction="#goHomeSelectAction" prefHeight="31.0" prefWidth="76.0" text="Home" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="100.0" />
+                     </VBox.margin></Button>
                   <Button fx:id="btnEfetuarCandidatura" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#efetuarCandidaturaAction" prefHeight="44.0" prefWidth="95.0" text="Efetuar Candidatura" textAlignment="CENTER" wrapText="true">
                      <VBox.margin>
                         <Insets top="15.0" />

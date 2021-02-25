@@ -19,9 +19,7 @@ public class Anuncio implements Serializable {
     
 
     private Tarefa tarefa;
-
     private TipoRegimento tipoRegimento;
-
     private Data dataInicioPublicitacao;
     private Data dataFimPublicitacao;
     private Data dataInicioCandidatura;

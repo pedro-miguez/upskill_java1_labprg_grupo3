@@ -124,4 +124,9 @@ public class AuthenticationController {
             return "failed";
         }
     }
+
+    public void enviarPasswordPorEmailRegisto (Email emailUser, User user){
+
+
+    }
 }
