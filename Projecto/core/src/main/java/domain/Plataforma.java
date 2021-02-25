@@ -73,6 +73,10 @@ public class Plataforma implements Serializable {
         this.uapi = new UsersAPI();
     }
 
+    /**
+     * Gets a connection handler.
+     * @return connectionHandler
+     */
     public ConnectionHandler getConnectionHandler() {
         return connectionHandler;
     }
