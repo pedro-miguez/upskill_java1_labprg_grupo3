@@ -33,19 +33,11 @@ activate Email
 deactivate Email
 "rc:RepositorioColaborador" -> Colaborador ** : 16 create(nomeGestor, telefoneGestor, emailGestor, org, Funcao.GESTOR)
 deactivate "rc:RepositorioColaborador"
-"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 17 addOrganizacao(org)
-activate "ro:RepositorioOrganizacao"
-"RegistarOrganizacaoController" <-- "ro:RepositorioOrganizacao" : 18 ok
-deactivate "ro:RepositorioOrganizacao"
-"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 19 addGestor(gestor, org)
-activate "ro:RepositorioOrganizacao"
-"RegistarOrganizacaoController" <-- "ro:RepositorioOrganizacao" : 20 ok
-deactivate "ro:RepositorioOrganizacao"
-"RegistarOrganizacaoController" -> "rc:RepositorioColaborador" : 21 addColaborador(gestor)
-activate "rc:RepositorioColaborador"
-"RegistarOrganizacaoController" <-- "rc:RepositorioColaborador" : 22 ok
-deactivate "rc:RepositorioColaborador"
 ref over RegistarOrganizacaoController, Colaborador : UC1_SD_RegistarGestorComoUtilizador
+"RegistarOrganizacaoController" -> "ro:RepositorioOrganizacao" : 17 insertOrganizacao(org, gestor, password);
+activate "ro:RepositorioOrganizacao"
+"ro:RepositorioOrganizacao" -> "BaseDados" ** : 18 createOrganizacao()
+deactivate "ro:RepositorioOrganizacao"
 deactivate "RegistarOrganizacaoController"
 "RegistarOrganizacaoUI" --> UtilizadorNãoRegistado : 23 operação bem sucedida, \n mostra dados
 deactivate "RegistarOrganizacaoUI"
