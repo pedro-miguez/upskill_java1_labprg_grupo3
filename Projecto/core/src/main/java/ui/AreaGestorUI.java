@@ -1,10 +1,7 @@
 package ui;
 
-import application.AuthenticationController;
-import application.DefinirTarefaController;
-import application.ServiceController;
-import application.RegistarColaboradorController;
-import domain.CategoriaTarefa;
+import application.*;
+import domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -48,30 +46,65 @@ public class AreaGestorUI implements Initializable {
 
     public BorderPane criarTarefaPane;
     public BorderPane registarColaboradorPane;
+    public BorderPane homePane;
+    public BorderPane seriacaoManualPane;
+    public ListView<Candidatura> listViewCandidaturasPorSelecionarSeriacaoManual;
+    public ListView<Colaborador> listViewColaboradoresPorSelecionarSeriacaoManual;
+    public ListView<Candidatura> listViewCandidaturasSelecionadasSeriacaoManual;
+    public ListView<Colaborador> listViewColaboradoresSelecionadosSeriacaoManual;
+    public Button btnRemoverUltimaCandidatura;
+    public Button btnRemoverUltimoColaborador;
+    public BorderPane IniciarSeriacaoPane;
+    public ListView<Anuncio> listViewAnunciosSeriarAnuncio;
+    public BorderPane seriacaoAutomaticaPane;
+    public ListView<Candidatura> listViewCandidaturasSeriarAnuncioSeriacaoAutomatica;
+    public BorderPane publicarTarefaPane;
+    public Button btnPublicarTarefa;
+    public Button btnLimparDadosPublicarTarefa;
+    public ListView<Tarefa> listViewTarefasMatchedPublicarTarefa;
+    public DatePicker btnDataFimPub;
+    public DatePicker btnDataInicioCand;
+    public DatePicker btnDataFimCand;
+    public DatePicker btnDataInicioSeriacao;
+    public DatePicker btnDataFimSeriacao;
+    public ComboBox<TipoRegimento> btnTipoRegimento;
 
     private RegistarColaboradorController registarColaboradorController;
     private AuthenticationController authController;
     private ServiceController serviceController;
     private DefinirTarefaController tarefaController;
-
+    private PublicarTarefaController publicarTarefaController;
+    private SeriarCandidaturaController seriarCandidaturaController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registarColaboradorController = new RegistarColaboradorController();
         authController = new AuthenticationController();
         serviceController = new ServiceController();
+        tarefaController = new DefinirTarefaController();
+        publicarTarefaController = new PublicarTarefaController();
+        seriarCandidaturaController = new SeriarCandidaturaController();
+
+
         try {
             comboCategoria.getItems().setAll(serviceController.getCategoriasTarefa());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        tarefaController = new DefinirTarefaController();
+
+
+        //popular combo boxes do painel Publicar Tarefa
+        try {
+            btnTipoRegimento.getItems().setAll(serviceController.getTiposRegimento());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //Registar Colaborador
     @FXML
     void registarColaboradorAction(ActionEvent event) {
-       try {
+        try {
             boolean registou = registarColaboradorController.registarColaborador(txtNomeColaborador.getText().trim(),
                     Integer.parseInt(txtContactoColaborador.getText().trim()),
                     txtEmailColaborador.getText().trim(), txtFuncaoColaborador.getText().trim(), authController.getEmail());
@@ -92,8 +125,8 @@ public class AreaGestorUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
         } catch (SQLException throwables) {
-           throwables.printStackTrace();
-       }
+            throwables.printStackTrace();
+        }
     }
 
     //Criar Tarefa
@@ -161,17 +194,43 @@ public class AreaGestorUI implements Initializable {
 
     //selecionar menu registo colaborador
     public void btnSelecionarRegistarColaboradorAction(ActionEvent actionEvent) {
-        registarColaboradorPane.setVisible(true);
-        registarColaboradorPane.setDisable(false);
+        //desligar
         criarTarefaPane.setVisible(false);
         criarTarefaPane.setDisable(true);
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        publicarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        IniciarSeriacaoPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+
+        //ligar
+        registarColaboradorPane.setVisible(true);
+        registarColaboradorPane.setDisable(false);
 
     }
 
     //selecionar menu criação de tarefa
     public void btnSelecionarCriarTarefaAction(ActionEvent actionEvent) {
+        //desligar
         registarColaboradorPane.setVisible(false);
         registarColaboradorPane.setDisable(true);
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        publicarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+
+        //ligarr
         criarTarefaPane.setVisible(true);
         criarTarefaPane.setDisable(false);
 
@@ -181,6 +240,25 @@ public class AreaGestorUI implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    //selecionar menu Home
+    public void goHomeSelectAction(ActionEvent actionEvent) {
+        //desligar
+        registarColaboradorPane.setVisible(false);
+        registarColaboradorPane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+
+        //ligar
+        homePane.setVisible(true);
+        homePane.setDisable(false);
     }
 
     //fazer logout
@@ -216,6 +294,13 @@ public class AreaGestorUI implements Initializable {
         txtDescTecnicaTarefa.clear();
         txtDuracaoTarefa.clear();
         txtNomeTarefa.clear();
+        comboCategoria.setValue(null);
+        btnDataFimPub.getEditor().clear();
+        btnDataFimCand.getEditor().clear();
+        btnDataFimSeriacao.getEditor().clear();
+        btnDataInicioCand.getEditor().clear();
+        btnDataInicioSeriacao.getEditor().clear();
+        btnTipoRegimento.setValue(null);
     }
 
     //volta à janela inicial
@@ -223,5 +308,305 @@ public class AreaGestorUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
+    public void finalizarSeriacaoManualAction(ActionEvent actionEvent) {
+        try {
+            boolean criou = seriarCandidaturaController.criarProcessoSeriacao(
+                    listViewCandidaturasSelecionadasSeriacaoManual.getItems(),
+                    listViewColaboradoresSelecionadosSeriacaoManual.getItems(),
+                    authController.getEmail());
 
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Processo de seriação.",
+                    criou ? "Processo de seriação realizado com sucesso!" :
+                            "Não foi possível realizar o processo de seriação").show();
+
+            if (criou) {
+                listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
+                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().clear();
+                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
+                listViewColaboradoresSelecionadosSeriacaoManual.getItems().clear();
+                seriacaoManualPane.setDisable(true);
+                seriacaoManualPane.setVisible(false);
+                IniciarSeriacaoPane.setVisible(true);
+                IniciarSeriacaoPane.setDisable(false);
+                try {
+                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+                } catch (SQLException e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
+
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
+        }
+    }
+
+    public void voltarSeriacaoManualAction(ActionEvent actionEvent) {
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar ao menu de seriação.", "Deseja mesmo fazer voltar?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            try {
+                listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
+                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().clear();
+                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
+                listViewColaboradoresSelecionadosSeriacaoManual.getItems().clear();
+                seriacaoManualPane.setDisable(true);
+                seriacaoManualPane.setVisible(false);
+                IniciarSeriacaoPane.setVisible(true);
+                IniciarSeriacaoPane.setDisable(false);
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao voltar ao menu anterior.",
+                        e.getMessage()).show();
+            }
+        }
+    }
+
+    public void classificarCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
+        if (listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
+            listViewCandidaturasSelecionadasSeriacaoManual.getItems().add(
+                    listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
+            if (btnRemoverUltimaCandidatura.isDisable()) {
+                btnRemoverUltimaCandidatura.setDisable(false);
+            }
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar candidatura",
+                    "É obrigatório escolher uma candidatura para adicionar!").show();
+        }
+    }
+
+    public void removerUltimaCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
+        listViewCandidaturasSelecionadasSeriacaoManual.getItems().remove(listViewCandidaturasSelecionadasSeriacaoManual.getItems().size() - 1);
+
+        if (listViewCandidaturasSelecionadasSeriacaoManual.getItems().size() == 0) {
+            btnRemoverUltimaCandidatura.setDisable(true);
+        }
+    }
+
+    public void adicionarColaboradorSeriacaoManualAction(ActionEvent actionEvent) {
+        if (listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
+            listViewColaboradoresSelecionadosSeriacaoManual.getItems().add(
+                    listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
+            if (btnRemoverUltimoColaborador.isDisable()) {
+                btnRemoverUltimoColaborador.setDisable(false);
+            }
+        } else {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar candidatura",
+                    "É obrigatório escolher uma candidatura para adicionar!").show();
+        }
+    }
+
+    public void removerUltimoColaboradorSeriacaoManualAction(ActionEvent actionEvent) {
+        listViewColaboradoresSelecionadosSeriacaoManual.getItems().remove(listViewColaboradoresSelecionadosSeriacaoManual.getItems().size() - 1);
+
+        if (listViewColaboradoresSelecionadosSeriacaoManual.getItems().size() == 0) {
+            btnRemoverUltimoColaborador.setDisable(true);
+        }
+    }
+
+    public void iniciarSeriacaoAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        registarColaboradorPane.setDisable(true);
+        registarColaboradorPane.setVisible(false);
+        try {
+            if (seriarCandidaturaController.isSeriacaoAutomatica(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem())) {
+                //ligar
+                seriacaoAutomaticaPane.setDisable(false);
+                seriacaoAutomaticaPane.setVisible(true);
+                seriacaoManualPane.setDisable(true);
+                seriacaoManualPane.setVisible(false);
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().setAll(seriarCandidaturaController.
+                        candidaturasSeriadasPorValor(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
+            } else {
+                //ligar
+                seriacaoManualPane.setDisable(false);
+                seriacaoManualPane.setVisible(true);
+                seriacaoAutomaticaPane.setDisable(true);
+                seriacaoAutomaticaPane.setVisible(false);
+                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
+                        getAllCandidaturasPorSelecionar(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
+                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
+                        getAllColaboradoresOrganizacao(authController.getEmail()));
+            }
+
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema ao iniciar seriação.",
+                    e.getMessage()).show();
+        }
+    }
+
+    public void confirmarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
+        try {
+
+            boolean seriou = seriarCandidaturaController.criarProcessoSeriacao(listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems(),
+                    new ArrayList<Colaborador>(),
+                    authController.getEmail());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Seriação de Candidaturas.",
+                    seriou ? "Seriação Automática realizada com sucesso! \n\n"
+                            : "Não foi possível seriar automáticamente as candidaturas.").show();
+            if (seriou) {
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+                seriacaoAutomaticaPane.setDisable(true);
+                seriacaoAutomaticaPane.setVisible(false);
+                IniciarSeriacaoPane.setVisible(true);
+                IniciarSeriacaoPane.setDisable(false);
+                try {
+                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+                } catch (SQLException e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    "Datas inválidas ou campos em falta");
+        }
+
+    }
+
+    public void voltarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar ao menu de seriação.", "Deseja mesmo fazer voltar?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            try {
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+                seriacaoAutomaticaPane.setDisable(true);
+                seriacaoAutomaticaPane.setVisible(false);
+                IniciarSeriacaoPane.setVisible(true);
+                IniciarSeriacaoPane.setDisable(false);
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao voltar ao menu anterior.",
+                        e.getMessage()).show();
+            }
+        }
+    }
+
+    public void publicarTarefaAction(ActionEvent actionEvent) {
+        try {
+
+            boolean publicou = publicarTarefaController.publicarTarefa(
+                    listViewTarefasMatchedPublicarTarefa.getSelectionModel().getSelectedItem(),
+                    btnTipoRegimento.getValue(),
+                    Data.dataAtual(),
+                    btnDataFimPub.getValue(),
+                    btnDataInicioCand.getValue(),
+                    btnDataFimCand.getValue(),
+                    btnDataInicioSeriacao.getValue(),
+                    btnDataFimSeriacao.getValue(),
+                    authController.getEmail());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Criar novo Anúncio.",
+                    publicou ? "Anúncio criado com sucesso! \n\n" +
+                            serviceController.getAnunciotoStringCompletoByTarefa(listViewTarefasMatchedPublicarTarefa.
+                                    getSelectionModel().getSelectedItem())
+                            : "Não foi possível criar o anúncio.").show();
+
+            if (publicou) {
+                limparTodosOsCampos();
+                try {
+                    listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authController.getEmail()));
+                } catch (Exception e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    "Datas inválidas ou campos em falta");
+        }
+    }
+
+
+    public void btnLimparDadosPublicarTarefaAction(ActionEvent actionEvent) {
+        limparTodosOsCampos();
+    }
+
+    public void btnPublicarTarefaSelectAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        registarColaboradorPane.setDisable(true);
+        registarColaboradorPane.setVisible(false);
+
+        //ligar
+        publicarTarefaPane.setVisible(true);
+        publicarTarefaPane.setDisable(false);
+
+
+        //popular elementos
+        try {
+            listViewTarefasMatchedPublicarTarefa.getItems().setAll(serviceController.getTarefasOrganizacao(authController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }
+    }
+
+    public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+
+        //ligar
+        IniciarSeriacaoPane.setDisable(false);
+        IniciarSeriacaoPane.setVisible(true);
+        try {
+            listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+        } catch (SQLException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }
+    }
 }
