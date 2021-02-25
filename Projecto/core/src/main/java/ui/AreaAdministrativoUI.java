@@ -96,6 +96,7 @@ public class AreaAdministrativoUI implements Initializable {
 
     public Button btnLogout;
     public Button btnRemoverGrauProficienciaCompetenciaTecnica;
+    public BorderPane homePane;
 
 
     private DefinirAreaAtividadeController areaAtividadeController;
@@ -266,6 +267,8 @@ public class AreaAdministrativoUI implements Initializable {
         criarCategoriaTarefaPane.setDisable(true);
         criarFreelancerPane.setVisible(false);
         criarFreelancerPane.setDisable(true);
+        homePane.setDisable(true);
+        homePane.setVisible(false);
 
         //ligar
         criarAreaAtividadePane.setVisible(true);
@@ -285,11 +288,14 @@ public class AreaAdministrativoUI implements Initializable {
         criarAreaAtividadePane.setDisable(true);
         criarFreelancerPane.setVisible(false);
         criarFreelancerPane.setDisable(true);
+        homePane.setDisable(true);
+        homePane.setVisible(false);
 
         //ligar
         criarCategoriaTarefaPane.setVisible(true);
         criarCategoriaTarefaPane.setDisable(false);
         txtDescricaoCategoriaTarefa.requestFocus();
+
 
         //popular elementos
         comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
@@ -304,6 +310,8 @@ public class AreaAdministrativoUI implements Initializable {
         criarAreaAtividadePane.setDisable(true);
         criarFreelancerPane.setVisible(false);
         criarFreelancerPane.setDisable(true);
+        homePane.setDisable(true);
+        homePane.setVisible(false);
 
         //ligar
         criarCompetenciaTecnicaPane.setVisible(true);
@@ -323,6 +331,8 @@ public class AreaAdministrativoUI implements Initializable {
         criarAreaAtividadePane.setDisable(true);
         criarCategoriaTarefaPane.setVisible(false);
         criarCategoriaTarefaPane.setDisable(true);
+        homePane.setDisable(true);
+        homePane.setVisible(false);
 
         //ligar
         criarFreelancerPane.setVisible(true);
@@ -331,7 +341,21 @@ public class AreaAdministrativoUI implements Initializable {
 
         //popular elementos
         listViewCompTecnicasPorSelecionarFreelancer.getItems().setAll(serviceController.getAllCompetenciasTecnicas());
-
+    }
+    //mudar para o painel home
+    public void goHomeSelectAction(ActionEvent actionEvent) {
+        //desliga
+        criarCompetenciaTecnicaPane.setVisible(false);
+        criarCompetenciaTecnicaPane.setDisable(true);
+        criarAreaAtividadePane.setVisible(false);
+        criarAreaAtividadePane.setDisable(true);
+        criarCategoriaTarefaPane.setVisible(false);
+        criarCategoriaTarefaPane.setDisable(true);
+        criarFreelancerPane.setVisible(false);
+        criarFreelancerPane.setDisable(true);
+        //liga
+        homePane.setDisable(false);
+        homePane.setVisible(true);
     }
 
     // ##########################################
@@ -660,4 +684,6 @@ public class AreaAdministrativoUI implements Initializable {
             btnRemoverUltimaHabilitacaoAcademicaAdicionada.setDisable(true);
         }
     }
+
+
 }
