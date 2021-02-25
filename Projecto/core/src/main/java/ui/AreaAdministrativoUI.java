@@ -2,6 +2,7 @@ package ui;
 
 import application.*;
 import domain.*;
+import exceptions.FetchingProblemException;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
@@ -121,14 +122,14 @@ public class AreaAdministrativoUI implements Initializable {
         //popular combo box do painel Criar Competencia Tecnica
         try {
             comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
-        } catch (SQLException throwables) {
+        } catch (SQLException | FetchingProblemException throwables) {
             throwables.printStackTrace();
         }
 
         //popular combo boxes do painel Criar Categoria de Tarefa
         try {
             comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
-        } catch (SQLException throwables) {
+        } catch (SQLException | FetchingProblemException throwables) {
             throwables.printStackTrace();
         }
     }

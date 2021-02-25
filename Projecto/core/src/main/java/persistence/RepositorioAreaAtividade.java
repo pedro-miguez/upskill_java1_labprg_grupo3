@@ -178,11 +178,8 @@ public class RepositorioAreaAtividade implements Serializable {
             e.printStackTrace();
         }
 
-        if (listaAreas.size() != 0) {
-            return listaAreas;
-        } else {
-            throw new FetchingProblemException("Lista de áreas de atividade vazia");
-        }
+        return listaAreas;
+
     }
 
 
