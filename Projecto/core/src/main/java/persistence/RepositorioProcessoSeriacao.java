@@ -22,8 +22,7 @@ public class RepositorioProcessoSeriacao {
 
 
     /**
-     * Static method that returns a unique reference to the class object, which 
-     * implements a singleton.
+     * Static method that returns a unique reference to the class object.
      * 
      * @return instance
      */
@@ -159,6 +158,14 @@ public class RepositorioProcessoSeriacao {
         return false;
     }
 
+    /**
+     * Creates a serialization process.
+     * 
+     * @param anuncio
+     * @param classificacao
+     * @param colaboradores
+     * @return new ProcessoSeriacao
+     */
     public ProcessoSeriacao criarProcessoSeriacao(Anuncio anuncio, List<Classificacao> classificacao,
             List<Colaborador> colaboradores) {
         return new ProcessoSeriacao(anuncio, classificacao, colaboradores);
