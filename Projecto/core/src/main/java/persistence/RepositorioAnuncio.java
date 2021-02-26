@@ -3,9 +3,7 @@ package persistence;
 import domain.*;
 import exceptions.CodigoNaoAssociadoException;
 import exceptions.FetchingProblemException;
-import jdk.nashorn.internal.codegen.CompilerConstants;
-import network.ConnectionHandler;
-import oracle.jdbc.proxy.annotation.Pre;
+
 
 import javax.xml.transform.Result;
 import java.sql.*;
