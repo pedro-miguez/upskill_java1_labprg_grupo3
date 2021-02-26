@@ -6,9 +6,7 @@ import domain.*;
 import exceptions.EmailNaoAssociadoException;
 import exceptions.FetchingProblemException;
 import exceptions.GestorNaoRelacionadoANenhumaOrgException;
-import jdk.internal.org.objectweb.asm.Type;
-import network.ConnectionHandler;
-import oracle.jdbc.pool.OracleDataSource;
+
 
 import java.io.Serializable;
 import java.sql.*;

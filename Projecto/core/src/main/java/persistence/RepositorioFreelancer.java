@@ -221,7 +221,7 @@ public class RepositorioFreelancer implements Serializable {
 
         try {
             while (rows.next()) {
-                //Montar Área Atividade
+                //Montar Area Atividade
                 PreparedStatement pstmt = conn.prepareStatement(
                         "SELECT idAreaAtividade FROM CompetenciaTecnica WHERE idCompetenciaTecnica = ?");
                 pstmt.setString(1, rows.getString("idCompetenciaTecnica"));
