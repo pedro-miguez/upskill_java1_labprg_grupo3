@@ -1,6 +1,7 @@
-package application;
+package com.company.controller;
 
-import domain.*;
+//import domain.*;
+import com.company.model.*;
 
 /**
  * JavaFX controller works based on MVC(Model-View-Controller) and can be achieved by FXML (EFF-ects eXtended Markup Language).
