@@ -50,7 +50,6 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
         setNrDias(nrDias);
         setTxtApresentacao(txtApresentacao);
         setTxtMotivacao(txtMotivacao);
-        
     }
     
     /**
