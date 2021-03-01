@@ -1,0 +1,90 @@
+@startuml
+
+title UC9 - Efetuar Candidatura \n
+
+Class AreaFreelancerUI {
+}
+
+Class EfetuarCandidaturaController {
+    +ArrayList<Anuncio> getAnunciosMatched(String emailFreelancer)
+    +efetuarCandidatura(Anuncio anuncio, String emailFreelancer, LocalDate dataCandidatura,
+                                      double valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao)
+}
+
+Class Repositoriofreelancer {
+    +getFreelancerByEmail(Email email)
+}
+
+Class Freelancer {
+    - String nome;
+    - Telefone telefone;
+    - Email email;
+    - NIF nif;
+    - List<ReconhecimentoCT> reconhecimento;
+    - List<HabilitacaoAcademica> habilitacoes;
+}
+
+Class ReconhecimentoCT {
+    - CompetenciaTecnica competenciaTecnica;
+    - GrauProficiencia grauProficiencia;
+    - Data dataReconhecimento;
+}
+
+Class HabilitacaoAcademica {
+    - String grau;
+    - String designacaoCurso;
+    - String nomeInstituicao;
+    - double mediaCurso;
+}
+
+class RepositorioAnuncio{
+    +getAllAnunciosCandidatura ()
+}
+
+class RepositorioCandidatura {
+    +getAllCandidaturasFreelancer(Email emailFreelancer) 
+    +getCandidaturasByAnuncio(Anuncio anuncio) 
+    +criarCandidatura(Anuncio anuncio, Freelancer freelancer,\nLocalDate dataCandidatura, double valorPretendido,\nint nrDias, String txtApresentacao, String txtMotivacao)
+}
+
+class Candidatura {
+    - Anuncio anuncio
+    - Freelancer freelancer
+    - Data dataCandidatura
+    - double valorPretendido
+    - int nrDias
+    - String txtApresentacao
+    - String txtMotivacao
+}
+
+class Anuncio {
+    - Tarefa tarefa
+    - TipoRegimento tipoRegimento
+    - Data dataInicioPublicitacao
+    - Data dataFimPublicitacao
+    - Data dataInicioCandidatura
+    - Data dataFimCandidatura
+    - Data dataInicioSeriacao
+    - Data dataFimSeriacao
+}
+
+
+
+
+
+
+
+AreaFreelancerUI ..> EfetuarCandidaturaController
+EfetuarCandidaturaController ..> RepositorioAnuncio
+EfetuarCandidaturaController ..> RepositorioCandidatura
+EfetuarCandidaturaController ..> Repositoriofreelancer
+RepositorioAnuncio --> Anuncio
+RepositorioCandidatura --> Candidatura
+Repositoriofreelancer -->  Freelancer
+Freelancer --> ReconhecimentoCT
+Freelancer --> HabilitacaoAcademica
+Candidatura --> Anuncio
+Candidatura --> Freelancer
+
+
+@enduml
