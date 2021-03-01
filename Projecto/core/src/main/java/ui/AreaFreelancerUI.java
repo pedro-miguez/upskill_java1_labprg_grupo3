@@ -87,7 +87,7 @@ public class AreaFreelancerUI implements Initializable {
 
             boolean efetuou = efetuarCandidaturaController.efetuarCandidatura(listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
                     authenticationController.getEmail(),
-                    LocalDate.now(), Double.parseDouble(txtValorPretendido.getText()), Integer.parseInt(txtDuracaoDias.getText()),
+                     Double.parseDouble(txtValorPretendido.getText()), Integer.parseInt(txtDuracaoDias.getText()),
                     txtApresentacao.getText(), txtMotivacao.getText());
 
 

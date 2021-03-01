@@ -215,7 +215,7 @@ public class RepositorioCandidatura {
                     "idFreelancer = ?");
             deleteCandidatura.setInt(1, idAnuncio);
             deleteCandidatura.setInt(2, idFreelancer);
-            
+
             deleteCandidatura.executeQuery();
 
             conn.commit();
@@ -506,14 +506,13 @@ public class RepositorioCandidatura {
      * @param txtMotivacao
      * @return new Candidatura
      */
-    public Candidatura criarCandidatura(Anuncio anuncio, Freelancer freelancer, LocalDate dataCandidatura,
+    public Candidatura criarCandidatura(Anuncio anuncio, Freelancer freelancer, Data dataCandidatura,
                                         double valorPretendido,
                                         int nrDias,
                                         String txtApresentacao,
                                         String txtMotivacao) {
 
-        return new Candidatura(anuncio, freelancer,  new Data(dataCandidatura.getYear(), dataCandidatura.getMonth().getValue(),
-                dataCandidatura.getDayOfMonth()), valorPretendido, nrDias, txtApresentacao, txtMotivacao);
+        return new Candidatura(anuncio, freelancer,  dataCandidatura , valorPretendido, nrDias, txtApresentacao, txtMotivacao);
     }
 
 }

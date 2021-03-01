@@ -31,9 +31,15 @@ RepositorioCandidatura <-- BaseDados : ok
 deactivate RepositorioCandidatura
 deactivate BaseDados
 
+
 deactivate AlterarCandidaturaCtrl
 AreaFreelancerUI -> sc ** : getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
-sc -> BaseDados: getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+activate sc
+sc -> RepositorioCandidatura : getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+deactivate sc
+activate RepositorioCandidatura
+RepositorioCandidatura -> BaseDados: getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+deactivate RepositorioCandidatura
 activate BaseDados
 deactivate BaseDados
 AreaFreelancerUI --> FreelancerUser : operação bem sucedida, \n mostra dados

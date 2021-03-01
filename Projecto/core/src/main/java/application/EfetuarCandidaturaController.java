@@ -1,9 +1,6 @@
 package application;
 
-import domain.Anuncio;
-import domain.Candidatura;
-import domain.Email;
-import domain.Freelancer;
+import domain.*;
 import persistence.RepositorioAnuncio;
 import persistence.RepositorioCandidatura;
 import persistence.RepositorioFreelancer;
@@ -60,7 +57,6 @@ public class EfetuarCandidaturaController {
      * 
      * @param anuncio
      * @param emailFreelancer
-     * @param dataCandidatura
      * @param valorPretendido
      * @param nrDias
      * @param txtApresentacao
@@ -68,12 +64,12 @@ public class EfetuarCandidaturaController {
      * @return repoCandidatura
      * @throws SQLException 
      */
-    public boolean efetuarCandidatura(Anuncio anuncio, String emailFreelancer, LocalDate dataCandidatura,
+    public boolean efetuarCandidatura(Anuncio anuncio, String emailFreelancer,
                                       double valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao) throws SQLException {
 
         Freelancer freelancer = repositorioFreelancer.getFreelancerByEmail(new Email(emailFreelancer));
 
-        Candidatura candidatura = repoCandidatura.criarCandidatura(anuncio, freelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao);
+        Candidatura candidatura = repoCandidatura.criarCandidatura(anuncio, freelancer, Data.dataAtual(), valorPretendido, nrDias, txtApresentacao, txtMotivacao);
 
         return repoCandidatura.insertCandidatura(candidatura);
 
