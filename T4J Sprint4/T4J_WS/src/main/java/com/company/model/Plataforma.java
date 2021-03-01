@@ -1,8 +1,11 @@
 package com.company.model;
 
-import application.UsersAPI;
-import network.ConnectionHandler;
-import persistence.*;
+//import application.UsersAPI;
+
+import com.company.controller.UsersAPI;
+
+//import network.ConnectionHandler;
+//import persistence.*;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -26,13 +29,13 @@ public class Plataforma implements Serializable {
 
     private AlgoritmoGeradorPasswords agp;
     private UsersAPI uapi;
-    private ConnectionHandler connectionHandler;
+    //private ConnectionHandler connectionHandler;
 
-    private Plataforma() throws SQLException {
+    /*private Plataforma() throws SQLException {
         agp = new AlgoritmoGeradorPasswords();
         uapi = new UsersAPI();
         connectionHandler = new ConnectionHandler();
-    }
+    }*/
 
     /**
      * Gets instance Plataforma.
@@ -77,7 +80,7 @@ public class Plataforma implements Serializable {
      * Gets a connection handler.
      * @return connectionHandler
      */
-    public ConnectionHandler getConnectionHandler() {
+    /*public ConnectionHandler getConnectionHandler() {
         return connectionHandler;
-    }
+    }*/
 }
