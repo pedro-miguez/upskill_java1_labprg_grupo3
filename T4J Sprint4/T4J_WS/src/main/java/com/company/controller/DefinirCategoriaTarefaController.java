@@ -1,4 +1,4 @@
-package application;
+package com.company.controller;
 
 import domain.*;
 import persistence.RepositorioCategoriaTarefa;

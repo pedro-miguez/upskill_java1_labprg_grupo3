@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package application;
+package com.company.controller;
 
 import domain.*;
 import persistence.RepositorioColaborador;
