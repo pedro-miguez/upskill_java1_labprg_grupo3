@@ -1,0 +1,155 @@
+public class Mapper {
+
+    public static DataDTO data2dataDTO(Data data) throws NullPointerException {
+        DataDTO dataDTO = new DataDTO();
+        dataDTO.setDia(data.getDia());
+        dataDTO.setMes(data.getMes());
+        dataDTO.setAno(data.getAno());
+        return dataDTO;
+    }
+
+    public static Data dataDTO2data(DataDTO dataDTO) throws NullPointerException {
+        Data data = null;
+        data = new Data(dataDTO.getDia(), dataDTO.getMes(), dataDTO.getAno());
+        return data;
+    }
+
+    public static ColaboradorDTO colaborador2ColaboradorDTO(Colaborador colaborador) throws NullPointerException {
+        ColaboradorDTO colaboradorDTO = new ColaboradorDTO();
+
+	colaboradorDTO.setNome(colaborador.getNome());
+	colaboradorDTO.setTelefone(colaborador.getTelefone());
+	colaboradorDTO.setEmail(colaborador.getEmail());
+	colaboradorDTO.setFuncao(colaborador.getFuncao());
+        
+        return colaboradorDTO;
+    }
+
+    public static Colaborador colaboradorDTO2Colaborador(ColaboradorDTO colaboradorDTO) throws NullPointerException {
+        Colaborador colaborador = null;
+        
+        colaborador = new Colaborador(colaboradorDTO.getNome(), 
+					colaboradorDTO.getTelefone(),
+					colaboradorDTO.getEmail(),
+					colaboradorDTO.getFuncao());
+
+        return colaborador;
+    }
+
+    
+public static ListaColaboradorDTO listColaborador2ColaboradorDTO(ArrayList<Colaborador> colaboradores) throws NullPointerException {
+        ArrayList<ColaboradorDTO> colaboradoresDTO = new ArrayList<>();
+        for (Colaborador colaborador : colaboradores) {
+            try {
+                ColaboradorDTO colaboradorDTO = colaborador2ColaboradorDTO(colaborador);
+                colaboradoresDTO.add(colaboradorDTO);
+            } catch (NullPointerException e) {
+//does nothing. Actually, nothing is added to arraylist
+            }
+        }
+        ListaColaboradorDTO listaolaboradorDTO = new ListaColaboradorDTO();
+        listaColaboradorDTO.setColaboradores(colaboradoresDTO);
+        return listaColaboradorDTO;
+    }
+
+    public static FreelancerDTO freelancer2FreelancerDTO(Freelancer freelancer) throws
+            NullPointerException {
+        FreelancerDTO freelancerDTO = new FreelancerDTO();
+
+	freelancerDTO.setNome(freelancer.getNome());
+	freelancerDTO.setTelefone(freelancer.getTelefone());
+	freelancerDTO.setEmail(freelancer.getEmail());
+	freelancerDTO.setNif(freelancer.getNif());
+
+        return freelancerDTO;
+    }
+
+    public static Freelancer freelancerDTO2Freelancer(FreelancerDTO freelancerDTO) throws
+            NullPointerException {
+        Freelancer freelancer = null;
+
+	freelancer = new Freelancer(freelancerDTO.getNome(),
+					freelancerDTO.getTelefone(),
+					freelancerDTO.getEmail(),
+					freelancerDTO.getNif());
+
+        
+        return freelancer;
+    }
+
+    public static ListaFreelancerDTO listFreelancer2FreelancerDTO(ArrayList<Freelancer> freelancers)
+            throws NullPointerException {
+        ArrayList<FreelancerDTO> freelancersDTO = new ArrayList<>();
+
+        for (Freelancer freelancer : freelancers) {
+            try {
+                FreelancerDTO freelancerDTO = freelancer2FreelancerDTO(freelancer);
+                freelancersDTO.add(freelancerDTO);
+            } catch (NullPointerException e) {
+//does nothing. Actually, nothing is added to arraylist
+            }
+        }
+        ListaFreelancerDTO listaFreelancerDTO = new ListaFreelancerDTO();
+        listaFreelancerDTO.setFreelancers(freelancersDTO);
+        return listaFreelancerDTO;
+    }
+    
+    
+    public static OrganizacaoDTO organizacao2OrganizacaoDTO(Organizacao organizacao) throws
+            NullPointerException {
+        OrganizacaoDTO organizacaoDTO = new OrganizacaoDTO();
+
+	organizacaoDTO.setNome(organizacao.getNome());
+
+	organizacaoDTO.setEmail(organizacao.getEmail());
+        
+        organizacaoDTO.setNif(organizacao.getNif());
+
+	organizacaoDTO.setWebsite(organizacao.getWebsite());
+
+	organizacaoDTO.setTelefone(organizacao.getTelefone());
+
+	organizacaoDTO.setEndereco(organizacao.getEndereco());
+        
+        
+        return organizacaoDTO;
+    }
+
+    public static Organizacao organizacaoDTO2Organizacao(OrganizacaoDTO organizacaoDTO) throws
+            NullPointerException {
+
+        Organizacao organizacao = null;
+        
+        organizacao = new Organizacao(organizacaoDTO.getNome(), 
+					organizacaoDTO.getEmail(),
+					organizacaoDTO.getNif(),
+					organizacaoDTO.getWebsite(),
+					organizacaoDTO.getTelefone(),
+					organizacaoDTO.getEndereco());
+        
+        
+        return organizacao;
+    }
+
+    public static ListaOrganizacaoDTO listOrganizacao2OrganizacaoDTO(ArrayList<Organizacao> orgs)
+            throws NullPointerException {
+        ArrayList<OrganizacaoDTO> organizacoesDTO = new ArrayList<>();
+        for (Organizacao organizacao : orgs) {
+            try {
+                OrganizacaoDTO organizacaoDTO = organizacao2OrganizacaoDTO(organizacao);
+                organizacoesDTO.add(organizacaoDTO);
+            } catch (NullPointerException e) {
+//does nothing. Actually, nothing is added to arraylist
+            }
+        }
+        ListaOrganizacaoDTO listaOrganizacaoDTO = new ListaOrganizacaoDTO();
+        listaOrganizacaoDTO.setOrganizacoes(organizacoesDTO);
+        return listaOrganizacaoDTO;
+    }
+    
+    
+    
+    
+    
+    
+}

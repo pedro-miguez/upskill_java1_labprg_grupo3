@@ -1,0 +1,68 @@
+package com.company.service;
+
+import com.company.repo.Dados;
+import com.company.dto.OrganizacaoDTO;
+import com.company.dto.ListaOrganizacaoDTO;
+import com.company.dto.Mapper;
+import com.company.exception.ConversaoException;
+import com.company.model.Plataforma;
+import com.company.model.Organizacao;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Grupo 3
+ */
+public class OrganizacoesService {
+    
+    public static ListaOrganizacaoDTO getOrganizacoes() {
+        Plataforma plataforma = Dados.carregarDados();
+        ArrayList<Organizacao> organizacoes = plataforma.getOrganizacoes();
+        ListaOrganizacaoDTO listaOrganizacaoaDTO = Mapper.listOrganizacao2OrganizacaoDTO(organizacoes);
+        return listaOrganizacaoaDTO;
+    }
+
+    public static OrganizacaoDTO getOrganizacao(String nome) {
+        Plataforma plataforma = Dados.carregarDados();
+        Organizacao organizacao = plataforma.getOrganizacao(nome);
+        if (organizacao == null) {
+            return null;
+        }
+
+        OrganizacaoDTO organizacaoDTO = Mapper.organizacao2OrganizacaoDTO(organizacao);
+        if (organizacaoDTO != null) {
+            return organizacaoDTO;
+        } else {
+            throw new ConversaoException("OrganizacaoDTO");
+        }
+    }
+
+    public static void addOrganizacao(OrganizacaoDTO organizacaoDTO) {
+        Organizacao organizacao = Mapper.organizacaoDTO2Organizacao(organizacaoDTO);
+        if (organizacao != null) {
+            Plataforma plataforma = Dados.carregarDados();
+            plataforma.addOrganizacao(organizacao);
+            Dados.guardarDados(plataforma);
+        } else {
+            throw new ConversaoException("OrganizacaoDTO");
+        }
+    }
+
+    public static void updateOrganizacao(String nome, OrganizacaoDTO organizacaoDTO) {
+        Organizacao organizacao = Mapper.organizacaoDTO2Organizacao(organizacaoDTO);
+        if (organizacao != null) {
+            Plataforma plataforma = Dados.carregarDados();
+            plataforma.updateOrganizacao(nome, organizacao);
+            Dados.guardarDados(plataforma);
+        } else {
+            throw new ConversaoException("OrganizacaoDTO");
+        }
+    }
+
+    public static void removeOrganizacao(String nome) {
+        Plataforma plataforma = Dados.carregarDados();
+        plataforma.removeOrganizacao(nome);
+        Dados.guardarDados(plataforma);
+    }
+    
+}

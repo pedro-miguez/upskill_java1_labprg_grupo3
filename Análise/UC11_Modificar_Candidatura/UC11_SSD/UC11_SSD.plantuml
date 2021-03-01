@@ -1,0 +1,17 @@
+@startuml
+actor Freelancer
+activate Freelancer
+Freelancer -> ":Sistema" : 1 Inicia a alteracao a candidatura
+activate ":Sistema"
+":Sistema" --> Freelancer : 2 mostra as candidaturas em aberto
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 3 seleciona candidatura que pretende editar
+activate ":Sistema"
+":Sistema" --> Freelancer : 4 mostra os dados da candidatura e permite que os campos sejam alterados
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 5 altera os dados pretendidos
+activate ":Sistema"
+":Sistema" --> Freelancer : 6 atualiza a candidatura e informa sucesso da\n operacao e mostra os dados atualizados
+deactivate ":Sistema"
+
+@enduml
