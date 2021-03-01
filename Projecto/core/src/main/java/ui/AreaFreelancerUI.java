@@ -10,6 +10,7 @@ import application.AuthenticationController;
 import application.EfetuarCandidaturaController;
 import application.ServiceController;
 import domain.Anuncio;
+import domain.Candidatura;
 import domain.Email;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +32,7 @@ import persistence.RepositorioFreelancer;
 public class AreaFreelancerUI implements Initializable {
 
     public BorderPane homePaneAreaFreelancer;
-    public ListView listViewCandidaturasAbertas;
+    public ListView<Candidatura> listViewCandidaturasAbertas;
     public Button btnAtualizarCandidatura1;
     public Button btnRemoverCandidatura;
     public Button btnVoltarHome;
@@ -40,7 +41,7 @@ public class AreaFreelancerUI implements Initializable {
     public BorderPane atualizarCandidaturaPane;
     public Button btnConfirmarAtualizarCandidatura;
     public Button btnLimparDadosAtualizarCandidatura;
-    public ListView listViewAnuncioAtualizarCandidaturaFreelancer;
+    public ListView<Anuncio> listViewAnuncioAtualizarCandidaturaFreelancer;
     public TextField txtValorPretendidoAtualizarCandidatura;
     public TextField txtDuracaoDiasAtualizarCandidatura;
     public TextArea txtApresentacaoAtualizarCandidatura;
@@ -135,6 +136,12 @@ public class AreaFreelancerUI implements Initializable {
         txtDuracaoDias.clear();
         txtApresentacao.clear();
         txtMotivacao.clear();
+        txtApresentacaoAtualizarCandidatura.clear();
+        txtValorPretendidoAtualizarCandidatura.clear();
+        txtDuracaoDiasAtualizarCandidatura.clear();
+        txtMotivacaoAtualizarCandidatura.clear();
+        listViewAnuncioAtualizarCandidaturaFreelancer.getItems().clear();
+
     }
 
 
@@ -213,6 +220,23 @@ public class AreaFreelancerUI implements Initializable {
 
 
     public void btnAtualizarCandidaturaAction(ActionEvent actionEvent) {
+        //ligar
+        atualizarCandidaturaPane.setDisable(false);
+        atualizarCandidaturaPane.setVisible(true);
+
+        //desligar
+        consultarCandidaturaPane.setDisable(true);
+        consultarCandidaturaPane.setVisible(false);
+        efetuarCandidaturaPane.setDisable(true);
+        efetuarCandidaturaPane.setVisible(false);
+        homePaneAreaFreelancer.setDisable(true);
+        homePaneAreaFreelancer.setVisible(false);
+
+        listViewAnuncioAtualizarCandidaturaFreelancer.getItems().setAll(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getAnuncio());
+        txtValorPretendidoAtualizarCandidatura.setText(String.valueOf(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getValorPretendido()));
+        txtDuracaoDiasAtualizarCandidatura.setText(String.valueOf(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getNrDias()));
+        txtApresentacaoAtualizarCandidatura.setText(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtApresentacao());
+        txtMotivacaoAtualizarCandidatura.setText(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtMotivacao());
     }
 
     public void btnRemoverCandidaturaAction(ActionEvent actionEvent) {
@@ -250,16 +274,57 @@ public class AreaFreelancerUI implements Initializable {
                     authenticationController.getEmail()));
         } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Erro ao preencher a lista de anúncios.",
+                    "Erro ao preencher a lista de candidaturas.",
                     e.getMessage()).show();
         }
 
     }
 
     public void confirmarAtualizarCandidaturaAction(ActionEvent actionEvent) {
+        try {
+
+            boolean atualizou = atualizarCandidaturaController.atualizarCandidatura();
+
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Atualizar candidatura.",
+                    atualizou ? "Candidatura atualizada com sucesso! \n\n" +
+                            serviceController.getCandidaturatoStringCompletoByAnuncioFreelancer(
+                                    listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getAnuncio(),
+                                    authenticationController.getEmail())
+                            : "Não foi possível atualizar a candidatura.").show();
+
+            if (atualizou) {
+                limparDados();
+                try {
+                    listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
+                            authenticationController.getEmail()));
+                } catch (Exception e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Erro ao preencher a lista de candidaturas.",
+                            e.getMessage()).show();
+                }
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();
+        } catch (SQLException throwables) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro de SQL.",
+                    throwables.getMessage()).show();
+            throwables.printStackTrace();
+        }
+
     }
 
     public void btnLimparDadosAtualizarCandidaturaAction(ActionEvent actionEvent) {
+
+        txtApresentacaoAtualizarCandidatura.clear();
+        txtValorPretendidoAtualizarCandidatura.clear();
+        txtDuracaoDiasAtualizarCandidatura.clear();
+        txtMotivacaoAtualizarCandidatura.clear();
+        txtValorPretendidoAtualizarCandidatura.requestFocus();
     }
 }
 
