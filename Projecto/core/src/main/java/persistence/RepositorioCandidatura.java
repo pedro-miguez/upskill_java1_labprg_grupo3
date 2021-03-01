@@ -107,6 +107,139 @@ public class RepositorioCandidatura {
         return false;
     }
 
+    public boolean updateCandidatura(Candidatura candidatura) throws SQLException {
+
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+        try {
+
+            conn.setAutoCommit(false);
+            int nif = Integer.parseInt(candidatura.getAnuncio().getTarefa().getOrganizacao().getNIF().toString());
+
+            CallableStatement csIdOrg= conn.prepareCall("SELECT idOrganizacao FROM Organizacao WHERE NIF = ?");
+            csIdOrg.setInt(1, nif);
+            ResultSet rSetIdOrg = csIdOrg.executeQuery();
+            rSetIdOrg.next();
+
+            int idOrganizacao = rSetIdOrg.getInt("idOrganizacao");
+            String referenciaTarefa = candidatura.getAnuncio().getTarefa().getCodigoUnico().toString();
+
+            CallableStatement csIdAnuncio = conn.prepareCall("{? = call getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            csIdAnuncio.registerOutParameter(1, Types.INTEGER);
+            csIdAnuncio.setString(2, referenciaTarefa );
+            csIdAnuncio.setInt(3, idOrganizacao);
+            csIdAnuncio.executeUpdate();
+
+            int idAnuncio = csIdAnuncio.getInt(1);
+
+            CallableStatement csFreelancerIdByEmail = conn.prepareCall("{? = call getFreelancerIDByEmail(?)}");
+            csFreelancerIdByEmail.registerOutParameter(1, Types.INTEGER);
+            csFreelancerIdByEmail.setString(2, candidatura.getFreelancer().getEmail().toString());
+            csFreelancerIdByEmail.executeUpdate();
+
+            int idFreelancer = csFreelancerIdByEmail.getInt(1);
+
+
+            CallableStatement csUpdateCandidatura = conn.prepareCall("Update Candidatura set dataCandidatura = ?, " +
+                    "valorPretendido = ?, " +
+                    "nrdias = ?," +
+                    "txtApresentacao = ?," +
+                    "txtMotivacao = ?" +
+                    "where idFreelancer = ? AND idAnuncio = ?");
+
+            csUpdateCandidatura.setDate(1, Data.dataAtual().getDataSQL());
+            csUpdateCandidatura.setDouble(2, candidatura.getValorPretendido());
+            csUpdateCandidatura.setInt(3, candidatura.getNrDias());
+            csUpdateCandidatura.setString(4, candidatura.getTxtApresentacao());
+            csUpdateCandidatura.setString(5, candidatura.getTxtMotivacao());
+            csUpdateCandidatura.setInt(6, idFreelancer);
+            csUpdateCandidatura.setInt(7, idAnuncio);
+
+            csUpdateCandidatura.executeQuery();
+
+            conn.commit();
+            csIdOrg.close();
+            csIdAnuncio.close();
+            csFreelancerIdByEmail.close();
+            csUpdateCandidatura.close();
+            rSetIdOrg.close();
+            return true;
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
+        }
+
+        return false;
+    }
+
+    public boolean deleteCandidatura(Candidatura candidatura) throws SQLException {
+
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+
+        try {
+
+            conn.setAutoCommit(false);
+            int nif = Integer.parseInt(candidatura.getAnuncio().getTarefa().getOrganizacao().getNIF().toString());
+
+            CallableStatement csIdOrg= conn.prepareCall("SELECT idOrganizacao FROM Organizacao WHERE NIF = ?");
+            csIdOrg.setInt(1, nif);
+            ResultSet rSetIdOrg = csIdOrg.executeQuery();
+            rSetIdOrg.next();
+
+            int idOrganizacao = rSetIdOrg.getInt("idOrganizacao");
+            String referenciaTarefa = candidatura.getAnuncio().getTarefa().getCodigoUnico().toString();
+
+            CallableStatement csIdAnuncio = conn.prepareCall("{? = call getAnunciobyRefTarefa_IdOrg(?, ?)}");
+            csIdAnuncio.registerOutParameter(1, Types.INTEGER);
+            csIdAnuncio.setString(2, referenciaTarefa );
+            csIdAnuncio.setInt(3, idOrganizacao);
+            csIdAnuncio.executeUpdate();
+
+            int idAnuncio = csIdAnuncio.getInt(1);
+
+            CallableStatement csFreelancerIdByEmail = conn.prepareCall("{? = call getFreelancerIDByEmail(?)}");
+            csFreelancerIdByEmail.registerOutParameter(1, Types.INTEGER);
+            csFreelancerIdByEmail.setString(2, candidatura.getFreelancer().getEmail().toString());
+            csFreelancerIdByEmail.executeUpdate();
+
+            int idFreelancer = csFreelancerIdByEmail.getInt(1);
+
+
+            CallableStatement deleteCandidatura = conn.prepareCall("Delete from Candidatura where idAnuncio = ? and " +
+                    "idFreelancer = ?");
+            deleteCandidatura.setInt(1, idAnuncio);
+            deleteCandidatura.setInt(2, idFreelancer);
+            
+            deleteCandidatura.executeQuery();
+
+            conn.commit();
+            csIdOrg.close();
+            csIdAnuncio.close();
+            csFreelancerIdByEmail.close();
+            deleteCandidatura.close();
+            rSetIdOrg.close();
+            return true;
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
+        }
+
+        return false;
+
+    }
+
     /**
      * Gets an application by its advertisement of the freelancer.
      * 
