@@ -276,6 +276,7 @@ public class AreaFreelancerUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro ao preencher a lista de candidaturas.",
                     e.getMessage()).show();
+            e.printStackTrace();
         }
 
     }
@@ -296,6 +297,7 @@ public class AreaFreelancerUI implements Initializable {
                                     authenticationController.getEmail())
                             : "Não foi possível atualizar a candidatura.").show();
 
+
             if (atualizou) {
                 limparDados();
                 try {
@@ -306,6 +308,28 @@ public class AreaFreelancerUI implements Initializable {
                             "Erro ao preencher a lista de candidaturas.",
                             e.getMessage()).show();
                 }
+
+                //ligar
+                consultarCandidaturaPane.setDisable(false);
+                consultarCandidaturaPane.setVisible(true);
+                //desligar
+                atualizarCandidaturaPane.setDisable(true);
+                atualizarCandidaturaPane.setVisible(false);
+                efetuarCandidaturaPane.setDisable(true);
+                efetuarCandidaturaPane.setVisible(false);
+                homePaneAreaFreelancer.setDisable(true);
+                homePaneAreaFreelancer.setVisible(false);
+
+                try {
+                    listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
+                            authenticationController.getEmail()));
+                } catch (Exception e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Erro ao preencher a lista de candidaturas.",
+                            e.getMessage()).show();
+                    e.printStackTrace();
+                }
+
             }
 
         } catch (IllegalArgumentException e) {

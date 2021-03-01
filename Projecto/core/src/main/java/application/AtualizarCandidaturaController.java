@@ -19,20 +19,21 @@ public class AtualizarCandidaturaController {
 
         Candidatura candidatura = repoCandidatura.criarCandidatura(anuncio, freelancer, Data.dataAtual(), valorPretendido, nrDias, textoApresentacao, textoMotivacao);
 
-        return repoCandidatura.insertCandidatura(candidatura);
+        return repoCandidatura.updateCandidatura(candidatura);
 
     }
 
     public ArrayList<Candidatura> getCandidaturasAbertasFreelancer(String emailFreelancer) {
         ArrayList<Candidatura> candidaturasFreelancer = RepositorioCandidatura.getInstance().getAllCandidaturasFreelancer(new Email(emailFreelancer));
+        ArrayList<Candidatura> candidaturasAbertas = new ArrayList<>();
 
         for (Candidatura c : candidaturasFreelancer) {
-            if ((Data.dataAtual().isMaior(c.getAnuncio().getDataFimCandidatura()) ||
-                    !(Data.dataAtual().isMaior(c.getAnuncio().getDataInicioCandidatura())))) {
-                candidaturasFreelancer.remove(c);
+            if (!(Data.dataAtual().isMaior(c.getAnuncio().getDataFimCandidatura()) &&
+                    (Data.dataAtual().isMaior(c.getAnuncio().getDataInicioCandidatura())))) {
+                candidaturasAbertas.add(c);
             }
         }
 
-        return candidaturasFreelancer;
+        return candidaturasAbertas;
     }
 }
