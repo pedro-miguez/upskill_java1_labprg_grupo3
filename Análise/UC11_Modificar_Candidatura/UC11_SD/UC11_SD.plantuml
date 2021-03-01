@@ -1,5 +1,10 @@
 @startuml 
 actor FreelancerUser as FreelancerUser
+participant AreaFreelancerUI
+participant AlterarCandidaturaCtrl
+
+participant ServiceController as sc
+
 FreelancerUser -> AreaFreelancerUI : Inicia sessao para se poder candidatar
 activate FreelancerUser
 activate AreaFreelancerUI
@@ -27,10 +32,10 @@ deactivate RepositorioCandidatura
 deactivate BaseDados
 
 deactivate AlterarCandidaturaCtrl
-AreaFreelancerUI -> RepositorioCandidatura : getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
-activate RepositorioCandidatura
-RepositorioCandidatura --> AreaFreelancerUI : OK
-deactivate RepositorioCandidatura
+AreaFreelancerUI -> sc ** : getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+sc -> BaseDados: getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+activate BaseDados
+deactivate BaseDados
 AreaFreelancerUI --> FreelancerUser : operação bem sucedida, \n mostra dados
 deactivate AreaFreelancerUI
 @enduml
