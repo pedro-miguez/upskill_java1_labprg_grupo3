@@ -1,0 +1,85 @@
+@startuml
+
+title UC10 - Seriar Candidatura \n
+
+Class AreaColaboradorUI {
+}
+
+Class SeriarCandidaturaController {
+    + criarProcessoSeriacao(List<Candidatura> candidaturas, List<Colaborador> colaboradores, String emailColaborador)
+    + getAllColaboradoresOrganizacao(String emailColaborador)
+    + getAllCandidaturasPorSelecionar(Anuncio anuncio)
+    + candidaturasSeriadasPorValor(Anuncio anuncio)
+    + isSeriacaoAutomatica (Anuncio anuncio)
+                                        
+}
+
+Class RepositorioProcessoSeriacao {
+    +getFreelancerByEmail(Email email)
+    +insertUtilizadorFreelancer(Freelancer freelancer, String password)
+}
+
+Class RepositorioColaborador {
+    +getColaboradoresOrganizacaoByEmail(new Email(emailColaborador)
+}
+
+Class RepositorioCandidatura {
+    +getCandidaturasByAnuncio(anuncio)
+}
+
+Class ProcessoSeriacao {
+    - Anuncio anuncio;
+    - Data data;
+    - List<Classificacao> classificacao;
+    - List<Colaborador> colaboradores;
+}
+
+Class Classificacao {
+    - Anuncio anuncio;
+    - Freelancer freelancer;
+    - lugar;
+}
+
+Class Colaborador {
+    - String nome;
+    - Telefone telefone;
+    - Email email;
+    - String funcao;
+}
+
+Class Anuncio {
+    - Tarefa tarefa;
+    - TipoRegimento tipoRegimento;
+    - Data dataInicioPublicitacao;
+    - Data dataFimPublicitacao;
+    - Data dataInicioCandidatura;
+    - Data dataFimCandidatura;
+    - Data dataInicioSeriacao;
+    - Data dataFimSeriacao;
+}
+
+class AuthenticationController {
+    +getEmail()
+}
+
+class UsersAPI {
+    +getEmail()
+}
+
+class UsersAPIAdapter {
+    +getSession()
+}
+
+AreaColaboradorUI ..> SeriarCandidaturaController
+AreaColaboradorUI ..> AuthenticationController
+SeriarCandidaturaController ..> RepositorioProcessoSeriacao
+SeriarCandidaturaController ..> RepositorioColaborador
+SeriarCandidaturaController ..> RepositorioCandidatura
+AuthenticationController ..> UsersAPI
+UsersAPI ..> UsersAPIAdapter
+RepositorioProcessoSeriacao "1"--> "1..*" ProcessoSeriacao : cria
+ProcessoSeriacao "1" -> "1"Anuncio: relativo a
+ProcessoSeriacao "1" --> "1..*" Colaborador : necessita
+ProcessoSeriacao "1" --> "1..*" Classificacao : possui
+
+@enduml

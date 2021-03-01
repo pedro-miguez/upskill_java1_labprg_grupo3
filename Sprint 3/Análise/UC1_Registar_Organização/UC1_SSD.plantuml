@@ -1,0 +1,13 @@
+@startuml
+actor UtilizadorNãoRegistado as UtilizadorNãoRegistado
+UtilizadorNãoRegistado -> ":Sistema" : 1 Registar Organização
+activate UtilizadorNãoRegistado
+activate ":Sistema"
+":Sistema" --> UtilizadorNãoRegistado : 2 Solicita dados organização \n(nome,NIF, endereço, telefone, website, email)\ne sobre o gestor (nome, função, telefone, email)
+deactivate ":Sistema"
+UtilizadorNãoRegistado -> ":Sistema" : 3 introduz dados solicitados
+activate ":Sistema"
+":Sistema" --> UtilizadorNãoRegistado : 4 apresenta dados e operação bem sucedida
+deactivate ":Sistema"
+deactivate UtilizadorNãoRegistado
+@enduml

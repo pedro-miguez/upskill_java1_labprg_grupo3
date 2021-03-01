@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+class Plataforma {
+    designacao
+}
+
+class Organizacao {
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
+}
+
+class Colaborador {
+    nome
+    funcao
+    contactoTelefonico
+    email
+}
+class EnderecoPostal {
+    morada
+    codigoPostal
+    localidade
+}
+class Utilizador{
+}
+
+class Role {
+
+}
+
+Plataforma "1" -- "*" Organizacao : tem registadas >
+Organizacao "1" -- "1..*" Colaborador : tem >
+Organizacao "1" -- "1" Colaborador : tem gestor >
+Organizacao "0..1" -- "1" EnderecoPostal : localizada em >
+Colaborador "0..1" -- "1" Utilizador: atua como >
+Utilizador "1" -- "1..2" Role : tem
+
+@enduml

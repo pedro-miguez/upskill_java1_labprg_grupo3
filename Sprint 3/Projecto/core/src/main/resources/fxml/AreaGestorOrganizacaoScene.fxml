@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AreaGestorUI">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1024.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0">
+         <center>
+            <StackPane prefHeight="687.0" prefWidth="898.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane fx:id="registarColaboradorPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <center>
+                        <GridPane fx:id="regColaboradorPane" prefHeight="233.0" prefWidth="674.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" prefWidth="102.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="597.0" minWidth="10.0" prefWidth="525.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="127.0" minHeight="9.0" prefHeight="61.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="64.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="62.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="62.0" valignment="CENTER" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Nome: ">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Contacto: " GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="E-mail: " GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtNomeColaborador" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                              <TextField fx:id="txtContactoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtEmailColaborador" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="Função: " GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtFuncaoColaborador" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                     </center>
+                     <bottom>
+                        <HBox alignment="TOP_RIGHT" prefHeight="194.0" prefWidth="449.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnRegistarColaborador" mnemonicParsing="false" onAction="#registarColaboradorAction" text="Registar">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnLimparRegistarColaborador" mnemonicParsing="false" onAction="#limparRegistarColaboradorAction" text="Limpar">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets right="225.0" />
+                           </BorderPane.margin>
+                        </HBox>
+                     </bottom>
+                     <top>
+                        <Label prefHeight="60.0" prefWidth="296.0" text="Registar Colaborador" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="criarTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <center>
+                        <GridPane alignment="CENTER" prefHeight="393.0" prefWidth="527.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" text="Código Único:" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Descrição informal: " GridPane.rowIndex="2" />
+                              <Label text="Descrição técnica: " GridPane.rowIndex="3" />
+                              <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4" />
+                              <Label text="Custo estimado: " GridPane.rowIndex="5" />
+                              <Label text="Categoria da tarefa: " GridPane.rowIndex="6" />
+                              <TextField fx:id="txtCodigoUnicoTarefa" prefHeight="21.0" prefWidth="185.0" promptText="AAA-00 (único por organização)" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtCustoTarefa" promptText="Custo estimado para a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextArea fx:id="txtDescInfTarefa" prefHeight="66.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" right="230.0" top="5.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <TextArea fx:id="txtDescTecnicaTarefa" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" top="5.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <TextField fx:id="txtDuracaoTarefa" promptText="Horas estimadas para completar a tarefa" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <ComboBox fx:id="comboCategoria" prefWidth="150.0" promptText="Categorias de Tarefa" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label alignment="CENTER_RIGHT" text="Designação: ">
+                                 <GridPane.margin>
+                                    <Insets top="15.0" />
+                                 </GridPane.margin></Label>
+                              <TextField fx:id="txtNomeTarefa" prefHeight="21.0" prefWidth="185.0" promptText="Nome da Tarefa" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="230.0" top="15.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="155.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="519.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </center>
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="479.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnRegistarTarefa" mnemonicParsing="false" onAction="#criarTarefaActionTarefa" text="Registar">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnLimparTarefa" mnemonicParsing="false" onAction="#limparActionTarefa" text="Limpar">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets right="225.0" />
+                           </BorderPane.margin>
+                        </HBox>
+                     </bottom>
+                     <top>
+                        <Label prefHeight="25.0" prefWidth="359.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Label prefHeight="295.0" prefWidth="349.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="150.0" right="100.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="seriacaoManualPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <bottom>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#finalizarSeriacaoManualAction" prefHeight="42.0" prefWidth="95.0" text="Finalizar Seriação" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="39.0" mnemonicParsing="false" onAction="#voltarSeriacaoManualAction" prefHeight="42.0" prefWidth="95.0" text="Voltar" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                           <children>
+                              <ListView fx:id="listViewCandidaturasPorSelecionarSeriacaoManual" prefHeight="200.0" prefWidth="200.0">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                              <ListView fx:id="listViewColaboradoresPorSelecionarSeriacaoManual" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                              <ListView fx:id="listViewCandidaturasSelecionadasSeriacaoManual" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                              <ListView fx:id="listViewColaboradoresSelecionadosSeriacaoManual" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#classificarCandidaturaSeriacaoManualAction" text="Classificar Candidatura" textAlignment="CENTER" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnRemoverUltimaCandidatura" disable="true" mnemonicParsing="false" onAction="#removerUltimaCandidaturaSeriacaoManualAction" text="Remover Última" textAlignment="CENTER" wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#adicionarColaboradorSeriacaoManualAction" prefHeight="45.0" prefWidth="87.0" text="Adicionar Colaborador" textAlignment="CENTER" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnRemoverUltimoColaborador" disable="true" mnemonicParsing="false" onAction="#removerUltimoColaboradorSeriacaoManualAction" text="Remover Último" textAlignment="CENTER" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.0" minWidth="10.0" prefWidth="392.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="87.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="420.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="337.0" minHeight="10.0" prefHeight="337.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="279.0" minHeight="10.0" prefHeight="233.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </center>
+                     <top>
+                        <Label prefHeight="47.0" prefWidth="325.0" text="Seriar Anúncio Manualmente" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="IniciarSeriacaoPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <bottom>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#iniciarSeriacaoAction" prefHeight="42.0" prefWidth="95.0" text="Iniciar Seriação" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ListView fx:id="listViewAnunciosSeriarAnuncio" prefHeight="509.0" prefWidth="799.0">
+                                 <VBox.margin>
+                                    <Insets bottom="50.0" left="50.0" right="50.0" top="25.0" />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                        </VBox>
+                     </center>
+                     <top>
+                        <Label prefHeight="47.0" prefWidth="218.0" text="Seriar Anúncio" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="seriacaoAutomaticaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <bottom>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmarSeriacaoAutomaticaAction" prefHeight="42.0" prefWidth="95.0" text="Confirmar Seriação" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarSeriacaoAutomaticaAction" prefHeight="42.0" prefWidth="95.0" text="Voltar" textAlignment="CENTER" wrapText="true" />
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ListView fx:id="listViewCandidaturasSeriarAnuncioSeriacaoAutomatica" prefHeight="509.0" prefWidth="799.0">
+                                 <VBox.margin>
+                                    <Insets bottom="50.0" left="50.0" right="50.0" top="25.0" />
+                                 </VBox.margin>
+                              </ListView>
+                           </children>
+                        </VBox>
+                     </center>
+                     <top>
+                        <Label prefHeight="47.0" prefWidth="218.0" text="Seriação Automática" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="publicarTarefaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnPublicarTarefa" mnemonicParsing="false" onAction="#publicarTarefaAction" text="Publicar Tarefa">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnLimparDadosPublicarTarefa" mnemonicParsing="false" onAction="#btnLimparDadosPublicarTarefaAction" text="Limpar dados">
+                                 <HBox.margin>
+                                    <Insets right="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ListView fx:id="listViewTarefasMatchedPublicarTarefa" prefHeight="346.0" prefWidth="799.0">
+                                 <VBox.margin>
+                                    <Insets right="100.0" />
+                                 </VBox.margin>
+                              </ListView>
+                              <GridPane prefHeight="270.0" prefWidth="670.0">
+                                 <children>
+                                    <Label text="Data Fim de Publicitação: " />
+                                    <Label text="Data Início de Candidatura: " GridPane.rowIndex="1" />
+                                    <Label text="Data Fim de Candidatura: " GridPane.rowIndex="2" />
+                                    <Label text="Data Início de Seriação: " GridPane.rowIndex="3" />
+                                    <Label text="Data Fim de Seriação: " GridPane.rowIndex="4" />
+                                    <Label text="Tipo de Regimento aplicável: " GridPane.rowIndex="5" />
+                                    <DatePicker fx:id="btnDataFimPub" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="btnDataInicioCand" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="btnDataFimCand" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="btnDataInicioSeriacao" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="btnDataFimSeriacao" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="btnTipoRegimento" prefWidth="150.0" promptText="Escolha um tipo..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </center>
+                     <top>
+                        <Label prefHeight="27.0" prefWidth="280.0" text="Publicar Tarefa" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+               </children>
+            </StackPane>
+         </center>
+         <left>
+            <VBox alignment="CENTER" prefHeight="300.0" prefWidth="101.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#goHomeSelectAction" prefHeight="31.0" prefWidth="71.0" text="Home">
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnSelecionarRegistarColaborador" alignment="CENTER" mnemonicParsing="false" onAction="#btnSelecionarRegistarColaboradorAction" prefHeight="51.0" prefWidth="165.0" text="Registar Colaborador" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnSelecionarCriarTarefa" alignment="CENTER" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnSelecionarCriarTarefaAction" prefHeight="51.0" prefWidth="165.0" text="Criar Tarefa">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#btnPublicarTarefaSelectAction" prefHeight="45.0" prefWidth="95.0" text="Publicar tarefa" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#btnSeriarAnuncioSelectAction" prefHeight="45.0" prefWidth="95.0" text="Seriar Anúncio" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnLogoutAction" prefHeight="31.0" prefWidth="71.0" text="Logout">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="100.0" left="25.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <top>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="410.0" text="Área Gestor" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,17 @@
+@startuml
+actor Freelancer
+activate Freelancer
+Freelancer -> ":Sistema" : 1 Inicia a candidatura a um anuncio
+activate ":Sistema"
+":Sistema" --> Freelancer : 2 solicita a escolha de um anuncio elegivel
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 3 seleciona anuncio para para registar candidatura
+activate ":Sistema"
+":Sistema" --> Freelancer : 4 solicita dados para a candidatura (i.e.\nvalor pretendido, dr dias, texto apresentacao\n (opcional), texto motivacao (opcional)
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 5 introduz os dados solicitados
+activate ":Sistema"
+":Sistema" --> Freelancer : 6 regista a nova candidatura e informa sucesso da\n operacao
+deactivate ":Sistema"
+
+@enduml

@@ -1,0 +1,28 @@
+@startumluc2
+
+title UC2 - Diagrama de Sequência
+
+participant Administrativo
+participant AreaAdministrativoUI
+participant AreaAdministrativoCTRL
+participant Plataforma 
+
+
+Administrativo -> AreaAdministrativoUI: 1 Introduz os dados
+activate AreaAdministrativoUI
+AreaAdministrativoUI -> AreaAdministrativoCTRL: 4 definirAreaAtividade(String codigoUnico, \nString descricao, String descricaoDetalhada)
+activate AreaAdministrativoCTRL
+deactivate Plataforma
+AreaAdministrativoCTRL -> "repo:RepositorioAreaAtividade" : 5 repoAreaAtividade = RepositorioAreaAtividade.getInstance();
+activate "repo:RepositorioAreaAtividade"
+AreaAdministrativoCTRL -> "repo:RepositorioAreaAtividade" : 6 area = criarAreaAtividade(codigoUnico, descricao, descricaoDetalhada)
+"repo:RepositorioAreaAtividade" -> CodigoUnico ** : 7 create(codigoUnico)
+AreaAdministrativoCTRL -> "repo:RepositorioAreaAtividade" : 8 insertAreaAtividade(area)
+deactivate AreaAdministrativoCTRL
+"repo:RepositorioAreaAtividade" -> "BaseDados" : 9 createAreaAtividade()
+deactivate "repo:RepositorioAreaAtividade"
+AreaAdministrativoUI --> Administrativo: 11 operação bem sucedida,\n mostra os dados
+deactivate AreaAdministrativoUI
+
+
+@endumluc2

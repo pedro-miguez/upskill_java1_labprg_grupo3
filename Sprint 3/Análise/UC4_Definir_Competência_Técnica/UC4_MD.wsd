@@ -1,0 +1,38 @@
+@startuml
+title Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+    
+}
+
+
+
+class CompetenciaTecnica { 
+    codigoUnico
+    descricao
+    descDetalhada
+    areaAtividade
+}
+
+class GrauProficiencia {
+    nivel
+    designacao
+}
+
+class AreaAtividade{
+    codigoUnico
+    descricao
+    descDetalhada
+}
+
+
+Plataforma "1" --> "*" CompetenciaTecnica: possui
+Plataforma "1" --> "*" AreaAtividade: possui
+
+CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
+CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica
+
+@enduml

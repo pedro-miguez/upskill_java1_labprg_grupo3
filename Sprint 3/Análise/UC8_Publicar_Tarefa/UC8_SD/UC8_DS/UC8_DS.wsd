@@ -1,0 +1,44 @@
+@startuml
+
+title UC8 - Diagrama de sequência
+
+actor ColaboradorUtilizador
+participant AreaColaboradorUI
+participant PublicarTarefaCTRL
+
+activate ColaboradorUtilizador
+ColaboradorUtilizador -> AreaColaboradorUI: Inicia a publicitação de uma tarefa
+activate AreaColaboradorUI
+AreaColaboradorUI -> RepositorioAnuncio : getTarefasPrivadasOrganizacao (Organizacao organizacao)
+activate RepositorioAnuncio
+RepositorioAnuncio --> AreaColaboradorUI : mostra a lista
+deactivate RepositorioAnuncio
+AreaColaboradorUI -> PublicarTarefaCTRL : publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,\nData dataInicioPublicitacao, LocalDate dataFimPublicitacao,\nLocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,\nLocalDate dataInicioSeriacao, LocalDate dataFimSeriacao)
+activate PublicarTarefaCTRL
+PublicarTarefaCTRL -> RepositorioAnuncio: repAnuncio = RepositorioAnuncio.getInstance()
+activate RepositorioAnuncio
+deactivate RepositorioAnuncio
+PublicarTarefaCTRL -> RepositorioAnuncio :  criarAnuncio(tarefa, tipoRegimento, dataInicioPublicitacao,\ndataFimPublicitacao, dataInicioSeriacao, dataFimSeriacao)
+activate RepositorioAnuncio
+RepositorioAnuncio -> Tarefa : createTarefa(codigoUnico, designacao, descricaoInformal,\ndescricaoTecnica, duracaoDias, custo, CategoriaTarefa, Organizacao)
+RepositorioAnuncio -> TipoRegimento : createTipoRegimento(designacao, regras)
+RepositorioAnuncio -> Data : createData (dataInicioPublicitacao, Data dataFimPublicitacao,\nData dataInicioCandidatura, Data dataFimCandidatura,\nData dataInicioSeriacao, Data dataFimSeriacao
+RepositorioAnuncio --> Anuncio : createAnuncio(tarefa, tipoRegimento, dataInicioPublicitacao,\ndataFimPublicitacao, dataInicioSeriacao, dataFimSeriacao)
+deactivate RepositorioAnuncio
+PublicarTarefaCTRL -> BaseDados : insertAnuncio(Anuncio anuncio)
+activate BaseDados
+BaseDados --> PublicarTarefaCTRL : ok
+deactivate BaseDados
+deactivate PublicarTarefaCTRL
+AreaColaboradorUI -> ServiceController : getAnunciotoStringCompletoByTarefa(Tarefa tarefa)
+activate ServiceController
+ServiceController --> AreaColaboradorUI : ok
+deactivate ServiceController
+AreaColaboradorUI --> ColaboradorUtilizador : operacao bem sucedida, mostra dados
+deactivate AreaColaboradorUI
+
+
+
+
+
+@enduml

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegistarOrganizacaoUI">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1024.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="413.0" layoutY="42.0" text="Área de Registo">
+         <font>
+            <Font name="Verdana Bold" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="registarOrganizacao" layoutX="288.0" layoutY="540.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="31.0" prefWidth="130.0" text="Submeter dados" />
+      <Button fx:id="limparDados" layoutX="463.0" layoutY="540.0" mnemonicParsing="false" onAction="#limparAction" prefHeight="31.0" prefWidth="130.0" text="Limpar dados" />
+      <Label layoutX="275.0" layoutY="134.0" text="Informação do Gestor">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="608.0" layoutY="134.0" text="Informação da Organização">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="176.0" text="Nome:" />
+      <Label layoutX="169.0" layoutY="224.0" text="Contacto:" />
+      <Label layoutX="184.0" layoutY="269.0" text="E-mail:" />
+      <Label layoutX="541.0" layoutY="173.0" text="Nome:" />
+      <Label layoutX="556.0" layoutY="213.0" text="NIF:" />
+      <Label layoutX="533.0" layoutY="251.0" text="Morada:" />
+      <Label layoutX="519.0" layoutY="288.0" text="Localidade:" />
+      <Label layoutX="502.0" layoutY="327.0" text="Código-Postal:" />
+      <Label layoutX="531.0" layoutY="366.0" text="Telefone:" />
+      <Label layoutX="501.0" layoutY="406.0" text="Endereço Web:" />
+      <Label layoutX="541.0" layoutY="449.0" text="E-mail:" />
+      <TextField fx:id="txtNomeGestor" layoutX="229.0" layoutY="169.0" prefHeight="31.0" prefWidth="253.0" promptText="Nome / Username" />
+      <TextField fx:id="txtContactoGestor" layoutX="229.0" layoutY="217.0" prefHeight="31.0" prefWidth="253.0" promptText="91106458" />
+      <TextField fx:id="txtEmailGestor" layoutX="229.0" layoutY="262.0" prefHeight="31.0" prefWidth="253.0" promptText="emailgestor@org.com" />
+      <TextField fx:id="txtNomeOrg" layoutX="591.0" layoutY="169.0" prefHeight="31.0" prefWidth="235.0" promptText="Nome da Organização" />
+      <TextField fx:id="txtNIFOrg" layoutX="591.0" layoutY="206.0" prefHeight="31.0" prefWidth="235.0" promptText="224050576" />
+      <TextField fx:id="txtMoradaOrg" layoutX="591.0" layoutY="244.0" prefHeight="31.0" prefWidth="235.0" promptText="Rua da Organização, 42" />
+      <TextField fx:id="txtLocalidadeOrg" layoutX="591.0" layoutY="281.0" prefHeight="31.0" prefWidth="235.0" promptText="Porto" />
+      <TextField fx:id="txtCodigoPostalOrg" layoutX="591.0" layoutY="320.0" prefHeight="31.0" prefWidth="235.0" promptText="4000-500" />
+      <TextField fx:id="txtTelefoneOrg" layoutX="591.0" layoutY="359.0" prefHeight="31.0" prefWidth="235.0" promptText="91106458" />
+      <TextField fx:id="txtWebsiteOrg" layoutX="591.0" layoutY="399.0" prefHeight="31.0" prefWidth="235.0" promptText="www.organizacao.com" />
+      <TextField fx:id="txtEmailOrg" layoutX="591.0" layoutY="442.0" prefHeight="31.0" prefWidth="235.0" promptText="org@org.com" />
+      <Button fx:id="btnVoltar" layoutX="632.0" layoutY="540.0" mnemonicParsing="false" onAction="#voltarAction" prefHeight="31.0" prefWidth="130.0" text="Voltar" />
+   </children>
+</AnchorPane>

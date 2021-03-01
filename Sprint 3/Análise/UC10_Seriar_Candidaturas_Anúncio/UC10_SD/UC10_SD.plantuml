@@ -1,0 +1,29 @@
+@startuml 
+actor Colaborador as Colaborador
+Colaborador -> "AreaColaboradorUI" : 1 Introduz os dados solicitados
+activate Colaborador
+activate "AreaColaboradorUI"
+"AreaColaboradorUI" -> "SeriarCandidaturaController" : 2 criarProcessoSeriacao(listaCandidaturasOrdenadas, listaColaboradores, colaboradorEmail )
+activate "SeriarCandidaturaController"
+group loop
+"SeriarCandidaturaController" -> Classificacao ** : 3 listaClassificacoes.add(new Classificacao(c.getAnuncio(), c.getFreelancer(), ++lugar)
+end
+"SeriarCandidaturaController" -> "rf:RepositorioProcessoSeriacao" : 4 ProcessoSeriacao = criarProcessoSeriacao(classificacoes.get(1).getAnuncio(), classificacoes, colaboradores)
+activate "rf:RepositorioProcessoSeriacao"
+"SeriarCandidaturaController" -> "rf:RepositorioProcessoSeriacao" : 5 insertProcessoSeriacao(processoSeriacao)
+"rf:RepositorioProcessoSeriacao" -> BaseDados ** : 6 PL/SQL createProcessoSeriacao
+activate BaseDados
+group loop
+"rf:RepositorioProcessoSeriacao" -> BaseDados : 7 PL/SQL createClassificacao
+end
+group loop
+"rf:RepositorioProcessoSeriacao" -> BaseDados : 8 PL/SQL createProcessoSeriacaoColaborador
+end
+deactivate BaseDados
+"rf:RepositorioProcessoSeriacao" --> "SeriarCandidaturaController": 9 ok
+deactivate "rf:RepositorioProcessoSeriacao"
+deactivate "SeriarCandidaturaController"
+
+"AreaColaboradorUI" --> Colaborador : 10 operação bem sucedida, \n mostra dados
+deactivate "AreaColaboradorUI"
+@enduml

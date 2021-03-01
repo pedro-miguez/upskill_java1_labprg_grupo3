@@ -1,0 +1,184 @@
+@startuml
+title Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+}
+
+class Organizacao {
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
+}
+
+class Administrativo {
+    nome
+}
+
+class Colaborador {
+    nome
+    funcao
+    contactoTelefonico
+    email
+}
+
+class Freelancer {
+    nome
+    NIF
+    contactoTelefonico
+    email
+}
+
+class HabilitacaoAcademica {
+    grau
+    designacaoCurso
+    nomeInstituicao
+    mediaCurso
+}
+
+class ReconhecimentoCT {
+    dataReconhecimento
+}
+
+class Utilizador {
+    nome
+    email
+    password
+}
+
+class Role {
+    designacao
+}
+
+class CategoriaTarefa {
+    identificadorCategoria
+    descricao
+    areaAtividade
+}
+
+class CaraterizaçãoCategoriaTarefa {
+    identificadorCompTec
+    caracter
+    nivelGrauMinimo
+}
+
+class Tarefa {
+    identificadorTarefa
+    designacao
+    descricaoInformal
+    descricaoTecnica
+    estimativaDuracao
+    estimativaCusto
+}
+
+class Anuncio {
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+class Candidatura {
+    dataFimCandidatura
+    valorPretendido
+    nrDias
+    txtApresentacao
+    txtMotivacao
+}
+
+class ProcessoSeriacao {
+    dataRealizacao
+}
+
+class Classificacao {
+    lugar
+}
+
+class TipoRegimento {
+    designacao
+    descricaoRegras
+}
+
+class CompetenciaTecnica {
+    nome 
+    identificadorCompetenciaTecnica
+    descricaoBreve
+    descricaoDetalhada
+    grausProficiencia
+}
+
+class GrauProficiencia {
+    nivel
+    designacao
+}
+
+class AreaAtividade{
+    identificadorAreaAtividade
+    descricaoBreve
+    descricaoDetalhada
+}
+
+class EnderecoPostal {
+    morada
+    codigoPostal
+    localidade
+}
+
+Plataforma "1" --> "1..*" Administrativo: tem
+Plataforma "1" --> "*" Organizacao: tem registada
+Plataforma "1" --> "*" Freelancer: tem/usa
+Plataforma "1" --> "*" CategoriaTarefa: possui
+Plataforma "1" --> "*" CompetenciaTecnica: possui
+Plataforma "1" --> "*" AreaAtividade: possui
+Plataforma "1" --> "*" TipoRegimento: suporta
+
+Organizacao "1" --> "1" EnderecoPostal: localizada em
+Organizacao "1" --> "1..*" Colaborador: tem
+Organizacao "1" --> "1" Colaborador: tem gestor
+Organizacao "1" --> "*" Tarefa: possui
+
+Freelancer "0..1" --> "1" Utilizador: atua como
+Freelancer "1" --> "*" HabilitacaoAcademica: tem
+Freelancer "0..1" --> "*" ReconhecimentoCT: recebe
+
+ReconhecimentoCT "*" --> "1" GrauProficiencia: reconhece
+
+Administrativo "0..1" --> "1" Utilizador: atua como
+
+Colaborador "0..1" --> "1" Utilizador: atua como
+
+Tarefa "*" --> "1" Colaborador: especificada por
+Tarefa "*" --> "1" CategoriaTarefa: enquadra-se em
+Tarefa "1" --> "0..1" Anuncio: dá origem
+
+Anuncio "*" --> "1" TipoRegimento: rege-se por
+Anuncio "*" --> "1" Colaborador: publicado por
+Anuncio "0..1" --> "1" Tarefa: publicita
+Anuncio "1" --> "*" Candidatura: recebe
+Anuncio "1" --> "0..1" ProcessoSeriacao: despoleta
+
+ProcessoSeriacao "1" --> "1..*" Colaborador: realizado por
+ProcessoSeriacao "1" --> "*" Classificacao: resulta em
+ProcessoSeriacao "*" --> "1" TipoRegimento: decorre em concordância com
+
+Classificacao "0..1" --> "1" Candidatura: referente a
+
+Candidatura "*" --> "1" Freelancer: realizada por
+
+CategoriaTarefa "*" --> "*" CaraterizaçãoCategoriaTarefa: requer
+CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
+
+CaraterizaçãoCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
+
+CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
+CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica
+
+Utilizador "1" --> "1..2" "Role": tem
+
+@enduml

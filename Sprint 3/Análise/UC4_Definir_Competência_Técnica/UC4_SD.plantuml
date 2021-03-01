@@ -1,0 +1,44 @@
+@startuml
+
+participant Administrativo
+activate Administrativo
+Administrativo -> ":UI": 1: Inicia a especificação de CT 
+activate ":UI"
+":UI" -> ":CTRL" : 1.1: la = getListAreasAtividade()
+activate ":CTRL"
+":UI" --> Administrativo : 1.2: Solicita dados
+deactivate ":UI"
+":CTRL" -> ":Plataforma" : 1.1.1: plat = Plataforma.getInstance()
+activate ":Plataforma"
+deactivate ":Plataforma"
+":CTRL" -> "raa: repositorioAreasAtividade" : 1.1.2: la = listarAreaAtividade()
+activate "raa: repositorioAreasAtividade"
+deactivate "raa: repositorioAreasAtividade"
+deactivate ":CTRL"
+Administrativo -> ":UI": 2: Introduz dados
+activate ":UI"
+":UI" -> ":CTRL" : definirCompetenciaTecnica(String codigoUnico, \nAreaAtividade areaAtividade, String descricao, \nString descDetalhada)
+activate ":CTRL"
+":CTRL" -> "raa: repositorioAreasAtividade" : 2.1.1: at = listarAreaAtividade()
+activate "raa: repositorioAreasAtividade"
+deactivate "raa: repositorioAreasAtividade"
+":CTRL" -> ":Plataforma" : 2.1.2: rct = getRepoCompTec()
+activate ":Plataforma"
+deactivate ":Plataforma"
+":CTRL" -> "rct:repositorioCompetenciasTecnicas" : 2.1.3: novaCompetenciaTecnica(codCompetencia,\ndescBreve,descDetalhada,at)
+deactivate ":CTRL"
+activate "rct:repositorioCompetenciasTecnicas"
+deactivate "rct:repositorioCompetenciasTecnicas"
+"rct:repositorioCompetenciasTecnicas" --> "ct:CompetenciaTecnica" ** : 2.1.3.1: criarCompetenciaTecnica(String\n codigoUnico, AreaAtividade areaAtividade,\nString descricao, String descDetalhada)
+deactivate "rct:repositorioCompetenciasTecnicas"
+activate ":CTRL"
+":CTRL" -> "rct:repositorioCompetenciasTecnicas" : 2.1.4: insertCompetenciaTecnica(competenciaTecnica)
+activate "rct:repositorioCompetenciasTecnicas"
+deactivate ":CTRL"
+"rct:repositorioCompetenciasTecnicas" --> "BaseDados" ** : 2.1.4.1: createCompetenciaTecnica()
+deactivate "rct:repositorioCompetenciasTecnicas"
+":UI" --> Administrativo : operacao bem sucedida
+deactivate ":UI"
+
+
+@enduml

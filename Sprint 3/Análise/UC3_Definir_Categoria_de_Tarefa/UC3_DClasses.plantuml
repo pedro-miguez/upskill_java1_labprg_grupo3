@@ -1,0 +1,92 @@
+@startuml
+
+left to right direction
+
+title UC3 - Diagrama de Classes \n
+
+Class Plataforma <<Singleton>> {
+    -String designacao
+    -RepositorioCompetenciaTecnica repoCompTec
+    -RepositorioAreaAtividade repoAreaAtiv
+    -RepositorioCategoriaTarefa repoCategoriaTarefa
+    -PlataformaController plataformaController
+
+    +getInstance
+    +getRepoCategoriaTarefa()
+
+}
+
+Class PlataformaController {
+    +getAreasAtividade()
+    +getGrausProficiencia()
+    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
+}
+
+Class CompetenciaTecnica {
+    -CodigoUnico codigoUnico
+    -String descricao
+    -String descDetalhada
+    -AreaAtividade areaAtividade
+}
+
+Class AreaAdministrativoUI {
+}
+
+Class DefinirCategoriaTarefaController {
+    +definirCategoriaTarefa(String descricao, Area Atividade areaAtividade, List<CaracterizacaoCT> competenciasTecnicas)
+}
+
+Class CategoriaTarefa {
+    -String descricao
+    -AreaAtividade areaAtividade
+    -List<CaracterizacaoCompTec> competenciasTecnicas
+}
+
+Class CaracterizacaoCompTec {
+    -boolean caracter
+    -GrauProficiencia grau
+    -CompetenciaTecnica competenciaTecnica
+}
+
+
+Class RepositorioAreaAtividade <<Singleton>> {
+    +listarAreasAtividade()
+}
+
+Class RepositorioCompetenciaTecnica <<Singleton>> {
+    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)                                             
+}
+
+Class RepositorioCategoriaTarefa <<Singleton>> {
+    +criarCategoriaTarefa(String descricao, Area Atividade areaAtividade, List<CaracterizacaoCT> competenciasTecnicas)
+    +getInstance()
+}
+
+Enum GrauProficiencia
+
+AreaAdministrativoUI .> DefinirCategoriaTarefaController
+AreaAdministrativoUI .> PlataformaController
+
+PlataformaController .> RepositorioAreaAtividade
+PlataformaController .> RepositorioCompetenciaTecnica
+PlataformaController .> Plataforma
+PlataformaController .> GrauProficiencia
+
+DefinirCategoriaTarefaController .> Plataforma
+DefinirCategoriaTarefaController .> RepositorioCategoriaTarefa
+DefinirCategoriaTarefaController .> CategoriaTarefa
+
+Plataforma "1" -down-> "1" RepositorioAreaAtividade: tem
+Plataforma "1" -down-> "1" RepositorioCompetenciaTecnica: tem
+Plataforma "1" -down-> "1" RepositorioCategoriaTarefa: tem
+
+RepositorioCategoriaTarefa "1" -> "*" CategoriaTarefa: possui
+RepositorioCategoriaTarefa .> CategoriaTarefa
+RepositorioAreaAtividade "1" -> "*" AreaAtividade: possui
+RepositorioCompetenciaTecnica "1" -> "*" CompetenciaTecnica: possui
+
+CategoriaTarefa "1" -> "*" CaracterizacaoCompTec: possui
+CaracterizacaoCompTec "1" -> GrauProficiencia: relaciona-se com
+CaracterizacaoCompTec "1" -> CompetenciaTecnica: relaciona-se com
+
+@enduml

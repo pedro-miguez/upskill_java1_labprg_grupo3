@@ -1,0 +1,17 @@
+@startuml
+
+"ro:RepositorioOrganizacoes" -> "AuthenticationController" : 1 registarGestorComoUtilizador(colab)
+activate "AuthenticationController"
+"AuthenticationController" -> UsersAPI  : 2 registarGestorComoUtilizador(gestor)
+deactivate AuthenticationController
+activate UsersAPI
+UsersAPI -> "colab:Colaborador" ** : 2 nome = getNome()
+UsersAPI -> "colab:Colaborador" : 3 email = getEmail()
+activate "colab:Colaborador"
+deactivate "colab:Colaborador"
+participant "alg:AlgoritmoGeradorPasswords" as alg
+UsersAPI -> Plataforma ** : 4 alg=getAlgoritmoGeradorPwd()
+UsersAPI -> alg ** : 5 pwd = geraPassword(nomeG, emailG)
+UsersAPI -> UsersAPIAdapter **: 6 registerUserWithRoles(nome, email, pwd, "gestor")
+deactivate UsersAPI
+@enduml

@@ -1,0 +1,23 @@
+@startuml_dss_uc6
+
+title UC6 - Diagrama de sequência de sistema
+
+actor Colaborador_de_Organização
+participant Sistema
+
+activate Colaborador_de_Organização
+
+
+Colaborador_de_Organização -> Sistema: 1 inicia a especificação de uma tarefa
+activate Sistema
+Sistema --> Colaborador_de_Organização: 2 solicita dados (referência, designacao, descrição informal e de caráter técnico, duração, custo, categoria)
+deactivate Sistema
+
+
+Colaborador_de_Organização -> Sistema: 3 introduz os dados solicitados
+activate Sistema
+Sistema --> Colaborador_de_Organização: 4 apresenta dados e informa do sucesso da operação
+deactivate Sistema
+
+
+@enduml_dss_uc6

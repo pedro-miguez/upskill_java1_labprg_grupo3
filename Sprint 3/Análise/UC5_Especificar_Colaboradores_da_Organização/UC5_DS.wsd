@@ -1,0 +1,42 @@
+@startuml
+
+title UC5 - Diagrama de Sequência
+
+actor GestorOrganizacao as GestorOrganizacao
+GestorOrganizacao -> "AreaGestorUI" : 1 Introduz os dados solicitados
+activate "AreaGestorUI"
+"AreaGestorUI" -> "RegistarColaboradorController" : 2 registarColaborador(String nomeColaborador, \n int contactoColaborador, String emailColaborador, \n String gestorEmail)
+activate "RegistarColaboradorController"
+"RegistarColaboradorController" -> ":Plataforma" : 3 plat = Plataforma.getInstance()
+activate ":Plataforma"
+deactivate ":Plataforma"
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 4 repoOrg = plat.getRepoOrg()
+activate "ro:RepositorioOrganizacao"
+deactivate "ro:RepositorioOrganizacao"
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 5 repoColab = plat.getRepoColab()
+activate "rc:RepositorioColaborador"
+deactivate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Email** : 6 gestorEmail = create(email)
+activate "rc:RepositorioColaborador"
+
+
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 7 gestor = getColaboradorByEmail(gestorEmail)
+
+deactivate "rc:RepositorioColaborador"
+"RegistarColaboradorController" -> "ro:RepositorioOrganizacao" : 8 org = getOrganizacaoByGestor(gestor)
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 9 colaborador = repoColab.criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+activate "rc:RepositorioColaborador"
+"rc:RepositorioColaborador" -> Colaborador** : 10 criarColaborador(nomeColaborador, contactoColaborador, emailColaborador, org)
+
+ref over RegistarColaboradorController, Colaborador : UC5_SD_RegistarColaboradorComoUtilizador
+
+
+"RegistarColaboradorController" -> "rc:RepositorioColaborador" : 11 insertUtilizadorColaborador(colaborador, password, gestorEmail)
+
+"rc:RepositorioColaborador" -> "BaseDados**" : 12 createUtilizadorColaborador
+
+deactivate "RegistarColaboradorController"
+"AreaGestorUI" --> GestorOrganizacao : 13 operação bem sucedida, \n mostra dados
+deactivate "AreaGestorUI"
+
+@enduml

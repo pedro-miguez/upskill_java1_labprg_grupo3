@@ -1,0 +1,36 @@
+@startuml 
+actor Administrativo as Administrativo
+Administrativo -> "AreaAdministrativoUI" : 1 Introduz os dados solicitados
+activate Administrativo
+activate "AreaAdministrativoUI"
+"AreaAdministrativoUI" -> "RegistrarFreelancerController" : 2 registarFreelancer(nomeFreelancer, contactoFreelancer,\n emailFreelancer, nifFreelancer, reconhecimento, habilitacoes)
+activate "RegistrarFreelancerController"
+"RegistrarFreelancerController" -> "rf:RepositorioFreelancer" : 3 freelancer = criarFreelancer(nomeFreelancer,\n contactoFreelancer, emailFreelancer,\n nifFreelancer, reconhecimento, habilitacoes)
+activate "rf:RepositorioFreelancer"
+"rf:RepositorioFreelancer" -> NIF ** : 4 create(nif)
+"rf:RepositorioFreelancer" -> Telefone ** : 5 create(contacto)
+"rf:RepositorioFreelancer" -> Email ** : 6 create(email)
+group loop
+"rf:RepositorioFreelancer" -> HabilitacaoAcademica ** : 7 create(grau, designacaoCurso, nomeInstituicao, mediaCurso)
+end
+group loop
+    "rf:RepositorioFreelancer" -> ReconhecimentoCT ** : 8 create(competenciaTecnica, grauProficiencia, dataReconhecimento)
+end
+"rf:RepositorioFreelancer" -> Freelancer ** : 9 create(nomeFreelancer, contactoFreelancer, emailFreelancer, nifFreelancer, reconhecimento, habilitacoes)
+deactivate "rf:RepositorioFreelancer"
+"RegistrarFreelancerController" -> "ac:AuthenticationController" : 10 registarFreelancerComoUtilizador(freelancer)
+activate "ac:AuthenticationController"
+"RegistrarFreelancerController" <-- "ac:AuthenticationController" : 11 ok
+deactivate "ac:AuthenticationController"
+"RegistrarFreelancerController" -> "BaseDados" : insertUtilizadorFreelancer(freelancer, password)
+activate "BaseDados"
+"RegistrarFreelancerController" <-- "BaseDados" : 12 ok
+deactivate "BaseDados"
+deactivate "RegistrarFreelancerController"
+AreaAdministrativoUI -> ServiceController : 13 getFreelancerToStringCompletoByEmail(String email)
+activate ServiceController
+ServiceController --> AreaAdministrativoUI : 13 OK
+deactivate ServiceController
+"AreaAdministrativoUI" --> Administrativo : 14 operação bem sucedida, \n mostra dados
+deactivate "AreaAdministrativoUI"
+@enduml
