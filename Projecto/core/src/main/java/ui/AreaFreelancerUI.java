@@ -283,7 +283,10 @@ public class AreaFreelancerUI implements Initializable {
     public void confirmarAtualizarCandidaturaAction(ActionEvent actionEvent) {
         try {
 
-            boolean atualizou = atualizarCandidaturaController.atualizarCandidatura();
+            boolean atualizou = atualizarCandidaturaController.atualizarCandidatura(listViewAnuncioAtualizarCandidaturaFreelancer.getItems().get(0),
+                    authenticationController.getEmail(), Double.parseDouble(txtValorPretendidoAtualizarCandidatura.getText()),
+                    Integer.parseInt(txtDuracaoDiasAtualizarCandidatura.getText()), txtApresentacaoAtualizarCandidatura.getText(),
+                    txtMotivacaoAtualizarCandidatura.getText());
 
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Atualizar candidatura.",
