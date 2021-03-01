@@ -5,6 +5,7 @@
  */
 package ui;
 
+import application.AtualizarCandidaturaController;
 import application.AuthenticationController;
 import application.EfetuarCandidaturaController;
 import application.ServiceController;
@@ -68,19 +69,21 @@ public class AreaFreelancerUI implements Initializable {
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
     private EfetuarCandidaturaController efetuarCandidaturaController;
+    private AtualizarCandidaturaController atualizarCandidaturaController;
 
     public void initialize(URL location, ResourceBundle resources) {
 
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         efetuarCandidaturaController = new EfetuarCandidaturaController();
+        atualizarCandidaturaController = new AtualizarCandidaturaController();
 
     }
 
     @FXML
     void confirmarCandidaturaAction(ActionEvent event) throws SQLException {
 
-        try{
+        try {
 
             boolean efetuou = efetuarCandidaturaController.efetuarCandidatura(listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
                     authenticationController.getEmail(),
@@ -135,7 +138,6 @@ public class AreaFreelancerUI implements Initializable {
     }
 
 
-
     @FXML
     void logoutAction(ActionEvent event) {
 
@@ -172,18 +174,28 @@ public class AreaFreelancerUI implements Initializable {
 
 
     public void goHomeSelectAction(ActionEvent actionEvent) {
-        //desliga
+        //desligar
         efetuarCandidaturaPane.setDisable(true);
         efetuarCandidaturaPane.setVisible(false);
-        //liga
+        consultarCandidaturaPane.setDisable(true);
+        consultarCandidaturaPane.setVisible(false);
+        atualizarCandidaturaPane.setDisable(true);
+        atualizarCandidaturaPane.setVisible(false);
+        //ligar
         homePaneAreaFreelancer.setDisable(false);
         homePaneAreaFreelancer.setVisible(true);
     }
 
     @FXML
     void efetuarCandidaturaAction(ActionEvent event) throws SQLException {
+        //desligar
         homePaneAreaFreelancer.setDisable(true);
         homePaneAreaFreelancer.setVisible(false);
+        consultarCandidaturaPane.setDisable(true);
+        consultarCandidaturaPane.setVisible(false);
+        atualizarCandidaturaPane.setDisable(true);
+        atualizarCandidaturaPane.setVisible(false);
+        //ligar
         efetuarCandidaturaPane.setDisable(false);
         efetuarCandidaturaPane.setVisible(true);
 
@@ -207,9 +219,41 @@ public class AreaFreelancerUI implements Initializable {
     }
 
     public void btnVoltarHomeAction(ActionEvent actionEvent) {
+        //ligar
+        homePaneAreaFreelancer.setDisable(false);
+        homePaneAreaFreelancer.setVisible(true);
+        //desligar
+        consultarCandidaturaPane.setDisable(true);
+        consultarCandidaturaPane.setVisible(false);
+        atualizarCandidaturaPane.setDisable(true);
+        atualizarCandidaturaPane.setVisible(false);
+        efetuarCandidaturaPane.setDisable(true);
+        efetuarCandidaturaPane.setVisible(false);
+
+
     }
 
     public void consultarCandidaturaAction(ActionEvent actionEvent) {
+        //ligar
+        consultarCandidaturaPane.setDisable(false);
+        consultarCandidaturaPane.setVisible(true);
+        //desligar
+        atualizarCandidaturaPane.setDisable(true);
+        atualizarCandidaturaPane.setVisible(false);
+        efetuarCandidaturaPane.setDisable(true);
+        efetuarCandidaturaPane.setVisible(false);
+        homePaneAreaFreelancer.setDisable(true);
+        homePaneAreaFreelancer.setVisible(false);
+
+        try {
+            listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
+                    authenticationController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro ao preencher a lista de anúncios.",
+                    e.getMessage()).show();
+        }
+
     }
 
     public void confirmarAtualizarCandidaturaAction(ActionEvent actionEvent) {
