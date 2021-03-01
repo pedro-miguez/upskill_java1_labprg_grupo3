@@ -86,9 +86,6 @@ public class AreaGestorUI implements Initializable {
         seriarCandidaturaController = new SeriarCandidaturaController();
 
 
-
-
-
         //popular combo boxes do painel Publicar Tarefa
         try {
             btnTipoRegimento.getItems().setAll(serviceController.getTiposRegimento());
@@ -430,10 +427,15 @@ public class AreaGestorUI implements Initializable {
 
     public void classificarCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
         if (listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
-            listViewCandidaturasSelecionadasSeriacaoManual.getItems().add(
-                    listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
-            if (btnRemoverUltimaCandidatura.isDisable()) {
-                btnRemoverUltimaCandidatura.setDisable(false);
+            if (!listViewCandidaturasSelecionadasSeriacaoManual.getItems().contains(
+                    listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem())) {
+                listViewCandidaturasSelecionadasSeriacaoManual.getItems().add(
+                        listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
+                if (btnRemoverUltimaCandidatura.isDisable()) {
+                    btnRemoverUltimaCandidatura.setDisable(false);
+                }
+                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().remove(
+                        listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
             }
         } else {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar candidatura",
@@ -442,6 +444,9 @@ public class AreaGestorUI implements Initializable {
     }
 
     public void removerUltimaCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
+        listViewCandidaturasPorSelecionarSeriacaoManual.getItems().add(
+                listViewCandidaturasSelecionadasSeriacaoManual.getItems().get(listViewCandidaturasSelecionadasSeriacaoManual.getItems().size() - 1));
+
         listViewCandidaturasSelecionadasSeriacaoManual.getItems().remove(listViewCandidaturasSelecionadasSeriacaoManual.getItems().size() - 1);
 
         if (listViewCandidaturasSelecionadasSeriacaoManual.getItems().size() == 0) {
@@ -451,10 +456,16 @@ public class AreaGestorUI implements Initializable {
 
     public void adicionarColaboradorSeriacaoManualAction(ActionEvent actionEvent) {
         if (listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
-            listViewColaboradoresSelecionadosSeriacaoManual.getItems().add(
-                    listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
-            if (btnRemoverUltimoColaborador.isDisable()) {
-                btnRemoverUltimoColaborador.setDisable(false);
+            if (!listViewColaboradoresSelecionadosSeriacaoManual.getItems().contains(
+                    listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem())) {
+
+                listViewColaboradoresSelecionadosSeriacaoManual.getItems().add(
+                        listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
+                if (btnRemoverUltimoColaborador.isDisable()) {
+                    btnRemoverUltimoColaborador.setDisable(false);
+                }
+                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().remove(
+                        listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem());
             }
         } else {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro ao adicionar candidatura",
@@ -463,6 +474,8 @@ public class AreaGestorUI implements Initializable {
     }
 
     public void removerUltimoColaboradorSeriacaoManualAction(ActionEvent actionEvent) {
+        listViewColaboradoresPorSelecionarSeriacaoManual.getItems().add(
+                listViewColaboradoresSelecionadosSeriacaoManual.getItems().get(listViewColaboradoresSelecionadosSeriacaoManual.getItems().size() - 1));
         listViewColaboradoresSelecionadosSeriacaoManual.getItems().remove(listViewColaboradoresSelecionadosSeriacaoManual.getItems().size() - 1);
 
         if (listViewColaboradoresSelecionadosSeriacaoManual.getItems().size() == 0) {
