@@ -1,0 +1,59 @@
+@startuml
+title UC3 - Excerto do Modelo de Domínio
+left to right direction
+
+
+class Plataforma {
+    designacao
+    
+}
+
+class Administrativo {
+    nome
+}
+
+class CategoriaTarefa {
+    identificadorCategoria
+    descricao
+    areaAtividade
+}
+
+class CaracterizacaoCategoriaTarefa {
+    identificadorCompTec
+    caracter
+    nivelGrauMinimo
+}
+
+class CompetenciaTecnica {
+    nome 
+    identificadorCompetenciaTecnica
+    descricaoBreve
+    descricaoDetalhada
+    grausProficiencia
+}
+
+class GrauProficiencia {
+    nivel
+    designacao
+}
+
+class AreaAtividade{
+    identificadorAreaAtividade
+    descricaoBreve
+    descricaoDetalhada
+}
+
+Plataforma "1" --> "1..*" Administrativo: tem
+Plataforma "1" --> "*" CategoriaTarefa: possui
+Plataforma "1" --> "*" CompetenciaTecnica: possui
+Plataforma "1" --> "*" AreaAtividade: possui
+
+CategoriaTarefa "*" --> "*" CaracterizacaoCategoriaTarefa: requer
+CategoriaTarefa "1" --> "1" AreaAtividade : enquadra-se em
+
+CaracterizacaoCategoriaTarefa "*" --> "1" CompetenciaTecnica : referente a 
+
+CompetenciaTecnica "*" --> "1" AreaAtividade: referente a
+CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica
+
+@enduml

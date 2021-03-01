@@ -1,0 +1,40 @@
+@startuml_sd_uc6
+
+title UC6 - Diagrama de sequência
+
+actor ColaboradorUtilizador
+participant AreaColaboradorUI
+participant DefinirTarefaCTRL
+
+activate ColaboradorUtilizador
+
+ColaboradorUtilizador -> AreaColaboradorUI: 1 Inicia a especificação de uma tarefa
+activate AreaColaboradorUI
+AreaColaboradorUI -> ServiceController: 2 getCategoriasTarefa()
+activate ServiceController
+ServiceController -> "rct:RepositorioCategoriaTarefa" : 3 listarCategoriasTarefa()
+activate "rct:RepositorioCategoriaTarefa"
+deactivate "rct:RepositorioCategoriaTarefa"
+deactivate ServiceController
+ColaboradorUtilizador -> AreaColaboradorUI: 4 Introduz dados
+AreaColaboradorUI -> DefinirTarefaCTRL: 5 definirTarefa(String codigoUnico, String designacao, \nString descricaoInformal, String descricaoTecnica, int duracaoHoras,\n float custo, CategoriaTarefa categoriaTarefa, String colaboradorEmail)
+activate DefinirTarefaCTRL
+DefinirTarefaCTRL -> "ro:RepositorioOrganizacao" : 6 RepositorioOrganizacao.getInstance();
+activate "ro:RepositorioOrganizacao"
+DefinirTarefaCTRL -> "rt:RepositorioTarefa" :9 RepositorioTarefa.getInstance();
+activate "rt:RepositorioTarefa"
+deactivate "rt:RepositorioTarefa"
+DefinirTarefaCTRL -> "ro:RepositorioOrganizacao" : 7 org = getOrganizacaoByEmail(emailColaborador)
+"ro:RepositorioOrganizacao" -> "BaseDados" : 8 getOrganizacaoByEmailColaborador()
+deactivate "ro:RepositorioOrganizacao"
+DefinirTarefaCTRL -> "rt:RepositorioTarefa" : 10 tarefa = criarTarefa(codigoUnico,designacao, descricaoInformal, \ndescricaoTecnica, duracaoHoras, custo, categoriaTarefa, org)
+activate "rt:RepositorioTarefa"
+"rt:RepositorioTarefa" -> CodigoUnico** : 15 create(codigoUnico)
+DefinirTarefaCTRL -> "rt:RepositorioTarefa" : insertTarefa(tarefa)
+deactivate DefinirTarefaCTRL
+"rt:RepositorioTarefa" --> "BaseDados" : createTarefa()
+deactivate "rt:RepositorioTarefa"
+AreaColaboradorUI --> ColaboradorUtilizador : 18 operação bem sucedida, mostra os dados
+deactivate AreaColaboradorUI
+deactivate ColaboradorUtilizador
+@enduml_sd_uc6

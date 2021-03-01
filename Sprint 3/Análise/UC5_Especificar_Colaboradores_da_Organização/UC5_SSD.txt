@@ -1,0 +1,20 @@
+@startuml
+
+title UC5 - Diagrama de sequência de sistema
+
+actor GestorOrganizacao
+participant Sistema
+
+activate GestorOrganizacao
+GestorOrganizacao -> Sistema: 1 inicia a especificacao
+activate Sistema
+Sistema --> GestorOrganizacao: 2 solicita os dados (nome, contacto telefonico, endereco email)
+deactivate Sistema
+GestorOrganizacao -> Sistema: 3 introduz os dados solicitados
+activate Sistema
+Sistema --> GestorOrganizacao:4 apresenta os dados e informa sucesso da operacao
+deactivate Sistema
+
+deactivate GestorOrganizacao
+
+@enduml

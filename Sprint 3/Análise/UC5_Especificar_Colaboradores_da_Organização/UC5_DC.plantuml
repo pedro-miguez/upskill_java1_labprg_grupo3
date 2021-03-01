@@ -1,0 +1,99 @@
+@startuml
+
+left to right direction
+
+title UC5 - Especificar Colaborador de Organizacao \n
+
+
+
+Class AreaGestorUI {
+}
+
+Class RegistarColaboradorController {
+    +registarColaborador(String nomeColaborador, int contactoColaborador, String emailColaborador, String gestorEmail)
+}
+
+
+class Plataforma <<Singleton>> {
+    -String designacao
+    --
+    +RepositorioColaborador getRepoColab()
+    +RepositorioOrganizacao getRepoOrg()
+    +UsersAPI
+    +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
+}
+
+Class RepositorioOrganizacao {
+    +getOrganizacaoByGestor(Colaborador colaborador)
+}
+
+Class RepositorioColaborador {
+    +getOrganizacaoByEmail(Email email)
+    +addColaborador(Colaborador colaborador)
+}
+
+class Organizacao {
+    -String nome
+    -NIF nif
+    -Telefone telefone
+    -Email email
+    -Website website
+    --
+    +Organizacao(nome,NIF,webSite,telefone,email,endereco,gestorColaborador)
+    +EnderecoPostal novoEndereco(local,codPostal,localidade)
+    +Colaborador novoColaborador(nome,funcao,tlf,email)
+}
+
+Class AlgoritmoGeradorPasswords {
+    +getPassword()
+}
+
+class AuthenticationController {
+    +registarGestorComoUtilizador(Colaborador colaborador)
+}
+
+class UsersAPI {
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class UsersAPIAdapter {
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class Colaborador {
+    -String nome
+    -String funcao
+    -String telefone
+    -String email
+    --
+    +Colaborador(nome,função,tlf,email)
+    +String getNome()
+    +String getEmail()
+}
+
+
+AreaGestorUI ..> RegistarColaboradorController
+RegistarColaboradorController ..> Organizacao
+RegistarColaboradorController ..> RepositorioOrganizacao
+RegistarColaboradorController ..> Plataforma
+RegistarColaboradorController ..> AuthenticationController
+RegistarColaboradorController ..> RepositorioColaborador
+AuthenticationController ..> UsersAPI
+UsersAPI --> AlgoritmoGeradorPasswords : usa
+UsersAPI ..> UsersAPIAdapter
+Plataforma "1" --> "1" RepositorioColaborador : tem
+Plataforma "1" --> "1" RepositorioOrganizacao : tem
+RepositorioColaborador "1"--> "1..*" Colaborador : tem
+RepositorioOrganizacao "1" --> "*" Organizacao : tem registadas
+RepositorioOrganizacao ..> UsersAPI
+RepositorioOrganizacao ..> AlgoritmoGeradorPasswords
+Organizacao "1" --> "1" EnderecoPostal : localizada em
+Organizacao "1" --> "1..*" Colaborador : tem
+Organizacao "1" --> "1" Colaborador: tem gestor
+RepositorioOrganizacao ..> Colaborador
+RepositorioOrganizacao ..> EnderecoPostal
+
+
+
+
+@enduml

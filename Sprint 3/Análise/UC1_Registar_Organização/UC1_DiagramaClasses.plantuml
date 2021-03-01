@@ -1,0 +1,103 @@
+@startuml
+
+class RegistarOrganizacaoUI{
+}
+
+class RegistarOrganizacaoController{
++registarOrganizacao(String nomeOrg, int nif, String website, int telefone,String email, String rua, \nString localidade, String codigoPostal,String nomeGestor, int telefoneGestor, String emailGestor)
+}
+
+class Organizacao{
+    -String nome
+    -NIF nif
+    -Telefone telefone
+    -Email email
+    -Website website
+    --
+    +Organizacao(nome,NIF,webSite,telefone,email,endereco,gestorColaborador)
+    +EnderecoPostal novoEndereco(local,codPostal,localidade)
+    +Colaborador novoColaborador(nome,funcao,tlf,email)
+}
+
+class RepositorioOrganizacao{
+    +Organizacao criarOrganizacao(String nomeOrg, int nif, String website, int telefone, \nString email, String rua, String localidade, String codigoPostal)
+    -getInstance()
+    -addOrganizacao(Organizacao org)
+    -getOrganizacaoByGestor(Colaborador colaborador)
+    -getOrganizacaoByEmail(Email email)
+    -ArrayList<Organizacao> listarOrganizacoes()
+    -registaGestorComoUtilizador(Colaborador colab)
+    -enviaPwd(String emailG, String pwd)
+}
+
+class Plataforma{
+    -String designacao
+    --
+    +RepositorioColaborador getRepoColab()
+    +RepositorioOrganizacao getRepoOrg()
+    +UsersAPI
+    +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
+}
+
+class EnderecoPostal{
+    -String local
+    -String codPostal
+    -String localidade
+    --
+    +EnderecoPostal(local,codPostal,localidade)
+}
+
+class Colaborador{
+    -String nome
+    -String funcao
+    -String telefone
+    -String email
+    --
+    +Colaborador(nome,função,tlf,email)
+    +String getNome()
+    +String getEmail()
+}
+
+class UsersAPI{
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class UsersAPIAdapter{
+    +registerUserWithRoles(String username, String email, String password, String rolenames)
+}
+
+class AlgoritmoGeradorPasswords{
+    +String geraPassword()
+}
+
+class AuthenticationController{
+    +registarGestorComoUtilizador(Colaborador colaborador)
+}
+
+class RepositorioColaborador{
+    +getInstance()
+    +Colaborador criarGestor(String nomeGestor,int contactoGestor, String emailGestor, Organizacao org)
+    +addColaborador(Colaborador colaborador)
+}
+
+
+RegistarOrganizacaoUI ..> RegistarOrganizacaoController
+RegistarOrganizacaoController ..> Organizacao
+RegistarOrganizacaoController ..> RepositorioOrganizacao
+RegistarOrganizacaoController ..> Plataforma
+RegistarOrganizacaoController ..> AuthenticationController
+RegistarOrganizacaoController ..> RepositorioColaborador
+AuthenticationController ..> UsersAPI
+UsersAPI --> AlgoritmoGeradorPasswords : Usa
+UsersAPI ..> UsersAPIAdapter
+Plataforma "1" --> "1" RepositorioColaborador : tem
+RepositorioColaborador "1"--> "1..*" Colaborador : tem
+RepositorioOrganizacao "1" --> "*" Organizacao : tem registadas
+RepositorioOrganizacao ..> UsersAPI
+RepositorioOrganizacao ..> AlgoritmoGeradorPasswords
+Organizacao "1" --> "1" EnderecoPostal : localizada em
+Organizacao "1" --> "1..*" Colaborador : tem
+Organizacao "1" --> "1" Colaborador: tem gestor
+RepositorioOrganizacao ..> Colaborador
+RepositorioOrganizacao ..> EnderecoPostal
+@enduml

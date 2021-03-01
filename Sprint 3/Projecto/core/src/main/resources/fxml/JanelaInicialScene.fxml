@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.JanelaInicialUI">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1024.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="237.0" fitWidth="237.0" layoutX="394.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../styles/Tasks_4_Joe.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="437.0" layoutY="434.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="36.0" prefWidth="152.0" text="Login">
+         <font>
+            <Font name="Verdana" size="14.0" />
+         </font></Button>
+      <Button layoutX="439.0" layoutY="495.0" mnemonicParsing="false" onAction="#registarOrganizacaoAction" prefHeight="45.0" prefWidth="152.0" text="Registar Organização" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Verdana" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnAbout" layoutX="477.0" layoutY="569.0" mnemonicParsing="false" onAction="#aboutAction" prefHeight="28.0" prefWidth="75.0" text="About" />
+   </children>
+</AnchorPane>

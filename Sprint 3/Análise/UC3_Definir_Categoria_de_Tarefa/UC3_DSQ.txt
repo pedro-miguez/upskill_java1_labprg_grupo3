@@ -1,0 +1,50 @@
+@startuml
+
+title UC3 - Definir Categoria de Tarefa
+
+actor Administrativo as admin
+participant AreaAdministrativoUI as ui
+participant DefinirCategoriaTarefaCtrl as ctrl
+participant ServiceController as platctrl
+participant Plataforma as plat
+participant RepositorioAreaAtividade as repoarea
+participant GrauProficiencia as graus
+participant RepositorioCompetenciatecnica as repocomp
+participant RepositorioCategoriaTarefa as repocat
+participant CategoriaTarefa as cat
+
+activate admin
+admin -> ui: 1. Inicia definicao de \n nova categoria de tarefa
+activate ui
+ui -> platctrl: 2. getAreasAtividade()
+activate platctrl
+ui -> platctrl: 3. getGrausProficiencia()
+platctrl -> repoarea **: 4. listarAreasAtividade()
+platctrl -> graus **: 5. values()
+deactivate platctrl
+admin -> ui: 6. seleciona area\n de atividade
+ui -> platctrl: 7. getCompetenciasTecnicasByAreaAtividade(areaAtividade)
+activate platctrl
+platctrl -> repocomp **: 8. getCompetenciasTecnicasByAreaAtividade(areaAtividade)
+deactivate platctrl
+admin -> ui: 9. insere dados, seleciona n \n competências técnicas e associa \n obrigatoriedade e um grau \n de proficiencia a cada uma
+ui -> ctrl **: 10. definirCategoriaTarefa(areaAtividade,descricao, competenciasTecnicas) 
+activate ctrl
+ctrl -> plat **: 11. getInstance()
+activate plat
+plat --> ctrl: 12. ok
+deactivate plat
+ctrl -> repocat **: 13. getInstance()
+activate repocat
+repocat --> ctrl: 14. ok
+deactivate repocat
+ctrl -> repocat: 15. insertCategoriaTarefa(categoriaTarefa)
+deactivate ctrl
+activate repocat
+repocat -> cat **: 16. categTarefa = create(areaAtividade, descricao, competenciasTecnicas)
+repocat -> BaseDados**: 17. createCategoriaTarefa
+deactivate repocat
+ui --> admin: mostra dados e confirma registo
+
+
+@enduml

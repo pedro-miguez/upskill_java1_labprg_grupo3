@@ -1,0 +1,15 @@
+@startuml
+
+actor "Freelancer"
+activate "Freelancer"
+"Freelancer" -> ":Sistema" : 1 Inicia o processo de remoção de candidatura
+activate ":Sistema"
+":Sistema" --> "Freelancer" : 2 mostra as candidaturas abertas pelo freelancer
+loop
+"Freelancer" -> ":Sistema" : 3 seleciona uma candidatura
+"Freelancer" -> ":Sistema" : 4 remove candidatura
+":Sistema" --> "Freelancer" : 5 informa do sucesso da operacao
+deactivate ":Sistema"
+end
+
+@enduml

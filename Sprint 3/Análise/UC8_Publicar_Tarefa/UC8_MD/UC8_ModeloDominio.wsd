@@ -1,0 +1,92 @@
+@startuml
+
+title UC8 - Excerto de Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+}
+
+class Organizacao {
+    nome
+    nif
+    website
+    telefone
+    email
+}
+
+class RepositorioAnuncio {
+
+}
+
+class Anuncio {
+    periodosPublicitacao
+    periodosCandidatura
+    periodosSeriacao
+}
+
+class Tarefa {
+    referencia
+    designacao
+    descInformal
+    descTecnica
+    duracaoEst
+    custoEst
+}
+
+class TipoRegimento {
+    designacao
+    descricaoRegras
+}
+
+class Colaborador {
+    nome
+    funcao
+    telefone
+    email
+}
+
+class Utilizador {
+    nome
+    email
+    password
+}
+
+class Role {
+    designacao
+}
+
+class Data {
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+
+Plataforma "1" --> "*" TipoRegimento: suporta >
+Plataforma "1" --> "*" Anuncio: publicita >
+Plataforma "1" --> "*" Organizacao: tem registadas >
+
+Anuncio "*" --> "1" TipoRegimento: rege-se por >
+Anuncio "*" --> "1" Colaborador: publicado por >
+Anuncio "0..1" --> "1" Tarefa: publicita >
+Anuncio "0..1" --> "1" Tarefa: < dá origem
+
+Tarefa "*" --> "1" Colaborador: especificada por >
+
+Organizacao "1" --> "*" Tarefa: possui >
+
+Colaborador "1" --> "1" Utilizador: atua como >
+
+Utilizador "1" --> "1..2" Role: tem >
+
+RepositorioAnuncio "1" --> "*" Tarefa
+RepositorioAnuncio "1" --> "*" TipoRegimento
+RepositorioAnuncio "1" --> "*" Data
+RepositorioAnuncio "1" --> "*" Anuncio
+
+@enduml

@@ -1,0 +1,91 @@
+@startuml
+left to right direction
+
+
+title UC4 - Definir Competencia Tecnica \n
+
+Class Plataforma <<Singleton>> {
+
+    +getRepoAreaAtiv()
+    +getRepoCompTec()
+}
+
+
+
+Class CaracterizacaoCompTec {
+    -boolean caracter
+    -GrauProficiencia grau
+    -CompetenciaTecnica competenciaTecnica
+}
+
+Class CompetenciaTecnica {
+    -CodigoUnico codigoUnico
+    -String descricao
+    -String descricaoDetalhada
+    AreaAtividade areaAtividade
+}
+
+Enum GrauProficiencia {
+    
+}
+
+Class AreaAdministrativoUI {
+}
+
+Class DefinirCompetenciaTecnicaController {
+    +definirCompetenciaTecnica(String codigoUnico,\n AreaAtividade areaAtividade, String descricao, String descDetalhada)
+}
+
+Class RepositorioAreaActividade {
+    +listarAreasAtividade()
+    +getAreaAtividadeByCodigoUnico(CodigoUnico codigoUnico)
+}
+
+Class RepositorioCompetenciasTecnicas {
+    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
+    +addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica)
+    +getCompetenciaTecnicaByCodUnico(CodigoUnico codigoUnico)
+    +criarCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade, String descricao, String descDetalhada)
+    +listaCompetenciasTecnica()
+}
+
+Class PlataformaController {
+    +getAreasAtividade()
+    +getGrausProficiencia()
+    +getCompetenciasTecnicasByAreaAtividade(AreaAtividade areaAtividade)
+    +getAreaATividadeToStringCompletoByCodigoUnico(String codigoUnico)
+    +getCompetenciaTecnicaToStringCompletoByCodigoUnico(String codigoUnico)
+}
+
+Class AreaAtividade {
+    - CodigoUnico codigoUnico
+    - String descricao
+    - String descDetalhada
+}
+
+
+AreaAdministrativoUI .> DefinirCompetenciaTecnicaController
+
+AreaAdministrativoUI .> PlataformaController
+
+DefinirCompetenciaTecnicaController .> Plataforma
+DefinirCompetenciaTecnicaController .> RepositorioAreaActividade
+DefinirCompetenciaTecnicaController .> CompetenciaTecnica
+
+Plataforma "1" -down-> "1" RepositorioAreaActividade: tem
+Plataforma "1" -down-> "1" RepositorioCompetenciasTecnicas: tem
+
+RepositorioAreaActividade "1" -> "*" AreaAtividade: possui
+
+CaracterizacaoCompTec "1" -> GrauProficiencia: relaciona-se com
+
+RepositorioCompetenciasTecnicas "1" -> "*" CompetenciaTecnica: possui
+
+PlataformaController .> RepositorioAreaActividade
+PlataformaController .> RepositorioCompetenciasTecnicas
+PlataformaController .> Plataforma
+PlataformaController .> GrauProficiencia
+
+CaracterizacaoCompTec "1" -> CompetenciaTecnica: relaciona-se com
+
+@enduml

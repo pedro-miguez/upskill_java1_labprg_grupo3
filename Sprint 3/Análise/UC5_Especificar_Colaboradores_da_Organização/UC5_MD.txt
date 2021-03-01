@@ -1,0 +1,43 @@
+@startuml
+title Modelo de Dominio
+left to right direction
+
+class Plataforma {
+    designacao
+    
+}
+
+class Organizacao {
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
+}
+
+class Colaborador {
+    nome
+    contactoTelefonico
+    email
+}
+
+class Utilizador {
+    nome
+    email
+    password
+}
+
+class Role {
+    designacao
+}
+
+Plataforma "1" --> "*" Organizacao: tem registada
+
+Organizacao "1" --> "1..*" Colaborador: tem
+Organizacao "1" --> "1" Colaborador: tem gestor
+
+Colaborador "0..1" --> "1" Utilizador: atua como
+
+Utilizador "1" --> "1..2" Role: tem
+
+@enduml
