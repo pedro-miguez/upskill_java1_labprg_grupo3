@@ -1,9 +1,15 @@
 package com.company.controller;
 
-import domain.AreaAtividade;
-import domain.CodigoUnico;
-import domain.Plataforma;
-import persistence.RepositorioAreaAtividade;
+//import domain.AreaAtividade;
+import com.company.model.AreaAtividade;
+
+//import domain.CodigoUnico;
+import com.company.model.CodigoUnico;
+
+//import domain.Plataforma;
+import com.company.model.Plataforma;
+
+//import persistence.RepositorioAreaAtividade;
 
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for setting new
