@@ -5,10 +5,7 @@
  */
 package ui;
 
-import application.AtualizarCandidaturaController;
-import application.AuthenticationController;
-import application.EfetuarCandidaturaController;
-import application.ServiceController;
+import application.*;
 import domain.Anuncio;
 import domain.Candidatura;
 import domain.Email;
@@ -71,6 +68,7 @@ public class AreaFreelancerUI implements Initializable {
     private AuthenticationController authenticationController;
     private EfetuarCandidaturaController efetuarCandidaturaController;
     private AtualizarCandidaturaController atualizarCandidaturaController;
+    private RemoverCandidaturaController removerCandidaturaController;
 
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -78,6 +76,7 @@ public class AreaFreelancerUI implements Initializable {
         authenticationController = new AuthenticationController();
         efetuarCandidaturaController = new EfetuarCandidaturaController();
         atualizarCandidaturaController = new AtualizarCandidaturaController();
+        removerCandidaturaController = new RemoverCandidaturaController();
 
     }
 
@@ -239,7 +238,32 @@ public class AreaFreelancerUI implements Initializable {
         txtMotivacaoAtualizarCandidatura.setText(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtMotivacao());
     }
 
-    public void btnRemoverCandidaturaAction(ActionEvent actionEvent) {
+    public void btnRemoverCandidaturaAction(ActionEvent actionEvent) throws SQLException {
+
+
+        boolean removeu = removerCandidaturaController.removerCandidatura(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getAnuncio(),
+                authenticationController.getEmail(), listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getValorPretendido(),
+                listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getNrDias(), listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtApresentacao(),
+                listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtMotivacao());
+
+
+        AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Remover candidatura.",
+                removeu ? "Candidatura removida com sucesso! \n"
+                        : "Não foi possível remover a candidatura.").show();
+
+
+        if (removeu) {
+            try {
+
+                listViewCandidaturasAbertas.getItems().remove(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem());
+                listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
+                        authenticationController.getEmail()));
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Erro ao preencher a lista de candidaturas.",
+                        e.getMessage()).show();
+            }
+        }
     }
 
     public void btnVoltarHomeAction(ActionEvent actionEvent) {
