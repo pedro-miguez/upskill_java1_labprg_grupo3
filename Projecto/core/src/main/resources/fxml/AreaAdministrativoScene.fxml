@@ -19,7 +19,7 @@
          <center>
             <StackPane prefHeight="474.0" prefWidth="696.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
                      <center>
                         <Label prefHeight="300.0" prefWidth="338.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
@@ -357,7 +357,7 @@
                         </HBox>
                      </bottom>
                   </BorderPane>
-                  <BorderPane fx:id="criarFreelancerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="criarFreelancerPane" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="76.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                            <children>
