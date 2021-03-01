@@ -131,7 +131,7 @@ public class CompetenciaTecnica implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%s%n%s",
+        return String.format("%s %n%s",
                  this.codigoUnico, this.descricao);
     }
 

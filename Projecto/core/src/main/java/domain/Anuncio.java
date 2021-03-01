@@ -247,6 +247,10 @@ public class Anuncio implements Serializable {
             }
         }
 
+        if (competenciasObrigatorias.size() == 0) {
+            return true;
+        }
+
         ArrayList<CompetenciaTecnica> competenciasFreelancer = new ArrayList<>();
         for (ReconhecimentoCT rct : reconhecimentosFreelancer) {
             competenciasFreelancer.add(rct.getCompetenciaTecnica());
@@ -270,6 +274,8 @@ public class Anuncio implements Serializable {
                 }
             }
         }
+
+
 
         return counter == competenciasObrigatorias.size();
 

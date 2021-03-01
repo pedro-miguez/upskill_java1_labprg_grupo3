@@ -57,8 +57,13 @@ public class SeriarCandidaturaController {
      * @param emailColaborador
      * @return RepositorioColaborador.getInstance().getColaboradoresOrganizacaoByEmail
      */
-    public ArrayList<Colaborador> getAllColaboradoresOrganizacao(String emailColaborador) {
-        return RepositorioColaborador.getInstance().getColaboradoresOrganizacaoByEmail(new Email(emailColaborador));
+    public ArrayList<Colaborador> getAllColaboradoresOrganizacao(String emailColaborador) throws SQLException {
+        ArrayList<Colaborador> lista = RepositorioColaborador.getInstance().getColaboradoresOrganizacaoByEmail(new Email(emailColaborador));
+
+        Colaborador colaborador = RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador));
+
+        lista.remove(colaborador);
+        return lista;
     }
 
     /**
@@ -75,9 +80,7 @@ public class SeriarCandidaturaController {
                                          String emailColaborador) throws SQLException {
         ArrayList<Classificacao> classificacoes = new ArrayList<>();
 
-        if (!colaboradores.contains(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)))) {
-            colaboradores.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)));
-        }
+        colaboradores.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)));
 
         int lugar = 0;
         for (Candidatura c : candidaturas) {
