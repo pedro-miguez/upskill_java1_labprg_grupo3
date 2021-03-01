@@ -29,8 +29,21 @@ import persistence.RepositorioFreelancer;
 
 public class AreaFreelancerUI implements Initializable {
 
-    public BorderPane homeBorderPane;
     public BorderPane homePaneAreaFreelancer;
+    public ListView listViewCandidaturasAbertas;
+    public Button btnAtualizarCandidatura1;
+    public Button btnRemoverCandidatura;
+    public Button btnVoltarHome;
+    public Button btnConsultarCandidatura;
+    public BorderPane consultarCandidaturaPane;
+    public BorderPane atualizarCandidaturaPane;
+    public Button btnConfirmarAtualizarCandidatura;
+    public Button btnLimparDadosAtualizarCandidatura;
+    public ListView listViewAnuncioAtualizarCandidaturaFreelancer;
+    public TextField txtValorPretendidoAtualizarCandidatura;
+    public TextField txtDuracaoDiasAtualizarCandidatura;
+    public TextArea txtApresentacaoAtualizarCandidatura;
+    public TextArea txtMotivacaoAtualizarCandidatura;
     @FXML
     private Button btnConfirmarCandidatura;
     @FXML
@@ -187,6 +200,23 @@ public class AreaFreelancerUI implements Initializable {
     }
 
 
+    public void btnAtualizarCandidaturaAction(ActionEvent actionEvent) {
+    }
+
+    public void btnRemoverCandidaturaAction(ActionEvent actionEvent) {
+    }
+
+    public void btnVoltarHomeAction(ActionEvent actionEvent) {
+    }
+
+    public void consultarCandidaturaAction(ActionEvent actionEvent) {
+    }
+
+    public void confirmarAtualizarCandidaturaAction(ActionEvent actionEvent) {
+    }
+
+    public void btnLimparDadosAtualizarCandidaturaAction(ActionEvent actionEvent) {
+    }
 }
 
 
