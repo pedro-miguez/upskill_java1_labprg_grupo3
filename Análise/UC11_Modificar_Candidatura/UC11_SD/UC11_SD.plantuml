@@ -1,0 +1,36 @@
+@startuml 
+actor FreelancerUser as FreelancerUser
+FreelancerUser -> AreaFreelancerUI : Inicia sessao para se poder candidatar
+activate FreelancerUser
+activate AreaFreelancerUI
+AreaFreelancerUI -> AlterarCandidaturaCtrl : getAllCandidaturasByFreelancer(Email emailFreelancer)
+activate AlterarCandidaturaCtrl
+
+
+AlterarCandidaturaCtrl -> RepositorioCandidatura : getAllCandidaturasFreelancer(Email emailFreelancer)
+activate RepositorioCandidatura
+deactivate RepositorioCandidatura
+
+AlterarCandidaturaCtrl --> AreaFreelancerUI : lista candidaturas  em aberto do freelancer
+deactivate AlterarCandidaturaCtrl
+
+AreaFreelancerUI -> AlterarCandidaturaCtrl : alterarCandidatura(anuncio, emailFreelancer, dataCandidatura,\nvalorPretendido, nrDias, txtApresentacao, txtMotivacao)
+activate AlterarCandidaturaCtrl
+
+AlterarCandidaturaCtrl -> RepositorioCandidatura : alterarCandidatura(anuncio, freelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao)
+activate RepositorioCandidatura
+
+RepositorioCandidatura -> BaseDados : updateCandidatura(Candidatura candidatura)
+activate BaseDados
+RepositorioCandidatura <-- BaseDados : ok
+deactivate RepositorioCandidatura
+deactivate BaseDados
+
+deactivate AlterarCandidaturaCtrl
+AreaFreelancerUI -> RepositorioCandidatura : getCandidaturaByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer)
+activate RepositorioCandidatura
+RepositorioCandidatura --> AreaFreelancerUI : OK
+deactivate RepositorioCandidatura
+AreaFreelancerUI --> FreelancerUser : operação bem sucedida, \n mostra dados
+deactivate AreaFreelancerUI
+@enduml

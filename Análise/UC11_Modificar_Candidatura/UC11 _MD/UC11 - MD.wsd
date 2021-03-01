@@ -1,0 +1,102 @@
+@startuml
+title UC9 - Excerto Modelo de Dominio
+left to right direction
+
+
+class Plataforma {
+    designacao
+}
+
+class Categoria {
+    id
+    categoria
+}
+
+class Tarefa {
+    referencia
+    designacao
+    descrInformal
+    descrTecnica
+    duracaoEst
+    custoEst
+}
+
+class Anuncio {
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+class Candidatura {
+    dataCandidatura
+    valorPretendido
+    nrDias
+    txtApresentacao
+    txtMotivacao
+}
+
+class Freelancer {
+    nome
+    NIF
+    telefone
+    email
+}
+
+class CaractCT {
+    obrigatoria
+}
+
+class HabilitacaoAcademica {
+    grau
+    designacaoCurso
+
+    mediaCurso
+}
+
+class ReconhecimentoCT {
+    dataReconhecimento
+}
+
+class CompetenciaTecnica {
+    codigo
+    descBreve
+    descDetalhada
+}
+
+class GrauProficiencia {
+    valor
+    designacao
+}
+
+Plataforma "1" --> "*" Categoria: possui
+Plataforma "1" --> "*" Anuncio: publicita
+Plataforma "1" --> "*" CompetenciaTecnica: possui
+Plataforma "1" --> "*" Freelancer: tem/usa
+
+Anuncio "*" --> "1" Tarefa: publicita
+Anuncio "1" --> "*" Candidatura: recebe
+
+Tarefa "*" --> "1" Anuncio: da origem
+Tarefa "*" --> "1" Candidatura: enquadra-se em
+Tarefa "*" --> "1" Categoria: enquadra-se em
+
+Categoria "*" --> "*" CompetenciaTecnica: requer
+
+CompetenciaTecnica "1" --> "*" GrauProficiencia: aplica
+
+Candidatura "*" --> "1" Freelancer: realizada por
+
+Freelancer "1" --> "*" HabilitacaoAcademica: tem
+
+Freelancer "1" --> "*" ReconhecimentoCT: recebe
+
+CaractCT "*" -> "1" GrauProficiencia: exige(como minimo)
+
+(Categoria, CompetenciaTecnica) .. CaractCT
+
+ReconhecimentoCT "*" --> "1" CompetenciaTecnica: relativa a
+
+@enduml
