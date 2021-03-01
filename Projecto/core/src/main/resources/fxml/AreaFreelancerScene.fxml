@@ -30,7 +30,7 @@
                         </Label>
                      </center>
                   </BorderPane>
-                  <BorderPane fx:id="efetuarCandidaturaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="efetuarCandidaturaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
@@ -95,7 +95,7 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnLimparDadosEfetuarCandidatura" mnemonicParsing="false" onAction="#btnLimparDadosEfetuarCandidaturaAction" text="Limpar dados">
+                              <Button fx:id="btnLimparDadosEfetuarCandidatura" minWidth="70.0" mnemonicParsing="false" onAction="#btnLimparDadosEfetuarCandidaturaAction" text="Limpar">
                                  <HBox.margin>
                                     <Insets right="150.0" />
                                  </HBox.margin>
@@ -103,6 +103,118 @@
                            </children>
                         </HBox>
                      </bottom>
+                  </BorderPane>
+                  <BorderPane fx:id="consultarCandidaturaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <center>
+                        <ListView fx:id="listViewCandidaturasAbertas" maxHeight="500.0" maxWidth="700.0" prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets right="100.0" />
+                           </BorderPane.margin>
+                        </ListView>
+                     </center>
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnAtualizarCandidatura1" maxHeight="25.0" maxWidth="65.0" minHeight="25.0" minWidth="65.0" mnemonicParsing="false" onAction="#btnAtualizarCandidaturaAction" text="Atualizar">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnRemoverCandidatura" mnemonicParsing="false" onAction="#btnRemoverCandidaturaAction" text="Remover">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnVoltarHome" minWidth="65.0" mnemonicParsing="false" onAction="#btnVoltarHomeAction" text="Voltar">
+                                 <HBox.margin>
+                                    <Insets right="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+                  <BorderPane fx:id="atualizarCandidaturaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnConfirmarAtualizarCandidatura" mnemonicParsing="false" onAction="#confirmarAtualizarCandidaturaAction" text="Confirmar">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnLimparDadosAtualizarCandidatura" minWidth="70.0" mnemonicParsing="false" onAction="#btnLimparDadosAtualizarCandidaturaAction" text="Limpar">
+                                 <HBox.margin>
+                                    <Insets right="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <GridPane prefHeight="576.0" prefWidth="899.0">
+                                 <children>
+                                    <Label text="Valor pretendido: " GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin></Label>
+                                    <Label text="Duração: " GridPane.rowIndex="2" />
+                                    <Label text="Texto Apresentação: " GridPane.rowIndex="3" />
+                                    <Label text="Texto Motivação: " GridPane.rowIndex="4" />
+                                    <TextField fx:id="txtValorPretendidoAtualizarCandidatura" promptText="POT's" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="500.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="txtDuracaoDiasAtualizarCandidatura" promptText="Dias" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets right="500.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextArea fx:id="txtApresentacaoAtualizarCandidatura" prefHeight="200.0" prefWidth="200.0" promptText="(Opcional)" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" right="100.0" />
+                                       </GridPane.margin>
+                                    </TextArea>
+                                    <TextArea fx:id="txtMotivacaoAtualizarCandidatura" prefHeight="200.0" prefWidth="200.0" promptText="(Opcional)" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" right="100.0" />
+                                       </GridPane.margin>
+                                    </TextArea>
+                                    <ListView fx:id="listViewAnuncioAtualizarCandidaturaFreelancer" maxWidth="450.0" prefHeight="200.0" prefWidth="600.0" GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                    </ListView>
+                                    <Label text="Anuncio: " />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="225.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="733.0" minWidth="10.0" prefWidth="674.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="85.0" minHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="60.0" minHeight="100.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </center>
+                     <top>
+                        <Label text="Atualizar Candidatura" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
                   </BorderPane>
                </children>
             </StackPane>
@@ -125,6 +237,11 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin></Button>
+                  <Button fx:id="btnConsultarCandidatura" mnemonicParsing="false" onAction="#consultarCandidaturaAction" prefHeight="44.0" prefWidth="95.0" text="Consultar Candidaturas" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
                   <Button fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="258.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="30.0" prefWidth="67.0" text="Logout" textAlignment="CENTER" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="30.0" />
