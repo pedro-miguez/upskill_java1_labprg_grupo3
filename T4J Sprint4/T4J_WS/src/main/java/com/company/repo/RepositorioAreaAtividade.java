@@ -1,4 +1,5 @@
-package persistence;
+//package persistence;
+package com.company.repo;
 
 import domain.*;
 import exceptions.CodigoNaoAssociadoException;
