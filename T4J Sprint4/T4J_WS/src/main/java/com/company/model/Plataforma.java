@@ -35,6 +35,56 @@ public class Plataforma implements Serializable {
     private AlgoritmoGeradorPasswords agp;
     //private UsersAPI uapi;
     //private ConnectionHandler connectionHandler;
+    
+    
+    private String nome;
+    private ArrayList<Freelancer> freelancers;
+    
+    private ArrayList<Organizacao> organizacoes;
+
+    public Plataforma(String nome) {
+        this.nome = nome;
+        this.freelancers = new ArrayList<Freelancer>();
+        
+        this.organizacoes = new ArrayList<Organizacao>();
+    }
+
+    public ArrayList<Freelancer> getAllFreelancers() {
+        Freelancer freelancer;
+        ArrayList<Freelancer> lista = new ArrayList<>();
+        for (int i = 0; i < this.freelancers.size(); i++) {
+            freelancer = this.freelancers.get(i);
+            if (!(freelancer instanceof Plataforma)) {
+                Freelancer copiaFreelancer = new Freelancer(freelancer);
+                lista.add(copiaFreelancer);
+            } else {
+                //
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<Organizacao> getAllOrganizacoess() {
+        
+        Organizacao organizacao;
+        
+        ArrayList<Organizacao> lista = new ArrayList<>();
+        
+        for (int i = 0; i < this.organizacoes.size(); i++) {
+            organizacao = this.organizacoes.get(i);
+            
+            if (!(organizacao instanceof Colaborador)) {
+                Organizacao copiaOrganizacao = new Organizacao(organizacao);
+                lista.add(copiaOrganizacao);
+            } else {
+                Colaborador colaboradorColaborador = new Colaborador((Colaborador) organizacao);
+                lista.add(colaboradorColaborador);
+            }
+        }
+        
+        return lista;
+    }
+    
 
     /*private Plataforma() throws SQLException {
         agp = new AlgoritmoGeradorPasswords();
