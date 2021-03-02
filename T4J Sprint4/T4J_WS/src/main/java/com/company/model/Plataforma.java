@@ -7,6 +7,10 @@ package com.company.model;
 //import network.ConnectionHandler;
 //import persistence.*;
 
+import com.company.exception.ElementoNaoExistenteException;
+
+import com.company.exception.NomeDuplicadoException;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -60,26 +64,73 @@ public class Plataforma implements Serializable {
         return agp;
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    
     public ArrayList<Organizacao> getOrganizacoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Organizacao organizacao;
+        ArrayList<Organizacao> lista = new ArrayList<>();
+        for (int i = 0; i < this.organizacoes.size(); i++) {
+            
+            organizacao = this.organizacoes.get(i);
+            if (!(organizacao instanceof Gestor)) {
+                Organizacao copia = new Organizacao(organizacao);
+                lista.add(copia);
+            }
+        }
+        return lista;
     }
 
     public Organizacao getOrganizacao(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getOrganizacaoByNome(nome);
     }
 
-    public void addOrganizacao(Organizacao organizacao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addOrganizacao(Organizacao organizacao) throws NomeDuplicadoException {
+        Organizacao o = getOrganizacaoByNome(organizacao.getNome());
+        if (o == null) {
+            this.organizacoes.add(organizacao);
+            
+        } else {
+            throw new NomeDuplicadoException(o.getNome() + ": Nome já existe");
+        }
     }
 
-    public void updateOrganizacao(String nome, Organizacao organizacao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateOrganizacao(String nome, Organizacao organizacao) throws ElementoNaoExistenteException {
+        Organizacao organizacao = null;
+        
+        boolean updated = false;
+        
+        for (int i = 0; i < this.organizacoes.size() && !updated; i++) {
+            organizacao = this.organizacoes.get(i);
+            if (organizacao.getNome() == nome) {
+                organizacao = o;
+                updated = true;
+            }
+        }
+        if (updated == false) {
+            throw new ElementoNaoExistenteException(nome + ": Não existe essa organizacao");
+        }
     }
 
-    public void removeOrganizacao(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeOrganizacao(String nome) throws ElementoNaoExistenteException {
+        Organizacao organizacao = null;
+        for (int i = 0; i < this.organizacoes.size(); i++) {
+            organizacao = this.organizacoes.get(i);
+            
+            if (organizacao.getNome() == nome) {
+                if (!(organizacao instanceof Plataforma)) {
+                    this.organizacoes.remove(i);
+                    
+                    return;
+                } else {
+                    throw new ElementoNaoExistenteException(nome + ": Não é uma organizacao");
+                }
+            }
+        }
+        throw new ElementoNaoExistenteException(nome + ": Não existe essa organizacao");
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    
     public ArrayList<Colaborador> getColaboradores() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -100,6 +151,8 @@ public class Plataforma implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    
     public ArrayList<Freelancer> getAllFreelancers() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -120,6 +173,7 @@ public class Plataforma implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    ////////////////////////////////////////////////////////////////////////////
     
     /**
      * Gets users api.
