@@ -105,7 +105,7 @@ public class AreaGestorUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar novo colaborador.",
                     registou ? "Colaborador criado com sucesso! \n\n" +
                             serviceController.getColaboradorToStringCompletoByEmail(txtEmailColaborador.getText().trim())
-                            : "Não foi possível registar o colaborador.").show();
+                            : "Não foi possível registar o colaborador.").showAndWait();
 
             if (registou) {
                 limparDadosRegistarColaboradorPane();
@@ -139,7 +139,7 @@ public class AreaGestorUI implements Initializable {
                     criou ? "Tarefa criada com sucesso! \n\n" +
                             serviceController.getTarefaToStringCompletoByCodigoUnico(txtCodigoUnicoTarefa.getText().trim(),
                                     authController.getEmail())
-                            : "Não foi possível criar a tarefa.").show();
+                            : "Não foi possível criar a tarefa.").showAndWait();
 
             if (criou) {
                 limparDadosRegistarTarefaPane();
@@ -369,7 +369,7 @@ public class AreaGestorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Processo de seriação.",
                     criou ? "Processo de seriação realizado com sucesso!" :
-                            "Não foi possível realizar o processo de seriação").show();
+                            "Não foi possível realizar o processo de seriação").showAndWait();
 
             if (criou) {
                 listViewCandidaturasSelecionadasSeriacaoManual.getItems().clear();
@@ -537,7 +537,7 @@ public class AreaGestorUI implements Initializable {
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Seriação de Candidaturas.",
                     seriou ? "Seriação Automática realizada com sucesso! \n\n"
-                            : "Não foi possível seriar automáticamente as candidaturas.").show();
+                            : "Não foi possível seriar automáticamente as candidaturas.").showAndWait();
             if (seriou) {
                 listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
                 seriacaoAutomaticaPane.setDisable(true);
@@ -603,7 +603,7 @@ public class AreaGestorUI implements Initializable {
                     publicou ? "Anúncio criado com sucesso! \n\n" +
                             serviceController.getAnunciotoStringCompletoByTarefa(listViewTarefasMatchedPublicarTarefa.
                                     getSelectionModel().getSelectedItem())
-                            : "Não foi possível criar o anúncio.").show();
+                            : "Não foi possível criar o anúncio.").showAndWait();
 
             if (publicou) {
                 limparTodosOsCampos();

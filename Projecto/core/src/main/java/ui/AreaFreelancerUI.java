@@ -96,7 +96,7 @@ public class AreaFreelancerUI implements Initializable {
                             serviceController.getCandidaturatoStringCompletoByAnuncioFreelancer(
                                     listViewAnunciosMatchedFreelancer.getSelectionModel().getSelectedItem(),
                                     authenticationController.getEmail())
-                            : "Não foi possível efetuar a candidatura.").show();
+                            : "Não foi possível efetuar a candidatura.").showAndWait();
 
             if (efetuou) {
                 limparDados();
@@ -319,7 +319,7 @@ public class AreaFreelancerUI implements Initializable {
                             serviceController.getCandidaturatoStringCompletoByAnuncioFreelancer(
                                     listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getAnuncio(),
                                     authenticationController.getEmail())
-                            : "Não foi possível atualizar a candidatura.").show();
+                            : "Não foi possível atualizar a candidatura.").showAndWait();
 
 
             if (atualizou) {
@@ -344,15 +344,6 @@ public class AreaFreelancerUI implements Initializable {
                 homePaneAreaFreelancer.setDisable(true);
                 homePaneAreaFreelancer.setVisible(false);
 
-                try {
-                    listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
-                            authenticationController.getEmail()));
-                } catch (Exception e) {
-                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                            "Erro ao preencher a lista de candidaturas.",
-                            e.getMessage()).show();
-                    e.printStackTrace();
-                }
 
             }
 
