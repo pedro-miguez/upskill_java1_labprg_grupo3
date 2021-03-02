@@ -5,6 +5,9 @@
  */
 package com.company.dto;
 
+import com.company.model.Email;
+import com.company.model.Telefone;
+import com.company.model.Website;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;

@@ -39,14 +39,14 @@ public class OrganizacoesController {
         }
     }
 
-    @RequestMapping(value = "/freguesias/{id}",
+    @RequestMapping(value = "/organizacoes/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getFreguesia(@PathVariable("id") String nome) {
+    public ResponseEntity<Object> getOrganizacao(@PathVariable("id") String nome) {
         try {
-            FreguesiaDTO freguesiaDTO = FreguesiasService.getFreguesia(nome);
-            if (freguesiaDTO != null) {
-                return new ResponseEntity<>(freguesiaDTO, HttpStatus.OK);
+            OrganizacaoDTO organizacaoDTO = OrganizacoesService.getOrganizacao(nome);
+            if (organizacaoDTO != null) {
+                return new ResponseEntity<>(organizacaoDTO, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -55,38 +55,38 @@ public class OrganizacoesController {
         }
     }
 
-    @RequestMapping(value = "/freguesias",
+    @RequestMapping(value = "/organizacoes",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> addFreguesia(@RequestBody FreguesiaDTO freguesiaDTO) {
+    public ResponseEntity<Object> addOrganizacao(@RequestBody OrganizacaoDTO organizacaoDTO) {
         try {
-            FreguesiasService.addFreguesia(freguesiaDTO);
+            OrganizacoesService.addOrganizacao(organizacaoDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
 
-    @RequestMapping(value = "/freguesias/{id}",
+    @RequestMapping(value = "/organizacoes/{id}",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> updateFreguesia(@PathVariable("id") String nome, @RequestBody FreguesiaDTO freguesiaDTO) {
+    public ResponseEntity<Object> updateOrganizacao(@PathVariable("id") String nome, @RequestBody OrganizacaoDTO organizacaoDTO) {
         try {
-            FreguesiasService.updateFreguesia(nome, freguesiaDTO);
+            OrganizacoesService.updateOrganizacao(nome, organizacaoDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);
         }
     }
 
-    @RequestMapping(value = "/freguesias/{id}",
+    @RequestMapping(value = "/organizacoes/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> removeFreguesia(@PathVariable("id") String nome) {
+    public ResponseEntity<Object> removeOrganizacao(@PathVariable("id") String nome) {
         try {
-            FreguesiasService.removeFreguesia(nome);
+            OrganizacoesService.removeOrganizacao(nome);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.CONFLICT);

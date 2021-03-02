@@ -11,6 +11,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Current class enables to create a new Platform object which hosts some of the 
@@ -57,6 +58,26 @@ public class Plataforma implements Serializable {
      */
     public AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
         return agp;
+    }
+
+    public ArrayList<Organizacao> getOrganizacoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Organizacao getOrganizacao(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void addOrganizacao(Organizacao organizacao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void updateOrganizacao(String nome, Organizacao organizacao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void removeOrganizacao(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
