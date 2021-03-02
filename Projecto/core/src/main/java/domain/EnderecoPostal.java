@@ -23,6 +23,7 @@ public class EnderecoPostal implements Serializable {
      * @param localidade the city and country (optional) data
      * @param codPostal  the post code
      */
+
     public EnderecoPostal(String local, String localidade, String codPostal) {
         setLocal(local);
         setLocalidade(localidade);
@@ -34,6 +35,7 @@ public class EnderecoPostal implements Serializable {
      *
      * @return the street data of the object.
      */
+
     public String getLocal() {
         return local;
     }
@@ -43,6 +45,7 @@ public class EnderecoPostal implements Serializable {
      *
      * @return the city and country (optional) data of the object.
      */
+    
     public String getLocalidade() {
         return localidade;
     }
