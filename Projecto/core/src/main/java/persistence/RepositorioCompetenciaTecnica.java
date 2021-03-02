@@ -165,7 +165,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
             pstmt.setString(1, idCompetenciaTecnica);
 
-            CompetenciaTecnica competenciaTecnica = montarCompetenciaTecnica(pstmt.executeQuery(), areaAtividade);
+            CompetenciaTecnica competenciaTecnica = montarCompetenciaTecnica(pstmt.executeQuery(), areaAtividade, true);
 
             pstmt.close();
 
@@ -207,7 +207,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
      * @return competenciaTecnica
      * @throws SQLException 
      */
-    public CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+    public CompetenciaTecnica montarCompetenciaTecnica(ResultSet row, AreaAtividade areaAtividade, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         CompetenciaTecnica competenciaTecnica = null;
 
@@ -221,9 +221,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
             ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
             competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
 
-            if(!row.next()) {
-                row.close();
-            }
+            if (unico) row.close();
 
         } catch (SQLException e) {
             e.getSQLState();

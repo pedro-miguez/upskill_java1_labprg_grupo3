@@ -55,7 +55,7 @@ public class RepositorioFreelancer implements Serializable {
                                                 String password) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
-        
+
         try {
             conn.setAutoCommit(false);
 
@@ -142,7 +142,7 @@ public class RepositorioFreelancer implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Freelancer where Email = ?");
             pstmt.setString(1, emailFreelancer);
 
-            Freelancer freelancer =  montarFreelancer(pstmt.executeQuery());
+            Freelancer freelancer =  montarFreelancer(pstmt.executeQuery(), true);
 
             pstmt.close();
 
@@ -161,7 +161,7 @@ public class RepositorioFreelancer implements Serializable {
      * @return freelancer
      * @throws SQLException 
      */
-    public Freelancer montarFreelancer(ResultSet row) throws SQLException {
+    public Freelancer montarFreelancer(ResultSet row, boolean unico) throws SQLException {
         Freelancer freelancer = null;
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -191,9 +191,10 @@ public class RepositorioFreelancer implements Serializable {
             pstmt.close();
             pstmt2.close();
 
-            if(!row.next()) {
+            if (unico) {
                 row.close();
             }
+
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -234,7 +235,7 @@ public class RepositorioFreelancer implements Serializable {
                         "SELECT * FROM AreaAtividade WHERE idAreaAtividade = ?");
                 pstmt2.setString(1, idAreaAtividade);
 
-                AreaAtividade areaAtividade = RepositorioAreaAtividade.getInstance().montarAreaAtividade(pstmt2.executeQuery());
+                AreaAtividade areaAtividade = RepositorioAreaAtividade.getInstance().montarAreaAtividade(pstmt2.executeQuery(), true);
 
                 //Montar Competência Técnica
                 PreparedStatement pstmt3 = conn.prepareStatement(
@@ -243,7 +244,7 @@ public class RepositorioFreelancer implements Serializable {
 
 
                 CompetenciaTecnica ct = RepositorioCompetenciaTecnica.getInstance().montarCompetenciaTecnica(
-                        pstmt3.executeQuery(), areaAtividade);
+                        pstmt3.executeQuery(), areaAtividade, true);
 
                 //Montar Grau Proficiência
                 PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ? AND nivel = ?");

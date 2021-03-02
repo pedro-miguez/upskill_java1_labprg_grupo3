@@ -100,7 +100,7 @@ public class RepositorioColaborador implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Colaborador where Email = ?");
             pstmt.setString(1, emailColaborador);
 
-            Colaborador colaborador = montarColaborador(pstmt.executeQuery());
+            Colaborador colaborador = montarColaborador(pstmt.executeQuery(), true);
             pstmt.close();
             return colaborador;
         } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class RepositorioColaborador implements Serializable {
      * @return colaborador
      * @throws SQLException 
      */
-    public Colaborador montarColaborador(ResultSet row) throws SQLException {
+    public Colaborador montarColaborador(ResultSet row, boolean unico) throws SQLException {
         Colaborador colaborador = null;
 
         try {
@@ -162,6 +162,8 @@ public class RepositorioColaborador implements Serializable {
             Email email = new Email(row.getString(6));
             colaborador = new Colaborador(nome, telefone, email, funcao);
 
+
+            if (unico) row.close();
 
         } catch (SQLException e) {
             e.getSQLState();

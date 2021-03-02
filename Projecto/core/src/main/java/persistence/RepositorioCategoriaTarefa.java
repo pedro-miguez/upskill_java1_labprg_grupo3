@@ -151,7 +151,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
             pstmt.setString(1, descricao);
             pstmt.setString(2, idAreaAtividade);
 
-            CategoriaTarefa categoriaTarefa = montarCategoriaTarefa(pstmt.executeQuery(), areaAtividade);
+            CategoriaTarefa categoriaTarefa = montarCategoriaTarefa(pstmt.executeQuery(), areaAtividade, true);
 
             pstmt.close();
 
@@ -222,7 +222,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
      * @return categoriaTarefa
      * @throws SQLException 
      */
-    public CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade) throws SQLException {
+    public CategoriaTarefa montarCategoriaTarefa(ResultSet row, AreaAtividade areaAtividade, boolean unico) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         CategoriaTarefa categoriaTarefa = null;
@@ -237,7 +237,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
             categoriaTarefa = new CategoriaTarefa(areaAtividade, descricao, competencias);
             pstmt.close();
 
-
+            if (unico) row.close();
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -306,7 +306,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
                 PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
                 String idCompetenciatecnica = rows.getString(1);
                 pstmt1.setString(1, idCompetenciatecnica);
-                competencia = RepositorioCompetenciaTecnica.getInstance().montarCompetenciaTecnica(pstmt1.executeQuery(), areaAtividade);
+                competencia = RepositorioCompetenciaTecnica.getInstance().montarCompetenciaTecnica(pstmt1.executeQuery(), areaAtividade, true);
 
                 //obrigatoriedade
                 if (rows.getString(3).equals("OBR")) {

@@ -96,7 +96,7 @@ public class RepositorioAreaAtividade implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM AreaAtividade where idAreaAtividade = ?");
             pstmt.setString(1, idAreaAtividade);
 
-            AreaAtividade areaAtividade = montarAreaAtividade(pstmt.executeQuery());
+            AreaAtividade areaAtividade = montarAreaAtividade(pstmt.executeQuery(), true);
 
             pstmt.close();
             return areaAtividade;
@@ -134,7 +134,7 @@ public class RepositorioAreaAtividade implements Serializable {
      * @return areaAtividade
      * @throws SQLException 
      */
-    public AreaAtividade montarAreaAtividade(ResultSet row) throws SQLException {
+    public AreaAtividade montarAreaAtividade(ResultSet row, boolean unico) throws SQLException {
 
         AreaAtividade areaAtividade = null;
 
@@ -145,9 +145,7 @@ public class RepositorioAreaAtividade implements Serializable {
             String descricaoDetalhada = row.getString(3);
             areaAtividade = new AreaAtividade(idAreaAtividade, descricaoBreve, descricaoDetalhada);
 
-            if(!row.next()) {
-                row.close();
-            }
+            if (unico) row.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

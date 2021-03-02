@@ -121,7 +121,7 @@ public class RepositorioTarefa implements Serializable {
             pstmt.setInt(1, idOrganizacao);
             pstmt.setString(2, referenciaTarefa);
 
-            Tarefa tarefa = montarTarefa(pstmt.executeQuery());
+            Tarefa tarefa = montarTarefa(pstmt.executeQuery(), true);
             cs1.close();
             pstmt.close();
 
@@ -142,7 +142,7 @@ public class RepositorioTarefa implements Serializable {
         ArrayList<Tarefa> listaTarefas = new ArrayList<>();
         try {
             while (rSetTarefa.next()) {
-                listaTarefas.add(montarTarefa(rSetTarefa));
+                listaTarefas.add(montarTarefa(rSetTarefa, false));
             }
 
             rSetTarefa.close();
@@ -164,7 +164,7 @@ public class RepositorioTarefa implements Serializable {
      * @param rSetTarefa
      * @return tarefa
      */
-    public Tarefa montarTarefa(ResultSet rSetTarefa) {
+    public Tarefa montarTarefa(ResultSet rSetTarefa, boolean unico) {
         Tarefa tarefa = null;
 
         try {
@@ -249,6 +249,8 @@ public class RepositorioTarefa implements Serializable {
             rSetCategoriaTarefa.close();
             rSetOrg.close();
             rSetListaCaracterizacao.close();
+
+            if (unico) rSetTarefa.close();
 
         } catch (SQLException e) {
             e.getSQLState();

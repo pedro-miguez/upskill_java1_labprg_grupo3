@@ -282,7 +282,7 @@ public class RepositorioCandidatura {
             pstmt.setInt(1, idAnuncio);
             pstmt.setInt(2, idFreelancer);
 
-            Candidatura candidatura = montarCandidatura(pstmt.executeQuery());
+            Candidatura candidatura = montarCandidatura(pstmt.executeQuery(), true);
 
             csFreelancerIdByEmail.close();
             csIdAnuncio.close();
@@ -406,7 +406,7 @@ public class RepositorioCandidatura {
 
 
 
-    private Candidatura montarCandidatura(ResultSet row) throws SQLException {
+    private Candidatura montarCandidatura(ResultSet row, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         Candidatura candidatura = null;
 
@@ -424,7 +424,7 @@ public class RepositorioCandidatura {
             pstmt2.setInt(1, idAnuncio);
             ResultSet rSetAnuncio = pstmt2.executeQuery();
 
-            Anuncio anuncio = RepositorioAnuncio.getInstance().montarAnuncio(rSetAnuncio);
+            Anuncio anuncio = RepositorioAnuncio.getInstance().montarAnuncio(rSetAnuncio, true);
 
             //montar freelancer
 
@@ -432,7 +432,7 @@ public class RepositorioCandidatura {
             pstmt3.setInt(1, row.getInt("idFreelancer"));
             ResultSet rSetFreelancer = pstmt3.executeQuery();
 
-            Freelancer freelancer = RepositorioFreelancer.getInstance().montarFreelancer(rSetFreelancer);
+            Freelancer freelancer = RepositorioFreelancer.getInstance().montarFreelancer(rSetFreelancer, true);
 
             //montar atributos
             Date datasql = row.getDate("dataCandidatura");
@@ -453,6 +453,7 @@ public class RepositorioCandidatura {
             rSetAnuncio.close();
             rSetFreelancer.close();
 
+            if (unico) row.close();
 
 
         } catch (SQLException e) {
@@ -480,7 +481,7 @@ public class RepositorioCandidatura {
 
         try {
             while (rows.next()) {
-                Candidatura candidatura = montarCandidatura(rows);
+                Candidatura candidatura = montarCandidatura(rows, false);
                 listaCandidaturas.add(candidatura);
             }
 

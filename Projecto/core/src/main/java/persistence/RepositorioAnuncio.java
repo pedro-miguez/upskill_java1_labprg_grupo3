@@ -266,7 +266,7 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Anuncio where idAnuncio = ?");
             pstmt.setInt(1, idAnuncio);
 
-            Anuncio anuncio = montarAnuncio(pstmt.executeQuery());
+            Anuncio anuncio = montarAnuncio(pstmt.executeQuery(), true);
 
             cs1.close();
             rSetIdOrg.close();
@@ -287,7 +287,7 @@ public class RepositorioAnuncio {
      * @return anuncio
      * @throws SQLException 
      */
-    public Anuncio montarAnuncio(ResultSet row) throws SQLException {
+    public Anuncio montarAnuncio(ResultSet row, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         Anuncio anuncio = null;
@@ -308,7 +308,7 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
             pstmt2.setInt(1, idTarefa);
 
-            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
+            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery(), true);
 
             //montar tipoRegimento
 
@@ -365,6 +365,8 @@ public class RepositorioAnuncio {
             rSetTipoRegimento.close();
             rSetTipoRegimento2.close();
 
+            if (unico) row.close();
+
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -390,9 +392,11 @@ public class RepositorioAnuncio {
 
         try {
             while (rows.next()) {
-                Anuncio anuncio = montarAnuncio(rows);
+                Anuncio anuncio = montarAnuncio(rows, false);
                 listaAnuncios.add(anuncio);
             }
+
+            rows.close();
 
         } catch (SQLException e) {
             e.getSQLState();
@@ -444,7 +448,7 @@ public class RepositorioAnuncio {
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
             pstmt2.setInt(1, idTarefa);
 
-            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery());
+            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery(), true);
 
             //montar tipoRegimento
 
