@@ -16,9 +16,7 @@ import java.io.Serializable;
 public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     private Anuncio anuncio;
-    
     private Freelancer freelancer;
-    
     private Data dataCandidatura;
     
     private double valorPretendido;

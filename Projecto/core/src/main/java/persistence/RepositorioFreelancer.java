@@ -55,6 +55,7 @@ public class RepositorioFreelancer implements Serializable {
                                                 String password) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
+        
         try {
             conn.setAutoCommit(false);
 

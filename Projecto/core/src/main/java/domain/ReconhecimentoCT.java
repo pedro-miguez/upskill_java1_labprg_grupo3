@@ -97,6 +97,6 @@ public class ReconhecimentoCT implements Serializable {
     @Override
     public String toString() {
         return competenciaTecnica.getDescricao() +
-                "%n" + grauProficiencia;
+                "\n" + grauProficiencia;
     }
 }
