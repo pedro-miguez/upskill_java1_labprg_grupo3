@@ -9,6 +9,10 @@ package com.company.exception;
  *
  * @author Grupo 3
  */
-public class ConversaoException {
+public class ConversaoException extends RuntimeException {
+
+    public ConversaoException(String classe) {
+        super("Erro a converter a classe:" + classe);
+    }
     
 }
