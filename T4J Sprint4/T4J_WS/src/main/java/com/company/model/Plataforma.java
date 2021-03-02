@@ -2,7 +2,7 @@ package com.company.model;
 
 //import application.UsersAPI;
 
-import com.company.controller.UsersAPI;
+//import com.company.controller.UsersAPI;
 
 //import network.ConnectionHandler;
 //import persistence.*;
@@ -28,7 +28,7 @@ public class Plataforma implements Serializable {
     private static Plataforma plataforma;
 
     private AlgoritmoGeradorPasswords agp;
-    private UsersAPI uapi;
+    //private UsersAPI uapi;
     //private ConnectionHandler connectionHandler;
 
     /*private Plataforma() throws SQLException {
@@ -59,12 +59,13 @@ public class Plataforma implements Serializable {
         return agp;
     }
 
+    
     /**
      * Gets users api.
      *
      * @return the users api
      */
-    public UsersAPI getUsersAPI() {
+    /*public UsersAPI getUsersAPI() {
         return uapi;
     }
 
@@ -72,7 +73,7 @@ public class Plataforma implements Serializable {
     /**
      * Method that allows to reset user api.
      */
-    public void resetUserAPI() {
+    /*public void resetUserAPI() {
         this.uapi = new UsersAPI();
     }
 
@@ -83,4 +84,5 @@ public class Plataforma implements Serializable {
     /*public ConnectionHandler getConnectionHandler() {
         return connectionHandler;
     }*/
+    
 }
