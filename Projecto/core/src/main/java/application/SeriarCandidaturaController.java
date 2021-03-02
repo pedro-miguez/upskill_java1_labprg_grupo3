@@ -91,7 +91,7 @@ public class SeriarCandidaturaController {
 
 
         return RepositorioProcessoSeriacao.getInstance().insertProcessoSeriacao(processoSeriacao);
-   
+
     }
 
 
