@@ -116,6 +116,8 @@ public class AuthenticationController {
         String password = alg.geraPassword();
         System.out.println(password);
 
+        
+
         UsersAPI uapi = Plataforma.getInstance().getUsersAPI();
 
         if (uapi.registerUserWithRoles(nome, email, password, "freelancer")) {

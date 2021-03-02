@@ -1,7 +1,10 @@
-/*
+
+
 package utils;
 
+import application.AuthenticationController;
 import com.sun.mail.smtp.SMTPTransport;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -12,6 +15,7 @@ import java.util.Properties;
 
 public class SendEmailSMTP {
 
+    private AuthenticationController authenticationController = new AuthenticationController();
     // for example, smtp.mailgun.org
     private static final String SMTP_SERVER = "smtp.gmail.com";
     private static final String USERNAME = "upskilljavaturma1grupo3@gmail.com";
@@ -20,8 +24,8 @@ public class SendEmailSMTP {
 
     private static final String EMAIL_FROM = "upskilljavaturma1grupo3@gmail.com";
     private static final String EMAIL_TO = "upskilljavaturma1grupo3@gmail.com";
-    */
-/*private static final String EMAIL_TO_CC = "";*//*
+
+    private static final String EMAIL_TO_CC = "";
 
 
     private static final String EMAIL_SUBJECT = "Hello, this is your password to access T4J";
@@ -49,9 +53,9 @@ public class SendEmailSMTP {
                     InternetAddress.parse(EMAIL_TO, false));
 
             // cc
-            */
-/*msg.setRecipients(Message.RecipientType.CC,
-                    InternetAddress.parse(EMAIL_TO_CC, false));*//*
+
+            msg.setRecipients(Message.RecipientType.CC,
+                    InternetAddress.parse(EMAIL_TO_CC, false));
 
 
             // subject
@@ -81,4 +85,5 @@ public class SendEmailSMTP {
 
 
     }
-}*/
+}
+
