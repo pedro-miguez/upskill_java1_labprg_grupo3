@@ -11,6 +11,8 @@ import com.company.model.Plataforma;
 
 //import persistence.RepositorioAreaAtividade;
 
+
+
 /**
  * Current class is the one responsible to connect the GUI with the methods responsible for setting new
  * activity areas.

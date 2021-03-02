@@ -1,6 +1,9 @@
-package persistence;
+//package persistence;
+package com.company.repo;
 
-import domain.*;
+//import domain.*;
+import com.company.model.*;
+
 import exceptions.CodigoNaoAssociadoException;
 import exceptions.FetchingProblemException;
 
