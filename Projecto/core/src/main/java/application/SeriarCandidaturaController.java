@@ -89,7 +89,9 @@ public class SeriarCandidaturaController {
         ProcessoSeriacao processoSeriacao = RepositorioProcessoSeriacao.getInstance().criarProcessoSeriacao(
                 classificacoes.get(1).getAnuncio(), classificacoes, colaboradores);
 
+
         return RepositorioProcessoSeriacao.getInstance().insertProcessoSeriacao(processoSeriacao);
+   
     }
 
 
