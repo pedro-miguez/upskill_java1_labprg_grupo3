@@ -6,7 +6,6 @@ import grupo3.sprint_api.domain.User;
 import grupo3.sprint_api.exception.EmailNaoAssociadoException;
 import grupo3.sprint_api.exception.FetchingProblemException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
-import oracle.jdbc.proxy.annotation.Pre;
 
 
 import java.sql.*;
@@ -39,7 +38,7 @@ public class RepositorioUtilizador {
      * @return boolean
      */
     public boolean insertUtilizador(User user) {
-        Connection conn = ;
+        Connection conn = connectionHandler.getConnection();
 
         try {
             PreparedStatement pstmt = conn.prepareCall("insert into Utilizador(nome, email, palavraPasse, designacao) values (?, ?, ?, ?)");
@@ -82,7 +81,7 @@ public class RepositorioUtilizador {
      */
     public User getUtilizadorByEmail(Email email) {
         try {
-            Connection conn = ;
+            Connection conn = connectionHandler.getConnection();
             String emailUtilizador = email.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where email = ?");
             pstmt.setString(1, emailUtilizador);
@@ -105,7 +104,7 @@ public class RepositorioUtilizador {
      */
     public User getUtilizadorByNome(String nome) {
         try {
-            Connection conn = ;
+            Connection conn = connectionHandler.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where nome = ?");
             pstmt.setString(1, nome);
 
@@ -121,27 +120,44 @@ public class RepositorioUtilizador {
     /**
      * Method for obtaining a user through their role.
      *
-     * @param role
+     * @param nome
      * @return usersByRole
      */
-    public ArrayList<User> getUtilizadoresByRole(Role role) {
-        ArrayList<User> usersByRole = new ArrayList<>();
+    public Role getRoleByUtilizador(String nome) {
+        try {
+            Connection conn = connectionHandler.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT desginacao FROM Utilizador where nome = ?");
+            pstmt.setString(1, nome);
+            ResultSet rSetUtilizador = pstmt.executeQuery();
+            rSetUtilizador.next();
+            String designacao = rSetUtilizador.getString("designacao");
 
-       /* for (User u : utilizadoresRegistados) {
-            if (u.getRole() == role) {
-                usersByRole.add(u);
-            }
-        }*/
-        return usersByRole;
+            PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
+            pstmt2.setString(1, designacao);
+            ResultSet rSetRole = pstmt.executeQuery();
+            rSetRole.next();
+
+            Role role = montarRole(rSetRole, true);
+
+            pstmt.close();
+            return role;
+        } catch (SQLException e) {
+            throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
+        }
     }
 
-    public ArrayList<Role> getRoles(ResultSet rSetRoles) {
+
+    public ArrayList<Role> getRoles() {
         ArrayList<Role> roles = new ArrayList<>();
+        Connection conn = connectionHandler.getConnection();
+
         try {
+            PreparedStatement pstmtRoles = conn.prepareStatement("SELECT * FROM Roles");
+            ResultSet rSetRoles = pstmtRoles.executeQuery();
+            rSetRoles.next();
             while (rSetRoles.next()) {
                 roles.add(montarRole(rSetRoles, false));
             }
-
             rSetRoles.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,22 +168,12 @@ public class RepositorioUtilizador {
     }
 
 
-    /**
-     * Method for listing (registering) users.
-     *
-     * @return new ArrayList<>
-     */
-    public ArrayList<User> listarUtilizadores() {
-        return new ArrayList<>();
-    }
-
-
     private User montarUtilizador(ResultSet row, boolean unico) {
 
         User user = null;
 
         try {
-            Connection conn = ;
+            Connection conn = connectionHandler.getConnection();
             if (row.getRow() < 1) {
                 row.next();
             }
