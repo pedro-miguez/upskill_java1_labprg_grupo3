@@ -9,7 +9,7 @@ package exceptions;
  *
  * @author Grupo 3 - Turma 1
  */
-public class FetchingProblemException extends IllegalArgumentException {
+public class FetchingProblemException extends Exception {
     public FetchingProblemException(String s) {
         super(s);
     }
