@@ -5,12 +5,8 @@ import grupo3.sprint_api.domain.Role;
 import grupo3.sprint_api.domain.User;
 import grupo3.sprint_api.exception.EmailNaoAssociadoException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
-import oracle.jdbc.pool.OracleDataSource;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RepositorioUtilizador {
     private static RepositorioUtilizador instance;
