@@ -36,8 +36,8 @@ public class UsersService {
         }
     }
 
-    public static void addUser(UserDTO userDTO) {
-        User user = Mapper.userDTO2User(userDTO);
+    public static void addUser(String username, String password, Email email) {
+        User user = new User(username, email, password);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
             repo.addUtilizador(user);
@@ -46,6 +46,7 @@ public class UsersService {
             throw new ConversaoException("PessUserDTOoaDTO");
         }
     }
+
 
 
 }
