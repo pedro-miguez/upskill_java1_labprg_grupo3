@@ -5,13 +5,16 @@ title Projecto T4J - Web Service
 left to right direction
 
 class User {
-
+    username
+    email
+    password
 }
 
 class Role {
-
+    rolename
+    description
 }
 
-User <-- Role
+User "*" -- "*" Role: performs
 
 @enduml
