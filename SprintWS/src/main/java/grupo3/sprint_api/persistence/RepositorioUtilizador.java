@@ -11,10 +11,17 @@ import oracle.jdbc.proxy.annotation.Pre;
 
 import java.sql.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RepositorioUtilizador {
     private static RepositorioUtilizador instance;
+
+    private ConnectionHandler connectionHandler;
+
+    private RepositorioUtilizador() throws SQLException {
+        connectionHandler = new ConnectionHandler();
+    }
 
 
     /**
@@ -23,8 +30,10 @@ public class RepositorioUtilizador {
      *
      * @return instance
      */
-    public static RepositorioUtilizador getInstance() {
-        if (instance == null) {
+
+
+    public static RepositorioUtilizador getInstance() throws SQLException {
+        if(instance == null){
             instance = new RepositorioUtilizador();
         }
         return instance;
