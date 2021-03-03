@@ -1,24 +1,18 @@
 package grupo3.sprint_api.service;
 
 import grupo3.sprint_api.domain.Email;
+import grupo3.sprint_api.domain.Role;
 import grupo3.sprint_api.domain.User;
+import grupo3.sprint_api.dto.ListaRoleDTO;
 import grupo3.sprint_api.dto.UserDTO;
 import grupo3.sprint_api.persistence.RepositorioUtilizador;
 import java.util.ArrayList;
 
 public class UsersService {
 
-    public static ListaUserDTO getUsers() {
-        ListaUserDTO listaUserDTO = null;
+    public static UserDTO getUtilizador(Email email) {
         RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-        ArrayList<User> users = repo.listarUtilizadores();
-        ListaUserDTO = Mapper.listUser2UserDTO(users);
-        return listaPessoaDTO;
-    }
-
-    public static UserDTO getUser(Email email) {
-        RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-        User user = repo.getUserByEmail(email);
+        User user = repo.getUtilizadorByEmail(email);
         if (user == null) {
             return null;
         }
@@ -30,16 +24,38 @@ public class UsersService {
         }
     }
 
-    public static void addUser(String username, String password, Email email) {
+    public static void registerUser(String username, String password, Email email) {
         User user = new User(username, password, email);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-            repo.addUtilizador(user);
-            RepositorioUtilizador.insertUtilizador(user);
+            repo.insertUtilizador(user);
         } else {
-            throw new ConversaoException("PessUserDTOoaDTO");
+            throw new ConversaoException("UserDTO");
         }
     }
+
+    public static void registerUserWithRoles(String username, String password, Email email, Role role) {
+        User user = new User(username, password, email, role);
+        if (user != null) {
+            RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
+            repo.insertUtilizador(user);
+        } else {
+            throw new ConversaoException("UserDTO");
+        }
+    }
+
+    public static void login(String username, String password) {
+        User user = new User(username, password);
+        if (user != null) {
+            RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
+            repo.insertUtilizador(user);
+        } else {
+            throw new ConversaoException("UserDTO");
+        }
+    }
+
+    
+
 
 
 
