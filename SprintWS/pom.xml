@@ -42,7 +42,12 @@
 			<artifactId>java-jwt</artifactId>
 			<version>3.13.0</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.8.0.0</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

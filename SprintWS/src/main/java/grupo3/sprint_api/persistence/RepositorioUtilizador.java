@@ -1,22 +1,21 @@
 package grupo3.sprint_api.persistence;
 
+import grupo3.sprint_api.domain.Email;
 import grupo3.sprint_api.domain.Role;
 import grupo3.sprint_api.domain.User;
+import grupo3.sprint_api.exception.EmailNaoAssociadoException;
+import grupo3.sprint_api.exception.NomeNaoAssociadoException;
+import oracle.jdbc.pool.OracleDataSource;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioUtilizador {
     private static RepositorioUtilizador instance;
 
-    /**
-     * Users to be added (registered) to the repository.
-     */
-    private RepositorioUtilizador(){
-        utilizadoresRegistados = new ArrayList<>();
-    }
-
-    private List<User> utilizadoresRegistados;
+//    Connection conn =
 
     /**
      * Static method that returns a unique reference to the class object,
@@ -30,18 +29,18 @@ public class RepositorioUtilizador {
         return instance;
     }
 
+
+
     /**
      * Boolean method that checks if a user exists in the repository,
      * otherwise it is added to it.
      * @param user
      * @return boolean
      */
-    public boolean addUtilizador(User user) {
-        if (this.utilizadoresRegistados.contains(user)) {
-            return false;
-        } else {
-            return this.utilizadoresRegistados.add(user);
-        }
+    public boolean insertUtilizador(User user) {
+
+
+        return true;
     }
 
     /**
@@ -50,11 +49,11 @@ public class RepositorioUtilizador {
      * @return u
      */
     public User getUserByEmail(Email email) {
-        for (User u : utilizadoresRegistados) {
+/*        for (User u : utilizadoresRegistados) {
             if (u.getEmail().equals(email)) {
                 return u;
             }
-        }
+        }*/
         throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum utilizador");
     }
 
@@ -64,11 +63,13 @@ public class RepositorioUtilizador {
      * @return u
      */
     public User getUserByUsername(String nome) {
+/*
         for (User u : utilizadoresRegistados) {
             if (u.getUsername().equals(nome)) {
                 return u;
             }
         }
+*/
 
         throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
     }
@@ -81,11 +82,11 @@ public class RepositorioUtilizador {
     public ArrayList<User> getUtilizadoresByRole (Role role) {
         ArrayList<User> usersByRole = new ArrayList<>();
 
-        for (User u : utilizadoresRegistados) {
+       /* for (User u : utilizadoresRegistados) {
             if (u.getRole() == role) {
                 usersByRole.add(u);
             }
-        }
+        }*/
         return usersByRole;
     }
 
@@ -95,7 +96,7 @@ public class RepositorioUtilizador {
      * @return new ArrayList<>
      */
     public ArrayList<User> listarUtilizadores() {
-        return new ArrayList<>(this.utilizadoresRegistados);
+        return new ArrayList<>();
     }
 
 }
