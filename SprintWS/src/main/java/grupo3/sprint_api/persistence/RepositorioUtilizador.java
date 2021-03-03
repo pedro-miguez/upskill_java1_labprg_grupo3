@@ -20,20 +20,21 @@ public class RepositorioUtilizador {
     /**
      * Static method that returns a unique reference to the class object,
      * that implements a singleton.
+     *
      * @return instance
      */
-    public static RepositorioUtilizador getInstance(){
-        if(instance == null){
+    public static RepositorioUtilizador getInstance() {
+        if (instance == null) {
             instance = new RepositorioUtilizador();
         }
         return instance;
     }
 
 
-
     /**
      * Boolean method that checks if a user exists in the repository,
      * otherwise it is added to it.
+     *
      * @param user
      * @return boolean
      */
@@ -75,6 +76,7 @@ public class RepositorioUtilizador {
 
     /**
      * Method to get a user through your email.
+     *
      * @param email
      * @return u
      */
@@ -97,6 +99,7 @@ public class RepositorioUtilizador {
 
     /**
      * Method for obtaining a user using his username.
+     *
      * @param nome
      * @return u
      */
@@ -117,10 +120,11 @@ public class RepositorioUtilizador {
 
     /**
      * Method for obtaining a user through their role.
+     *
      * @param role
      * @return usersByRole
      */
-    public ArrayList<User> getUtilizadoresByRole (Role role) {
+    public ArrayList<User> getUtilizadoresByRole(Role role) {
         ArrayList<User> usersByRole = new ArrayList<>();
 
        /* for (User u : utilizadoresRegistados) {
@@ -131,12 +135,18 @@ public class RepositorioUtilizador {
         return usersByRole;
     }
 
-    public ArrayList<Role> getRoles() throws SQLException {
+    public ArrayList<Role> getRoles(ResultSet rSetRoles) {
         ArrayList<Role> roles = new ArrayList<>();
+        try {
+            while (rSetRoles.next()) {
+                roles.add(montarRole(rSetRoles, false));
+            }
 
-        Connection conn = ;
-        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Role");
-
+            rSetRoles.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getSQLState();
+        }
 
         return roles;
     }
@@ -144,6 +154,7 @@ public class RepositorioUtilizador {
 
     /**
      * Method for listing (registering) users.
+     *
      * @return new ArrayList<>
      */
     public ArrayList<User> listarUtilizadores() {
@@ -168,7 +179,7 @@ public class RepositorioUtilizador {
 
             //Construir objeto role
             PreparedStatement pstmtRole = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
-            pstmtRole.setString(1, row.getString( "designacao"));
+            pstmtRole.setString(1, row.getString("designacao"));
             ResultSet rSetRole = pstmtRole.executeQuery();
             rSetRole.next();
 
@@ -179,22 +190,22 @@ public class RepositorioUtilizador {
 
             if (unico) row.close();
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
 
-    }
-if (user != null){
-    return  user;}
-        else{
+        }
+        if (user != null) {
+            return user;
+        } else {
             throw new FetchingProblemException("Problema a montar utilizador");
+        }
     }
-}
 
-public Role montarRole(ResultSet row, boolean unico){
+    public Role montarRole(ResultSet row, boolean unico) {
 
         Role role = null;
-        try{
+        try {
             row.next();
             String designacao = row.getString(1);
             String descricao = row.getString(2);
@@ -207,12 +218,12 @@ public Role montarRole(ResultSet row, boolean unico){
             e.printStackTrace();
 
         }
-    if ( role!= null){
-        return  role;}
-    else{
-        throw new FetchingProblemException("Problema a montar o role");
-    }
+        if (role != null) {
+            return role;
+        } else {
+            throw new FetchingProblemException("Problema a montar o role");
+        }
 
-}
+    }
 
 }
