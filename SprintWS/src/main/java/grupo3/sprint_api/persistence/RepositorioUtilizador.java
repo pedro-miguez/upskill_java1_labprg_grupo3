@@ -7,7 +7,9 @@ import grupo3.sprint_api.exception.EmailNaoAssociadoException;
 import grupo3.sprint_api.exception.FetchingProblemException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 
+
 import java.sql.*;
+
 import java.util.ArrayList;
 
 public class RepositorioUtilizador {
