@@ -4,12 +4,6 @@ import grupo3.sprint_api.domain.Email;
 import grupo3.sprint_api.domain.User;
 import grupo3.sprint_api.dto.UserDTO;
 import grupo3.sprint_api.persistence.RepositorioUtilizador;
-import com.company.dto.ListaPessoaDTO;
-import com.company.dto.Mapper;
-import com.company.dto.PessoaDTO;
-import com.company.exception.ConversaoException;
-import com.company.model.Autarquia;
-import com.company.model.Pessoa;
 import java.util.ArrayList;
 
 public class UsersService {
@@ -37,7 +31,7 @@ public class UsersService {
     }
 
     public static void addUser(String username, String password, Email email) {
-        User user = new User(username, email, password);
+        User user = new User(username, password, email);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
             repo.addUtilizador(user);

@@ -4,14 +4,18 @@ import grupo3.sprint_api.domain.Email;
 import grupo3.sprint_api.domain.Role;
 import grupo3.sprint_api.domain.User;
 import grupo3.sprint_api.exception.EmailNaoAssociadoException;
+import grupo3.sprint_api.exception.FetchingProblemException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
+import oracle.jdbc.proxy.annotation.Pre;
+
+
+import java.sql.*;
 
 import java.util.ArrayList;
 
 public class RepositorioUtilizador {
     private static RepositorioUtilizador instance;
 
-//    Connection conn =
 
     /**
      * Static method that returns a unique reference to the class object,
@@ -34,9 +38,39 @@ public class RepositorioUtilizador {
      * @return boolean
      */
     public boolean insertUtilizador(User user) {
+        Connection conn = ;
+
+        try {
+            PreparedStatement pstmt = conn.prepareCall("insert into Utilizador(nome, email, palavraPasse, designacao) values (?, ?, ?, ?)");
+            ResultSet rs = null;
 
 
-        return true;
+            conn.setAutoCommit(false);
+
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getEmail().toString());
+            pstmt.setString(3, user.getPassword());
+            pstmt.setString(4, user.getRole().getDesignacao());
+
+            pstmt.executeQuery();
+
+            conn.commit();
+            pstmt.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
+        }
+
+        return false;
+
     }
 
     /**
@@ -44,30 +78,41 @@ public class RepositorioUtilizador {
      * @param email
      * @return u
      */
-    public User getUserByEmail(Email email) {
-/*        for (User u : utilizadoresRegistados) {
-            if (u.getEmail().equals(email)) {
-                return u;
-            }
-        }*/
-        throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum utilizador");
+    public User getUtilizadorByEmail(Email email) {
+        try {
+            Connection conn = ;
+            String emailUtilizador = email.toString();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where email = ?");
+            pstmt.setString(1, emailUtilizador);
+
+            User user = montarUtilizador(pstmt.executeQuery(), true);
+
+            pstmt.close();
+            return user;
+        } catch (SQLException e) {
+            throw new EmailNaoAssociadoException(email.toString() + " não está associado a nenhum utilizador");
+        }
     }
+
 
     /**
      * Method for obtaining a user using his username.
      * @param nome
      * @return u
      */
-    public User getUserByUsername(String nome) {
-/*
-        for (User u : utilizadoresRegistados) {
-            if (u.getUsername().equals(nome)) {
-                return u;
-            }
-        }
-*/
+    public User getUtilizadorByNome(String nome) {
+        try {
+            Connection conn = ;
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where nome = ?");
+            pstmt.setString(1, nome);
 
-        throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
+            User user = montarUtilizador(pstmt.executeQuery(), true);
+
+            pstmt.close();
+            return user;
+        } catch (SQLException e) {
+            throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
+        }
     }
 
     /**
@@ -86,6 +131,16 @@ public class RepositorioUtilizador {
         return usersByRole;
     }
 
+    public ArrayList<Role> getRoles() throws SQLException {
+        ArrayList<Role> roles = new ArrayList<>();
+
+        Connection conn = ;
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Role");
+
+
+        return roles;
+    }
+
 
     /**
      * Method for listing (registering) users.
@@ -94,5 +149,70 @@ public class RepositorioUtilizador {
     public ArrayList<User> listarUtilizadores() {
         return new ArrayList<>();
     }
+
+
+    private User montarUtilizador(ResultSet row, boolean unico) {
+
+        User user = null;
+
+        try {
+            Connection conn = ;
+            if (row.getRow() < 1) {
+                row.next();
+            }
+            //Parâmetros do User disponiveis
+
+            String nome = row.getString(2);
+            Email email = new Email(row.getString(3));
+            String password = row.getString(4);
+
+            //Construir objeto role
+            PreparedStatement pstmtRole = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
+            pstmtRole.setString(1, row.getString( "designacao"));
+            ResultSet rSetRole = pstmtRole.executeQuery();
+            rSetRole.next();
+
+            String descricao = rSetRole.getString("descricao");
+            Role role = new Role(row.getString("designacao"), descricao);
+
+            user = new User(nome, password, email, role);
+
+            if (unico) row.close();
+
+        }catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+    }
+if (user != null){
+    return  user;}
+        else{
+            throw new FetchingProblemException("Problema a montar utilizador");
+    }
+}
+
+public Role montarRole(ResultSet row, boolean unico){
+
+        Role role = null;
+        try{
+            row.next();
+            String designacao = row.getString(1);
+            String descricao = row.getString(2);
+
+            role = new Role(designacao, descricao);
+
+            if (unico) row.close();
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+        }
+    if ( role!= null){
+        return  role;}
+    else{
+        throw new FetchingProblemException("Problema a montar o role");
+    }
+
+}
 
 }
