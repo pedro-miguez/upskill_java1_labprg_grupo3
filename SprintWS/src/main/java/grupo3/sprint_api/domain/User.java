@@ -27,6 +27,12 @@ public class User implements Serializable {
         setRole(role);
     }
 
+    public User(String username, String password, Email email) {
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
+    }
+
     /**
      * Method for obtaining a username.
      * @return 

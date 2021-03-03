@@ -1,28 +1,46 @@
 package grupo3.sprint_api.domain;
 
-/**
- * Current class is an Enum class that gives us the options available for the
- * roles that a user of the platform (Plataforma) can have.
- */
-public enum Role {
-    /**
-     * Manager (GESTOR) role, for the organizations (Organizacao) managers.
-     */
-    GESTOR,
+import java.util.Objects;
 
-    /**
-     * Collaborator (COLABORADOR) role, for the organizations (Organizacao) collaborators.
-     */
-    COLABORADOR,
+public class Role {
 
-    /**
-     * Administrative (ADMINISTRATIVO) role, for the platform (Plataforma) administrative.
-     */
-    ADMINISTRATIVO,
+    private String descricao;
+    private String designacao;
 
-    /**
-     * Freelancer role.
-     */
-    FREELANCER
+    public Role(String descricao, String designacao){
+        this.descricao=descricao;
+        this.designacao=designacao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getDesignacao() {
+        return designacao;
+    }
+
+    public void setDesignacao(String designacao) {
+        this.designacao = designacao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role)) return false;
+        Role role = (Role) o;
+        return getDescricao().equals(role.getDescricao()) && getDesignacao().equals(role.getDesignacao());
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "descricao='" + descricao + '\'' +
+                ", designacao='" + designacao + '\'' +
+                '}';
+    }
 }
-
