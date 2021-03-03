@@ -3,10 +3,9 @@ package grupo3.sprint_api.service;
 import grupo3.sprint_api.domain.Email;
 import grupo3.sprint_api.domain.Role;
 import grupo3.sprint_api.domain.User;
-import grupo3.sprint_api.dto.ListaRoleDTO;
 import grupo3.sprint_api.dto.UserDTO;
+import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 import grupo3.sprint_api.persistence.RepositorioUtilizador;
-import java.util.ArrayList;
 
 public class UsersService {
 
@@ -44,19 +43,16 @@ public class UsersService {
         }
     }
 
-    public static void login(String username, String password) {
-        User user = new User(username, password);
-        if (user != null) {
+    /*public boolean login(String username, String password) {
+        try {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-            repo.insertUtilizador(user);
-        } else {
-            throw new ConversaoException("UserDTO");
+            User user = repo.getUtilizadorByNome().getPassword();
+            if (password.equalsIgnoreCase(password)) {
+                return true;
+            } catch(IllegalArgumentException ex){
+                throw new NomeNaoAssociadoException("Username ou password errados");
+            }
         }
-    }
 
-    
-
-
-
-
+    }*/
 }
