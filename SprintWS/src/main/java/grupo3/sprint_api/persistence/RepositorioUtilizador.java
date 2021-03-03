@@ -6,6 +6,7 @@ import grupo3.sprint_api.domain.User;
 import grupo3.sprint_api.exception.EmailNaoAssociadoException;
 import grupo3.sprint_api.exception.FetchingProblemException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
+import oracle.jdbc.proxy.annotation.Pre;
 
 
 import java.sql.*;
@@ -49,7 +50,7 @@ public class RepositorioUtilizador {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail().toString());
             pstmt.setString(3, user.getPassword());
-            pstmt.setString(4, user.getRole().toString());
+            pstmt.setString(4, user.getRole().getDesignacao());
 
             pstmt.executeQuery();
 
@@ -130,6 +131,16 @@ public class RepositorioUtilizador {
         return usersByRole;
     }
 
+    public ArrayList<Role> getRoles() throws SQLException {
+        ArrayList<Role> roles = new ArrayList<>();
+
+        Connection conn = ;
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Role");
+
+
+        return roles;
+    }
+
 
     /**
      * Method for listing (registering) users.
@@ -144,14 +155,30 @@ public class RepositorioUtilizador {
 
         User user = null;
 
-        try{
-            row.next();
+        try {
+            Connection conn = ;
+            if (row.getRow() < 1) {
+                row.next();
+            }
+            //Parâmetros do User disponiveis
+
             String nome = row.getString(2);
             Email email = new Email(row.getString(3));
             String password = row.getString(4);
-            Role role = new Role(row.getString(5));
+
+            //Construir objeto role
+            PreparedStatement pstmtRole = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
+            pstmtRole.setString(1, row.getString( "designacao"));
+            ResultSet rSetRole = pstmtRole.executeQuery();
+            rSetRole.next();
+
+            String descricao = rSetRole.getString("descricao");
+            Role role = new Role(row.getString("designacao"), descricao);
+
+            user = new User(nome, password, email, role);
 
             if (unico) row.close();
+
         }catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
@@ -162,6 +189,30 @@ if (user != null){
         else{
             throw new FetchingProblemException("Problema a montar utilizador");
     }
+}
+
+public Role montarRole(ResultSet row, boolean unico){
+
+        Role role = null;
+        try{
+            row.next();
+            String designacao = row.getString(1);
+            String descricao = row.getString(2);
+
+            role = new Role(designacao, descricao);
+
+            if (unico) row.close();
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+
+        }
+    if ( role!= null){
+        return  role;}
+    else{
+        throw new FetchingProblemException("Problema a montar o role");
+    }
+
 }
 
 }
