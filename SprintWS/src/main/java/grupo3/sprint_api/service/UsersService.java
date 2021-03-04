@@ -33,7 +33,7 @@ public class UsersService {
         }
     }
 
-    public static void registerUser(String username, String password, Email email) throws SQLException {
+    public static void registerUser(UserDTO userDTO) throws SQLException {
         User user = new User(username, password, email);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
@@ -43,7 +43,7 @@ public class UsersService {
         }
     }
 
-    public static void registerUserWithRoles(String username, String password, Email email, Role role) throws SQLException {
+    public static void registerUserWithRoles(UserDTO userDTO) throws SQLException {
         User user = new User(username, password, email, role);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();

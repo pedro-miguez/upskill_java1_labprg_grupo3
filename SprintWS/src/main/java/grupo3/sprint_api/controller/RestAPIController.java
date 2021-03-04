@@ -47,6 +47,13 @@ public class RestAPIController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> userRoles(@RequestParam("app_context") String appContext) {
         try {
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
             ListaRoleDTO listaRoleDTO = UsersService.getRoles();
             if (listaRoleDTO != null) {
                 return new ResponseEntity<>(listaRoleDTO, HttpStatus.OK);
@@ -67,6 +74,14 @@ public class RestAPIController {
                                             @RequestParam("user_id") String username) {
 
         try {
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
             RoleDTO roleDTO = UsersService.getUserRoles(username);
             if (roleDTO != null) {
                 return new ResponseEntity<>(roleDTO, HttpStatus.OK);
@@ -87,7 +102,21 @@ public class RestAPIController {
                                                 @RequestParam("user_id") String username,
                                                 @RequestParam("rolenames") String rolename) {
         try {
-            UsersService.addRoleToUser(username, rolename);
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserName(username);
+
+            RoleDTO roleDTO = new RoleDTO();
+            roleDTO.setDescricao(rolename);
+
+            UsersService.addRoleToUser(userDTO, roleDTO);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -105,7 +134,19 @@ public class RestAPIController {
                                             @RequestParam("description") String description,
                                             @RequestParam("rolename") String rolename) {
         try {
-            UsersService.createUserRole(rolename, description);
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            RoleDTO roleDTO = new RoleDTO();
+            roleDTO.setDescricao(description);
+            roleDTO.setDesignacao(rolename);
+
+            UsersService.createUserRole(roleDTO);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -122,7 +163,18 @@ public class RestAPIController {
     public ResponseEntity<?> deleteUserRole(@RequestParam("app_context") String appContext,
                                             @RequestParam("rolename") String rolename) {
         try {
-            UsersService.deleteUserRole(rolename);
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            RoleDTO roleDTO = new RoleDTO();
+            roleDTO.setDesignacao(rolename);
+
+            UsersService.deleteUserRole(roleDTO);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -140,7 +192,19 @@ public class RestAPIController {
                                             @RequestParam("user_id") String username,
                                             @RequestParam("rolenames") String rolename) {
         try {
-            UsersService.deleteRoleFromUser(username, rolename);
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserName(username);
+            userDTO.setRole(rolename);
+
+            UsersService.deleteRoleFromUser(userDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -157,7 +221,20 @@ public class RestAPIController {
                                                @RequestParam("email") String email,
                                                @RequestParam("password") String password) {
         try {
-            UsersService.registerUser(username, password, new Email(email));
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserName(username);
+            userDTO.setEmail(email);
+            userDTO.setPassword(password);
+
+            UsersService.registerUser(userDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -175,7 +252,21 @@ public class RestAPIController {
                                                @RequestParam("password") String password,
                                                @RequestParam("rolenames") String rolename) {
         try {
-            //UsersService.registerUserWithRoles(username, password, new Email(email), rolename);
+
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setRole(rolename);
+            userDTO.setPassword(password);
+            userDTO.setUserName(username);
+            userDTO.setRole(rolename);
+
+            UsersService.registerUserWithRoles(userDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);

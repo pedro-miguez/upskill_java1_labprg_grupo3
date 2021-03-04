@@ -39,7 +39,7 @@ public class Context {
     public String generateContext() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
+        int targetStringLength = 20;
         Random random = new Random();
 
         return random.ints(leftLimit, rightLimit + 1)
