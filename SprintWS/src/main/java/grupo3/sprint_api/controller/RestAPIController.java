@@ -10,6 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class which manage the HTTP requests. They receive HTTP requests from
+ * , they forward the request to service classes, receive the response from services
+ * classes, then build the HTTP response and send to client.
+ */
 @RestController
 public class RestAPIController {
 
