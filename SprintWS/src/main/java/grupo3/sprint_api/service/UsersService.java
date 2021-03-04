@@ -8,6 +8,7 @@ import grupo3.sprint_api.dto.Mapper;
 import grupo3.sprint_api.dto.RoleDTO;
 import grupo3.sprint_api.dto.UserDTO;
 import grupo3.sprint_api.exception.ConversaoException;
+import grupo3.sprint_api.persistence.RepositorioRole;
 import grupo3.sprint_api.persistence.RepositorioUtilizador;
 
 import java.sql.SQLException;
@@ -55,16 +56,36 @@ public class UsersService {
 
 
 
-    public static ListaRoleDTO getRoles() {
+    public static ListaRoleDTO getRoles()  {
         throw new UnsupportedOperationException();
     }
 
-    public static RoleDTO getUserRoles(String username) {
-        throw new UnsupportedOperationException();
+    public static RoleDTO getUserRoles(String username) throws SQLException {
+
+        RepositorioRole repoRole = RepositorioRole.getInstance();
+        Role role = repoRole.getRoleByUtilizador(String username);
+        if (role == null) {
+            return null;
+        }
+        RoleDTO roleDTO = Mapper.role2RoleDTO(role);
+        if (roleDTO != null) {
+            return roleDTO;
+        } else {
+            throw new ConversaoException("RoleDTO");
+        };
+
     }
 
     public static void addRoleToUser(String username, String rolename) {
-        throw new UnsupportedOperationException();
+
+        Role role = new Role();
+        if (user != null) {
+            RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
+            repo.insertUtilizador(user);
+        } else {
+            throw new ConversaoException("UserDTO");
+        }
+
     }
 
     public static void createUserRole(String rolename, String description) {
