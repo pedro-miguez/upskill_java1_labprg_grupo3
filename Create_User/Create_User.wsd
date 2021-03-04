@@ -1,0 +1,28 @@
+@startuml
+
+title CREATE USER
+
+activate UsersController
+UsersController -> UsersService: 1.1: addUser(userDTO)
+activate UsersService
+UsersService -> Mapper: 1.1.1: userDTO2User(userDTO)
+activate Mapper
+Mapper -> UsersService: user
+deactivate Mapper
+UsersService -> Dados: 1.2: carregaDados()
+activate Dados
+Dados -> UsersService: plataforma
+deactivate Dados
+UsersService -> Plataforma: 1.1.3: addUser(user)
+activate Plataforma
+Plataforma -> UsersService: return
+deactivate Plataforma
+UsersService -> Dados: 1.1.4: guardaDados(plataforma)
+activate Dados
+Dados -> UsersService: return
+deactivate Dados
+UsersService -> UsersController: return
+deactivate UsersService
+deactivate UsersController
+
+@enduml
