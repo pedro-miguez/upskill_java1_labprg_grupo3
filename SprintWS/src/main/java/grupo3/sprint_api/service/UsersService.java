@@ -17,7 +17,9 @@ import grupo3.sprint_api.dto.UserDTO;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 import grupo3.sprint_api.persistence.RepositorioUtilizador;
 
-
+/**
+ * Service class which will bridge the controllers and repository data of the users.
+ */
 public class UsersService {
 
     public static UserDTO getUtilizador(Email email) throws SQLException {

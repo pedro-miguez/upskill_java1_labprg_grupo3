@@ -14,6 +14,9 @@ import grupo3.sprint_api.persistence.RepositorioUtilizador;
 
 import java.sql.SQLException;
 
+/**
+ * Service class which will bridge the controllers and repository data of the authentications.
+ */
 public class AuthenticationService {
 
     public static ContextDTO generateContext(String appKey) throws SQLException {
