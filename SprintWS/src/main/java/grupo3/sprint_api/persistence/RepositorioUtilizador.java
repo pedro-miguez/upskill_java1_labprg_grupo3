@@ -95,7 +95,7 @@ public class RepositorioUtilizador {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where email = ?");
             pstmt.setString(1, emailUtilizador);
 
-            User user = montarUtilizador(pstmt.executeQuery(), true);
+            User user = montarUtilizador(pstmt.executeQuery());
 
             pstmt.close();
             return user;
@@ -117,7 +117,7 @@ public class RepositorioUtilizador {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where nome = ?");
             pstmt.setString(1, nome);
 
-            User user = montarUtilizador(pstmt.executeQuery(), true);
+            User user = montarUtilizador(pstmt.executeQuery());
 
             pstmt.close();
             return user;
@@ -127,7 +127,7 @@ public class RepositorioUtilizador {
     }
 
 
-    private User montarUtilizador(ResultSet row, boolean unico) {
+    public User montarUtilizador(ResultSet row) {
 
         User user = null;
 
@@ -153,7 +153,7 @@ public class RepositorioUtilizador {
 
             user = new User(nome, password, email, role);
 
-            if (unico) row.close();
+            row.close();
 
         } catch (SQLException e) {
             e.getSQLState();

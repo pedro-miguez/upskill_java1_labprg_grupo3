@@ -110,13 +110,8 @@ public class RestAPIController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UserDTO userDTO = new UserDTO();
-            userDTO.setUserName(username);
 
-            RoleDTO roleDTO = new RoleDTO();
-            roleDTO.setDesignacao(designacao);
-
-            UsersService.addRoleToUser(userDTO, roleDTO);
+            UsersService.addRoleToUser(username, designacao);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -171,10 +166,8 @@ public class RestAPIController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            RoleDTO roleDTO = new RoleDTO();
-            roleDTO.setDesignacao(rolename);
 
-            UsersService.deleteUserRole(roleDTO);
+            UsersService.deleteUserRole(rolename);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -200,11 +193,8 @@ public class RestAPIController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UserDTO userDTO = new UserDTO();
-            userDTO.setUserName(username);
-            userDTO.setRole(rolename);
 
-            UsersService.deleteRoleFromUser(userDTO);
+            UsersService.deleteRoleFromUser(username, rolename);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -262,6 +252,7 @@ public class RestAPIController {
 
             UserDTO userDTO = new UserDTO();
             userDTO.setRole(rolename);
+            userDTO.setEmail(email);
             userDTO.setPassword(password);
             userDTO.setUserName(username);
             userDTO.setRole(rolename);

@@ -88,7 +88,7 @@ public class UsersService {
 
     }
 
-    public static void createUserRole(String rolename, String description) {
+    public static void createUserRole(RoleDTO roleDTO) {
         throw new UnsupportedOperationException();
     }
 

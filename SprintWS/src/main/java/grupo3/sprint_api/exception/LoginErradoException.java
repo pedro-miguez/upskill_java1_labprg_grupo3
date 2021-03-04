@@ -8,3 +8,5 @@ public class LoginErradoException extends IllegalArgumentException {
     public LoginErradoException(String s) {
         super(s);
     }
+
+}
