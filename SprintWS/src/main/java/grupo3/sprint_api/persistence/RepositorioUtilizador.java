@@ -126,56 +126,6 @@ public class RepositorioUtilizador {
         }
     }
 
-    /**
-     * Method for obtaining a user through their role.
-     *
-     * @param nome
-     * @return usersByRole
-     */
-    public Role getRoleByUtilizador(String nome) {
-        try {
-            Connection conn = connectionHandler.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT desginacao FROM Utilizador where nome = ?");
-            pstmt.setString(1, nome);
-            ResultSet rSetUtilizador = pstmt.executeQuery();
-            rSetUtilizador.next();
-            String designacao = rSetUtilizador.getString("designacao");
-
-            PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
-            pstmt2.setString(1, designacao);
-            ResultSet rSetRole = pstmt.executeQuery();
-            rSetRole.next();
-
-            Role role = montarRole(rSetRole, true);
-
-            pstmt.close();
-            return role;
-        } catch (SQLException e) {
-            throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
-        }
-    }
-
-
-    public ArrayList<Role> getRoles() {
-        ArrayList<Role> roles = new ArrayList<>();
-        Connection conn = connectionHandler.getConnection();
-
-        try {
-            PreparedStatement pstmtRoles = conn.prepareStatement("SELECT * FROM Roles");
-            ResultSet rSetRoles = pstmtRoles.executeQuery();
-            rSetRoles.next();
-            while (rSetRoles.next()) {
-                roles.add(montarRole(rSetRoles, false));
-            }
-            rSetRoles.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getSQLState();
-        }
-
-        return roles;
-    }
-
 
     private User montarUtilizador(ResultSet row, boolean unico) {
 
@@ -215,30 +165,6 @@ public class RepositorioUtilizador {
         } else {
             throw new FetchingProblemException("Problema a montar utilizador");
         }
-    }
-
-    public Role montarRole(ResultSet row, boolean unico) {
-
-        Role role = null;
-        try {
-            row.next();
-            String designacao = row.getString(1);
-            String descricao = row.getString(2);
-
-            role = new Role(designacao, descricao);
-
-            if (unico) row.close();
-        } catch (SQLException e) {
-            e.getSQLState();
-            e.printStackTrace();
-
-        }
-        if (role != null) {
-            return role;
-        } else {
-            throw new FetchingProblemException("Problema a montar o role");
-        }
-
     }
 
 }
