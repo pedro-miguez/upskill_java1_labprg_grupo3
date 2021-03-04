@@ -100,7 +100,7 @@ public class RestAPIController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addRoleToUser(@RequestParam("app_context") String appContext,
                                                 @RequestParam("user_id") String username,
-                                                @RequestParam("rolenames") String rolename) {
+                                                @RequestParam("rolenames") String designacao) {
         try {
 
             ContextDTO contextDTO = new ContextDTO();
@@ -114,7 +114,7 @@ public class RestAPIController {
             userDTO.setUserName(username);
 
             RoleDTO roleDTO = new RoleDTO();
-            roleDTO.setDescricao(rolename);
+            roleDTO.setDesignacao(designacao);
 
             UsersService.addRoleToUser(userDTO, roleDTO);
 
@@ -132,7 +132,7 @@ public class RestAPIController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createUserRole(@RequestParam("app_context") String appContext,
                                             @RequestParam("description") String description,
-                                            @RequestParam("rolename") String rolename) {
+                                            @RequestParam("rolename") String designacao) {
         try {
 
             ContextDTO contextDTO = new ContextDTO();
@@ -144,7 +144,7 @@ public class RestAPIController {
 
             RoleDTO roleDTO = new RoleDTO();
             roleDTO.setDescricao(description);
-            roleDTO.setDesignacao(rolename);
+            roleDTO.setDesignacao(designacao);
 
             UsersService.createUserRole(roleDTO);
 

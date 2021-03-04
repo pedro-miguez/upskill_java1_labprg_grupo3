@@ -1,8 +1,5 @@
 package grupo3.sprint_api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 public class ErroDTO {
 
     private String mensagemErro;

@@ -6,12 +6,18 @@ public class Session {
 
     private User user;
     private Context context;
-    private LocalDateTime loginDate;
+    private Data loginDate;
 
     public Session(User user, Context context) {
         setUser(user);
         setContext(context);
-        setDate(LocalDateTime.now());
+        setDate(Data.dataAtual());
+    }
+
+    public Session(User user, Context context, Data dataLogin){
+        setUser(user);
+        setContext(context);
+        setDate(dataLogin);
     }
 
     public User getUser() {
@@ -30,11 +36,11 @@ public class Session {
         this.context = context;
     }
 
-    public LocalDateTime getDate() {
+    public Data getDate() {
         return loginDate;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Data date) {
         this.loginDate = date;
     }
 

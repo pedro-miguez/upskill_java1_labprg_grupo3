@@ -9,7 +9,7 @@ public class Context {
     private String context;
     private boolean valid;
 
-    private static final String APP_KEY = "UPSKILL_KEY";
+    private static final String APP_KEY = "IBD0DEHBDID62EB1EAZBEoA95E3cB5BD5135d01F0FqE6eDDoD4yDEX05RFEF19q9BY04KBE03A919hAFM06";
 
     public Context (String appKey) {
         if (appKey.equals(APP_KEY)) {
@@ -18,6 +18,11 @@ public class Context {
         } else {
             throw new AppKeyInvalidaException("App Key inválida");
         }
+    }
+
+    public Context (String contextKey, boolean valido) {
+        this.context = contextKey;
+        this.valid = valido;
     }
 
     public String getContext() {
