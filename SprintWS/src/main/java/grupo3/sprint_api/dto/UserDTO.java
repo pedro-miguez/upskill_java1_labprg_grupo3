@@ -5,32 +5,19 @@
  */
 package grupo3.sprint_api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
-@JsonPropertyOrder({"username", "password", "email", "role"})
-@JsonRootName("user")
-
 /**
  *
  * @author Grupo 3
  */
 public class UserDTO {
-    @JsonProperty("username")
+
     private String username;
-    @JsonProperty("password")
     private String password;
-    @JsonProperty("email")
     private String email;
-    @JsonProperty("role")
     private String role;
-    
 
     public UserDTO() {
-        super();
     }
-
 
     public String getUserName() {
         return username;

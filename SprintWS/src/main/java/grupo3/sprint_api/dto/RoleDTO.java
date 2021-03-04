@@ -1,28 +1,17 @@
 package grupo3.sprint_api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
-@JsonPropertyOrder({"descricao","designacao"})
-@JsonRootName("role")
-
 /**
  *
  * @author Grupo 3
  */
 public class RoleDTO {
 
+    public String descricao;
 
-    @JsonProperty("descricao")
-    private String descricao;
-
-    @JsonProperty("designacao")
-    private String designacao;
+    public String designacao;
 
 
     public RoleDTO() {
-        super();
     }
 
     public String getDescricao() {

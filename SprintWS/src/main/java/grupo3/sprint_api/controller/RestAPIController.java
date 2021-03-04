@@ -1,6 +1,9 @@
 package grupo3.sprint_api.controller;
 
-import grupo3.sprint_api.dto.ErroDTO;
+import grupo3.sprint_api.domain.Context;
+import grupo3.sprint_api.domain.Email;
+import grupo3.sprint_api.dto.*;
+import grupo3.sprint_api.service.AuthenticationService;
 import grupo3.sprint_api.service.UsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -8,13 +11,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UsersController {
+public class RestAPIController {
+
+    @RequestMapping(value = "/test",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> test() {
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setDescricao("desc");
+        roleDTO.setDesignacao("design");
+        return new ResponseEntity<>(roleDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/context",
+            method = RequestMethod.GET,
+            params = { "app_key"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getContext(@RequestParam("app_key") String appKey) {
+        try {
+
+            ContextDTO contextDTO = AuthenticationService.generateContext(appKey);
+            if (contextDTO != null) {
+                return new ResponseEntity<>(contextDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @RequestMapping(value = "/roles",
             method = RequestMethod.GET,
             params = { "app_context"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> userRoles(@RequestParam("app_context") String appContext) {
+    public ResponseEntity<?> userRoles(@RequestParam("app_context") String appContext) {
         try {
             ListaRoleDTO listaRoleDTO = UsersService.getRoles();
             if (listaRoleDTO != null) {
@@ -32,8 +63,9 @@ public class UsersController {
             method = RequestMethod.GET,
             params = { "app_context", "user_id"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> userRoles(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> getUserRoles(@RequestParam("app_context") String appContext,
                                             @RequestParam("user_id") String username) {
+
         try {
             RoleDTO roleDTO = UsersService.getUserRoles(username);
             if (roleDTO != null) {
@@ -51,11 +83,11 @@ public class UsersController {
             method = RequestMethod.POST,
             params = { "app_context", "user_id", "rolenames"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> userRoles(@RequestParam("app_context") String appContext,
-                                            @RequestParam("user_id") String username,
-                                            @RequestParam("rolenames") String rolename) {
+    public ResponseEntity<?> addRoleToUser(@RequestParam("app_context") String appContext,
+                                                @RequestParam("user_id") String username,
+                                                @RequestParam("rolenames") String rolename) {
         try {
-            UsersService.postUserRoles(username, rolename);
+            UsersService.addRoleToUser(username, rolename);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -69,11 +101,11 @@ public class UsersController {
             method = RequestMethod.POST,
             params = { "app_context", "rolename", "description"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> userRoles(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> createUserRole(@RequestParam("app_context") String appContext,
                                             @RequestParam("description") String description,
                                             @RequestParam("rolename") String rolename) {
         try {
-            UsersService.postRoles(rolename, description);
+            UsersService.createUserRole(rolename, description);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -87,10 +119,10 @@ public class UsersController {
             method = RequestMethod.DELETE,
             params = { "app_context", "rolename"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> userRoles(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> deleteUserRole(@RequestParam("app_context") String appContext,
                                             @RequestParam("rolename") String rolename) {
         try {
-            UsersService.deleteRoles(rolename);
+            UsersService.deleteUserRole(rolename);
 
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -104,11 +136,11 @@ public class UsersController {
             method = RequestMethod.DELETE,
             params = { "app_context", "user_id", "rolenames"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> userRoles(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> deleteRoleFromUser(@RequestParam("app_context") String appContext,
                                             @RequestParam("user_id") String username,
                                             @RequestParam("rolenames") String rolename) {
         try {
-            UsersService.deleteUserRoles(username, rolename);
+            UsersService.deleteRoleFromUser(username, rolename);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -120,12 +152,12 @@ public class UsersController {
             method = RequestMethod.POST,
             params = { "app_context", "username", "email", "password" },
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registerUser(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> registerUser(@RequestParam("app_context") String appContext,
                                                @RequestParam("username") String username,
                                                @RequestParam("email") String email,
                                                @RequestParam("password") String password) {
         try {
-            UsersService.registerUser(username, email, password);
+            UsersService.registerUser(username, password, new Email(email));
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -137,13 +169,13 @@ public class UsersController {
             method = RequestMethod.POST,
             params = { "app_context", "username", "email", "password", "rolenames" },
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registerUserWithRoles(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> registerUserWithRoles(@RequestParam("app_context") String appContext,
                                                @RequestParam("username") String username,
                                                @RequestParam("email") String email,
                                                @RequestParam("password") String password,
                                                @RequestParam("rolenames") String rolename) {
         try {
-            UsersService.registerUserWithRoles(username, email, password, rolename);
+            //UsersService.registerUserWithRoles(username, password, new Email(email), rolename);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -155,11 +187,22 @@ public class UsersController {
             method = RequestMethod.POST,
             params = { "app_context", "user_id", "password" },
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> login(@RequestParam("app_context") String appContext,
+    public ResponseEntity<?> login(@RequestParam("app_context") String appContext,
                                                @RequestParam("user_id") String username,
                                                @RequestParam("password") String password) {
         try {
-            if (UsersService.login(username, password)) {
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            LoginDTO loginDTO = new LoginDTO();
+            loginDTO.setUsername(username);
+            loginDTO.setPassword(password);
+
+            if (AuthenticationService.login(loginDTO, contextDTO)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -174,9 +217,16 @@ public class UsersController {
             method = RequestMethod.POST,
             params = { "app_context" },
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> logout(@RequestParam("app_context") String appContext) {
+    public ResponseEntity<?> logout(@RequestParam("app_context") String appContext) {
         try {
-            if (UsersService.logout()) {
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            if (AuthenticationService.logout(contextDTO)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
