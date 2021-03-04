@@ -12,6 +12,10 @@ import grupo3.sprint_api.persistence.RepositorioUtilizador;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import grupo3.sprint_api.dto.UserDTO;
+import grupo3.sprint_api.exception.NomeNaoAssociadoException;
+import grupo3.sprint_api.persistence.RepositorioUtilizador;
+
 
 public class UsersService {
 
@@ -50,6 +54,7 @@ public class UsersService {
     }
 
 
+
     public static ListaRoleDTO getRoles() {
         throw new UnsupportedOperationException();
     }
@@ -74,3 +79,4 @@ public class UsersService {
         throw new UnsupportedOperationException();
     }
 }
+
