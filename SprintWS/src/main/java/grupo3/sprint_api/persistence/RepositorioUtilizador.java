@@ -13,6 +13,9 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for creating a repository to store information about Users.
+ */
 public class RepositorioUtilizador {
     private static RepositorioUtilizador instance;
 
