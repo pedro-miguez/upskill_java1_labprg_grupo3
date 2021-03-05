@@ -46,7 +46,7 @@ public class UsersService {
             throw new ConversaoException("UserDTO");
         }
     }
-    
+
 
     public static void registerUserWithRoles(UserDTO userDTO) throws SQLException {
         User user = Mapper.userDTO2User(userDTO);
@@ -70,6 +70,7 @@ public class UsersService {
 
     }
 
+    
     public static RoleDTO getUserRoles(String username) throws SQLException {
         RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);
