@@ -135,6 +135,9 @@ public class RepositorioUtilizador {
             csUpdateUser.setString(1, user.getRole().getRolename());
             csUpdateUser.setString(2, user.getEmail().toString());
 
+            csUpdateUser.executeQuery();
+
+
             csUpdateUser.close();
 
             return true;
@@ -146,7 +149,6 @@ public class RepositorioUtilizador {
 
         return false;
     }
-
 
 
 
@@ -236,5 +238,24 @@ public class RepositorioUtilizador {
     }
 
     public void deleteRoleFromUser(User user) {
+        Connection conn = connectionHandler.getConnection();
+
+        try {
+
+            CallableStatement csUpdateUser = conn.prepareCall("UPDATE Utilizador SET designacao = ? WHERE email = ?");
+            csUpdateUser.setString(1, null);
+            csUpdateUser.setString(2, user.getEmail().toString());
+
+            csUpdateUser.executeQuery();
+
+
+            csUpdateUser.close();
+            
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+
     }
 }

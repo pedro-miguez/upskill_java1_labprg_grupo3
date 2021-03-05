@@ -4,10 +4,7 @@ import grupo3.sprint_api.domain.Role;
 import grupo3.sprint_api.exception.FetchingProblemException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -170,5 +167,21 @@ public class RepositorioRole {
     }
 
     public void deleteRole(Role role) {
+        Connection conn = connectionHandler.getConnection();
+
+        try {
+
+            CallableStatement deleteRole = conn.prepareCall("Delete from Role where designacao = ? ");
+            deleteRole.setString(1, role.getRolename());
+
+            deleteRole.executeQuery();
+
+            deleteRole.close();
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+
     }
 }
