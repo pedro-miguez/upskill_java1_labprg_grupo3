@@ -46,6 +46,7 @@ public class UsersService {
             throw new ConversaoException("UserDTO");
         }
     }
+    
 
     public static void registerUserWithRoles(UserDTO userDTO) throws SQLException {
         User user = Mapper.userDTO2User(userDTO);
