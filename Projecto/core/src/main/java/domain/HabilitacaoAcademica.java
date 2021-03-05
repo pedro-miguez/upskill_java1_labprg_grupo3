@@ -15,6 +15,7 @@ public class HabilitacaoAcademica implements Serializable {
     private String nomeInstituicao;
     private double mediaCurso;
 
+    
     /**
      * Instantiates a new academic qualification.
      * @param grau
@@ -29,6 +30,7 @@ public class HabilitacaoAcademica implements Serializable {
         setNomeInstituicao(nomeInstituicao);
         setMediaCurso(mediaCurso);
     }
+
 
     private void setGrau(String grau) {
         if (grau.length() < 1 || grau.trim().isEmpty()) {

@@ -17,7 +17,9 @@ import grupo3.sprint_api.dto.UserDTO;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 import grupo3.sprint_api.persistence.RepositorioUtilizador;
 
-
+/**
+ * Service class which will bridge the controllers and repository data of the users.
+ */
 public class UsersService {
 
     public static UserDTO getUtilizador(Email email) throws SQLException {
@@ -56,48 +58,89 @@ public class UsersService {
 
 
 
-    public static ListaRoleDTO getRoles()  {
+    public static ListaRoleDTO getRoles() throws SQLException {
+
+        /*RepositorioRole repoRole = RepositorioRole.getInstance();
+        ArrayList<Role> roles = repoRole.getRoles();
+        ListaRoleDTO listaRoleDTO = Mapper.listaRole2listaRoleDTO(roles);
+
+        return listaRoleDTO;
+    }*/
         throw new UnsupportedOperationException();
     }
 
     public static RoleDTO getUserRoles(String username) throws SQLException {
 
-        RepositorioRole repoRole = RepositorioRole.getInstance();
-        Role role = repoRole.getRoleByUtilizador(String username);
-        if (role == null) {
-            return null;
-        }
+        /*RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
+        User user = repoUser.getUtilizadorByNome(username);
+        Role role = user.getRole();
         RoleDTO roleDTO = Mapper.role2RoleDTO(role);
         if (roleDTO != null) {
             return roleDTO;
         } else {
             throw new ConversaoException("RoleDTO");
         };
-
+    }*/
+        throw new UnsupportedOperationException();
     }
 
-    public static void addRoleToUser(String username, String rolename) {
+    public static void addRoleToUser(String username, String rolename) throws SQLException {
 
-        Role role = new Role();
-        if (user != null) {
-            RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-            repo.insertUtilizador(user);
+        /*RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
+        User user = repoUser.getUtilizadorByNome(username);
+        if (user == null) {
+            throw new NomeNaoAssociadoException("Username cant be empty!");
+        }
+        RepositorioRole repoRole = RepositorioRole.getInstance();
+        Role role = repoRole.getRoleByUtilizador(username);
+        if (role != null) {
+            repoRole.insertRole(role);
         } else {
-            throw new ConversaoException("UserDTO");
+            throw new ConversaoException("RoleDTO");
         }
 
-    }
+    }*/
+    throw new UnsupportedOperationException();
+}
 
-    public static void createUserRole(RoleDTO roleDTO) {
+    public static void createUserRole(RoleDTO roleDTO) throws SQLException {
+
+        /*RepositorioRole repoRole = RepositorioRole.getInstance();
+        Role role = Mapper.roleDTO2Role(roleDTO);
+        //ArrayList<Role> role = repoRole.getRoles();
+        if (!(role==null && repoRole.getRoles().contains(role))) {
+            repoRole.insertRole(role);
+        } else {
+            throw new ConversaoException("RoleDTO");
+        }*/
         throw new UnsupportedOperationException();
     }
 
-    public static void deleteUserRole(String rolename) {
+    public static void deleteUserRole(String rolename) throws SQLException {
+
+        /*RepositorioRole repoRole = RepositorioRole.getInstance();
+        ArrayList<Role> role = repoRole.getRoles();
+        if (role.contains(rolename)) {
+            repoRole.deleteRole(role);
+        } else {
+            throw new ConversaoException("RoleDTO");
+        }*/
+
         throw new UnsupportedOperationException();
+
     }
 
-    public static void deleteRoleFromUser(String username, String rolename) {
+    public static void deleteRoleFromUser(String username, String rolename) throws SQLException {
+
+        /*RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
+        User user = repoUser.getUtilizadorByNome(username);
+        RepositorioRole repoRole = RepositorioRole.getInstance();
+        Role role = repoRole.getRoleByUtilizador(rolename);
+        if (user.getRole()==role) {
+            repoRole.deleteRole(role);
+        } else {
+            throw new ConversaoException("RoleDTO");
+    }*/
         throw new UnsupportedOperationException();
-    }
 }
 

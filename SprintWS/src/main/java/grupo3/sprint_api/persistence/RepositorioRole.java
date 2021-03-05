@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for creating a repository to store information about Roles.
+ */
 public class RepositorioRole {
 
     private static RepositorioRole instance;

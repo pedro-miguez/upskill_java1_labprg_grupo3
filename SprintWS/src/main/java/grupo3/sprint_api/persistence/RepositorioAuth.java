@@ -6,6 +6,9 @@ import grupo3.sprint_api.exception.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class responsible for creating a repository to store information about Authentication.
+ */
 public class RepositorioAuth {
     private static RepositorioAuth instance;
 
@@ -32,6 +35,12 @@ public class RepositorioAuth {
     }
 
 
+    /**
+     * Boolean method which checks if the Context was inserted.
+     *
+     * @param context
+     * @return boolean
+     */
     public boolean insertContext(Context context) {
         Connection conn = connectionHandler.getConnection();
 
@@ -66,6 +75,12 @@ public class RepositorioAuth {
 
     }
 
+    /**
+     * Method which gets an Context by string.
+     *
+     * @param contextString
+     * @return context
+     */
     public Context getContextByString(String contextString) {
         try {
             Connection conn = connectionHandler.getConnection();
@@ -81,6 +96,12 @@ public class RepositorioAuth {
         }
     }
 
+    /**
+     * Boolean method which checks if a Session was inserted.
+     *
+     * @param session
+     * @return boolean
+     */
     public boolean insertSession(Session session) {
         Connection conn = connectionHandler.getConnection();
 
@@ -122,6 +143,12 @@ public class RepositorioAuth {
         return false;
     }
 
+    /**
+     * Boolean method which checks if a context is invalid.
+     *
+     * @param context
+     * @return boolean
+     */
     public boolean makeContextInvalid(String context) {
         Connection conn = connectionHandler.getConnection();
 
@@ -149,6 +176,12 @@ public class RepositorioAuth {
         return false;
     }
 
+    /**
+     * Method which gets a Session by its Context.
+     *
+     * @param contextString
+     * @return session
+     */
     public Session getSessionByContext(String contextString) {
         try {
             Connection conn = connectionHandler.getConnection();
