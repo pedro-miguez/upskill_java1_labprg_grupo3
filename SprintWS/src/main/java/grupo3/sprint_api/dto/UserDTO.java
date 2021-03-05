@@ -5,6 +5,8 @@
  */
 package grupo3.sprint_api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Grupo 3
@@ -12,18 +14,22 @@ package grupo3.sprint_api.dto;
 public class UserDTO {
 
     private String username;
+
+    @JsonIgnore
     private String password;
+
     private String email;
+
     private RoleDTO role;
 
     public UserDTO() {
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUserName(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

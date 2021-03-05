@@ -213,15 +213,21 @@ public class RepositorioUtilizador {
             String password = row.getString(4);
 
             //Construir objeto role
-            PreparedStatement pstmtRole = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
-            pstmtRole.setString(1, row.getString("designacao"));
-            ResultSet rSetRole = pstmtRole.executeQuery();
-            rSetRole.next();
 
-            String descricao = rSetRole.getString("descricao");
-            Role role = new Role(row.getString("designacao"), descricao);
+            if (row.getString("designacao") != null) {
+                PreparedStatement pstmtRole = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
+                pstmtRole.setString(1, row.getString("designacao"));
+                ResultSet rSetRole = pstmtRole.executeQuery();
+                rSetRole.next();
 
-            user = new User(nome, password, email, role);
+                String descricao = rSetRole.getString("descricao");
+                Role role = new Role(row.getString("designacao"), descricao);
+
+                user = new User(nome, password, email, role);
+            } else {
+                user = new User(nome, password, email);
+            }
+
 
             row.close();
 

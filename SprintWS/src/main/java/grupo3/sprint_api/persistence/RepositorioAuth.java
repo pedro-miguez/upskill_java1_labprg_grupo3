@@ -155,7 +155,7 @@ public class RepositorioAuth {
         try {
 
             conn.setAutoCommit(false);
-            CallableStatement csUpdateContext = conn.prepareCall("Update CONTEXTKEYS set estado = INV");
+            CallableStatement csUpdateContext = conn.prepareCall("Update CONTEXTKEYS set estado = 'INV'");
 
             csUpdateContext.executeQuery();
 

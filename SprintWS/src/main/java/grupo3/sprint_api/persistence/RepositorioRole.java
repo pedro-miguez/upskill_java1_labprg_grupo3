@@ -84,7 +84,7 @@ public class RepositorioRole {
     public Role getRoleByUtilizador(String nome) {
         try {
             Connection conn = connectionHandler.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT desginacao FROM Utilizador where nome = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT designacao FROM Utilizador where nome = ?");
             pstmt.setString(1, nome);
             ResultSet rSetUtilizador = pstmt.executeQuery();
             rSetUtilizador.next();
@@ -93,13 +93,14 @@ public class RepositorioRole {
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
             pstmt2.setString(1, designacao);
             ResultSet rSetRole = pstmt2.executeQuery();
-            rSetRole.next();
+
 
             Role role = montarRole(rSetRole, true);
 
             pstmt.close();
             return role;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
         }
     }

@@ -13,13 +13,13 @@ public class Mapper {
 
     public static UserDTO user2UserDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setUserName(user.getUsername());
+        userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail().toString());
         userDTO.setPassword(user.getPassword());
 
         RoleDTO roleDTO = new RoleDTO();
-        roleDTO.setRolename(user.getRole().getDescricao());
-        roleDTO.setDescricao(user.getRole().getRolename());
+        roleDTO.setDescricao(user.getRole().getDescricao());
+        roleDTO.setRolenames(user.getRole().getRolename());
         userDTO.setRole(roleDTO);
 
         return userDTO;
@@ -35,8 +35,12 @@ public class Mapper {
     }
 
     public static User userDTO2User(UserDTO userDTO) {
-        Role role = new Role(userDTO.getRole().getRolename(), userDTO.getRole().getDescricao());
-        return new User(userDTO.getUserName(), userDTO.getPassword(), new Email(userDTO.getEmail()), role);
+        if (userDTO.getRole() != null) {
+            Role role = new Role(userDTO.getRole().getRolenames(), userDTO.getRole().getDescricao());
+            return new User(userDTO.getUsername(), userDTO.getPassword(), new Email(userDTO.getEmail()), role);
+        } else {
+            return new User(userDTO.getUsername(), userDTO.getPassword(), new Email(userDTO.getEmail()));
+        }
     }
 
     public static ListaRoleDTO listaRole2listaRoleDTO(ArrayList<Role> roles) {
@@ -56,13 +60,13 @@ public class Mapper {
 
     public static RoleDTO role2RoleDTO(Role role) {
         RoleDTO roleDTO = new RoleDTO();
-        roleDTO.setRolename(role.getRolename());
+        roleDTO.setRolenames(role.getRolename());
         roleDTO.setDescricao(role.getDescricao());
         return roleDTO;
     }
 
 
     public static Role roleDTO2Role(RoleDTO roleDTO) {
-        return new Role(roleDTO.getRolename(), roleDTO.getDescricao());
+        return new Role(roleDTO.getRolenames(), roleDTO.getDescricao());
     }
 }

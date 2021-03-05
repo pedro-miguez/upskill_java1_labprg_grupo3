@@ -16,14 +16,31 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class RestAPIController {
 
-    @RequestMapping(value = "/test",
+    @RequestMapping(value = "/session",
             method = RequestMethod.GET,
+            params = { "app_context"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> test() {
-        RoleDTO roleDTO = new RoleDTO();
-        roleDTO.setDescricao("desc");
-        roleDTO.setRolename("design");
-        return new ResponseEntity<>(roleDTO, HttpStatus.OK);
+    public ResponseEntity<?> getSession(@RequestParam("app_context") String appContext) {
+
+        try {
+            ContextDTO contextDTO = new ContextDTO();
+            contextDTO.setAppContext(appContext);
+
+            if (!AuthenticationService.validateContext(contextDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            SessionDTO sessionDTO = AuthenticationService.getSession(contextDTO);
+
+            if (sessionDTO != null) {
+                return new ResponseEntity<>(sessionDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/context",
@@ -126,11 +143,11 @@ public class RestAPIController {
 
     @RequestMapping(value = "/roles",
             method = RequestMethod.POST,
-            params = { "app_context", "rolename", "description"},
+            params = { "app_context", "rolenames", "description"},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createUserRole(@RequestParam("app_context") String appContext,
                                             @RequestParam("description") String description,
-                                            @RequestParam("rolename") String designacao) {
+                                            @RequestParam("rolenames") String designacao) {
         try {
 
             ContextDTO contextDTO = new ContextDTO();
@@ -142,7 +159,7 @@ public class RestAPIController {
 
             RoleDTO roleDTO = new RoleDTO();
             roleDTO.setDescricao(description);
-            roleDTO.setRolename(designacao);
+            roleDTO.setRolenames(designacao);
 
             UsersService.createUserRole(roleDTO);
 
@@ -156,10 +173,10 @@ public class RestAPIController {
 
     @RequestMapping(value = "/roles",
             method = RequestMethod.DELETE,
-            params = { "app_context", "rolename"},
+            params = { "app_context", "rolenames"},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteUserRole(@RequestParam("app_context") String appContext,
-                                            @RequestParam("rolename") String rolename) {
+                                            @RequestParam("rolenames") String rolename) {
         try {
 
             ContextDTO contextDTO = new ContextDTO();
@@ -223,7 +240,7 @@ public class RestAPIController {
             }
 
             UserDTO userDTO = new UserDTO();
-            userDTO.setUserName(username);
+            userDTO.setUsername(username);
             userDTO.setEmail(email);
             userDTO.setPassword(password);
 
@@ -256,7 +273,7 @@ public class RestAPIController {
             UserDTO userDTO = new UserDTO();
             userDTO.setEmail(email);
             userDTO.setPassword(password);
-            userDTO.setUserName(username);
+            userDTO.setUsername(username);
 
 
             UsersService.registerUserWithRoles(userDTO, rolename);

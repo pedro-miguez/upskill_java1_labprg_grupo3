@@ -125,9 +125,9 @@ public class UsersService {
         User user = repoUser.getUtilizadorByNome(username);
 
         RepositorioRole repoRole = RepositorioRole.getInstance();
-        Role role = repoRole.getRoleByUtilizador(rolename);
+        Role role = repoRole.getRoleByRolename(rolename);
 
-        if (user.getRole() == role) {
+        if (user.getRole().equals(role)) {
             repoUser.deleteRoleFromUser(user);
         } else {
             throw new Exception("Problma ao apagar role do utilizador " + username);

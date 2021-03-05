@@ -6,9 +6,11 @@ package grupo3.sprint_api.dto;
  */
 public class RoleDTO {
 
+
+    public String rolenames;
+
     public String descricao;
 
-    public String rolename;
 
 
     public RoleDTO() {
@@ -22,12 +24,12 @@ public class RoleDTO {
         this.descricao = descricao;
     }
 
-    public String getRolename() {
-        return rolename;
+    public String getRolenames() {
+        return rolenames;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setRolenames(String rolename) {
+        this.rolenames = rolename;
     }
 
 }
