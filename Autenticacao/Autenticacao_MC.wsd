@@ -1,0 +1,36 @@
+@startuml
+
+title Autenticação - Modelo de Classes
+
+left to right direction
+
+
+class AuthenticationUI {
+
+}
+
+class AuthenticationController {
+    + login(user_id, password)
+}
+
+class Plataforma {
+    + getAlgoritmoGeradorPwd()
+    + getUsersAPI()
+    + getRegistoOrganizacoes()
+}
+
+class UsersAPI {
+    + login(user_id, password)
+    + logout()
+    + getEmail()
+    + registerUserWithRoles(username, email, password, rolenames)
+}
+
+
+AuthenticationUI ..> AuthenticationController
+AuthenticationController ..> Plataforma
+AuthenticationController ..> UsersAPI
+Plataforma "1" -- "1" UsersAPI
+
+
+@enduml
