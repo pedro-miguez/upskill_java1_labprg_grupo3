@@ -24,5 +24,10 @@ deactivate "uapi : UsersAPI"
 
 "plataforma : Plataforma" --> "ro : RegistoOrganizacoes": 6: create(plataforma)
 
+deactivate "plataforma : Plataforma"
+
+deactivate ": Main"
+
+deactivate User
 
 @enduml
