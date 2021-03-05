@@ -1,0 +1,33 @@
+@startuml
+
+title Arranque da Aplicação - Diagrama de Sequência
+
+actor User
+
+activate User
+
+User -> ": Main": 1: Startup
+activate ": Main"
+
+": Main" --> "plataforma : Plataforma": 1.1: create()
+activate "plataforma : Plataforma"
+
+"plataforma : Plataforma" --> "agp : AlgoritmoGeradorPasswords": 2: create()
+
+"plataforma : Plataforma" --> "uapi : UsersAPI": 3: create()
+activate "uapi : UsersAPI"
+
+"uapi : UsersAPI" -> "uapi : UsersAPI": 4: app_key = getUsersApiKey()
+
+"uapi : UsersAPI" --> "uapia : UsersAPIAdapter": 5: create(app_key)
+deactivate "uapi : UsersAPI"
+
+"plataforma : Plataforma" --> "ro : RegistoOrganizacoes": 6: create(plataforma)
+
+deactivate "plataforma : Plataforma"
+
+deactivate ": Main"
+
+deactivate User
+
+@enduml

@@ -34,7 +34,7 @@ public class RepositorioUtilizador {
 
 
     public static RepositorioUtilizador getInstance() throws SQLException {
-        if(instance == null){
+        if (instance == null) {
             instance = new RepositorioUtilizador();
         }
         return instance;
@@ -125,6 +125,30 @@ public class RepositorioUtilizador {
         return false;
 
     }
+
+    public boolean addRoleToUser(User user) {
+        Connection conn = connectionHandler.getConnection();
+
+        try {
+
+            CallableStatement csUpdateUser = conn.prepareCall("UPDATE Utilizador SET designacao = ? WHERE email = ?");
+            csUpdateUser.setString(1, user.getRole().getRolename());
+            csUpdateUser.setString(2, user.getEmail().toString());
+
+            csUpdateUser.close();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+
 
     /**
      * Method to get a user through your email.
