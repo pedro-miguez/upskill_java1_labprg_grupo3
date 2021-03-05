@@ -250,7 +250,7 @@ public class RepositorioUtilizador {
 
 
             csUpdateUser.close();
-            
+
 
         } catch (SQLException e) {
             e.getSQLState();
