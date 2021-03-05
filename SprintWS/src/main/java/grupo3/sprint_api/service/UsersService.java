@@ -100,6 +100,7 @@ public class UsersService {
     throw new UnsupportedOperationException();
 }
 
+
     public static void createUserRole(RoleDTO roleDTO) throws SQLException {
 
         /*RepositorioRole repoRole = RepositorioRole.getInstance();
