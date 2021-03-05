@@ -1,0 +1,40 @@
+@startuml
+
+title Arranque da aplicação
+
+class Main {
+    + Main()
+}
+
+class Plataforma {
+    + getAlgoritmoGeradorPwd()
+    + getUsersAPI()
+    + getRegistoOrganizacoes()
+}
+
+class UsersAPI {
+    + login(user_id, password)
+    + logout()
+    + getEmail()
+    + registerUserWithRoles(username, email, password, rolenames)
+}
+
+class UsersAPIAdapter {
+    + UsersAPIAdapter(app_key)
+    - getContext(app_key)
+    + registerUser(username, email, password)
+    + registerUserWithRoles(username, email, password, rolenames)
+    + login(user_id, password)
+    + logout()
+    + getRoles()
+    + setRole(rolename, description)
+    + getSession()
+}
+
+
+Main "1" -- "1" Plataforma
+Plataforma "1" -- "1" UsersAPI
+UsersAPI "1" -- "1" UsersAPIAdapter
+
+
+@enduml
