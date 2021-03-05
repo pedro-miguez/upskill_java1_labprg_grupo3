@@ -22,7 +22,7 @@ public class RoleDTO extends UserDTO {
     private String cargo;
 
     public RoleDTO() {
-        super();
+        //super();
     }
 
     

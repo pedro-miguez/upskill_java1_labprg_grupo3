@@ -10,6 +10,7 @@ import com.company.exception.ElementoNaoExistenteException;
 import com.company.exception.NifDuplicadoException;
 import com.company.exception.NifInvalidoException;
 import com.company.exception.NomeUserInvalidoException;
+import com.company.exception.CargoInvalidoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -142,7 +143,22 @@ public class Plataforma implements Serializable {
         return lista;
     }
 
-    public void addRole(Role role) {
+    public void addRole(Role role) throws CargoInvalidoException,
+            NifDuplicadoException {
+        
+        User u = getUserByNif(role.getNif());
+        
+        if (u == null) {
+            Role r = getRoleByCargo(role.getRole());
+            if (r == null) {
+                addUser(role);
+            } else {
+                throw new CargoInvalidoException(r.getRole() + 
+                        ": Cargo inválido!");
+            }
+        } else {
+            throw new NifDuplicadoException(u.getNif() + ": NIF j´a existe");
+        }
         
     }
 
