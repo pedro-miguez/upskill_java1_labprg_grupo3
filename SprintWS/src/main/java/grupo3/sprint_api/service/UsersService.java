@@ -33,6 +33,7 @@ public class UsersService {
             return userDTO;
         } else {
             throw new ConversaoException("UserDTO");
+            
         }
     }
 
