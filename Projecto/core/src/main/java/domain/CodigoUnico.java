@@ -21,6 +21,7 @@ public class CodigoUnico implements Serializable {
         setCodigoUnico(codigoUnico);
     }
 
+
     /**
      * Gets unique reference.
      *
@@ -37,6 +38,7 @@ public class CodigoUnico implements Serializable {
             throw new IllegalArgumentException("Código único inválido, deve ser como o seguinte exemplo, 'PRG-01'.");
         }
     }
+
 
     /**
      * Returns a string representation of the object unique reference and its attributes.
