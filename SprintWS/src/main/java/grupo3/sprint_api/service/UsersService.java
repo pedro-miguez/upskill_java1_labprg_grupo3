@@ -47,9 +47,12 @@ public class UsersService {
         }
     }
 
-    public static void registerUserWithRoles(UserDTO userDTO) throws SQLException {
+    public static void registerUserWithRoles(UserDTO userDTO, String rolename) throws SQLException {
         User user = Mapper.userDTO2User(userDTO);
         if (user != null) {
+            RepositorioRole repoRole = RepositorioRole.getInstance();
+            Role role = repoRole.getRoleByRolename(rolename);
+            user.setRole(role);
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
             repo.insertUtilizadorComRole(user);
         } else {

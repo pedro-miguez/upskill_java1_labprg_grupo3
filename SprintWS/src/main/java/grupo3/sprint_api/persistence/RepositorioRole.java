@@ -131,7 +131,7 @@ public class RepositorioRole {
         Connection conn = connectionHandler.getConnection();
 
         try {
-            PreparedStatement pstmtRoles = conn.prepareStatement("SELECT * FROM Roles");
+            PreparedStatement pstmtRoles = conn.prepareStatement("SELECT * FROM Role");
             ResultSet rSetRoles = pstmtRoles.executeQuery();
             rSetRoles.next();
             while (rSetRoles.next()) {
@@ -150,7 +150,7 @@ public class RepositorioRole {
 
         Role role = null;
         try {
-            row.next();
+            if (unico) row.next();
             String designacao = row.getString(1);
             String descricao = row.getString(2);
 

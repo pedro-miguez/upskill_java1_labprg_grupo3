@@ -87,7 +87,7 @@ public class RepositorioAuth {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ContextKeys where context_key = ?");
             pstmt.setString(1, contextString);
 
-           Context context = montarContext(pstmt.executeQuery());
+            Context context = montarContext(pstmt.executeQuery());
 
             pstmt.close();
             return context;
@@ -251,7 +251,7 @@ public class RepositorioAuth {
 
             context = new Context(contextKey, valido);
 
-        row.close();
+            row.close();
         } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();

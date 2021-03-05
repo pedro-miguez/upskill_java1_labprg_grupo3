@@ -254,13 +254,12 @@ public class RestAPIController {
             }
 
             UserDTO userDTO = new UserDTO();
-            userDTO.setRole(rolename);
             userDTO.setEmail(email);
             userDTO.setPassword(password);
             userDTO.setUserName(username);
-            userDTO.setRole(rolename);
 
-            UsersService.registerUserWithRoles(userDTO);
+
+            UsersService.registerUserWithRoles(userDTO, rolename);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
