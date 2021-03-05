@@ -320,7 +320,7 @@ public class AreaAdministrativoUI implements Initializable {
         //popular combo box do painel Criar Competencia Tecnica
         try {
             comboBoxAreaAtividadeCompetenciaTecnica.getItems().setAll(serviceController.getAreasAtividade());
-        } catch (SQLException | FetchingProblemException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
@@ -696,7 +696,7 @@ public class AreaAdministrativoUI implements Initializable {
         //popular combo boxes do painel Criar Categoria de Tarefa
         try {
             comboBoxAreaAtividadeCategoriaTarefa.getItems().setAll(serviceController.getAreasAtividade());
-        } catch (SQLException | FetchingProblemException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }

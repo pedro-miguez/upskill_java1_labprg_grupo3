@@ -140,7 +140,7 @@ public class RepositorioOrganizacao implements Serializable {
      * @param row
      * @return org
      */
-    public Organizacao montarOrganizacao(ResultSet row) {
+    public Organizacao montarOrganizacao(ResultSet row) throws FetchingProblemException {
 
         Organizacao org = null;
 

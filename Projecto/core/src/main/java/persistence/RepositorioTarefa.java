@@ -164,7 +164,7 @@ public class RepositorioTarefa implements Serializable {
      * @param rSetTarefa
      * @return tarefa
      */
-    public Tarefa montarTarefa(ResultSet rSetTarefa, boolean unico) {
+    public Tarefa montarTarefa(ResultSet rSetTarefa, boolean unico) throws FetchingProblemException {
         Tarefa tarefa = null;
 
         try {
@@ -270,7 +270,7 @@ public class RepositorioTarefa implements Serializable {
      * @param organizacao
      * @return montarTarefas
      */
-    public ArrayList<Tarefa> getTarefasPrivadasOrganizacao (Organizacao organizacao) {
+    public ArrayList<Tarefa> getTarefasPrivadasOrganizacao (Organizacao organizacao) throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             NIF nif = organizacao.getNIF();
@@ -306,7 +306,7 @@ public class RepositorioTarefa implements Serializable {
      * @param organizacao
      * @return montarTarefas
      */
-    public ArrayList<Tarefa> getTarefasPublishedOrganizacao (Organizacao organizacao) {
+    public ArrayList<Tarefa> getTarefasPublishedOrganizacao (Organizacao organizacao) throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
             NIF nif = organizacao.getNIF();
@@ -342,7 +342,7 @@ public class RepositorioTarefa implements Serializable {
      * @param organizacao
      * @return montarTarefas
      */
-    public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) {
+    public ArrayList<Tarefa> getTarefasOrganizacao (Organizacao organizacao) throws FetchingProblemException {
 
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();

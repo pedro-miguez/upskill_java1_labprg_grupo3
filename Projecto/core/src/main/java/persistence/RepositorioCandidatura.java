@@ -347,7 +347,7 @@ public class RepositorioCandidatura {
      * 
      * @return listaCandidaturas
      */
-    public ArrayList<Candidatura> getAllCandidaturas() {
+    public ArrayList<Candidatura> getAllCandidaturas() throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -373,7 +373,7 @@ public class RepositorioCandidatura {
      * @param emailFreelancer
      * @return listaCandidaturas
      */
-    public ArrayList<Candidatura> getAllCandidaturasFreelancer(Email emailFreelancer) {
+    public ArrayList<Candidatura> getAllCandidaturasFreelancer(Email emailFreelancer) throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 

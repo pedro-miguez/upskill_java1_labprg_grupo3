@@ -140,7 +140,7 @@ public class RepositorioAnuncio {
      * Method to obtain all the advertisements from the list 'Anuncio'.
      * @return montarListaAnuncios(rSetAnuncios)
      */
-    public ArrayList<Anuncio> getAllAnuncios () {
+    public ArrayList<Anuncio> getAllAnuncios () throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -165,7 +165,7 @@ public class RepositorioAnuncio {
      * 
      * @return listaAnuncios
      */
-    public ArrayList<Anuncio> getAllAnunciosCandidatura () {
+    public ArrayList<Anuncio> getAllAnunciosCandidatura () throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -193,7 +193,7 @@ public class RepositorioAnuncio {
      * @param emailColaborador
      * @return listaAnuncios
      */
-    public ArrayList<Anuncio> getAllAnunciosSeriacao (String emailColaborador) {
+    public ArrayList<Anuncio> getAllAnunciosSeriacao (String emailColaborador) throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 

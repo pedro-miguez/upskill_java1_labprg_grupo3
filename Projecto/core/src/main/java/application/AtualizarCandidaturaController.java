@@ -1,6 +1,7 @@
 package application;
 
 import domain.*;
+import exceptions.FetchingProblemException;
 import persistence.RepositorioAnuncio;
 import persistence.RepositorioCandidatura;
 import persistence.RepositorioFreelancer;
@@ -23,7 +24,7 @@ public class AtualizarCandidaturaController {
 
     }
 
-    public ArrayList<Candidatura> getCandidaturasAbertasFreelancer(String emailFreelancer) {
+    public ArrayList<Candidatura> getCandidaturasAbertasFreelancer(String emailFreelancer) throws FetchingProblemException {
         ArrayList<Candidatura> candidaturasFreelancer = RepositorioCandidatura.getInstance().getAllCandidaturasFreelancer(new Email(emailFreelancer));
         ArrayList<Candidatura> candidaturasAbertas = new ArrayList<>();
 

@@ -5,11 +5,13 @@
  */
 package exceptions;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Grupo 3 - Turma 1
  */
-public class FetchingProblemException extends Exception {
+public class FetchingProblemException extends SQLException {
     public FetchingProblemException(String s) {
         super(s);
     }

@@ -1,6 +1,7 @@
 package application;
 
 import domain.*;
+import exceptions.FetchingProblemException;
 import persistence.*;
 
 import java.sql.SQLException;
@@ -134,7 +135,7 @@ public class ServiceController {
      * @param emailColaborador as email of collaborator
      * @return the tasks by organization.
      */
-    public ArrayList<Tarefa> getTarefasOrganizacao(String emailColaborador) {
+    public ArrayList<Tarefa> getTarefasOrganizacao(String emailColaborador) throws FetchingProblemException {
         Organizacao org = RepositorioOrganizacao.getInstance().getOrganizacaoByEmail(new Email(emailColaborador));
 
         return RepositorioTarefa.getInstance().getTarefasOrganizacao(org);
@@ -187,7 +188,7 @@ public class ServiceController {
      * @param emailColaborador
      * @return RepositorioAnuncio.getInstance().getAllAnunciosSeriacao
      */
-    public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador) {
+    public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador) throws FetchingProblemException {
         return RepositorioAnuncio.getInstance().getAllAnunciosSeriacao(emailColaborador);
     }
 

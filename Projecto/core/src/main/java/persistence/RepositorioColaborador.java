@@ -115,7 +115,7 @@ public class RepositorioColaborador implements Serializable {
      * @param email
      * @return montarListaColaboradores(pstmt.executeQuery())
      */
-    public ArrayList<Colaborador> getColaboradoresOrganizacaoByEmail(Email email){
+    public ArrayList<Colaborador> getColaboradoresOrganizacaoByEmail(Email email) throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
