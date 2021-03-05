@@ -211,4 +211,6 @@ public class RepositorioUtilizador {
         }
     }
 
+    public void deleteRoleFromUser(User user) {
+    }
 }

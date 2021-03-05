@@ -58,7 +58,6 @@ public class UsersService {
     }
 
 
-
     public static ListaRoleDTO getRoles() throws SQLException {
         ListaRoleDTO listaRoleDTO = null;
         RepositorioRole repoRole = RepositorioRole.getInstance();
@@ -81,63 +80,56 @@ public class UsersService {
         }
     }
 
-    public static void addRoleToUser(String username, String rolename) throws SQLException {
-
-        /*RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
+    public static boolean addRoleToUser(String username, String rolename) throws Exception {
+        RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);
         if (user == null) {
-            throw new NomeNaoAssociadoException("Username cant be empty!");
+            throw new NomeNaoAssociadoException("User não encontrado");
         }
         RepositorioRole repoRole = RepositorioRole.getInstance();
-        Role role = repoRole.getRoleByUtilizador(username);
-        if (role != null) {
-            repoRole.insertRole(role);
-        } else {
-            throw new ConversaoException("RoleDTO");
+        Role role = repoRole.getRoleByRolename(rolename);
+        user.setRole(role);
+        if (role == null) {
+            throw new Exception("Problema ao adicionar o Role ao utilizador " + username);
         }
-
-    }*/
-    throw new UnsupportedOperationException();
-}
-
-    public static void createUserRole(RoleDTO roleDTO) throws SQLException {
-
-        /*RepositorioRole repoRole = RepositorioRole.getInstance();
-        Role role = Mapper.roleDTO2Role(roleDTO);
-        //ArrayList<Role> role = repoRole.getRoles();
-        if (!(role==null && repoRole.getRoles().contains(role))) {
-            repoRole.insertRole(role);
-        } else {
-            throw new ConversaoException("RoleDTO");
-        }*/
-        throw new UnsupportedOperationException();
+        return repoUser.addRoleToUser(user);
     }
 
-    public static void deleteUserRole(String rolename) throws SQLException {
+    public static void createUserRole(RoleDTO roleDTO) throws Exception {
+        RepositorioRole repoRole = RepositorioRole.getInstance();
+        Role role = Mapper.roleDTO2Role(roleDTO);
+        ArrayList<Role> roles = repoRole.getRoles();
+        if (!roles.contains(role)) {
+            repoRole.insertRole(role);
+        } else {
+            throw new Exception("Erro ao adicionar role");
+        }
+    }
 
-        /*RepositorioRole repoRole = RepositorioRole.getInstance();
-        ArrayList<Role> role = repoRole.getRoles();
-        if (role.contains(rolename)) {
+    public static void deleteUserRole(String rolename) throws Exception {
+        RepositorioRole repoRole = RepositorioRole.getInstance();
+        ArrayList<Role> roles = repoRole.getRoles();
+        Role role = repoRole.getRoleByRolename(rolename);
+        if (roles.contains(role)) {
             repoRole.deleteRole(role);
         } else {
-            throw new ConversaoException("RoleDTO");
-        }*/
-
-        throw new UnsupportedOperationException();
-
+            throw new Exception("Problema ao apagar role");
+        }
     }
 
-    public static void deleteRoleFromUser(String username, String rolename) throws SQLException {
-
-        /*RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
+    public static void deleteRoleFromUser(String username, String rolename) throws Exception {
+        RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);
+
         RepositorioRole repoRole = RepositorioRole.getInstance();
         Role role = repoRole.getRoleByUtilizador(rolename);
-        if (user.getRole()==role) {
-            repoRole.deleteRole(role);
-        } else {
-            throw new ConversaoException("RoleDTO");
-    }*/
-        throw new UnsupportedOperationException();
-}
 
+        if (user.getRole() == role) {
+            repoUser.deleteRoleFromUser(user);
+        } else {
+            throw new Exception("Problma ao apagar role do utilizador " + username);
+        }
+
+    }
+
+}

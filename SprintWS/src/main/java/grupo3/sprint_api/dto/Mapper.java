@@ -43,7 +43,7 @@ public class Mapper {
         ArrayList<RoleDTO> rolesDTO = new ArrayList<>();
         for (Role role : roles) {
             try {
-                RoleDTO roleDTO = role2roleDTO(role);
+                RoleDTO roleDTO = role2RoleDTO(role);
                 rolesDTO.add(roleDTO);
             } catch (NullPointerException e) {
                 //nada é adicionado
@@ -62,4 +62,7 @@ public class Mapper {
     }
 
 
+    public static Role roleDTO2Role(RoleDTO roleDTO) {
+        return new Role(roleDTO.getRolename(), roleDTO.getDescricao());
+    }
 }

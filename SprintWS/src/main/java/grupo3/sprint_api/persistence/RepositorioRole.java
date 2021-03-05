@@ -95,7 +95,7 @@ public class RepositorioRole {
 
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
             pstmt2.setString(1, designacao);
-            ResultSet rSetRole = pstmt.executeQuery();
+            ResultSet rSetRole = pstmt2.executeQuery();
             rSetRole.next();
 
             Role role = montarRole(rSetRole, true);
@@ -104,6 +104,24 @@ public class RepositorioRole {
             return role;
         } catch (SQLException e) {
             throw new NomeNaoAssociadoException("O nome " + nome + " não está associado a nenhum utilizador");
+        }
+    }
+
+    public Role getRoleByRolename(String rolename) {
+        try {
+            Connection conn = connectionHandler.getConnection();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
+            pstmt.setString(1, rolename);
+            ResultSet rSetRole = pstmt.executeQuery();
+            rSetRole.next();
+
+            Role role = montarRole(rSetRole, true);
+
+            pstmt.close();
+            return role;
+        } catch (SQLException e) {
+            throw new NomeNaoAssociadoException("A designacao: " + rolename + " não está associado a nenhum Role");
         }
     }
 
@@ -152,4 +170,6 @@ public class RepositorioRole {
 
     }
 
+    public void deleteRole(Role role) {
+    }
 }
