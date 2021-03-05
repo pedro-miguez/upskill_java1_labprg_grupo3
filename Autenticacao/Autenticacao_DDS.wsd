@@ -1,0 +1,38 @@
+@startuml
+
+title Autenticação - Diagrama de Sequência
+
+actor User
+
+activate User
+
+User -> "AuthenticationUI": 1: Set user_id & password
+
+activate "AuthenticationUI"
+
+"AuthenticationUI" -> "AuthenticationController": 1.1: login(user_id, password)
+
+activate "AuthenticationController"
+
+"AuthenticationController" -> ": Plataforma": 1.1.1: uapi = getUsersAPI()
+
+activate ": Plataforma"
+
+"AuthenticationController" -> "uapi : UsersAPI": 1.1.2: login(user_id, password)
+
+deactivate ": Plataforma"
+
+activate "uapi : UsersAPI"
+
+"AuthenticationUI" --> User: 1.2: Success
+
+deactivate "uapi : UsersAPI"
+
+deactivate "AuthenticationController"
+
+deactivate "AuthenticationUI"
+
+deactivate User
+
+
+@enduml

@@ -128,20 +128,19 @@ begin
 end;
 /
 
-create or replace procedure createUtilizadorAdministrativo(
+create or replace procedure createAdministrativo(
  p_nome utilizador.nome%type,
  p_email utilizador.email%type)
 is
  v_id utilizador.idUtilizador%type;
 begin
- insert into Utilizador(nome, email, palavraPasse, designacao)
- values(p_nome, p_email, p_palavraPasse, 'administrativo') returning idUtilizador into v_id;
+select idUtilizador into v_id from Utilizador where email = p_email;
  insert into Administrativo(idAdministrativo, nome, email) 
  values(v_id, p_nome, p_email);
 end;
 /
 
-create or replace procedure createUtilizadorFreelancer(
+create or replace procedure createFreelancer(
  p_nome utilizador.nome%type
 , p_email utilizador.email%type
 , p_palavraPasse utilizador.palavraPasse%type
@@ -151,10 +150,9 @@ create or replace procedure createUtilizadorFreelancer(
 is
  v_id utilizador.idUtilizador%type;
 begin
- insert into Utilizador(nome, email, palavraPasse, designacao)
- values(p_nome, p_email, p_palavraPasse, 'freelancer') returning idUtilizador into v_id;
- insert into Freelancer(idFreelancer, NIF, nome, telefone, email) 
- values(v_id, p_NIF, p_nome, p_telefone, p_email);
+select idUtilizador into v_id from Utilizador where email = p_email;
+insert into Freelancer(idFreelancer, NIF, nome, telefone, email) 
+values(v_id, p_NIF, p_nome, p_telefone, p_email);
 end;
 /
 
