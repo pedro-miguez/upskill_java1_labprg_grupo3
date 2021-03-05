@@ -114,7 +114,7 @@ public class RepositorioRole {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Role WHERE designacao = ?");
             pstmt.setString(1, rolename);
             ResultSet rSetRole = pstmt.executeQuery();
-            rSetRole.next();
+
 
             Role role = montarRole(rSetRole, true);
 
@@ -133,7 +133,6 @@ public class RepositorioRole {
         try {
             PreparedStatement pstmtRoles = conn.prepareStatement("SELECT * FROM Role");
             ResultSet rSetRoles = pstmtRoles.executeQuery();
-            rSetRoles.next();
             while (rSetRoles.next()) {
                 roles.add(montarRole(rSetRoles, false));
             }
