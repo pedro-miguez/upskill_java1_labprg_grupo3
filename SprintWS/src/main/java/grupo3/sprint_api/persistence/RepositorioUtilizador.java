@@ -11,7 +11,6 @@ import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 import java.sql.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  * Class responsible for creating a repository to store information about Users.
@@ -49,7 +48,7 @@ public class RepositorioUtilizador {
      * @param user
      * @return boolean
      */
-    public boolean insertUtilizador(User user) {
+    public boolean insertUtilizadorComRole(User user) {
         Connection conn = connectionHandler.getConnection();
 
         try {
@@ -62,7 +61,49 @@ public class RepositorioUtilizador {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail().toString());
             pstmt.setString(3, user.getPassword());
-            pstmt.setString(4, user.getRole().getDesignacao());
+            pstmt.setString(4, user.getRole().getRolename());
+
+            pstmt.executeQuery();
+
+            conn.commit();
+            pstmt.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
+        }
+
+        return false;
+
+    }
+
+    /**
+     * Boolean method that checks if a user exists in the repository,
+     * otherwise it is added to it.
+     *
+     * @param user
+     * @return boolean
+     */
+    public boolean insertUtilizadorSemRole(User user) {
+        Connection conn = connectionHandler.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareCall("insert into Utilizador(nome, email, palavraPasse) values (?, ?, ?)");
+            ResultSet rs = null;
+
+
+            conn.setAutoCommit(false);
+
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getEmail().toString());
+            pstmt.setString(3, user.getPassword());
 
             pstmt.executeQuery();
 

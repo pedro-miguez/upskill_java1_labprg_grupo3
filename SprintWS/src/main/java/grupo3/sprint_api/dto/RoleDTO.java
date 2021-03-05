@@ -8,7 +8,7 @@ public class RoleDTO {
 
     public String descricao;
 
-    public String designacao;
+    public String rolename;
 
 
     public RoleDTO() {
@@ -22,12 +22,12 @@ public class RoleDTO {
         this.descricao = descricao;
     }
 
-    public String getDesignacao() {
-        return designacao;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setDesignacao(String designacao) {
-        this.designacao = designacao;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
 }

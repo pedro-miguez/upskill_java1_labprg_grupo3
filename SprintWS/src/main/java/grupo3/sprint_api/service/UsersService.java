@@ -33,25 +33,25 @@ public class UsersService {
             return userDTO;
         } else {
             throw new ConversaoException("UserDTO");
-            
+
         }
     }
 
     public static void registerUser(UserDTO userDTO) throws SQLException {
-        User user = new User(username, password, email);
+        User user = Mapper.userDTO2User(userDTO);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-            repo.insertUtilizador(user);
+            repo.insertUtilizadorSemRole(user);
         } else {
             throw new ConversaoException("UserDTO");
         }
     }
 
     public static void registerUserWithRoles(UserDTO userDTO) throws SQLException {
-        User user = new User(username, password, email, role);
+        User user = Mapper.userDTO2User(userDTO);
         if (user != null) {
             RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
-            repo.insertUtilizador(user);
+            repo.insertUtilizadorComRole(user);
         } else {
             throw new ConversaoException("UserDTO");
         }
@@ -60,19 +60,17 @@ public class UsersService {
 
 
     public static ListaRoleDTO getRoles() throws SQLException {
-
-        /*RepositorioRole repoRole = RepositorioRole.getInstance();
+        ListaRoleDTO listaRoleDTO = null;
+        RepositorioRole repoRole = RepositorioRole.getInstance();
         ArrayList<Role> roles = repoRole.getRoles();
-        ListaRoleDTO listaRoleDTO = Mapper.listaRole2listaRoleDTO(roles);
+        listaRoleDTO = Mapper.listaRole2listaRoleDTO(roles);
 
         return listaRoleDTO;
-    }*/
-        throw new UnsupportedOperationException();
+
     }
 
     public static RoleDTO getUserRoles(String username) throws SQLException {
-
-        /*RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
+        RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);
         Role role = user.getRole();
         RoleDTO roleDTO = Mapper.role2RoleDTO(role);
@@ -80,9 +78,7 @@ public class UsersService {
             return roleDTO;
         } else {
             throw new ConversaoException("RoleDTO");
-        };
-    }*/
-        throw new UnsupportedOperationException();
+        }
     }
 
     public static void addRoleToUser(String username, String rolename) throws SQLException {

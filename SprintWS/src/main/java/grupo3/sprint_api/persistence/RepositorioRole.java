@@ -1,7 +1,6 @@
 package grupo3.sprint_api.persistence;
 
 import grupo3.sprint_api.domain.Role;
-import grupo3.sprint_api.domain.User;
 import grupo3.sprint_api.exception.FetchingProblemException;
 import grupo3.sprint_api.exception.NomeNaoAssociadoException;
 
@@ -54,7 +53,7 @@ public class RepositorioRole {
 
             conn.setAutoCommit(false);
 
-            pstmt.setString(1, role.getDesignacao());
+            pstmt.setString(1, role.getRolename());
             pstmt.setString(2, role.getDescricao());
 
 

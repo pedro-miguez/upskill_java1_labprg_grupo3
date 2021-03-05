@@ -1,7 +1,5 @@
 package grupo3.sprint_api.controller;
 
-import grupo3.sprint_api.domain.Context;
-import grupo3.sprint_api.domain.Email;
 import grupo3.sprint_api.dto.*;
 import grupo3.sprint_api.service.AuthenticationService;
 import grupo3.sprint_api.service.UsersService;
@@ -24,7 +22,7 @@ public class RestAPIController {
     public ResponseEntity<?> test() {
         RoleDTO roleDTO = new RoleDTO();
         roleDTO.setDescricao("desc");
-        roleDTO.setDesignacao("design");
+        roleDTO.setRolename("design");
         return new ResponseEntity<>(roleDTO, HttpStatus.OK);
     }
 
@@ -144,7 +142,7 @@ public class RestAPIController {
 
             RoleDTO roleDTO = new RoleDTO();
             roleDTO.setDescricao(description);
-            roleDTO.setDesignacao(designacao);
+            roleDTO.setRolename(designacao);
 
             UsersService.createUserRole(roleDTO);
 
