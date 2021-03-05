@@ -1,4 +1,4 @@
-create or replace procedure createUtilizadorGestor(
+create or replace procedure createGestor(
  p_nome utilizador.nome%type
 , p_email utilizador.email%type
 , p_palavraPasse utilizador.palavraPasse%type
@@ -7,11 +7,10 @@ create or replace procedure createUtilizadorGestor(
 is
  v_id utilizador.idUtilizador%type;
 begin
- insert into Utilizador(nome, email, palavraPasse, designacao)
- values(p_nome, p_email, p_palavraPasse, 'gestor') returning idUtilizador into v_id;
- insert into Colaborador(idColaborador, idOrganizacao, nome, funcao, telefone, email) 
- values(v_id, p_idOrganizacao, p_nome, 'gestor', p_telefone, p_email);
- update Organizacao set idgestor = v_id where idOrganizacao = p_idOrganizacao;
+select idUtilizador into v_id from Utilizador where email = p_email;
+insert into Colaborador(idColaborador, idOrganizacao, nome, funcao, telefone, email) 
+values(v_id, p_idOrganizacao, p_nome, 'gestor', p_telefone, p_email);
+update Organizacao set idgestor = v_id where idOrganizacao = p_idOrganizacao;
 end;
 /
 
