@@ -8,6 +8,14 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class allows you to obtain a context key that identifies a user session.
+ * This context key will be needed to run all of the remaining methods available.
+ * This key is valid for a period of time (in milliseconds) which is returned by
+ * the API after obtaining the context, until it is a login or user registration
+ * is performed. If the login or registration is not carried out user within the
+ * specified period of time, a new context key must be obtained.
+ */
 public class Context {
 
     private String context;
