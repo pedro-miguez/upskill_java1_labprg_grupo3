@@ -25,6 +25,7 @@ public class RepositorioUtilizador implements Serializable {
 
     private List<User> utilizadoresRegistados;
 
+
     /**
      * Static method that returns a unique reference to the class object,
      * that implements a singleton.
