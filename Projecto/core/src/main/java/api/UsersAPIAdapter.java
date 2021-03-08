@@ -40,7 +40,7 @@ public class UsersAPIAdapter implements Serializable {
                     break;
             }
             JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
-            app_context = bodyJSON.getString("app_context");
+            app_context = bodyJSON.getString("appContext");
         }
         return app_context;
     }

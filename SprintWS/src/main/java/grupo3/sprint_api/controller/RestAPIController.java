@@ -143,11 +143,11 @@ public class RestAPIController {
 
     @RequestMapping(value = "/roles",
             method = RequestMethod.POST,
-            params = { "app_context", "rolenames", "description"},
+            params = { "app_context", "rolename", "description"},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createUserRole(@RequestParam("app_context") String appContext,
                                             @RequestParam("description") String description,
-                                            @RequestParam("rolenames") String designacao) {
+                                            @RequestParam("rolename") String designacao) {
         try {
 
             ContextDTO contextDTO = new ContextDTO();
@@ -173,10 +173,10 @@ public class RestAPIController {
 
     @RequestMapping(value = "/roles",
             method = RequestMethod.DELETE,
-            params = { "app_context", "rolenames"},
+            params = { "app_context", "rolename"},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteUserRole(@RequestParam("app_context") String appContext,
-                                            @RequestParam("rolenames") String rolename) {
+                                            @RequestParam("rolename") String rolename) {
         try {
 
             ContextDTO contextDTO = new ContextDTO();

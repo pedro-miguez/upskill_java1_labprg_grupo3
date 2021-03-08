@@ -48,12 +48,11 @@ public class RepositorioOrganizacao implements Serializable {
      * @param organizacao
      * @return boolean
      */
-    public boolean insertOrganizacao(Organizacao organizacao, Colaborador gestor, 
-                                        String password) throws SQLException {
+    public boolean insertOrganizacao(Organizacao organizacao, Colaborador gestor) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
-        CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        CallableStatement cs = conn.prepareCall ("{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
         try {
             conn.setAutoCommit(false);
@@ -68,9 +67,7 @@ public class RepositorioOrganizacao implements Serializable {
             cs.setString(8, organizacao.getEnderecoPostal().getLocalidade());
             cs.setString(9, gestor.getNome());
             cs.setString(10, gestor.getEmail().toString());
-            cs.setString(11, password);
-            cs.setInt(12, Integer.parseInt(gestor.getTelefone().toString()));
-
+            cs.setInt(11, Integer.parseInt(gestor.getTelefone().toString()));
 
             cs.executeQuery();
 

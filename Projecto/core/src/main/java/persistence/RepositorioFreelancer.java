@@ -51,20 +51,18 @@ public class RepositorioFreelancer implements Serializable {
      * @return boolean
      * @throws SQLException 
      */
-    public boolean insertUtilizadorFreelancer(Freelancer freelancer, 
-                                                String password) throws SQLException {
+    public boolean insertUtilizadorFreelancer(Freelancer freelancer) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
 
         try {
             conn.setAutoCommit(false);
 
-            CallableStatement csCreateFreelancer = conn.prepareCall("{CALL createUtilizadorFreelancer(?, ?, ?, ? ,?)}");
+            CallableStatement csCreateFreelancer = conn.prepareCall("{CALL createFreelancer(?, ?, ?, ?)}");
             csCreateFreelancer.setString(1, freelancer.getNome());
             csCreateFreelancer.setString(2, freelancer.getEmail().toString());
-            csCreateFreelancer.setString(3, password);
-            csCreateFreelancer.setInt(4, Integer.parseInt(freelancer.getTelefone().toString()));
-            csCreateFreelancer.setInt(5, Integer.parseInt(freelancer.getNif().toString()));
+            csCreateFreelancer.setInt(3, Integer.parseInt(freelancer.getTelefone().toString()));
+            csCreateFreelancer.setInt(4, Integer.parseInt(freelancer.getNif().toString()));
             csCreateFreelancer.executeQuery();
 
 

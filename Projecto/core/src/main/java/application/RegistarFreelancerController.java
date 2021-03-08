@@ -26,9 +26,9 @@ public class RegistarFreelancerController {
      * Freelancer Registry boolean.
      *
      * @param nomeFreelancer as freelancer name
-     * @param telefone       as freelancer contact
-     * @param email          as freelancer email
-     * @param nif            as freelancer nif
+     * @param contactoFreelancer       as freelancer contact
+     * @param emailFreelancer          as freelancer email
+     * @param nifFreelancer            as freelancer nif
      * @param reconhecimento as freelancer tec skills
      * @param habilitacoes   as freelancer qualifications
      * @return the boolean
@@ -50,7 +50,7 @@ public class RegistarFreelancerController {
         System.out.println(password);
 
         if (!password.equals("failed")) {
-            return repoFlr.insertUtilizadorFreelancer(freelancer, password);
+            return repoFlr.insertUtilizadorFreelancer(freelancer);
         } else {
             return false;
         }
