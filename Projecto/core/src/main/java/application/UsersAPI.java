@@ -64,7 +64,7 @@ public class UsersAPI implements Serializable {
     public String getEmail() {
         String session = uapia.getSession();
         JSONObject bodyJSON = new JSONObject(session);
-        return bodyJSON.getString("email");
+        return bodyJSON.getJSONObject("user").getString("email");
     }
 
     /**

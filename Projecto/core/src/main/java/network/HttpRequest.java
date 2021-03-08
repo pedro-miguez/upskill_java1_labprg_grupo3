@@ -17,7 +17,7 @@ public class HttpRequest {
      */
     public HttpRequest(HttpRequestType type, String url) {
         this.type = type;
-        this.url = Constants.HOST + url;
+        this.url = Constants.HOST + url.replace(" ", "!");
     }
 
     /**

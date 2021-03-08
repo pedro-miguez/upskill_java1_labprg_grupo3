@@ -1,10 +1,8 @@
 package network;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Current class has the tools to establish a connection and set up a request with the webservice.

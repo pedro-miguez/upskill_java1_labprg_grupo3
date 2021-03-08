@@ -240,7 +240,7 @@ public class RestAPIController {
             }
 
             UserDTO userDTO = new UserDTO();
-            userDTO.setUsername(username);
+            userDTO.setUsername(username.replace("!", " "));
             userDTO.setEmail(email);
             userDTO.setPassword(password);
 
@@ -273,7 +273,7 @@ public class RestAPIController {
             UserDTO userDTO = new UserDTO();
             userDTO.setEmail(email);
             userDTO.setPassword(password);
-            userDTO.setUsername(username);
+            userDTO.setUsername(username.replace("!", " "));
 
 
             UsersService.registerUserWithRoles(userDTO, rolename);
@@ -300,7 +300,7 @@ public class RestAPIController {
             }
 
             LoginDTO loginDTO = new LoginDTO();
-            loginDTO.setUsername(username);
+            loginDTO.setUsername(username.replace("!", " "));
             loginDTO.setPassword(password);
 
             if (AuthenticationService.login(loginDTO, contextDTO)) {
