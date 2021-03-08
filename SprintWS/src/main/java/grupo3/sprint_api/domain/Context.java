@@ -1,8 +1,12 @@
 package grupo3.sprint_api.domain;
 
 import grupo3.sprint_api.exception.AppKeyInvalidaException;
+import grupo3.sprint_api.persistence.RepositorioAuth;
 
+import java.sql.SQLException;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Context {
 
@@ -15,6 +19,7 @@ public class Context {
         if (appKey.equals(APP_KEY)) {
             setContext(generateContext());
             setValid(true);
+            scheduleCheckTimeout();
         } else {
             throw new AppKeyInvalidaException("App Key inválida");
         }
@@ -52,5 +57,21 @@ public class Context {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+    }
+
+    public void scheduleCheckTimeout() {
+        TimerTask task = new TimerTask() {
+            public void run() {
+                try {
+                    RepositorioAuth.getInstance().checkTimeout(getContext());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        };
+        Timer timer = new Timer("Timer");
+
+        long delay = 300000L;
+        timer.schedule(task, delay);
     }
 }

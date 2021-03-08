@@ -263,4 +263,30 @@ public class RepositorioAuth {
             throw new FetchingProblemException("Problema a montar o context");
         }
     }
+
+    //method for timeout context
+    public void checkTimeout(String context) {
+        Connection conn = connectionHandler.getConnection();
+
+        try {
+            conn.setAutoCommit(false);
+            CallableStatement csUpdateContext = conn.prepareCall("call checkTimeout(?)");
+            csUpdateContext.setString(1, context);
+
+            csUpdateContext.executeQuery();
+
+            conn.commit();
+            csUpdateContext.close();
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                conn.rollback();
+            } catch (SQLException excep) {
+                excep.getErrorCode();
+            }
+        }
+
+    }
 }
