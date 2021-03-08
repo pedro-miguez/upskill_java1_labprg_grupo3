@@ -21,8 +21,7 @@ public class RepositorioRole {
     }
 
     /**
-     * Static method that returns a unique reference to the class object,
-     * that implements a singleton.
+     * Static method that returns a unique reference to the class object.
      *
      * @return instance
      */
