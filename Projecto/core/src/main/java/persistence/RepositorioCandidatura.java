@@ -107,6 +107,7 @@ public class RepositorioCandidatura {
         return false;
     }
 
+
     public boolean updateCandidatura(Candidatura candidatura) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -177,6 +178,7 @@ public class RepositorioCandidatura {
 
         return false;
     }
+
 
     public boolean deleteCandidatura(Candidatura candidatura) throws SQLException {
 
@@ -344,13 +346,12 @@ public class RepositorioCandidatura {
         }
     }
 
-    
+
     /**
      * Gets from the list 'Candidatura' all the applications. 
      * 
      * @return listaCandidaturas
      */
-
     public ArrayList<Candidatura> getAllCandidaturas() throws FetchingProblemException {
 
         try {
@@ -378,7 +379,6 @@ public class RepositorioCandidatura {
      * @param emailFreelancer
      * @return listaCandidaturas
      */
-
     public ArrayList<Candidatura> getAllCandidaturasFreelancer(Email emailFreelancer) throws FetchingProblemException {
 
         try {
@@ -410,8 +410,7 @@ public class RepositorioCandidatura {
             throw new FetchingProblemException("Problemas ao montar a lista de candidaturas");
         }
     }
-
-
+    
 
     private Candidatura montarCandidatura(ResultSet row, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
