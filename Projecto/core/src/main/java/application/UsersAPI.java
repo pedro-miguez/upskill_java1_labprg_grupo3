@@ -75,7 +75,7 @@ public class UsersAPI implements Serializable {
     public String getRole() {
         String session = uapia.getSession();
         JSONObject bodyJSON = new JSONObject(session);
-        return bodyJSON.getString("rolenames");
+        return bodyJSON.getJSONObject("user").getJSONObject("role").getString("rolenames");
     }
 
     /**

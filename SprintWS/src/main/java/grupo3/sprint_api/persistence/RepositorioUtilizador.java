@@ -203,9 +203,9 @@ public class RepositorioUtilizador {
 
         try {
             Connection conn = connectionHandler.getConnection();
-            if (row.getRow() < 1) {
-                row.next();
-            }
+
+            row.next();
+
             //Parâmetros do User disponiveis
 
             String nome = row.getString(2);
