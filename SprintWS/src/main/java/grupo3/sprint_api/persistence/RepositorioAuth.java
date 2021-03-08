@@ -25,8 +25,6 @@ public class RepositorioAuth {
      *
      * @return instance
      */
-
-
     public static RepositorioAuth getInstance() throws SQLException {
         if(instance == null){
             instance = new RepositorioAuth();
@@ -266,7 +264,12 @@ public class RepositorioAuth {
         }
     }
 
-    //method for timeout context
+
+    /**
+     * Method for timeout context.
+     *
+     * @param context
+     */
     public void checkTimeout(String context) {
         Connection conn = connectionHandler.getConnection();
 

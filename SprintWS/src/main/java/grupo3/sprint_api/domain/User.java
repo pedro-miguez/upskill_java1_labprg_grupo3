@@ -27,6 +27,13 @@ public class User implements Serializable {
         setRole(role);
     }
 
+    /**
+     * Instantiates a new User with set parameters.
+     *
+     * @param username
+     * @param password
+     * @param email
+     */
     public User(String username, String password, Email email) {
         setUsername(username);
         setPassword(password);
