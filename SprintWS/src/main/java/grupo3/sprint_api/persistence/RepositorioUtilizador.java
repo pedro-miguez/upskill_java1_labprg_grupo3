@@ -184,7 +184,7 @@ public class RepositorioUtilizador {
     public User getUtilizadorByNome(String nome) {
         try {
             Connection conn = connectionHandler.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where nome = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Utilizador where UPPER(nome) = UPPER(?)");
             pstmt.setString(1, nome);
 
             User user = montarUtilizador(pstmt.executeQuery());
