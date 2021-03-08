@@ -240,6 +240,7 @@ public class RepositorioCandidatura {
 
     }
 
+
     /**
      * Gets an application by its advertisement of the freelancer.
      * 
@@ -296,6 +297,7 @@ public class RepositorioCandidatura {
         }
     }
 
+
     /**
      * Gets from the list 'Candidatura' the applications by its advertisements.
      * 
@@ -342,6 +344,7 @@ public class RepositorioCandidatura {
         }
     }
 
+    
     /**
      * Gets from the list 'Candidatura' all the applications. 
      * 
