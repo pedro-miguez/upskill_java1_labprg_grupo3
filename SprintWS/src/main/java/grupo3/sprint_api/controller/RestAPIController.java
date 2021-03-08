@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class RestAPIController {
 
+    /**
+     * It allows to obtain the data of the active session.
+     *
+     * @param appContext
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/session",
             method = RequestMethod.GET,
             params = { "app_context"},
@@ -43,6 +49,17 @@ public class RestAPIController {
         }
     }
 
+    /**
+     * Allows you to obtain a context key that identifies a user session.
+     * This context key will be needed to run all of the remaining methods available.
+     * This key is valid for a period of time (in milliseconds) that is returned
+     * by the API after obtaining the context, until it is a login or user registration
+     * is performed. If the login or registration is not carried out user within the
+     * specified period of time, a new context key must be obtained.
+     *
+     * @param appKey
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/context",
             method = RequestMethod.GET,
             params = { "app_key"},
@@ -61,6 +78,12 @@ public class RestAPIController {
         }
     }
 
+    /**
+     * Allows you to obtain all the roles / functions existing in the system.
+     *
+     * @param appContext
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/roles",
             method = RequestMethod.GET,
             params = { "app_context"},
@@ -86,6 +109,13 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Allows you to get the list of roles / functions associated with a given user.
+     *
+     * @param appContext
+     * @param username
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/userRoles",
             method = RequestMethod.GET,
             params = { "app_context", "user_id"},
@@ -114,6 +144,14 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Allows associate roles / functions to a given user.
+     *
+     * @param appContext
+     * @param username
+     * @param designacao
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/userRoles",
             method = RequestMethod.POST,
             params = { "app_context", "user_id", "rolenames"},
@@ -141,6 +179,14 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Allows you to define the existence of a new role / function of interest for the application.
+     *
+     * @param appContext
+     * @param description
+     * @param designacao
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/roles",
             method = RequestMethod.POST,
             params = { "app_context", "rolename", "description"},
@@ -171,6 +217,13 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Allows you to eliminate the role / function existing in the system only if it does not have associated users.
+     *
+     * @param appContext
+     * @param rolename
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/roles",
             method = RequestMethod.DELETE,
             params = { "app_context", "rolename"},
@@ -197,6 +250,14 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Allows eliminate the association of roles / functions to a given user.
+     *
+     * @param appContext
+     * @param username
+     * @param rolename
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/userRoles",
             method = RequestMethod.DELETE,
             params = { "app_context", "user_id", "rolenames"},
@@ -222,6 +283,15 @@ public class RestAPIController {
     }
 
 
+    /**
+     * It allows defining the existence of a new user who can use the application.
+     *
+     * @param appContext
+     * @param username
+     * @param email
+     * @param password
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/registerUser",
             method = RequestMethod.POST,
             params = { "app_context", "username", "email", "password" },
@@ -252,6 +322,17 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Similar to the previous method, with the advantage
+     * to immediately associate a role to that user.
+     *
+     * @param appContext
+     * @param username
+     * @param email
+     * @param password
+     * @param rolename
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/registerUserWithRoles",
             method = RequestMethod.POST,
             params = { "app_context", "username", "email", "password", "rolenames" },
@@ -284,6 +365,15 @@ public class RestAPIController {
     }
 
 
+    /**
+     * Allows you to authenticate a user with a view to using the application.
+     * The user_id parameter can be the username or the user's email.
+     *
+     * @param appContext
+     * @param username
+     * @param password
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/login",
             method = RequestMethod.POST,
             params = { "app_context", "user_id", "password" },
@@ -314,6 +404,12 @@ public class RestAPIController {
     }
 
 
+    /**
+     * End the user session that is active on the time.
+     *
+     * @param appContext
+     * @return ResponseEntity
+     */
     @RequestMapping(value = "/logout",
             method = RequestMethod.POST,
             params = { "app_context" },
