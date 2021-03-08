@@ -23,6 +23,11 @@ public class Context {
 
     private static final String APP_KEY = "IBD0DEHBDID62EB1EAZBEoA95E3cB5BD5135d01F0FqE6eDDoD4yDEX05RFEF19q9BY04KBE03A919hAFM06";
 
+    /**
+     * Instantiates a new Context with set parameter.
+     *
+     * @param appKey
+     */
     public Context (String appKey) {
         if (appKey.equals(APP_KEY)) {
             setContext(generateContext());
@@ -33,27 +38,58 @@ public class Context {
         }
     }
 
+    /**
+     * Instantiates a new Context with set parameters.
+     *
+     * @param contextKey
+     * @param valido
+     */
     public Context (String contextKey, boolean valido) {
         this.context = contextKey;
         this.valid = valido;
     }
 
+    /**
+     * Gets the Context.
+     *
+     * @return context
+     */
     public String getContext() {
         return context;
     }
 
+    /**
+     * Sets the Context.
+     *
+     * @param context
+     */
     public void setContext(String context) {
         this.context = context;
     }
 
+    /**
+     * Boolean method which checks if a function is valid.
+     *
+     * @return valid
+     */
     public boolean isValid() {
         return valid;
     }
 
+    /**
+     * Sets an valid function.
+     *
+     * @param valid
+     */
     public void setValid(boolean valid) {
         this.valid = valid;
     }
 
+    /**
+     * Method which generates an (random) context.
+     *
+     * @return random
+     */
     public String generateContext() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
@@ -67,6 +103,9 @@ public class Context {
                 .toString();
     }
 
+    /**
+     * Method that defines a time limit (timeout) for a given operation.
+     */
     public void scheduleCheckTimeout() {
         TimerTask task = new TimerTask() {
             public void run() {
