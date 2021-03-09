@@ -34,8 +34,6 @@ public class SendEmailSMTP {
 
     public static void SendEmail(String username, String password){
 
-
-
         Properties prop = System.getProperties();
         prop.put("mail.smtp.host", SMTP_SERVER); //optional, defined in SMTPTransport
         prop.put("mail.smtp.auth", "true");
