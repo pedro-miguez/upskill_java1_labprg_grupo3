@@ -5,16 +5,27 @@ import java.util.ArrayList;
 
 public class ListaRoleDTO {
 
-        private ArrayList<RoleDTO> roles;
+    private ArrayList<RoleDTO> roles;
 
-        public ListaRoleDTO() {
+    /**
+     * Represents an empty constructor.
+     */
+    public ListaRoleDTO() {
         }
 
-        public ArrayList<RoleDTO> getRoles() {
+    /**
+     * Gets an list of 'Roles'.
+     * @return roles
+     */
+    public ArrayList<RoleDTO> getRoles() {
             return roles;
         }
 
-        public void setRoles(ArrayList<RoleDTO> roles) {
+    /**
+     * Sets an list of 'roles'.
+     * @param roles
+     */
+    public void setRoles(ArrayList<RoleDTO> roles) {
             this.roles = roles;
         }
 

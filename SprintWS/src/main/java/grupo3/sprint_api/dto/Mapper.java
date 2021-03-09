@@ -4,6 +4,14 @@ import grupo3.sprint_api.domain.*;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for conversions that need to happen between
+ * the internal entities of a Spring application and the external DTOs
+ * (Data Transfer Objects) that are published back to the client.
+ *
+ * It represents the conversion from Entity to DTO, and from DTO to Entity
+ * in a Spring REST API, by using the model mapper library.
+ */
 public class Mapper {
     public static ContextDTO context2ContextDTO(Context context) {
         ContextDTO contextDTO = new ContextDTO();
