@@ -290,6 +290,7 @@ public class RepositorioAuth {
                 conn.rollback();
             } catch (SQLException excep) {
                 excep.getErrorCode();
+                
             }
         }
 
