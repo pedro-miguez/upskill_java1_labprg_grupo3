@@ -174,7 +174,7 @@ public class RepositorioAuth {
         return false;
     }
 
-    
+
 
     /**
      * Method which gets a Session by its Context.
