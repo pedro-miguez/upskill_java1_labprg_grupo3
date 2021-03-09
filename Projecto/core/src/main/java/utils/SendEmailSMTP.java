@@ -1,4 +1,4 @@
-/*
+
 
 
 package utils;
@@ -30,9 +30,11 @@ public class SendEmailSMTP {
 
 
     private static final String EMAIL_SUBJECT = "Hello, this is your password to access T4J";
-    private static final String EMAIL_TEXT = "Please log in using the password ...";
 
-    public static void main(String[] args) {
+
+    public static void SendEmail(String username, String password){
+
+
 
         Properties prop = System.getProperties();
         prop.put("mail.smtp.host", SMTP_SERVER); //optional, defined in SMTPTransport
@@ -63,7 +65,7 @@ public class SendEmailSMTP {
             msg.setSubject(EMAIL_SUBJECT);
 
             // content
-            msg.setText(EMAIL_TEXT);
+            msg.setText("This is your username: " + username + " and password: " + password);
 
             msg.setSentDate(new Date());
 
@@ -88,4 +90,4 @@ public class SendEmailSMTP {
     }
 }
 
-*/
+
