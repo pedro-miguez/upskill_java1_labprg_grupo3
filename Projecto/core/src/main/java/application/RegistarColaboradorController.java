@@ -7,6 +7,7 @@ package application;
 
 import domain.*;
 import persistence.RepositorioColaborador;
+import utils.SendEmailSMTP;
 
 import java.sql.SQLException;
 
@@ -41,7 +42,8 @@ public class RegistarColaboradorController {
                                     contactoColaborador, emailColaborador, funcao);
 
         String password = authController.registarColaboradorComoUtilizador(colaborador);
-        System.out.println(password);
+
+        SendEmailSMTP.SendEmail(nomeColaborador, password);
 
         if (!password.equals("failed")) {
             return repoColab.insertUtilizadorColaborador(colaborador, password, gestorEmail);
@@ -49,4 +51,6 @@ public class RegistarColaboradorController {
             return false;
         }
     }
+
+
 }
