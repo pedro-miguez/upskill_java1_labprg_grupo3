@@ -229,3 +229,7 @@ select idAnuncio into v_idA from Anuncio where IdTarefa = v_idT;
 return v_idA;
 end;
 /
+
+create or replace procedure createCandidatura(
+    
+)
