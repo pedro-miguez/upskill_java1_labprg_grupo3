@@ -65,7 +65,7 @@ public class SendEmailSMTP {
             msg.setSubject(EMAIL_SUBJECT);
 
             // content
-            msg.setText("This is your username: " + username + " and password: " + password);
+            msg.setText("Hi, there. You have recently been registered at our platform. This is your username: " + username + " and your password: " + password);
 
             msg.setSentDate(new Date());
 
