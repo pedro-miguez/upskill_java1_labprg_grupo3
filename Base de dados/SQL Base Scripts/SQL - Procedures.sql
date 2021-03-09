@@ -230,6 +230,13 @@ return v_idA;
 end;
 /
 
-create or replace procedure createCandidatura(
-    
-)
+create or replace procedure createUtilizador(
+    p_username Utilizador.nome%type,
+    p_email Utilizador.email%type,
+    p_palavraPasse Utilizador.palavraPasse%type
+) 
+is
+begin 
+insert into Utilizador(nome, email, palavraPasse) values (p_username, p_email, p_palavraPasse); 
+end;
+/
