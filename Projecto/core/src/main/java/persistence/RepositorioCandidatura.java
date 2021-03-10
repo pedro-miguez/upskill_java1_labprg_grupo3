@@ -373,6 +373,7 @@ public class RepositorioCandidatura {
         }
     }
 
+
     /**
      * Gets from the list 'Candidatura' all the applications of the freelancer.
      * 
@@ -410,7 +411,6 @@ public class RepositorioCandidatura {
             throw new FetchingProblemException("Problemas ao montar a lista de candidaturas");
         }
     }
-
 
     private Candidatura montarCandidatura(ResultSet row, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();

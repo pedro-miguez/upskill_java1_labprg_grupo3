@@ -49,7 +49,8 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
         setTxtApresentacao(txtApresentacao);
         setTxtMotivacao(txtMotivacao);
     }
-    
+
+
     /**
      * Get advertisement.
      * @return anuncio
@@ -57,7 +58,8 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     public Anuncio getAnuncio() {
         return this.anuncio;
     }
-    
+
+
     /**
      * Get freelancer.
      * @return freelancer
