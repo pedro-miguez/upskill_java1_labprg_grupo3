@@ -27,10 +27,8 @@ public class SendEmailSMTP {
     private static final String EMAIL_TO = "upskilljavaturma1grupo3@gmail.com";
 
     private static final String EMAIL_TO_CC = "";
-
-
+    
     private static final String EMAIL_SUBJECT = "Hello, this is your password to access T4J";
-
 
     public static void SendEmail(String username, String password){
 
