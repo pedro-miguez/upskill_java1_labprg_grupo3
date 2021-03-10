@@ -10,6 +10,11 @@ public class Role {
     private String rolename;
     private String descricao;
 
+    /**
+     * Constructor of the class Role.
+     * @param rolename
+     * @param descricao
+     */
     public Role(String rolename, String descricao){
         this.rolename = rolename;
         this.descricao = descricao;
