@@ -6,6 +6,7 @@ public class ErroDTO {
 
     /**
      * Represents the constructor of the class 'ErroDTO'.
+     *
      * @param e
      */
     public ErroDTO(Exception e) {
@@ -21,6 +22,7 @@ public class ErroDTO {
 
     /**
      * Gets an error message.
+     *
      * @return mensagemErro
      */
     public String getMensagemErro() {
@@ -29,6 +31,7 @@ public class ErroDTO {
 
     /**
      * Sets an error message.
+     *
      * @param mensagemErro
      */
     public void setMensagemErro(String mensagemErro) {

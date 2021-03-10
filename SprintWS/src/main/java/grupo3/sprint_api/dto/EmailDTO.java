@@ -16,6 +16,7 @@ public class EmailDTO {
 
     /**
      * Sets an email.
+     *
      * @param email
      */
     public void setEmail(String email) {
@@ -24,6 +25,7 @@ public class EmailDTO {
 
     /**
      * Gets an email.
+     *
      * @return email
      */
     public String getEmail() {

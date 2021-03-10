@@ -13,6 +13,7 @@ public class LoginDTO {
 
     /**
      * Gets an Username.
+     *
      * @return username
      */
     public String getUsername() {
@@ -21,6 +22,7 @@ public class LoginDTO {
 
     /**
      * Sets an Username.
+     *
      * @param username
      */
     public void setUsername(String username) {
@@ -29,6 +31,7 @@ public class LoginDTO {
 
     /**
      * Gets an password.
+     *
      * @return password
      */
     public String getPassword() {
@@ -37,6 +40,7 @@ public class LoginDTO {
 
     /**
      * Sets an password.
+     *
      * @param password
      */
     public void setPassword(String password) {

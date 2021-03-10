@@ -34,6 +34,7 @@ public class UserDTO {
 
     /**
      * Gets the Username.
+     *
      * @return username
      */
     public String getUsername() {
@@ -42,6 +43,7 @@ public class UserDTO {
 
     /**
      * Sets the Username.
+     *
      * @param username
      */
     public void setUsername(String username) {
@@ -50,6 +52,7 @@ public class UserDTO {
 
     /**
      * Gets the password.
+     *
      * @return password
      */
     public String getPassword() {
@@ -58,6 +61,7 @@ public class UserDTO {
 
     /**
      * Sets the password.
+     *
      * @param password
      */
     public void setPassword(String password) {
@@ -66,6 +70,7 @@ public class UserDTO {
 
     /**
      * Gets the email.
+     *
      * @return email
      */
     public String getEmail() {
@@ -74,6 +79,7 @@ public class UserDTO {
 
     /**
      * Sets the email.
+     *
      * @param email
      */
     public void setEmail(String email) {
@@ -82,6 +88,7 @@ public class UserDTO {
 
     /**
      * Gets the role.
+     *
      * @return role
      */
     public RoleDTO getRole() {
@@ -90,6 +97,7 @@ public class UserDTO {
 
     /**
      * Sets the role.
+     * 
      * @param role
      */
     public void setRole(RoleDTO role) {

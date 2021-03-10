@@ -16,6 +16,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of Context to ContextDTO.
+     *
      * @param context
      * @return contextDTO
      */
@@ -27,6 +28,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of User to UserDTO.
+     *
      * @param user
      * @return userDTO
      */
@@ -46,6 +48,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of Session to SessionDTO.
+     *
      * @param session
      * @return sessionDTO
      */
@@ -60,6 +63,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of UserDTO to User.
+     *
      * @param userDTO
      * @return User
      */
@@ -74,6 +78,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of ListaRole to ListaRoleDTO.
+     *
      * @param roles
      * @return listaRoleDTO
      */
@@ -94,6 +99,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of Role to RoleDTO.
+     *
      * @param role
      * @return roleDTO
      */
@@ -107,6 +113,7 @@ public class Mapper {
 
     /**
      * Method that represents the conversion of RoleDTO to Role.
+     *
      * @param roleDTO
      * @return Role
      */
