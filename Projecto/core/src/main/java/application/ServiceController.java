@@ -178,10 +178,11 @@ public class ServiceController {
      * @return the complete representation of a application object by its advertisement
      * of a freelancer.
      */
+    
     public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
         return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
     }
-    
+
 
     /**
      * Obtains from the list 'Anuncio' all the advertisements for serialization.
