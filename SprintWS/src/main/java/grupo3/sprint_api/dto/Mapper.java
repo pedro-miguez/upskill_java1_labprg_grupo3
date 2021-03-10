@@ -13,12 +13,23 @@ import java.util.ArrayList;
  * in a Spring REST API, by using the model mapper library.
  */
 public class Mapper {
+
+    /**
+     * Method that represents the conversion of Context to ContextDTO.
+     * @param context
+     * @return contextDTO
+     */
     public static ContextDTO context2ContextDTO(Context context) {
         ContextDTO contextDTO = new ContextDTO();
         contextDTO.setAppContext(context.getContext());
         return contextDTO;
     }
 
+    /**
+     * Method that represents the conversion of User to UserDTO.
+     * @param user
+     * @return userDTO
+     */
     public static UserDTO user2UserDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(user.getUsername());
@@ -33,6 +44,11 @@ public class Mapper {
         return userDTO;
     }
 
+    /**
+     * Method that represents the conversion of Session to SessionDTO.
+     * @param session
+     * @return sessionDTO
+     */
     public static SessionDTO session2SessionDTO(Session session) {
         SessionDTO sessionDTO = new SessionDTO();
         UserDTO userDTO = Mapper.user2UserDTO(session.getUser());
@@ -42,6 +58,11 @@ public class Mapper {
         return sessionDTO;
     }
 
+    /**
+     * Method that represents the conversion of UserDTO to User.
+     * @param userDTO
+     * @return User
+     */
     public static User userDTO2User(UserDTO userDTO) {
         if (userDTO.getRole() != null) {
             Role role = new Role(userDTO.getRole().getRolenames(), userDTO.getRole().getDescricao());
@@ -51,6 +72,11 @@ public class Mapper {
         }
     }
 
+    /**
+     * Method that represents the conversion of ListaRole to ListaRoleDTO.
+     * @param roles
+     * @return listaRoleDTO
+     */
     public static ListaRoleDTO listaRole2listaRoleDTO(ArrayList<Role> roles) {
         ArrayList<RoleDTO> rolesDTO = new ArrayList<>();
         for (Role role : roles) {
@@ -66,6 +92,11 @@ public class Mapper {
         return listaRoleDTO;
     }
 
+    /**
+     * Method that represents the conversion of Role to RoleDTO.
+     * @param role
+     * @return roleDTO
+     */
     public static RoleDTO role2RoleDTO(Role role) {
         RoleDTO roleDTO = new RoleDTO();
         roleDTO.setRolenames(role.getRolename());
@@ -74,6 +105,11 @@ public class Mapper {
     }
 
 
+    /**
+     * Method that represents the conversion of RoleDTO to Role.
+     * @param roleDTO
+     * @return Role
+     */
     public static Role roleDTO2Role(RoleDTO roleDTO) {
         return new Role(roleDTO.getRolenames(), roleDTO.getDescricao());
     }
