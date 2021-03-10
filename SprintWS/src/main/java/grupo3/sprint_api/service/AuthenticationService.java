@@ -20,6 +20,12 @@ import java.sql.SQLException;
  */
 public class AuthenticationService {
 
+    /**
+     * Creates an context.
+     * @param appKey
+     * @return contextDTO
+     * @throws SQLException
+     */
     public static ContextDTO generateContext(String appKey) throws SQLException {
         Context context = null;
 
@@ -37,12 +43,25 @@ public class AuthenticationService {
         } else throw new ConversaoException("ContextDTO");
     }
 
+    /**
+     * Boolean method that checks if the context was validated.
+     * @param contextDTO
+     * @return boolean
+     * @throws SQLException
+     */
     public static boolean validateContext(ContextDTO contextDTO) throws SQLException {
         Context context = RepositorioAuth.getInstance().getContextByString(contextDTO.getAppContext());
 
         return context.isValid();
     }
 
+    /**
+     * Boolean method that checks if the login was processed with success.
+     * @param loginDTO
+     * @param contextDTO
+     * @return boolean
+     * @throws SQLException
+     */
     public static boolean login (LoginDTO loginDTO, ContextDTO contextDTO) throws SQLException {
         User user = RepositorioUtilizador.getInstance().getUtilizadorByNome(loginDTO.getUsername());
 
@@ -59,10 +78,22 @@ public class AuthenticationService {
         } else throw new ConversaoException("ContextDTO");
     }
 
+    /**
+     * Boolean method that checks if the logout was processed with success.
+     * @param contextDTO
+     * @return boolean
+     * @throws SQLException
+     */
     public static boolean logout(ContextDTO contextDTO) throws SQLException {
         return RepositorioAuth.getInstance().makeContextInvalid(contextDTO.getAppContext());
     }
 
+    /**
+     * Gets the current session.
+     * @param contextDTO
+     * @return sessionDTO
+     * @throws SQLException
+     */
     public static SessionDTO getSession(ContextDTO contextDTO) throws SQLException {
         Session session = RepositorioAuth.getInstance().getSessionByContext(contextDTO.getAppContext());
 
