@@ -127,7 +127,9 @@ public class ServiceController {
      */
     public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico, String emailColaborador) {
         return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico), emailColaborador).toString();
+
     }
+
 
     /**
      * Gets the tasks by organization.
@@ -178,7 +180,7 @@ public class ServiceController {
      * @return the complete representation of a application object by its advertisement
      * of a freelancer.
      */
-    
+
     public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
         return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
     }
