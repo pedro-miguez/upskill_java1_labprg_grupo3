@@ -31,8 +31,6 @@ public class RepositorioUtilizador {
      *
      * @return instance
      */
-
-
     public static RepositorioUtilizador getInstance() throws SQLException {
         if (instance == null) {
             instance = new RepositorioUtilizador();
@@ -126,6 +124,11 @@ public class RepositorioUtilizador {
 
     }
 
+    /**
+     * Boolean method that checks if a role was added to an user.
+     * @param user
+     * @return boolean
+     */
     public boolean addRoleToUser(User user) {
         Connection conn = connectionHandler.getConnection();
 
@@ -197,6 +200,11 @@ public class RepositorioUtilizador {
     }
 
 
+    /**
+     * Builds an User.
+     * @param row
+     * @return user
+     */
     public User montarUtilizador(ResultSet row) {
 
         User user = null;
@@ -243,6 +251,10 @@ public class RepositorioUtilizador {
         }
     }
 
+    /**
+     * Deletes an role from a user.
+     * @param user
+     */
     public void deleteRoleFromUser(User user) {
         Connection conn = connectionHandler.getConnection();
 
