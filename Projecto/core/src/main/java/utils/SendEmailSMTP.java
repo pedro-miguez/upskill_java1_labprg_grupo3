@@ -42,6 +42,7 @@ public class SendEmailSMTP {
         Session session = Session.getInstance(prop, null);
         Message msg = new MimeMessage(session);
 
+
         try {
 
             // from
