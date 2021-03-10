@@ -23,6 +23,7 @@ public class RoleDTO {
 
     /**
      * Gets an description.
+     *
      * @return descricao
      */
     public String getDescricao() {
@@ -31,6 +32,7 @@ public class RoleDTO {
 
     /**
      * Sets an description.
+     *
      * @param descricao
      */
     public void setDescricao(String descricao) {
@@ -39,6 +41,7 @@ public class RoleDTO {
 
     /**
      * Gets the names of the roles.
+     *
      * @return rolenames
      */
     public String getRolenames() {
@@ -47,6 +50,7 @@ public class RoleDTO {
 
     /**
      * Sets the names of the roles.
+     *
      * @param rolename
      */
     public void setRolenames(String rolename) {
