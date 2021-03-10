@@ -15,6 +15,7 @@ public class ListaRoleDTO {
 
     /**
      * Gets an list of 'Roles'.
+     *
      * @return roles
      */
     public ArrayList<RoleDTO> getRoles() {
@@ -23,6 +24,7 @@ public class ListaRoleDTO {
 
     /**
      * Sets an list of 'roles'.
+     *
      * @param roles
      */
     public void setRoles(ArrayList<RoleDTO> roles) {

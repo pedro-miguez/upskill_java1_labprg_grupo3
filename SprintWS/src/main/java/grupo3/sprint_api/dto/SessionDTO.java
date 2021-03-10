@@ -18,6 +18,7 @@ public class SessionDTO {
 
     /**
      * Gets an User.
+     *
      * @return user
      */
     public UserDTO getUser() {
@@ -26,6 +27,7 @@ public class SessionDTO {
 
     /**
      * Sets an User.
+     *
      * @param user
      */
     public void setUser(UserDTO user) {
@@ -34,6 +36,7 @@ public class SessionDTO {
 
     /**
      * Gets the date of the login.
+     *
      * @return logindate
      */
     public String getLogindate() {
@@ -42,6 +45,7 @@ public class SessionDTO {
 
     /**
      * Sets the date of the login.
+     *
      * @param logindate
      */
     public void setLogindate(String logindate) {
