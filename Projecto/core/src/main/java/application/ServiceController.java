@@ -181,6 +181,7 @@ public class ServiceController {
     public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
         return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
     }
+    
 
     /**
      * Obtains from the list 'Anuncio' all the advertisements for serialization.
