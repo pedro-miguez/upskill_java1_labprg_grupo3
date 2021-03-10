@@ -87,7 +87,8 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     public double getValorPretendido() {
         return valorPretendido;
     }
-    
+
+
     /**
      * Gets the number of days.
      *
@@ -96,7 +97,8 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     public int getNrDias() {
         return nrDias;
     }
-    
+
+
     /**
      * Gets the presentation text.
      *
@@ -105,6 +107,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     public String getTxtApresentacao() {
         return txtApresentacao;
     }
+
     
     /**
      * Gets the motivation text.
