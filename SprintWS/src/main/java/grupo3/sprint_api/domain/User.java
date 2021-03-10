@@ -15,6 +15,7 @@ public class User implements Serializable {
 
     /**
      * User builder with the following parameters:
+     *
      * @param username
      * @param password
      * @param email
@@ -42,7 +43,8 @@ public class User implements Serializable {
 
     /**
      * Method for obtaining a username.
-     * @return 
+     *
+     * @return username
      */
     public String getUsername() {
         return username;
@@ -50,6 +52,7 @@ public class User implements Serializable {
 
     /**
      * Validates a username.
+     *
      * @param username 
      */
     private void setUsername(String username) {
@@ -58,8 +61,8 @@ public class User implements Serializable {
 
     /**
      * Method for obtaining a password.
-
-     * @return 
+     *
+     * @return password
      */
     public String getPassword() {
         return password;
@@ -77,7 +80,7 @@ public class User implements Serializable {
     /**
      * Method for obtaining an email.
 
-     * @return 
+     * @return email
      */
     public Email getEmail() {
         return email;
@@ -85,6 +88,7 @@ public class User implements Serializable {
 
     /**
      * Validates an email.
+     *
      * @param email 
      */
     private void setEmail(Email email) {
@@ -93,7 +97,8 @@ public class User implements Serializable {
 
     /**
      * Method for obtaining a role.
-     * @return 
+     *
+     * @return role
      */
     public Role getRole() {
         return role;
@@ -101,6 +106,7 @@ public class User implements Serializable {
 
     /**
      * Validates a role.
+     *
      * @param role 
      */
     public void setRole(Role role) {
@@ -109,8 +115,9 @@ public class User implements Serializable {
 
     /**
      * Method to check if two objects (users) are the same.
+     *
      * @param o
-     * @return 
+     * @return boolean
      */
     @Override
     public boolean equals(Object o) {

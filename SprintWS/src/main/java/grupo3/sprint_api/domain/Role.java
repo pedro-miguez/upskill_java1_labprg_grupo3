@@ -12,6 +12,7 @@ public class Role {
 
     /**
      * Constructor of the class Role.
+     *
      * @param rolename
      * @param descricao
      */
@@ -22,6 +23,7 @@ public class Role {
 
     /**
      * Gets an description.
+     *
      * @return descricao
      */
     public String getRolename() {
@@ -30,6 +32,7 @@ public class Role {
 
     /**
      * Sets an description.
+     *
      * @param rolename
      */
     public void setRolename(String rolename) {
@@ -38,6 +41,7 @@ public class Role {
 
     /**
      * Gets an designation.
+     *
      * @return designacao
      */
     public String getDescricao() {
@@ -46,6 +50,7 @@ public class Role {
 
     /**
      * Sets an designation.
+     *
      * @param descricao
      */
     public void setDescricao(String descricao) {
@@ -71,6 +76,7 @@ public class Role {
 
     /**
      * Returns a string representation of the object.
+     *
      * @return Returns a string representation of the object.
      */
     @Override
