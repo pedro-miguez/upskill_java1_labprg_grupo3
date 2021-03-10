@@ -22,6 +22,12 @@ import grupo3.sprint_api.persistence.RepositorioUtilizador;
  */
 public class UsersService {
 
+    /**
+     * Gets the current user (by its email).
+     * @param email
+     * @return userDTO
+     * @throws SQLException
+     */
     public static UserDTO getUtilizador(Email email) throws SQLException {
         RepositorioUtilizador repo = RepositorioUtilizador.getInstance();
         User user = repo.getUtilizadorByEmail(email);
@@ -37,6 +43,11 @@ public class UsersService {
         }
     }
 
+    /**
+     * Registers an User.
+     * @param userDTO
+     * @throws SQLException
+     */
     public static void registerUser(UserDTO userDTO) throws SQLException {
         User user = Mapper.userDTO2User(userDTO);
         if (user != null) {
@@ -48,6 +59,12 @@ public class UsersService {
     }
 
 
+    /**
+     * Registers an User with Roles.
+     * @param userDTO
+     * @param rolename
+     * @throws SQLException
+     */
     public static void registerUserWithRoles(UserDTO userDTO, String rolename) throws SQLException {
         User user = Mapper.userDTO2User(userDTO);
         if (user != null) {
@@ -62,6 +79,11 @@ public class UsersService {
     }
 
 
+    /**
+     * Gets an list of the roles.
+     * @return listaRoleDTO
+     * @throws SQLException
+     */
     public static ListaRoleDTO getRoles() throws SQLException {
         ListaRoleDTO listaRoleDTO = null;
         RepositorioRole repoRole = RepositorioRole.getInstance();
@@ -72,7 +94,12 @@ public class UsersService {
 
     }
 
-    
+    /**
+     * Gets Users roles.
+     * @param username
+     * @return roleDTO
+     * @throws SQLException
+     */
     public static RoleDTO getUserRoles(String username) throws SQLException {
         RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);
@@ -85,6 +112,13 @@ public class UsersService {
         }
     }
 
+    /**
+     * Boolean method that checks if a role was added to an user.
+     * @param username
+     * @param rolename
+     * @return boolean
+     * @throws Exception
+     */
     public static boolean addRoleToUser(String username, String rolename) throws Exception {
         RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);
@@ -100,6 +134,11 @@ public class UsersService {
         return repoUser.addRoleToUser(user);
     }
 
+    /**
+     * Creates an User' role.
+     * @param roleDTO
+     * @throws Exception
+     */
     public static void createUserRole(RoleDTO roleDTO) throws Exception {
         RepositorioRole repoRole = RepositorioRole.getInstance();
         Role role = Mapper.roleDTO2Role(roleDTO);
@@ -111,6 +150,11 @@ public class UsersService {
         }
     }
 
+    /**
+     * Deletes an User' role.
+     * @param rolename
+     * @throws Exception
+     */
     public static void deleteUserRole(String rolename) throws Exception {
         RepositorioRole repoRole = RepositorioRole.getInstance();
         ArrayList<Role> roles = repoRole.getRoles();
@@ -122,6 +166,12 @@ public class UsersService {
         }
     }
 
+    /**
+     * Deletes an role from a user.
+     * @param username
+     * @param rolename
+     * @throws Exception
+     */
     public static void deleteRoleFromUser(String username, String rolename) throws Exception {
         RepositorioUtilizador repoUser = RepositorioUtilizador.getInstance();
         User user = repoUser.getUtilizadorByNome(username);

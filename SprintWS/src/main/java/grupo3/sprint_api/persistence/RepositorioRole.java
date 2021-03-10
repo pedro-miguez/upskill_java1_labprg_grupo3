@@ -104,6 +104,11 @@ public class RepositorioRole {
         }
     }
 
+    /**
+     * Gets an role by its name.
+     * @param rolename
+     * @return role
+     */
     public Role getRoleByRolename(String rolename) {
         try {
             Connection conn = connectionHandler.getConnection();
@@ -123,6 +128,10 @@ public class RepositorioRole {
     }
 
 
+    /**
+     * Gets an list of the roles.
+     * @return roles
+     */
     public ArrayList<Role> getRoles() {
         ArrayList<Role> roles = new ArrayList<>();
         Connection conn = connectionHandler.getConnection();
@@ -142,6 +151,12 @@ public class RepositorioRole {
         return roles;
     }
 
+    /**
+     * Sets an role.
+     * @param row
+     * @param unico
+     * @return role
+     */
     public Role montarRole(ResultSet row, boolean unico) {
 
         Role role = null;
@@ -166,6 +181,10 @@ public class RepositorioRole {
 
     }
 
+    /**
+     * Deletes an role.
+     * @param role
+     */
     public void deleteRole(Role role) {
         Connection conn = connectionHandler.getConnection();
 
