@@ -34,6 +34,7 @@ public class UsersAPI implements Serializable {
      * @param password as password
      * @return the boolean
      */
+
     public boolean login(String user_id, String password) {
         return uapia.login(user_id, password);
     }
@@ -43,6 +44,7 @@ public class UsersAPI implements Serializable {
      *
      * @return the boolean
      */
+
     public boolean logout() {
         return uapia.logout();
     }
@@ -52,6 +54,7 @@ public class UsersAPI implements Serializable {
      *
      * @return the context
      */
+
     public String getContext() {
         return uapia.getContext();
     }
