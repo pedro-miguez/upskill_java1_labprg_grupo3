@@ -27,6 +27,7 @@ public class UsersAPI implements Serializable {
         uapia = new UsersAPIAdapter(app_key);
     }
 
+    
     /**
      * Login boolean.
      *
@@ -34,30 +35,30 @@ public class UsersAPI implements Serializable {
      * @param password as password
      * @return the boolean
      */
-
     public boolean login(String user_id, String password) {
         return uapia.login(user_id, password);
     }
+
 
     /**
      * Logout boolean.
      *
      * @return the boolean
      */
-
     public boolean logout() {
         return uapia.logout();
     }
+
 
     /**
      * Gets context.
      *
      * @return the context
      */
-
     public String getContext() {
         return uapia.getContext();
     }
+
 
     /**
      * Gets email.
@@ -70,6 +71,7 @@ public class UsersAPI implements Serializable {
         return bodyJSON.getJSONObject("user").getString("email");
     }
 
+
     /**
      * Gets role.
      *
@@ -80,6 +82,7 @@ public class UsersAPI implements Serializable {
         JSONObject bodyJSON = new JSONObject(session);
         return bodyJSON.getJSONObject("user").getJSONObject("role").getString("rolenames");
     }
+
 
     /**
      * Register user with roles boolean.
