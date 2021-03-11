@@ -119,6 +119,7 @@ public class ServiceController {
         return RepositorioOrganizacao.getInstance().getOrganizacaoByEmail(new Email(email)).toString();
     }
 
+    
     /**
      * Gets the complete representation of a task object by its unique code.
      *
