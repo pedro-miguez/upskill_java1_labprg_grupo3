@@ -18,6 +18,8 @@ import persistence.RepositorioUtilizador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 
 
 public class RegistarOrganizacaoUI implements Initializable {
@@ -38,6 +40,36 @@ public class RegistarOrganizacaoUI implements Initializable {
     public Button registarOrganizacao;
 
     private PlataformaController plataformaController;
+    @FXML
+    private Label l1;
+    @FXML
+    private Label l2;
+    @FXML
+    private Label l3;
+    @FXML
+    private Label l4;
+    @FXML
+    private Label l5;
+    @FXML
+    private Label l6;
+    @FXML
+    private Label l7;
+    @FXML
+    private Label l8;
+    @FXML
+    private Label l9;
+    @FXML
+    private Label l10;
+    @FXML
+    private Label l11;
+    @FXML
+    private Label l12;
+    @FXML
+    private Label l13;
+    @FXML
+    private Label l14;
+    @FXML
+    private ColorPicker colorPicker;
 
 
     @Override
@@ -47,6 +79,7 @@ public class RegistarOrganizacaoUI implements Initializable {
 
 
     //registar organização
+    @FXML
     public void registarOrganizacaoAction(ActionEvent actionEvent) {
         try {
             RegistarOrganizacaoController controller = new RegistarOrganizacaoController();
@@ -84,6 +117,7 @@ public class RegistarOrganizacaoUI implements Initializable {
     }
 
     //limpar todos os campos
+    @FXML
     public void limparAction(ActionEvent actionEvent) {
         limparDados();
     }
@@ -103,6 +137,7 @@ public class RegistarOrganizacaoUI implements Initializable {
     }
 
     //voltar ao menu inicial
+    @FXML
     public void voltarAction(ActionEvent actionEvent) {
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Voltar à janela inicial",
                 "Vai perder os dados inseridos!", "Deseja mesmo voltar à janela inicial?");
@@ -117,6 +152,26 @@ public class RegistarOrganizacaoUI implements Initializable {
 
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
+    }
+
+    @FXML
+    private void handleColorPickerAction(ActionEvent event) {
+        
+        l1.setTextFill(colorPicker.getValue());
+        l2.setTextFill(colorPicker.getValue());
+        l3.setTextFill(colorPicker.getValue());
+        l4.setTextFill(colorPicker.getValue());
+        l5.setTextFill(colorPicker.getValue());
+        l6.setTextFill(colorPicker.getValue());
+        l7.setTextFill(colorPicker.getValue());
+        l8.setTextFill(colorPicker.getValue());
+        l9.setTextFill(colorPicker.getValue());
+        l10.setTextFill(colorPicker.getValue());
+        l11.setTextFill(colorPicker.getValue());
+        l12.setTextFill(colorPicker.getValue());
+        l13.setTextFill(colorPicker.getValue());
+        l14.setTextFill(colorPicker.getValue());
+        
     }
 
 

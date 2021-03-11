@@ -31,17 +31,17 @@
                             <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="62.0" valignment="CENTER" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Nome: ">
+                              <Label fx:id="l3" text="Nome: ">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="Contacto: " GridPane.rowIndex="1">
+                              <Label fx:id="l4" text="Contacto: " GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="E-mail: " GridPane.rowIndex="2">
+                              <Label fx:id="l5" text="E-mail: " GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
@@ -87,7 +87,7 @@
                         </HBox>
                      </bottom>
                      <top>
-                        <Label prefHeight="60.0" prefWidth="296.0" text="Registar Colaborador" BorderPane.alignment="CENTER">
+                        <Label fx:id="l2" prefHeight="60.0" prefWidth="296.0" text="Registar Colaborador" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -207,6 +207,7 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />
                      </VBox.margin>
                   </Button>
+                  <ColorPicker fx:id="colorPicker" onAction="#handleColorPickerAction" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="100.0" left="25.0" />
@@ -214,7 +215,7 @@
             </VBox>
          </left>
          <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="103.0" prefWidth="410.0" text="Área Gestor" BorderPane.alignment="CENTER">
+            <Label fx:id="l1" alignment="CENTER" contentDisplay="CENTER" prefHeight="103.0" prefWidth="410.0" text="Área Gestor" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
