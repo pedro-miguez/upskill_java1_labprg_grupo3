@@ -24,6 +24,7 @@ public class UsersService {
 
     /**
      * Gets the current user (by its email).
+     *
      * @param email
      * @return userDTO
      * @throws SQLException
@@ -45,6 +46,7 @@ public class UsersService {
 
     /**
      * Registers an User.
+     *
      * @param userDTO
      * @throws SQLException
      */
@@ -61,6 +63,7 @@ public class UsersService {
 
     /**
      * Registers an User with Roles.
+     *
      * @param userDTO
      * @param rolename
      * @throws SQLException
@@ -81,6 +84,7 @@ public class UsersService {
 
     /**
      * Gets an list of the roles.
+     *
      * @return listaRoleDTO
      * @throws SQLException
      */
@@ -96,6 +100,7 @@ public class UsersService {
 
     /**
      * Gets Users roles.
+     *
      * @param username
      * @return roleDTO
      * @throws SQLException
@@ -114,6 +119,7 @@ public class UsersService {
 
     /**
      * Boolean method that checks if a role was added to an user.
+     *
      * @param username
      * @param rolename
      * @return boolean
@@ -136,6 +142,7 @@ public class UsersService {
 
     /**
      * Creates an User' role.
+     *
      * @param roleDTO
      * @throws Exception
      */
@@ -152,6 +159,7 @@ public class UsersService {
 
     /**
      * Deletes an User' role.
+     *
      * @param rolename
      * @throws Exception
      */
@@ -168,6 +176,7 @@ public class UsersService {
 
     /**
      * Deletes an role from a user.
+     *
      * @param username
      * @param rolename
      * @throws Exception
