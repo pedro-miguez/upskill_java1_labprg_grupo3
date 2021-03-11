@@ -62,7 +62,7 @@ public class RegistarOrganizacaoUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar nova organização.",
                     added ? "Organização criada com sucesso! \n\n" +
                             serviceController.getOrganizacaoToStringCompletoByEmail(txtEmailGestor.getText().trim()) //MUDAR
-                            : "Não foi possível registar a organização.").show();
+                            : "Não foi possível registar a organização.").showAndWait();
             if (added) {
                 limparDados();
                 voltarJanelaInicial();

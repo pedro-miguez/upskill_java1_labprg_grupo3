@@ -86,6 +86,9 @@ public class LoginUI implements Initializable {
 
     @FXML
     private void handleColorPickerAction(ActionEvent event) {
+        btnLogin.setTextFill(colorPicker.getValue());
+        btnVoltar.setTextFill(colorPicker.getValue());
         label.setTextFill(colorPicker.getValue());
     }
+
 }
