@@ -56,7 +56,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label alignment="CENTER_RIGHT" text="Código Único:" GridPane.rowIndex="1">
+                                    <Label fx:id="l4" alignment="CENTER_RIGHT" text="Código Único:" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -64,26 +64,26 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Descrição informal: " GridPane.rowIndex="2">
+                                    <Label fx:id="l5" text="Descrição informal: " GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
-                                    <Label text="Descrição técnica: " GridPane.rowIndex="3">
+                                    <Label fx:id="l6" text="Descrição técnica: " GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
-                                    <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4">
+                                    <Label fx:id="l7" alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="171.0" text="Duraçao estimada:" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="4">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                        <GridPane.margin>
                                           <Insets right="3.0" />
                                        </GridPane.margin></Label>
-                                    <Label text="Custo estimado: " GridPane.rowIndex="5">
+                                    <Label fx:id="l8" text="Custo estimado: " GridPane.rowIndex="5">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
-                                    <Label text="Categoria da tarefa: " GridPane.rowIndex="6">
+                                    <Label fx:id="l9" text="Categoria da tarefa: " GridPane.rowIndex="6">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
@@ -113,7 +113,7 @@
                                        </GridPane.margin>
                                     </TextField>
                                     <ComboBox fx:id="comboCategoriaTarefa" prefHeight="29.0" prefWidth="150.0" promptText="Selecionar" visibleRowCount="100" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <Label alignment="CENTER_RIGHT" text="Designação: ">
+                                    <Label fx:id="l3" alignment="CENTER_RIGHT" text="Designação: ">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
@@ -128,7 +128,7 @@
                         </StackPane>
                      </center>
                      <top>
-                        <Label prefHeight="27.0" prefWidth="320.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
+                        <Label fx:id="l2" prefHeight="27.0" prefWidth="320.0" text="Criar Tarefa" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -142,7 +142,7 @@
             </StackPane>
          </center>
          <top>
-            <Label alignment="CENTER" prefHeight="54.0" prefWidth="284.0" text="Área Colaborador" BorderPane.alignment="CENTER">
+            <Label fx:id="l1" alignment="CENTER" prefHeight="54.0" prefWidth="284.0" text="Área Colaborador" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
@@ -157,6 +157,7 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </Button>
+                  <ColorPicker fx:id="colorPicker" onAction="#handleColorPickerAction" />
                </children>
                <BorderPane.margin>
                   <Insets top="100.0" />

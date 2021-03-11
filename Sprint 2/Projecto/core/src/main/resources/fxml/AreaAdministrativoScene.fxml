@@ -32,15 +32,15 @@
                             <RowConstraints maxHeight="251.0" minHeight="200.0" prefHeight="251.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label alignment="CENTER" text="Código Único: " GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                              <Label fx:id="label3" alignment="CENTER" text="Código Único: " GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Label>
-                              <Label text="Descrição Breve: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                              <Label fx:id="label4" text="Descrição Breve: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Label>
-                              <Label text="Descrição Detalhada: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                              <Label fx:id="label5" text="Descrição Detalhada: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                  <GridPane.margin>
                                     <Insets top="10.0" />
                                  </GridPane.margin>
@@ -92,7 +92,7 @@
                         </HBox>
                      </bottom>
                      <top>
-                        <Label contentDisplay="RIGHT" prefHeight="31.0" prefWidth="208.0" text="Criar Área de Atividade" BorderPane.alignment="CENTER">
+                        <Label fx:id="label2" contentDisplay="RIGHT" prefHeight="31.0" prefWidth="208.0" text="Criar Área de Atividade" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -292,7 +292,7 @@
             </StackPane>
          </center>
          <top>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="254.0" text="Área Administrativo" BorderPane.alignment="CENTER">
+            <Label fx:id="label1" alignment="CENTER" prefHeight="61.0" prefWidth="254.0" text="Área Administrativo" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="20.0" />
                </font>
@@ -336,6 +336,7 @@
                         <Insets bottom="15.0" left="20.0" right="15.0" top="40.0" />
                      </VBox.margin>
                   </Button>
+                  <ColorPicker fx:id="colorPicker" onAction="#handleColorPickerAction" />
                </children>
                <padding>
                   <Insets top="50.0" />
