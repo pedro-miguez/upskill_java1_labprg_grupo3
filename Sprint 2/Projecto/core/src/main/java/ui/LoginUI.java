@@ -15,6 +15,9 @@ import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 
 public class LoginUI implements Initializable {
 
@@ -25,6 +28,10 @@ public class LoginUI implements Initializable {
 
     private AuthenticationController authController;
     private PlataformaController plataformaController;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private Label label;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,17 +41,20 @@ public class LoginUI implements Initializable {
 
 
     //efectuar o login, renovando a user API
+    @FXML
     public void loginAction(ActionEvent actionEvent) {
         login();
     }
 
     //voltar à janela inicial
+    @FXML
     public void voltarAction(ActionEvent actionEvent) {
         MainApp.screenController.activate("JanelaInicial");
     }
 
 
     //efectuar o login quando se carrega no Enter
+    @FXML
     public void entrarButtonActivate(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             login();
@@ -72,5 +82,10 @@ public class LoginUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     "Username ou password inválidos").show();
         }
+    }
+
+    @FXML
+    private void handleColorPickerAction(ActionEvent event) {
+        label.setTextFill(colorPicker.getValue());
     }
 }

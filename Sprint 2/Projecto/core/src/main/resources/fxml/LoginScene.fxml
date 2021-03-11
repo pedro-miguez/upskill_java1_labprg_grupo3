@@ -13,7 +13,7 @@
             <Image url="@../Styles/Pink_Beige_and_Green_Sale_Instagram_Post_4.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="200.0" prefHeight="31.0" prefWidth="237.0" text="Bem-vindo!">
+      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="200.0" prefHeight="31.0" prefWidth="237.0" text="Bem-vindo!">
          <font>
             <Font name="Cambria" size="22.0" />
          </font>
@@ -24,5 +24,6 @@
       <PasswordField fx:id="txtPassoword" layoutX="295.0" layoutY="294.0" onKeyReleased="#entrarButtonActivate" prefHeight="25.0" prefWidth="230.0" />
       <Button fx:id="btnLogin" layoutX="330.0" layoutY="352.0" mnemonicParsing="false" onAction="#loginAction" text="Entrar" />
       <Button fx:id="btnVoltar" layoutX="430.0" layoutY="352.0" mnemonicParsing="false" onAction="#voltarAction" text="Voltar" />
+      <ColorPicker fx:id="colorPicker" layoutX="35.0" layoutY="14.0" onAction="#handleColorPickerAction" />
    </children>
 </AnchorPane>
