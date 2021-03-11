@@ -123,7 +123,7 @@ public class RepositorioOrganizacao implements Serializable {
             Organizacao organizacao = montarOrganizacao(pstmt.executeQuery());
 
             cs.close();
-
+            pstmt.close();
             return organizacao;
         } catch (SQLException e) {
             throw new EmailNaoAssociadoException("Não existe nenhuma organização associada a este e-mail.");
