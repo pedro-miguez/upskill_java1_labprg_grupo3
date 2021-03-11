@@ -421,7 +421,8 @@ public class RepositorioTarefa implements Serializable {
             PreparedStatement pstmt1 = conn.prepareStatement("SELECT * FROM CompetenciaTecnica where idCompetenciaTecnica = ?");
             String idCompetenciatecnica = rows.getString(1);
             pstmt1.setString(1, idCompetenciatecnica);
-            competencia = montarCompetenciaTecnica(pstmt1.executeQuery(), areaAtividade);
+            ResultSet rSetCompetenciaTecnica = pstmt1.executeQuery();
+            competencia = montarCompetenciaTecnica(rSetCompetenciaTecnica, areaAtividade);
 
             //obrigatoriedade
             if (rows.getString(3).equals("OBR")) {
@@ -441,6 +442,8 @@ public class RepositorioTarefa implements Serializable {
 
             pstmt1.close();
             pstmt2.close();
+            rSetCompetenciaTecnica.close();
+            linhaGrau.close();
         }
 
         rows.close();
@@ -454,7 +457,9 @@ public class RepositorioTarefa implements Serializable {
         CompetenciaTecnica competenciaTecnica = null;
 
         try {
-            row.next();
+            if (row.getRow() < 1) {
+                row.next();
+            }
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
             CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
             pstmt.setString(1, idCompetenciaTecnica.toString());

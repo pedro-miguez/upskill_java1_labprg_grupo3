@@ -47,7 +47,6 @@ public class RepositorioFreelancer implements Serializable {
      * otherwise it is added to it.
      * 
      * @param freelancer
-     * @param password
      * @return boolean
      * @throws SQLException 
      */
@@ -139,10 +138,12 @@ public class RepositorioFreelancer implements Serializable {
             String emailFreelancer = email.toString();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Freelancer where Email = ?");
             pstmt.setString(1, emailFreelancer);
+            ResultSet rSetFreelancer = pstmt.executeQuery();
 
-            Freelancer freelancer =  montarFreelancer(pstmt.executeQuery(), true);
+            Freelancer freelancer =  montarFreelancer(rSetFreelancer, true);
 
             pstmt.close();
+            rSetFreelancer.close();
 
             return freelancer;
         } catch (SQLException e) {
@@ -175,19 +176,24 @@ public class RepositorioFreelancer implements Serializable {
             PreparedStatement pstmt = conn.prepareStatement(
                     "SELECT * FROM HabilitacaoAcademica WHERE idFreelancer = ?");
             pstmt.setInt(1, row.getInt("idFreelancer"));
-            ArrayList<HabilitacaoAcademica> habilitacaoAcademicas = montarListaHabilitacoesAcademicas(pstmt.executeQuery());
+            ResultSet rSetHabilitacao = pstmt.executeQuery();
+            ArrayList<HabilitacaoAcademica> habilitacaoAcademicas = montarListaHabilitacoesAcademicas(rSetHabilitacao);
 
 
             PreparedStatement pstmt2 = conn.prepareStatement(
                     "SELECT * FROM ReconhecimentoCT WHERE idFreelancer = ?");
             pstmt2.setInt(1, row.getInt("idFreelancer"));
-            ArrayList<ReconhecimentoCT> reconhecimentoCTS = montarListaReconhecimentoCT(pstmt2.executeQuery());
+
+            ResultSet rSetCompTecs = pstmt2.executeQuery();
+            ArrayList<ReconhecimentoCT> reconhecimentoCTS = montarListaReconhecimentoCT(rSetCompTecs);
 
 
             freelancer = new Freelancer(nome, telefone, email, nif, reconhecimentoCTS, habilitacaoAcademicas );
 
             pstmt.close();
             pstmt2.close();
+            rSetCompTecs.close();
+            rSetHabilitacao.close();
 
             if (unico) {
                 row.close();
@@ -232,17 +238,19 @@ public class RepositorioFreelancer implements Serializable {
                 PreparedStatement pstmt2 = conn.prepareStatement(
                         "SELECT * FROM AreaAtividade WHERE idAreaAtividade = ?");
                 pstmt2.setString(1, idAreaAtividade);
+                ResultSet rSetAreaAtividade2 = pstmt2.executeQuery();
 
-                AreaAtividade areaAtividade = RepositorioAreaAtividade.getInstance().montarAreaAtividade(pstmt2.executeQuery(), true);
+                AreaAtividade areaAtividade = RepositorioAreaAtividade.getInstance().montarAreaAtividade(rSetAreaAtividade2, true);
 
                 //Montar Competência Técnica
                 PreparedStatement pstmt3 = conn.prepareStatement(
                         "SELECT * FROM CompetenciaTecnica WHERE idCompetenciatecnica = ?");
                 pstmt3.setString(1, rows.getString("idCompetenciaTecnica"));
+                ResultSet rSetCompTec = pstmt3.executeQuery();
 
 
                 CompetenciaTecnica ct = RepositorioCompetenciaTecnica.getInstance().montarCompetenciaTecnica(
-                        pstmt3.executeQuery(), areaAtividade, true);
+                        rSetCompTec, areaAtividade, true);
 
                 //Montar Grau Proficiência
                 PreparedStatement pstmt4 = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ? AND nivel = ?");
@@ -269,6 +277,9 @@ public class RepositorioFreelancer implements Serializable {
                 pstmt3.close();
                 pstmt4.close();
                 rSetAreaAtividade.close();
+                rSetAreaAtividade2.close();
+                rSetCompTec.close();
+                linhaGrau.close();
 
             }
         }catch (SQLException e) {

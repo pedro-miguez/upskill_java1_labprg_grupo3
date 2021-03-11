@@ -240,30 +240,34 @@ public class AreaFreelancerUI implements Initializable {
 
     public void btnRemoverCandidaturaAction(ActionEvent actionEvent) throws SQLException {
 
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Remover Candidatura",
+                "Deseja mesmo remover essa candidatura?", "Confirme a ação.");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            boolean removeu = removerCandidaturaController.removerCandidatura(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getAnuncio(),
+                    authenticationController.getEmail(), listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getValorPretendido(),
+                    listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getNrDias(), listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtApresentacao(),
+                    listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtMotivacao());
 
-        boolean removeu = removerCandidaturaController.removerCandidatura(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getAnuncio(),
-                authenticationController.getEmail(), listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getValorPretendido(),
-                listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getNrDias(), listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtApresentacao(),
-                listViewCandidaturasAbertas.getSelectionModel().getSelectedItem().getTxtMotivacao());
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Remover candidatura.",
+                    removeu ? "Candidatura removida com sucesso! \n"
+                            : "Não foi possível remover a candidatura.").show();
 
-
-        AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Remover candidatura.",
-                removeu ? "Candidatura removida com sucesso! \n"
-                        : "Não foi possível remover a candidatura.").show();
-
-
-        if (removeu) {
-            try {
-
-                listViewCandidaturasAbertas.getItems().remove(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem());
-                listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
-                        authenticationController.getEmail()));
-            } catch (Exception e) {
-                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                        "Erro ao preencher a lista de candidaturas.",
-                        e.getMessage()).show();
+            if (removeu) {
+                try {
+                    listViewCandidaturasAbertas.getItems().remove(listViewCandidaturasAbertas.getSelectionModel().getSelectedItem());
+                    listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
+                            authenticationController.getEmail()));
+                } catch (Exception e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Erro ao preencher a lista de candidaturas.",
+                            e.getMessage()).show();
+                }
             }
         }
+
+
     }
 
     public void btnVoltarHomeAction(ActionEvent actionEvent) {
@@ -367,6 +371,29 @@ public class AreaFreelancerUI implements Initializable {
         txtDuracaoDiasAtualizarCandidatura.clear();
         txtMotivacaoAtualizarCandidatura.clear();
         txtValorPretendidoAtualizarCandidatura.requestFocus();
+    }
+
+    public void btnVoltarAtualizarCandidaturaAction(ActionEvent actionEvent) {
+        //ligar
+        consultarCandidaturaPane.setDisable(false);
+        consultarCandidaturaPane.setVisible(true);
+        //desligar
+        atualizarCandidaturaPane.setDisable(true);
+        atualizarCandidaturaPane.setVisible(false);
+        efetuarCandidaturaPane.setDisable(true);
+        efetuarCandidaturaPane.setVisible(false);
+        homePaneAreaFreelancer.setDisable(true);
+        homePaneAreaFreelancer.setVisible(false);
+
+        try {
+            listViewCandidaturasAbertas.getItems().setAll(atualizarCandidaturaController.getCandidaturasAbertasFreelancer(
+                    authenticationController.getEmail()));
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro ao preencher a lista de candidaturas.",
+                    e.getMessage()).show();
+            e.printStackTrace();
+        }
     }
 }
 

@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package application;
 
 import domain.*;
 import persistence.RepositorioColaborador;
-import utils.SendEmailSMTP;
+//import utils.SendEmailSMTP;
 
 import java.sql.SQLException;
+
 
 /**
  *  Current class is the one responsible to connect the GUI with the methods 
@@ -17,11 +19,13 @@ import java.sql.SQLException;
  *
  * @author Grupo 3
  */
+
 public class RegistarColaboradorController {
 
      private AuthenticationController authController = new AuthenticationController();
 
-    /**
+
+/**
      * Collaborator Registry boolean.
      *
      * @param nomeColaborador     as collaborator name
@@ -43,7 +47,7 @@ public class RegistarColaboradorController {
 
         String password = authController.registarColaboradorComoUtilizador(colaborador);
 
-        SendEmailSMTP.SendEmail(nomeColaborador, password);
+        //SendEmailSMTP.SendEmail(nomeColaborador, password);
 
         if (!password.equals("failed")) {
             return repoColab.insertUtilizadorColaborador(colaborador, password, gestorEmail);
@@ -54,3 +58,4 @@ public class RegistarColaboradorController {
 
 
 }
+

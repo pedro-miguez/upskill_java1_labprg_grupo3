@@ -212,14 +212,20 @@ public class RepositorioCompetenciaTecnica implements Serializable {
         CompetenciaTecnica competenciaTecnica = null;
 
         try {
-            row.next();
+            if (unico) row.next();
+
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM GrauProficiencia where idCompetenciaTecnica = ?");
             CodigoUnico idCompetenciaTecnica = new CodigoUnico(row.getString(1));
             pstmt.setString(1, idCompetenciaTecnica.toString());
             String descricaoBreve = row.getString(3);
             String descricaoDetalhada = row.getString(4);
-            ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(pstmt.executeQuery());
+            ResultSet rSetGraus = pstmt.executeQuery();
+            ArrayList <GrauProficiencia> graus = montarListaGrauProficiencia(rSetGraus);
             competenciaTecnica = new CompetenciaTecnica(idCompetenciaTecnica, areaAtividade, descricaoBreve, descricaoDetalhada, graus);
+
+            pstmt.close();
+            rSetGraus.close();
+
 
             if (unico) row.close();
 

@@ -307,8 +307,9 @@ public class RepositorioAnuncio {
 
             PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Tarefa WHERE idTarefa = ?");
             pstmt2.setInt(1, idTarefa);
+            ResultSet rSetTarefa2 = pstmt2.executeQuery();
 
-            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(pstmt2.executeQuery(), true);
+            Tarefa tarefa = RepositorioTarefa.getInstance().montarTarefa(rSetTarefa2, true);
 
             //montar tipoRegimento
 
@@ -362,8 +363,10 @@ public class RepositorioAnuncio {
             pstmt3.close();
             pstmt4.close();
             rSetTarefa.close();
+            rSetTarefa2.close();
             rSetTipoRegimento.close();
             rSetTipoRegimento2.close();
+
 
             if (unico) row.close();
 

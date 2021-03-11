@@ -143,7 +143,7 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="btnLimparDadosAtualizarCandidatura" minWidth="70.0" mnemonicParsing="false" onAction="#btnLimparDadosAtualizarCandidaturaAction" text="Limpar">
+                              <Button alignment="CENTER" contentDisplay="CENTER" minWidth="70.0" mnemonicParsing="false" onAction="#btnVoltarAtualizarCandidaturaAction" text="Voltar" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets right="150.0" />
                                  </HBox.margin>

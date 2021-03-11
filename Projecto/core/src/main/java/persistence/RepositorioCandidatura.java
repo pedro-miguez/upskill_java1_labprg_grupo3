@@ -212,6 +212,7 @@ public class RepositorioCandidatura {
 
             int idFreelancer = csFreelancerIdByEmail.getInt(1);
 
+            //adicionar tabela para candidaturas retiradas
 
             CallableStatement deleteCandidatura = conn.prepareCall("Delete from Candidatura where idAnuncio = ? and " +
                     "idFreelancer = ?");
@@ -418,7 +419,7 @@ public class RepositorioCandidatura {
 
 
         try {
-            if (row.getRow() < 1) {
+            if (unico) {
                 row.next();
             }
 
@@ -458,6 +459,7 @@ public class RepositorioCandidatura {
             pstmt3.close();
             rSetAnuncio.close();
             rSetFreelancer.close();
+
 
             if (unico) row.close();
 
