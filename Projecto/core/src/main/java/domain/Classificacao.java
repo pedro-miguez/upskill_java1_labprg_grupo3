@@ -27,6 +27,7 @@ public class Classificacao {
 
     /**
      * Gets the place.
+     * 
      * @return lugar
      */
     public int getLugar() {
@@ -35,6 +36,7 @@ public class Classificacao {
 
     /**
      * Gets the advertisement.
+     * 
      * @return anuncio
      */
     public Anuncio getAnuncio() {
@@ -43,6 +45,7 @@ public class Classificacao {
 
     /**
      * Sets the advertisement.
+     * 
      * @param anuncio 
      */
     public void setAnuncio(Anuncio anuncio) {
@@ -54,6 +57,7 @@ public class Classificacao {
 
     /**
      * Gets the freelancer.
+     * 
      * @return freelancer
      */
     public Freelancer getFreelancer() {
@@ -62,6 +66,7 @@ public class Classificacao {
 
     /**
      * Sets the freelancer.
+     * 
      * @param freelancer 
      */
     public void setFreelancer(Freelancer freelancer) {

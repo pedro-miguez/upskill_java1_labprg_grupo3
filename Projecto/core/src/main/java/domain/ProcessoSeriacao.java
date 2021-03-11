@@ -33,6 +33,7 @@ public class ProcessoSeriacao {
 
     /**
      * Gets the advertisement.
+     * 
      * @return anuncio
      */
     public Anuncio getAnuncio() {
@@ -41,6 +42,7 @@ public class ProcessoSeriacao {
 
     /**
      * Sets the advertisement.
+     * 
      * @param anuncio 
      */
     public void setAnuncio(Anuncio anuncio) {
@@ -49,6 +51,7 @@ public class ProcessoSeriacao {
 
     /**
      * Gets the date.
+     * 
      * @return data
      */
     public Data getData() {
@@ -57,6 +60,7 @@ public class ProcessoSeriacao {
 
     /**
      * Gets a list of classifications.
+     * 
      * @return ArrayList<>(classificacao)
      */
     public List<Classificacao> getClassificacao() {
@@ -66,6 +70,7 @@ public class ProcessoSeriacao {
 
     /**
      * Gets a list of collaborators.
+     * 
      * @return ArrayList<>(colaboradores)
      */
     public List<Colaborador> getColaboradores() {

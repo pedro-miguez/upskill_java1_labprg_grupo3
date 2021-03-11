@@ -19,7 +19,6 @@ import java.sql.SQLException;
  *
  * @author Grupo 3
  */
-
 public class RegistarColaboradorController {
 
      private AuthenticationController authController = new AuthenticationController();

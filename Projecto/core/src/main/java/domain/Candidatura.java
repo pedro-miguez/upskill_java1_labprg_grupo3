@@ -121,6 +121,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     /**
      * Sets the application date.
+     * 
      * @param dataCandidatura 
      */
     public void setDataCandidatura(Data dataCandidatura) {
@@ -130,6 +131,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
 
     /**
      * Sets the target value.
+     * 
      * @param valorPretendido 
      */
     private void setValorPretendido(double valorPretendido) {
@@ -142,6 +144,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     /**
      * Sets the number of days.
+     * 
      * @param nrDias 
      */
     private void setNrDias(int nrDias) {
@@ -153,6 +156,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     /**
      * Sets the presentation text.
+     * 
      * @param txtApresentacao 
      */
     private void setTxtApresentacao(String txtApresentacao) {
@@ -161,6 +165,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     /**
      * Sets the motivation text.
+     * 
      * @param txtMotivacao 
      */
     private void setTxtMotivacao(String txtMotivacao) {
@@ -217,6 +222,12 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
     }
 
 
+    /**
+     * Compare the target value with that of another application.
+     * 
+     * @param o
+     * @return int
+     */
     @Override
     public int compareTo(Candidatura o) {
         return (int) (this.getValorPretendido() - o.getValorPretendido());

@@ -37,7 +37,6 @@ public class Plataforma implements Serializable {
     /**
      * Gets instance Plataforma.
      *
-     *
      * @return the instance Plataforma that already exists or creates a new one in case none exists.
      */
     public static Plataforma getInstance() throws SQLException {
@@ -75,6 +74,7 @@ public class Plataforma implements Serializable {
 
     /**
      * Gets a connection handler.
+     * 
      * @return connectionHandler
      */
     public ConnectionHandler getConnectionHandler() {

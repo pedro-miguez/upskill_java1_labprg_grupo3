@@ -23,6 +23,7 @@ public class TipoRegimento {
 
     /**
      * Gets the designation.
+     * 
      * @return designacao
      */
     public String getDesignacao() {
@@ -31,6 +32,7 @@ public class TipoRegimento {
 
     /**
      * Sets the designation.
+     * 
      * @param descricao 
      */
     public void setDesignacao(String descricao) {
@@ -39,6 +41,7 @@ public class TipoRegimento {
 
     /**
      * Gets the rules.
+     * 
      * @return regras
      */
     public String getRegras() {
@@ -47,6 +50,7 @@ public class TipoRegimento {
 
     /**
      * Sets the rules.
+     * 
      * @param regras 
      */
     public void setRegras(String regras) {

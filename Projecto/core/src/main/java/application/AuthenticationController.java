@@ -5,14 +5,18 @@ import domain.*;
 import java.sql.SQLException;
 
 /**
- * JavaFX controller works based on MVC(Model-View-Controller) and can be achieved by FXML (EFF-ects eXtended Markup Language).
- * FXML is an XML based language used to develop the graphical user interfaces for JavaFX applications as in the HTML.
+ * JavaFX controller works based on MVC(Model-View-Controller) and can be achieved 
+ * by FXML (EFF-ects eXtended Markup Language).
+ * FXML is an XML based language used to develop the graphical user interfaces for 
+ * JavaFX applications as in the HTML.
  * FXML can be used to build an entire GUI application scene or part of a GUI application scene.
  * This FXML allows developers for separate User Interface logic from the business logic.
- * If suppose User Interface in your JavaFX application, then no need to compile the application even if we have done some
- * changes to the application. If we want, we can edit the FXML in the editor and re-run the app.
+ * If suppose User Interface in your JavaFX application, then no need to compile the application 
+ * even if we have done some changes to the application. If we want, we can edit the FXML 
+ * in the editor and re-run the app.
  *
- * Current class is the one responsible to connect the GUI with the methods responsible for users log in according to their role.
+ * Current class is the one responsible to connect the GUI with the methods responsible 
+ * for users log in according to their role.
  */
 public class AuthenticationController {
 

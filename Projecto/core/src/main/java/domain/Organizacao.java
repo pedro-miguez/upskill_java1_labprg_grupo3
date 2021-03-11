@@ -59,6 +59,7 @@ public class Organizacao implements Serializable {
 
     /**
      * Gets the nif of the organization.
+     * 
      * @return nif
      */
     public NIF getNIF() {
@@ -67,6 +68,7 @@ public class Organizacao implements Serializable {
 
     /**
      * Gets the website of the organization.
+     * 
      * @return website
      */
     public Website getWebsite() {
@@ -75,6 +77,7 @@ public class Organizacao implements Serializable {
 
     /**
      * Gets the phone number of the organization.
+     * 
      * @return telefone
      */
     public Telefone getTelefone() {
@@ -83,6 +86,7 @@ public class Organizacao implements Serializable {
 
     /**
      * Gets the email of the organization.
+     * 
      * @return email
      */
     public Email getEmail() {
@@ -91,6 +95,7 @@ public class Organizacao implements Serializable {
 
     /**
      * Gets the address of the organization.
+     * 
      * @return endereçoPostal
      */
     public EnderecoPostal getEnderecoPostal() {

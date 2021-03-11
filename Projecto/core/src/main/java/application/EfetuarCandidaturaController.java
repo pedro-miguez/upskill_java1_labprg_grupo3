@@ -65,11 +65,19 @@ public class EfetuarCandidaturaController {
      * @throws SQLException 
      */
     public boolean efetuarCandidatura(Anuncio anuncio, String emailFreelancer,
-                                      double valorPretendido, int nrDias, String txtApresentacao, String txtMotivacao) throws SQLException {
+                                      double valorPretendido, int nrDias, 
+                                      String txtApresentacao, String txtMotivacao) 
+                                                            throws SQLException {
 
         Freelancer freelancer = repositorioFreelancer.getFreelancerByEmail(new Email(emailFreelancer));
 
-        Candidatura candidatura = repoCandidatura.criarCandidatura(anuncio, freelancer, Data.dataAtual(), valorPretendido, nrDias, txtApresentacao, txtMotivacao);
+        Candidatura candidatura = repoCandidatura.criarCandidatura(anuncio, 
+                                                                    freelancer, 
+                                                                    Data.dataAtual(), 
+                                                                    valorPretendido, 
+                                                                    nrDias, 
+                                                                    txtApresentacao, 
+                                                                    txtMotivacao);
 
         return repoCandidatura.insertCandidatura(candidatura);
 
