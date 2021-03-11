@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.layout.GridPane;
 
 
 public class AreaGestorUI implements Initializable {
@@ -53,6 +54,20 @@ public class AreaGestorUI implements Initializable {
     private AuthenticationController authController;
     private PlataformaController plataformaController;
     private DefinirTarefaController tarefaController;
+    @FXML
+    private Label l1;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private Label l2;
+    @FXML
+    private GridPane regColaboradorPane;
+    @FXML
+    private Label l3;
+    @FXML
+    private Label l4;
+    @FXML
+    private Label l5;
 
 
     @Override
@@ -93,6 +108,7 @@ public class AreaGestorUI implements Initializable {
     }
 
     //Criar Tarefa
+    @FXML
     public void criarTarefaActionTarefa(ActionEvent actionEvent) {
         try {
             boolean criou = tarefaController.definirTarefa(
@@ -124,6 +140,7 @@ public class AreaGestorUI implements Initializable {
     }
 
     //limpar campos do registo colaborador
+    @FXML
     public void limparRegistarColaboradorAction(ActionEvent actionEvent) {
         limparDadosRegistarColaboradorPane();
     }
@@ -135,6 +152,7 @@ public class AreaGestorUI implements Initializable {
     }
 
     //Limpar campos do registo tarefa
+    @FXML
     public void limparActionTarefa(ActionEvent actionEvent) {
         limparDadosRegistarTarefaPane();
     }
@@ -149,6 +167,7 @@ public class AreaGestorUI implements Initializable {
     }
 
     //selecionar menu registo colaborador
+    @FXML
     public void btnSelecionarRegistarColaboradorAction(ActionEvent actionEvent) {
         registarColaboradorPane.setVisible(true);
         registarColaboradorPane.setDisable(false);
@@ -158,6 +177,7 @@ public class AreaGestorUI implements Initializable {
     }
 
     //selecionar menu criação de tarefa
+    @FXML
     public void btnSelecionarCriarTarefaAction(ActionEvent actionEvent) {
         registarColaboradorPane.setVisible(false);
         registarColaboradorPane.setDisable(true);
@@ -169,6 +189,7 @@ public class AreaGestorUI implements Initializable {
     }
 
     //fazer logout
+    @FXML
     public void btnLogoutAction(ActionEvent actionEvent) {
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
                 "Irá voltar à pagina inicial após confirmação.", "Deseja mesmo fazer logout?");
@@ -199,6 +220,21 @@ public class AreaGestorUI implements Initializable {
     //volta à janela inicial
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
+    }
+
+    @FXML
+    private void handleColorPickerAction(ActionEvent event) {
+        
+        l1.setTextFill(colorPicker.getValue());
+        
+        l2.setTextFill(colorPicker.getValue());
+        
+        l3.setTextFill(colorPicker.getValue());
+        
+        l4.setTextFill(colorPicker.getValue());
+        
+        l5.setTextFill(colorPicker.getValue());
+        
     }
 
 

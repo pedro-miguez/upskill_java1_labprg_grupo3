@@ -73,6 +73,18 @@ public class AreaAdministrativoUI implements Initializable {
     private DefinirCategoriaTarefaController categoriaTarefaController;
     private PlataformaController plataformaController;
     private AuthenticationController authenticationController;
+    @FXML
+    private Label label1;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
+    @FXML
+    private Label label4;
+    @FXML
+    private Label label5;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,6 +108,7 @@ public class AreaAdministrativoUI implements Initializable {
     // ## METODOS PARA CRIAÇAO DE OBJECTOS ######
 
     //criar área de atividade
+    @FXML
     public void confirmarAreaAtividadeAction(ActionEvent event) {
         try {
             boolean adicionou = areaAtividadeController.definirAreaAtividade(txtCodUnicoAreaAtividade.getText().trim(),
@@ -118,6 +131,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //criar categoria de tarefa
+    @FXML
     public void confirmarCategoriaTarefaAction(ActionEvent actionEvent) {
         try {
             boolean adicionou = categoriaTarefaController.definirCategoriaTarefa(comboBoxAreaAtividadeCategoriaTarefa.getValue(),
@@ -139,6 +153,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //criar competencia tecnica
+    @FXML
     public void confirmarCompetenciaTecnicaAction(ActionEvent event) {
         try {
             boolean adicionou = competenciaTecnicaController.definirCompetenciaTecnica(txtCodigoUnicoCompetenciaTecnica.getText().trim(),
@@ -171,6 +186,7 @@ public class AreaAdministrativoUI implements Initializable {
     // ## METODOS PARA MUDAR O PAINEL VISIVEL ###
 
     //mudar para o painel Criar Area de Atividade
+    @FXML
     public void criarAreaAtividadeSelectAction(ActionEvent actionEvent) {
         //desligar
         criarCompetenciaTecnicaPane.setVisible(false);
@@ -188,6 +204,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //mudar para o painel Criar Categoria de Tarefa
+    @FXML
     public void criarCategoriaTarefaSelectAction(ActionEvent actionEvent) {
         //desligar
         criarCompetenciaTecnicaPane.setVisible(false);
@@ -205,6 +222,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //mudar para o painel Criar Competencia Tecnica
+    @FXML
     public void criarCompetenciaTecnicaSelectAction(ActionEvent actionEvent) {
         //desligar
         criarCategoriaTarefaPane.setVisible(false);
@@ -229,11 +247,13 @@ public class AreaAdministrativoUI implements Initializable {
     // ## METODOS UTILITARIOS ###################
 
     //confirmar área de atividade selecionada para popular o ListView de competencias tecnicas
+    @FXML
     public void comboBoxAreaAtividadeCategoriaTarefaSelectAction(ActionEvent actionEvent) {
         listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
     }
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade verdadeira
+    @FXML
     public void compObrigatoriaCategoriaTarefaAction(ActionEvent actionEvent) {
         if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
                 listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
@@ -259,6 +279,7 @@ public class AreaAdministrativoUI implements Initializable {
 
 
     //adicionar a competência técnica selecionada com o grau de proficiencia e obrigatoriedade falso
+    @FXML
     public void compOpcionalCategoriaTarefaAction(ActionEvent actionEvent) {
         if (comboBoxGrauProficienciaCategoriaTarefa.getValue() != null &&
                 listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
@@ -293,6 +314,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //remover a última competência técnica da lista
+    @FXML
     public void removerUltimaCompTecCategoriaTarefaAction(ActionEvent actionEvent) {
         listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().remove(listViewCompTecnicasSelecionadasCategoriaTarefa.getItems().size() - 1);
 
@@ -307,6 +329,7 @@ public class AreaAdministrativoUI implements Initializable {
     // ## METODOS PARA LIMPAR DADOS #############
 
     //limpar dados criar area de atividade
+    @FXML
     public void limparAreaAtividadeAction(ActionEvent event) {
         limparDadosAreaAtividade();
     }
@@ -318,6 +341,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //limpar dados criar categoria de tarefa
+    @FXML
     public void limparCategoriaTarefaAction(ActionEvent event) {
         btnRemoverUltimaCompTecCategoriaTarefa.setDisable(true);
         limparDadosCategoriaTarefa();
@@ -329,6 +353,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //limpar dados criar competencia tecnica
+    @FXML
     public void limparCompetenciaTecnicaAction(ActionEvent event) {
         limparDadosCompetenciaTecnica();
 
@@ -353,6 +378,7 @@ public class AreaAdministrativoUI implements Initializable {
 
 
 
+    @FXML
     public void logoutAction(ActionEvent actionEvent) {
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
                 "Irá voltar à pagina inicial após confirmação.", "Deseja mesmo fazer logout?");
@@ -371,6 +397,20 @@ public class AreaAdministrativoUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
-     {
+    
+
+    @FXML
+    private void handleColorPickerAction(ActionEvent event) {
+        
+        label1.setTextFill(colorPicker.getValue());
+        
+        label2.setTextFill(colorPicker.getValue());
+        
+        label3.setTextFill(colorPicker.getValue());
+        
+        label4.setTextFill(colorPicker.getValue());
+        
+        label5.setTextFill(colorPicker.getValue());
+        
     }
 }

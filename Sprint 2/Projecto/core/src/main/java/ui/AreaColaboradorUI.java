@@ -36,6 +36,28 @@ public class AreaColaboradorUI implements Initializable {
     private DefinirTarefaController criarTarefaController;
     private PlataformaController plataformaController;
     private AuthenticationController authenticationController;
+    @FXML
+    private Label l1;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private Label l2;
+    @FXML
+    private Button submeterTarefa;
+    @FXML
+    private Label l4;
+    @FXML
+    private Label l5;
+    @FXML
+    private Label l6;
+    @FXML
+    private Label l7;
+    @FXML
+    private Label l8;
+    @FXML
+    private Label l9;
+    @FXML
+    private Label l3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,11 +98,13 @@ public class AreaColaboradorUI implements Initializable {
 
     }
 
+    @FXML
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
         comboCategoriaTarefa.getItems().setAll(plataformaController.getCategoriasTarefa());
     }
 
     //logout
+    @FXML
     public void logoutAction(ActionEvent actionEvent) {
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
                 "Irá voltar à pagina inicial após confirmação.", "Deseja mesmo fazer logout?");
@@ -95,6 +119,7 @@ public class AreaColaboradorUI implements Initializable {
     }
 
     //limpa todos os campos
+    @FXML
     public void btnLimparDadosTarefaAction(ActionEvent actionEvent) {
         limparDados();
     }
@@ -111,6 +136,29 @@ public class AreaColaboradorUI implements Initializable {
     //volta à janela inicial
     public void voltarJanelaInicial() {
         MainApp.screenController.activate("JanelaInicial");
+    }
+
+    @FXML
+    private void handleColorPickerAction(ActionEvent event) {
+        
+        l1.setTextFill(colorPicker.getValue());
+        
+        l2.setTextFill(colorPicker.getValue());
+        
+        l3.setTextFill(colorPicker.getValue());
+        
+        l4.setTextFill(colorPicker.getValue());
+        
+        l5.setTextFill(colorPicker.getValue());
+        
+        l6.setTextFill(colorPicker.getValue());
+        
+        l7.setTextFill(colorPicker.getValue());
+        
+        l8.setTextFill(colorPicker.getValue());
+        
+        l9.setTextFill(colorPicker.getValue());
+        
     }
 
 }
