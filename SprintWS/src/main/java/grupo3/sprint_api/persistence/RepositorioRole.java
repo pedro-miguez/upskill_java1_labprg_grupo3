@@ -106,6 +106,7 @@ public class RepositorioRole {
 
     /**
      * Gets an role by its name.
+     *
      * @param rolename
      * @return role
      */
@@ -130,6 +131,7 @@ public class RepositorioRole {
 
     /**
      * Gets an list of the roles.
+     *
      * @return roles
      */
     public ArrayList<Role> getRoles() {
@@ -153,6 +155,7 @@ public class RepositorioRole {
 
     /**
      * Sets an role.
+     *
      * @param row
      * @param unico
      * @return role
@@ -183,6 +186,7 @@ public class RepositorioRole {
 
     /**
      * Deletes an role.
+     *
      * @param role
      */
     public void deleteRole(Role role) {

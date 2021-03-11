@@ -108,7 +108,7 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
         return txtApresentacao;
     }
 
-    
+
     /**
      * Gets the motivation text.
      *

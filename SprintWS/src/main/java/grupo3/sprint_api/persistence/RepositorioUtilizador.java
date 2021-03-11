@@ -126,6 +126,7 @@ public class RepositorioUtilizador {
 
     /**
      * Boolean method that checks if a role was added to an user.
+     *
      * @param user
      * @return boolean
      */
@@ -202,6 +203,7 @@ public class RepositorioUtilizador {
 
     /**
      * Builds an User.
+     *
      * @param row
      * @return user
      */
@@ -253,6 +255,7 @@ public class RepositorioUtilizador {
 
     /**
      * Deletes an role from a user.
+     *
      * @param user
      */
     public void deleteRoleFromUser(User user) {
