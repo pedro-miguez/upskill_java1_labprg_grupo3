@@ -220,12 +220,26 @@ public class RepositorioCandidatura {
 
             deleteCandidatura.executeQuery();
 
+            PreparedStatement insertCandidaturaRetirada = conn.prepareStatement("INSERT INTO CandidaturaRetirada(idAnuncio, " +
+                    "idFreelancer, dataCandidatura, valorPretendido, nrDias, txtApresentacao, txtMotivacao) values (?, ?, ?, ?, ?, ?, ?)");
+
+            insertCandidaturaRetirada.setInt(1, idAnuncio);
+            insertCandidaturaRetirada.setInt(2, idFreelancer);
+            insertCandidaturaRetirada.setDate(3, candidatura.getDataCandidatura().getDataSQL());
+            insertCandidaturaRetirada.setDouble(4,candidatura.getValorPretendido());
+            insertCandidaturaRetirada.setInt(5, candidatura.getNrDias());
+            insertCandidaturaRetirada.setString(6, candidatura.getTxtApresentacao());
+            insertCandidaturaRetirada.setString(7, candidatura.getTxtMotivacao());
+
+            insertCandidaturaRetirada.executeQuery();
+
             conn.commit();
             csIdOrg.close();
             csIdAnuncio.close();
             csFreelancerIdByEmail.close();
             deleteCandidatura.close();
             rSetIdOrg.close();
+            insertCandidaturaRetirada.close();
             return true;
         } catch (SQLException e) {
             e.getSQLState();

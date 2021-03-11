@@ -7,6 +7,7 @@ package application;
 
 import domain.*;
 import persistence.RepositorioFreelancer;
+import utils.SendEmailSMTP;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -48,6 +49,8 @@ public class RegistarFreelancerController {
 
         String password = authController.registarFreelancerComoUtilizador(freelancer);
         System.out.println(password);
+
+        SendEmailSMTP.SendEmail(nomeFreelancer, password);
 
         if (!password.equals("failed")) {
             return repoFlr.insertUtilizadorFreelancer(freelancer);
