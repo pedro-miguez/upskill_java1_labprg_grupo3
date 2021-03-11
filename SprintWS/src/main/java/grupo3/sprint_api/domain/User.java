@@ -136,7 +136,6 @@ public class User implements Serializable {
      * about the object and its attributes.
      *
      * @return a string representation of the object (user).
-     *
      */
     @Override
     public String toString() {

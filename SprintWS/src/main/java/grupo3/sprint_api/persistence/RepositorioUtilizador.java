@@ -16,6 +16,7 @@ import java.sql.SQLException;
  * Class responsible for creating a repository to store information about Users.
  */
 public class RepositorioUtilizador {
+
     private static RepositorioUtilizador instance;
 
     private ConnectionHandler connectionHandler;
@@ -26,8 +27,7 @@ public class RepositorioUtilizador {
 
 
     /**
-     * Static method that returns a unique reference to the class object,
-     * that implements a singleton.
+     * Static method that returns a unique reference to the class object.
      *
      * @return instance
      */

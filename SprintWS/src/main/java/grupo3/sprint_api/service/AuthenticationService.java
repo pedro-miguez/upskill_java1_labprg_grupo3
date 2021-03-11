@@ -22,6 +22,7 @@ public class AuthenticationService {
 
     /**
      * Creates an context.
+     *
      * @param appKey
      * @return contextDTO
      * @throws SQLException
@@ -45,6 +46,7 @@ public class AuthenticationService {
 
     /**
      * Boolean method that checks if the context was validated.
+     *
      * @param contextDTO
      * @return boolean
      * @throws SQLException
@@ -57,6 +59,7 @@ public class AuthenticationService {
 
     /**
      * Boolean method that checks if the login was processed with success.
+     *
      * @param loginDTO
      * @param contextDTO
      * @return boolean
@@ -80,6 +83,7 @@ public class AuthenticationService {
 
     /**
      * Boolean method that checks if the logout was processed with success.
+     *
      * @param contextDTO
      * @return boolean
      * @throws SQLException
@@ -90,6 +94,7 @@ public class AuthenticationService {
 
     /**
      * Gets the current session.
+     *
      * @param contextDTO
      * @return sessionDTO
      * @throws SQLException
