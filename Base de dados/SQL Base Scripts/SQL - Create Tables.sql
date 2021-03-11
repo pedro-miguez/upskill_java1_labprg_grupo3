@@ -332,6 +332,24 @@ create table EstadoAnuncio (
         constraint nn_EstadoAnuncio_designacao not null
 );
 
+create table CandidaturaRetiradas (
+    idAnuncio integer 
+        constraint ck_Candidatura_idAnuncio check (idAnuncio > 0),
+    idFreelancer integer 
+        constraint ck_Candidatura_idFreelancer check(idFreelancer > 0),
+    dataCandidatura date 
+        constraint nn_Candidatura_dataCandidatura not null,
+    valorPretendido float(2) 
+        constraint nn_Candidatura_valorPretendido not null 
+        constraint ck_Candidatura_valorPretendido check (valorPretendido > 0),
+    nrDias integer 
+        constraint ck_Candidatura_nrDias check (nrDias > 0),
+    txtApresentacao varchar(500),
+    txtMotivacao varchar(500),
+    
+    constraint pk_CandidaturaRetirada_idAnuncio_idFreelancer primary key (idAnuncio, idFreelancer)
+);
+
 
 insert into Role (designacao) values ('gestor');
 insert into Role (designacao) values ('colaborador');
