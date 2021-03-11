@@ -34,10 +34,11 @@ public class PublicarTarefaController {
      * @return the boolean
      */
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
-                                  Data dataInicioPublicitacao, LocalDate dataFimPublicitacao,
+                                    Data dataInicioPublicitacao, LocalDate dataFimPublicitacao,
                                     LocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,
-                                    LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao, String emailColaborador)
-                                throws SQLException {
+                                    LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao, 
+                                    String emailColaborador)
+                                                            throws SQLException {
         
         RepositorioAnuncio repAnuncio = RepositorioAnuncio.getInstance();
         

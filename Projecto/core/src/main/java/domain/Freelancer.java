@@ -80,6 +80,7 @@ public class Freelancer implements Serializable {
 
     /**
      * Gets phone number.
+     * 
      * @return telefone
      */
     public Telefone getTelefone() {
@@ -88,12 +89,14 @@ public class Freelancer implements Serializable {
 
     /**
      * Gets nif.
+     * 
      * @return nif
      */
     public NIF getNif() { return this.nif; }
 
     /**
      * Gets list of recognition of technical skills.
+     * 
      * @return reconhecimento
      */
     public ArrayList<ReconhecimentoCT> getReconhecimento() {
@@ -106,6 +109,7 @@ public class Freelancer implements Serializable {
 
     /**
      * Gets list of academic qualifications.
+     * 
      * @return habilitacoes
      */
     public ArrayList<HabilitacaoAcademica> getHabilitacoes() {
@@ -116,6 +120,7 @@ public class Freelancer implements Serializable {
     
     /**
      * Adds recognition of technical skills to the list.
+     * 
      * @param reconhecimentoCTS 
      */
     public void adicionaReconhecimentoCT(ArrayList<ReconhecimentoCT> reconhecimentoCTS){
@@ -128,6 +133,7 @@ public class Freelancer implements Serializable {
 
     /**
      * Adds academic qualifications to the list.
+     * 
      * @param habilitacaoAcademicas 
      */
     public void adicionaHabilitacaoAcademica(ArrayList<HabilitacaoAcademica> habilitacaoAcademicas){
@@ -141,6 +147,7 @@ public class Freelancer implements Serializable {
 
     /**
      * Returns a string representation of the object freelancer.
+     * 
      * @return a string representation of the object.
      */
     @Override

@@ -18,6 +18,7 @@ public class HabilitacaoAcademica implements Serializable {
     
     /**
      * Instantiates a new academic qualification.
+     * 
      * @param grau
      * @param designacaoCurso
      * @param nomeInstituicao
@@ -64,6 +65,7 @@ public class HabilitacaoAcademica implements Serializable {
     
     /**
      * Gets the level of qualification.
+     * 
      * @return grau
      */
     public String getGrau() {
@@ -72,6 +74,7 @@ public class HabilitacaoAcademica implements Serializable {
 
     /**
      * Gets the course designation.
+     * 
      * @return designacaoCurso
      */
     public String getDesignacaoCurso() {
@@ -80,6 +83,7 @@ public class HabilitacaoAcademica implements Serializable {
 
     /**
      * Gets the Institution Name.
+     * 
      * @return nomeInstituicao
      */
     public String getNomeInstituicao() {
@@ -88,6 +92,7 @@ public class HabilitacaoAcademica implements Serializable {
 
     /**
      * Gets the final course average.
+     * 
      * @return mediaCurso
      */
     public double getMediaCurso() {
@@ -96,6 +101,7 @@ public class HabilitacaoAcademica implements Serializable {
 
     /**
      * Returns a string representation of the object academic qualifications.
+     * 
      * @return a string representation of the object
      */
     @Override

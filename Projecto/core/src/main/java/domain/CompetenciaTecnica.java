@@ -83,6 +83,7 @@ public class CompetenciaTecnica implements Serializable {
 
     /**
      * Gets list of proficiency degrees.
+     * 
      * @return graus
      */
     public ArrayList<GrauProficiencia> getGraus() {
@@ -113,6 +114,7 @@ public class CompetenciaTecnica implements Serializable {
     
     /**
      * Adds degrees of proficiency to the list.
+     * 
      * @param grausProficiencia 
      */
     public void adicionaGrau(ArrayList<GrauProficiencia> grausProficiencia){
@@ -127,6 +129,7 @@ public class CompetenciaTecnica implements Serializable {
     /**
      * Returns a string representation of the object degrees of proficiency and 
      * its attributes.
+     * 
      * @return a string representation of the object.
      */
     @Override
@@ -143,6 +146,7 @@ public class CompetenciaTecnica implements Serializable {
     
     /**
      * Indicates whether some other object is "equal to" this one.
+     * 
      * @param o the reference object with which to compare.
      * @return {@code true} if this object is the same as the obj
      *          argument; {@code false} otherwise.

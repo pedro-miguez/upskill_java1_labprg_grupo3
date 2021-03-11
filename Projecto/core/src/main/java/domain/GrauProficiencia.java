@@ -12,6 +12,7 @@ public class GrauProficiencia {
 
     /**
      * Instantiates a new proficiency degree.
+     * 
      * @param nivel
      * @param designacao 
      */
@@ -22,6 +23,7 @@ public class GrauProficiencia {
 
     /**
      * Gets the level.
+     * 
      * @return nivel
      */
     public int getNivel() {
@@ -37,6 +39,7 @@ public class GrauProficiencia {
 
     /**
      * Gets the designation.
+     * 
      * @return designacao
      */
     public String getDesignacao() {
@@ -53,6 +56,7 @@ public class GrauProficiencia {
     
     /**
      * Returns a string representation of the object proficiency degree.
+     * 
      * @return a string representation of the object.
      */
     @Override
@@ -63,6 +67,7 @@ public class GrauProficiencia {
     
     /**
      * Indicates whether some other object is "equal to" this one.
+     * 
      * @param o the reference object with which to compare.
      * @return {@code true} if this object is the same as the obj
      *          argument; {@code false} otherwise.

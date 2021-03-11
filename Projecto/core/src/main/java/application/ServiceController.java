@@ -127,7 +127,8 @@ public class ServiceController {
      * @return the complete representation of a task object by its unique code.
      */
     public String getTarefaToStringCompletoByCodigoUnico(String codigoUnico, String emailColaborador) {
-        return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico), emailColaborador).toString();
+        return RepositorioTarefa.getInstance().getTarefaByCodigoUnico(new CodigoUnico(codigoUnico), 
+                                                                        emailColaborador).toString();
 
     }
 
@@ -182,8 +183,10 @@ public class ServiceController {
      * of a freelancer.
      */
 
-    public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, String emailFreelancer) {
-        return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, emailFreelancer).toString();
+    public String getCandidaturatoStringCompletoByAnuncioFreelancer(Anuncio anuncio, 
+                                                                    String emailFreelancer) {
+        return RepositorioCandidatura.getInstance().getCandidaturaByAnuncioFreelancer(anuncio, 
+                                                                                emailFreelancer).toString();
     }
 
 
@@ -193,7 +196,8 @@ public class ServiceController {
      * @param emailColaborador
      * @return RepositorioAnuncio.getInstance().getAllAnunciosSeriacao
      */
-    public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador) throws FetchingProblemException {
+    public ArrayList<Anuncio> getAllAnunciosSeriacao(String emailColaborador) 
+                                                throws FetchingProblemException {
         return RepositorioAnuncio.getInstance().getAllAnunciosSeriacao(emailColaborador);
     }
 

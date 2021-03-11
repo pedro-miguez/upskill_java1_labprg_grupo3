@@ -30,6 +30,7 @@ public class ReconhecimentoCT implements Serializable {
 
     /**
      * Gets the technical skill.
+     * 
      * @return competenciaTecnica
      */
     public CompetenciaTecnica getCompetenciaTecnica() {
@@ -38,6 +39,7 @@ public class ReconhecimentoCT implements Serializable {
 
     /**
      * Gets the degree of proficiency.
+     * 
      * @return grauProficiencia
      */
     public GrauProficiencia getGrauProficiencia() {
@@ -46,6 +48,7 @@ public class ReconhecimentoCT implements Serializable {
 
     /**
      * Gets the date of the recognition.
+     * 
      * @return dataReconhecimento
      */
     public Data getDataReconhecimento() {

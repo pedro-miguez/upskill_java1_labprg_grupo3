@@ -70,6 +70,7 @@ public class Colaborador implements Serializable {
 
     /**
      * Gets the phone number.
+     * 
      * @return telefone
      */
     public Telefone getTelefone() {
@@ -78,6 +79,7 @@ public class Colaborador implements Serializable {
 
     /**
      * Gets the role.
+     * 
      * @return funcao
      */
     public String getFuncao() {
@@ -86,6 +88,7 @@ public class Colaborador implements Serializable {
 
     /**
      * Returns a string representation of the object collaborator and its attributes.
+     * 
      * @return a string representation of the object.
      */
     @Override

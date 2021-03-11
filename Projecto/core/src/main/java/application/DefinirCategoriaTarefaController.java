@@ -21,12 +21,15 @@ public class DefinirCategoriaTarefaController {
      * @return the boolean
      */
     public boolean definirCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
-                                          List<CaracterizacaoCompTec> competenciasTecnicas) throws SQLException {
+                                          List<CaracterizacaoCompTec> competenciasTecnicas) 
+                                                            throws SQLException {
 
 
         RepositorioCategoriaTarefa repo = RepositorioCategoriaTarefa.getInstance();
 
-        CategoriaTarefa categoriaTarefa = repo.criarCategoriaTarefa(areaAtividade, descricao, competenciasTecnicas);
+        CategoriaTarefa categoriaTarefa = repo.criarCategoriaTarefa(areaAtividade, 
+                                                                    descricao, 
+                                                                    competenciasTecnicas);
 
         return repo.insertCategoriaTarefa(categoriaTarefa);
     }

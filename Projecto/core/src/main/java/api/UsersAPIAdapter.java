@@ -7,7 +7,8 @@ import utils.Response;
 import java.io.Serializable;
 
 /**
- * Current class is the one responsible to connect and make requests between the app and the to the web service.
+ * Current class is the one responsible to connect and make requests between the
+ * app and the to the web service.
  */
 public class UsersAPIAdapter implements Serializable {
     private String app_context;
