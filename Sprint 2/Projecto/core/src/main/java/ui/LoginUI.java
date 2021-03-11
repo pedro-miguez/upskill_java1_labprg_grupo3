@@ -19,7 +19,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 
-public class LoginUI implements Initializable {
+
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+
+
+public class LoginUI implements Initializable{
 
     public Button btnLogin;
     public Button btnVoltar;
@@ -89,6 +95,12 @@ public class LoginUI implements Initializable {
         btnLogin.setTextFill(colorPicker.getValue());
         btnVoltar.setTextFill(colorPicker.getValue());
         label.setTextFill(colorPicker.getValue());
+        
+        //btnLogin.setBackground(Color.BLACK);
+        
+        //btnLogin.setContentAreaFilled(false);
+        //btnLogin.setOpaque(true);
+        //btnLogin.setBackground(Color.RED);
     }
 
 }
