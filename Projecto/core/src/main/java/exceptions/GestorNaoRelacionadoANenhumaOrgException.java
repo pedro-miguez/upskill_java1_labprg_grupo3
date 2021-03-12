@@ -6,6 +6,7 @@
 package exceptions;
 
 /**
+ * This class will be called if any manager is not associated with any organization.
  *
  * @author Grupo 3 - Turma 1
  */

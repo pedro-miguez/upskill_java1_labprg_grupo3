@@ -32,6 +32,7 @@ public class RepositorioOrganizacao implements Serializable {
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
+     * 
      * @return instance
      */
     public static RepositorioOrganizacao getInstance() {
@@ -45,6 +46,7 @@ public class RepositorioOrganizacao implements Serializable {
     /**
      * Boolean method that checks if an organization exists in the repository, 
      * otherwise it is added to it.
+     * 
      * @param organizacao
      * @return boolean
      */
@@ -93,6 +95,7 @@ public class RepositorioOrganizacao implements Serializable {
 
     /**
      * Method for obtaining an organization through its manager.
+     * 
      * @param colaborador
      * @return montarOrganizacao
      */
@@ -183,6 +186,7 @@ public class RepositorioOrganizacao implements Serializable {
 
     /**
      * Method for listing (registering) organizations.
+     * 
      * @return new Organizacao
      */
     public Organizacao criarOrganizacao(String nomeOrg, int nif, String website, 

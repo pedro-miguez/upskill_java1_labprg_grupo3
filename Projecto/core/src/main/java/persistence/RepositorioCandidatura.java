@@ -21,6 +21,7 @@ public class RepositorioCandidatura {
 
     /**
      * Static method that returns a unique reference to the class object.
+     * 
      * @return instance
      */
     public static RepositorioCandidatura getInstance() {
@@ -37,6 +38,7 @@ public class RepositorioCandidatura {
     /**
      * Boolean method that checks if a application exists in the repository,
      * otherwise it is added to it.
+     * 
      * @param candidatura
      * @return boolean
      * @throws SQLException 
@@ -108,6 +110,13 @@ public class RepositorioCandidatura {
     }
 
 
+    /**
+     * Checks if the application was updated.
+     * 
+     * @param candidatura
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean updateCandidatura(Candidatura candidatura) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
@@ -180,6 +189,13 @@ public class RepositorioCandidatura {
     }
 
 
+    /**
+     * Checks if the application was deleted.
+     * 
+     * @param candidatura
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean deleteCandidatura(Candidatura candidatura) throws SQLException {
 
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
