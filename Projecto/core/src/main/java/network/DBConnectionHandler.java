@@ -8,6 +8,11 @@ import java.sql.Statement;
 
 import oracle.jdbc.pool.OracleDataSource;
 
+/**
+ * Class responsible for creating a connection to the Data Base,
+ * 
+ * @author Grupo 3
+ */
 public class DBConnectionHandler {
 
     private String jdbcUrl;
@@ -19,6 +24,13 @@ public class DBConnectionHandler {
     private Statement stmt;
     private ResultSet rSet;
 
+    /**
+     * Constructor of the class DBConnectionHandler.
+     * 
+     * @param jdbcUrl
+     * @param username
+     * @param password 
+     */
     public DBConnectionHandler(String jdbcUrl, String username, String password) {
         this.jdbcUrl = jdbcUrl;
         this.username = username;
@@ -30,12 +42,22 @@ public class DBConnectionHandler {
         stmt = null;
     }
 
+    /**
+     * Opens a connection.
+     * 
+     * @throws SQLException 
+     */
     public void openConnection() throws SQLException {
         OracleDataSource ds = new OracleDataSource();
         ds.setURL(jdbcUrl);
         connection = ds.getConnection(username, password);
     }
 
+    /**
+     * Closes all connections.
+     * 
+     * @return message
+     */
     public String closeAll() {
 
         StringBuilder message = new StringBuilder("");
