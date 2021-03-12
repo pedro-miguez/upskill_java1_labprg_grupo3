@@ -8,6 +8,7 @@ package exceptions;
 import java.sql.SQLException;
 
 /**
+ * This class will be called if a problem (or error) is detected.
  *
  * @author Grupo 3 - Turma 1
  */

@@ -6,6 +6,7 @@
 package exceptions;
 
 /**
+ * This class will be called if the unique code is not associated with anything.
  *
  * @author Grupo 3 - Turma 1
  */

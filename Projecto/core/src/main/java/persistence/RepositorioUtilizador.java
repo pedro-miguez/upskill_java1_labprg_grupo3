@@ -29,6 +29,7 @@ public class RepositorioUtilizador implements Serializable {
     /**
      * Static method that returns a unique reference to the class object,
      * that implements a singleton.
+     * 
      * @return instance
      */
     public static RepositorioUtilizador getInstance(){
@@ -41,6 +42,7 @@ public class RepositorioUtilizador implements Serializable {
     /**
      * Boolean method that checks if a user exists in the repository,
      * otherwise it is added to it.
+     * 
      * @param user
      * @return boolean
      */
@@ -54,6 +56,7 @@ public class RepositorioUtilizador implements Serializable {
 
     /**
      * Method to get a user through your email.
+     * 
      * @param email
      * @return u
      */
@@ -68,6 +71,7 @@ public class RepositorioUtilizador implements Serializable {
 
     /**
      * Method for obtaining a user using his username.
+     * 
      * @param nome
      * @return u
      */
@@ -83,6 +87,7 @@ public class RepositorioUtilizador implements Serializable {
 
     /**
      * Method for obtaining a user through their role.
+     * 
      * @param role
      * @return usersByRole
      */
@@ -100,6 +105,7 @@ public class RepositorioUtilizador implements Serializable {
 
     /**
      * Method for listing (registering) users.
+     * 
      * @return new ArrayList<>
      */
     public ArrayList<User> listarUtilizadores() {

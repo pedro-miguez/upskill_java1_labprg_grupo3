@@ -30,6 +30,7 @@ public class RepositorioTarefa implements Serializable {
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
+     * 
      * @return instance
      */
     public static RepositorioTarefa getInstance() {
@@ -42,6 +43,7 @@ public class RepositorioTarefa implements Serializable {
     /**
      * Boolean method that checks if a task exists in the repository, otherwise 
      * it is added to it.
+     * 
      * @param tarefa
      * @return boolean
      */
@@ -102,6 +104,7 @@ public class RepositorioTarefa implements Serializable {
 
     /**
      * Method for obtaining a task using its unique code.
+     * 
      * @param codigoUnico
      * @return montarTarefa
      */

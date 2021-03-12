@@ -24,6 +24,7 @@ public class RepositorioAnuncio {
     
     /**
      * Static method that returns a unique reference to the class object.
+     * 
      * @return instance
      */
     public static RepositorioAnuncio getInstance() {
@@ -33,13 +34,13 @@ public class RepositorioAnuncio {
         return instance;
     }
 
-    private RepositorioAnuncio() {
+    private RepositorioAnuncio() {}
 
-    }
-
+    
     /**
      * Boolean method that checks if a advertisement exists in the repository,
      * otherwise it is added to it.
+     * 
      * @param anuncio
      * @return boolean
      * @throws SQLException 
@@ -115,6 +116,7 @@ public class RepositorioAnuncio {
 
     /**
      * Method to obtain a type of regiment from the list 'TipoRegimento'.
+     * 
      * @return tiposRegimento
      * @throws SQLException 
      */
@@ -138,7 +140,8 @@ public class RepositorioAnuncio {
 
     /**
      * Method to obtain all the advertisements from the list 'Anuncio'.
-     * @return montarListaAnuncios(rSetAnuncios)
+     * 
+     * @return listaAnuncios
      */
     public ArrayList<Anuncio> getAllAnuncios () throws FetchingProblemException {
         try {
@@ -237,8 +240,9 @@ public class RepositorioAnuncio {
 
     /**
      * Method to obtain a advertisement by a task.
+     * 
      * @param tarefa
-     * @return montarAnuncio(pstmt.executeQuery())
+     * @return anuncio
      */
     public Anuncio getAnuncioByTarefa(Tarefa tarefa) {
 
@@ -386,6 +390,7 @@ public class RepositorioAnuncio {
 
     /**
      * Method that creates a list of advertisements, adding an advertisement to it. 
+     * 
      * @param rows
      * @return listaAnuncios
      * @throws SQLException 

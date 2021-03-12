@@ -31,7 +31,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
      * Static method that returns a unique reference to the class object, which
      * implements a singleton.
      *
-     * @return
+     * @return instance
      */
     public static RepositorioCategoriaTarefa getInstance() {
         if (instance == null) {
@@ -45,7 +45,7 @@ public class RepositorioCategoriaTarefa implements Serializable {
      * otherwise it is added to it.
      *
      * @param categoriaTarefa the object CategoriaTarefa to add to the repository
-     * @return
+     * @return boolean
      */
     public boolean insertCategoriaTarefa(CategoriaTarefa categoriaTarefa) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();

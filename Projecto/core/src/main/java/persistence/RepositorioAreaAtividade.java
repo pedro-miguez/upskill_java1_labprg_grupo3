@@ -87,7 +87,7 @@ public class RepositorioAreaAtividade implements Serializable {
      * Method for obtaining an area of ​​activity using its unique code.
      *
      * @param codigoUnico
-     * @return montarAreaAtividade(pstmt.executeQuery())
+     * @return areaAtividade
      */
     public AreaAtividade getAreaAtividadeByCodUnico(CodigoUnico codigoUnico) {
         try {

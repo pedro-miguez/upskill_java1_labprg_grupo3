@@ -31,6 +31,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     /**
      * Static method that returns a unique reference to the class object, which 
      * implements a singleton.
+     * 
      * @return instance
      */
     public static RepositorioCompetenciaTecnica getInstance(){
@@ -43,6 +44,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
     /**
      * Boolean method that checks if a technical competence exists in the repository, 
      * otherwise it is added to it.
+     * 
      * @param competenciaTecnica
      * @return insertGrausProficiencia(competenciaTecnica)
      */
@@ -155,6 +157,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
 
     /**
      * Method for obtaining technical competence through its unique code.
+     * 
      * @param codigoUnico
      * @return montarCompetenciaTecnica
      */
@@ -177,6 +180,7 @@ public class RepositorioCompetenciaTecnica implements Serializable {
 
     /**
      * Method for obtaining technical skills on the list by their area of activity.
+     * 
      * @param areaAtividade
      * @return montarListaCompetenciaTecnica
      */
