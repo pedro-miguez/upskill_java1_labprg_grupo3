@@ -158,6 +158,8 @@ public class RepositorioProcessoSeriacao {
         return false;
     }
 
+    private ProcessoSeriacao montarProcessoSeriacao (ResultSet row, boolean unico)
+
     /**
      * Creates a serialization process.
      * 

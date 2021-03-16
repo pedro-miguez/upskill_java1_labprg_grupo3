@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.*;
+import exceptions.FetchingProblemException;
 
 import java.sql.*;
 import java.util.List;
@@ -89,9 +90,9 @@ public class RepositorioAtribuicao {
         return false;
     }
 
-    public Atribuicao criarAtribuicao(Anuncio anuncio, List<Classificacao> classificacao,
-                                                  List<Colaborador> colaboradores) {
-        return new ProcessoSeriacao(anuncio, classificacao, colaboradores);
+
+    public Atribuicao criarAtribuicao() {
+        return new Atribuicao();
     }
 
 }
