@@ -1,72 +1,15 @@
 package domain;
 
-/**
- * Current class implements the tools for creating new type of regiment.
- * 
- * @author Grupo 3
- */
-public class TipoRegimento {
+import java.util.ArrayList;
+import java.util.List;
 
-    private String designacao;
-    private String regras;
 
-    /**
-     * Instantiates a new type of regiment.
-     * 
-     * @param designacao
-     * @param regras 
-     */
-    public TipoRegimento(String designacao, String regras) {
-        this.designacao = designacao;
-        this.regras = regras;
-    }
+public interface TipoRegimento {
 
-    /**
-     * Gets the designation.
-     * 
-     * @return designacao
-     */
-    public String getDesignacao() {
-        return designacao;
-    }
+    public ArrayList<Classificacao> seriarCandidaturas(List<Candidatura> candidaturas);
 
-    /**
-     * Sets the designation.
-     * 
-     * @param descricao 
-     */
-    public void setDesignacao(String descricao) {
-        this.designacao = descricao;
-    }
+    public Atribuicao atribuirSeriacao (ProcessoSeriacao processoSeriacao);
 
-    /**
-     * Gets the rules.
-     * 
-     * @return regras
-     */
-    public String getRegras() {
-        return regras;
-    }
+    public String getDesignacao();
 
-    /**
-     * Sets the rules.
-     * 
-     * @param regras 
-     */
-    public void setRegras(String regras) {
-        this.regras = regras;
-    }
-
-    
-    /**
-     * Returns a string representation with very concise but precise information 
-     * about the object and its attributes.
-     *
-     * @return a string representation of the object (type of regiment).
-     *
-     */
-    @Override
-    public String toString() {
-        return designacao;
-    }
 }

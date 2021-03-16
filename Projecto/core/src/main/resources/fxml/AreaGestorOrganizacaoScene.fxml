@@ -197,7 +197,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="homePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <Label prefHeight="295.0" prefWidth="349.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
                            <font>
@@ -416,6 +416,15 @@
                         </Label>
                      </top>
                   </BorderPane>
+                  <BorderPane fx:id="IniciarAtribuicaoPane" prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Label text="Iniciar Atribuição" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
                </children>
             </StackPane>
          </center>
@@ -447,6 +456,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#btnIniciarAtribuicaoSelectAction" prefHeight="46.0" prefWidth="90.0" text="Iniciar Atribuição" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnLogoutAction" prefHeight="31.0" prefWidth="71.0" text="Logout">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />

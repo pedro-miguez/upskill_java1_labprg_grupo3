@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -68,6 +69,7 @@ public class AreaGestorUI implements Initializable {
     public DatePicker btnDataInicioSeriacao;
     public DatePicker btnDataFimSeriacao;
     public ComboBox<TipoRegimento> btnTipoRegimento;
+    public BorderPane IniciarAtribuicaoPane;
 
     private RegistarColaboradorController registarColaboradorController;
     private AuthenticationController authController;
@@ -75,6 +77,7 @@ public class AreaGestorUI implements Initializable {
     private DefinirTarefaController tarefaController;
     private PublicarTarefaController publicarTarefaController;
     private SeriarCandidaturaController seriarCandidaturaController;
+    private AtribuicaoController atribuicaoController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,6 +87,7 @@ public class AreaGestorUI implements Initializable {
         tarefaController = new DefinirTarefaController();
         publicarTarefaController = new PublicarTarefaController();
         seriarCandidaturaController = new SeriarCandidaturaController();
+        atribuicaoController = new AtribuicaoController();
 
 
         //popular combo boxes do painel Publicar Tarefa
@@ -630,6 +634,40 @@ public class AreaGestorUI implements Initializable {
 
     public void btnLimparDadosPublicarTarefaAction(ActionEvent actionEvent) {
         limparTodosOsCampos();
+    }
+    
+    
+    //@FXML
+    public void btnIniciarAtribuicaoSelectAction(ActionEvent actionEvent) {
+        
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        seriacaoAutomaticaPane.setDisable(true);
+        seriacaoAutomaticaPane.setVisible(false);
+        seriacaoManualPane.setDisable(true);
+        seriacaoManualPane.setVisible(false);
+        registarColaboradorPane.setDisable(true);
+        registarColaboradorPane.setVisible(false);
+
+        //ligar
+        IniciarAtribuicaoPane.setDisable(false);
+        IniciarAtribuicaoPane.setVisible(true);
+        
+        /*try {
+            
+        } catch (SQLException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema preencher lista de tarefas.",
+                    e.getMessage()).show();
+        }*/
+        
+        
+
     }
 
 }
