@@ -10,13 +10,21 @@ public class RepositorioAtribuicao {
 
     private static RepositorioAtribuicao instance;
 
-    public static RepositorioAtribuicao getInstance() {
-        if (instance == null) {
-            instance = new RepositorioAtribuicao();
-        }
-        return instance;
-    }
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+
+/**
+ * Class responsible for creating a repository to store information about
+ * assignment process.
+ * 
+ * @author Grupo 3
+ */
+public class RepositorioAtribuicao {
+
+    private static RepositorioAtribuicao instance;
+    
     private RepositorioAtribuicao() {
 
     }
@@ -92,3 +100,4 @@ public class RepositorioAtribuicao {
     }
 
 }
+

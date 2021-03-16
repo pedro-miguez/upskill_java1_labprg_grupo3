@@ -3,6 +3,11 @@ package domain;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Current class represents the tool for creating new assignment process.
+ * 
+ * @author Grupo 3
+ */
 public class Atribuicao {
 
     private Data dataInicio;
