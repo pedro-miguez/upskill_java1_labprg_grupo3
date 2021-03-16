@@ -5,10 +5,6 @@ import domain.*;
 import java.sql.*;
 import java.util.List;
 
-public class RepositorioAtribuicao {
-
-    private static RepositorioAtribuicao instance;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
