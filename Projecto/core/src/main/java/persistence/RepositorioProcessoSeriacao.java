@@ -49,7 +49,6 @@ public class RepositorioProcessoSeriacao {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
         try {
-            
 
             conn.setAutoCommit(false);
             int nif = Integer.parseInt(processoSeriacao.getAnuncio().getTarefa().getOrganizacao().getNIF().toString());
