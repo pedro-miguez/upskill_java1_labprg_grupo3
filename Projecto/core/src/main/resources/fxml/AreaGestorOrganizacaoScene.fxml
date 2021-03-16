@@ -197,7 +197,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="homePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <Label prefHeight="295.0" prefWidth="349.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
                            <font>
@@ -410,6 +410,15 @@
                      </center>
                      <top>
                         <Label prefHeight="27.0" prefWidth="280.0" text="Publicar Tarefa" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane fx:id="IniciarAtribuicaoPane" prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <Label text="Iniciar Atribuição" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
