@@ -130,7 +130,17 @@ public class RepositorioAnuncio {
             String designacao = rSetTipoRegimento.getString("designacao");
             String regras = rSetTipoRegimento.getString("descricaoRegras");
 
-            tiposRegimento.add(new TipoRegimento(designacao, regras));
+            switch (designacao) {
+                case "Seriação Manual Opcional":
+                    tiposRegimento.add(new SeriacaoManualOpcional(designacao, regras));
+                    break;
+                case "Seriação Manual Obrigatória":
+                    tiposRegimento.add(new SeriacaoManualObrigatoria(designacao, regras));
+                    break;
+                case "Seriação Automática Obrigatória":
+                    tiposRegimento.add(new SeriacaoAutomaticaObrigatoria(designacao, regras));
+                    break;
+            }
         }
 
         pstmt.close();
@@ -331,7 +341,18 @@ public class RepositorioAnuncio {
             String designacao = rSetTipoRegimento2.getString("designacao");
             String regras = rSetTipoRegimento2.getString("descricaoRegras");
 
-            TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
+            TipoRegimento tipoRegimento = null;
+            switch (designacao) {
+                case "Seriação Manual Opcional":
+                    tipoRegimento = new SeriacaoManualOpcional(designacao, regras);
+                    break;
+                case "Seriação Manual Obrigatória":
+                    tipoRegimento = new SeriacaoManualObrigatoria(designacao, regras);
+                    break;
+                case "Seriação Automática Obrigatória":
+                    tipoRegimento = new SeriacaoAutomaticaObrigatoria(designacao, regras);
+                    break;
+            }
 
             //Datas Anúncio
 
@@ -474,7 +495,18 @@ public class RepositorioAnuncio {
             String designacao = rSetTipoRegimento2.getString("designacao");
             String regras = rSetTipoRegimento2.getString("descricaoRegras");
 
-            TipoRegimento tipoRegimento = new TipoRegimento(designacao, regras);
+            TipoRegimento tipoRegimento = null;
+            switch (designacao) {
+                case "Seriação Manual Opcional":
+                    tipoRegimento = new SeriacaoManualOpcional(designacao, regras);
+                    break;
+                case "Seriação Manual Obrigatória":
+                    tipoRegimento = new SeriacaoManualObrigatoria(designacao, regras);
+                    break;
+                case "Seriação Automática Obrigatória":
+                    tipoRegimento = new SeriacaoAutomaticaObrigatoria(designacao, regras);
+                    break;
+            }
 
             //Datas Anúncio
 

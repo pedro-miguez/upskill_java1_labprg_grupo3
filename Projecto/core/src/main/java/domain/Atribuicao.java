@@ -12,6 +12,7 @@ public class Atribuicao {
 
     private Data dataInicio;
     private Data dataFim;
+    private Data dataAtribuicao;
     private Classificacao classificacao;
     //private String nrUnico;
     //private int counter = 0;
@@ -21,9 +22,10 @@ public class Atribuicao {
      * Instantiates a new rating.
      * @param classificacao
      */
-    public Atribuicao(Classificacao classificacao) {
+    public Atribuicao(Classificacao classificacao, Data dataInicio) {
         setClassificacao(classificacao);
-        setDataInicio(Data.dataAtual());
+        setDataAtribuicao(Data.dataAtual());
+        setDataInicio(dataInicio);
         setDataFim(new Data (dataInicio.getAno(), dataInicio.getMes(), dataInicio.getDia()+classificacao.getCandidatura().getNrDias()));
         //++counter;
         //nrUnico = getClassificacao().getCandidatura().getDataCandidatura().getAno()+"-"+ counter;
@@ -48,10 +50,19 @@ public class Atribuicao {
     }
 
     /**
-     * Gets the end date.
+     * Gets the assignment date.
      * 
-     * @return dataFim
+     * @return dataAtribuicao
      */
+    public Data getDataAtribuicao() {
+        return dataAtribuicao;
+    }
+
+    public void setDataAtribuicao(Data dataAtribuicao) {
+        this.dataAtribuicao = dataAtribuicao;
+    }
+
+
     public Data getDataFim() {
         return dataFim;
     }
@@ -101,7 +112,8 @@ public class Atribuicao {
         if (this == o) return true;
         if (!(o instanceof Atribuicao)) return false;
         Atribuicao that = (Atribuicao) o;
-        return getDataInicio().equals(that.getDataInicio()) && getDataFim().equals(that.getDataFim()) && getClassificacao().equals(that.getClassificacao());
+        return getDataInicio().equals(that.getDataInicio()) && getDataFim().equals(that.getDataFim()) &&
+                getClassificacao().equals(that.getClassificacao()) && getDataAtribuicao().equals(that.dataAtribuicao);
     }
 
     /**
@@ -112,8 +124,9 @@ public class Atribuicao {
     @Override
     public String toString() {
         return "Atribuicao{" +
-                "dataInicio=" + dataInicio +
-                ", dataFim=" + dataFim +
+                "data de atribuicao= " + dataAtribuicao +
+                "data de inicio=" + dataInicio +
+                ", data fim=" + dataFim +
                 ", tarefa=" + classificacao.getCandidatura().getAnuncio().getTarefa().getDesignacao() +
                 '}';
     }
