@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible for the process of assignment of the task to the freelancer.
  *
  * @author Grupo 3
  */
