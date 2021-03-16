@@ -158,7 +158,83 @@ public class RepositorioProcessoSeriacao {
         return false;
     }
 
-    private ProcessoSeriacao montarProcessoSeriacao (ResultSet row, boolean unico)
+    private ProcessoSeriacao montarProcessoSeriacao(ResultSet row, boolean unico) throws SQLException {
+        Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+        ProcessoSeriacao processoSeriacao = null;
+
+
+        try {
+            if (unico) {
+                row.next();
+            }
+
+            //montar anuncio
+
+            int idAnuncio = row.getInt("idAnuncio");
+
+            PreparedStatement pstmt2 = conn.prepareStatement("SELECT * FROM Anuncio WHERE idAnuncio = ?");
+            pstmt2.setInt(1, idAnuncio);
+            ResultSet rSetAnuncio = pstmt2.executeQuery();
+
+            Anuncio anuncio = RepositorioAnuncio.getInstance().montarAnuncio(rSetAnuncio, true);
+
+            //montar lista classificacoes
+
+            /*PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Classificacao WHERE idAnuncio = ?");
+            pstmt.setInt(1, idAnuncio);
+
+            
+            ArrayList<Classificacao> classificacoes = new ArrayList<>();
+            RepositorioCandidatura.getInstance().montarListaCandidaturas();*/
+
+            //montar lista colaboradores
+
+            PreparedStatement psListaIdColaboradores = conn.prepareStatement("SELECT idColaborador FROM ProcessoSeriacaoColaborador WHERE idAnuncio = ?");
+            psListaIdColaboradores.setInt(1, idAnuncio);
+            ResultSet rsIdColaboradores = psListaIdColaboradores.executeQuery();
+
+            ArrayList<Colaborador> colaboradores = new ArrayList<>();
+
+            ResultSet rsColaboradores=null;
+
+            while(rsIdColaboradores.next()){
+                PreparedStatement psListaColaboradores = conn.prepareStatement(" SELECT * FROM Colaborador WHERE idColaborador = ?");
+                psListaColaboradores.setInt(1, rsIdColaboradores.getInt(1));
+                rsColaboradores = psListaColaboradores.executeQuery();
+                colaboradores = RepositorioColaborador.getInstance().montarListaColaboradores(rsColaboradores);
+                psListaColaboradores.clearParameters();
+                rsColaboradores.close();
+            }
+
+            Date dataSql =row.getDate("dataRealizacao");
+            String[] dataString = dataSql.toString().split("-");
+            Data dataProcessoSeriacao = new Data(Integer.parseInt(dataString[0]), Integer.parseInt(dataString[1])
+                    , Integer.parseInt(dataString[2]));
+
+            processoSeriacao = new ProcessoSeriacao(anuncio, classificacoes, colaboradores);
+
+            pstmt.close();
+            pstmt2.close();
+            rSetAnuncio.close();
+            rsIdColaboradores.close();
+            psListaIdColaboradores.close();
+            rsColaboradores.close();
+
+            if (unico) row.close();
+
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+        if (processoSeriacao != null) {
+            return processoSeriacao;
+        } else {
+            throw new FetchingProblemException("Problema ao montar processo de seriacao");
+        }
+
+    }
+
 
     /**
      * Creates a serialization process.
