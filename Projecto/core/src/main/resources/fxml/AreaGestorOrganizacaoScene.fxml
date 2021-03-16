@@ -447,6 +447,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#btnIniciarAtribuicaoSelectAction" prefHeight="44.0" prefWidth="91.0" text="Iniciar Atribuição" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnLogoutAction" prefHeight="31.0" prefWidth="71.0" text="Logout">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />
