@@ -416,7 +416,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="IniciarAtribuicaoPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="IniciarAtribuicaoPane" prefHeight="708.0" prefWidth="687.0">
                      <top>
                         <Label text="Iniciar Atribuição" BorderPane.alignment="CENTER">
                            <font>
@@ -424,6 +424,28 @@
                            </font>
                         </Label>
                      </top>
+                     <center>
+                        <TableView prefHeight="517.0" prefWidth="898.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="118.0" text="C1" />
+                            <TableColumn minWidth="0.0" prefWidth="130.0" text="C2" />
+                              <TableColumn minWidth="0.0" prefWidth="151.0" text="C3" />
+                              <TableColumn minWidth="0.0" prefWidth="151.0" text="C4" />
+                              <TableColumn minWidth="0.0" prefWidth="151.0" text="C5" />
+                              <TableColumn minWidth="0.0" prefWidth="151.0" text="C6" />
+                          </columns>
+                           <BorderPane.margin>
+                              <Insets bottom="200.0" top="10.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                     <bottom>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="92.0" text="Confirmar" />
+                           </children>
+                        </HBox>
+                     </bottom>
                   </BorderPane>
                </children>
             </StackPane>
