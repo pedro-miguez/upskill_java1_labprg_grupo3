@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -630,6 +631,12 @@ public class AreaGestorUI implements Initializable {
 
     public void btnLimparDadosPublicarTarefaAction(ActionEvent actionEvent) {
         limparTodosOsCampos();
+    }
+    
+    
+    @FXML
+    void btnIniciarAtribuicaoSelectAction(ActionEvent event) {
+
     }
 
 }
