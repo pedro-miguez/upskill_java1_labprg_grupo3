@@ -18,5 +18,13 @@ public class RepositorioAtribuicao {
         }
         return instance;
     }
+
+    public Atribuicao criarProcessoAtribuicao( ) {
+                                                
+    }
+
+    public boolean insertProcessoAtribuicao(Atribuicao processoAtribuicao) {
+        
+    }
     
 }

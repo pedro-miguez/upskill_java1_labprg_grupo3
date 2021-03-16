@@ -28,11 +28,11 @@ public class AtribuicaoController {
     }
     
     public boolean criarProcessoAtribuicao (List<Candidatura> candidaturas,
-                                         List<Colaborador> colaboradores, 
-                                         String emailColaborador)
+                                         List<Colaborador> gestor, 
+                                         String emailGestor)
                                                         throws SQLException {
         
-        colaboradores.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)));
+        gestor.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailGestor)));
         
         Atribuicao processoAtribuicao = RepositorioAtribuicao.getInstance().criarProcessoAtribuicao();
         
