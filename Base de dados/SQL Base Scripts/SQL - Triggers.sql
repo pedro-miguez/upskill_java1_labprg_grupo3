@@ -93,3 +93,11 @@ begin
     end if;
 end;
 /
+
+create or replace trigger trgAtribuicaoTarefa after insert on Atribuicao for each row
+
+declare 
+begin
+UPDATE Tarefa SET idEstadoTarefa = 3 WHERE idTarefa = :new.idTarefa;
+end;
+/

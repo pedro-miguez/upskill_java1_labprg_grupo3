@@ -15,6 +15,8 @@ public class ProcessoSeriacao {
     private List<Classificacao> classificacao;
     private List<Colaborador> colaboradores;
 
+
+
     /**
      * Instantiates a new serialization process.
      * 
