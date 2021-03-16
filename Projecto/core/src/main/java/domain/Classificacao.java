@@ -40,7 +40,7 @@ public class Classificacao {
      * @return candidatura
      */
 
-    public int getCandidatura() {
+    public Candidatura getCandidatura() {
         return candidatura;
     }
 

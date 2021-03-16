@@ -84,10 +84,10 @@ public class SeriarCandidaturaController {
 
         int lugar = 0;
         for (Candidatura c : candidaturas) {
-            classificacoes.add(new Classificacao(c.getAnuncio(), c.getFreelancer(), ++lugar));
+            classificacoes.add(new Classificacao(c, ++lugar));
         }
         ProcessoSeriacao processoSeriacao = RepositorioProcessoSeriacao.getInstance().criarProcessoSeriacao(
-                classificacoes.get(0).getAnuncio(), classificacoes, colaboradores);
+                classificacoes.get(0).getCandidatura().getAnuncio(), classificacoes, colaboradores);
 
 
         return RepositorioProcessoSeriacao.getInstance().insertProcessoSeriacao(processoSeriacao);

@@ -1,103 +1,70 @@
 package domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Atribuicao {
 
-    private Data data;
-    //private Freelancer freelancer;
-    //private Candidatura candidatura;
+    private Data dataInicio;
+    private Data dataFim;
     private Classificacao classificacao;
+    //private String nrUnico;
+    //private int counter = 0;
 
 
     /**
      * Instantiates a new rating.
-     * @param anuncio
-     * @param freelancer
-     * @param lugar
+     * @param classificacao
      */
-    public Atribuicao(Classificacao classificacao, Data data) {
-        setAnuncio(anuncio);
-        setFreelancer(freelancer);
-        this.lugar = lugar;
+    public Atribuicao(Classificacao classificacao) {
+        setClassificacao(classificacao);
+        setDataInicio(Data.dataAtual());
+        setDataFim(new Data (dataInicio.getAno(), dataInicio.getMes(), dataInicio.getDia()+classificacao.getCandidatura().getNrDias()));
+        //++counter;
+        //nrUnico = getClassificacao().getCandidatura().getDataCandidatura().getAno()+"-"+ counter;
     }
 
-    /**
-     * Gets the place.
-     *
-     * @return lugar
-     */
-    public int getLugar() {
-        return lugar;
+    public Data getDataInicio() {
+        return dataInicio;
     }
 
-    /**
-     * Gets the advertisement.
-     *
-     * @return anuncio
-     */
-    public Anuncio getAnuncio() {
-        return anuncio;
+    public void setDataInicio(Data dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    /**
-     * Sets the advertisement.
-     *
-     * @param anuncio
-     */
-    public void setAnuncio(Anuncio anuncio) {
-        if (anuncio != null)
-            this.anuncio = anuncio;
+    public Data getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(Data dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public Classificacao getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(Classificacao classificacao) {
+        if (classificacao != null)
+            this.classificacao = classificacao;
         else
-            throw new IllegalArgumentException("Anúncio Inválido");
+            throw new IllegalArgumentException("Classificacao Inválida");
     }
 
-    /**
-     * Gets the freelancer.
-     *
-     * @return freelancer
-     */
-    public Freelancer getFreelancer() {
-        return freelancer;
-    }
-
-    /**
-     * Sets the freelancer.
-     *
-     * @param freelancer
-     */
-    public void setFreelancer(Freelancer freelancer) {
-        if (freelancer != null)
-            this.freelancer = freelancer;
-        else
-            throw new IllegalArgumentException("Freelancer Inválido");
-    }
-
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     * <p>
-     * The {@code equals} method implements an equivalence relation
-     * on non-null object references:
-     *
-     * @param   o   the reference object with which to compare.
-     * @return  {@code true} if this object is the same as the obj
-     *          argument; {@code false} otherwise.
-     *
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Classificacao)) return false;
-
-        Classificacao that = (Classificacao) o;
-
-        if (getLugar() != that.getLugar()) return false;
-        if (getAnuncio() != null ? !getAnuncio().equals(that.getAnuncio()) : that.getAnuncio() != null) return false;
-        return getFreelancer() != null ? getFreelancer().equals(that.getFreelancer()) : that.getFreelancer() == null;
+        if (!(o instanceof Atribuicao)) return false;
+        Atribuicao that = (Atribuicao) o;
+        return getDataInicio().equals(that.getDataInicio()) && getDataFim().equals(that.getDataFim()) && getClassificacao().equals(that.getClassificacao());
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Atribuicao{" +
+                "dataInicio=" + dataInicio +
+                ", dataFim=" + dataFim +
+                ", tarefa=" + classificacao.getCandidatura().getAnuncio().getTarefa().getDesignacao() +
+                '}';
+    }
 }

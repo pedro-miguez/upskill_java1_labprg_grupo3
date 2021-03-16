@@ -1,3 +1,4 @@
+/*
 package domain;
 
 import org.junit.Test;
@@ -84,4 +85,4 @@ public class ClassificacaoTest {
 
         Classificacao classificacao = new Classificacao(a, freelancer, -5);
     }
-}
+}*/
