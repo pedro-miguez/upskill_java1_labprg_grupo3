@@ -240,3 +240,24 @@ begin
 insert into Utilizador(nome, email, palavraPasse) values (p_username, p_email, p_palavraPasse); 
 end;
 /
+
+create or replace procedure createAtribuicao( 
+    p_idFreelancer Freelancer.idFreelancer%type, 
+    p_idAnuncio Anuncio.idAnuncio%type, 
+    p_data_inicio Atribuicao.data_inicio%type, 
+    p_data_fim Atribuicao.data_fim%type, 
+    p_data_atribuicao Atribuicao.data_atribuicao%type    
+)
+is
+v_idOrganizacao Organizacao.idOrganizacao%type;
+v_designacao_tarefa Tarefa.designacao%type;
+v_idTarefa Tarefa.idTarefa%type;
+v_valor_remuneracao Atribuicao.valor_remuneracao%type; 
+begin
+    select idTarefa into v_idTarefa from Anuncio where idAnuncio = p_idAnuncio;
+    select designacao into v_designacao_tarefa from tarefa where idTarefa = v_idTarefa;
+    select idOrganizacao into v_idOrganizacao from tarefa where  idTarefa = v_idTarefa;
+    select valorPretendido into v_valor_remuneracao from candidatura where idAnuncio = p_idAnuncio and idFreelancer = p_idFreelancer;
+    insert into Atribuicao(idOrganizacao, idFreelancer, idAnuncio, designacao_tarefa, data_inicio, data_fim, data_atribuicao, valor_remuneracao, idTarefa)
+    values (v_idOrganizacao, p_idFreelancer, p_idAnuncio, v_descricao_tarefa, p_data_inicio, p_data_fim, p_data_atribuicao, v_valor_remuneracao, v_idTarefa);
+end;
