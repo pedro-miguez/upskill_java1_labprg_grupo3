@@ -89,7 +89,7 @@ public class RepositorioProcessoSeriacao {
             for (Classificacao classificacao : processoSeriacao.getClassificacao()) {
 
                 csFreelancerIdByEmail.registerOutParameter(1, Types.INTEGER);
-                csFreelancerIdByEmail.setString(2, classificacao.getFreelancer().getEmail().toString());
+                csFreelancerIdByEmail.setString(2, classificacao.getCandidatura().getFreelancer().getEmail().toString());
                 csFreelancerIdByEmail.executeUpdate();
 
                 int idFreelancer = csFreelancerIdByEmail.getInt(1);
