@@ -186,6 +186,7 @@ public class RepositorioProcessoSeriacao {
             pstmt.setInt(1, idAnuncio);
 
 
+
             
             ArrayList<Classificacao> classificacoes = new ArrayList<>();
             RepositorioCandidatura.getInstance().montarListaCandidaturas();*/
