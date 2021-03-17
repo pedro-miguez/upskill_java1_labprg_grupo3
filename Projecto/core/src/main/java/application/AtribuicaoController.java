@@ -29,14 +29,13 @@ public class AtribuicaoController {
         
     }
     
-    public boolean criarProcessoAtribuicao (List<Candidatura> candidaturas,
-                                         List<Colaborador> gestor, 
-                                         String emailGestor)
+    public boolean criarProcessoAtribuicao (Classificacao classificacao,
+                                            Data dataInicio)
                                                         throws SQLException {
         
-        gestor.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailGestor)));
+        //gestor.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailGestor)));
         
-        Atribuicao processoAtribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao();
+        Atribuicao processoAtribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao, dataInicio);
         
         return RepositorioAtribuicao.getInstance().insertAtribuicao(processoAtribuicao);
         
