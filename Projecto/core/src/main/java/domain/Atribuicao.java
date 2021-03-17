@@ -51,6 +51,7 @@ public class Atribuicao {
         this.dataInicio = dataInicio;
     }
 
+
     /**
      * Gets the assignment date.
      * 
@@ -59,6 +60,7 @@ public class Atribuicao {
     public Data getDataAtribuicao() {
         return dataAtribuicao;
     }
+
 
     /**
      * Sets the assignment date.
@@ -78,6 +80,7 @@ public class Atribuicao {
     public Data getDataFim() {
         return dataFim;
     }
+
 
     /**
      * Sets the end date.
