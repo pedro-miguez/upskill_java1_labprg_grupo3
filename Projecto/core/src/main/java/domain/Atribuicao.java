@@ -31,6 +31,7 @@ public class Atribuicao {
         //nrUnico = getClassificacao().getCandidatura().getDataCandidatura().getAno()+"-"+ counter;
     }
 
+
     /**
      * Gets the start date.
      * 
@@ -39,6 +40,7 @@ public class Atribuicao {
     public Data getDataInicio() {
         return dataInicio;
     }
+
 
     /**
      * Sets the start date.
@@ -49,6 +51,7 @@ public class Atribuicao {
         this.dataInicio = dataInicio;
     }
 
+
     /**
      * Gets the assignment date.
      * 
@@ -57,6 +60,7 @@ public class Atribuicao {
     public Data getDataAtribuicao() {
         return dataAtribuicao;
     }
+
 
     /**
      * Sets the assignment date.
@@ -76,6 +80,7 @@ public class Atribuicao {
     public Data getDataFim() {
         return dataFim;
     }
+
 
     /**
      * Sets the end date.
