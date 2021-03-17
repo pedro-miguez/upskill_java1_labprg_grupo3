@@ -704,7 +704,7 @@ public class AreaGestorUI implements Initializable {
         
         try {
 
-            boolean manop = atribuicaoController.criarAtribuicao(listViewManualOpcional.getItems(),
+            boolean manop = atribuicaoController.criarAtribuicao(listViewManualOpcional.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail())),
                                                                  datePickerDataInicioManualOpcional.getValue());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
@@ -767,7 +767,7 @@ public class AreaGestorUI implements Initializable {
         
         try {
 
-            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems(),
+            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail())),
                                                                  datePickerDataInicioObrigatorio.getValue());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
