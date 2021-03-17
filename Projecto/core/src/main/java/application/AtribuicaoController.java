@@ -43,6 +43,14 @@ public class AtribuicaoController {
         
     }
 
+    
+    /**
+     * Gets a list of serialization processes by manager.
+     * 
+     * @param emailGestor
+     * @return RepositorioProcessoSeriacao
+     * @throws FetchingProblemException 
+     */
     public ArrayList<ProcessoSeriacao> getProcessosSeriacaoByGestor(String emailGestor) throws FetchingProblemException {
         return RepositorioProcessoSeriacao.getInstance().getProcessosSeriacaoByGestor(emailGestor);
     }
