@@ -70,6 +70,19 @@ public class AreaGestorUI implements Initializable {
     public DatePicker btnDataFimSeriacao;
     public ComboBox<TipoRegimento> btnTipoRegimento;
     public BorderPane IniciarAtribuicaoPane;
+    public ListView listViewManualOpcional;
+    public DatePicker datePickerDataInicioManualOpcional;
+    public Button btnVoltarAtribuicaoManualOpcional;
+    public Button btnConfirmarManualOpcional;
+    public BorderPane paneManualOpcional;
+    public Button btnAtribuirTarefaObrigatorio;
+    public Button btnVoltarObrigatorioAtribuicao;
+    public ListView listViewAutomaticoObrigatorio;
+    public DatePicker datePickerDataInicioObrigatorio;
+    public BorderPane paneAutomaticoObrigatorio;
+    public ListView listViewProcessoSeriacaoAtribuicao;
+    public Button btnVoltarAtribuicao;
+    public Button btnAtribuirTarefa;
 
     private RegistarColaboradorController registarColaboradorController;
     private AuthenticationController authController;
@@ -670,4 +683,21 @@ public class AreaGestorUI implements Initializable {
 
     }
 
+    public void ConfirmarManualOpcionalAction(ActionEvent actionEvent) {
+    }
+
+    public void btnVoltarManualOpcionalAction(ActionEvent actionEvent) {
+    }
+
+    public void atribuirTarefaObrigatorioAction(ActionEvent actionEvent) {
+    }
+
+    public void btnVoltarObrigatorioAction(ActionEvent actionEvent) {
+    }
+
+    public void atribuirTarefaAction(ActionEvent actionEvent) {
+    }
+
+    public void btnVoltarAction(ActionEvent actionEvent) {
+    }
 }

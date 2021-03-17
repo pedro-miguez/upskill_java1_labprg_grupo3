@@ -18,6 +18,18 @@
          <center>
             <StackPane prefHeight="687.0" prefWidth="898.0" BorderPane.alignment="CENTER">
                <children>
+                  <BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Label prefHeight="295.0" prefWidth="349.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="39.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="150.0" right="100.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </center>
+                  </BorderPane>
                   <BorderPane fx:id="registarColaboradorPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <GridPane fx:id="regColaboradorPane" prefHeight="233.0" prefWidth="674.0" BorderPane.alignment="CENTER">
@@ -196,18 +208,6 @@
                            </font>
                         </Label>
                      </top>
-                  </BorderPane>
-                  <BorderPane fx:id="homePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
-                     <center>
-                        <Label prefHeight="295.0" prefWidth="349.0" text="Bem-Vindo! Selecione no menu lateral a operação que deseja realizar." textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font size="39.0" />
-                           </font>
-                           <BorderPane.margin>
-                              <Insets bottom="150.0" right="100.0" />
-                           </BorderPane.margin>
-                        </Label>
-                     </center>
                   </BorderPane>
                   <BorderPane fx:id="seriacaoManualPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
@@ -441,33 +441,114 @@
                         </HBox>
                      </bottom>
                      <center>
-                        <GridPane prefHeight="581.0" prefWidth="825.0" BorderPane.alignment="CENTER">
+                        <ListView fx:id="listViewProcessoSeriacaoAtribuicao" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                           </BorderPane.margin>
+                        </ListView>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="paneAutomaticoObrigatorio" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="166.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="732.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="158.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="740.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="286.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="464.0" minHeight="10.0" prefHeight="464.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="465.0" minHeight="10.0" prefHeight="278.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="550.0" minHeight="10.0" prefHeight="330.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Lista de Anuncios Seriados:" GridPane.halignment="RIGHT">
+                              <DatePicker fx:id="datePickerDataInicioObrigatorio" prefHeight="25.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <Label text="Classificacoes:" GridPane.halignment="RIGHT">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                              <Label text="Data de inicio:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <ListView fx:id="lvProcessoSeriacao" prefHeight="444.0" prefWidth="629.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <ListView fx:id="listViewAutomaticoObrigatorio" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="100.0" />
+                                    <Insets bottom="30.0" right="30.0" top="30.0" />
                                  </GridPane.margin>
                               </ListView>
-                              <ComboBox fx:id="cbProcessoSeriacaoAtribuicao" onAction="#actionProcessoSeriacaoAtribuicao" prefHeight="25.0" prefWidth="361.0" GridPane.columnIndex="1" />
                            </children>
+                        </GridPane>
+                     </center>
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnAtribuirTarefaObrigatorio" mnemonicParsing="false" onAction="#atribuirTarefaObrigatorioAction" text="Confirmar">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnVoltarObrigatorioAtribuicao" mnemonicParsing="false" onAction="#btnVoltarObrigatorioAction" text="Voltar">
+                                 <HBox.margin>
+                                    <Insets right="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+                  <BorderPane fx:id="paneManualOpcional" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnConfirmarManualOpcional" mnemonicParsing="false" onAction="#ConfirmarManualOpcionalAction" text="Confirmar">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnVoltarAtribuicaoManualOpcional" mnemonicParsing="false" onAction="#btnVoltarManualOpcionalAction" text="Voltar">
+                                 <HBox.margin>
+                                    <Insets right="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                           <children>
+                              <DatePicker fx:id="datePickerDataInicioManualOpcional" prefHeight="25.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <Label text="Classificacoes:" GridPane.halignment="RIGHT">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Data de inicio:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ListView fx:id="listViewManualOpcional" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="30.0" right="30.0" top="30.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="158.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="740.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="501.0" minHeight="10.0" prefHeight="501.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="550.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                         </GridPane>
                      </center>
                   </BorderPane>
