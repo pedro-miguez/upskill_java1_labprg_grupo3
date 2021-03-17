@@ -6,9 +6,11 @@
 package application;
 
 import domain.*;
+import exceptions.FetchingProblemException;
 import persistence.RepositorioCandidatura;
 import persistence.RepositorioColaborador;
 import persistence.RepositorioAtribuicao;
+import persistence.RepositorioProcessoSeriacao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,6 +41,10 @@ public class AtribuicaoController {
         
         return RepositorioAtribuicao.getInstance().insertAtribuicao(atribuicao);
         
+    }
+
+    public ArrayList<ProcessoSeriacao> getProcessosSeriacaoByGestor(String emailGestor) throws FetchingProblemException {
+        return RepositorioProcessoSeriacao.getInstance().getProcessosSeriacaoByGestor(emailGestor);
     }
     
 }

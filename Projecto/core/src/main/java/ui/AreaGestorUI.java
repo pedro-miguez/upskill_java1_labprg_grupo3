@@ -74,17 +74,17 @@ public class AreaGestorUI implements Initializable {
     public DatePicker btnDataFimSeriacao;
     public ComboBox<TipoRegimento> btnTipoRegimento;
     public BorderPane IniciarAtribuicaoPane;
-    public ListView listViewManualOpcional;
+    public ListView<Classificacao> listViewManualOpcional;
     public DatePicker datePickerDataInicioManualOpcional;
     public Button btnVoltarAtribuicaoManualOpcional;
     public Button btnConfirmarManualOpcional;
     public BorderPane paneManualOpcional;
     public Button btnAtribuirTarefaObrigatorio;
     public Button btnVoltarObrigatorioAtribuicao;
-    public ListView listViewAutomaticoObrigatorio;
+    public ListView<Classificacao> listViewAutomaticoObrigatorio;
     public DatePicker datePickerDataInicioObrigatorio;
     public BorderPane paneAutomaticoObrigatorio;
-    public ListView listViewProcessoSeriacaoAtribuicao;
+    public ListView<ProcessoSeriacao> listViewProcessoSeriacaoAtribuicao;
     public Button btnVoltarAtribuicao;
     public Button btnAtribuirTarefa;
 
@@ -675,15 +675,13 @@ public class AreaGestorUI implements Initializable {
         IniciarAtribuicaoPane.setDisable(false);
         IniciarAtribuicaoPane.setVisible(true);
         
-        /*try {
-            
+        try {
+            listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
         } catch (SQLException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Problema preencher lista de tarefas.",
+                    "Problema preencher lista de processos de seriaç.",
                     e.getMessage()).show();
-        }*/
-        
-        
+        }
 
     }
 

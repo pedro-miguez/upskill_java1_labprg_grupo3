@@ -159,6 +159,76 @@ public class RepositorioProcessoSeriacao {
         return false;
     }
 
+    public ArrayList<ProcessoSeriacao> getProcessosSeriacaoByGestor(String emailGestor) throws FetchingProblemException {
+        try {
+            Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
+            ArrayList<ProcessoSeriacao> processosSeriacao = new ArrayList<>();
+
+            CallableStatement cs = conn.prepareCall ("{? = call getOrganizacaoByEmailColaborador(?)}");
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.setString(2, emailGestor);
+            cs.executeUpdate();
+
+            int orgID = cs.getInt(1);
+
+            PreparedStatement pstmtTarefasOrganizacao = conn.prepareCall("Select idTarefa from Tarefa where idOrganizacao = ?");
+            pstmtTarefasOrganizacao.setInt(1, orgID);
+            ResultSet rSetIdsTarefaOrganizacao = pstmtTarefasOrganizacao.executeQuery();
+
+            while(rSetIdsTarefaOrganizacao.next()) {
+                PreparedStatement pstmtAnunciosSeriacaoOrg = conn.prepareCall("Select idAnuncio from Anuncio where idTarefa = ? AND (? between dataInicioSeriacao AND dataFimSeriacao)");
+                pstmtAnunciosSeriacaoOrg.setInt(1, rSetIdsTarefaOrganizacao.getInt("idtarefa"));
+                pstmtAnunciosSeriacaoOrg.setDate(2, Data.dataAtual().getDataSQL());
+                ResultSet rSetAnunciosSeriacaoOrg = pstmtAnunciosSeriacaoOrg.executeQuery();
+
+                if(rSetAnunciosSeriacaoOrg.next()) {
+                    PreparedStatement pstmtProcessoSeriacaoIdAnuncio = conn.prepareCall("Select * from ProcessoSeriacao where idAnuncio = ?");
+                    pstmtProcessoSeriacaoIdAnuncio.setInt(1, rSetAnunciosSeriacaoOrg.getInt("idanuncio"));
+                    ResultSet rSetProcessoSeriacaoIdAnuncio = pstmtProcessoSeriacaoIdAnuncio.executeQuery();
+
+                    if (rSetProcessoSeriacaoIdAnuncio.next()) {
+                        processosSeriacao.add(montarProcessoSeriacao(rSetProcessoSeriacaoIdAnuncio, false));
+                    }
+
+                    pstmtAnunciosSeriacaoOrg.clearParameters();
+                    pstmtProcessoSeriacaoIdAnuncio.clearParameters();
+                    pstmtAnunciosSeriacaoOrg.close();
+                    pstmtProcessoSeriacaoIdAnuncio.close();
+                    rSetAnunciosSeriacaoOrg.close();
+                    rSetProcessoSeriacaoIdAnuncio.close();
+                }
+            }
+
+            pstmtTarefasOrganizacao.close();
+            rSetIdsTarefaOrganizacao.close();
+
+            return processosSeriacao;
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+            e.getErrorCode();
+            throw new FetchingProblemException("Problemas ao montar a lista de processos de seriação");
+        }
+    }
+
+    private ArrayList<ProcessoSeriacao> montarListaProcessoSeriacao(ResultSet rows) throws SQLException {
+        ArrayList<ProcessoSeriacao> processoSeriacao = new ArrayList<>();
+
+        try {
+            while (rows.next()) {
+                processoSeriacao.add(montarProcessoSeriacao(rows, false));
+            }
+            rows.close();
+
+        } catch (SQLException e) {
+            e.getSQLState();
+            e.printStackTrace();
+        }
+
+        return processoSeriacao;
+    }
+
     private ProcessoSeriacao montarProcessoSeriacao(ResultSet row, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         ProcessoSeriacao processoSeriacao = null;
