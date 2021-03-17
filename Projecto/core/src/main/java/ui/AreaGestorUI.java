@@ -52,6 +52,8 @@ public class AreaGestorUI implements Initializable {
     public BorderPane criarTarefaPane;
     public BorderPane registarColaboradorPane;
     public BorderPane homePane;
+    
+    //Serialization process:
     public BorderPane seriacaoManualPane;
     public ListView<Candidatura> listViewCandidaturasPorSelecionarSeriacaoManual;
     public ListView<Colaborador> listViewColaboradoresPorSelecionarSeriacaoManual;
@@ -73,6 +75,8 @@ public class AreaGestorUI implements Initializable {
     public DatePicker btnDataInicioSeriacao;
     public DatePicker btnDataFimSeriacao;
     public ComboBox<TipoRegimento> btnTipoRegimento;
+    
+    //Tasks assignments...
     public BorderPane IniciarAtribuicaoPane;
     public ListView<Classificacao> listViewManualOpcional;
     public DatePicker datePickerDataInicioManualOpcional;
@@ -88,6 +92,7 @@ public class AreaGestorUI implements Initializable {
     public Button btnVoltarAtribuicao;
     public Button btnAtribuirTarefa;
 
+    //Controllers
     private RegistarColaboradorController registarColaboradorController;
     private AuthenticationController authController;
     private ServiceController serviceController;
@@ -96,6 +101,7 @@ public class AreaGestorUI implements Initializable {
     private SeriarCandidaturaController seriarCandidaturaController;
     private AtribuicaoController atribuicaoController;
 
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registarColaboradorController = new RegistarColaboradorController();
@@ -185,6 +191,7 @@ public class AreaGestorUI implements Initializable {
         limparDadosRegistarColaboradorPane();
     }
 
+    
     public void limparDadosRegistarColaboradorPane() {
         txtNomeColaborador.clear();
         txtContactoColaborador.clear();
@@ -277,6 +284,7 @@ public class AreaGestorUI implements Initializable {
         homePane.setDisable(false);
     }
 
+    //Publicar tarefa
     public void btnPublicarTarefaSelectAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
@@ -307,6 +315,7 @@ public class AreaGestorUI implements Initializable {
         }
     }
 
+    //Seriar anúncio
     public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
@@ -381,6 +390,7 @@ public class AreaGestorUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
+    //Conclui o processo de seriação manual.
     public void finalizarSeriacaoManualAction(ActionEvent actionEvent) {
         try {
             boolean criou = seriarCandidaturaController.criarProcessoSeriacao(
@@ -446,6 +456,7 @@ public class AreaGestorUI implements Initializable {
         }
     }
 
+    //Classifica candidatura(s) para seriação manual.
     public void classificarCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
         if (listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
             if (!listViewCandidaturasSelecionadasSeriacaoManual.getItems().contains(
@@ -504,6 +515,7 @@ public class AreaGestorUI implements Initializable {
         }
     }
 
+    //Inicia o processo de seriação.
     public void iniciarSeriacaoAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
@@ -549,6 +561,7 @@ public class AreaGestorUI implements Initializable {
         }
     }
 
+    //Confirma o processo de seriação automática.
     public void confirmarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
         try {
 
@@ -606,6 +619,7 @@ public class AreaGestorUI implements Initializable {
         }
     }
 
+    //Publica a tarefa.
     public void publicarTarefaAction(ActionEvent actionEvent) {
         try {
 
@@ -654,7 +668,7 @@ public class AreaGestorUI implements Initializable {
     }
     
     
-    //@FXML
+    //Inicia o processo de atribuição.
     public void btnIniciarAtribuicaoSelectAction(ActionEvent actionEvent) {
         
         //desligar
@@ -685,16 +699,130 @@ public class AreaGestorUI implements Initializable {
 
     }
 
+    //Confirma o processo de atribuição manual/opcional.
     public void ConfirmarManualOpcionalAction(ActionEvent actionEvent) {
+        
+        try {
+
+            boolean manop = atribuicaoController.criarAtribuicao(listViewManualOpcional.getItems(),
+                                                                 datePickerDataInicioManualOpcional.getValue());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
+                    "Atribuição de Candidaturas.",
+                    manop ? "Atribuição Manual/Opcional realizada com sucesso! \n\n"
+                            : "Não foi possível fazer a atribuição.").showAndWait();
+            
+            if (manop) {
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+                paneManualOpcional.setDisable(true);
+                paneManualOpcional.setVisible(false);
+                IniciarAtribuicaoPane.setVisible(true);
+                IniciarAtribuicaoPane.setDisable(false);
+                
+                try {
+                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+                } catch (SQLException e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();    
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    "Datas inválidas ou campos em falta");
+        }
+        
     }
 
     public void btnVoltarManualOpcionalAction(ActionEvent actionEvent) {
+        
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar ao menu de atribuição.", "Deseja mesmo fazer voltar?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            try {
+                listViewProcessoSeriacaoAtribuicao.getItems().clear();
+                paneManualOpcional.setDisable(true);
+                paneManualOpcional.setVisible(false);
+                IniciarAtribuicaoPane.setVisible(true);
+                IniciarAtribuicaoPane.setDisable(false);
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao voltar ao menu anterior.",
+                        e.getMessage()).show();
+            }
+        }
+        
     }
 
+    //Confirma o processo de atribuição obrigatória (automática).
     public void atribuirTarefaObrigatorioAction(ActionEvent actionEvent) {
+        
+        try {
+
+            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems(),
+                                                                 datePickerDataInicioObrigatorio.getValue());
+
+            AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
+                    "Atribuição de Candidaturas.",
+                    obrig ? "Atribuição Obrigatória realizada com sucesso! \n\n"
+                            : "Não foi possível fazer a atribuição.").showAndWait();
+            
+            if (obrig) {
+                listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+                paneAutomaticoObrigatorio.setDisable(true);
+                paneAutomaticoObrigatorio.setVisible(false);
+                IniciarAtribuicaoPane.setVisible(true);
+                IniciarAtribuicaoPane.setDisable(false);
+                
+                try {
+                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+                } catch (SQLException e) {
+                    AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                            "Problema preencher lista de tarefas.",
+                            e.getMessage()).show();
+                }
+            }
+
+        } catch (IllegalArgumentException e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    e.getMessage()).show();    
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    "Datas inválidas ou campos em falta");
+        }
+        
     }
 
     public void btnVoltarObrigatorioAction(ActionEvent actionEvent) {
+        
+        Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
+                "Irá voltar ao menu de atribuição.", "Deseja mesmo fazer voltar?");
+        if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+            actionEvent.consume();
+        } else {
+            try {
+                listViewProcessoSeriacaoAtribuicao.getItems().clear();
+                paneAutomaticoObrigatorio.setDisable(true);
+                paneAutomaticoObrigatorio.setVisible(false);
+                IniciarAtribuicaoPane.setVisible(true);
+                IniciarAtribuicaoPane.setDisable(false);
+            } catch (Exception e) {
+                AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                        "Problema ao voltar ao menu anterior.",
+                        e.getMessage()).show();
+            }
+        }
+        
     }
 
     public void atribuirTarefaAction(ActionEvent actionEvent) {
