@@ -180,16 +180,25 @@ public class RepositorioProcessoSeriacao {
             Anuncio anuncio = RepositorioAnuncio.getInstance().montarAnuncio(rSetAnuncio, true);
 
             //montar lista classificacoes
-            
 
-            /*PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Classificacao WHERE idAnuncio = ?");
-            pstmt.setInt(1, idAnuncio);
-
-
-
-            
             ArrayList<Classificacao> classificacoes = new ArrayList<>();
-            RepositorioCandidatura.getInstance().montarListaCandidaturas();*/
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Classificacao WHERE idAnuncio = ?");
+            pstmt.setInt(1, idAnuncio);
+            ResultSet rsClassificacao = pstmt.executeQuery();
+
+            ResultSet rsFreelancer = null;
+            Candidatura candidatura = null;
+            while(rsClassificacao.next()){
+                PreparedStatement pstmtFreelancer = conn.prepareCall("Select * from Candidatura where idFreelancer = ?");
+                pstmtFreelancer.setInt(1, rsClassificacao.getInt("idFreelancer"));
+                rsFreelancer = pstmtFreelancer.executeQuery();
+                candidatura = RepositorioCandidatura.getInstance().montarCandidatura(rsFreelancer, true);
+                int lugar = rsClassificacao.getInt("lugar");
+                classificacoes.add(new Classificacao(candidatura, lugar));
+                pstmt.clearParameters();
+                pstmtFreelancer.clearParameters();
+            }
 
             //montar lista colaboradores
 
@@ -207,7 +216,6 @@ public class RepositorioProcessoSeriacao {
                 rsColaboradores = psListaColaboradores.executeQuery();
                 colaboradores = RepositorioColaborador.getInstance().montarListaColaboradores(rsColaboradores);
                 psListaColaboradores.clearParameters();
-                rsColaboradores.close();
             }
 
             Date dataSql =row.getDate("dataRealizacao");
@@ -222,7 +230,13 @@ public class RepositorioProcessoSeriacao {
             rSetAnuncio.close();
             rsIdColaboradores.close();
             psListaIdColaboradores.close();
-            rsColaboradores.close();
+            if (rsColaboradores != null) {
+                rsColaboradores.close();
+            }
+            rsClassificacao.close();
+            if (rsFreelancer != null) {
+                rsFreelancer.close();
+            }
 
             if (unico) row.close();
 
