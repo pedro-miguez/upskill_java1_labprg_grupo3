@@ -45,6 +45,7 @@ public class RepositorioProcessoSeriacao {
      * @return boolean
      * @throws SQLException 
      */
+    
     public boolean insertProcessoSeriacao(ProcessoSeriacao processoSeriacao) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
