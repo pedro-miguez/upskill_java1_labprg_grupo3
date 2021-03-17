@@ -24,6 +24,13 @@ public class RepositorioAtribuicao {
     private RepositorioAtribuicao() {
 
     }
+    
+    public static RepositorioAtribuicao getInstance() {
+        if (instance == null) {
+            instance = new RepositorioAtribuicao();
+        }
+        return instance;
+    }
 
     public boolean insertAtribuicao(Atribuicao atribuicao) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();

@@ -36,9 +36,9 @@ public class AtribuicaoController {
         
         gestor.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailGestor)));
         
-        Atribuicao processoAtribuicao = RepositorioAtribuicao.getInstance().criarProcessoAtribuicao();
+        Atribuicao processoAtribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao();
         
-        return RepositorioAtribuicao.getInstance().insertProcessoAtribuicao(processoAtribuicao);
+        return RepositorioAtribuicao.getInstance().insertAtribuicao(processoAtribuicao);
         
     }
     
