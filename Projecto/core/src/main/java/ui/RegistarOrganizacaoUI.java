@@ -14,6 +14,11 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
+/**
+ * Class responsible for the UI of the Registration of Organizations area.
+ * 
+ * @author Grupo 3
+ */
 public class RegistarOrganizacaoUI implements Initializable {
 
     public TextField txtNomeGestor;
