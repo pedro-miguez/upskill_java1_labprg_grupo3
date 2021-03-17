@@ -25,6 +25,11 @@ public class RepositorioAtribuicao {
 
     }
     
+    /**
+     * Static method that returns a unique reference to the class object.
+     * 
+     * @return instance
+     */
     public static RepositorioAtribuicao getInstance() {
         if (instance == null) {
             instance = new RepositorioAtribuicao();
@@ -32,6 +37,14 @@ public class RepositorioAtribuicao {
         return instance;
     }
 
+    /**
+     * Boolean method that checks if a assignment process exists in the 
+     * repository, otherwise it is added to it.
+     * 
+     * @param atribuicao
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean insertAtribuicao(Atribuicao atribuicao) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -98,6 +111,13 @@ public class RepositorioAtribuicao {
     }
 
 
+    /**
+     * Creates a (new) assignment process.
+     * 
+     * @param classificacao
+     * @param dataInicio
+     * @return Atribuicao
+     */
     public Atribuicao criarAtribuicao(Classificacao classificacao, 
                                         Data dataInicio) {
         
