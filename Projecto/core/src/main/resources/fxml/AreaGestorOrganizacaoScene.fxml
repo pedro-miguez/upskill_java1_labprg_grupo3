@@ -289,7 +289,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="IniciarSeriacaoPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="IniciarSeriacaoPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -320,7 +320,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="seriacaoAutomaticaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="seriacaoAutomaticaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -352,7 +352,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="publicarTarefaPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="publicarTarefaPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -416,14 +416,60 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="IniciarAtribuicaoPane" prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane fx:id="IniciarAtribuicaoPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <top>
-                        <Label text="Iniciar Atribuição" BorderPane.alignment="CENTER">
+                        <Label text="Atribuição" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                      </top>
+                     <bottom>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnAtribuirTarefa" mnemonicParsing="false" onAction="#atribuirTarefaAction" text="Atribuir">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnVoltarAtribuicao" mnemonicParsing="false" onAction="#btnVoltarAction" text="Voltar">
+                                 <HBox.margin>
+                                    <Insets right="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <GridPane prefHeight="581.0" prefWidth="825.0" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="166.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="732.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="286.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="464.0" minHeight="10.0" prefHeight="464.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Lista de Anuncios Seriados:" GridPane.halignment="RIGHT">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ListView fx:id="lvProcessoSeriacao" prefHeight="444.0" prefWidth="629.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="100.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                              <ComboBox fx:id="cbProcessoSeriacaoAtribuicao" onAction="#actionProcessoSeriacaoAtribuicao" prefHeight="25.0" prefWidth="361.0" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                     </center>
                   </BorderPane>
                </children>
             </StackPane>
