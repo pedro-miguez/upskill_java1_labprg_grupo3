@@ -98,9 +98,10 @@ public class RepositorioAtribuicao {
     }
 
 
-    public Atribuicao criarAtribuicao() {
-        return new Atribuicao();
+    public Atribuicao criarAtribuicao(Classificacao classificacao, 
+                                        Data dataInicio) {
+        
+        return new Atribuicao(classificacao, dataInicio);
     }
 
 }
-
