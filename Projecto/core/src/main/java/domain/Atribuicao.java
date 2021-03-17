@@ -58,11 +58,21 @@ public class Atribuicao {
         return dataAtribuicao;
     }
 
+    /**
+     * Sets the assignment date.
+     * 
+     * @param dataAtribuicao 
+     */
     public void setDataAtribuicao(Data dataAtribuicao) {
         this.dataAtribuicao = dataAtribuicao;
     }
 
 
+    /**
+     * Gets the end date.
+     * 
+     * @return dataFim
+     */
     public Data getDataFim() {
         return dataFim;
     }
