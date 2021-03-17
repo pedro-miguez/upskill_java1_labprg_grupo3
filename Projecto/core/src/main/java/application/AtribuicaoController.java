@@ -23,21 +23,14 @@ import java.util.List;
  */
 public class AtribuicaoController {
     
-    public boolean isAtribuicaoObrigatoria (Anuncio anuncio) {
-        
-        return anuncio.isSeriacaoAutomatica();
-        
-    }
-    
-    public boolean criarProcessoAtribuicao (Classificacao classificacao,
+
+    public boolean criarAtribuicao (Classificacao classificacao,
                                             Data dataInicio)
                                                         throws SQLException {
+
+        Atribuicao atribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao, dataInicio);
         
-        //gestor.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailGestor)));
-        
-        Atribuicao processoAtribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao, dataInicio);
-        
-        return RepositorioAtribuicao.getInstance().insertAtribuicao(processoAtribuicao);
+        return RepositorioAtribuicao.getInstance().insertAtribuicao(atribuicao);
         
     }
     
