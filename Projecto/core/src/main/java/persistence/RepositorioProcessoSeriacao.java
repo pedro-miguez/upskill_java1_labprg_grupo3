@@ -184,6 +184,7 @@ public class RepositorioProcessoSeriacao {
             /*PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Classificacao WHERE idAnuncio = ?");
             pstmt.setInt(1, idAnuncio);
 
+
             
             ArrayList<Classificacao> classificacoes = new ArrayList<>();
             RepositorioCandidatura.getInstance().montarListaCandidaturas();*/
