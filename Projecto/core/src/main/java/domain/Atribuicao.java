@@ -31,6 +31,7 @@ public class Atribuicao {
         //nrUnico = getClassificacao().getCandidatura().getDataCandidatura().getAno()+"-"+ counter;
     }
 
+
     /**
      * Gets the start date.
      * 
@@ -39,6 +40,7 @@ public class Atribuicao {
     public Data getDataInicio() {
         return dataInicio;
     }
+
 
     /**
      * Sets the start date.
