@@ -23,7 +23,14 @@ import java.util.List;
  */
 public class AtribuicaoController {
     
-
+    /**
+     * Boolean method which checks if the assignment process was created with success.
+     * 
+     * @param classificacao
+     * @param dataInicio
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean criarAtribuicao (Classificacao classificacao,
                                             Data dataInicio)
                                                         throws SQLException {
