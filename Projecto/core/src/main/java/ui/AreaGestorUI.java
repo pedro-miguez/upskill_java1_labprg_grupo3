@@ -14,7 +14,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
+/**
+ * Class responsible for the UI of the manager area.
+ * 
+ * @author Grupo 3
+ */
 public class AreaGestorUI implements Initializable {
 
     //Registar Colaborador elements

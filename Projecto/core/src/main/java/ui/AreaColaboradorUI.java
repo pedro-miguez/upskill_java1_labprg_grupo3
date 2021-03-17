@@ -19,6 +19,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Class responsible for the UI of the collaborator area.
+ * 
+ * @author Grupo 3
+ */
 public class AreaColaboradorUI implements Initializable {
 
 

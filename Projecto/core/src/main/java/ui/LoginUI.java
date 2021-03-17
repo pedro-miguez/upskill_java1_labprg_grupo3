@@ -17,6 +17,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Class responsible for the UI of the login area.
+ * 
+ * @author Grupo 3
+ */
 public class LoginUI implements Initializable {
 
     public Button btnLogin;

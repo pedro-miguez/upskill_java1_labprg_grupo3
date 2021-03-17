@@ -15,6 +15,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+/**
+ * Class responsible for the UI of the administrator area.
+ * 
+ * @author Grupo 3
+ */
 public class AreaAdministrativoUI implements Initializable {
 
     //Criar Area de Atividade

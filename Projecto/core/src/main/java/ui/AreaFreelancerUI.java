@@ -26,6 +26,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import persistence.RepositorioFreelancer;
 
+/**
+ * Class responsible for the UI of the freelancer area.
+ * 
+ * @author Grupo 3
+ */
 public class AreaFreelancerUI implements Initializable {
 
     public BorderPane homePaneAreaFreelancer;

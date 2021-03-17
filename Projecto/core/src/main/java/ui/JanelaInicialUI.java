@@ -7,6 +7,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Class responsible for the UI of the menu.
+ * 
+ * @author Grupo 3
+ */
 public class JanelaInicialUI {
 
 
