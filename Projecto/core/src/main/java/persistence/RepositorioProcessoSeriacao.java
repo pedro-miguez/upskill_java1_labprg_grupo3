@@ -180,6 +180,7 @@ public class RepositorioProcessoSeriacao {
             Anuncio anuncio = RepositorioAnuncio.getInstance().montarAnuncio(rSetAnuncio, true);
 
             //montar lista classificacoes
+            
 
             /*PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Classificacao WHERE idAnuncio = ?");
             pstmt.setInt(1, idAnuncio);
