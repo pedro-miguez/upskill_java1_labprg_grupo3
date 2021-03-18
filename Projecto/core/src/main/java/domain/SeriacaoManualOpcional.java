@@ -30,8 +30,8 @@ public class SeriacaoManualOpcional implements TipoRegimento{
     }
 
     @Override
-    public Atribuicao atribuirSeriacao(ProcessoSeriacao processoSeriacao) {
-        return null;
+    public ArrayList<Classificacao> listarClassificacoesAtribuicao(ProcessoSeriacao processoSeriacao) {
+        return new ArrayList<>(processoSeriacao.getClassificacao());
     }
 
     /**

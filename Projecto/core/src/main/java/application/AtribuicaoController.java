@@ -48,12 +48,16 @@ public class AtribuicaoController {
         
     }
 
+
     public boolean isObrigatorio(ProcessoSeriacao ps){
 
         return ps.getAnuncio().isSeriacaoObrigatoria();
 
     }
 
+    public ArrayList<Classificacao> listarClassificacoesAtribuicao (ProcessoSeriacao processoSeriacao) {
+        return processoSeriacao.getAnuncio().getTipoRegimento().listarClassificacoesAtribuicao(processoSeriacao);
+    }
 
     /**
      * Gets a list of serialization processes by manager.

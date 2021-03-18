@@ -30,8 +30,12 @@ public class SeriacaoManualObrigatoria implements TipoRegimento {
     }
 
     @Override
-    public Atribuicao atribuirSeriacao(ProcessoSeriacao processoSeriacao) {
-        return null;
+    public ArrayList<Classificacao> listarClassificacoesAtribuicao(ProcessoSeriacao processoSeriacao) {
+        ArrayList<Classificacao> listaClassificacao = new ArrayList<>();
+        if (processoSeriacao.getClassificacao().size() > 0) {
+            listaClassificacao.add(processoSeriacao.getClassificacao().get(1));
+        }
+        return listaClassificacao;
     }
 
     /**
