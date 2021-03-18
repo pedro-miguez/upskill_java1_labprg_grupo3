@@ -327,6 +327,10 @@ public class Anuncio implements Serializable {
     }
 
     public boolean isSeriacaoAutomatica() {
-            return this.tipoRegimento.getDesignacao().equalsIgnoreCase("Seriação Automática");
+            return this.tipoRegimento.getDesignacao().equalsIgnoreCase("Seriação Automática Obrigatória");
+    }
+
+    public boolean isSeriacaoObrigatoria() {
+        return !this.tipoRegimento.getDesignacao().equalsIgnoreCase("Seriação Manual Opcional");
     }
 }
