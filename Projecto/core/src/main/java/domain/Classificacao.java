@@ -59,8 +59,7 @@ public class Classificacao {
 
     @Override
     public String toString() {
-        return "Classificacao{" +
-                "A candidatura=" + candidatura +
+        return "A classificacao da candidatura a " + candidatura +
                 ", ficou em " + lugar +
                 "lugar.";
     }

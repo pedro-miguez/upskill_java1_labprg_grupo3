@@ -12,6 +12,11 @@ public class ConnectionHandler {
 
     private Connection connection;
 
+    /**
+     * Opens a connection.
+     *
+     * @throws SQLException
+     */
     public ConnectionHandler() throws SQLException {
         this.connection = openConnection();
     }

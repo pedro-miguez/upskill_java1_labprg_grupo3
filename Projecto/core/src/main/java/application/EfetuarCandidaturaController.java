@@ -29,6 +29,7 @@ public class EfetuarCandidaturaController {
      * @throws SQLException 
      */
     public ArrayList<Anuncio> getAnunciosMatched(String emailFreelancer) throws SQLException {
+        
         Freelancer freelancer = repositorioFreelancer.getFreelancerByEmail(new Email(emailFreelancer));
         ArrayList<Anuncio> todosAnuncios = repositorioAnuncio.getAllAnunciosCandidatura();
         ArrayList<Candidatura> candidaturasFreelancers = repoCandidatura.getAllCandidaturasFreelancer(freelancer.getEmail());

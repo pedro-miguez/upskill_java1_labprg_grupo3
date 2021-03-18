@@ -78,6 +78,7 @@ public class SeriarCandidaturaController {
     public boolean criarProcessoSeriacao(List<Candidatura> candidaturas,
                                          List<Colaborador> colaboradores, 
                                          String emailColaborador) throws SQLException {
+        
         ArrayList<Classificacao> classificacoes = new ArrayList<>();
 
         colaboradores.add(RepositorioColaborador.getInstance().getColaboradorByEmail(new Email(emailColaborador)));
