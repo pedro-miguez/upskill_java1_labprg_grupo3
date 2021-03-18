@@ -55,13 +55,13 @@ public class DataTest {
         assertEquals (expected, result3);
     }
     
-    //tests a invalid day.
+    //Tests a invalid day.
     @Test(expected = IllegalArgumentException.class)
     public void diaInvalido(){
         new Data(2021, 02, 40);
     }
     
-    //Tets a invalid month.
+    //Tests a invalid month.
     @Test(expected = IllegalArgumentException.class)
     public void mesInvalido(){
         new Data(2021, 17, 17);

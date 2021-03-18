@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  */
 public class GrauProficienciaTest {
 
+    //Tests a valid degree of proficiency.
     @Test
     public void testCriarGrauProficienciaValido(){
 
@@ -24,6 +25,7 @@ public class GrauProficienciaTest {
 
     }
 
+    //Tests a invalid degree of proficiency level.
     @Test (expected = IllegalArgumentException.class)
     public void testCriarGrauProficienciaNivelInvalido(){
 
@@ -31,6 +33,7 @@ public class GrauProficienciaTest {
 
     }
 
+    //Tests a invalid degree of proficiency designation.
     @Test (expected = IllegalArgumentException.class)
     public void testCriarGrauProficienciaDesignacaoInvalido(){
 

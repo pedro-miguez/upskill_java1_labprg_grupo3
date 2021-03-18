@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  */
 public class OrganizacaoTest {
 
+    //Tests a valid organization.
     @Test
     public void testCreateOrganizacaoValido() {
         Organizacao org = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
@@ -21,6 +22,7 @@ public class OrganizacaoTest {
         assertEquals(expected, org.getNome());
     }
 
+    //Tests a invalid organization name.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateOrganizacaoNomeInvalido() {
         new Organizacao("", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),

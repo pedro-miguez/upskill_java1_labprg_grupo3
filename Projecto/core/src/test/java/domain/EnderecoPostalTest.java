@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  */
 public class EnderecoPostalTest {
 
+    //Tests a address with a valid postal code.
     @Test
     public void testCreateEnderecoPostalcomCodigoPostalValido(){
         EnderecoPostal endereco = new EnderecoPostal ("Av. dos Extremos 68", "Braga, Portugal", "4700-136");
@@ -21,6 +22,7 @@ public class EnderecoPostalTest {
         assertEquals(expected, result);
     }
 
+    //Tests a address with a invalid postal code.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateEnderecoPostalcomCodigoPostalInvalido(){
 
@@ -28,6 +30,7 @@ public class EnderecoPostalTest {
 
     }
 
+    //Tests a address with a empty postal code.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateEnderecoPostalcomCodigoPostalVazio(){
 

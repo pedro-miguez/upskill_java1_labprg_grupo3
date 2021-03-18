@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
  */
 public class TarefaTest {
 
+    //Tests a valid task.
     @Test
     public void testCreateTarefaValida(){
 
@@ -36,6 +37,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid unique code.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComCodigoUnicoInvalido(){
 
@@ -53,6 +55,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid unique code.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComCodigoUnicoInvalido2(){
         Organizacao organizacao = new Organizacao("org", new NIF(123123123), new Website("www.org.com"), new Telefone(999999999),
@@ -69,6 +72,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid designation.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComDesignacaoInvalida(){
 
@@ -86,6 +90,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid informal description.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComDescricaoInformalInvalida(){
 
@@ -103,6 +108,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid technical description.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComDescricaoTecnicaInvalida(){
 
@@ -120,6 +126,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid duration.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComDuracaoInvalida(){
 
@@ -137,6 +144,7 @@ public class TarefaTest {
 
     }
 
+    //Tests a task with invalid cost.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateTarefaComCustoInvalido(){
 
@@ -153,7 +161,5 @@ public class TarefaTest {
                 "É necessário programador em java para desenvolvimento de um jogo", 100, 0, categoriaTarefa, organizacao);
 
     }
-
-
 
 }
