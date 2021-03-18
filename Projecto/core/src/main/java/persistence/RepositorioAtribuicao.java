@@ -96,7 +96,8 @@ public class RepositorioAtribuicao {
             csFreelancerIdByEmail.close();
             csIdOrg.close();
 
-        }catch (SQLException e) {
+
+        } catch (SQLException e) {
             e.getSQLState();
             e.printStackTrace();
             try {

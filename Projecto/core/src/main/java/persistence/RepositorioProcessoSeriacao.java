@@ -181,11 +181,26 @@ public class RepositorioProcessoSeriacao {
             pstmtTarefasOrganizacao.setInt(1, orgID);
             ResultSet rSetIdsTarefaOrganizacao = pstmtTarefasOrganizacao.executeQuery();
 
+            PreparedStatement pstmtAnunciosAtribuidos = conn.prepareCall("Select idTarefa from Atribuicao");
+            ResultSet rSetAnunciosAtribuidos = pstmtAnunciosAtribuidos.executeQuery();
+
+            ArrayList<Integer> idsTarefasAtribuidas = new ArrayList<>();
+
+
+            while (rSetAnunciosAtribuidos.next()) idsTarefasAtribuidas.add(rSetAnunciosAtribuidos.getInt(1));
+
             while(rSetIdsTarefaOrganizacao.next()) {
+
+                if (idsTarefasAtribuidas.contains(rSetIdsTarefaOrganizacao.getInt(1))) {
+                    break;
+                }
+
                 PreparedStatement pstmtAnunciosSeriacaoOrg = conn.prepareCall("Select idAnuncio from Anuncio where idTarefa = ? AND (? between dataInicioSeriacao AND dataFimSeriacao)");
                 pstmtAnunciosSeriacaoOrg.setInt(1, rSetIdsTarefaOrganizacao.getInt("idtarefa"));
                 pstmtAnunciosSeriacaoOrg.setDate(2, Data.dataAtual().getDataSQL());
                 ResultSet rSetAnunciosSeriacaoOrg = pstmtAnunciosSeriacaoOrg.executeQuery();
+
+
 
                 if(rSetAnunciosSeriacaoOrg.next()) {
                     PreparedStatement pstmtProcessoSeriacaoIdAnuncio = conn.prepareCall("Select * from ProcessoSeriacao where idAnuncio = ?");
