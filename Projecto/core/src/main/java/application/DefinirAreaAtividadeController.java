@@ -24,7 +24,9 @@ public class DefinirAreaAtividadeController {
 
         RepositorioAreaAtividade repo = RepositorioAreaAtividade.getInstance();
 
-        AreaAtividade areaAtividade = repo.criarAreaAtividade(codigoUnico, descricao, descricaoDetalhada);
+        AreaAtividade areaAtividade = repo.criarAreaAtividade(codigoUnico, 
+                                                                descricao, 
+                                                                descricaoDetalhada);
 
         return repo.insertAreaAtividade(areaAtividade);
     }

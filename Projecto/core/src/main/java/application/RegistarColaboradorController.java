@@ -41,7 +41,9 @@ public class RegistarColaboradorController {
         RepositorioColaborador repoColab = RepositorioColaborador.getInstance();
 
         Colaborador colaborador = repoColab.criarColaborador(nomeColaborador, 
-                                    contactoColaborador, emailColaborador, funcao);
+                                                            contactoColaborador, 
+                                                            emailColaborador, 
+                                                            funcao);
 
         String password = authController.registarColaboradorComoUtilizador(colaborador);
 
@@ -54,6 +56,4 @@ public class RegistarColaboradorController {
         }
     }
 
-
 }
-

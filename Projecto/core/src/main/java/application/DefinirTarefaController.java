@@ -25,10 +25,12 @@ public class DefinirTarefaController {
      * @param colaboradorEmail  as colaborator email
      * @return the boolean
      */
-    public boolean definirTarefa(String codigoUnico, String designacao, String descricaoInformal, 
-                                String descricaoTecnica, int duracaoHoras, float custo, 
-                                CategoriaTarefa categoriaTarefa, 
-                                String colaboradorEmail) throws SQLException {
+    public boolean definirTarefa(String codigoUnico, String designacao, 
+                                    String descricaoInformal, 
+                                    String descricaoTecnica, 
+                                    int duracaoHoras, float custo, 
+                                    CategoriaTarefa categoriaTarefa, 
+                                    String colaboradorEmail) throws SQLException {
 
 
         RepositorioOrganizacao repositorioOrganizacao = RepositorioOrganizacao.getInstance();
@@ -38,12 +40,14 @@ public class DefinirTarefaController {
 
         Organizacao org = repositorioOrganizacao.getOrganizacaoByEmail(new Email(colaboradorEmail));
 
-        Tarefa tarefa = repositorioTarefa.criarTarefa(codigoUnico, designacao, descricaoInformal,
-                descricaoTecnica, duracaoHoras, custo, categoriaTarefa, org);
+        Tarefa tarefa = repositorioTarefa.criarTarefa(codigoUnico, designacao, 
+                                                        descricaoInformal,
+                                                        descricaoTecnica, 
+                                                        duracaoHoras, custo, 
+                                                        categoriaTarefa, org);
 
         return repositorioTarefa.insertTarefa(tarefa, colaboradorEmail);
 
     }
-
 
 }
