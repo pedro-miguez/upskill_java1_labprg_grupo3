@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Class responsible for testing the recognition of technical competence.
+ * 
+ * @author Grupo 3
+ */
 public class ReconhecimentoCTTest {
     @Test
     public void testReconhecimentoCTValido() {

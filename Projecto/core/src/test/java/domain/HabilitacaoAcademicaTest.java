@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the academic qualification.
+ * 
+ * @author Grupo 3
+ */
 public class HabilitacaoAcademicaTest {
 
     @Test

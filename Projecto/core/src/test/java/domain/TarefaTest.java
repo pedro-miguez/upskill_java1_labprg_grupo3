@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the task.
+ * 
+ * @author Grupo 3
+ */
 public class TarefaTest {
 
     @Test

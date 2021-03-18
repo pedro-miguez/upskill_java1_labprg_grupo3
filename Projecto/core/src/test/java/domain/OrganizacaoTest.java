@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the organization.
+ * 
+ * @author Grupo 3
+ */
 public class OrganizacaoTest {
 
     @Test

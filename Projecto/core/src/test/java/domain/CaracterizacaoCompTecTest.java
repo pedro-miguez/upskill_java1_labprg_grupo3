@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  */
 public class CaracterizacaoCompTecTest {
 
+    //Tests a valid characterization of technical competence.
     @Test
     public void testCaracterizacaoCompTecTestValida() {
 
@@ -32,6 +33,7 @@ public class CaracterizacaoCompTecTest {
 
     }
 
+    //Tests a invalid characterization of technical competence.
     @Test(expected = IllegalArgumentException.class)
     public void testCaracterizacaoCompTecTestInvalida1() {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
@@ -43,6 +45,7 @@ public class CaracterizacaoCompTecTest {
         CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, new GrauProficiencia(3, "Alto"));
     }
 
+    //Tests a invalid characterization of technical competence.
     @Test(expected = IllegalArgumentException.class)
     public void testCaracterizacaoCompTecTestInvalida2() {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),
@@ -54,6 +57,7 @@ public class CaracterizacaoCompTecTest {
         CaracterizacaoCompTec cct = new CaracterizacaoCompTec(ct, true, new GrauProficiencia(3, "Alto"));
     }
 
+    //Tests a invalid characterization of technical competence.
     @Test(expected = IllegalArgumentException.class)
     public void testCaracterizacaoCompTecTestInvalida3() {
         AreaAtividade areaAtividade = new AreaAtividade(new CodigoUnico("PRG-01"),

@@ -7,8 +7,14 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the task category.
+ * 
+ * @author Grupo 3
+ */
 public class CategoriaTarefaTest {
 
+    //Tests a valid task category.
     @Test
     public void testCreateCategoriaTarefaValida(){
 
@@ -27,6 +33,7 @@ public class CategoriaTarefaTest {
         assertEquals(expected, result);
     }
 
+    //Tests a invalid activity area.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateAreaAtividadeInvalida() {
         List<CaracterizacaoCompTec> competenciasTecnicas = new ArrayList<>();

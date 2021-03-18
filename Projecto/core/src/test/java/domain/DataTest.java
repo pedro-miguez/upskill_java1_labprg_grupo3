@@ -10,11 +10,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Class responsible for testing the data.
  *
  * @author Grupo 3
  */
 public class DataTest {
     
+    //Tests a valid day.
     @Test
     public void testDiaValido () {
         
@@ -27,6 +29,7 @@ public class DataTest {
         assertEquals (expected, result1);
     }
     
+    //Tests a valid month.
     @Test
     public void testMesValido () {
         
@@ -39,6 +42,7 @@ public class DataTest {
         assertEquals (expected, result2);
     }
     
+    //Tests a valid year.
     @Test
     public void testAnoValido () {
         
@@ -51,12 +55,13 @@ public class DataTest {
         assertEquals (expected, result3);
     }
     
-    
+    //tests a invalid day.
     @Test(expected = IllegalArgumentException.class)
     public void diaInvalido(){
         new Data(2021, 02, 40);
     }
     
+    //Tets a invalid month.
     @Test(expected = IllegalArgumentException.class)
     public void mesInvalido(){
         new Data(2021, 17, 17);
