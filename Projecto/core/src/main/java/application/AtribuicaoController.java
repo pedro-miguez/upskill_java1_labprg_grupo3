@@ -42,12 +42,19 @@ public class AtribuicaoController {
         Atribuicao atribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao,
                 new Data(dataInicio.getYear(), dataInicio.getMonth().getValue(),
                         dataInicio.getDayOfMonth()));
-        
+
+
         return RepositorioAtribuicao.getInstance().insertAtribuicao(atribuicao);
         
     }
 
-    
+    public boolean isObrigatorio(ProcessoSeriacao ps){
+
+        return ps.getAnuncio().isSeriacaoObrigatoria();
+
+    }
+
+
     /**
      * Gets a list of serialization processes by manager.
      * 

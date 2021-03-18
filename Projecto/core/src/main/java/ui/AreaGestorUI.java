@@ -77,7 +77,7 @@ public class AreaGestorUI implements Initializable {
     public ComboBox<TipoRegimento> btnTipoRegimento;
     
     //Tasks assignments...
-    public BorderPane IniciarAtribuicaoPane;
+    public BorderPane iniciarAtribuicaoPane;
     public ListView<Classificacao> listViewManualOpcional;
     public DatePicker datePickerDataInicioManualOpcional;
     public Button btnVoltarAtribuicaoManualOpcional;
@@ -838,30 +838,36 @@ public class AreaGestorUI implements Initializable {
         publicarTarefaPane.setDisable(true);
         registarColaboradorPane.setDisable(true);
         registarColaboradorPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(false);
+        iniciarAtribuicaoPane.setVisible(true);
         btnRemoverUltimaCandidatura.setDisable(true);
         btnRemoverUltimoColaborador.setDisable(true);
         listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
         listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
 
         try {
-            if (atribuicaoController.isAutomatico(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem())) {
+            if (atribuicaoController.isObrigatorio(listViewProcessoSeriacaoAtribuicao.getSelectionModel().getSelectedItem())){
                 //ligar
                 paneAutomaticoObrigatorio.setDisable(false);
                 paneAutomaticoObrigatorio.setVisible(true);
                 paneManualOpcional.setDisable(true);
                 paneManualOpcional.setVisible(false);
-                listViewAutomaticoObrigatorio.getItems().setAll(seriarCandidaturaController.
-                        candidaturasSeriadasPorValor(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
+                iniciarAtribuicaoPane.setDisable(true);
+                iniciarAtribuicaoPane.setVisible(false);
+                listViewAutomaticoObrigatorio.getItems().setAll();
             } else {
                 //ligar
-                seriacaoManualPane.setDisable(false);
-                seriacaoManualPane.setVisible(true);
-                seriacaoAutomaticaPane.setDisable(true);
-                seriacaoAutomaticaPane.setVisible(false);
-                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
-                        getAllCandidaturasPorSelecionar(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
-                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
-                        getAllColaboradoresOrganizacao(authController.getEmail()));
+                paneAutomaticoObrigatorio.setDisable(true);
+                paneAutomaticoObrigatorio.setVisible(false);
+                paneManualOpcional.setDisable(false);
+                paneManualOpcional.setVisible(true);
+                iniciarAtribuicaoPane.setDisable(true);
+                iniciarAtribuicaoPane.setVisible(false);
+                listViewManualOpcional.getItems().setAll(listViewProcessoSeriacaoAtribuicao.getSelectionModel().getSelectedItem().getClassificacao());
             }
 
         } catch (Exception e) {
@@ -873,4 +879,4 @@ public class AreaGestorUI implements Initializable {
 
     }
 
-}
+
