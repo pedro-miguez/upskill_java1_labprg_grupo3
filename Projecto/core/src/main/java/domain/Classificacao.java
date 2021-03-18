@@ -57,6 +57,15 @@ public class Classificacao {
             throw new IllegalArgumentException("Candidatura Inválida");
     }
 
+    @Override
+    public String toString() {
+        return "Classificacao{" +
+                "A candidatura=" + candidatura +
+                ", ficou em " + lugar +
+                "lugar.";
+    }
+
+
     /**
      * Indicates whether some other object is "equal to" this one.
      * <p>
