@@ -704,7 +704,7 @@ public class AreaGestorUI implements Initializable {
         
         try {
 
-            boolean manop = atribuicaoController.criarAtribuicao(listViewManualOpcional.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail())),
+            boolean manop = atribuicaoController.criarAtribuicao(listViewManualOpcional.getSelectionModel().getSelectedItem(),
                                                                  datePickerDataInicioManualOpcional.getValue());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
@@ -767,7 +767,7 @@ public class AreaGestorUI implements Initializable {
         
         try {
 
-            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail())),
+            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems().get(1),
                                                                  datePickerDataInicioObrigatorio.getValue());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
@@ -806,7 +806,7 @@ public class AreaGestorUI implements Initializable {
     public void btnVoltarObrigatorioAction(ActionEvent actionEvent) {
         
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
-                "Irá voltar ao menu de atribuição.", "Deseja mesmo fazer voltar?");
+                "Irá voltar ao menu de atribuição.", "Deseja mesmo voltar?");
         if (alerta.showAndWait().get() == ButtonType.CANCEL) {
             actionEvent.consume();
         } else {
@@ -826,8 +826,51 @@ public class AreaGestorUI implements Initializable {
     }
 
     public void atribuirTarefaAction(ActionEvent actionEvent) {
+
+        //desligar
+        homePane.setVisible(false);
+        homePane.setDisable(true);
+        IniciarSeriacaoPane.setDisable(true);
+        IniciarSeriacaoPane.setVisible(false);
+        criarTarefaPane.setVisible(false);
+        criarTarefaPane.setDisable(true);
+        publicarTarefaPane.setVisible(false);
+        publicarTarefaPane.setDisable(true);
+        registarColaboradorPane.setDisable(true);
+        registarColaboradorPane.setVisible(false);
+        btnRemoverUltimaCandidatura.setDisable(true);
+        btnRemoverUltimoColaborador.setDisable(true);
+        listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
+        listViewColaboradoresPorSelecionarSeriacaoManual.getItems().clear();
+
+        try {
+            if (atribuicaoController.isAutomatico(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem())) {
+                //ligar
+                paneAutomaticoObrigatorio.setDisable(false);
+                paneAutomaticoObrigatorio.setVisible(true);
+                paneManualOpcional.setDisable(true);
+                paneManualOpcional.setVisible(false);
+                listViewAutomaticoObrigatorio.getItems().setAll(seriarCandidaturaController.
+                        candidaturasSeriadasPorValor(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
+            } else {
+                //ligar
+                seriacaoManualPane.setDisable(false);
+                seriacaoManualPane.setVisible(true);
+                seriacaoAutomaticaPane.setDisable(true);
+                seriacaoAutomaticaPane.setVisible(false);
+                listViewCandidaturasPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
+                        getAllCandidaturasPorSelecionar(listViewAnunciosSeriarAnuncio.getSelectionModel().getSelectedItem()));
+                listViewColaboradoresPorSelecionarSeriacaoManual.getItems().setAll(seriarCandidaturaController.
+                        getAllColaboradoresOrganizacao(authController.getEmail()));
+            }
+
+        } catch (Exception e) {
+            AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
+                    "Problema ao iniciar seriação.",
+                    e.getMessage()).show();
+        }
     }
 
-    public void btnVoltarAction(ActionEvent actionEvent) {
     }
+
 }
