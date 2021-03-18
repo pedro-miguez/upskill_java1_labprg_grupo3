@@ -13,6 +13,8 @@ import static org.junit.Assert.assertEquals;
  * @author Grupo 3
  */
 public class ReconhecimentoCTTest {
+    
+    //Tests a valid recognition of technical competence.
     @Test
     public void testReconhecimentoCTValido() {
         /*Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
@@ -33,6 +35,7 @@ public class ReconhecimentoCTTest {
         assertEquals(expected, result);
     }
 
+    //Tests a recognition of technical competence with a invalid date.
     @Test(expected = IllegalArgumentException.class)
     public void testReconhecimentoCTComDataInvalida() {
         /*Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
@@ -48,6 +51,7 @@ public class ReconhecimentoCTTest {
                 new Data (2021, 02, 33));
     }
 
+    //Tests a recognition of technical competence with a invalid degree of proficiency.
     @Test(expected = IllegalArgumentException.class)
     public void testReconhecimentoCTComGrauProficienciaInvalido() {
         /*Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),
@@ -63,6 +67,7 @@ public class ReconhecimentoCTTest {
                 new Data (2021, 02, 17));
     }
 
+    //Tests a recognition of technical competence with a invalid degree of proficiency.
     @Test(expected = IllegalArgumentException.class)
     public void testReconhecimentoCTComGrauProficienciaInvalido2() {
         /*Freelancer freelancer = new Freelancer("Bob Marley", new Telefone(999999999),

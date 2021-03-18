@@ -10,6 +10,7 @@ import org.junit.Test;
  */
 public class NIFTest {
 
+    //Tests a valid nif.
     @Test
     public void testCreateNIFValido() {
         NIF nif = new NIF(123456789);
@@ -20,6 +21,7 @@ public class NIFTest {
         assertEquals(expected, result);
     }
 
+    //Tests a invalid nif.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateNIFInvalido() {
         new NIF(1234567891);

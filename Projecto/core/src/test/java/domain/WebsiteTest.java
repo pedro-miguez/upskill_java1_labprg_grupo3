@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
  */
 public class WebsiteTest {
 
+    //Tests a valid website.
     @Test
     public void testCreateWebsiteValido() {
 
@@ -25,6 +26,7 @@ public class WebsiteTest {
         assertEquals(expected, result);
     }
 
+    //Tests a valid website.
     @Test
     public void testCreateWebsiteValido2() {
 
@@ -38,6 +40,7 @@ public class WebsiteTest {
     }
 
 
+    //Tests a invalid website.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateWebsiteInvalido() {
 
@@ -46,12 +49,14 @@ public class WebsiteTest {
     }
 
 
+    //Tests a invalid website.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateWebsiteInvalido2() {
 
         Website site = new Website("www.org.pt (asd)");
     }
 
+    //Tests a empty website.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateWebsiteVazio() {
 

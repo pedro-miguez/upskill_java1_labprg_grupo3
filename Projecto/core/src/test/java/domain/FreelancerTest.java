@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
  */
 public class FreelancerTest {
 
+    //Tests a valid freelancer.
     @Test
     public void testCreateFreelancerValido() {
 
@@ -25,6 +26,7 @@ public class FreelancerTest {
         assertEquals(expected, result);
     }
 
+    //Tests a invalid freelancer name.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateFreelancerNomeInvalido() {
 
@@ -32,6 +34,7 @@ public class FreelancerTest {
                 new NIF(214852581), new ArrayList<>(), new ArrayList<>());
     }
 
+    //Tests a invalid freelancer phone number.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateFreelancerTelefoneInvalido() {
 
@@ -39,6 +42,7 @@ public class FreelancerTest {
                 new NIF(214852581), new ArrayList<>(), new ArrayList<>());
     }
 
+    //Tests a invalid freelancer email.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateFreelancerEmailInvalido() {
 
@@ -46,6 +50,7 @@ public class FreelancerTest {
                 new NIF(214852581), new ArrayList<>(), new ArrayList<>());
     }
 
+    //Tests a invalid freelancer nif.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateFreelancerNifInvalido() {
 
