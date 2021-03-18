@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
 
 package domain;
 
@@ -13,11 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-*/
-/**
- *
- * @author Grupo 3
- *//*
+
 
 public class AnuncioTest {
 
@@ -41,8 +32,9 @@ public class AnuncioTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio (tarefa, new TipoRegimento("Regimento a todo o gas",
-                "as regras existem para ser quebradas"),
+        TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "regras");
+
+        Anuncio a = new Anuncio (tarefa, tp,
                                     new Data(2021, 02, 18),
                                     new Data(2021, 02, 22),
                                     new Data(2021, 02, 18),
@@ -79,8 +71,9 @@ public class AnuncioTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio (tarefa, new TipoRegimento("Regimento a todo o gas",
-                "as regras existem para ser quebradas"),
+        TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "regras");
+
+        Anuncio a = new Anuncio (tarefa, tp,
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 17),
                 new Data(2021, 02, 18),
@@ -109,8 +102,9 @@ public class AnuncioTest {
             "É necessário programador em java para desenvolvimento de um jogo",
             100, 1500.00f, ct, org);
 
-    Anuncio a = new Anuncio (tarefa, new TipoRegimento("Regimento a todo o gas",
-            "as regras existem para ser quebradas"),
+        TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "regras");
+
+    Anuncio a = new Anuncio (tarefa, tp,
             new Data(2021, 02, 18),
             new Data(2021, 02, 17),
             new Data(2021, 02, 18),
@@ -138,8 +132,9 @@ public class AnuncioTest {
             "É necessário programador em java para desenvolvimento de um jogo",
             100, 1500.00f, ct, org);
 
-    Anuncio a = new Anuncio (tarefa, new TipoRegimento("Regimento a todo o gas",
-            "as regras existem para ser quebradas"),
+    TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "regras");
+
+    Anuncio a = new Anuncio (tarefa, tp,
             new Data(2021, 02, 18),
             new Data(2021, 02, 17),
             new Data(2021, 02, 18),
@@ -167,8 +162,9 @@ public class AnuncioTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio (tarefa, new TipoRegimento("",
-                "as regras existem para ser quebradas"),
+        TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("", "regras");
+
+        Anuncio a = new Anuncio (tarefa, tp,
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 17),
                 new Data(2021, 02, 18),
@@ -196,8 +192,9 @@ public class AnuncioTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio (tarefa, new TipoRegimento("Regimento a todo o gas",
-                ""),
+        TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "");
+
+        Anuncio a = new Anuncio (tarefa, tp,
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 17),
                 new Data(2021, 02, 18),
@@ -207,4 +204,3 @@ public class AnuncioTest {
     }
 
 }
-*/
