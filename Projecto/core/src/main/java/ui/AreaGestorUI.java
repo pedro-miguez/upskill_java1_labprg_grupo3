@@ -784,6 +784,7 @@ public class AreaGestorUI implements Initializable {
         
     }
 
+    //volta para o menu da atribuição
     public void btnVoltarManualOpcionalAction(ActionEvent actionEvent) {
         
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
@@ -847,6 +848,7 @@ public class AreaGestorUI implements Initializable {
         
     }
 
+    //volta para o menu da atribuição
     public void btnVoltarObrigatorioAction(ActionEvent actionEvent) {
         
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
@@ -869,6 +871,7 @@ public class AreaGestorUI implements Initializable {
         
     }
 
+    //atribuir tarefa
     public void atribuirTarefaAction(ActionEvent actionEvent) {
 
         //desligar

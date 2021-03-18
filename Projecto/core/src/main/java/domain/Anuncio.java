@@ -326,10 +326,20 @@ public class Anuncio implements Serializable {
         return getTarefa().equals(anuncio.tarefa);
     }
 
+    /**
+     * Boolean method that checks whether it is automatic serialization.
+     * 
+     * @return boolean
+     */
     public boolean isSeriacaoAutomatica() {
             return this.tipoRegimento.getDesignacao().equalsIgnoreCase("Seriação Automática Obrigatória");
     }
 
+    /**
+     * Boolean method that checks whether it is mandatory serialization.
+     * 
+     * @return boolean
+     */
     public boolean isSeriacaoObrigatoria() {
         return !this.tipoRegimento.getDesignacao().equalsIgnoreCase("Seriação Manual Opcional");
     }

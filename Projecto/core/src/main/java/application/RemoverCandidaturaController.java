@@ -6,8 +6,26 @@ import persistence.RepositorioFreelancer;
 
 import java.sql.SQLException;
 
+/**
+ * Current class is the one responsible to connect the GUI with the methods 
+ * responsible to remove application.
+ * 
+ * @author Grupo 3
+ */
 public class RemoverCandidaturaController {
 
+    /**
+     * Boolean method that checks whether the application has been successfully removed.
+     * 
+     * @param anuncio
+     * @param emailFreelancer
+     * @param valorPretendido
+     * @param nrDias
+     * @param textoApresentacao
+     * @param textoMotivacao
+     * @return boolean
+     * @throws SQLException 
+     */
     public boolean removerCandidatura(Anuncio anuncio, String emailFreelancer, 
                                         double valorPretendido, int nrDias,
                                         String textoApresentacao, 
