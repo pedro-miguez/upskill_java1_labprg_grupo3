@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Class responsible for testing the email.
+ * 
+ * @author Grupo 3
+ */
 public class EmailTest {
 
     @Test

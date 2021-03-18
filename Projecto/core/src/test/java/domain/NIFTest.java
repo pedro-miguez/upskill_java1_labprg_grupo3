@@ -3,6 +3,11 @@ package domain;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+/**
+ * Class responsible for testing the NIF.
+ * 
+ * @author Grupo 3
+ */
 public class NIFTest {
 
     @Test

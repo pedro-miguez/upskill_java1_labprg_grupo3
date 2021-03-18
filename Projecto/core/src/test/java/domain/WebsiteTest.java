@@ -6,6 +6,11 @@ import java.nio.file.WatchEvent;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the website.
+ * 
+ * @author Grupo 3
+ */
 public class WebsiteTest {
 
     @Test

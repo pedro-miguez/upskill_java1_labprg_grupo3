@@ -11,6 +11,7 @@ import org.junit.Test;
  */
 public class AreaAtividadeTest {
 
+    //Tests a valid created activity area.
     @Test
     public void testCreateAreaAtividadeValida() {
 
@@ -25,6 +26,7 @@ public class AreaAtividadeTest {
         assertEquals(expected, result);
     }
 
+    //Tests a invalid created activity area.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateAreaAtividadeInvalida() {
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");
@@ -33,6 +35,7 @@ public class AreaAtividadeTest {
 
     }
 
+    //Tests a invalid created activity area.
     @Test(expected = IllegalArgumentException.class)
     public void testCreateAreaAtividadeInvalida1() {
         CodigoUnico codigoUnico = new CodigoUnico("PRG-01");

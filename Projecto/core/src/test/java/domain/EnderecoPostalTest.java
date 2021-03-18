@@ -3,6 +3,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the Postal code.
+ * 
+ * @author Grupo 3
+ */
 public class EnderecoPostalTest {
 
     @Test
