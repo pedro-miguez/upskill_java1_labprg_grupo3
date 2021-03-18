@@ -429,11 +429,6 @@
                            <children>
                               <Button fx:id="btnAtribuirTarefa" mnemonicParsing="false" onAction="#atribuirTarefaAction" text="Atribuir">
                                  <HBox.margin>
-                                    <Insets right="15.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="btnVoltarAtribuicao" mnemonicParsing="false" onAction="#btnVoltarAction" text="Voltar">
-                                 <HBox.margin>
                                     <Insets right="150.0" />
                                  </HBox.margin>
                               </Button>

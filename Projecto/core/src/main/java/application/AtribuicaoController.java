@@ -12,7 +12,9 @@ import persistence.RepositorioColaborador;
 import persistence.RepositorioAtribuicao;
 import persistence.RepositorioProcessoSeriacao;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,10 +36,12 @@ public class AtribuicaoController {
      * @throws SQLException 
      */
     public boolean criarAtribuicao (Classificacao classificacao,
-                                            Data dataInicio)
+                                            LocalDate dataInicio)
                                                         throws SQLException {
 
-        Atribuicao atribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao, dataInicio);
+        Atribuicao atribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao,
+                new Data(dataInicio.getYear(), dataInicio.getMonth().getValue(),
+                        dataInicio.getDayOfMonth()));
         
         return RepositorioAtribuicao.getInstance().insertAtribuicao(atribuicao);
         
