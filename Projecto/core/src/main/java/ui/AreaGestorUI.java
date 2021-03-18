@@ -228,6 +228,12 @@ public class AreaGestorUI implements Initializable {
         seriacaoAutomaticaPane.setDisable(true);
         seriacaoManualPane.setVisible(false);
         seriacaoManualPane.setDisable(true);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
 
         //ligar
         registarColaboradorPane.setVisible(true);
@@ -250,6 +256,12 @@ public class AreaGestorUI implements Initializable {
         seriacaoManualPane.setDisable(true);
         publicarTarefaPane.setDisable(true);
         publicarTarefaPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
 
         //ligarr
         criarTarefaPane.setVisible(true);
@@ -278,6 +290,12 @@ public class AreaGestorUI implements Initializable {
         seriacaoManualPane.setDisable(true);
         publicarTarefaPane.setDisable(true);
         publicarTarefaPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
 
         //ligar
         homePane.setVisible(true);
@@ -299,6 +317,12 @@ public class AreaGestorUI implements Initializable {
         IniciarSeriacaoPane.setVisible(false);
         registarColaboradorPane.setDisable(true);
         registarColaboradorPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
 
         //ligar
         publicarTarefaPane.setVisible(true);
@@ -330,6 +354,12 @@ public class AreaGestorUI implements Initializable {
         seriacaoManualPane.setVisible(false);
         registarColaboradorPane.setDisable(true);
         registarColaboradorPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
 
         //ligar
         IniciarSeriacaoPane.setDisable(false);
@@ -528,6 +558,12 @@ public class AreaGestorUI implements Initializable {
         publicarTarefaPane.setDisable(true);
         registarColaboradorPane.setDisable(true);
         registarColaboradorPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
         btnRemoverUltimaCandidatura.setDisable(true);
         btnRemoverUltimoColaborador.setDisable(true);
         listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
@@ -684,10 +720,18 @@ public class AreaGestorUI implements Initializable {
         seriacaoManualPane.setVisible(false);
         registarColaboradorPane.setDisable(true);
         registarColaboradorPane.setVisible(false);
+        paneManualOpcional.setVisible(false);
+        paneManualOpcional.setDisable(true);
+        paneAutomaticoObrigatorio.setDisable(true);
+        paneAutomaticoObrigatorio.setVisible(false);
+        iniciarAtribuicaoPane.setDisable(true);
+        iniciarAtribuicaoPane.setVisible(false);
+        IniciarSeriacaoPane.setVisible(false);
+        IniciarSeriacaoPane.setDisable(true);
 
         //ligar
-        IniciarAtribuicaoPane.setDisable(false);
-        IniciarAtribuicaoPane.setVisible(true);
+        iniciarAtribuicaoPane.setDisable(false);
+        iniciarAtribuicaoPane.setVisible(true);
         
         try {
             listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
@@ -716,8 +760,8 @@ public class AreaGestorUI implements Initializable {
                 listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
                 paneManualOpcional.setDisable(true);
                 paneManualOpcional.setVisible(false);
-                IniciarAtribuicaoPane.setVisible(true);
-                IniciarAtribuicaoPane.setDisable(false);
+                iniciarAtribuicaoPane.setVisible(true);
+                iniciarAtribuicaoPane.setDisable(false);
                 
                 try {
                     listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
@@ -751,8 +795,8 @@ public class AreaGestorUI implements Initializable {
                 listViewProcessoSeriacaoAtribuicao.getItems().clear();
                 paneManualOpcional.setDisable(true);
                 paneManualOpcional.setVisible(false);
-                IniciarAtribuicaoPane.setVisible(true);
-                IniciarAtribuicaoPane.setDisable(false);
+                iniciarAtribuicaoPane.setVisible(true);
+                iniciarAtribuicaoPane.setDisable(false);
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Problema ao voltar ao menu anterior.",
@@ -779,8 +823,8 @@ public class AreaGestorUI implements Initializable {
                 listViewCandidaturasSeriarAnuncioSeriacaoAutomatica.getItems().clear();
                 paneAutomaticoObrigatorio.setDisable(true);
                 paneAutomaticoObrigatorio.setVisible(false);
-                IniciarAtribuicaoPane.setVisible(true);
-                IniciarAtribuicaoPane.setDisable(false);
+                iniciarAtribuicaoPane.setVisible(true);
+                iniciarAtribuicaoPane.setDisable(false);
                 
                 try {
                     listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
@@ -814,8 +858,8 @@ public class AreaGestorUI implements Initializable {
                 listViewProcessoSeriacaoAtribuicao.getItems().clear();
                 paneAutomaticoObrigatorio.setDisable(true);
                 paneAutomaticoObrigatorio.setVisible(false);
-                IniciarAtribuicaoPane.setVisible(true);
-                IniciarAtribuicaoPane.setDisable(false);
+                iniciarAtribuicaoPane.setVisible(true);
+                iniciarAtribuicaoPane.setDisable(false);
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Problema ao voltar ao menu anterior.",
@@ -842,6 +886,7 @@ public class AreaGestorUI implements Initializable {
         paneManualOpcional.setDisable(true);
         paneAutomaticoObrigatorio.setDisable(true);
         paneAutomaticoObrigatorio.setVisible(false);
+
         iniciarAtribuicaoPane.setDisable(false);
         iniciarAtribuicaoPane.setVisible(true);
         btnRemoverUltimaCandidatura.setDisable(true);
@@ -858,7 +903,8 @@ public class AreaGestorUI implements Initializable {
                 paneManualOpcional.setVisible(false);
                 iniciarAtribuicaoPane.setDisable(true);
                 iniciarAtribuicaoPane.setVisible(false);
-                listViewAutomaticoObrigatorio.getItems().setAll();
+                listViewAutomaticoObrigatorio.getItems().setAll(atribuicaoController.listarClassificacoesAtribuicao
+                        (listViewProcessoSeriacaoAtribuicao.getSelectionModel().getSelectedItem()));
             } else {
                 //ligar
                 paneAutomaticoObrigatorio.setDisable(true);
@@ -867,7 +913,8 @@ public class AreaGestorUI implements Initializable {
                 paneManualOpcional.setVisible(true);
                 iniciarAtribuicaoPane.setDisable(true);
                 iniciarAtribuicaoPane.setVisible(false);
-                listViewManualOpcional.getItems().setAll(listViewProcessoSeriacaoAtribuicao.getSelectionModel().getSelectedItem().getClassificacao());
+                listViewManualOpcional.getItems().setAll(atribuicaoController.listarClassificacoesAtribuicao
+                        (listViewProcessoSeriacaoAtribuicao.getSelectionModel().getSelectedItem()));
             }
 
         } catch (Exception e) {

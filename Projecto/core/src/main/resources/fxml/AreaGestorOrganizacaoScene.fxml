@@ -416,7 +416,7 @@
                         </Label>
                      </top>
                   </BorderPane>
-                  <BorderPane fx:id="IniciarAtribuicaoPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="iniciarAtribuicaoPane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <top>
                         <Label text="Atribuição" BorderPane.alignment="CENTER">
                            <font>
