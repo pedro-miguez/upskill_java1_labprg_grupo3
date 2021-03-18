@@ -82,10 +82,12 @@ public class ProcessoSeriacao {
     public String toString(){
         return String.format(
                 "Descrição Tarefa: %s%n" +
+                        "Tipo de Regimento: %s%n" +
                 "Número de Classificações: %s%n" +
                 "Data Início Seriação: %s%n" +
                 "Data Fim Seriação: %s%n",
                 this.anuncio.getTarefa().getDesignacao(),
+                this.anuncio.getTipoRegimento().getDesignacao(),
                 this.classificacao.size(),
                 this.anuncio.getDataInicioSeriacao(),
                 this.anuncio.getDataFimSeriacao());

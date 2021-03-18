@@ -200,8 +200,6 @@ public class RepositorioProcessoSeriacao {
                 pstmtAnunciosSeriacaoOrg.setDate(2, Data.dataAtual().getDataSQL());
                 ResultSet rSetAnunciosSeriacaoOrg = pstmtAnunciosSeriacaoOrg.executeQuery();
 
-
-
                 if(rSetAnunciosSeriacaoOrg.next()) {
                     PreparedStatement pstmtProcessoSeriacaoIdAnuncio = conn.prepareCall("Select * from ProcessoSeriacao where idAnuncio = ?");
                     pstmtProcessoSeriacaoIdAnuncio.setInt(1, rSetAnunciosSeriacaoOrg.getInt("idanuncio"));

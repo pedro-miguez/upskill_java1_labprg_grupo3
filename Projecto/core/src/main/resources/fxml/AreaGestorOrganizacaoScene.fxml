@@ -443,12 +443,12 @@
                         </ListView>
                      </center>
                   </BorderPane>
-                  <BorderPane fx:id="paneAutomaticoObrigatorio" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="paneAutomaticoObrigatorio" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <center>
                         <GridPane BorderPane.alignment="CENTER">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="158.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="740.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="250.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="648.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="465.0" minHeight="10.0" prefHeight="278.0" vgrow="SOMETIMES" />
@@ -460,7 +460,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </DatePicker>
-                              <Label text="Classificacoes:" GridPane.halignment="RIGHT">
+                              <Label prefHeight="43.0" prefWidth="67.0" text="Freelancer Selecionado" textAlignment="RIGHT" wrapText="true" GridPane.halignment="RIGHT">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
@@ -470,16 +470,16 @@
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <ListView fx:id="listViewAutomaticoObrigatorio" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                              <ListView fx:id="listViewAutomaticoObrigatorio" prefHeight="149.0" prefWidth="248.0" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets bottom="30.0" right="30.0" top="30.0" />
+                                    <Insets bottom="30.0" right="400.0" top="30.0" />
                                  </GridPane.margin>
                               </ListView>
                            </children>
                         </GridPane>
                      </center>
                      <bottom>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="141.0" prefWidth="898.0" BorderPane.alignment="CENTER">
                            <children>
                               <Button fx:id="btnAtribuirTarefaObrigatorio" mnemonicParsing="false" onAction="#atribuirTarefaObrigatorioAction" text="Confirmar">
                                  <HBox.margin>
@@ -488,14 +488,21 @@
                               </Button>
                               <Button fx:id="btnVoltarObrigatorioAtribuicao" mnemonicParsing="false" onAction="#btnVoltarObrigatorioAction" text="Voltar">
                                  <HBox.margin>
-                                    <Insets right="150.0" />
+                                    <Insets right="400.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
                         </HBox>
                      </bottom>
+                     <top>
+                        <Label prefHeight="121.0" prefWidth="282.0" text="Atribuição Automática" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                     </top>
                   </BorderPane>
-                  <BorderPane fx:id="paneManualOpcional" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <BorderPane fx:id="paneManualOpcional" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <bottom>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -506,7 +513,7 @@
                               </Button>
                               <Button fx:id="btnVoltarAtribuicaoManualOpcional" mnemonicParsing="false" onAction="#btnVoltarManualOpcionalAction" text="Voltar">
                                  <HBox.margin>
-                                    <Insets right="150.0" />
+                                    <Insets right="250.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -520,7 +527,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </DatePicker>
-                              <Label text="Classificacoes:" GridPane.halignment="RIGHT">
+                              <Label text="Freelancers:" GridPane.halignment="RIGHT">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
@@ -532,7 +539,7 @@
                               </Label>
                               <ListView fx:id="listViewManualOpcional" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets bottom="30.0" right="30.0" top="30.0" />
+                                    <Insets bottom="30.0" right="250.0" top="30.0" />
                                  </GridPane.margin>
                               </ListView>
                            </children>
@@ -546,6 +553,13 @@
                            </rowConstraints>
                         </GridPane>
                      </center>
+                     <top>
+                        <Label prefHeight="57.0" prefWidth="285.0" text="Seriaçao Opcional" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </top>
                   </BorderPane>
                </children>
             </StackPane>
@@ -578,7 +592,10 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#btnIniciarAtribuicaoSelectAction" prefHeight="46.0" prefWidth="90.0" text="Iniciar Atribuição" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#btnIniciarAtribuicaoSelectAction" prefHeight="46.0" prefWidth="90.0" text="Iniciar Atribuição" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Button>
                   <Button fx:id="btnLogout" alignment="CENTER" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnLogoutAction" prefHeight="31.0" prefWidth="71.0" text="Logout">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />
