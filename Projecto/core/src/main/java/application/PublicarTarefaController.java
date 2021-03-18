@@ -34,9 +34,12 @@ public class PublicarTarefaController {
      * @return the boolean
      */
     public boolean publicarTarefa(Tarefa tarefa, TipoRegimento tipoRegimento,
-                                    Data dataInicioPublicitacao, LocalDate dataFimPublicitacao,
-                                    LocalDate dataInicioCandidatura, LocalDate dataFimCandidatura,
-                                    LocalDate dataInicioSeriacao, LocalDate dataFimSeriacao, 
+                                    Data dataInicioPublicitacao, 
+                                    LocalDate dataFimPublicitacao,
+                                    LocalDate dataInicioCandidatura, 
+                                    LocalDate dataFimCandidatura,
+                                    LocalDate dataInicioSeriacao, 
+                                    LocalDate dataFimSeriacao, 
                                     String emailColaborador)
                                                             throws SQLException {
         

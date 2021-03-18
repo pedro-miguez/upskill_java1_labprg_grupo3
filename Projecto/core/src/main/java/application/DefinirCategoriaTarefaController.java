@@ -20,7 +20,8 @@ public class DefinirCategoriaTarefaController {
      * @param competenciasTecnicas as competencias tecnicas
      * @return the boolean
      */
-    public boolean definirCategoriaTarefa(AreaAtividade areaAtividade, String descricao,
+    public boolean definirCategoriaTarefa(AreaAtividade areaAtividade, 
+                                          String descricao,
                                           List<CaracterizacaoCompTec> competenciasTecnicas) 
                                                             throws SQLException {
 
