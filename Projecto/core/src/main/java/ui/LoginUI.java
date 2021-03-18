@@ -29,6 +29,7 @@ public class LoginUI implements Initializable {
     public TextField txtUsername;
     public PasswordField txtPassoword;
 
+    //Controllers
     private AuthenticationController authController;
     private ServiceController serviceController;
 
@@ -57,6 +58,7 @@ public class LoginUI implements Initializable {
         }
     }
 
+    //login
     public void login() {
         try {
             boolean login = authController.login(txtUsername.getText(), txtPassoword.getText());

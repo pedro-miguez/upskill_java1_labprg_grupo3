@@ -71,12 +71,14 @@ public class AreaColaboradorUI implements Initializable {
     public Button btnRemoverUltimoColaborador;
 
 
+    //Controllers
     private DefinirTarefaController criarTarefaController;
     private PublicarTarefaController publicarTarefaController;
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
     private SeriarCandidaturaController seriarCandidaturaController;
 
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         criarTarefaController = new DefinirTarefaController();
@@ -133,6 +135,7 @@ public class AreaColaboradorUI implements Initializable {
 
     }
 
+    //criar tarefa
     public void criarTarefaSelectAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
@@ -206,6 +209,7 @@ public class AreaColaboradorUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
+    //publica tarefa
     public void publicarTarefaAction(ActionEvent actionEvent) {
 
         try {
@@ -249,10 +253,12 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //limpa dados
     public void btnLimparDadosPublicarTarefaAction(ActionEvent actionEvent) {
         limparDados();
     }
 
+    //seleccionar tarefa para publicar
     public void btnPublicarTarefaSelectAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
@@ -282,6 +288,7 @@ public class AreaColaboradorUI implements Initializable {
 
     }
 
+    //iniciar processo de seriação
     public void iniciarSeriacaoAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
@@ -324,6 +331,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //concluir processo de seriação manual
     public void finalizarSeriacaoManualAction(ActionEvent actionEvent) {
         try {
             boolean criou = seriarCandidaturaController.criarProcessoSeriacao(
@@ -368,6 +376,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //volta para o menu da seriação.
     public void voltarSeriacaoManualAction(ActionEvent actionEvent) {
 
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
@@ -394,6 +403,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //classificação da candidatura a seriação manual
     public void classificarCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
         if (listViewCandidaturasPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
             if(!listViewCandidaturasSelecionadasSeriacaoManual.getItems().contains(
@@ -413,6 +423,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //remove última candidatura de seriação manual
     public void removerUltimaCandidaturaSeriacaoManualAction(ActionEvent actionEvent) {
         listViewCandidaturasPorSelecionarSeriacaoManual.getItems().add(
                 listViewCandidaturasSelecionadasSeriacaoManual.getItems().get(listViewCandidaturasSelecionadasSeriacaoManual.getItems().size() - 1));
@@ -424,6 +435,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //adiciona colaborador para seriação manual
     public void adicionarColaboradorSeriacaoManualAction(ActionEvent actionEvent) {
         if (listViewColaboradoresPorSelecionarSeriacaoManual.getSelectionModel().getSelectedItem() != null) {
             if(!listViewColaboradoresSelecionadosSeriacaoManual.getItems().contains(
@@ -444,6 +456,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //remove último colaborador da seriação manual
     public void removerUltimoColaboradorSeriacaoManualAction(ActionEvent actionEvent) {
         listViewColaboradoresPorSelecionarSeriacaoManual.getItems().add(
                 listViewColaboradoresSelecionadosSeriacaoManual.getItems().get(listViewColaboradoresSelecionadosSeriacaoManual.getItems().size() - 1));
@@ -454,6 +467,7 @@ public class AreaColaboradorUI implements Initializable {
         }
     }
 
+    //confirma o processo de seriação automática
     public void confirmarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
         try {
 
@@ -491,6 +505,7 @@ public class AreaColaboradorUI implements Initializable {
 
     }
 
+    //volta para o menu de seriação
     public void voltarSeriacaoAutomaticaAction(ActionEvent actionEvent) {
 
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
@@ -513,6 +528,7 @@ public class AreaColaboradorUI implements Initializable {
 
     }
 
+    //seleccionar anúncio a seriar
     public void btnSeriarAnuncioSelectAction(ActionEvent actionEvent) {
         //desligar
         homePane.setVisible(false);
