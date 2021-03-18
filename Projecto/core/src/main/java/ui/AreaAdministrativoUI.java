@@ -106,7 +106,7 @@ public class AreaAdministrativoUI implements Initializable {
     public Button btnRemoverGrauProficienciaCompetenciaTecnica;
     public BorderPane homePane;
 
-
+    //Controllers
     private DefinirAreaAtividadeController areaAtividadeController;
     private DefinirCompetenciaTecnicaController competenciaTecnicaController;
     private DefinirCategoriaTarefaController categoriaTarefaController;
@@ -125,9 +125,6 @@ public class AreaAdministrativoUI implements Initializable {
         serviceController = new ServiceController();
         authenticationController = new AuthenticationController();
         registarFreelancerController = new RegistarFreelancerController();
-
-
-
 
     }
 
@@ -351,6 +348,7 @@ public class AreaAdministrativoUI implements Initializable {
         //popular elementos
         listViewCompTecnicasPorSelecionarFreelancer.getItems().setAll(serviceController.getAllCompetenciasTecnicas());
     }
+    
     //mudar para o painel home
     public void goHomeSelectAction(ActionEvent actionEvent) {
         //desliga
@@ -431,10 +429,9 @@ public class AreaAdministrativoUI implements Initializable {
                     "É obrigatório escolher um grau de proficiência").show();
         }
 
-
-
     }
 
+    //Boolean method that verifies that the technical competence has not yet been added.
     public boolean competenciaTecnicaAindaNaoFoiAdicionada(CompetenciaTecnica competenciaTecnica) {
         for(CaracterizacaoCompTec cct : listViewCompTecnicasSelecionadasCategoriaTarefa.getItems()) {
             if (cct.getCompetenciaTecnica().equals(competenciaTecnica)) {
@@ -444,6 +441,7 @@ public class AreaAdministrativoUI implements Initializable {
         return true;
     }
 
+    //Boolean method that checks if the degree of proficiency has not yet been added.
     public boolean grauProficienciaAindaNaoFoiAdicionado(GrauProficiencia grauProficiencia) {
         for(GrauProficiencia gp : listViewGrauProficienciaCompetenciaTecnica.getItems()) {
             if (gp.equals(grauProficiencia)) {
@@ -489,7 +487,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
 
-
+    //Boolean method that verifies that the technical competence has not yet been added by the freelancer.
     public boolean competenciaTecnicaAindaNaoFoiAdicionadaFreelancer(CompetenciaTecnica competenciaTecnica) {
         for(ReconhecimentoCT rct : listViewCompTecnicasSelecionadasFreelancer.getItems()) {
             if (rct.getCompetenciaTecnica().equals(competenciaTecnica)) {
@@ -518,6 +516,7 @@ public class AreaAdministrativoUI implements Initializable {
     public void limparAreaAtividadeAction(ActionEvent event) {
         limparDadosAreaAtividade();
     }
+    
     public void limparDadosAreaAtividade() {
         txtCodUnicoAreaAtividade.clear();
         txtDescBreveAreaAtividade.clear();
@@ -530,6 +529,7 @@ public class AreaAdministrativoUI implements Initializable {
         btnRemoverUltimaCompTecCategoriaTarefa.setDisable(true);
         limparDadosCategoriaTarefa();
     }
+    
     public void limparDadosCategoriaTarefa() {
         txtDescricaoCategoriaTarefa.clear();
         listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(new ArrayList<>());
@@ -541,6 +541,7 @@ public class AreaAdministrativoUI implements Initializable {
         btnRemoverUltimaCompTecFreelancer.setDisable(true);
         limparDadosFreelancer();
     }
+    
     public void limparDadosFreelancer() {
 
         txtNomeFreelancer.clear();
@@ -562,6 +563,7 @@ public class AreaAdministrativoUI implements Initializable {
         limparDadosCompetenciaTecnica();
 
     }
+    
     public void limparDadosCompetenciaTecnica() {
         txtCodigoUnicoCompetenciaTecnica.clear();
         comboBoxAreaAtividadeCompetenciaTecnica.getSelectionModel().clearSelection();
@@ -571,7 +573,6 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
     //limpar todos os dados
-
     public void limparTodosOsDados(){
         limparDadosAreaAtividade();
         limparDadosCategoriaTarefa();
@@ -582,7 +583,7 @@ public class AreaAdministrativoUI implements Initializable {
     // ##########################################
 
 
-
+    //logout
     public void logoutAction(ActionEvent actionEvent) {
         Alert alerta = AlertaUI.criarAlerta(Alert.AlertType.CONFIRMATION, "Logout",
                 "Irá voltar à pagina inicial após confirmação.", "Deseja mesmo fazer logout?");
@@ -608,7 +609,7 @@ public class AreaAdministrativoUI implements Initializable {
         MainApp.screenController.activate("JanelaInicial");
     }
 
-
+    //adiciona grau de proficiência à competência técnica.
     public void btnAdicionarGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
         if (txtDesignacaoGrauProficienciaCriarCompetenciaTecnica.getText() != null) {
             GrauProficiencia gp = new GrauProficiencia(
@@ -630,6 +631,7 @@ public class AreaAdministrativoUI implements Initializable {
         }
     }
 
+    //remove grau de proficiência da competência técnica.
     public void btnRemoverGrauProficienciaCompetenciaTecnica(ActionEvent actionEvent) {
         listViewGrauProficienciaCompetenciaTecnica.getItems().remove(listViewGrauProficienciaCompetenciaTecnica.getItems().size()-1);
         grauCounter += -1;
@@ -638,6 +640,7 @@ public class AreaAdministrativoUI implements Initializable {
         }
     }
 
+    //mostra lista de graus de proficiência da categoria de tarefa.
     public void popularComboBoxGrauProficienciaCategoriaTarefa(Event actionEvent) {
         if (listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem() != null) {
             comboBoxGrauProficienciaCategoriaTarefa.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarCategoriaTarefa.getSelectionModel().getSelectedItem()));
@@ -647,6 +650,7 @@ public class AreaAdministrativoUI implements Initializable {
         }
     }
 
+    //mostra lista de graus de proficiência do freelancer.
     public void popularComboBoxGrauProficienciaFreelancer(Event actionEvent) {
         if (listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
             comboBoxGrauProficienciaFreelancer.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem()));
@@ -657,6 +661,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
 
+    //adiciona habilitação académica do freelancer.
     public void adicionarhabilitacaoAcademicaFreelancerAction(ActionEvent actionEvent) {
         if (!txtNomeInstituicao.getText().isEmpty() &&
                 !txtGrauFreelancer.getText().isEmpty() && !txtDesignacaoCurso.getText().isEmpty() && !txtMediaCurso.getText().isEmpty()) {
@@ -688,6 +693,7 @@ public class AreaAdministrativoUI implements Initializable {
 
     }
 
+    //remove última habilitação académica adicionada pelo freelancer.
     public void removerUltimaHabilitacaoAcademicaAdicionadaFreelancerAction(ActionEvent actionEvent) {
         listViewHabilitacaoAcademicaRegistoFreelancer.getItems().remove(listViewHabilitacaoAcademicaRegistoFreelancer.getSelectionModel().getSelectedItem());
         if (listViewHabilitacaoAcademicaRegistoFreelancer.getItems().size() == 0) {
@@ -696,6 +702,7 @@ public class AreaAdministrativoUI implements Initializable {
     }
 
 
+    //mostra lista de áreas de atividade para criar categoria de tarefa.
     public void comboBoxAreaAtividadeCriarCategoriaTarefaOnShowing(Event event) {
 
 
@@ -707,6 +714,7 @@ public class AreaAdministrativoUI implements Initializable {
         }
     }
 
+    //mostra lista de competências técnicas para registar freelancer.
     public void listViewCompTecRegistarFreelancerOnMouseClickedAction(MouseEvent mouseEvent) {
         if (listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem() != null) {
             comboBoxGrauProficienciaFreelancer.getItems().setAll(serviceController.getGrausProficiencia(listViewCompTecnicasPorSelecionarFreelancer.getSelectionModel().getSelectedItem()));
