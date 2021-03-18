@@ -1,5 +1,7 @@
 package domain;
 
+import javax.ejb.Local;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,11 +24,11 @@ public class Atribuicao {
      * Instantiates a new rating.
      * @param classificacao
      */
-    public Atribuicao(Classificacao classificacao, Data dataInicio) {
+    public Atribuicao(Classificacao classificacao, LocalDate dataInicio) {
         setClassificacao(classificacao);
         setDataAtribuicao(Data.dataAtual());
         setDataInicio(dataInicio);
-        setDataFim(new Data (dataInicio.getAno(), dataInicio.getMes(), dataInicio.getDia()+classificacao.getCandidatura().getNrDias()));
+        setDataFim(dataInicio);
         //++counter;
         //nrUnico = getClassificacao().getCandidatura().getDataCandidatura().getAno()+"-"+ counter;
     }
@@ -47,8 +49,9 @@ public class Atribuicao {
      * 
      * @param dataInicio 
      */
-    public void setDataInicio(Data dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = new Data(dataInicio.getYear(), dataInicio.getMonth().getValue(),
+                dataInicio.getDayOfMonth());
     }
 
 
@@ -85,10 +88,11 @@ public class Atribuicao {
     /**
      * Sets the end date.
      * 
-     * @param dataFim 
+     * @param dataInicio
      */
-    public void setDataFim(Data dataFim) {
-        this.dataFim = dataFim;
+    public void setDataFim(LocalDate dataInicio) {
+        LocalDate dataFim = dataInicio.plusDays(this.classificacao.getCandidatura().getNrDias());
+        this.dataFim = new Data (dataFim.getYear(), dataFim.getMonthValue(), dataFim.getDayOfMonth());
     }
 
     /**

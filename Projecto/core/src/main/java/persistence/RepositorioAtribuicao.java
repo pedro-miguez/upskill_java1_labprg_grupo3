@@ -3,6 +3,7 @@ package persistence;
 import domain.*;
 import exceptions.FetchingProblemException;
 
+import javax.ejb.Local;
 import java.sql.*;
 import java.util.List;
 
@@ -123,7 +124,7 @@ public class RepositorioAtribuicao {
      * @return Atribuicao
      */
     public Atribuicao criarAtribuicao(Classificacao classificacao, 
-                                        Data dataInicio) {
+                                        LocalDate dataInicio) {
         
         return new Atribuicao(classificacao, dataInicio);
     }
