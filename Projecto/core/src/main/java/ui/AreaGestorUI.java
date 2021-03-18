@@ -101,7 +101,6 @@ public class AreaGestorUI implements Initializable {
     private SeriarCandidaturaController seriarCandidaturaController;
     private AtribuicaoController atribuicaoController;
 
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registarColaboradorController = new RegistarColaboradorController();
@@ -191,7 +190,6 @@ public class AreaGestorUI implements Initializable {
         limparDadosRegistarColaboradorPane();
     }
 
-    
     public void limparDadosRegistarColaboradorPane() {
         txtNomeColaborador.clear();
         txtContactoColaborador.clear();
@@ -203,6 +201,7 @@ public class AreaGestorUI implements Initializable {
     public void limparActionTarefa(ActionEvent actionEvent) {
         limparDadosRegistarTarefaPane();
     }
+
 
     public void limparDadosRegistarTarefaPane() {
         txtCodigoUnicoTarefa.clear();
