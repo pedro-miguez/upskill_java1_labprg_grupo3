@@ -1,5 +1,6 @@
 /*
 
+
 package domain;
 
 import org.junit.Test;
@@ -14,6 +15,52 @@ public class ProcessoSeriacaoTest {
 
     @Test
     public void testCreateProcessoSeriacaoValido() {
+
+
+        */
+/*private Anuncio anuncio;
+        private Data data;
+        private List<Classificacao> classificacao;
+        private List<Colaborador> colaboradores;*//*
+
+
+        Anuncio a = new Anuncio(tarefa, tp,
+                new Data(2021, 02, 18),
+                new Data(2021, 02, 22),
+                new Data(2021, 02, 18),
+                new Data(2021, 02, 22),
+                new Data(2021, 03, 01),
+                new Data(2021, 06, 30));
+
+        Classificacao classificacao1 = new Classificacao(a, freelance1, 1);
+        Classificacao classificacao2 = new Classificacao(a, freelance2, 2);
+        Classificacao classificacao3 = new Classificacao(a, freelance3, 3);
+
+        ArrayList<Classificacao> classificacoes = new ArrayList<>();
+        classificacoes.add(classificacao1);
+        classificacoes.add(classificacao2);
+        classificacoes.add(classificacao3);
+
+        Colaborador colaboradores1 = new Colaborador();
+        Colaborador colaboradores2 = new Colaborador();
+        Colaborador colaboradores3 = new Colaborador();
+
+        ArrayList<Colaborador> colaboradores = new ArrayList<>();
+        colaboradores.add(colaboradores1);
+        colaboradores.add(colaboradores2);
+        colaboradores.add(colaboradores3);
+
+
+
+
+
+
+
+
+
+
+
+
 
         List<CaracterizacaoCompTec> competenciasTecnicas = new ArrayList<>();
         List<Colaborador> colaboradores = new ArrayList<>();
@@ -39,8 +86,9 @@ public class ProcessoSeriacaoTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio(tarefa, new TipoRegimento("Regimento a todo o gas",
-                "as regras existem para ser quebradas"),
+        TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "regras");
+
+        Anuncio a = new Anuncio(tarefa, tp,
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
                 new Data(2021, 02, 18),
@@ -93,8 +141,9 @@ public class ProcessoSeriacaoTest {
                     "É necessário programador em java para desenvolvimento de um jogo",
                     100, 1500.00f, ct, org);
 
-            Anuncio a = new Anuncio(tarefa, new TipoRegimento("Regimento a todo o gas",
-                    "as regras existem para ser quebradas"),
+            TipoRegimento tp = new SeriacaoAutomaticaObrigatoria("designacao", "regras");
+
+            Anuncio a = new Anuncio(tarefa, tp,
                     new Data(2021, 02, 18),
                     new Data(2021, 02, 22),
                     new Data(2021, 02, 18),
@@ -122,4 +171,5 @@ public class ProcessoSeriacaoTest {
         }
 
 }
+
 */

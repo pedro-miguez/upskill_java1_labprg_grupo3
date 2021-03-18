@@ -1,4 +1,5 @@
 /*
+
 package domain;
 
 import org.junit.Test;
@@ -32,4 +33,5 @@ public class TipoRegimentoTest {
 
         TipoRegimento tipoRegimento = new TipoRegimento("Designacao", " ");
     }
-}*/
+}
+*/
