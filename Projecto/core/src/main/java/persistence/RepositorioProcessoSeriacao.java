@@ -45,7 +45,6 @@ public class RepositorioProcessoSeriacao {
      * @return boolean
      * @throws SQLException 
      */
-    
     public boolean insertProcessoSeriacao(ProcessoSeriacao processoSeriacao) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
 
@@ -159,6 +158,13 @@ public class RepositorioProcessoSeriacao {
         return false;
     }
 
+    /**
+     * Gets a list of serialization processes by manager.
+     * 
+     * @param emailGestor
+     * @return processosSeriacao
+     * @throws FetchingProblemException 
+     */
     public ArrayList<ProcessoSeriacao> getProcessosSeriacaoByGestor(String emailGestor) throws FetchingProblemException {
         try {
             Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
