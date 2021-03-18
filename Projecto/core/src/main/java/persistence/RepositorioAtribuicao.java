@@ -87,7 +87,7 @@ public class RepositorioAtribuicao {
             csCreateAtribuicao.setDate(4, atribuicao.getDataFim().getDataSQL());
             csCreateAtribuicao.setDate(5, atribuicao.getDataAtribuicao().getDataSQL());
 
-            csCreateAtribuicao.executeQuery();
+            csCreateAtribuicao.executeUpdate();
 
             conn.commit();
 
