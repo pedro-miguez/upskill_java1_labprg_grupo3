@@ -43,6 +43,10 @@ public class AtribuicaoController {
         
     }
 
+    public ArrayList<Classificacao> listarClassificacoesAtribuicao (ProcessoSeriacao processoSeriacao) {
+        return processoSeriacao.getAnuncio().getTipoRegimento().listarClassificacoesAtribuicao(processoSeriacao);
+    }
+
     
     /**
      * Gets a list of serialization processes by manager.

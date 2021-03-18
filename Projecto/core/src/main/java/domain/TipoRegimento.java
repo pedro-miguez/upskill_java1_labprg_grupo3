@@ -8,7 +8,7 @@ public interface TipoRegimento {
 
     public ArrayList<Classificacao> seriarCandidaturas(List<Candidatura> candidaturas);
 
-    public Atribuicao atribuirSeriacao (ProcessoSeriacao processoSeriacao);
+    public ArrayList<Classificacao> listarClassificacoesAtribuicao (ProcessoSeriacao processoSeriacao);
 
     public String getDesignacao();
 
