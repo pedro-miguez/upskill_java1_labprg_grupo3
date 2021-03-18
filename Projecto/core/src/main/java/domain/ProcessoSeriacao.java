@@ -79,5 +79,17 @@ public class ProcessoSeriacao {
         return new ArrayList<>(colaboradores);
     }
 
+    public String toString(){
+        return String.format(
+                "Descrição Tarefa: %s%n" +
+                "Número de Classificações: %s%n" +
+                "Data Início Seriação: %s%n" +
+                "Data Fim Seriação: %s%n",
+                this.anuncio.getTarefa().getDesignacao(),
+                this.classificacao.size(),
+                this.anuncio.getDataInicioSeriacao(),
+                this.anuncio.getDataFimSeriacao());
+    }
+
 
 }
