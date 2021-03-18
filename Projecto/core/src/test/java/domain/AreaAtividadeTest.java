@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Class responsible for testing the Activity Area.
+ * 
+ * @author Grupo 3
+ */
 public class AreaAtividadeTest {
 
     @Test

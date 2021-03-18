@@ -192,7 +192,7 @@ public class RepositorioProcessoSeriacao {
             while(rSetIdsTarefaOrganizacao.next()) {
 
                 if (idsTarefasAtribuidas.contains(rSetIdsTarefaOrganizacao.getInt(1))) {
-                    break;
+                    continue;
                 }
 
                 PreparedStatement pstmtAnunciosSeriacaoOrg = conn.prepareCall("Select idAnuncio from Anuncio where idTarefa = ? AND (? between dataInicioSeriacao AND dataFimSeriacao)");
@@ -279,8 +279,9 @@ public class RepositorioProcessoSeriacao {
             ResultSet rsFreelancer = null;
             Candidatura candidatura = null;
             while(rsClassificacao.next()){
-                PreparedStatement pstmtFreelancer = conn.prepareCall("Select * from Candidatura where idFreelancer = ?");
+                PreparedStatement pstmtFreelancer = conn.prepareCall("Select * from Candidatura where idFreelancer = ? and IdAnuncio = ?");
                 pstmtFreelancer.setInt(1, rsClassificacao.getInt("idFreelancer"));
+                pstmtFreelancer.setInt(2, idAnuncio);
                 rsFreelancer = pstmtFreelancer.executeQuery();
                 candidatura = RepositorioCandidatura.getInstance().montarCandidatura(rsFreelancer, true);
                 int lugar = rsClassificacao.getInt("lugar");

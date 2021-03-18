@@ -39,9 +39,10 @@ public class AtribuicaoController {
                                             LocalDate dataInicio)
                                                         throws SQLException {
 
+
+
         Atribuicao atribuicao = RepositorioAtribuicao.getInstance().criarAtribuicao(classificacao,
-                new Data(dataInicio.getYear(), dataInicio.getMonth().getValue(),
-                        dataInicio.getDayOfMonth()));
+               dataInicio);
 
 
         return RepositorioAtribuicao.getInstance().insertAtribuicao(atribuicao);

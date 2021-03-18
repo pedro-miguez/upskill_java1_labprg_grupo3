@@ -24,14 +24,20 @@ public class DefinirCompetenciaTecnicaController {
      * @param descDetalhada as detailed description
      * @return the boolean
      */
-    public boolean definirCompetenciaTecnica(String codigoUnico, AreaAtividade areaAtividade,
-                                             String descricao, String descDetalhada, 
-                                             List<GrauProficiencia> graus) throws SQLException {
+    public boolean definirCompetenciaTecnica(String codigoUnico, 
+                                             AreaAtividade areaAtividade,
+                                             String descricao, 
+                                             String descDetalhada, 
+                                             List<GrauProficiencia> graus) 
+                                                            throws SQLException {
 
         RepositorioCompetenciaTecnica repo = RepositorioCompetenciaTecnica.getInstance();
 
         CompetenciaTecnica competenciaTecnica = repo.criarCompetenciaTecnica(codigoUnico, 
-                                                    areaAtividade, descricao, descDetalhada, graus);
+                                                                            areaAtividade, 
+                                                                            descricao, 
+                                                                            descDetalhada, 
+                                                                            graus);
 
         if (graus.size() == 0) {
             return false;

@@ -763,7 +763,7 @@ public class AreaGestorUI implements Initializable {
                 iniciarAtribuicaoPane.setDisable(false);
                 
                 try {
-                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+                    listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
                 } catch (SQLException e) {
                     AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                             "Problema preencher lista de tarefas.",
@@ -797,10 +797,11 @@ public class AreaGestorUI implements Initializable {
                 paneManualOpcional.setVisible(false);
                 iniciarAtribuicaoPane.setVisible(true);
                 iniciarAtribuicaoPane.setDisable(false);
+                listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Problema ao voltar ao menu anterior.",
-                        e.getMessage()).show();
+                        e.getMessage()).showAndWait();
             }
         }
         
@@ -811,11 +812,11 @@ public class AreaGestorUI implements Initializable {
         
         try {
 
-            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems().get(1),
+            boolean obrig = atribuicaoController.criarAtribuicao(listViewAutomaticoObrigatorio.getItems().get(0),
                                                                  datePickerDataInicioObrigatorio.getValue());
 
             AlertaUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, 
-                    "Atribuição de Candidaturas.",
+                    "Atribuição de Tarefas.",
                     obrig ? "Atribuição Obrigatória realizada com sucesso! \n\n"
                             : "Não foi possível fazer a atribuição.").showAndWait();
             
@@ -827,22 +828,22 @@ public class AreaGestorUI implements Initializable {
                 iniciarAtribuicaoPane.setDisable(false);
                 
                 try {
-                    listViewAnunciosSeriarAnuncio.getItems().setAll(serviceController.getAllAnunciosSeriacao(authController.getEmail()));
+                    listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
                 } catch (SQLException e) {
                     AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                             "Problema preencher lista de tarefas.",
-                            e.getMessage()).show();
+                            e.getMessage()).showAndWait();
                 }
             }
 
         } catch (IllegalArgumentException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
-                    e.getMessage()).show();    
+                    e.getMessage()).showAndWait();
         } catch (Exception e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
-                    "Datas inválidas ou campos em falta");
+                    "Datas inválidas ou campos em falta").showAndWait();
         }
         
     }
@@ -861,6 +862,8 @@ public class AreaGestorUI implements Initializable {
                 paneAutomaticoObrigatorio.setVisible(false);
                 iniciarAtribuicaoPane.setVisible(true);
                 iniciarAtribuicaoPane.setDisable(false);
+                listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
+
             } catch (Exception e) {
                 AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                         "Problema ao voltar ao menu anterior.",
