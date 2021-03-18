@@ -737,7 +737,7 @@ public class AreaGestorUI implements Initializable {
             listViewProcessoSeriacaoAtribuicao.getItems().setAll(atribuicaoController.getProcessosSeriacaoByGestor(authController.getEmail()));
         } catch (SQLException e) {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
-                    "Problema preencher lista de processos de seriaç.",
+                    "Problema preencher lista de processos de seriação.",
                     e.getMessage()).show();
         }
 
