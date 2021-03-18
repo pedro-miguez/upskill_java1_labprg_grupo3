@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class responsible for testing the characterization of technical competence.
+ * 
+ * @author Grupo 3
+ */
 public class CaracterizacaoCompTecTest {
 
     @Test
