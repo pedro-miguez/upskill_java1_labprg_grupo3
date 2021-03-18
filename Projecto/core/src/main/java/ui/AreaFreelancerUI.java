@@ -48,6 +48,7 @@ public class AreaFreelancerUI implements Initializable {
     public TextField txtDuracaoDiasAtualizarCandidatura;
     public TextArea txtApresentacaoAtualizarCandidatura;
     public TextArea txtMotivacaoAtualizarCandidatura;
+    
     @FXML
     private Button btnConfirmarCandidatura;
     @FXML
@@ -69,12 +70,14 @@ public class AreaFreelancerUI implements Initializable {
     @FXML
     private Button btnLimparDadosEfetuarCandidatura;
 
+    //Controllers
     private ServiceController serviceController;
     private AuthenticationController authenticationController;
     private EfetuarCandidaturaController efetuarCandidaturaController;
     private AtualizarCandidaturaController atualizarCandidaturaController;
     private RemoverCandidaturaController removerCandidaturaController;
 
+    
     public void initialize(URL location, ResourceBundle resources) {
 
         serviceController = new ServiceController();

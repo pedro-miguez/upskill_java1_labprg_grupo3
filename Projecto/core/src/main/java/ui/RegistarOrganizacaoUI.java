@@ -36,6 +36,7 @@ public class RegistarOrganizacaoUI implements Initializable {
     public Button limparDados;
     public Button registarOrganizacao;
 
+    //Controller
     private ServiceController serviceController;
 
 

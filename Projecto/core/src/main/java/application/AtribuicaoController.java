@@ -49,16 +49,30 @@ public class AtribuicaoController {
     }
 
 
+    /**
+     * Boolean method that checks whether serialization is mandatory.
+     * 
+     * @param ps
+     * @return boolean
+     */
     public boolean isObrigatorio(ProcessoSeriacao ps){
 
         return ps.getAnuncio().isSeriacaoObrigatoria();
 
     }
 
+    
+    /**
+     * Lists classifications for assignment.
+     * 
+     * @param processoSeriacao
+     * @return processoSeriacao
+     */
     public ArrayList<Classificacao> listarClassificacoesAtribuicao (ProcessoSeriacao processoSeriacao) {
         return processoSeriacao.getAnuncio().getTipoRegimento().listarClassificacoesAtribuicao(processoSeriacao);
     }
 
+    
     /**
      * Gets a list of serialization processes by manager.
      * 

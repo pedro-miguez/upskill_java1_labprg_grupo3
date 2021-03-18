@@ -443,6 +443,14 @@ public class RepositorioCandidatura {
         }
     }
 
+    /**
+     * Assemble the application.
+     * 
+     * @param row
+     * @param unico
+     * @return candidatura
+     * @throws SQLException 
+     */
     public Candidatura montarCandidatura(ResultSet row, boolean unico) throws SQLException {
         Connection conn = Plataforma.getInstance().getConnectionHandler().getConnection();
         Candidatura candidatura = null;

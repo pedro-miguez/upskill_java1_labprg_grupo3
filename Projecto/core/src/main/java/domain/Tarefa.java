@@ -34,7 +34,6 @@ public class Tarefa implements Serializable {
      * @param categoria         the task category it falls under
      * @param organizacao       the the organization that belongs
      */
-    
     public Tarefa(CodigoUnico codigoUnico, String designacao, String descricaoInformal, String descricaoTecnica,
                   int duracaoDias, float custo, CategoriaTarefa categoria, Organizacao organizacao) {
         this.codigoUnico = codigoUnico;
