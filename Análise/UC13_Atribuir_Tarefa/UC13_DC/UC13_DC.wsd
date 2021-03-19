@@ -1,0 +1,72 @@
+@startuml
+
+title UC13 - Atribuicao
+
+Class AreaGestorUI {
+
+}
+
+Class AtribuicaoController {
+    +criarAtribuicao (Classificacao classificacao, LocalDate dataInicio)
+    +isObrigatorio(ProcessoSeriacao ps)
+    +listarClassificacoesAtribuicao (ProcessoSeriacao processoSeriacao)
+    +getProcessosSeriacaoByGestor(String emailGestor)                                            
+}
+
+Class AuthenticationController {
+    +getEmail()
+}
+
+Class UsersAPI {
+    +getEmail()
+}
+
+Class UsersAPIAdapter {
+    +getSession()
+}
+
+Class RepositorioAtribuicao {
+    +insertAtribuicao(Atribuicao atribuicao)
+    +criarAtribuicao(Classificacao classificacao, LocalDate dataInicio)                                       
+}
+
+Class RepositorioColaborador {
+    +getColaboradoresOrganizacaoByEmail(new Email(emailColaborador)
+}
+
+Class RepositorioCandidatura {
+    +getCandidaturasByAnuncio(anuncio)
+}
+
+Class Atribuicao {
+    - Data dataInicio;
+    - Data dataFim;
+    - Data dataAtribuicao;
+    - Classificacao classificacao;
+}
+
+Class Anuncio {
+    - Tarefa tarefa;
+    - TipoRegimento tipoRegimento;
+    - Data dataInicioPublicitacao;
+    - Data dataFimPublicitacao;
+    - Data dataInicioCandidatura;
+    - Data dataFimCandidatura;
+    - Data dataInicioSeriacao;
+    - Data dataFimSeriacao;
+}
+
+
+AreaGestorUI ..> AtribuicaoController
+AreaGestorUI ..> AuthenticationController
+AtribuicaoController ..> RepositorioAtribuicao
+AtribuicaoController ..> RepositorioColaborador
+AtribuicaoController ..> RepositorioCandidatura
+AuthenticationController ..> UsersAPI
+UsersAPI --> AlgoritmoGeradorPasswords : usa
+UsersAPI ..> UsersAPIAdapter
+RepositorioAtribuicao "1"--> "1..*" Atribuicao : cria
+Atribuicao "1" -> "1"Anuncio: relativo a
+
+
+@enduml
