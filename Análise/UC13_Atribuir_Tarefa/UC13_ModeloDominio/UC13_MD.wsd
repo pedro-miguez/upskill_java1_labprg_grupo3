@@ -1,0 +1,70 @@
+@startuml
+
+title UC13 - Excerto Modelo de Dominio
+
+left to right direction
+
+
+class Plataforma {
+    designacao
+}
+
+class Organizacao {
+    nome
+    NIF
+    contactoTelefonico
+    enderecoWeb
+    email
+}
+
+class Colaborador {
+    nome
+    funcao
+    contactoTelefonico
+    email
+}
+
+class Gestor {
+    nome
+    contactoTelefonico
+    email
+}
+
+class Anuncio {
+    dataInicioPublicitacao
+    dataFimPublicitacao
+    dataInicioCandidatura
+    dataFimCandidatura
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+class Candidatura {
+    dataFimCandidatura
+    valorPretendido
+    nrDias
+    txtApresentacao
+    txtMotivacao
+}
+
+class Atribuicao {
+    dataAtribuicao
+}
+
+
+
+Plataforma "1" --> "*" Organizacao: tem registada
+Plataforma "1" --> "*" Anuncio: publicita
+
+Anuncio "*" --> "1" Colaborador: publicado por
+Anuncio "1" --> "*" Candidatura: recebe
+Anuncio "1" --> "0..1" Atribuicao: recebe
+
+Gestor "1" --> "1" Colaborador: é um
+
+Atribuicao "1" --> "1..*" Gestor: realizado por
+
+Organizacao "1" --> "1..*" Colaborador: tem
+
+
+@enduml
