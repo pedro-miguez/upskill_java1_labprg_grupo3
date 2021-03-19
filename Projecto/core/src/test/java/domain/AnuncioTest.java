@@ -9,9 +9,14 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-
+/**
+ * Class responsible for testing the advertisement.
+ * 
+ * @author Grupo 3
+ */
 public class AnuncioTest {
 
+    //Creates a valid advertisement.
     @Test
     public void testCreateAnuncioValido() {
 
@@ -50,7 +55,7 @@ public class AnuncioTest {
         
     }
     
-    
+    //Creates an advertisement with an invalid date.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateAnuncioComDataInvalida() {
 
@@ -80,8 +85,9 @@ public class AnuncioTest {
                 new Data(2021, 02, 22),
                 new Data(2021, 03, 01),
                 new Data(2021, 06, 30));
-}
+    }
 
+    //Creates an advertisement with an invalid date.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateAnuncioComDataInvalida2() {
 
@@ -111,7 +117,9 @@ public class AnuncioTest {
             new Data(2021, 02, 22),
             new Data(2021, 03, 01),
             new Data(2020, 06, 30));
-}
+    }
+    
+    //Creates an advertisement with an invalid date.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateAnuncioComDataInvalida3() {
 
@@ -141,7 +149,9 @@ public class AnuncioTest {
             new Data(2021, 02, 22),
             new Data(2021, 03, 01),
             new Data(2020, 06, 30));
-}
+    }
+    
+    //Creates an advertisement with an invalid regiment type.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateAnuncioComTipoDeRegimentoInvalido() {
 
@@ -172,6 +182,8 @@ public class AnuncioTest {
                 new Data(2021, 03, 01),
                 new Data(2020, 06, 30));
     }
+    
+    //Creates an advertisement with an invalid regiment type.
     @Test (expected = IllegalArgumentException.class)
     public void testCreateAnuncioComTipoDeRegimentoInvalido2() {
 
