@@ -1,23 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
 
 package domain;
 
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
-*/
+
 /**
  *
  * @author Grupo 3
- *//*
+ */
 
 public class CandidaturaTest {
 
@@ -41,7 +34,7 @@ public class CandidaturaTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio(tarefa, new TipoRegimento("Regimento a todo o gas",
+        Anuncio a = new Anuncio(tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
                 "as regras existem para ser quebradas"),
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
@@ -85,7 +78,7 @@ public class CandidaturaTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio(tarefa, new TipoRegimento("Regimento a todo o gas",
+        Anuncio a = new Anuncio(tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
                 "as regras existem para ser quebradas"),
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
@@ -121,7 +114,7 @@ public class CandidaturaTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio(tarefa, new TipoRegimento("Regimento a todo o gas",
+        Anuncio a = new Anuncio(tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
                 "as regras existem para ser quebradas"),
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
@@ -156,7 +149,7 @@ public class CandidaturaTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio(tarefa, new TipoRegimento("Regimento a todo o gas",
+        Anuncio a = new Anuncio(tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
                 "as regras existem para ser quebradas"),
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
@@ -171,6 +164,4 @@ public class CandidaturaTest {
         Candidatura cand = new Candidatura(a, freelancer, new Data(2021, 02, 35), 1200, 0, "Projeto novo", "Novos desafios");
     }
 }
-    
 
-*/

@@ -1,12 +1,7 @@
-/*
 
 package domain;
 
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class TipoRegimentoTest {
@@ -14,7 +9,7 @@ public class TipoRegimentoTest {
     @Test
     public void testCreateTipoRegimentoValido() {
 
-        TipoRegimento tipoRegimento = new TipoRegimento("Designacao", " regras");
+        TipoRegimento tipoRegimento = new SeriacaoAutomaticaObrigatoria("Designacao", " regras");
 
         String expected = "Designacao";
 
@@ -26,12 +21,12 @@ public class TipoRegimentoTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreateTipoRegimentoInvalido() {
 
-        TipoRegimento tipoRegimento = new TipoRegimento("", " regras");
+        TipoRegimento tipoRegimento = new SeriacaoAutomaticaObrigatoria("", " regras");
     }
     @Test(expected = IllegalArgumentException.class)
     public void testCreateTipoRegimentoInvalido2() {
 
-        TipoRegimento tipoRegimento = new TipoRegimento("Designacao", " ");
+        TipoRegimento tipoRegimento = new SeriacaoAutomaticaObrigatoria("Designacao", " ");
     }
 }
-*/
+
