@@ -1,17 +1,17 @@
-
 package domain;
 
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ClassificacaoTest {
+public class AtribuicaoTest {
 
     @Test
-    public void testCreateClassificacaoValida() {
+    public void testCreateAtribuicaoValida() {
 
         List<CaracterizacaoCompTec> competenciasTecnicas = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class ClassificacaoTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio (tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
+        Anuncio a = new Anuncio(tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
                 "as regras existem para ser quebradas"),
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
@@ -47,15 +47,17 @@ public class ClassificacaoTest {
 
         Classificacao classificacao = new Classificacao(cand, 1);
 
-        int expected = 1;
+        Atribuicao atribuicao = new Atribuicao(classificacao, LocalDate.of(2020, 03, 19));
 
-        int result = classificacao.getLugar();
+        LocalDate expected = LocalDate.of(2020, 03, 19);
+
+        Data result = atribuicao.getDataInicio();
 
         assertEquals(expected, result);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateClassificacaoInvalida() {
+    public void testCreateAtribuicaoInvalida() {
 
         List<CaracterizacaoCompTec> competenciasTecnicas = new ArrayList<>();
 
@@ -74,7 +76,7 @@ public class ClassificacaoTest {
                 "É necessário programador em java para desenvolvimento de um jogo",
                 100, 1500.00f, ct, org);
 
-        Anuncio a = new Anuncio (tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
+        Anuncio a = new Anuncio(tarefa, new SeriacaoAutomaticaObrigatoria("Regimento a todo o gas",
                 "as regras existem para ser quebradas"),
                 new Data(2021, 02, 18),
                 new Data(2021, 02, 22),
@@ -89,7 +91,8 @@ public class ClassificacaoTest {
         Candidatura cand = new Candidatura(a, freelancer, new Data(2021, 02, 18),
                 1200, 90, "Projeto novo", "Novos desafios");
 
+        Classificacao classificacao = new Classificacao(cand, 1);
 
-        Classificacao classificacao = new Classificacao(cand, -5);
+        Atribuicao atribuicao = new Atribuicao(classificacao, LocalDate.of(2020, 03, 40));
     }
 }

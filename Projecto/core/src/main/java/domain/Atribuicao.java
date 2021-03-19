@@ -1,6 +1,7 @@
 package domain;
 
 import javax.ejb.Local;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.Objects;
  * 
  * @author Grupo 3
  */
-public class Atribuicao {
+public class Atribuicao implements Serializable {
 
     private Data dataInicio;
     private Data dataFim;
