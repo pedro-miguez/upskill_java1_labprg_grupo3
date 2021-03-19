@@ -1,0 +1,32 @@
+@startuml
+
+title UC13 - Diagrama de Sequência
+
+actor GestorOrganizacao as GestorOrganizacao
+GestorOrganizacao -> AreaGestorUI : 1 Inicia processo atribuicao
+activate AreaGestorUI
+AreaGestorUI -> AtribuicaoController : 2 listarClassificacoesAtribuicao (ProcessoSeriacao processoSeriacao)
+deactivate AreaGestorUI
+activate AtribuicaoController
+AtribuicaoController -> RepositorioAtribuicao : 3 getProcessosSeriacaoByGestor(String emailGestor)
+deactivate AtribuicaoController
+activate RepositorioAtribuicao
+RepositorioAtribuicao --> GestorOrganizacao :retorna a lista e solicita data inicio
+deactivate RepositorioAtribuicao
+GestorOrganizacao -> AreaGestorUI : 4 Seleciona anuncio ja seriado e indica a data de inicio
+activate AreaGestorUI
+AreaGestorUI -> AtribuicaoController: 5 criarAtribuicao (Classificacao classificacao, LocalDate dataInicio)
+deactivate AreaGestorUI
+activate AtribuicaoController
+AtribuicaoController -> RepositorioAtribuicao: 6 criarAtribuicao(Classificacao classificacao, LocalDate dataInicio)
+deactivate AtribuicaoController
+activate RepositorioAtribuicao
+RepositorioAtribuicao --> GestorOrganizacao: 7 confirma os dados e indica sucesso da operacao
+deactivate RepositorioAtribuicao
+
+
+
+
+deactivate AreaGestorUI
+
+@enduml
