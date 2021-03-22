@@ -926,6 +926,7 @@ public class AreaGestorUI implements Initializable {
             AlertaUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO,
                     "Problema ao iniciar seriação.",
                     e.getMessage()).show();
+                    e.printStackTrace();
         }
     }
 

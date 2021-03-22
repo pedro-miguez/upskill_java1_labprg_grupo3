@@ -33,9 +33,9 @@ public class SeriacaoAutomaticaObrigatoria implements TipoRegimento {
     public ArrayList<Classificacao> listarClassificacoesAtribuicao(ProcessoSeriacao processoSeriacao) {
         ArrayList<Classificacao> listaClassificacao = new ArrayList<>();
         if (processoSeriacao.getClassificacao().size() > 1) {
-            listaClassificacao.add(processoSeriacao.getClassificacao().get(2));
-        } else if (processoSeriacao.getClassificacao().size() == 1) {
             listaClassificacao.add(processoSeriacao.getClassificacao().get(1));
+        } else if (processoSeriacao.getClassificacao().size() == 1) {
+            listaClassificacao.add(processoSeriacao.getClassificacao().get(0));
         }
 
         return listaClassificacao;
